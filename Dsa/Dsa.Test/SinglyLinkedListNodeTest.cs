@@ -30,10 +30,9 @@ namespace Dsa.Test {
         [TestMethod]
         public void NextTest() {
             SinglyLinkedListNode<int> n1 = new SinglyLinkedListNode<int>(10);
-            SinglyLinkedListNode<int> n2 = new SinglyLinkedListNode<int>(20, n1);
-            SinglyLinkedListNode<int> n3 = new SinglyLinkedListNode<int>(30, n2);
-            Assert.AreEqual<int>(10, n2.Next.Value);
-            Assert.AreEqual<int>(20, n3.Next.Value);
+            SinglyLinkedListNode<int> n2 = new SinglyLinkedListNode<int>(20);
+            n1.Next = n2;
+            Assert.AreEqual<int>(20, n1.Next.Value);
         }
 
     }
