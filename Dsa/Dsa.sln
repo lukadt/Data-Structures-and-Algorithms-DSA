@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dsa", "Dsa\Dsa.csproj", "{928B4724-1973-454B-BDA3-19D782D3F88D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dsa.Test", "Dsa.Test\Dsa.Test.csproj", "{E7E55A03-08AD-48BE-98E1-EC80F478AE39}"
+	ProjectSection(ProjectDependencies) = postProject
+		{928B4724-1973-454B-BDA3-19D782D3F88D} = {928B4724-1973-454B-BDA3-19D782D3F88D}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F8EAA95C-D7EA-4324-9732-D1D20409E0F7}"
 	ProjectSection(SolutionItems) = preProject
