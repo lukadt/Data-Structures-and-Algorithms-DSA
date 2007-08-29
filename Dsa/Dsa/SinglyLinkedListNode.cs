@@ -4,7 +4,7 @@
     /// SinglyLinkedListNode is the node used internally by the SinglyLinkedList data structure.
     /// </summary>
     /// <typeparam name="T"> value of the node.</typeparam>
-    public class SinglyLinkedListNode<T> {
+    public sealed class SinglyLinkedListNode<T> {
 
         private T _value;
         private SinglyLinkedListNode<T> _next;

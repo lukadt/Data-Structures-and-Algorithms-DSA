@@ -1,10 +1,13 @@
-﻿namespace Dsa.DataStructures {
+﻿using System;
+using System.Collections.Generic;
+
+namespace Dsa.DataStructures {
 
     /// <summary>
     /// SinglyLinkedList.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class SinglyLinkedList<T> {
+    public sealed class SinglyLinkedList<T> : IEnumerable<T> {
 
         private SinglyLinkedListNode<T> _head;
         private SinglyLinkedListNode<T> _tail;
@@ -75,6 +78,26 @@
             get { return _count; }
         }
 
+
+        #region IEnumerable<T> Members
+
+        public IEnumerator<T> GetEnumerator() {
+            SinglyLinkedListNode<T> n = Head;
+            while (n != null) {
+                yield return n.Value;
+                n = n.Next;
+            }
+        }
+
+        #endregion
+
+        #region IEnumerable Members
+
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {
+            return GetEnumerator();
+        }
+
+        #endregion
     }
 
 }

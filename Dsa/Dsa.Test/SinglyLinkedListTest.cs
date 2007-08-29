@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Dsa.DataStructures;
 
 namespace Dsa.Test {
@@ -87,6 +88,20 @@ namespace Dsa.Test {
             sll.AddLast("Barnett");
 
             Assert.AreEqual<int>(2, sll.Count);
+        }
+
+        /// <summary>
+        /// Test to see that SinglyLinkedList returns the correct items from the collection. TEMP TEST.
+        /// </summary>
+        [TestMethod]
+        public void ForeachTest() {
+            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
+            sll.AddLast(10);
+            sll.AddLast(30);
+            sll.AddLast(40);
+            foreach (int i in sll) {
+                Console.WriteLine(i);
+            }
         }
 
     }
