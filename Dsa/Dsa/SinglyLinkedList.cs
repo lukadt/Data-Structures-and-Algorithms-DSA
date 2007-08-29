@@ -58,6 +58,27 @@ namespace Dsa.DataStructures {
         }
 
         /// <summary>
+        /// ToArray converts the singly linked list to an array of type T.
+        /// </summary>
+        /// <returns>An array of type T containing all the values of the nodes in the singly linked list.</returns>
+        public T[] ToArray() {
+            if (_head == null) {
+                throw new InvalidOperationException("ToArray cannot be called on a SinglyLinkedList object that contains 0 nodes.");
+            }
+            else {
+                int curr = 0; // index of array at which current nodes value is stored
+                T[] arrayResult = new T[_count];
+                SinglyLinkedListNode<T> n = _head;
+                while (n != null) {
+                    arrayResult[curr] = n.Value;
+                    n = n.Next;
+                    curr++;
+                }
+                return arrayResult;
+            }
+        }
+
+        /// <summary>
         /// Get's node at the Head of the linked list.
         /// </summary>
         public SinglyLinkedListNode<T> Head {

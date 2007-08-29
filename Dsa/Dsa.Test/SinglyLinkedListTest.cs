@@ -104,6 +104,33 @@ namespace Dsa.Test {
             }
         }
 
+        /// <summary>
+        /// Test to see that the expected array is returned from a singly linked list that contains nodes.
+        /// </summary>
+        [TestMethod]
+        public void ToArrayOfValidSinglyLinkedListTest() {
+            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
+
+            sll.AddLast(10);
+            sll.AddLast(20);
+            sll.AddLast(30);
+
+            int[] expected = { 10, 20, 30 };
+
+            CollectionAssert.AreEqual(expected, sll.ToArray());
+        }
+
+        /// <summary>
+        /// Test to see that the expected exception is raised when ToArray is called on a singly linked list
+        /// that has no nodes.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void ToArrayOfInvalidSinglyLinkedListTest() {
+            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
+            sll.ToArray();
+        }
+
     }
 
 }
