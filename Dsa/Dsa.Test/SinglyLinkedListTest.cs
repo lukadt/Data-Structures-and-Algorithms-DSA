@@ -131,6 +131,98 @@ namespace Dsa.Test {
             sll.ToArray();
         }
 
+        /// <summary>
+        /// Test to make sure that removing the first node results in the expected behaviour.
+        /// </summary>
+        [TestMethod]
+        public void RemoveLastValidSinglyLinkedListWithOnlyOneNodeTest() {
+            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
+
+            sll.AddLast(10);
+            sll.RemoveLast();
+
+            Assert.AreEqual<int>(0, sll.Count);
+            Assert.IsTrue(sll.IsEmpty());
+            Assert.IsNull(sll.Head);
+            Assert.IsNull(sll.Tail);
+        }
+
+        /// <summary>
+        /// Test to make sure that removing the last node results in the expected behaviour.
+        /// </summary>
+        [TestMethod]
+        public void RemoveLastValidSinglyLinkedListWithMultipleNodesTest() {
+            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
+
+            sll.AddLast(10);
+            sll.AddLast(20);
+            sll.AddLast(30);
+            sll.RemoveLast();
+
+            Assert.AreEqual<int>(20, sll.Tail.Value);
+            Assert.AreEqual<int>(2, sll.Count);
+            Assert.IsNull(sll.Tail.Next);
+        }
+
+        /// <summary>
+        /// Test to make sure that removing the last node results in the expected behaviour.
+        /// </summary>
+        [TestMethod]
+        public void RemoveLastValidSinglyLinkedListWithMultipleNodesTest2() {
+            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
+
+            sll.AddLast(10);
+            sll.AddLast(20);
+            sll.AddLast(30);
+            sll.RemoveLast();
+            sll.RemoveLast();
+
+            Assert.AreEqual<int>(10, sll.Tail.Value);
+            Assert.AreEqual<int>(10, sll.Head.Value);
+            Assert.AreEqual<int>(1, sll.Count);
+            Assert.IsNull(sll.Tail.Next);
+            Assert.IsNull(sll.Head.Next);
+        }
+
+        /// <summary>
+        /// Test to make sure that removing all the nodes in a singly linked list using the RemoveLast method, then
+        /// reassigning the head and tail returns the expected results.
+        /// </summary>
+        [TestMethod]
+        public void RemoveLastValidSinglyLinkedListWithMultipleNodesAndReassingHeadAndTailTest() {
+            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
+
+            sll.AddLast(10);
+            sll.AddLast(20);
+            sll.AddLast(30);
+            sll.AddFirst(5);
+            sll.RemoveLast();
+            sll.RemoveLast();
+            sll.RemoveLast();
+            sll.RemoveLast();
+            sll.AddLast(1);
+
+            Assert.AreEqual<int>(1, sll.Count);
+            Assert.AreEqual<int>(1, sll.Head.Value);
+            Assert.AreEqual<int>(1, sll.Tail.Value);
+            Assert.IsNull(sll.Head.Next);
+            Assert.IsNull(sll.Tail.Next);
+        }
+
+        /// <summary>
+        /// Test to see that the appropriate exception is raised when calling RemoveLast on a singly linked list
+        /// object containing no nodes.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void RemoveLastInvalidSinglyLinkedListTest() {
+            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
+
+            sll.AddLast(10);
+            sll.RemoveLast();
+            sll.RemoveLast();
+        }
+
     }
 
 }

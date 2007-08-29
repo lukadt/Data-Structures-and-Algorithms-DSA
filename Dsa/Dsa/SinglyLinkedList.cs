@@ -62,7 +62,7 @@ namespace Dsa.DataStructures {
         /// </summary>
         /// <returns>An array of type T containing all the values of the nodes in the singly linked list.</returns>
         public T[] ToArray() {
-            if (_head == null) {
+            if (IsEmpty()) {
                 throw new InvalidOperationException("ToArray cannot be called on a SinglyLinkedList object that contains 0 nodes.");
             }
             else {
@@ -75,6 +75,35 @@ namespace Dsa.DataStructures {
                     curr++;
                 }
                 return arrayResult;
+            }
+        }
+
+        /// <summary>
+        /// Removes the last node from the singly linked list.
+        /// </summary>
+        public void RemoveLast() {
+            if (IsEmpty()) {
+                throw new InvalidOperationException("Cannot remove an item from a SinglyLinkedList object that contains 0 nodes.");
+            }
+            else {
+                if (_head.Next == null) {
+                    // only one node in the singly linked list
+                    _head = null;
+                    _tail = null;
+                }
+                else {
+                    // traverse singly linked list until we find the tail
+                    SinglyLinkedListNode<T> n = _head;
+                    while (n != null) {
+                        if (n.Next == _tail) {
+                            _tail = n;
+                            _tail.Next = null;
+                            break;
+                        }
+                        n = n.Next;
+                    }
+                }
+                _count--;
             }
         }
 
