@@ -9,7 +9,7 @@ namespace Dsa.Test {
     /// </summary>
     [TestClass]
     public class SinglyLinkedListCollectionCollectionTest {
-
+        
         /// <summary>
         /// Test to see that the SinglyLinkedListCollectionCollection reports as empty when it is.
         /// </summary>
@@ -21,7 +21,7 @@ namespace Dsa.Test {
         }
 
         /// <summary>
-        /// Test to see that nodes are added correctly to the tail of the linked list.
+        /// Test to see that nodes are added correctly to the tail of the SinglyLinkedListCollection.
         /// </summary>
         [TestMethod]
         public void AddLastTest() {
@@ -38,7 +38,7 @@ namespace Dsa.Test {
         }
 
         /// <summary>
-        /// Test to see that nodes are added correctly to the head of the linked list.
+        /// Test to see that nodes are added correctly to the head of the SinglyLinkedListCollection.
         /// </summary>
         [TestMethod]
         public void AddFirstTest() {
@@ -54,7 +54,7 @@ namespace Dsa.Test {
         }
 
         /// <summary>
-        /// Test to see that the value of the Tail node is as expected.
+        /// Test to see that the value of the Head node of the SinglyLinkedListCollection is as expected.
         /// </summary>
         [TestMethod]
         public void HeadTest() {
@@ -66,7 +66,7 @@ namespace Dsa.Test {
         }
 
         /// <summary>
-        /// Test to see that the value of the Tail node is as expected.
+        /// Test to see that the value of the Tail node of the SinglyLinkedListCollection is as expected.
         /// </summary>
         [TestMethod]
         public void TailTest() {
@@ -78,7 +78,7 @@ namespace Dsa.Test {
         }
 
         /// <summary>
-        /// Test to see that the Count property returns the correct nummber.
+        /// Test to see that the Count property of the SinglyLinkedListCollection returns the correct nummber.
         /// </summary>
         [TestMethod]
         public void CountTest() {
@@ -105,7 +105,7 @@ namespace Dsa.Test {
         }
 
         /// <summary>
-        /// Test to see that the expected array is returned from a singly linked list that contains nodes.
+        /// Test to see that the expected array is returned from a SinglyLinkedListCollection that contains nodes.
         /// </summary>
         [TestMethod]
         public void ToArrayOfValidSinglyLinkedListCollectionTest() {
@@ -121,18 +121,19 @@ namespace Dsa.Test {
         }
 
         /// <summary>
-        /// Test to see that the expected exception is raised when ToArray is called on a singly linked list
+        /// Test to see that the expected exception is raised when ToArray is called on a SinglyLinkedListCollection
         /// that has no nodes.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
         public void ToArrayOfInvalidSinglyLinkedListCollectionTest() {
             SinglyLinkedListCollection<int> sll = new SinglyLinkedListCollection<int>();
+
             sll.ToArray();
         }
 
         /// <summary>
-        /// Test to make sure that removing the first node results in the expected behaviour.
+        /// Test to make sure that removing the only node from the SinglyLinkedListCollection results in the expected behaviour.
         /// </summary>
         [TestMethod]
         public void RemoveLastValidSinglyLinkedListCollectionWithOnlyOneNodeTest() {
@@ -148,7 +149,7 @@ namespace Dsa.Test {
         }
 
         /// <summary>
-        /// Test to make sure that removing the last node results in the expected behaviour.
+        /// Test to make sure that removing the last node from the SinglyLinkedListCollection results in the expected behaviour.
         /// </summary>
         [TestMethod]
         public void RemoveLastValidSinglyLinkedListCollectionWithMultipleNodesTest() {
@@ -165,7 +166,7 @@ namespace Dsa.Test {
         }
 
         /// <summary>
-        /// Test to make sure that removing the last node results in the expected behaviour.
+        /// Test to make sure that removing the last node from SinglyLinkedListCollection results in the expected behaviour.
         /// </summary>
         [TestMethod]
         public void RemoveLastValidSinglyLinkedListCollectionWithMultipleNodesTest2() {
@@ -185,7 +186,7 @@ namespace Dsa.Test {
         }
 
         /// <summary>
-        /// Test to make sure that removing all the nodes in a singly linked list using the RemoveLast method, then
+        /// Test to make sure that removing all the nodes from a SinglyLinkedListCollection using the RemoveLast method works, then
         /// reassigning the head and tail returns the expected results.
         /// </summary>
         [TestMethod]
@@ -210,7 +211,7 @@ namespace Dsa.Test {
         }
 
         /// <summary>
-        /// Test to see that the appropriate exception is raised when calling RemoveLast on a singly linked list
+        /// Test to see that the appropriate exception is raised when calling RemoveLast on a SinglyLinkedListCollection
         /// object containing no nodes.
         /// </summary>
         [TestMethod]
@@ -224,7 +225,7 @@ namespace Dsa.Test {
         }
 
         /// <summary>
-        /// Test to see that calling RemoveFirst on singly linked list with only 1 node results in the expected behaviour.
+        /// Test to see that calling RemoveFirst on SinglyLinkedListCollection with only 1 node results in the expected behaviour.
         /// </summary>
         [TestMethod]
         public void RemoveFirstValidSinglyLinkedListCollectionWithOnlyOneNodeTest() {
@@ -239,7 +240,7 @@ namespace Dsa.Test {
         }
 
         /// <summary>
-        /// Test to see that when calling the RemoveFirst method on a singly linked list with more than one node
+        /// Test to see that when calling the RemoveFirst method on a SinglyLinkedListCollection with more than one node
         /// results in the expected object state.
         /// </summary>
         [TestMethod]
@@ -260,7 +261,7 @@ namespace Dsa.Test {
         }
 
         /// <summary>
-        /// Test to see that when calling the RemoveFirst method on a singly linked list with more than one node
+        /// Test to see that when calling the RemoveFirst method on a SinglyLinkedListCollection with more than one node
         /// results in the expected object state.
         /// </summary>
         [TestMethod]
@@ -281,7 +282,7 @@ namespace Dsa.Test {
         }
 
         /// <summary>
-        /// Test to make sure that removing all the nodes in a singly linked list using the RemoveFirst method, then
+        /// Test to make sure that removing all the nodes in a SinglyLinkedListCollection using the RemoveFirst method, then
         /// reassigning the head and tail returns the expected results.
         /// </summary>
         [TestMethod]
@@ -304,7 +305,7 @@ namespace Dsa.Test {
         }
 
         /// <summary>
-        /// Test to see that the appropriate exception is raised when calling RemoveFirst on a singly linked list
+        /// Test to see that the appropriate exception is raised when calling RemoveFirst on a SinglyLinkedListCollection
         /// object containing no nodes.
         /// </summary>
         [TestMethod]
@@ -316,7 +317,7 @@ namespace Dsa.Test {
         }
 
         /// <summary>
-        /// Test to see that the appropriate exception is raised when calling RemoveFirst on a singly linked list
+        /// Test to see that the appropriate exception is raised when calling RemoveFirst on a SinglyLinkedListCollection
         /// object containing no nodes.
         /// </summary>
         [TestMethod]
@@ -327,6 +328,101 @@ namespace Dsa.Test {
             sll.AddFirst(10);
             sll.RemoveFirst();
             sll.RemoveFirst();
+        }
+
+        /// <summary>
+        /// Test to see that the Add method is leaving the SinglyLinkedListCollection object in the correct state.
+        /// </summary>
+        [TestMethod]
+        public void AddTest() {
+            SinglyLinkedListCollection<int> sll = new SinglyLinkedListCollection<int>();
+
+            sll.Add(10);
+            sll.Add(20);
+
+            Assert.AreEqual<int>(10, sll.Head.Value);
+            Assert.AreEqual<int>(20, sll.Tail.Value);
+            Assert.AreEqual<int>(2, sll.Count);
+        }
+
+        /// <summary>
+        /// Test to see that calling the Clear method resets the SinglyLinkedListCollection object's internal state.
+        /// </summary>
+        [TestMethod]
+        public void ClearTest() {
+            SinglyLinkedListCollection<int> sll = new SinglyLinkedListCollection<int>();
+
+            sll.Add(10);
+            sll.Add(20);
+            sll.Add(30);
+            sll.Clear();
+
+            Assert.AreEqual<int>(0, sll.Count);
+            Assert.IsNull(sll.Head);
+            Assert.IsNull(sll.Tail);
+        }
+
+        /// <summary>
+        /// Test to see that the contains method returns the correct bool depending on whether the item is in the 
+        /// SinglyLinkedListCollection or not.
+        /// </summary>
+        [TestMethod]
+        public void ContainsTest() {
+            SinglyLinkedListCollection<int> sll = new SinglyLinkedListCollection<int>();
+
+            sll.Add(10);
+            sll.Add(20);
+            sll.Add(30);
+
+            Assert.IsTrue(sll.Contains(20));
+            Assert.IsFalse(sll.Contains(40));
+        }
+
+        /// <summary>
+        /// Test to see that the SinglyLinkedListCollection is not readonly.
+        /// </summary>
+        [TestMethod]
+        public void IsReadOnlyTest() {
+            SinglyLinkedListCollection<int> sll = new SinglyLinkedListCollection<int>();
+
+            Assert.IsFalse(sll.IsReadOnly);
+        }
+
+        /// <summary>
+        /// Test to see that all items of the SinglyLinkedListCollection are copied to the target array, beginning at index 0.
+        /// </summary>
+        [TestMethod]
+        public void CopyToTest() {
+            SinglyLinkedListCollection<int> sll = new SinglyLinkedListCollection<int>();
+
+            sll.Add(10);
+            sll.Add(20);
+            sll.Add(30);
+            sll.Add(40);
+            sll.Add(50);
+            int[] actual = new int[sll.Count];
+            sll.CopyTo(actual);
+
+            int[] expected = { 10, 20, 30, 40, 50 };
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        /// Test to see that CopyTo copies all items of SinglyLinkedListCollection to an array beginning at a specified index.
+        /// </summary>
+        [TestMethod]
+        public void ArrayCopyWithDefinedStartIndexTest() {
+            SinglyLinkedListCollection<int> sll = new SinglyLinkedListCollection<int>();
+
+            sll.Add(10);
+            sll.Add(20);
+            sll.Add(30);
+            int[] actual = new int[10];
+            sll.CopyTo(actual, 6);
+
+            Assert.AreEqual<int>(10, actual[6]);
+            Assert.AreEqual<int>(20, actual[7]);
+            Assert.AreEqual<int>(30, actual[8]);
         }
 
     }

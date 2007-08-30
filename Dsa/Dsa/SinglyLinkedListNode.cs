@@ -1,7 +1,7 @@
 ﻿namespace Dsa.DataStructures {
 
     /// <summary>
-    /// SinglyLinkedListNode is the node used internally by the SinglyLinkedList data structure.
+    /// Dsa.DataStructures.SinglyLinkedListNode.
     /// </summary>
     /// <typeparam name="T"> value of the node.</typeparam>
     public sealed class SinglyLinkedListNode<T> {
