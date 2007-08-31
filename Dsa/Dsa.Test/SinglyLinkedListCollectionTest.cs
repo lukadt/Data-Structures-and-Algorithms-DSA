@@ -96,9 +96,11 @@ namespace Dsa.Test {
         [TestMethod]
         public void ForeachTest() {
             SinglyLinkedListCollection<int> sll = new SinglyLinkedListCollection<int>();
+
             sll.AddLast(10);
             sll.AddLast(30);
             sll.AddLast(40);
+
             foreach (int i in sll) {
                 Console.WriteLine(i);
             }
@@ -423,6 +425,167 @@ namespace Dsa.Test {
             Assert.AreEqual<int>(10, actual[6]);
             Assert.AreEqual<int>(20, actual[7]);
             Assert.AreEqual<int>(30, actual[8]);
+        }
+
+        /// <summary>
+        /// Test to see that the correct exception is raised when attempting to remove an item from an empty
+        /// SinglyLinkedListCollection.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void RemoveItemFromEmptySinglyLinkedListCollection() {
+            SinglyLinkedListCollection<int> sll = new SinglyLinkedListCollection<int>();
+
+            sll.Remove(10);
+        }
+
+        /// <summary>
+        /// Test to see that Remove leaves the SinglyLinkedListCollection in the correct state where the value of Remove
+        /// is equal to that of the head node.
+        /// </summary>
+        [TestMethod]
+        public void RemoveHeadItemTest() {
+            SinglyLinkedListCollection<int> sll = new SinglyLinkedListCollection<int>();
+
+            sll.Add(10);
+            sll.Add(20);
+            sll.Add(30);
+            bool actual = sll.Remove(10);
+
+            Assert.AreEqual<int>(20, sll.Head.Value);
+            Assert.AreEqual<int>(30, sll.Tail.Value);
+            Assert.AreEqual<int>(30, sll.Head.Next.Value);
+            Assert.AreEqual<int>(2, sll.Count);
+            Assert.IsTrue(actual);
+        }
+
+        /// <summary>
+        /// Test to see that Remove leaves the SinglyLinkedListCollection in the correct state, when remove is any node but head or tail.
+        /// </summary>
+        [TestMethod]
+        public void RemoveMiddleItemTest() {
+            SinglyLinkedListCollection<int> sll = new SinglyLinkedListCollection<int>();
+
+            sll.Add(10);
+            sll.Add(20);
+            sll.Add(30);
+            bool actual = sll.Remove(20);
+
+            Assert.AreEqual<int>(30, sll.Head.Next.Value);
+            Assert.AreEqual<int>(10, sll.Head.Value);
+            Assert.AreEqual<int>(30, sll.Tail.Value);
+            Assert.AreEqual<int>(2, sll.Count);
+            Assert.IsTrue(actual);
+        }
+
+        /// <summary>
+        /// Test to see that Remove leaves the SinglyLinkedListCollection in the correct state where the value of Remove
+        /// is equal to that of the tail node.
+        /// </summary>
+        [TestMethod]
+        public void RemoveTailItemTest() {
+            SinglyLinkedListCollection<int> sll = new SinglyLinkedListCollection<int>();
+
+            sll.Add(10);
+            sll.Add(20);
+            sll.Add(30);
+            bool actual = sll.Remove(30);
+
+            Assert.AreEqual<int>(10, sll.Head.Value);
+            Assert.AreEqual<int>(20, sll.Head.Next.Value);
+            Assert.AreEqual<int>(20, sll.Tail.Value);
+            Assert.AreEqual<int>(2, sll.Count);
+            Assert.IsNull(sll.Tail.Next);
+            Assert.IsTrue(actual);
+        }
+
+        /// <summary>
+        /// Test to see that when calling the Remove method passing in a value that is not contained in the SinglyLinkedListCollection
+        /// returns false.
+        /// </summary>
+        [TestMethod]
+        public void RemoveWithNoMatchTest() {
+            SinglyLinkedListCollection<int> sll = new SinglyLinkedListCollection<int>();
+
+            sll.Add(20);
+            sll.Add(30);
+            sll.Add(50);
+
+            Assert.AreEqual<int>(3, sll.Count);
+            Assert.IsFalse(sll.Remove(110));
+        }
+
+        /// <summary>
+        /// Test to see that the head and tail nodes are correct after adding a node after the only node in the SinglyLinkedListCollection.
+        /// </summary>
+        [TestMethod]
+        public void AddAfterOnlyOneNodeInSinglyLinkedListCollectionTest() {
+            SinglyLinkedListCollection<int> sll = new SinglyLinkedListCollection<int>();
+
+            sll.Add(10);
+            sll.AddAfter(sll.Head, 20);
+
+            Assert.AreEqual<int>(20, sll.Tail.Value);
+            Assert.AreEqual<int>(10, sll.Head.Value);
+            Assert.AreEqual<int>(20, sll.Head.Next.Value);
+            Assert.AreEqual<int>(2, sll.Count);
+        }
+
+        /// <summary>
+        /// Test to see that the tail node is updated after adding a node after the tail in the SinglyLinkedListCollection.
+        /// </summary>
+        [TestMethod]
+        public void AddAfterTailTest() {
+            SinglyLinkedListCollection<int> sll = new SinglyLinkedListCollection<int>();
+
+            sll.Add(10);
+            sll.Add(20);
+            sll.AddAfter(sll.Tail, 30);
+
+            Assert.AreEqual<int>(30, sll.Tail.Value);
+            Assert.AreEqual<int>(30, sll.Head.Next.Next.Value);
+            Assert.AreEqual<int>(3, sll.Count);
+        }
+
+        /// <summary>
+        /// Test to see that adding a node somewhere in the middle of the SinglyLinkedListCollection leaves the SinglyLinkedListCollection
+        /// in the correct state.
+        /// </summary>
+        [TestMethod]
+        public void AddAfterMiddleNodeTest() {
+            SinglyLinkedListCollection<int> sll = new SinglyLinkedListCollection<int>();
+
+            sll.Add(10);
+            sll.Add(20);
+            sll.Add(30);
+            sll.AddAfter(sll.Head.Next, 25);
+
+            Assert.AreEqual<int>(25, sll.Head.Next.Next.Value);
+            Assert.AreEqual<int>(30, sll.Head.Next.Next.Next.Value);
+            Assert.AreEqual<int>(4, sll.Count);
+        }
+
+        /// <summary>
+        /// Test to see that the correct exception is raised when AddAfter is invoked on a SinglyLinkedListCollection with no nodes.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void AddAfterEmptySinglyLinkedListCollectionTest() {
+            SinglyLinkedListCollection<int> sll = new SinglyLinkedListCollection<int>();
+
+            sll.AddAfter(sll.Head, 10);
+        }
+
+        /// <summary>
+        /// Test to see that AddAfter raises the correct exception when trying to add a new node after a null node in the SinglyLinkedListCollection.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void AddAfterNullNodeSinglyLinkedListCollectionTest() {
+            SinglyLinkedListCollection<int> sll = new SinglyLinkedListCollection<int>();
+
+            sll.Add(10);
+            sll.AddAfter(sll.Head.Next, 20);
         }
 
     }
