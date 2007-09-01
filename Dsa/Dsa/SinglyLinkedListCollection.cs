@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Dsa.Properties;
 
 namespace Dsa.DataStructures {
@@ -8,6 +9,8 @@ namespace Dsa.DataStructures {
     /// Dsa.DataStructures.SinglyLinkedListCollection.
     /// </summary>
     /// <typeparam name="T"></typeparam>
+    [Serializable]
+    [DebuggerDisplay("Count={Count}")]
     public sealed class SinglyLinkedListCollection<T> : IEnumerable<T>, ICollection<T> {
 
         private SinglyLinkedListNode<T> _head;
