@@ -53,7 +53,7 @@ namespace Dsa.DataStructures {
         /// <summary>
         /// Adds a node after the specified node with the value of item.
         /// </summary>
-        /// <param name="node">Node to add node after.</param>
+        /// <param name="node">Node in SinglyLinkedListCollection to add node after.</param>
         /// <param name="item">Item to add to SinglyLinkedListCollection.</param>
         public void AddAfter(SinglyLinkedListNode<T> node, T item) {
             if (IsEmpty()) {
@@ -77,6 +77,40 @@ namespace Dsa.DataStructures {
                 else {
                     n.Next = node.Next;
                     node.Next = n;
+                }
+                _count++;
+            }
+        }
+
+        /// <summary>
+        /// Adds a node before the specified node with the value of the item.
+        /// </summary>
+        /// <param name="node">Node in the SinglyLinkedListCollection to add node before.</param>
+        /// <param name="item">Item to add to the SinglyLinkedListCollection.</param>
+        public void AddBefore(SinglyLinkedListNode<T> node, T item) {
+            if (IsEmpty()) {
+                throw new InvalidOperationException(Resources.SinglyLinkedListEmpty);
+            }
+            if (node == null) {
+                throw new ArgumentNullException("node");
+            }
+            else {
+                SinglyLinkedListNode<T> n = new SinglyLinkedListNode<T>(item);
+                if (node == _head) {
+                    // we are adding a node before the head node
+                    n.Next = _head;
+                    _head = n;
+                }
+                else {
+                    SinglyLinkedListNode<T> curr = _head;
+                    while (curr != null) {
+                        if (curr.Next == node) {
+                            n.Next = node;
+                            curr.Next = n;
+                            break;
+                        }
+                        curr = curr.Next;
+                    }
                 }
                 _count++;
             }

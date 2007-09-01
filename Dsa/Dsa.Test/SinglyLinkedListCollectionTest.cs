@@ -588,6 +588,66 @@ namespace Dsa.Test {
             sll.AddAfter(sll.Head.Next, 20);
         }
 
+        /// <summary>
+        /// Test to see that AddBefore when passing in the head node of the SinglyLinkedListCollection results in the expected state.
+        /// </summary>
+        [TestMethod]
+        public void AddBeforeHeadTest() {
+            SinglyLinkedListCollection<int> sll = new SinglyLinkedListCollection<int>();
+
+            sll.Add(10);
+            sll.Add(20);
+            sll.Add(30);
+            sll.AddBefore(sll.Head, 5);
+
+            Assert.AreEqual<int>(5, sll.Head.Value);
+            Assert.AreEqual<int>(10, sll.Head.Next.Value);
+            Assert.AreEqual<int>(4, sll.Count);
+        }
+
+        /// <summary>
+        /// Test to see that AddBefore a middle node results in the expected state of the SinglyLinkedListCollection.
+        /// </summary>
+        [TestMethod]
+        public void AddBeforeMiddleNodeTest() {
+            SinglyLinkedListCollection<int> sll = new SinglyLinkedListCollection<int>();
+
+            sll.Add(10);
+            sll.Add(20);
+            sll.Add(30);
+            sll.AddBefore(sll.Head.Next, 15);
+
+            Assert.AreEqual<int>(15, sll.Head.Next.Value);
+            Assert.AreEqual<int>(20, sll.Head.Next.Next.Value);
+            Assert.AreEqual<int>(4, sll.Count);
+        }
+
+        /// <summary>
+        /// Test to see that the correct exception is raised when calling AddBefore on a SinglyLinkedListCollection with no nodes.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void AddBeforeEmptySinglyLinkedListCollectionTEst() {
+            SinglyLinkedListCollection<int> sll = new SinglyLinkedListCollection<int>();
+
+            sll.AddBefore(sll.Head, 10);
+        }
+
+        /// <summary>
+        /// Test to see that the correct exception is raised when calling AddBefore on a SinglyLinkedListCollection when 
+        /// passing in a null node.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void AddBeforeNullNodeSinglyLinkedListCollectionTest() {
+            SinglyLinkedListCollection<int> sll = new SinglyLinkedListCollection<int>();
+
+            sll.Add(10);
+            sll.Add(20);
+            sll.Add(30);
+            sll.AddBefore(sll.Tail.Next, 40);
+        }
+
     }
 
 }
