@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading;
 using Dsa.Properties;
 
 namespace Dsa.DataStructures {
@@ -12,11 +14,12 @@ namespace Dsa.DataStructures {
     [Serializable]
     [DebuggerDisplay("Count={Count}")]
     [DebuggerTypeProxy(typeof(CollectionDebugView<>))]
-    public sealed class SinglyLinkedListCollection<T> : IEnumerable<T>, ICollection<T> {
+    public sealed class SinglyLinkedListCollection<T> : IEnumerable<T>, ICollection<T>, ICollection {
 
         private SinglyLinkedListNode<T> _head;
         private SinglyLinkedListNode<T> _tail;
         private int _count;
+        private object _syncRoot;
 
         /// <summary>
         /// Adds a node to the tail of the SinglyLinkedListCollection.
@@ -245,7 +248,7 @@ namespace Dsa.DataStructures {
         /// Adds a node to the tail of the SinglyLinkedListCollection.
         /// </summary>
         /// <param name="item">Item to add to the SinglyLinkedListCollection.</param>
-        public void Add(T item) {
+        void ICollection<T>.Add(T item) {
             AddLast(item);
         }
 
@@ -359,6 +362,37 @@ namespace Dsa.DataStructures {
 
         #endregion
 
+        #region ICollection Members
+
+        /// <summary>
+        /// Copies the elements of the ICollection to an Array, starting at a particular Array index.
+        /// </summary>
+        /// <param name="array">Array to copy elements to.</param>
+        /// <param name="index">Index of array to start copying to.</param>
+        void ICollection.CopyTo(Array array, int index) {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether access to the ICollection is synchronized (thread safe).
+        /// </summary>
+        bool ICollection.IsSynchronized {
+            get { return false; }
+        }
+
+        /// <summary>
+        /// Gets an object that can be used to synchronize access to the ICollection.
+        /// </summary>
+        object ICollection.SyncRoot {
+            get {
+                if (_syncRoot == null) {
+                    Interlocked.CompareExchange(ref _syncRoot, new object(), null);
+                }
+                return _syncRoot;
+            }
+        }
+
+        #endregion
     }
 
 }
