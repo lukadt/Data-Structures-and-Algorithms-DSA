@@ -8,9 +8,10 @@ namespace Dsa.DataStructures {
     /// <summary>
     /// Dsa.DataStructures.SinglyLinkedListCollection.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">Type of the SinglyLinkedListCollection.</typeparam>
     [Serializable]
     [DebuggerDisplay("Count={Count}")]
+    [DebuggerTypeProxy(typeof(CollectionDebugView<>))]
     public sealed class SinglyLinkedListCollection<T> : IEnumerable<T>, ICollection<T> {
 
         private SinglyLinkedListNode<T> _head;

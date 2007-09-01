@@ -3,7 +3,7 @@
     /// <summary>
     /// Dsa.DataStructures.SinglyLinkedListNode.
     /// </summary>
-    /// <typeparam name="T"> value of the node.</typeparam>
+    /// <typeparam name="T">Type of the node.</typeparam>
     public sealed class SinglyLinkedListNode<T> {
 
         private T _value;
