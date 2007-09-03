@@ -349,7 +349,7 @@ namespace Dsa.DataStructures {
         }
 
         /// <summary>
-        /// Determines whether the SinglyLinkedListCollection is readonly.
+        /// Returns false.  SinglyLinkedListCollection is not readonly.
         /// </summary>
         public bool IsReadOnly {
             get { return false; }
