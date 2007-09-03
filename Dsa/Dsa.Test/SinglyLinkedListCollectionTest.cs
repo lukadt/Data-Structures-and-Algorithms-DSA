@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Dsa.DataStructures;
+using System.Collections;
 
 namespace Dsa.Test {
 
@@ -92,19 +93,22 @@ namespace Dsa.Test {
         }
 
         /// <summary>
-        /// Test to see that SinglyLinkedListCollection returns the correct items from the collection. TEMP TEST.
+        /// Test to see that SinglyLinkedListCollection returns the correct items from the collection.
         /// </summary>
         [TestMethod]
         public void ForeachTest() {
             SinglyLinkedListCollection<int> sll = new SinglyLinkedListCollection<int>();
+            SinglyLinkedListCollection<int> expected = new SinglyLinkedListCollection<int>();
 
             sll.AddLast(10);
             sll.AddLast(30);
             sll.AddLast(40);
+            expected.AddLast(10);
+            expected.AddLast(30);
+            expected.AddLast(40);
 
-            foreach (int i in sll) {
-                Console.WriteLine(i);
-            }
+            CollectionAssert.AreEqual(expected, sll);
+
         }
 
         /// <summary>
@@ -337,7 +341,7 @@ namespace Dsa.Test {
         /// Test to see that the Add method is leaving the SinglyLinkedListCollection object in the correct state.
         /// </summary>
         [TestMethod]
-        public void AddTest() {
+        public void ICollectionAddTest() {
             SinglyLinkedListCollection<int> sll = new SinglyLinkedListCollection<int>();
             ICollection<int> collectionSll = sll;
 
@@ -409,6 +413,51 @@ namespace Dsa.Test {
 
             int[] expected = { 10, 20, 30, 40, 50 };
             CollectionAssert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        /// Test to make sure that a null array cannot be used as an argument to CopyTo.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void CopyToNullArrayTest() {
+            SinglyLinkedListCollection<int> sll = new SinglyLinkedListCollection<int>();
+
+            sll.AddLast(1);
+            int[] myArray = null;
+            sll.CopyTo(myArray);
+        }
+
+        /// <summary>
+        /// Test to see that the correct exception is raised when using a negative index for the arrayIndex parameter
+        /// for CopyTo.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void CopyToInvalidIndexTest() {
+            SinglyLinkedListCollection<int> sll = new SinglyLinkedListCollection<int>();
+
+            sll.AddLast(10);
+            sll.AddLast(20);
+            sll.AddLast(30);
+            int[] myArray = new int[sll.Count];
+            sll.CopyTo(myArray, -1);
+        }
+
+        /// <summary>
+        /// Test to see that passing in an index that is equal to or greater than the array size throws
+        /// the correct exception.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void CopyToIndexGteThanArrayTest() {
+            SinglyLinkedListCollection<int> sll = new SinglyLinkedListCollection<int>();
+
+            sll.AddLast(10);
+            sll.AddLast(20);
+            sll.AddLast(30);
+            int[] myArray = new int[sll.Count];
+            sll.CopyTo(myArray, 2);
         }
 
         /// <summary>
@@ -648,6 +697,55 @@ namespace Dsa.Test {
             sll.AddLast(20);
             sll.AddLast(30);
             sll.AddBefore(sll.Tail.Next, 40);
+        }
+
+        /// <summary>
+        /// Test IsReadonly property to see that false is returned.
+        /// </summary>
+        [TestMethod]
+        public void IsReadonlyTest() {
+            SinglyLinkedListCollection<string> sll = new SinglyLinkedListCollection<string>();
+
+            Assert.IsFalse(sll.IsReadOnly);
+        }
+
+        /// <summary>
+        /// Test to make sure SyncRoot object is not null.
+        /// </summary>
+        [TestMethod]
+        public void ICollectionSyncRootTest() {
+            SinglyLinkedListCollection<int> sll = new SinglyLinkedListCollection<int>();
+            ICollection collectionSll = sll;
+
+            Assert.IsNotNull(collectionSll.SyncRoot);
+        }
+
+        /// <summary>
+        /// Test to see that IsSynchronized returns false.
+        /// </summary>
+        [TestMethod]
+        public void ICollectionIsSynchronizedTest() {
+            SinglyLinkedListCollection<int> sll = new SinglyLinkedListCollection<int>();
+            ICollection collectionSll = sll;
+
+            Assert.IsFalse(collectionSll.IsSynchronized);
+        }
+
+        /// <summary>
+        /// Test to see that ICollection.CopyTo works as expected.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(NotSupportedException))]
+        public void ICollectionCopyToTest() {
+            SinglyLinkedListCollection<int> sll = new SinglyLinkedListCollection<int>();
+            ICollection collectionSll = sll;
+
+            sll.AddLast(1);
+            sll.AddLast(2);
+            sll.AddLast(3);
+            int[] myArray = new int[sll.Count];
+            collectionSll.CopyTo(myArray, 0);
+            int[] expected = { 1, 2, 3 };
         }
 
     }

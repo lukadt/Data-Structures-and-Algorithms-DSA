@@ -8,7 +8,7 @@ using Dsa.Properties;
 namespace Dsa.DataStructures {
 
     /// <summary>
-    /// Dsa.DataStructures.SinglyLinkedListCollection.
+    /// SinglyLinkedListCollection(Of T).
     /// </summary>
     /// <typeparam name="T">Type of the SinglyLinkedListCollection.</typeparam>
     [Serializable]
@@ -16,7 +16,9 @@ namespace Dsa.DataStructures {
     [DebuggerTypeProxy(typeof(CollectionDebugView<>))]
     public sealed class SinglyLinkedListCollection<T> : IEnumerable<T>, ICollection<T>, ICollection {
 
+        [NonSerializedAttribute]
         private SinglyLinkedListNode<T> _head;
+        [NonSerializedAttribute]
         private SinglyLinkedListNode<T> _tail;
         private int _count;
         private object _syncRoot;
@@ -370,7 +372,7 @@ namespace Dsa.DataStructures {
         /// <param name="array">Array to copy elements to.</param>
         /// <param name="index">Index of array to start copying to.</param>
         void ICollection.CopyTo(Array array, int index) {
-            throw new NotImplementedException();
+            throw new NotSupportedException("Use the ICollection(Of T) CopyTo method");
         }
 
         /// <summary>
