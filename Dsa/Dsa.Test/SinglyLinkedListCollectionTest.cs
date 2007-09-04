@@ -748,6 +748,31 @@ namespace Dsa.Test {
             int[] expected = { 1, 2, 3 };
         }
 
+        /// <summary>
+        /// Test to make sure that the IEnumerator returned by the GetEnumerator is not null.
+        /// </summary>
+        [TestMethod]
+        public void GetEnumeratorGenericTest() {
+            SinglyLinkedListCollection<int> sll = new SinglyLinkedListCollection<int>();
+
+            sll.AddLast(10);
+
+            Assert.IsNotNull(sll.GetEnumerator());
+        }
+
+        /// <summary>
+        /// Test to make sure that IEnumerable.GetEnumerator returns an IEnumerator that is not null.
+        /// </summary>
+        [TestMethod]
+        public void GetEnumeratorTest() {
+            SinglyLinkedListCollection<int> sll = new SinglyLinkedListCollection<int>();
+            IEnumerable enumerSll = sll;
+
+            sll.AddLast(10);
+
+            Assert.IsNotNull(enumerSll.GetEnumerator());
+        }
+
     }
 
 }

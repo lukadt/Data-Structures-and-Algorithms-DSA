@@ -101,23 +101,31 @@ namespace Dsa.DataStructures {
         /// <param name="item">Item to remove from the QueueCollection.</param>
         /// <returns>True if the item was found and removed, false otherwise.</returns>
         bool ICollection<T>.Remove(T item) {
-            throw new System.NotImplementedException();
+            return _queue.Remove(item);
         }
 
         #endregion
 
         #region IEnumerable<T> Members
 
+        /// <summary>
+        /// Returns an enumerator that iterates through the items in the QueueCollection.
+        /// </summary>
+        /// <returns>A generic IEnumerator object.</returns>
         public IEnumerator<T> GetEnumerator() {
-            throw new System.NotImplementedException();
+            return _queue.GetEnumerator();
         }
 
         #endregion
 
         #region IEnumerable Members
 
+        /// <summary>
+        /// Returns an enumerator that iterates through the QueueCollection.
+        /// </summary>
+        /// <returns>An IEnumerator object.</returns>
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {
-            throw new System.NotImplementedException();
+            return GetEnumerator();
         }
 
         #endregion

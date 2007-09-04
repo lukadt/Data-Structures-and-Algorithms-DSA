@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Dsa.DataStructures;
+using System.Collections;
 
 namespace Dsa.Test {
 
@@ -138,6 +139,46 @@ namespace Dsa.Test {
 
             Assert.AreEqual<int>(10, myQueue.Peek());
             Assert.AreEqual<int>(3, myQueue.Count);
+        }
+
+        /// <summary>
+        /// Test to see that the IEnumerable(Of T).GetEnumerator returns an Enumerator that is not null.
+        /// </summary>
+        [TestMethod]
+        public void GetEnumeratorGenericTest() {
+            QueueCollection<int> myQueue = new QueueCollection<int>();
+
+            myQueue.Enqueue(10);
+
+            Assert.IsNotNull(myQueue.GetEnumerator());
+        }
+
+        /// <summary>
+        /// Test to see that the IEnumerable.GetEnumerator returns an Enumerator that is not null.
+        /// </summary>
+        [TestMethod]
+        public void GetEnumeratorTest() {
+            QueueCollection<int> myQueue = new QueueCollection<int>();
+            IEnumerable enumeratorQueue = myQueue;
+
+            myQueue.Enqueue(10);
+
+            Assert.IsNotNull(enumeratorQueue.GetEnumerator());
+        }
+
+        /// <summary>
+        /// Test to see that ICollection(Of T).Remove method leaves teh QueueCollction in the correct state.
+        /// </summary>
+        [TestMethod]
+        public void RemoveTest() {
+            QueueCollection<int> myQueue = new QueueCollection<int>();
+            ICollection<int> collQueue = myQueue;
+
+            myQueue.Enqueue(10);
+            myQueue.Enqueue(20);
+            collQueue.Remove(10);
+
+            Assert.AreEqual<int>(20, myQueue.Peek());
         }
 
     }

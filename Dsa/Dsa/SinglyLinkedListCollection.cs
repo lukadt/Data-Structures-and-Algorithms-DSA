@@ -14,7 +14,7 @@ namespace Dsa.DataStructures {
     [Serializable]
     [DebuggerDisplay("Count={Count}")]
     [DebuggerTypeProxy(typeof(CollectionDebugView<>))]
-    public sealed class SinglyLinkedListCollection<T> : IEnumerable<T>, ICollection<T>, ICollection {
+    public sealed class SinglyLinkedListCollection<T> : ICollection<T>, ICollection {
 
         [NonSerializedAttribute]
         private SinglyLinkedListNode<T> _head;
