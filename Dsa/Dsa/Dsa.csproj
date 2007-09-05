@@ -59,6 +59,7 @@
     <Compile Include="QueueCollection.cs" />
     <Compile Include="SinglyLinkedListCollection.cs" />
     <Compile Include="SinglyLinkedListNode.cs" />
+    <Compile Include="StackCollection.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Dsa.pfx" />
