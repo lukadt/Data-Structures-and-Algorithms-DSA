@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Dsa.DataStructures;
 using System.Collections;
+using System;
 
 namespace Dsa.Test {
 
@@ -194,6 +195,59 @@ namespace Dsa.Test {
             string[] expected = { "London", "Paris", "Berlin" };
 
             CollectionAssert.AreEqual(expected, myQueue.ToArray());
+        }
+
+        /// <summary>
+        /// Test to see that false is returned.
+        /// </summary>
+        [TestMethod]
+        public void IsSynchronizedTest() {
+            QueueCollection<int> myQueue = new QueueCollection<int>();
+            ICollection collQueue = myQueue;
+
+            Assert.IsFalse(collQueue.IsSynchronized);
+        }
+
+        /// <summary>
+        /// Test to make sure that the SyncRoot property returns a non null object.
+        /// </summary>
+        [TestMethod]
+        public void SyncRootIsNotNullTest() {
+            QueueCollection<int> myQueue = new QueueCollection<int>();
+            ICollection collQueue = myQueue;
+
+            Assert.IsNotNull(collQueue.SyncRoot);
+        }
+
+        /// <summary>
+        /// Test to see that the ICollection.CopyTo throw not implemented exception.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(NotSupportedException))]
+        public void CopyToNongenericTest() {
+            QueueCollection<int> myQueue = new QueueCollection<int>();
+            ICollection collQeuue = myQueue;
+
+            string[] target = new string[10];
+            collQeuue.CopyTo(target, 0);
+        }
+
+        /// <summary>
+        /// Test to make sure that two collections containing the same items pass the CollectionAssert.AreEqual.
+        /// </summary>
+        [TestMethod]
+        public void QueueCollectionItemsTest() {
+            QueueCollection<int> target = new QueueCollection<int>();
+            QueueCollection<int> expected = new QueueCollection<int>();
+
+            target.Enqueue(10);
+            target.Enqueue(20);
+            target.Enqueue(30);
+            expected.Enqueue(10);
+            expected.Enqueue(20);
+            expected.Enqueue(30);
+
+            CollectionAssert.AreEqual(expected, target);
         }
 
     }

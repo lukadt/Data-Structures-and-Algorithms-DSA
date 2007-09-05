@@ -16,11 +16,13 @@ namespace Dsa.DataStructures {
     [DebuggerTypeProxy(typeof(CollectionDebugView<>))]
     public sealed class SinglyLinkedListCollection<T> : ICollection<T>, ICollection {
 
-        [NonSerializedAttribute]
+        [NonSerialized]
         private SinglyLinkedListNode<T> _head;
-        [NonSerializedAttribute]
+        [NonSerialized]
         private SinglyLinkedListNode<T> _tail;
+        [NonSerialized]
         private int _count;
+        [NonSerialized]
         private object _syncRoot;
 
         /// <summary>
@@ -372,7 +374,7 @@ namespace Dsa.DataStructures {
         /// <param name="array">Array to copy elements to.</param>
         /// <param name="index">Index of array to start copying to.</param>
         void ICollection.CopyTo(Array array, int index) {
-            throw new NotSupportedException("Use the ICollection(Of T) CopyTo method");
+            throw new NotSupportedException(Resources.ICollectionCopyToNotSupported);
         }
 
         /// <summary>

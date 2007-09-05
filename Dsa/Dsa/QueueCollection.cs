@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Threading;
+using Dsa.Properties;
 
 namespace Dsa.DataStructures {
 
@@ -7,9 +11,10 @@ namespace Dsa.DataStructures {
     /// SinglyLinkedList implementation.
     /// </summary>
     /// <typeparam name="T">Type of the QueueCollection.</typeparam>
-    public class QueueCollection<T> : ICollection<T> {
+    public sealed class QueueCollection<T> : ICollection<T>, ICollection {
 
         private SinglyLinkedListCollection<T> _queue;
+        private object _syncRoot;
 
         /// <summary>
         /// Initializes a new instance of the QueueCollection(Of T) class.
@@ -134,6 +139,38 @@ namespace Dsa.DataStructures {
         /// <returns>An IEnumerator object.</returns>
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {
             return GetEnumerator();
+        }
+
+        #endregion
+
+        #region ICollection Members
+
+        /// <summary>
+        /// Copies the elements of the ICollection to an Array, starting at a particular Array index.
+        /// </summary>
+        /// <param name="array">Array to copy elements to.</param>
+        /// <param name="index">Index of array to start copying to.</param>
+        void ICollection.CopyTo(System.Array array, int index) {
+            throw new NotSupportedException(Resources.ICollectionCopyToNotSupported);
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether access to the ICollection is synchronized (thread safe).
+        /// </summary>
+        bool ICollection.IsSynchronized {
+            get { return false; }
+        }
+
+        /// <summary>
+        /// Gets an object that can be used to synchronize access to the ICollection.
+        /// </summary>
+        object ICollection.SyncRoot {
+            get {
+                if (_syncRoot == null) {
+                    Interlocked.CompareExchange(ref _syncRoot, new object(), null);
+                }
+                return _syncRoot;
+            }
         }
 
         #endregion

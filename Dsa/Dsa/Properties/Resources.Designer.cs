@@ -61,6 +61,15 @@ namespace Dsa.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ICollection.CopyTo is not supported.  Use the ICollection(Of T).CopyTo method instead..
+        /// </summary>
+        internal static string ICollectionCopyToNotSupported {
+            get {
+                return ResourceManager.GetString("ICollectionCopyToNotSupported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SinglyLinkedList is empty..
         /// </summary>
         internal static string SinglyLinkedListEmpty {
