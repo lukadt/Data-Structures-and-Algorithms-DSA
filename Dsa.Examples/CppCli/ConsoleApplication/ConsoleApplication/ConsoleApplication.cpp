@@ -36,8 +36,29 @@ void SinglyLinkedListCollectionExample() {
 	Console::WriteLine("Head value: {0}, Tail value: {1}", sll->Head->Value, sll->Tail->Value);
 }
 
+/*Creates a QueueCollection(Of T) and then performs some common operations on the
+collection.*/
+void QueueCollectionExample() {
+	QueueCollection<int>^ queue = gcnew QueueCollection<int>();
+	queue->Enqueue(10);
+	queue->Enqueue(20);
+	queue->Enqueue(30);
+	for each (int i in queue) {
+		Console::WriteLine(i);
+	}
+	Console::WriteLine();
+	Console::WriteLine("Dequeue: {0}", queue->Dequeue());
+	Console::WriteLine();
+	for each (int i in queue) {
+		Console::WriteLine(i);
+	}
+	Console::WriteLine();
+	Console::WriteLine("Peek: {0}", queue->Peek());
+	Console::WriteLine("Count: {0}", queue->Count);
+}
+
 int main(array<System::String ^>^ args) {
-	SinglyLinkedListCollectionExample();
+	QueueCollectionExample();
     return 0;
 }
 
