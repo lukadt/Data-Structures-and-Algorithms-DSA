@@ -6,7 +6,7 @@ namespace ConsoleApplication {
     class Program {
 
         static void Main(string[] args) {
-            SinglyLinkedListCollectionExample();
+            QueueCollectionExample();
         }
 
         /// <summary>
@@ -40,6 +40,28 @@ namespace ConsoleApplication {
             sll.RemoveLast();
             Console.WriteLine();
             Console.WriteLine("Head value: {0}, Tail value: {1}", sll.Head.Value, sll.Tail.Value);
+        }
+
+        /// <summary>
+        /// Creates a QueueCollection(Of T) and then performs some common operations on the
+        /// collection.
+        /// </summary>
+        public static void QueueCollectionExample() {
+            QueueCollection<int> queue = new QueueCollection<int>();
+            queue.Enqueue(10);
+            queue.Enqueue(20);
+            queue.Enqueue(30);
+            foreach (int i in queue) {
+                Console.WriteLine(i);
+            }
+            Console.WriteLine();
+            Console.WriteLine("Dequeue: {0}", queue.Dequeue());
+            Console.WriteLine();
+            foreach (int i in queue) {
+                Console.WriteLine(i);
+            }
+            Console.WriteLine();
+            Console.WriteLine("Peek: {0}", queue.Peek());
         }
 
     }
