@@ -181,6 +181,21 @@ namespace Dsa.Test {
             Assert.AreEqual<int>(20, myQueue.Peek());
         }
 
+        /// <summary>
+        /// Test to make sure that the expected array is returned.
+        /// </summary>
+        [TestMethod]
+        public void ToArrayTest() {
+            QueueCollection<string> myQueue = new QueueCollection<string>();
+
+            myQueue.Enqueue("London");
+            myQueue.Enqueue("Paris");
+            myQueue.Enqueue("Berlin");
+            string[] expected = { "London", "Paris", "Berlin" };
+
+            CollectionAssert.AreEqual(expected, myQueue.ToArray());
+        }
+
     }
 
 }

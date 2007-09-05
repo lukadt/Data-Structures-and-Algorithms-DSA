@@ -44,6 +44,14 @@ namespace Dsa.DataStructures {
             return front;
         }
 
+        /// <summary>
+        /// Converts the QueueCollection and its items to an array.
+        /// </summary>
+        /// <returns>An array containing the items from the QueueCollection.</returns>
+        public T[] ToArray() {
+            return _queue.ToArray();
+        }
+
 
         #region ICollection<T> Members
 
