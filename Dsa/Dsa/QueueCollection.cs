@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading;
 using Dsa.Properties;
 
@@ -11,9 +12,14 @@ namespace Dsa.DataStructures {
     /// SinglyLinkedList implementation.
     /// </summary>
     /// <typeparam name="T">Type of the QueueCollection.</typeparam>
+    [Serializable]
+    [DebuggerDisplay("Count={Count}")]
+    [DebuggerTypeProxy(typeof(CollectionDebugView<>))]
     public sealed class QueueCollection<T> : ICollection<T>, ICollection {
 
+        [NonSerialized]
         private SinglyLinkedListCollection<T> _queue;
+        [NonSerialized]
         private object _syncRoot;
 
         /// <summary>
