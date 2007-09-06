@@ -366,6 +366,29 @@ namespace Dsa.DataStructures {
 
         #endregion
 
+        /// <summary>
+        /// Returns an enumerator that iterates through the SinglyLinkedListCollection in reverse order.
+        /// </summary>
+        /// <returns>A generic IEnumerator object.</returns>
+        public IEnumerable<T> GetReverseEnumerator() {
+            if (_head == null) {
+                throw new InvalidOperationException(Resources.SinglyLinkedListEmpty);
+            }
+            SinglyLinkedListNode<T> n = _head;
+            SinglyLinkedListNode<T> curr = _tail;
+            while (n != curr) {
+                if (n.Next == curr) {
+                    yield return curr.Value;
+                    curr = n;
+                    n = _head;
+                }
+                else {
+                    n = n.Next;
+                }
+            }
+            yield return n.Value;
+        }
+
         #region ICollection Members
 
         /// <summary>

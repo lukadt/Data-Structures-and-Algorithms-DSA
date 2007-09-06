@@ -773,6 +773,31 @@ namespace Dsa.Test {
             Assert.IsNotNull(enumerSll.GetEnumerator());
         }
 
+        /// <summary>
+        /// Test to make sure that GetReverseEnumerator returns a non-null IEnumerator(Of T) object.
+        /// </summary>
+        [TestMethod]
+        public void GetReverseEnumeratorTest() {
+            SinglyLinkedListCollection<int> sll = new SinglyLinkedListCollection<int>();
+
+            sll.AddLast(10);
+            sll.AddLast(20);
+            sll.AddLast(30);
+
+            Assert.IsNotNull(sll.GetReverseEnumerator());
+        }
+
+        /// <summary>
+        /// Test to make sure that the correct exception is raised when calling GetReverseEnumerator on a collection with 0 items.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void GetReverseEnumeratorNoItemsTest() {
+            SinglyLinkedListCollection<int> sll = new SinglyLinkedListCollection<int>();
+
+            foreach (int i in sll.GetReverseEnumerator()) { } 
+        }
+
     }
 
 }

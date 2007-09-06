@@ -1,5 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Dsa.DataStructures;
+using System.Collections.Generic;
+using System;
 
 namespace Dsa.Test {
 
@@ -47,6 +49,121 @@ namespace Dsa.Test {
 
             Assert.AreEqual<int>(30, actual.Pop());
             Assert.AreEqual<int>(20, actual.Peek());
+        }
+
+        /// <summary>
+        /// Test to see that ICollection(Of T).Add results in the expected behaviour.
+        /// </summary>
+        [TestMethod]
+        public void AddTest() {
+            StackCollection<int> actual = new StackCollection<int>();
+            ICollection<int> collActual = actual;
+
+            collActual.Add(10);
+            collActual.Add(20);
+
+            Assert.AreEqual<int>(20, actual.Peek());
+        }
+
+        /// <summary>
+        /// Test to see that Count returns the number of items on the StackCollection.
+        /// </summary>
+        [TestMethod]
+        public void CountTest() {
+            StackCollection<int> actual = new StackCollection<int>();
+
+            actual.Push(10);
+            actual.Push(20);
+
+            Assert.AreEqual<int>(2, actual.Count);
+        }
+
+        /// <summary>
+        /// Test to see that CopyTo results in the correct population of an array with the items in the 
+        /// StackCollection.
+        /// </summary>
+        [TestMethod]
+        public void CopyToTest() {
+            StackCollection<int> stack = new StackCollection<int>();
+
+            stack.Push(10);
+            stack.Push(20);
+            stack.Push(30);
+            int[] actual = new int[stack.Count];
+            stack.CopyTo(actual, 0);
+            int[] expected = { 10, 20, 30 };
+
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        /// Test to see that calling Remove returns the correct value.
+        /// </summary>
+        [TestMethod]
+        public void RemoveTest() {
+            StackCollection<int> stack = new StackCollection<int>();
+            ICollection<int> actual = stack;
+
+            stack.Push(10);
+            stack.Push(20);
+            stack.Push(30);
+
+            Assert.IsTrue(actual.Remove(20));
+            Assert.IsFalse(actual.Remove(70));
+        }
+
+        /// <summary>
+        /// Test to see that IsReadonly returns false.
+        /// </summary>
+        [TestMethod]
+        public void IsReadonlyTest() {
+            StackCollection<int> stack = new StackCollection<int>();
+            ICollection<int> actual = stack;
+
+            Assert.IsFalse(actual.IsReadOnly);
+        }
+
+        /// <summary>
+        /// Test to make sure that the StackCollection is reset to its default state.
+        /// </summary>
+        [TestMethod]
+        public void ClearTest() {
+            StackCollection<int> actual = new StackCollection<int>();
+
+            actual.Push(10);
+            actual.Push(20);
+            actual.Push(30);
+            actual.Clear();
+
+            Assert.AreEqual<int>(0, actual.Count);
+        }
+
+        /// <summary>
+        /// Test to see that calling Contains returns the expected value.
+        /// </summary>
+        [TestMethod]
+        public void ContainsTest() {
+            StackCollection<int> actual = new StackCollection<int>();
+
+            actual.Push(10);
+            actual.Push(20);
+
+            Assert.IsTrue(actual.Contains(20));
+            Assert.IsFalse(actual.Contains(30));
+        }
+
+        /// <summary>
+        /// Test to see that a non null IEnumerator(Of T) object is returned.
+        /// </summary>
+        [TestMethod]
+        public void GetEnumeratorTest() {
+            StackCollection<int> stack = new StackCollection<int>();
+            stack.Push(10);
+            stack.Push(20);
+
+            foreach (int i in stack) { Console.WriteLine(i); }
+
+            Assert.IsNotNull(stack.GetEnumerator());
         }
 
     }
