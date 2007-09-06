@@ -14,12 +14,15 @@ namespace Dsa.Test {
         /// </summary>
         [TestMethod]
         public void PushTest() {
-            StackCollection<int> myStack = new StackCollection<int>();
+            StackCollection<int> actual = new StackCollection<int>();
+            StackCollection<int> expected = new StackCollection<int>();
 
-            myStack.Push(10);
-            myStack.Push(20);
+            actual.Push(10);
+            actual.Push(20);
+            expected.Push(10);
+            expected.Push(20);
 
-            Assert.AreEqual<int>(20, myStack.Peek());
+            CollectionAssert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -200,6 +203,32 @@ namespace Dsa.Test {
             ICollection actual = stack;
 
             Assert.IsNotNull(actual.SyncRoot);
+        }
+
+        /// <summary>
+        /// Test to see that the expected array is returned.
+        /// </summary>
+        [TestMethod]
+        public void ToArrayTest() {
+            StackCollection<int> stack = new StackCollection<int>();
+
+            stack.Push(10);
+            stack.Push(20);
+            stack.Push(30);
+            int[] expected = { 30, 20, 10 };
+
+            CollectionAssert.AreEqual(expected, stack.ToArray());
+        }
+
+        /// <summary>
+        /// Test to see that ICollection.GetEnumerator returns a non-null IEnumerator.
+        /// </summary>
+        [TestMethod]
+        public void GetEnumeratorNonGenericTest() {
+            StackCollection<int> stack = new StackCollection<int>();
+            ICollection actual = stack;
+
+            Assert.IsNotNull(actual.GetEnumerator());
         }
 
     }

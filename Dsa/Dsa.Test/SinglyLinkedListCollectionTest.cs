@@ -798,6 +798,33 @@ namespace Dsa.Test {
             foreach (int i in sll.GetReverseEnumerator()) { } 
         }
 
+        /// <summary>
+        /// Test to see that the correct array is returned from a call to ToReverseArray.
+        /// </summary>
+        [TestMethod]
+        public void ToReverseArrayTest() {
+            SinglyLinkedListCollection<int> sll = new SinglyLinkedListCollection<int>();
+
+            sll.AddLast(10);
+            sll.AddLast(20);
+            sll.AddLast(30);
+            int[] expected = { 30, 20, 10 };
+
+            CollectionAssert.AreEqual(expected, sll.ToReverseArray());
+        }
+
+        /// <summary>
+        /// Test to see that calling ToReverseArray on a SinglyLinkedListCollection with no items raises the correct
+        /// exception.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void ToReverseArrayNoItemsTest() {
+            SinglyLinkedListCollection<int> sll = new SinglyLinkedListCollection<int>();
+
+            sll.ToReverseArray();
+        }
+
     }
 
 }

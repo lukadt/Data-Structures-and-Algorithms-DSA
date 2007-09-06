@@ -46,6 +46,13 @@ namespace Dsa.DataStructures {
             return peek;
         }
 
+        /// <summary>
+        /// Converts the StackCollection and its items to an array.
+        /// </summary>
+        /// <returns>An array containing the items from the StackCollection.</returns>
+        public T[] ToArray() {
+            return _stack.ToReverseArray();
+        }
 
         #region ICollection<T> Members
 
@@ -127,7 +134,7 @@ namespace Dsa.DataStructures {
         /// </summary>
         /// <returns>An IEnumerator object.</returns>
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {
-            throw new System.NotImplementedException();
+            return GetEnumerator();
         }
 
         #endregion

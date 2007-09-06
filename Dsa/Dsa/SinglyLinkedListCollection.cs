@@ -157,6 +157,25 @@ namespace Dsa.DataStructures {
         }
 
         /// <summary>
+        /// Converts the SinglyLinkedListCollection and its items to an array.
+        /// </summary>
+        /// <returns>An array containing the items from the SinglyLinkedListCollection in reverse order.</returns>
+        public T[] ToReverseArray() {
+            if (IsEmpty()) {
+                throw new InvalidOperationException(Resources.SinglyLinkedListEmpty);
+            }
+            else {
+                int curr = 0;
+                T[] arrayResult = new T[_count];
+                foreach (T item in GetReverseEnumerator()) {
+                    arrayResult[curr] = item;
+                    curr++;
+                }
+                return arrayResult;
+            }
+        }
+
+        /// <summary>
         /// Removes the last node from the SinglyLinkedListCollection.
         /// </summary>
         public void RemoveLast() {
