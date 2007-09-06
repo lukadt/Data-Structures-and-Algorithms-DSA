@@ -15,7 +15,7 @@ namespace Dsa.DataStructures {
     [Serializable]
     [DebuggerDisplay("Count={Count}")]
     [DebuggerTypeProxy(typeof(CollectionDebugView<>))]
-    public class StackCollection<T> : ICollection<T>, ICollection {
+    public sealed class StackCollection<T> : ICollection<T>, ICollection {
 
         [NonSerialized]
         private SinglyLinkedListCollection<T> _stack;
