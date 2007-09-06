@@ -2,6 +2,7 @@
 using Dsa.DataStructures;
 using System.Collections.Generic;
 using System;
+using System.Collections;
 
 namespace Dsa.Test {
 
@@ -164,6 +165,41 @@ namespace Dsa.Test {
             foreach (int i in stack) { Console.WriteLine(i); }
 
             Assert.IsNotNull(stack.GetEnumerator());
+        }
+
+        /// <summary>
+        /// Test to make sure that the correct exception is raised when calling ICollection.CopyTo.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(NotSupportedException))]
+        public void ICollectionCopyToTest() {
+            StackCollection<int> stack = new StackCollection<int>();
+            ICollection actual = stack;
+
+            int[] expected = new int[stack.Count];
+            actual.CopyTo(expected, 0);
+        }
+
+        /// <summary>
+        /// Test to make sure that IsSynchronized property returns false.
+        /// </summary>
+        [TestMethod]
+        public void IsSynchronizedTest() {
+            StackCollection<int> stack = new StackCollection<int>();
+            ICollection actual = stack;
+
+            Assert.IsFalse(actual.IsSynchronized);
+        }
+
+        /// <summary>
+        /// Test to make sure that the object returned from SyncRoot is not null.
+        /// </summary>
+        [TestMethod]
+        public void SyncRootTest() {
+            StackCollection<int> stack = new StackCollection<int>();
+            ICollection actual = stack;
+
+            Assert.IsNotNull(actual.SyncRoot);
         }
 
     }
