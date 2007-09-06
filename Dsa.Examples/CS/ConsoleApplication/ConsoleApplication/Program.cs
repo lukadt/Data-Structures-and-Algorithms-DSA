@@ -6,7 +6,7 @@ namespace ConsoleApplication {
     class Program {
 
         static void Main(string[] args) {
-            QueueCollectionExample();
+            StackCollectionExample();
         }
 
         /// <summary>
@@ -62,6 +62,26 @@ namespace ConsoleApplication {
             }
             Console.WriteLine();
             Console.WriteLine("Peek: {0}", queue.Peek());
+        }
+
+        /// <summary>
+        /// Creates a QueueCollection(Of T) and then performs some common operations on the
+        /// collection.
+        /// </summary>
+        public static void StackCollectionExample() {
+            StackCollection<string> stack = new StackCollection<string>();
+            stack.Push("London");
+            stack.Push("Paris");
+            stack.Push("Berlin");
+            foreach (string s in stack) {
+                Console.WriteLine(s);
+            }
+            Console.WriteLine();
+            Console.WriteLine("Pop: {0}", stack.Pop());
+            Console.WriteLine("Peek: {0}", stack.Peek());
+            Console.WriteLine();
+            Console.WriteLine("Contains New York? {0}", stack.Contains("New York"));
+            Console.WriteLine("Contains London? {0}", stack.Contains("London"));
         }
 
     }
