@@ -57,8 +57,26 @@ void QueueCollectionExample() {
 	Console::WriteLine("Count: {0}", queue->Count);
 }
 
+/*Creates a StackCollection(Of T) and then performs some common operations on the
+collection.*/
+void StackCollectionExample() {
+	StackCollection<String^>^ stack = gcnew StackCollection<String^>();
+	stack->Push("London");
+	stack->Push("Paris");
+	stack->Push("Berlin");
+	for each (String^ s in stack) {
+		Console::WriteLine(s);
+	}
+	Console::WriteLine();
+	Console::WriteLine("Pop: {0}", stack->Pop());
+	Console::WriteLine("Peek: {0}", stack->Peek());
+	Console::WriteLine();
+	Console::WriteLine("Contains New York? {0}", stack->Contains("New York"));
+	Console::WriteLine("Contains London? {0}", stack->Contains("London"));
+}
+
 int main(array<System::String ^>^ args) {
-	QueueCollectionExample();
+	StackCollectionExample();
     return 0;
 }
 
