@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using Dsa.Properties;
+using System.Diagnostics;
 
 namespace Dsa.DataStructures {
 
@@ -11,9 +12,14 @@ namespace Dsa.DataStructures {
     /// SinglyLinkedList implementation.
     /// </summary>
     /// <typeparam name="T"></typeparam>
+    [Serializable]
+    [DebuggerDisplay("Count={Count}")]
+    [DebuggerTypeProxy(typeof(CollectionDebugView<>))]
     public class StackCollection<T> : ICollection<T>, ICollection {
 
+        [NonSerialized]
         private SinglyLinkedListCollection<T> _stack;
+        [NonSerialized]
         private object _syncRoot;
 
         public StackCollection() {
