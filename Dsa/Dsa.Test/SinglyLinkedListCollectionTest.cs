@@ -193,6 +193,20 @@ namespace Dsa.Test {
         }
 
         /// <summary>
+        /// Calls remove when there is only one node in the SinglyLinkedList.
+        /// </summary>
+        [TestMethod]
+        public void RemoveOnlyOneNodeInListTest() {
+            SinglyLinkedListCollection<int> sll = new SinglyLinkedListCollection<int>();
+
+            sll.AddLast(10);
+            sll.Remove(10);
+
+            Assert.IsNull(sll.Head);
+            Assert.IsNull(sll.Tail);
+        }
+
+        /// <summary>
         /// Test to make sure that removing all the nodes from a SinglyLinkedListCollection using the RemoveLast method works, then
         /// reassigning the head and tail returns the expected results.
         /// </summary>
@@ -654,6 +668,22 @@ namespace Dsa.Test {
             Assert.AreEqual<int>(5, sll.Head.Value);
             Assert.AreEqual<int>(10, sll.Head.Next.Value);
             Assert.AreEqual<int>(4, sll.Count);
+        }
+        
+        /// <summary>
+        /// Test to make sure that adding before tail results in the expected object state.
+        /// </summary>
+        [TestMethod]
+        public void AddBeforeTailTest() {
+            SinglyLinkedListCollection<int> sll = new SinglyLinkedListCollection<int>();
+
+            sll.AddLast(10);
+            sll.AddLast(20);
+            sll.AddLast(30);
+            sll.AddLast(40);
+            sll.AddBefore(sll.Head.Next.Next.Next, 35);
+
+            Assert.AreEqual<int>(35, sll.Head.Next.Next.Next.Value);
         }
 
         /// <summary>

@@ -343,8 +343,7 @@ namespace Dsa.DataStructures {
                 else {
                     while (n != null) {
                         if (!comparer.Equals(n.Value, item) && n.Next == null) {
-                            // check the last nodes value for item, if its not equal then we are searching for something that is not present
-                            return false;
+                            break;
                         }
                         else if (comparer.Equals(n.Next.Value, item)) {
                             if (n.Next == _tail) {
