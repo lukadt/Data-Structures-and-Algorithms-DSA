@@ -61,6 +61,7 @@
     <Compile Include="SinglyLinkedListCollection.cs" />
     <Compile Include="SinglyLinkedListNode.cs" />
     <Compile Include="StackCollection.cs" />
+    <Compile Include="Strings.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Dsa.pfx" />

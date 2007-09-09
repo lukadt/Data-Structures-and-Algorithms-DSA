@@ -50,6 +50,7 @@
     <Compile Include="SinglyLinkedListCollectionTest.cs" />
     <Compile Include="SinglyLinkedListNodeTest.cs" />
     <Compile Include="StackCollectionTest.cs" />
+    <Compile Include="StringsTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
