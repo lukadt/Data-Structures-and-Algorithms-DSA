@@ -117,12 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="DoublyLinkedListEmpty" xml:space="preserve">
+    <value>DoublyLinkedListCollection(Of T) is empty.</value>
+    <comment>When exceptions arise as a result of an empty doubly linked list.</comment>
+  </data>
   <data name="ICollectionCopyToNotSupported" xml:space="preserve">
     <value>ICollection.CopyTo is not supported.  Use the ICollection(Of T).CopyTo method instead.</value>
     <comment>ICollection.CopyTo not supported text.</comment>
   </data>
   <data name="SinglyLinkedListEmpty" xml:space="preserve">
-    <value>SinglyLinkedList is empty.</value>
+    <value>SinglyLinkedListCollection(Of T) is empty.</value>
     <comment>When exceptions arise as a result of an empty singly linked list.</comment>
   </data>
 </root>

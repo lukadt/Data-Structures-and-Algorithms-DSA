@@ -61,6 +61,15 @@ namespace Dsa.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DoublyLinkedListCollection(Of T) is empty..
+        /// </summary>
+        internal static string DoublyLinkedListEmpty {
+            get {
+                return ResourceManager.GetString("DoublyLinkedListEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ICollection.CopyTo is not supported.  Use the ICollection(Of T).CopyTo method instead..
         /// </summary>
         internal static string ICollectionCopyToNotSupported {
@@ -70,7 +79,7 @@ namespace Dsa.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SinglyLinkedList is empty..
+        ///   Looks up a localized string similar to SinglyLinkedListCollection(Of T) is empty..
         /// </summary>
         internal static string SinglyLinkedListEmpty {
             get {
