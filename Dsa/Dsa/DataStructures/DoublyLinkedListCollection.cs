@@ -110,6 +110,27 @@ namespace Dsa.DataStructures {
         }
 
         /// <summary>
+        /// Removes the node at the head of the DoublyLinkedListCollection(Of T).
+        /// </summary>
+        public void RemoveFirst() {
+            if (IsEmpty()) {
+                throw new InvalidOperationException(Resources.DoublyLinkedListEmpty);
+            }
+            if (_head.Next == null) {
+                _head = null;
+                _tail = null;
+            }
+            else if (_head.Next == _tail) {
+                _head = _tail;
+                _head.Prev = null;
+            }
+            else {
+                _head = _head.Next;
+                _head.Prev = null;
+            }
+        }
+
+        /// <summary>
         /// Method that validates the state of the DoublyLinkedListCollection(Of T) as well as if the node passed in is null.
         /// This method is used by AddAfter, and AddBefore.
         /// </summary>

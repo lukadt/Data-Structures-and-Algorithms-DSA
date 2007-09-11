@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace Dsa {
+namespace Dsa.DataStructures {
 
     /// <summary>
     /// CollectionDebugView is a class to be used to assist with the locals debug window in

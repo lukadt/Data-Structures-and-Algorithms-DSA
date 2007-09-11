@@ -197,7 +197,7 @@ namespace Dsa.Test {
         /// Test to see that calling RemoveLast when there are more than two nodes results in the expected behaviour.
         /// </summary>
         [TestMethod]
-        public void RemoveTestMultipleNodesTest() {
+        public void RemoveLastTestMultipleNodesTest() {
             DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
 
             dll.AddLast(10);
@@ -218,6 +218,66 @@ namespace Dsa.Test {
             DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
 
             dll.RemoveLast();
+        }
+
+        /// <summary>
+        /// Test to see that a call to RemoveFirst when there is only a single node in the linked list
+        /// results in the expected behaviour.
+        /// </summary>
+        [TestMethod]
+        public void RemoveFirstSingleNodeTest() {
+            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+
+            dll.AddLast(10);
+            dll.RemoveFirst();
+
+            Assert.IsNull(dll.Head);
+            Assert.IsNull(dll.Tail);
+        }
+
+        /// <summary>
+        /// Test to see that a call to RemoveFirst when there are two node in the linked list
+        /// results in the expected behaviour.
+        /// </summary>
+        [TestMethod]
+        public void RemoveFirstTwoNodesTest() {
+            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+
+            dll.AddLast(10);
+            dll.AddLast(20);
+            dll.RemoveFirst();
+
+            Assert.AreEqual<int>(20, dll.Head.Value);
+            Assert.IsNull(dll.Head.Prev);
+        }
+
+        /// <summary>
+        /// Test to see that calling RemoveFirst when there are more than two nodes in the linked list
+        /// results in the expected behaviour.
+        /// </summary>
+        [TestMethod]
+        public void RemoveFirstMoreThanTwoNodesTest() {
+            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+
+            dll.AddLast(10);
+            dll.AddLast(20);
+            dll.AddLast(30);
+            dll.RemoveFirst();
+
+            Assert.AreEqual<int>(20, dll.Head.Value);
+            Assert.IsNull(dll.Head.Prev);
+        }
+
+        /// <summary>
+        /// Test to see that calling RemoveFirst on a linked list with no nodes throws the correct
+        /// exception.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void RemoveFirstEmptyListTest() {
+            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+
+            dll.RemoveFirst();
         }
 
     }
