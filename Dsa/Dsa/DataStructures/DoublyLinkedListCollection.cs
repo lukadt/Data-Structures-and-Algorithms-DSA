@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Dsa.Properties;
 
 namespace Dsa.DataStructures {
@@ -7,10 +8,11 @@ namespace Dsa.DataStructures {
     /// DoublyLinkedListCollection(Of T).
     /// </summary>
     /// <typeparam name="T">Type of collection.</typeparam>
-    public class DoublyLinkedListCollection<T> {
+    public sealed class DoublyLinkedListCollection<T> : ICollection<T> {
 
         private DoublyLinkedListNode<T> _head;
         private DoublyLinkedListNode<T> _tail;
+        private int _count;
 
         /// <summary>
         /// Adds a node to the tail of the DoublyLinkedListCollection(Of T).
@@ -27,6 +29,7 @@ namespace Dsa.DataStructures {
                 n.Prev = _tail;
                 _tail = n;
             }
+            _count++;
         }
 
         /// <summary>
@@ -44,6 +47,7 @@ namespace Dsa.DataStructures {
                 n.Next = _head;
                 _head = n;
             }
+            _count++;
         }
 
         /// <summary>
@@ -65,6 +69,7 @@ namespace Dsa.DataStructures {
                 node.Next = n;
                 n.Prev = node;
             }
+            _count++;
         }
 
         /// <summary>
@@ -86,6 +91,7 @@ namespace Dsa.DataStructures {
                 n.Prev = node.Prev;
                 node.Prev = n;
             }
+            _count++;
         }
 
         /// <summary>
@@ -107,6 +113,7 @@ namespace Dsa.DataStructures {
                 _tail = _tail.Prev;
                 _tail.Next = null;
             }
+            _count--;
         }
 
         /// <summary>
@@ -128,6 +135,26 @@ namespace Dsa.DataStructures {
                 _head = _head.Next;
                 _head.Prev = null;
             }
+            _count--;
+        }
+
+        /// <summary>
+        /// Returns an array containing all the values of the nodes contained within the DoublyLinkedListCollection(Of T).
+        /// </summary>
+        /// <returns>Array containing the values of the nodes contained in the DoublyLinkedListCollection(Of T).</returns>
+        public T[] ToArray() {
+            if (IsEmpty()) {
+                throw new InvalidOperationException(Resources.DoublyLinkedListEmpty);
+            }
+            DoublyLinkedListNode<T> n = _head;
+            int index = 0;
+            T[] resultArray = new T[_count];
+            while (n != null) {
+                resultArray[index] = n.Value;
+                index++;
+                n = n.Next;
+            }
+            return resultArray;
         }
 
         /// <summary>
@@ -166,6 +193,150 @@ namespace Dsa.DataStructures {
             get { return _tail; }
         }
 
+
+        #region ICollection<T> Members
+
+        /// <summary>
+        /// Adds an item to the DoublyLinkedListCollection(Of T).
+        /// </summary>
+        /// <param name="item">Item to add to the DoublyLinkedListCollection(Of T).</param>
+        void ICollection<T>.Add(T item) {
+            AddLast(item);
+        }
+
+        /// <summary>
+        /// Removes all nodes from the DoublyLinkedListCollection(Of T).
+        /// </summary>
+        public void Clear() {
+            _head = null;
+            _tail = null;
+            _count = 0;
+        }
+
+        /// <summary>
+        /// Determines whether a value is in the DoublyLinkedListCollection(Of T).
+        /// </summary>
+        /// <param name="value">Value to search the DoublyLinkedListCollection(Of T) for.</param>
+        /// <returns>True if the value was found, false otherwise.</returns>
+        public bool Contains(T item) {
+            DoublyLinkedListNode<T> n = _head;
+            EqualityComparer<T> comparer = EqualityComparer<T>.Default;
+            while (n != null) {
+                if (comparer.Equals(n.Value, item)) {
+                    return true;
+                }
+                n = n.Next;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Copies the entire DoublyLinkedListCollection(Of T) to a compatible one-dimensional Array, starting at the specified index of the target array.
+        /// </summary>
+        /// <param name="array">Array to copy values of DoublyLinkedListCollection(Of T) to.</param>
+        /// <param name="arrayIndex">Index of array to start copying to.</param>
+        public void CopyTo(T[] array, int arrayIndex) {
+            Array.Copy(ToArray(), array, _count);
+        }
+
+        /// <summary>
+        /// Gets the number of nodes contained in the DoublyLinkedListCollection(Of T).
+        /// </summary>
+        public int Count {
+            get { return _count; }
+        }
+
+        /// <summary>
+        /// Gets whether or not the DoublyLinkedListCollection(Of T) is readonly.
+        /// </summary>
+        bool ICollection<T>.IsReadOnly {
+            get { return false; }
+        }
+
+        /// <summary>
+        /// Removes the first occurrence of a value from the DoublyLinkedListCollection(Of T).
+        /// </summary>
+        /// <param name="value">Value to remove from the DoublyLinkedListCollection(Of T) if found.</param>
+        /// <returns>True if the value was found in the DoublyLinkedListCollection(Of T) and removed, false otherwise.</returns>
+        public bool Remove(T item) {
+            if (IsEmpty()) {
+                throw new InvalidOperationException(Resources.DoublyLinkedListEmpty);
+            }
+            EqualityComparer<T> comparer = EqualityComparer<T>.Default;
+            if (_head.Next == null && comparer.Equals(_head.Value, item)) {
+                _head = null;
+                _tail = null;
+                _count--;
+                return true;
+            }
+            else if (_head.Next == _tail) {
+                if (comparer.Equals(_head.Value, item)) {
+                    _head = _head.Next;
+                    _head.Prev = null;
+                    _count--;
+                    return true;
+                }
+                else if (comparer.Equals(_tail.Value, item)) {
+                    _tail = _head;
+                    _head.Next = null;
+                    _count--;
+                    return true;
+                }
+            }
+            else {
+                DoublyLinkedListNode<T> n = _head;
+                while (n != null) {
+                    if (comparer.Equals(n.Value, item)) {
+                        if (n == _head) {
+                            _head = _head.Next;
+                            _head.Prev = null;
+                        }
+                        else if (n == _tail) {
+                            _tail = _tail.Prev;
+                            _tail.Next = null;
+                        }
+                        else {
+                            n.Prev.Next = n.Next;
+                            n.Next.Prev = n.Prev;
+                        }
+                        _count--;
+                        return true;
+                    }
+                    n = n.Next;
+                }
+            }
+            return false;
+        }
+
+        #endregion
+
+        #region IEnumerable<T> Members
+
+        /// <summary>
+        /// Returns an enumerator that iterates through the DoublyLinkedListCollection(Of T).
+        /// </summary>
+        /// <returns>IEnumerator(Of T).</returns>
+        public IEnumerator<T> GetEnumerator() {
+            DoublyLinkedListNode<T> n = _head;
+            while (n != null) {
+                yield return n.Value;
+                n = n.Next;
+            }
+        }
+
+        #endregion
+
+        #region IEnumerable Members
+
+        /// <summary>
+        /// Returns an enumerator that iterates through the DoublyLinkedListCollection(Of T).
+        /// </summary>
+        /// <returns>IEnumerator.</returns>
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {
+            return GetEnumerator();
+        }
+
+        #endregion
     }
 
 }

@@ -1,4 +1,6 @@
-﻿namespace Dsa.Algorithms {
+﻿using System;
+
+namespace Dsa.Algorithms {
     
     /// <summary>
     /// String algorithms.
@@ -10,13 +12,16 @@
         /// </summary>
         /// <param name="s">String to reverse characters of.</param>
         /// <returns>A reversed string of the parameter.</returns>
-        public static string Reverse(this string s) {
-            if (s.Length < 2) { 
-                return s;
+        public static string Reverse(this string word) {
+            if (word == null) {
+                throw new ArgumentNullException("word");
             }
-            char[] resultingString = new char[s.Length];
-            for (int i = s.Length - 1, j = 0; i >= 0; i--, j++) {
-                resultingString[j] = s[i];
+            if (word.Length < 2) { 
+                return word;
+            }
+            char[] resultingString = new char[word.Length];
+            for (int i = word.Length - 1, j = 0; i >= 0; i--, j++) {
+                resultingString[j] = word[i];
             }
             return new string(resultingString);
         }
