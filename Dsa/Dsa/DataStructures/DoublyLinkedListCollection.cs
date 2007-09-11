@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading;
 using Dsa.Properties;
 
 namespace Dsa.DataStructures {
@@ -8,11 +11,19 @@ namespace Dsa.DataStructures {
     /// DoublyLinkedListCollection(Of T).
     /// </summary>
     /// <typeparam name="T">Type of collection.</typeparam>
-    public sealed class DoublyLinkedListCollection<T> : ICollection<T> {
+    [Serializable]
+    [DebuggerDisplay("Count={Count}")]
+    [DebuggerTypeProxy(typeof(CollectionDebugView<>))]
+    public sealed class DoublyLinkedListCollection<T> : ICollection<T>, ICollection {
 
+        [NonSerialized]
         private DoublyLinkedListNode<T> _head;
+        [NonSerialized]
         private DoublyLinkedListNode<T> _tail;
+        [NonSerialized]
         private int _count;
+        [NonSerialized]
+        private object _syncRoot;
 
         /// <summary>
         /// Adds a node to the tail of the DoublyLinkedListCollection(Of T).
@@ -334,6 +345,38 @@ namespace Dsa.DataStructures {
         /// <returns>IEnumerator.</returns>
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {
             return GetEnumerator();
+        }
+
+        #endregion
+
+        #region ICollection Members
+
+        /// <summary>
+        /// Copies the elements of the ICollection to an Array, starting at a particular Array index.
+        /// </summary>
+        /// <param name="array">Array to copy elements to.</param>
+        /// <param name="index">Index of array to start copying to.</param>
+        void ICollection.CopyTo(Array array, int index) {
+            throw new NotSupportedException(Resources.ICollectionCopyToNotSupported);
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether access to the ICollection is synchronized (thread safe).
+        /// </summary>
+        bool ICollection.IsSynchronized {
+            get { return false; }
+        }
+
+        /// <summary>
+        /// Gets an object that can be used to synchronize access to the ICollection.
+        /// </summary>
+        object ICollection.SyncRoot {
+            get {
+                if (_syncRoot == null) {
+                    Interlocked.CompareExchange(ref _syncRoot, new object(), null);
+                }
+                return _syncRoot;
+            }
         }
 
         #endregion

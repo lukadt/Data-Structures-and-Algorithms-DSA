@@ -1,5 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
 using Dsa.Algorithms;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Dsa.Test {
 
@@ -38,6 +39,16 @@ namespace Dsa.Test {
             string s = "t";
 
             Assert.AreEqual<string>("t", s.Reverse());
+        }
+
+        /// <summary>
+        /// Test to see that calling Reverse on a null string results in the corrext exception being raised.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ReverseNullStringTest() {
+            string s = null;
+            string actual = s.Reverse();
         }
 
     }

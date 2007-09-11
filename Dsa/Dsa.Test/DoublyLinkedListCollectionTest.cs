@@ -13,6 +13,22 @@ namespace Dsa.Test {
     public class DoublyLinkedListCollectionTest {
 
         /// <summary>
+        /// Simple test just to see if CollectionAssert.AreEqual passes for twocollection containing the same values.
+        /// </summary>
+        [TestMethod]
+        public void ItemsAreEqualTest() {
+            DoublyLinkedListCollection<int> actual = new DoublyLinkedListCollection<int>();
+            DoublyLinkedListCollection<int> expected = new DoublyLinkedListCollection<int>();
+
+            actual.AddLast(10);
+            actual.AddLast(20);
+            expected.AddLast(10);
+            expected.AddLast(20);
+
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
         /// Test to see that AddLast adds a node onto the tail of the list.
         /// </summary>
         [TestMethod]
@@ -562,6 +578,41 @@ namespace Dsa.Test {
             IEnumerable actual = dll;
 
             Assert.IsNotNull(actual.GetEnumerator());
+        }
+
+        /// <summary>
+        /// Test to see that ICollection.CopyTo raises the corrrect exception.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(NotSupportedException))]
+        public void CopyToNonGenericTest() {
+            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+            ICollection actual = dll;
+
+            int[] myArray = new int[4];
+            actual.CopyTo(myArray, 0);
+        }
+
+        /// <summary>
+        /// Test to see that the IsSynchronized returns false.
+        /// </summary>
+        [TestMethod]
+        public void IsSynchronizedTest() {
+            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+            ICollection actual = dll;
+
+            Assert.IsFalse(actual.IsSynchronized);
+        }
+
+        /// <summary>
+        /// Test to see that the SyncRoot property returns a non-null object.
+        /// </summary>
+        [TestMethod]
+        public void SyncRootTest() {
+            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+            ICollection actual = dll;
+
+            Assert.IsNotNull(actual.SyncRoot);
         }
 
     }
