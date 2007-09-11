@@ -52,12 +52,7 @@ namespace Dsa.DataStructures {
         /// <param name="node">The node to add after.</param>
         /// <param name="value">The value of the node to add after the specified node.</param>
         public void AddAfter(DoublyLinkedListNode<T> node, T value) {
-            if (IsEmpty()) {
-                throw new InvalidOperationException(Resources.DoublyLinkedListEmpty);
-            }
-            else if (node == null) {
-                throw new ArgumentNullException("node");
-            }
+            validateAddArgs(node);
             DoublyLinkedListNode<T> n = new DoublyLinkedListNode<T>(value);
             if (node == _tail) {
                 n.Prev = _tail;
@@ -69,6 +64,62 @@ namespace Dsa.DataStructures {
                 n.Next.Prev = n;
                 node.Next = n;
                 n.Prev = node;
+            }
+        }
+
+        /// <summary>
+        /// Adds a node before a specified node in the DoublyLinkedListCollection(Of T).
+        /// </summary>
+        /// <param name="node">The node to add before.</param>
+        /// <param name="value">The value of the node to add after the specified node.</param>
+        public void AddBefore(DoublyLinkedListNode<T> node, T value) {
+            validateAddArgs(node);
+            DoublyLinkedListNode<T> n = new DoublyLinkedListNode<T>(value);
+            if (node == _head) {
+                n.Next = _head;
+                _head.Prev = n;
+                _head = n;
+            }
+            else {
+                n.Next = node;
+                node.Prev.Next = n;
+                n.Prev = node.Prev;
+                node.Prev = n;
+            }
+        }
+
+        /// <summary>
+        /// Removes a node from the tail of the DoublyLinkedListCollection(Of T).
+        /// </summary>
+        public void RemoveLast() {
+            if (IsEmpty()) {
+                throw new InvalidOperationException(Resources.DoublyLinkedListEmpty);
+            }
+            if (_tail == _head) {
+                _head = null;
+                _tail = null;
+            }
+            else if (_head.Next == _tail) {
+                _tail = _head;
+                _head.Next = null;
+            }
+            else {
+                _tail = _tail.Prev;
+                _tail.Next = null;
+            }
+        }
+
+        /// <summary>
+        /// Method that validates the state of the DoublyLinkedListCollection(Of T) as well as if the node passed in is null.
+        /// This method is used by AddAfter, and AddBefore.
+        /// </summary>
+        /// <param name="node">Node to verify whether or not is null.</param>
+        private void validateAddArgs(DoublyLinkedListNode<T> node) {
+            if (IsEmpty()) {
+                throw new InvalidOperationException(Resources.DoublyLinkedListEmpty);
+            }
+            else if (node == null) {
+                throw new ArgumentNullException("node");
             }
         }
 

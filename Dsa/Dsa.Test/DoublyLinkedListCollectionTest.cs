@@ -97,10 +97,59 @@ namespace Dsa.Test {
         }
 
         /// <summary>
-        /// Test to see that calling AddBefore results in the node being placed in the corret position in the DoublyLinkedList.
+        /// Test to see that calling AddBefore results in the node being placed in the correct position in the DoublyLinkedList when
+        /// adding before the head node.
+        /// </summary>
+        [TestMethod]
+        public void AddBeforeHeadTest() {
+            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+
+            dll.AddLast(10);
+            dll.AddBefore(dll.Head, 5);
+
+            Assert.AreEqual<int>(5, dll.Head.Value);
+            Assert.AreEqual<int>(10, dll.Head.Next.Value);
+            Assert.AreEqual<int>(5, dll.Head.Next.Prev.Value);
+        }
+
+        /// <summary>
+        /// Test to see that when calling AddBefore the node is placed in the correct position within the linked list.
         /// </summary>
         [TestMethod]
         public void AddBeforeTest() {
+            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+
+            dll.AddLast(10);
+            dll.AddLast(30);
+            dll.AddBefore(dll.Head.Next, 20);
+
+            Assert.AreEqual<int>(20, dll.Head.Next.Value);
+            Assert.AreEqual<int>(10, dll.Head.Next.Prev.Value);
+            Assert.AreEqual<int>(30, dll.Head.Next.Next.Value);
+            Assert.AreEqual<int>(20, dll.Tail.Prev.Value);
+        }
+
+        /// <summary>
+        /// Test to see that calling AddBefore when the list is empty results in the correct exception being raised.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void AddBeforeEmptyListTest() {
+            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+
+            dll.AddBefore(dll.Head, 10);
+        }
+
+        /// <summary>
+        /// Test to see that a call to AddBefore when passing in a null node raises the correct exception.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void AddBeforeNullNode() {
+            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+
+            dll.AddLast(10);
+            dll.AddBefore(dll.Head.Next, 20);
         }
 
         /// <summary>
@@ -111,6 +160,64 @@ namespace Dsa.Test {
             DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
 
             Assert.IsTrue(dll.IsEmpty());
+        }
+
+        /// <summary>
+        /// Test to see that a call to RemoveLast on a non empty list results in the expected behaviour.
+        /// </summary>
+        [TestMethod]
+        public void RemoveLastTest() {
+            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+
+            dll.AddLast(10);
+            dll.RemoveLast();
+
+            Assert.IsTrue(dll.IsEmpty());
+            Assert.IsNull(dll.Tail);
+        }
+
+        /// <summary>
+        /// Test to see that a call to RemoveLast when there are two nodes in the linked list reassigns the tail node.
+        /// </summary>
+        [TestMethod]
+        public void RemoveLastTwoNodesTest() {
+            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+
+            dll.AddLast(10);
+            dll.AddLast(20);
+            dll.RemoveLast();
+
+            Assert.AreEqual<int>(10, dll.Head.Value);
+            Assert.AreEqual<int>(10, dll.Tail.Value);
+            Assert.IsNull(dll.Tail.Next);
+            Assert.IsNull(dll.Head.Next);
+        }
+
+        /// <summary>
+        /// Test to see that calling RemoveLast when there are more than two nodes results in the expected behaviour.
+        /// </summary>
+        [TestMethod]
+        public void RemoveTestMultipleNodesTest() {
+            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+
+            dll.AddLast(10);
+            dll.AddLast(20);
+            dll.AddLast(30);
+            dll.RemoveLast();
+
+            Assert.AreEqual<int>(20, dll.Tail.Value);
+            Assert.IsNull(dll.Tail.Next);
+        }
+
+        /// <summary>
+        /// Test to see that calling RemoveLast on an empty list throws the correct exception.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void RemoveLastEmptyListTest() {
+            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+
+            dll.RemoveLast();
         }
 
     }
