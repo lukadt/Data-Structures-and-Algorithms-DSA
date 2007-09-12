@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArrayListCollectionTest.cs" />
     <Compile Include="DoublyLinkedListCollectionTest.cs" />
     <Compile Include="DoublyLinkedListNodeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

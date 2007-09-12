@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataStructures\ArrayListCollection.cs" />
     <Compile Include="DataStructures\CollectionDebugView.cs" />
     <Compile Include="DataStructures\DoublyLinkedListCollection.cs" />
     <Compile Include="DataStructures\DoublyLinkedListNode.cs" />
