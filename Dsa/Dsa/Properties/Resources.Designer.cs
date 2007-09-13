@@ -61,6 +61,15 @@ namespace Dsa.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Index specified for the ArrayListCollection is out of range..
+        /// </summary>
+        internal static string ArrayListCollectionOutOfRangeIndex {
+            get {
+                return ResourceManager.GetString("ArrayListCollectionOutOfRangeIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to DoublyLinkedListCollection(Of T) is empty..
         /// </summary>
         internal static string DoublyLinkedListEmpty {

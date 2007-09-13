@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Dsa.Properties;
 
 namespace Dsa.DataStructures {
     
-    public class ArrayListCollection<T> : ICollection<T>, IList, IList<T> {
+    public sealed class ArrayListCollection<T> : ICollection<T>, IList, IList<T> where T: IEquatable<T> {
 
         private int _count;
         private int _capacity = 4;
@@ -37,6 +38,19 @@ namespace Dsa.DataStructures {
             get { return _capacity; }
         }
 
+        /// <summary>
+        /// Helper method to detect whether or not the index specified is within range
+        /// of the items array.
+        /// </summary>
+        /// <param name="index">Index of items array to access.</param>
+        /// <returns>True if the index within the range of the array; otherwise false.</returns>
+        private bool isInRange(int index) {
+            if (index < 0 || index > _items.Length - 1) {
+                return false;
+            }
+            return true;
+        }
+
         #region IList Members
 
         /// <summary>
@@ -64,12 +78,18 @@ namespace Dsa.DataStructures {
             throw new System.NotImplementedException();
         }
 
+        /// <summary>
+        /// Gets a value indicating whether the IList has a fixed size.
+        /// </summary>
         bool IList.IsFixedSize {
-            get { throw new System.NotImplementedException(); }
+            get { return false; }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether the IList is read-only.
+        /// </summary>
         bool IList.IsReadOnly {
-            get { throw new System.NotImplementedException(); }
+            get { return false; }
         }
 
         void IList.Remove(object value) {
@@ -177,25 +197,28 @@ namespace Dsa.DataStructures {
             throw new NotImplementedException();
         }
 
-        T IList<T>.this[int index] {
+        /// <summary>
+        /// Gets or sets the element at the specified index.
+        /// </summary>
+        /// <param name="index">Index of item to get or set.</param>
+        /// <returns>Item at the specified index.</returns>
+        public T this[int index] {
             get {
-                throw new NotImplementedException();
+                if (!isInRange(index)) {
+                    throw new IndexOutOfRangeException(Resources.ArrayListCollectionOutOfRangeIndex);
+                }
+                return _items[index];
             }
             set {
-                throw new NotImplementedException();
+                if (!isInRange(index)) {
+                    throw new IndexOutOfRangeException(Resources.ArrayListCollectionOutOfRangeIndex);
+                }
+                _items[index] = value;
             }
         }
 
         #endregion
 
-        #region ICollection<T> Members
-
-
-        int ICollection<T>.Count {
-            get { throw new NotImplementedException(); }
-        }
-
-        #endregion
     }
 
 }

@@ -14,7 +14,7 @@ namespace Dsa.DataStructures {
     [Serializable]
     [DebuggerDisplay("Count={Count}")]
     [DebuggerTypeProxy(typeof(CollectionDebugView<>))]
-    public sealed class DoublyLinkedListCollection<T> : ICollection<T>, ICollection {
+    public sealed class DoublyLinkedListCollection<T> : ICollection<T>, ICollection where T: IEquatable<T> {
 
         [NonSerialized]
         private DoublyLinkedListNode<T> _head;

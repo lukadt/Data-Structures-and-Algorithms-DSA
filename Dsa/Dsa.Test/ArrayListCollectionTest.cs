@@ -1,5 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Dsa.DataStructures;
+using System;
+using System.Collections;
 
 namespace Dsa.Test {
 
@@ -75,6 +77,106 @@ namespace Dsa.Test {
 
             Assert.AreEqual<int>(1, actual.IndexOf("Paris"));
             Assert.AreEqual<int>(-1, actual.IndexOf("Prague"));
+        }
+
+        /// <summary>
+        /// Test top see that the correct value is returned by index.
+        /// </summary>
+        [TestMethod]
+        public void IndexInRangeTest() {
+            ArrayListCollection<int> actual = new ArrayListCollection<int>();
+
+            actual.Add(10);
+            actual.Add(20);
+            actual.Add(30);
+
+            Assert.AreEqual<int>(10, actual[0]);
+            Assert.AreEqual<int>(20, actual[1]);
+            Assert.AreEqual<int>(30, actual[2]);
+        }
+
+        /// <summary>
+        /// Test to see that calling by index with a negative number throws the correct exception.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(IndexOutOfRangeException))]
+        public void IndexNegRangTest() {
+            ArrayListCollection<int> alc = new ArrayListCollection<int>();
+
+            int actual = alc[-1];
+        }
+
+        /// <summary>
+        /// Test to see that accessing an index which is out of range, e.g. in this scenario we have the default
+        /// array size of 4, so accessing index of 4 will result in accessing an index which is out of range.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(IndexOutOfRangeException))]
+        public void IndexOutOfRange() {
+            ArrayListCollection<int> alc = new ArrayListCollection<int>();
+
+            int actual = alc[4];
+        }
+
+        /// <summary>
+        /// Test to see that setting the value at an index works as expected.
+        /// </summary>
+        [TestMethod]
+        public void IndexSetTest() {
+            ArrayListCollection<int> actual = new ArrayListCollection<int>();
+
+            actual.Add(10);
+            actual.Add(20);
+            actual.Add(30);
+            actual[2] = 25;
+
+            Assert.AreEqual<int>(25, actual[2]);
+        }
+
+        /// <summary>
+        /// Test to see that the correct exception is raised when trying to set the value of an index
+        /// that is out of range.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(IndexOutOfRangeException))]
+        public void IndexSetNegTest() {
+            ArrayListCollection<int> actual = new ArrayListCollection<int>();
+
+            actual[4] = 10;
+        }
+
+        /// <summary>
+        /// Test to see that when setting an index which is out of range, e.g. in this scenario we have the default
+        /// array size of 4, so setting index of 4 will result in accessing an index which is out of range.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(IndexOutOfRangeException))]
+        public void IndexSetOutOfRange() {
+            ArrayListCollection<int> actual = new ArrayListCollection<int>();
+
+            actual[4] = 5;
+        }
+
+        /// <summary>
+        /// Test to see that IList.IsReadonly returns false.
+        /// </summary>
+        [TestMethod]
+        public void IListIsReadonlyTest() {
+            ArrayListCollection<int> acl = new ArrayListCollection<int>();
+            IList actual = acl;
+
+            Assert.IsFalse(actual.IsReadOnly);
+        }
+
+        /// <summary>
+        /// Test to see that IList.IsFixedSize returns false.
+        /// </summary>
+        [TestMethod]
+        public void IListIsFixedSizeTest() {
+            ArrayListCollection<int> acl = new ArrayListCollection<int>();
+            IList actual = acl;
+
+            Assert.IsFalse(actual.IsFixedSize);
         }
 
     }
