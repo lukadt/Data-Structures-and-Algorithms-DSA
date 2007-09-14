@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Dsa", "Dsa\Dsa.vdproj", "{360034B2-EC80-4B97-A661-1DBBBA17741C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{360034B2-EC80-4B97-A661-1DBBBA17741C}.Debug|Default.ActiveCfg = Debug
+		{360034B2-EC80-4B97-A661-1DBBBA17741C}.Debug|Default.Build.0 = Debug
+		{360034B2-EC80-4B97-A661-1DBBBA17741C}.Release|Default.ActiveCfg = Release
+		{360034B2-EC80-4B97-A661-1DBBBA17741C}.Release|Default.Build.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
