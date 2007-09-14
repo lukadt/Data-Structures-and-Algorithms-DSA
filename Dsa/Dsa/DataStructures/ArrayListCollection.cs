@@ -131,13 +131,6 @@ namespace Dsa.DataStructures {
         }
 
         /// <summary>
-        /// Gets a value indicating whether the IList is read-only.
-        /// </summary>
-        bool IList.IsReadOnly {
-            get { return false; }
-        }
-
-        /// <summary>
         /// Removes the first occurrence of a specific value from the IList.
         /// </summary>
         /// <param name="value">Value to remove.</param>
@@ -196,12 +189,22 @@ namespace Dsa.DataStructures {
             _count = 0;
         }
 
-        bool ICollection<T>.Contains(T item) {
-            throw new System.NotImplementedException();
+        /// <summary>
+        /// Determines whether an element is in the ArrayListCollection(Of T).
+        /// </summary>
+        /// <param name="item">Item to locate in the ArrayListCollection(Of T).</param>
+        /// <returns>True if the item was located; otherwise false.</returns>
+        public bool Contains(T item) {
+            return IndexOf(item) < 0 ? false : true;
         }
 
-        void ICollection<T>.CopyTo(T[] array, int arrayIndex) {
-            throw new System.NotImplementedException();
+        /// <summary>
+        /// Copies the entire ArrayListCollection(Of T) to a compatible one-dimensional Array, starting at the specified index of the target array.
+        /// </summary>
+        /// <param name="array">One-dimensional array to copy ArrayListCollection(Of T) items to.</param>
+        /// <param name="arrayIndex">Index of target array to start copy at.</param>
+        public void CopyTo(T[] array, int arrayIndex) {
+            Array.Copy(_items, 0, array, arrayIndex, _count);
         }
 
         /// <summary>
@@ -211,8 +214,11 @@ namespace Dsa.DataStructures {
             get { return _count; }
         }
 
-        bool ICollection<T>.IsReadOnly {
-            get { throw new System.NotImplementedException(); }
+        /// <summary>
+        /// Gets a value indicating whether the IList is read-only.
+        /// </summary>
+        public bool IsReadOnly {
+            get { return false; }
         }
 
         /// <summary>
@@ -232,24 +238,43 @@ namespace Dsa.DataStructures {
 
         #region IEnumerable<T> Members
 
-        IEnumerator<T> IEnumerable<T>.GetEnumerator() {
-            throw new System.NotImplementedException();
+        /// <summary>
+        /// Returns an enumerator that iterates through the ArrayListCollection(Of T).
+        /// </summary>
+        /// <returns>IEnumerator(Of T).</returns>
+        public IEnumerator<T> GetEnumerator() {
+            EqualityComparer<T> comparer = EqualityComparer<T>.Default;
+            for (int i = 0; i < _count; i++) {
+                while (comparer.Equals(_items[i], default(T))) {
+                    i++;
+                }
+                yield return _items[i];
+            }
         }
 
         #endregion
 
         #region IEnumerable Members
 
+        /// <summary>
+        /// Returns an enumerator that iterates through the IEnumerable.
+        /// </summary>
+        /// <returns>IEnumerator.</returns>
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {
-            throw new System.NotImplementedException();
+            return GetEnumerator();
         }
 
         #endregion
 
         #region ICollection Members
 
+        /// <summary>
+        /// Copies the entire ICollection to a compatible one-dimensional Array, starting at the specified index of the target array.
+        /// </summary>
+        /// <param name="array">One-dimensional array to copy ICollection items to.</param>
+        /// <param name="arrayIndex">Index of target array to start copy at.</param>
         void ICollection.CopyTo(System.Array array, int index) {
-            throw new System.NotImplementedException();
+            throw new NotSupportedException(Resources.ICollectionCopyToNotSupported);
         }
 
         /// <summary>

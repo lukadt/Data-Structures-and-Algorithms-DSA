@@ -162,12 +162,11 @@ namespace Dsa.Test {
         }
 
         /// <summary>
-        /// Test to see that IList.IsReadonly returns false.
+        /// Test to see that IsReadonly returns false.
         /// </summary>
         [TestMethod]
         public void IListIsReadonlyTest() {
-            ArrayListCollection<int> acl = new ArrayListCollection<int>();
-            IList actual = acl;
+            ArrayListCollection<int> actual = new ArrayListCollection<int>();
 
             Assert.IsFalse(actual.IsReadOnly);
         }
@@ -520,6 +519,95 @@ namespace Dsa.Test {
             ICollection actual = alc;
 
             Assert.IsNotNull(actual.SyncRoot);
+        }
+
+        /// <summary>
+        /// Test to see that Contains returns the expected value.
+        /// </summary>
+        [TestMethod]
+        public void ContainsTest() {
+            ArrayListCollection<int> actual = new ArrayListCollection<int>();
+
+            actual.Add(10);
+            actual.Add(20);
+            actual.Add(30);
+            actual.Add(40);
+            actual.Add(50);
+
+            Assert.IsTrue(actual.Contains(30));
+            Assert.IsFalse(actual.Contains(60));
+        }
+
+        /// <summary>
+        /// Test to see that CopyTo results in the expected array.
+        /// </summary>
+        [TestMethod]
+        public void CopyToTest() {
+            ArrayListCollection<int> acl = new ArrayListCollection<int>();
+
+            acl.Add(10);
+            acl.Add(20);
+            acl.Add(30);
+            int[] actual = new int[acl.Capacity];
+            acl.CopyTo(actual, 0);
+            int[] expected = { 10, 20, 30, 0 };
+
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        /// Test to see that the correct exception is raised when using the non-generic CopyTo method.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(NotSupportedException))]
+        public void ICollectionCopyToTest() {
+            ArrayListCollection<int> alc = new ArrayListCollection<int>();
+            ICollection actual = alc;
+
+            int[] expected = new int[alc.Capacity];
+            actual.CopyTo(expected, 0);
+        }
+
+        [TestMethod]
+        public void ItemsAreSameTest() {
+            ArrayListCollection<int> actual = new ArrayListCollection<int>();
+            ArrayListCollection<int> expected = new ArrayListCollection<int>();
+
+            actual.Add(10);
+            actual.Add(20);
+            actual.Add(30);
+            expected.Add(10);
+            expected.Add(20);
+            expected.Add(30);
+
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        /// Test to see that the IEnumerator(Of T) returned from GetEnumerator is not null.
+        /// </summary>
+        [TestMethod]
+        public void GetEnumeratorTest() {
+            ArrayListCollection<int> actual = new ArrayListCollection<int>();
+
+            actual.Add(10);
+            actual.Insert(2, 30);
+            foreach (int i in actual) {
+                Console.WriteLine(i);
+            }
+
+            Assert.IsNotNull(actual.GetEnumerator());
+        }
+
+        /// <summary>
+        /// Test to see that ICollection.GetEnumerator returns a non-null IEnumerator.
+        /// </summary>
+        [TestMethod]
+        public void ICollectionGetEnumeratorTest() {
+            ArrayListCollection<int> alc = new ArrayListCollection<int>();
+            ICollection actual = alc;
+
+            Assert.IsNotNull(actual.GetEnumerator());
         }
 
     }
