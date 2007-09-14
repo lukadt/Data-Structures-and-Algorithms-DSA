@@ -75,8 +75,40 @@ void StackCollectionExample() {
 	Console::WriteLine("Contains London? {0}", stack->Contains("London"));
 }
 
+/*Creates a DoublyLinkedListCollection(Of T) and then performs some common operations on the
+collection.*/
+void DoublyLinkedListExample() {
+	DoublyLinkedListCollection<int>^ dll = gcnew DoublyLinkedListCollection<int>();
+	dll->AddLast(10);
+	dll->AddLast(20);
+	dll->AddLast(30);
+	for each (int i in dll) {
+		Console::WriteLine(i);
+	}
+	dll->Remove(20);
+	for each (int i in dll) {
+		Console::WriteLine(i);
+	}
+}
+
+/*Creates a ArrayListCollection(Of T) and then performs some common operations on the
+collection.*/
+void ArrayListCollectionExample() {
+	ArrayListCollection<String^>^ alc = gcnew ArrayListCollection<String^>();
+	alc->Add("Paris");
+	alc->Add("London");
+	alc->Add("Berlin");
+	for each (String^ s in alc) {
+		Console::WriteLine(s);
+	}
+	alc[3] = "Dublin";
+	for each (String^ s in alc) {
+		Console::WriteLine(s);
+	}
+}
+
 int main(array<System::String ^>^ args) {
-	StackCollectionExample();
+	ArrayListCollectionExample();
     return 0;
 }
 
