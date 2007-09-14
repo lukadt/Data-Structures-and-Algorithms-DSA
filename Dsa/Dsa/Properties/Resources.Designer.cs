@@ -95,5 +95,14 @@ namespace Dsa.Properties {
                 return ResourceManager.GetString("SinglyLinkedListEmpty", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The type specified is not compatible with this method..
+        /// </summary>
+        internal static string TypeNotCompatible {
+            get {
+                return ResourceManager.GetString("TypeNotCompatible", resourceCulture);
+            }
+        }
     }
 }

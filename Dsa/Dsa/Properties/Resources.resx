@@ -133,4 +133,8 @@
     <value>SinglyLinkedListCollection(Of T) is empty.</value>
     <comment>When exceptions arise as a result of an empty singly linked list.</comment>
   </data>
+  <data name="TypeNotCompatible" xml:space="preserve">
+    <value>The type specified is not compatible with this method.</value>
+    <comment>When an object cannot be safely casted to the type being used for a collection.</comment>
+  </data>
 </root>
