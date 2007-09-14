@@ -1,17 +1,26 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Dsa.Properties;
+using System.Diagnostics;
 using System.Threading;
+using Dsa.Properties;
 
 namespace Dsa.DataStructures {
     
+    [Serializable]
+    [DebuggerDisplay("Count={Count}")]
+    [DebuggerTypeProxy(typeof(CollectionDebugView<>))]
     public sealed class ArrayListCollection<T> : ICollection<T>, ICollection, IList, IList<T> where T: IEquatable<T> {
 
+        [NonSerialized]
         private int _currentIndex;
+        [NonSerialized]
         private int _count;
+        [NonSerialized]
         private int _capacity = 4;
+        [NonSerialized]
         private T[] _items;
+        [NonSerialized]
         private object _syncRoot;
 
         /// <summary>

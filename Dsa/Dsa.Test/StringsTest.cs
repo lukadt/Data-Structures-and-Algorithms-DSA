@@ -51,6 +51,61 @@ namespace Dsa.Test {
             string actual = s.Reverse();
         }
 
+        /// <summary>
+        /// Test to see that the correct index is returned when calling Any.
+        /// </summary>
+        [TestMethod]
+        public void AnyMatchingCharTest() {
+            string s = "test";
+
+            Assert.AreEqual<int>(2, s.Any("prtest"));
+        }
+
+        /// <summary>
+        /// Test to see that the correct value is returned by any when the match string chars 
+        /// have no match with any of that in the word.
+        /// </summary>
+        [TestMethod]
+        public void AnyNoMatchingCharTest() {
+            string s = "test";
+
+            Assert.AreEqual<int>(-1, s.Any("bbc"));
+        }
+
+        /// <summary>
+        /// Test to see that the correct exception is raised when the word is null.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void AnyWordNullTest() {
+            string s = null;
+
+            s.Any("test");
+        }
+
+        /// <summary>
+        /// Test to see that the correct exception is raised when the match is null.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void AnyMatchNullException() {
+            string s = "test";
+
+            s.Any(null);
+        }
+
+        /// <summary>
+        /// Test to see that whitespace is ignored in both the word and match strings.
+        /// </summary>
+        [TestMethod]
+        public void AnyWhiteSpaceTest() {
+            string first = "   test";
+            string second = "Gra as asdf  asdf";
+
+            Assert.AreEqual<int>(4, first.Any("   pters"));
+            Assert.AreEqual<int>(13, second.Any("T kf   q w   r fg"));
+        }
+
     }
 
 }
