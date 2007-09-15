@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace Dsa.Algorithms {
     
@@ -55,6 +56,25 @@ namespace Dsa.Algorithms {
                 }
             }
             return -1;
+        }
+
+        /// <summary>
+        /// Detects whether or not the input string is a palindrome.
+        /// </summary>
+        /// <param name="word">String that you want to test is a palindrome or not.</param>
+        /// <returns>True if the string is a palindrome; otherwise false.</returns>
+        public static bool IsPalindrome(this string word) {
+            if (word == null) {
+                throw new ArgumentNullException("word");
+            }
+            word = word.ToLower(CultureInfo.InvariantCulture); // palindromes are case insensitive
+            int begin = 0;
+            int end = word.Length - 1;
+            while (word[begin] == word[end] && begin < end) {
+                begin++;
+                end--;
+            }
+            return word[begin] == word[end];
         }
 
     }

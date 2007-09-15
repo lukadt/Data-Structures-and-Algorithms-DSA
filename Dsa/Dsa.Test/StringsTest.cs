@@ -106,6 +106,47 @@ namespace Dsa.Test {
             Assert.AreEqual<int>(13, second.Any("T kf   q w   r fg"));
         }
 
+        /// <summary>
+        /// Test to see that a single word that is a palindrome returns true.
+        /// </summary>
+        [TestMethod]
+        public void IsPalindromeSingleWordTest() {
+            string actual = "mum";
+
+            Assert.IsTrue(actual.IsPalindrome());
+        }
+
+        /// <summary>
+        /// Test to see that the IsPalindrome method ignores case when testing for a palindrome.
+        /// </summary>
+        [TestMethod]
+        public void IsPalindromeCaseInsensitiveTest() {
+            string actual = "Madam";
+
+            Assert.IsTrue(actual.IsPalindrome());
+        }
+
+        /// <summary>
+        /// Test to see that a string comprising of a single char is a palindrome.
+        /// </summary>
+        [TestMethod]
+        public void IsPalindromeSingleCharTest() {
+            string actual = "m";
+
+            Assert.IsTrue(actual.IsPalindrome());
+        }
+
+        /// <summary>
+        /// Test to see that calling IsPalindrome with a null string results in the expected exception being thrown.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void IsPalindromeNullStringTest() {
+            string actual = null;
+
+            actual.IsPalindrome();
+        }
+
     }
 
 }
