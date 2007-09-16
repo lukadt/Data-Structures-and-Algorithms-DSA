@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Text;
 
 namespace Dsa.Algorithms {
     
@@ -67,7 +68,7 @@ namespace Dsa.Algorithms {
             if (word == null) {
                 throw new ArgumentNullException("word");
             }
-            word = word.ToLower(CultureInfo.InvariantCulture); // palindromes are case insensitive
+            word = word.Strip().ToLower(CultureInfo.InvariantCulture); // palindromes are case insensitive
             int begin = 0;
             int end = word.Length - 1;
             while (word[begin] == word[end] && begin < end) {
@@ -75,6 +76,24 @@ namespace Dsa.Algorithms {
                 end--;
             }
             return word[begin] == word[end];
+        }
+
+        /// <summary>
+        /// Takes a string and strips it of whitespace, punctuation and symbols returning the resulting stripped string.
+        /// </summary>
+        /// <param name="str">String to strip.</param>
+        /// <returns>The stripped version of the string.</returns>
+        public static string Strip(this string str) {
+            if (str == null) {
+                throw new ArgumentNullException("str");
+            }
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < str.Length; i++) {
+                if (!char.IsWhiteSpace(str[i]) && !char.IsPunctuation(str[i]) && !char.IsSymbol(str[i])) {
+                    sb.Append(str[i]);
+                }
+            }
+            return sb.ToString();
         }
 
     }

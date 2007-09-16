@@ -147,6 +147,37 @@ namespace Dsa.Test {
             actual.IsPalindrome();
         }
 
+        /// <summary>
+        /// Test to see that a string that has whitespace and punctuation is ignored.
+        /// </summary>
+        [TestMethod]
+        public void IsPalindromePuncAndWhitespaceIgnoredTest() {
+            string actual = "Are we not drawn onward, we few, drawn onward to new era?";
+
+            Assert.IsTrue(actual.IsPalindrome());
+        }
+
+        /// <summary>
+        /// Test to see that calling strip results in the expected string.
+        /// </summary>
+        [TestMethod]
+        public void StripTest() {
+            string actual = "asdf!!?*    p $$£";
+
+            Assert.AreEqual<string>("asdfp", actual.Strip());
+        }
+
+        /// <summary>
+        /// Test to see that calling strip with a null string results in the expected exception being thrown.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void StripNullStringTest() {
+            string actual = null;
+
+            actual.Strip();
+        }
+
     }
 
 }
