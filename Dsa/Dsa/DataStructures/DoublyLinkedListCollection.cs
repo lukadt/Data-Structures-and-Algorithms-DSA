@@ -233,9 +233,7 @@ namespace Dsa.DataStructures {
             DoublyLinkedListNode<T> n = _head;
             EqualityComparer<T> comparer = EqualityComparer<T>.Default;
             while (n != null) {
-                if (comparer.Equals(n.Value, item)) {
-                    return true;
-                }
+                if (comparer.Equals(n.Value, item)) return true;
                 n = n.Next;
             }
             return false;

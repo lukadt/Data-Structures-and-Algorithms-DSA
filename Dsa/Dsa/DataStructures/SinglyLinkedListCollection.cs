@@ -327,45 +327,39 @@ namespace Dsa.DataStructures {
             if (IsEmpty()) {
                 throw new InvalidOperationException(Resources.SinglyLinkedListEmpty);
             }
-            else {
-                SinglyLinkedListNode<T> n = _head;
-                EqualityComparer<T> comparer = EqualityComparer<T>.Default;
-                if (comparer.Equals(n.Value, item)) {
-                    // node to be removed is the head node
-                    if (n == _tail) {
-                        _tail = null; // n is head and tail, make tail null
+            SinglyLinkedListNode<T> n = _head;
+            EqualityComparer<T> comparer = EqualityComparer<T>.Default;
+            if (comparer.Equals(n.Value, item)) {
+                // node to be removed is the head node
+                if (n == _tail) {
+                    _tail = null; // n is head and tail, make tail null
+                }
+                // if n was the only node in the list then head is now null as well as tail, if not head has been updated to its next node
+                _head = _head.Next;
+                _count--;
+                return true;
+            }
+            while (n != null) {
+                if (!comparer.Equals(n.Value, item) && n.Next == null) {
+                    break;
+                }
+                else if (comparer.Equals(n.Next.Value, item)) {
+                    if (n.Next == _tail) {
+                        // the node to be removed was the tail so we need to make n the new tail
+                        _tail = n;
+                        n.Next = null;
+                        _count--;
+                        return true;
                     }
-                    // if n was the only node in the list then head is now null as well as tail, if not head has been updated to its next node
-                    _head = _head.Next; 
+                    n.Next = n.Next.Next;
                     _count--;
                     return true;
                 }
                 else {
-                    while (n != null) {
-                        if (!comparer.Equals(n.Value, item) && n.Next == null) {
-                            break;
-                        }
-                        else if (comparer.Equals(n.Next.Value, item)) {
-                            if (n.Next == _tail) {
-                                // the node to be removed was the tail so we need to make n the new tail
-                                _tail = n;
-                                n.Next = null;
-                                _count--;
-                                return true;
-                            }
-                            else {
-                                n.Next = n.Next.Next;
-                                _count--;
-                                return true;
-                            }
-                        }
-                        else {
-                            n = n.Next;
-                        }
-                    }
-                    return false;
+                    n = n.Next;
                 }
             }
+            return false;
         }
 
         /// <summary>

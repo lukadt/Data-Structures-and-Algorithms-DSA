@@ -7,6 +7,10 @@ using Dsa.Properties;
 
 namespace Dsa.DataStructures {
     
+    /// <summary>
+    /// ArrayListCollection(Of T).
+    /// </summary>
+    /// <typeparam name="T">Type of items to be stored in the ArrayListCollection(Of T).</typeparam>
     [Serializable]
     [DebuggerDisplay("Count={Count}")]
     [DebuggerTypeProxy(typeof(CollectionDebugView<>))]
@@ -26,7 +30,7 @@ namespace Dsa.DataStructures {
         /// <summary>
         /// Initializes a new instance of the ArrayListCollection class that is empty and has the default initial capacity.
         /// </summary>
-        public ArrayListCollection() {
+        public ArrayListCollection() { // t: a constructor that allows you to set the default size.
             _items = new T[_capacity];
         }
 
@@ -40,9 +44,7 @@ namespace Dsa.DataStructures {
                 Array.Resize<T>(ref _items, _capacity *= 2);
             }
             EqualityComparer<T> comparer = EqualityComparer<T>.Default;
-            while (!comparer.Equals(_items[_currentIndex], default(T))) {
-                _currentIndex++;
-            }
+            while (!comparer.Equals(_items[_currentIndex], default(T))) _currentIndex++;
             _count++;
             _items[_currentIndex] = value;
             return _currentIndex++;
@@ -62,10 +64,7 @@ namespace Dsa.DataStructures {
         /// <param name="index">Index of items array to access.</param>
         /// <returns>True if the index within the range of the array; otherwise false.</returns>
         private bool isInRange(int index) {
-            if (index < 0 || index > _items.Length - 1) {
-                return false;
-            }
-            return true;
+            return (index < 0 || index > _items.Length - 1) ? false : true;
         }
 
         /// <summary>
@@ -75,10 +74,7 @@ namespace Dsa.DataStructures {
         /// <param name="value">Value of object.</param>
         /// <returns>True if the object can be safely casted to type T; otherwise false.</returns>
         private static bool isCompatibleType(object value) {
-            if (!(value is T) || value == null || typeof(T).IsValueType) {
-                return false;
-            }
-            return true;
+            return (!(value is T) || value == null || typeof(T).IsValueType) ? false : true;
         }
 
         #region IList Members
@@ -236,9 +232,7 @@ namespace Dsa.DataStructures {
         /// <param name="item">Item to remove.</param>
         /// <returns>Returns true if the item was found and removed; otherwise false.</returns>
         public bool Remove(T item) {
-            if (IndexOf(item) < 0) {
-                return false;
-            }
+            if (IndexOf(item) < 0) return false;
             RemoveAt(IndexOf(item));
             return true;
         }
@@ -254,9 +248,7 @@ namespace Dsa.DataStructures {
         public IEnumerator<T> GetEnumerator() {
             EqualityComparer<T> comparer = EqualityComparer<T>.Default;
             for (int i = 0; i < _count; i++) {
-                while (comparer.Equals(_items[i], default(T))) {
-                    i++;
-                }
+                while (comparer.Equals(_items[i], default(T))) i++;
                 yield return _items[i];
             }
         }

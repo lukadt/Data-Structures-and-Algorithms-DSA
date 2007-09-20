@@ -22,6 +22,9 @@ namespace Dsa.DataStructures {
         [NonSerialized]
         private object _syncRoot;
 
+        /// <summary>
+        /// Initializes a new instance of the StackCollection class.
+        /// </summary>
         public StackCollection() {
             _stack = new SinglyLinkedListCollection<T>();
         }

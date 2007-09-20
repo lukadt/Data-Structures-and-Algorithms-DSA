@@ -18,9 +18,7 @@ namespace Dsa.Algorithms {
             if (word == null) {
                 throw new ArgumentNullException("word");
             }
-            if (word.Length < 2) { 
-                return word;
-            }
+            if (word.Length < 2) return word;
             char[] resultingString = new char[word.Length];
             for (int i = word.Length - 1, j = 0; i >= 0; i--, j++) {
                 resultingString[j] = word[i];
@@ -44,16 +42,10 @@ namespace Dsa.Algorithms {
                 throw new ArgumentNullException("match");
             }
             for (int i = 0; i < word.Length; i++) {
-                while (char.IsWhiteSpace(word[i])) {
-                    i++;
-                }
+                while (char.IsWhiteSpace(word[i])) i++;
                 for (int j = 0; j < match.Length; j++) {
-                    while (char.IsWhiteSpace(match[j])) {
-                        j++;
-                    }
-                    if (match[j] == word[i]) {
-                        return j;
-                    }
+                    while (char.IsWhiteSpace(match[j])) j++;
+                    if (match[j] == word[i]) return j;
                 }
             }
             return -1;
