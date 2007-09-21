@@ -146,10 +146,8 @@ namespace Dsa.DataStructures {
             else {
                 int curr = 0; // index of array at which current nodes value is stored
                 T[] arrayResult = new T[_count];
-                SinglyLinkedListNode<T> n = _head;
-                while (n != null) {
-                    arrayResult[curr] = n.Value;
-                    n = n.Next;
+                foreach (T value in this) {
+                    arrayResult[curr] = value;
                     curr++;
                 }
                 return arrayResult;
@@ -290,13 +288,9 @@ namespace Dsa.DataStructures {
         /// <param name="item">Value to search for.</param>
         /// <returns>True if the value is in the collection, false otherwise.</returns>
         public bool Contains(T item) {
-            SinglyLinkedListNode<T> n = _head;
             EqualityComparer<T> comparer = EqualityComparer<T>.Default;
-            while (n != null) {
-                if (comparer.Equals(n.Value, item)) {
-                    return true;
-                }
-                n = n.Next;
+            foreach (T value in this) {
+                if (comparer.Equals(value, item)) return true;
             }
             return false;
         }
@@ -340,9 +334,7 @@ namespace Dsa.DataStructures {
                 return true;
             }
             while (n != null) {
-                if (!comparer.Equals(n.Value, item) && n.Next == null) {
-                    break;
-                }
+                if (!comparer.Equals(n.Value, item) && n.Next == null) break;
                 else if (comparer.Equals(n.Next.Value, item)) {
                     if (n.Next == _tail) {
                         // the node to be removed was the tail so we need to make n the new tail

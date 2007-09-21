@@ -157,13 +157,11 @@ namespace Dsa.DataStructures {
             if (IsEmpty()) {
                 throw new InvalidOperationException(Resources.DoublyLinkedListEmpty);
             }
-            DoublyLinkedListNode<T> n = _head;
             int index = 0;
             T[] resultArray = new T[_count];
-            while (n != null) {
-                resultArray[index] = n.Value;
+            foreach (T value in this) {
+                resultArray[index] = value;
                 index++;
-                n = n.Next;
             }
             return resultArray;
         }
@@ -230,11 +228,9 @@ namespace Dsa.DataStructures {
         /// <param name="item">Value to search the DoublyLinkedListCollection(Of T) for.</param>
         /// <returns>True if the value was found, false otherwise.</returns>
         public bool Contains(T item) {
-            DoublyLinkedListNode<T> n = _head;
             EqualityComparer<T> comparer = EqualityComparer<T>.Default;
-            while (n != null) {
-                if (comparer.Equals(n.Value, item)) return true;
-                n = n.Next;
+            foreach (T value in this) {
+                if (comparer.Equals(value, item)) return true;
             }
             return false;
         }
