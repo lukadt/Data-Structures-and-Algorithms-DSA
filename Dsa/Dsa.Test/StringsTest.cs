@@ -178,6 +178,47 @@ namespace Dsa.Test {
             actual.Strip();
         }
 
+        /// <summary>
+        /// Test to see that WordCount returns the correct value.
+        /// </summary>
+        [TestMethod]
+        public void WordCountTest() {
+            string actual = "The boat is in";
+
+            Assert.AreEqual<int>(4, actual.WordCount());
+        }
+
+        /// <summary>
+        /// Test to see that whitespace is ignored when counting words.
+        /// </summary>
+        [TestMethod]
+        public void WordCountWhitespaceTest() {
+            string actual = "   I ate pie    ";
+
+            Assert.AreEqual<int>(3, actual.WordCount());
+        }
+
+        /// <summary>
+        /// Test to make sure that a string with nothing but whitespace returns the correct value.
+        /// </summary>
+        [TestMethod]
+        public void WordCountPureWhiteSpace() {
+            string actual = "      ";
+
+            Assert.AreEqual<int>(0, actual.WordCount());
+        }
+
+        /// <summary>
+        /// Test to see that a null string raises the correct exception.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void WordCountNullArgTest() {
+            string actual = null;
+
+            actual.WordCount();
+        }
+
     }
 
 }

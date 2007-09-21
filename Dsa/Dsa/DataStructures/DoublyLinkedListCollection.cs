@@ -227,7 +227,7 @@ namespace Dsa.DataStructures {
         /// <summary>
         /// Determines whether a value is in the DoublyLinkedListCollection(Of T).
         /// </summary>
-        /// <param name="value">Value to search the DoublyLinkedListCollection(Of T) for.</param>
+        /// <param name="item">Value to search the DoublyLinkedListCollection(Of T) for.</param>
         /// <returns>True if the value was found, false otherwise.</returns>
         public bool Contains(T item) {
             DoublyLinkedListNode<T> n = _head;
@@ -265,7 +265,7 @@ namespace Dsa.DataStructures {
         /// <summary>
         /// Removes the first occurrence of a value from the DoublyLinkedListCollection(Of T).
         /// </summary>
-        /// <param name="value">Value to remove from the DoublyLinkedListCollection(Of T) if found.</param>
+        /// <param name="item">Value to remove from the DoublyLinkedListCollection(Of T) if found.</param>
         /// <returns>True if the value was found in the DoublyLinkedListCollection(Of T) and removed, false otherwise.</returns>
         public bool Remove(T item) {
             if (IsEmpty()) {

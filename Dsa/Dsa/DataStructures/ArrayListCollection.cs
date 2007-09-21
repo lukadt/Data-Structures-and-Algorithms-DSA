@@ -273,7 +273,7 @@ namespace Dsa.DataStructures {
         /// Copies the entire ICollection to a compatible one-dimensional Array, starting at the specified index of the target array.
         /// </summary>
         /// <param name="array">One-dimensional array to copy ICollection items to.</param>
-        /// <param name="arrayIndex">Index of target array to start copy at.</param>
+        /// <param name="index">Index of target array to start copy at.</param>
         void ICollection.CopyTo(System.Array array, int index) {
             throw new NotSupportedException(Resources.ICollectionCopyToNotSupported);
         }

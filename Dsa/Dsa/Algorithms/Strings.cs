@@ -12,16 +12,16 @@ namespace Dsa.Algorithms {
         /// <summary>
         /// Reverses the characters of a string.
         /// </summary>
-        /// <param name="s">String to reverse characters of.</param>
+        /// <param name="str">String to reverse characters of.</param>
         /// <returns>A reversed string of the parameter.</returns>
-        public static string Reverse(this string word) {
-            if (word == null) {
-                throw new ArgumentNullException("word");
+        public static string Reverse(this string str) {
+            if (str == null) {
+                throw new ArgumentNullException("str");
             }
-            if (word.Length < 2) return word;
-            char[] resultingString = new char[word.Length];
-            for (int i = word.Length - 1, j = 0; i >= 0; i--, j++) {
-                resultingString[j] = word[i];
+            if (str.Length < 2) return str;
+            char[] resultingString = new char[str.Length];
+            for (int i = str.Length - 1, j = 0; i >= 0; i--, j++) {
+                resultingString[j] = str[i];
             }
             return new string(resultingString);
         }
@@ -86,6 +86,34 @@ namespace Dsa.Algorithms {
                 }
             }
             return sb.ToString();
+        }
+
+        /// <summary>
+        /// Counts the number of words in a string.
+        /// </summary>
+        /// <param name="str">String to count the words of.</param>
+        /// <returns>An Int32 indicating the number of words in the string.</returns>
+        public static int WordCount(this string str) {
+            if (str == null) {
+                throw new ArgumentNullException("str");
+            }
+            bool inWord = true;
+            int count = 0;
+            int index = 0;
+            while (char.IsWhiteSpace(str[index]) && index < str.Length - 1) index++; // skip all of the initial whitespace in the string
+            if (index == str.Length-1 && char.IsWhiteSpace(str[index])) return 0; // the string was pure whitepace
+            for (; index < str.Length; index++) {
+                if (char.IsWhiteSpace(str[index])) {
+                    while (char.IsWhiteSpace(str[index]) && index < str.Length - 1) index++; // skip all consecutive whitespace
+                    inWord = false; // as we are hitting whitespace we are not in a word
+                    count++; // I assume that words are delimitd by whitespace, thus count should be incremented.
+                }
+                else {
+                    inWord = true;
+                }
+            }
+            if (inWord) count++; // the last word may of not been followed by whitespace, in that case increment count.
+            return count;
         }
 
     }
