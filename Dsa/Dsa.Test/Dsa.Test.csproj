@@ -52,6 +52,7 @@
     <Compile Include="QueueCollectionTest.cs" />
     <Compile Include="SinglyLinkedListCollectionTest.cs" />
     <Compile Include="SinglyLinkedListNodeTest.cs" />
+    <Compile Include="SortingTest.cs" />
     <Compile Include="StackCollectionTest.cs" />
     <Compile Include="StringsTest.cs" />
   </ItemGroup>
