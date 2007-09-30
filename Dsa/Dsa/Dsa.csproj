@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithms\Numbers.cs" />
     <Compile Include="Algorithms\Sorting.cs" />
     <Compile Include="DataStructures\ArrayListCollection.cs" />
     <Compile Include="DataStructures\CollectionDebugView.cs" />
