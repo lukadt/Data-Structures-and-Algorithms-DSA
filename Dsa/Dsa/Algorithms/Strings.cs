@@ -12,16 +12,16 @@ namespace Dsa.Algorithms {
         /// <summary>
         /// Reverses the characters of a string.
         /// </summary>
-        /// <param name="str">String to reverse characters of.</param>
+        /// <param name="value">The string to reverse the characters of.</param>
         /// <returns>A reversed string of the parameter.</returns>
-        public static string Reverse(this string str) {
-            if (str == null) {
-                throw new ArgumentNullException("str");
+        public static string Reverse(this string value) {
+            if (value == null) {
+                throw new ArgumentNullException("value");
             }
-            if (str.Length < 2) return str;
-            char[] resultingString = new char[str.Length];
-            for (int i = str.Length - 1, j = 0; i >= 0; i--, j++) {
-                resultingString[j] = str[i];
+            if (value.Length < 2) return value;
+            char[] resultingString = new char[value.Length];
+            for (int i = value.Length - 1, j = 0; i >= 0; i--, j++) {
+                resultingString[j] = value[i];
             }
             return new string(resultingString);
         }
@@ -60,7 +60,7 @@ namespace Dsa.Algorithms {
             if (word == null) {
                 throw new ArgumentNullException("word");
             }
-            word = word.Strip().ToLower(CultureInfo.InvariantCulture); // palindromes are case insensitive
+            word = word.Strip().ToUpper(CultureInfo.InvariantCulture); // palindromes are case insensitive
             int begin = 0;
             int end = word.Length - 1;
             while (word[begin] == word[end] && begin < end) {
@@ -73,16 +73,16 @@ namespace Dsa.Algorithms {
         /// <summary>
         /// Takes a string and strips it of whitespace, punctuation and symbols returning the resulting stripped string.
         /// </summary>
-        /// <param name="str">String to strip.</param>
+        /// <param name="value">String to strip.</param>
         /// <returns>The stripped version of the string.</returns>
-        public static string Strip(this string str) {
-            if (str == null) {
-                throw new ArgumentNullException("str");
+        public static string Strip(this string value) {
+            if (value == null) {
+                throw new ArgumentNullException("value");
             }
             StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < str.Length; i++) {
-                if (!char.IsWhiteSpace(str[i]) && !char.IsPunctuation(str[i]) && !char.IsSymbol(str[i])) {
-                    sb.Append(str[i]);
+            for (int i = 0; i < value.Length; i++) {
+                if (!char.IsWhiteSpace(value[i]) && !char.IsPunctuation(value[i]) && !char.IsSymbol(value[i])) {
+                    sb.Append(value[i]);
                 }
             }
             return sb.ToString();
@@ -91,20 +91,20 @@ namespace Dsa.Algorithms {
         /// <summary>
         /// Counts the number of words in a string.
         /// </summary>
-        /// <param name="str">String to count the words of.</param>
+        /// <param name="value">The string to count the words of.</param>
         /// <returns>An Int32 indicating the number of words in the string.</returns>
-        public static int WordCount(this string str) {
-            if (str == null) {
-                throw new ArgumentNullException("str");
+        public static int WordCount(this string value) {
+            if (value == null) {
+                throw new ArgumentNullException("value");
             }
             bool inWord = true;
             int count = 0;
             int index = 0;
-            while (char.IsWhiteSpace(str[index]) && index < str.Length - 1) index++; // skip all of the initial whitespace in the string
-            if (index == str.Length-1 && char.IsWhiteSpace(str[index])) return 0; // the string was pure whitepace
-            for (; index < str.Length; index++) {
-                if (char.IsWhiteSpace(str[index])) {
-                    while (char.IsWhiteSpace(str[index]) && index < str.Length - 1) index++; // skip all consecutive whitespace
+            while (char.IsWhiteSpace(value[index]) && index < value.Length - 1) index++; // skip all of the initial whitespace in the string
+            if (index == value.Length-1 && char.IsWhiteSpace(value[index])) return 0; // the string was pure whitepace
+            for (; index < value.Length; index++) {
+                if (char.IsWhiteSpace(value[index])) {
+                    while (char.IsWhiteSpace(value[index]) && index < value.Length - 1) index++; // skip all consecutive whitespace
                     inWord = false; // as we are hitting whitespace we are not in a word
                     count++; // I assume that words are delimitd by whitespace, thus count should be incremented.
                 }

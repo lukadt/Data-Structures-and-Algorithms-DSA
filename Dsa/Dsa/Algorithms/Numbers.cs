@@ -8,20 +8,31 @@
         /// <summary>
         /// Computes the fibonnaci number of an integer.
         /// </summary>
-        /// <param name="n">Int to compute fibonnacci number for.</param>
+        /// <param name="number">The number to compute the fibonnacci number for.</param>
         /// <returns>The fibonnacci number.</returns>
-        public static int Fibonacci(int n) {
-            if (n < 2) return 1;
-            return Fibonacci(n - 1) + Fibonacci(n - 2);
+        public static int Fibonacci(int number) {
+            if (number < 2) return 1;
+            return Fibonacci(number - 1) + Fibonacci(number - 2);
         }
 
         /// <summary>
         /// Computes factorial of a givne integer.
         /// </summary>
-        /// <param name="n">The integer to compute the factorial of.</param>
-        public static int Factorial(int n) {
-            if (n == 1) return 1;
-            return n * Factorial(n - 1);
+        /// <param name="number">The number to compute the factorial of.</param>
+        public static int Factorial(int number) {
+            if (number == 1) return 1;
+            return number * Factorial(number - 1);
+        }
+
+        /// <summary>
+        /// Computes the power of an integer with a given exponent.
+        /// </summary>
+        /// <param name="baseNumber">The base number.</param>
+        /// <param name="exponent">The exponent.</param>
+        /// <returns>The value of the base raised to the exponent.</returns>
+        public static int Power(int baseNumber, int exponent) {
+            if (exponent == 0) return 1;
+            return baseNumber * Power(baseNumber, exponent - 1);
         }
 
     }
