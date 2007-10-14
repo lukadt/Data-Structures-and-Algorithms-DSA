@@ -35,6 +35,18 @@
             return baseNumber * Power(baseNumber, exponent - 1);
         }
 
+        /// <summary>
+        /// Computes the greatest common denominator of two integers.
+        /// This is an implementation of Euclid's algorithm.
+        /// </summary>
+        /// <param name="first">First integer.</param>
+        /// <param name="second">Second integer.</param>
+        /// <returns>The greatest common denominator of the two integers provided.</returns>
+        public static int Gcd(int first, int second) {
+            if (second == 0) return first;
+            return Gcd(second, first % second);
+        }
+
     }
 
 }

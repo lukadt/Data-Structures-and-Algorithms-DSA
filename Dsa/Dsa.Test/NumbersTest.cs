@@ -37,6 +37,19 @@ namespace Dsa.Test {
         public void PowerZeroTest() {
             Assert.AreEqual<int>(1, Numbers.Power(2, 0));
         }
+
+        /// <summary>
+        /// Test to see that calling the Gcd method results in the expected value being returned.
+        /// </summary>
+        [TestMethod]
+        public void GcdTest() {
+            Assert.AreEqual<int>(1, Numbers.Gcd(9, 4));
+            Assert.AreEqual<int>(3, Numbers.Gcd(3, 9));
+            Assert.AreEqual<int>(5, Numbers.Gcd(10, 5));
+            Assert.AreEqual<int>(1, Numbers.Gcd(5, 12));
+            Assert.AreEqual<int>(5, Numbers.Gcd(-10, 5));
+            Assert.AreEqual<int>(5, Numbers.Gcd(5, -10));
+        }
     }
 
 }
