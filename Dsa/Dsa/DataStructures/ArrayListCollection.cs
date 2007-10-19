@@ -5,8 +5,9 @@ using System.Diagnostics;
 using System.Threading;
 using Dsa.Properties;
 
-namespace Dsa.DataStructures {
-    
+namespace Dsa.DataStructures
+{
+
     /// <summary>
     /// ArrayListCollection(Of T).
     /// </summary>
@@ -14,7 +15,8 @@ namespace Dsa.DataStructures {
     [Serializable]
     [DebuggerDisplay("Count={Count}")]
     [DebuggerTypeProxy(typeof(CollectionDebugView<>))]
-    public sealed class ArrayListCollection<T> : ICollection<T>, ICollection, IList, IList<T> where T: IEquatable<T> {
+    public sealed class ArrayListCollection<T> : IList, IList<T> where T : IEquatable<T>
+    {
 
         [NonSerialized]
         private int _currentIndex;
@@ -30,7 +32,8 @@ namespace Dsa.DataStructures {
         /// <summary>
         /// Initializes a new instance of the ArrayListCollection class that is empty and has the default initial capacity.
         /// </summary>
-        public ArrayListCollection() { // t: a constructor that allows you to set the default size.
+        public ArrayListCollection()
+        { // t: a constructor that allows you to set the default size.
             _items = new T[_capacity];
         }
 
@@ -39,9 +42,11 @@ namespace Dsa.DataStructures {
         /// </summary>
         /// <param name="value">Value to add to the ArrayListCollection(Of T).</param>
         /// <returns>The index of the ArrayListCollection(Of T) the value was added to.</returns>
-        public int Add(T value) {
-            if (_count == _capacity) {
-                Array.Resize<T>(ref _items, _capacity *= 2);
+        public int Add(T value)
+        {
+            if (_count == _capacity)
+            {
+                Array.Resize(ref _items, _capacity *= 2);
             }
             EqualityComparer<T> comparer = EqualityComparer<T>.Default;
             while (!comparer.Equals(_items[_currentIndex], default(T))) _currentIndex++;
@@ -53,7 +58,8 @@ namespace Dsa.DataStructures {
         /// <summary>
         /// Gets the capacity of the ArrayListCollection(Of T).
         /// </summary>
-        public int Capacity {
+        public int Capacity
+        {
             get { return _capacity; }
         }
 
@@ -63,7 +69,8 @@ namespace Dsa.DataStructures {
         /// </summary>
         /// <param name="index">Index of items array to access.</param>
         /// <returns>True if the index within the range of the array; otherwise false.</returns>
-        private bool isInRange(int index) {
+        private bool isInRange(int index)
+        {
             return (index < 0 || index > _items.Length - 1) ? false : true;
         }
 
@@ -73,7 +80,8 @@ namespace Dsa.DataStructures {
         /// </summary>
         /// <param name="value">Value of object.</param>
         /// <returns>True if the object can be safely casted to type T; otherwise false.</returns>
-        private static bool isCompatibleType(object value) {
+        private static bool isCompatibleType(object value)
+        {
             return (!(value is T) || value == null || typeof(T).IsValueType) ? false : true;
         }
 
@@ -85,8 +93,10 @@ namespace Dsa.DataStructures {
         /// <param name="value">Value to add to the ArrayListCollection(Of T).  Must be a reference type that is the same
         /// as T or a derivitive of T and not null.</param>
         /// <returns>The index of the ArrayListCollection(Of T) the value was added to.</returns>
-        int IList.Add(object value) {
-            if (!isCompatibleType(value)) {
+        int IList.Add(object value)
+        {
+            if (!isCompatibleType(value))
+            {
                 throw new ArgumentException(Resources.TypeNotCompatible);
             }
             return Add((T)value);
@@ -97,8 +107,10 @@ namespace Dsa.DataStructures {
         /// </summary>
         /// <param name="value">Value to locate in the IList.</param>
         /// <returns>True if the value was located in the IList; otherwise false.</returns>
-        bool IList.Contains(object value) {
-            if (!isCompatibleType(value)) {
+        bool IList.Contains(object value)
+        {
+            if (!isCompatibleType(value))
+            {
                 throw new ArgumentException(Resources.TypeNotCompatible);
             }
             return IndexOf((T)value) < 0 ? false : true;
@@ -109,8 +121,10 @@ namespace Dsa.DataStructures {
         /// </summary>
         /// <param name="value">The object to locate in the IList.</param>
         /// <returns>The zero-based index of the first occurrence of item within the entire IList, if found; otherwise, –1.</returns>
-        int IList.IndexOf(object value) {
-            if (!isCompatibleType(value)) {
+        int IList.IndexOf(object value)
+        {
+            if (!isCompatibleType(value))
+            {
                 throw new ArgumentException(Resources.TypeNotCompatible);
             }
             return IndexOf((T)value);
@@ -121,8 +135,10 @@ namespace Dsa.DataStructures {
         /// </summary>
         /// <param name="index">Index to insert item at.</param>
         /// <param name="value">Value to insert into the IList.</param>
-        void IList.Insert(int index, object value) {
-            if (!isCompatibleType(value)) {
+        void IList.Insert(int index, object value)
+        {
+            if (!isCompatibleType(value))
+            {
                 throw new ArgumentException(Resources.TypeNotCompatible);
             }
             Insert(index, (T)value);
@@ -131,7 +147,8 @@ namespace Dsa.DataStructures {
         /// <summary>
         /// Gets a value indicating whether the IList has a fixed size.
         /// </summary>
-        bool IList.IsFixedSize {
+        bool IList.IsFixedSize
+        {
             get { return false; }
         }
 
@@ -139,8 +156,10 @@ namespace Dsa.DataStructures {
         /// Removes the first occurrence of a specific value from the IList.
         /// </summary>
         /// <param name="value">Value to remove.</param>
-        void IList.Remove(object value) {
-            if (!isCompatibleType(value)) {
+        void IList.Remove(object value)
+        {
+            if (!isCompatibleType(value))
+            {
                 throw new ArgumentException(Resources.TypeNotCompatible);
             }
             Remove((T)value);
@@ -150,7 +169,8 @@ namespace Dsa.DataStructures {
         /// Removes the element at the specified index of the IList.
         /// </summary>
         /// <param name="index">Index of item to remove.</param>
-        void IList.RemoveAt(int index) {
+        void IList.RemoveAt(int index)
+        {
             RemoveAt(index);
         }
 
@@ -159,12 +179,16 @@ namespace Dsa.DataStructures {
         /// </summary>
         /// <param name="index">Index of item to get or set.</param>
         /// <returns>Item at the specified index.</returns>
-        object IList.this[int index] {
-            get {
+        object IList.this[int index]
+        {
+            get
+            {
                 return this[index];
             }
-            set {
-                if (!isCompatibleType(value)) {
+            set
+            {
+                if (!isCompatibleType(value))
+                {
                     throw new ArgumentException(Resources.TypeNotCompatible);
                 }
                 this[index] = (T)value;
@@ -179,7 +203,8 @@ namespace Dsa.DataStructures {
         /// Adds an item to the ICollection(Of T).
         /// </summary>
         /// <param name="item">Item to add to the ICollection(Of T).</param>
-        void ICollection<T>.Add(T item) {
+        void ICollection<T>.Add(T item)
+        {
             Add(item);
         }
 
@@ -187,8 +212,10 @@ namespace Dsa.DataStructures {
         /// Removes all elements from the ArrayListCollection(Of T).
         /// Does not change the capacity to its default size.
         /// </summary>
-        public void Clear() {
-            for (int i = 0; i < _count; i++) {
+        public void Clear()
+        {
+            for (int i = 0; i < _count; i++)
+            {
                 _items[i] = default(T);
             }
             _count = 0;
@@ -199,7 +226,8 @@ namespace Dsa.DataStructures {
         /// </summary>
         /// <param name="item">Item to locate in the ArrayListCollection(Of T).</param>
         /// <returns>True if the item was located; otherwise false.</returns>
-        public bool Contains(T item) {
+        public bool Contains(T item)
+        {
             return IndexOf(item) < 0 ? false : true;
         }
 
@@ -208,21 +236,24 @@ namespace Dsa.DataStructures {
         /// </summary>
         /// <param name="array">One-dimensional array to copy ArrayListCollection(Of T) items to.</param>
         /// <param name="arrayIndex">Index of target array to start copy at.</param>
-        public void CopyTo(T[] array, int arrayIndex) {
+        public void CopyTo(T[] array, int arrayIndex)
+        {
             Array.Copy(_items, 0, array, arrayIndex, _count);
         }
 
         /// <summary>
         /// Gets the number of elements contained in the ICollection(Of T).
         /// </summary>
-        public int Count {
+        public int Count
+        {
             get { return _count; }
         }
 
         /// <summary>
         /// Gets a value indicating whether the IList is read-only.
         /// </summary>
-        public bool IsReadOnly {
+        public bool IsReadOnly
+        {
             get { return false; }
         }
 
@@ -231,7 +262,8 @@ namespace Dsa.DataStructures {
         /// </summary>
         /// <param name="item">Item to remove.</param>
         /// <returns>Returns true if the item was found and removed; otherwise false.</returns>
-        public bool Remove(T item) {
+        public bool Remove(T item)
+        {
             if (IndexOf(item) < 0) return false;
             RemoveAt(IndexOf(item));
             return true;
@@ -245,9 +277,11 @@ namespace Dsa.DataStructures {
         /// Returns an enumerator that iterates through the ArrayListCollection(Of T).
         /// </summary>
         /// <returns>IEnumerator(Of T).</returns>
-        public IEnumerator<T> GetEnumerator() {
+        public IEnumerator<T> GetEnumerator()
+        {
             EqualityComparer<T> comparer = EqualityComparer<T>.Default;
-            for (int i = 0; i < _count; i++) {
+            for (int i = 0; i < _count; i++)
+            {
                 while (comparer.Equals(_items[i], default(T))) i++;
                 yield return _items[i];
             }
@@ -261,7 +295,8 @@ namespace Dsa.DataStructures {
         /// Returns an enumerator that iterates through the IEnumerable.
         /// </summary>
         /// <returns>IEnumerator.</returns>
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {
+        IEnumerator IEnumerable.GetEnumerator()
+        {
             return GetEnumerator();
         }
 
@@ -274,23 +309,28 @@ namespace Dsa.DataStructures {
         /// </summary>
         /// <param name="array">One-dimensional array to copy ICollection items to.</param>
         /// <param name="index">Index of target array to start copy at.</param>
-        void ICollection.CopyTo(System.Array array, int index) {
+        void ICollection.CopyTo(Array array, int index)
+        {
             throw new NotSupportedException(Resources.ICollectionCopyToNotSupported);
         }
 
         /// <summary>
         /// Gets a value indicating whether access to the ICollection is synchronized (thread safe).
         /// </summary>
-        bool ICollection.IsSynchronized {
+        bool ICollection.IsSynchronized
+        {
             get { return false; }
         }
 
         /// <summary>
         /// Gets an object that can be used to synchronize access to the ICollection.
         /// </summary>
-        object ICollection.SyncRoot {
-            get {
-                if (_syncRoot == null) {
+        object ICollection.SyncRoot
+        {
+            get
+            {
+                if (_syncRoot == null)
+                {
                     Interlocked.CompareExchange(ref _syncRoot, new object(), null);
                 }
                 return _syncRoot;
@@ -306,7 +346,8 @@ namespace Dsa.DataStructures {
         /// </summary>
         /// <param name="item">The object to locate in the ArrayListCollection(Of T). The value can be null for reference types.</param>
         /// <returns>The zero-based index of the first occurrence of item within the entire ArrayListCollection(Of T), if found; otherwise, –1.</returns>
-        public int IndexOf(T item) {
+        public int IndexOf(T item)
+        {
             return Array.IndexOf(_items, item);
         }
 
@@ -315,17 +356,22 @@ namespace Dsa.DataStructures {
         /// </summary>
         /// <param name="index">Index to insert item at.</param>
         /// <param name="item">Item to insert into the ArrayListCollection(Of T).</param>
-        public void Insert(int index, T item) {
-            if (isInRange(index)) {
-                if (index < _currentIndex) {
+        public void Insert(int index, T item)
+        {
+            if (isInRange(index))
+            {
+                if (index < _currentIndex)
+                {
                     _items[index] = item;
                 }
-                else {
+                else
+                {
                     _items[index] = item;
                     _count++;
                 }
             }
-            else {
+            else
+            {
                 throw new ArgumentOutOfRangeException("index");
             }
         }
@@ -334,16 +380,20 @@ namespace Dsa.DataStructures {
         /// Removes the element at the specified index of the ArrayListCollection(Of T).
         /// </summary>
         /// <param name="index">Index of item to remove.</param>
-        public void RemoveAt(int index) {
-            if (isInRange(index)) {
+        public void RemoveAt(int index)
+        {
+            if (isInRange(index))
+            {
                 _count--;
                 _currentIndex--;
-                if (index < _count) {
+                if (index < _count)
+                {
                     Array.Copy(_items, index + 1, _items, index, 1);
                 }
                 _items[_count] = default(T);
             }
-            else {
+            else
+            {
                 throw new ArgumentOutOfRangeException("index");
             }
         }
@@ -353,12 +403,16 @@ namespace Dsa.DataStructures {
         /// </summary>
         /// <param name="index">Index of item to get or set.</param>
         /// <returns>Item at the specified index.</returns>
-        public T this[int index] {
-            get {
+        public T this[int index]
+        {
+            get
+            {
                 return _items[index];
             }
-            set {
-                if (!(index < _count)) {
+            set
+            {
+                if (!(index < _count))
+                {
                     _count++;
                 }
                 _items[index] = value;

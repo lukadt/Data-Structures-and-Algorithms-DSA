@@ -5,7 +5,8 @@ using System.Diagnostics;
 using System.Threading;
 using Dsa.Properties;
 
-namespace Dsa.DataStructures {
+namespace Dsa.DataStructures
+{
 
     /// <summary>
     /// SinglyLinkedListCollection(Of T).
@@ -14,7 +15,8 @@ namespace Dsa.DataStructures {
     [Serializable]
     [DebuggerDisplay("Count={Count}")]
     [DebuggerTypeProxy(typeof(CollectionDebugView<>))]
-    public sealed class SinglyLinkedListCollection<T> : ICollection<T>, ICollection where T : IEquatable<T> {
+    public sealed class SinglyLinkedListCollection<T> : ICollection<T>, ICollection where T : IEquatable<T>
+    {
 
         [NonSerialized]
         private SinglyLinkedListNode<T> _head;
@@ -29,14 +31,17 @@ namespace Dsa.DataStructures {
         /// Adds a node to the tail of the SinglyLinkedListCollection.
         /// </summary>
         /// <param name="item">Item to add to the SinglyLinkedListCollection.</param>
-        public void AddLast(T item) {
+        public void AddLast(T item)
+        {
             SinglyLinkedListNode<T> n = new SinglyLinkedListNode<T>(item);
-            if (IsEmpty()) {
+            if (IsEmpty())
+            {
                 // this is the first node in the SinglyLinkedListCollection, head and tail point to the same node
                 _head = n;
                 _tail = n;
             }
-            else {
+            else
+            {
                 _tail.Next = n;
                 _tail = n;
             }
@@ -47,14 +52,17 @@ namespace Dsa.DataStructures {
         /// Adds a node to the head of the SinglyLinkedListCollection.
         /// </summary>
         /// <param name="item">Item to add to the SinglyLinkedListCollection.</param>
-        public void AddFirst(T item) {
+        public void AddFirst(T item)
+        {
             SinglyLinkedListNode<T> n = new SinglyLinkedListNode<T>(item);
-            if (IsEmpty()) {
+            if (IsEmpty())
+            {
                 // this is the first node in the SinglyLinkedListCollection, head and tail point to the same node
                 _head = n;
                 _tail = n;
             }
-            else {
+            else
+            {
                 n.Next = _head;
                 _head = n;
             }
@@ -66,26 +74,33 @@ namespace Dsa.DataStructures {
         /// </summary>
         /// <param name="node">Node in SinglyLinkedListCollection to add node after.</param>
         /// <param name="item">Item to add to SinglyLinkedListCollection.</param>
-        public void AddAfter(SinglyLinkedListNode<T> node, T item) {
-            if (IsEmpty()) {
+        public void AddAfter(SinglyLinkedListNode<T> node, T item)
+        {
+            if (IsEmpty())
+            {
                 throw new InvalidOperationException(Resources.SinglyLinkedListEmpty);
             }
-            if (node == null) {
+            if (node == null)
+            {
                 throw new ArgumentNullException("node");
             }
-            else {
+            else
+            {
                 SinglyLinkedListNode<T> n = new SinglyLinkedListNode<T>(item);
-                if (node == _head && node == _tail) {
+                if (node == _head && node == _tail)
+                {
                     // node passed in is the only node in the SinglyLinkedListCollection
                     _head.Next = n;
                     _tail = n;
                 }
-                else if (node == _tail) {
+                else if (node == _tail)
+                {
                     // node passed in is the tail node
                     _tail.Next = n;
                     _tail = n;
                 }
-                else {
+                else
+                {
                     n.Next = node.Next;
                     node.Next = n;
                 }
@@ -98,24 +113,32 @@ namespace Dsa.DataStructures {
         /// </summary>
         /// <param name="node">Node in the SinglyLinkedListCollection to add node before.</param>
         /// <param name="item">Item to add to the SinglyLinkedListCollection.</param>
-        public void AddBefore(SinglyLinkedListNode<T> node, T item) {
-            if (IsEmpty()) {
+        public void AddBefore(SinglyLinkedListNode<T> node, T item)
+        {
+            if (IsEmpty())
+            {
                 throw new InvalidOperationException(Resources.SinglyLinkedListEmpty);
             }
-            if (node == null) {
+            if (node == null)
+            {
                 throw new ArgumentNullException("node");
             }
-            else {
+            else
+            {
                 SinglyLinkedListNode<T> n = new SinglyLinkedListNode<T>(item);
-                if (node == _head) {
+                if (node == _head)
+                {
                     // we are adding a node before the head node
                     n.Next = _head;
                     _head = n;
                 }
-                else {
+                else
+                {
                     SinglyLinkedListNode<T> curr = _head;
-                    while (curr != null) {
-                        if (curr.Next == node) {
+                    while (curr != null)
+                    {
+                        if (curr.Next == node)
+                        {
                             n.Next = node;
                             curr.Next = n;
                             break;
@@ -131,7 +154,8 @@ namespace Dsa.DataStructures {
         /// Determines whether the SinglyLinkedListCollection is empty.
         /// </summary>
         /// <returns>True if the SinglyLinkedListCollection is empty, false otherwise.</returns>
-        public bool IsEmpty() {
+        public bool IsEmpty()
+        {
             return _head == null;
         }
 
@@ -139,14 +163,18 @@ namespace Dsa.DataStructures {
         /// Converts the SinglyLinkedListCollection and its items to an array.
         /// </summary>
         /// <returns>An array containing the items from the SinglyLinkedListCollection.</returns>
-        public T[] ToArray() {
-            if (IsEmpty()) {
+        public T[] ToArray()
+        {
+            if (IsEmpty())
+            {
                 throw new InvalidOperationException(Resources.SinglyLinkedListEmpty);
             }
-            else {
+            else
+            {
                 int curr = 0; // index of array at which current nodes value is stored
                 T[] arrayResult = new T[_count];
-                foreach (T value in this) {
+                foreach (T value in this)
+                {
                     arrayResult[curr] = value;
                     curr++;
                 }
@@ -158,14 +186,18 @@ namespace Dsa.DataStructures {
         /// Converts the SinglyLinkedListCollection and its items to an array.
         /// </summary>
         /// <returns>An array containing the items from the SinglyLinkedListCollection in reverse order.</returns>
-        public T[] ToReverseArray() {
-            if (IsEmpty()) {
+        public T[] ToReverseArray()
+        {
+            if (IsEmpty())
+            {
                 throw new InvalidOperationException(Resources.SinglyLinkedListEmpty);
             }
-            else {
+            else
+            {
                 int curr = 0;
                 T[] arrayResult = new T[_count];
-                foreach (T item in GetReverseEnumerator()) {
+                foreach (T item in GetReverseEnumerator())
+                {
                     arrayResult[curr] = item;
                     curr++;
                 }
@@ -176,21 +208,28 @@ namespace Dsa.DataStructures {
         /// <summary>
         /// Removes the last node from the SinglyLinkedListCollection.
         /// </summary>
-        public void RemoveLast() {
-            if (IsEmpty()) {
+        public void RemoveLast()
+        {
+            if (IsEmpty())
+            {
                 throw new InvalidOperationException(Resources.SinglyLinkedListEmpty);
             }
-            else {
-                if (_head.Next == null) {
+            else
+            {
+                if (_head.Next == null)
+                {
                     // only one node in the SinglyLinkedListCollection
                     _head = null;
                     _tail = null;
                 }
-                else {
+                else
+                {
                     // traverse SinglyLinkedListCollection until we find the tail
                     SinglyLinkedListNode<T> n = _head;
-                    while (n != null) {
-                        if (n.Next == _tail) {
+                    while (n != null)
+                    {
+                        if (n.Next == _tail)
+                        {
                             _tail = n;
                             _tail.Next = null;
                             break;
@@ -205,16 +244,21 @@ namespace Dsa.DataStructures {
         /// <summary>
         /// Removes the first node from the SinglyLinkedListCollection.
         /// </summary>
-        public void RemoveFirst() {
-            if (IsEmpty()) {
+        public void RemoveFirst()
+        {
+            if (IsEmpty())
+            {
                 throw new InvalidOperationException(Resources.SinglyLinkedListEmpty);
             }
-            else {
-                if (_head.Next == null) {
+            else
+            {
+                if (_head.Next == null)
+                {
                     _head = null;
                     _tail = null;
                 }
-                else {
+                else
+                {
                     _head = _head.Next;
                 }
                 _count--;
@@ -224,14 +268,16 @@ namespace Dsa.DataStructures {
         /// <summary>
         /// Get's the node at the head of the SinglyLinkedListCollection.
         /// </summary>
-        public SinglyLinkedListNode<T> Head {
+        public SinglyLinkedListNode<T> Head
+        {
             get { return _head; }
         }
 
         /// <summary>
         /// Get's the node at the tail of the SinglyLinkedListCollection.
         /// </summary>
-        public SinglyLinkedListNode<T> Tail {
+        public SinglyLinkedListNode<T> Tail
+        {
             get { return _tail; }
         }
 
@@ -241,9 +287,11 @@ namespace Dsa.DataStructures {
         /// Returns an enumerator that iterates through the SinglyLinkedListCollection.
         /// </summary>
         /// <returns>A generic IEnumerator object.</returns>
-        public IEnumerator<T> GetEnumerator() {
+        public IEnumerator<T> GetEnumerator()
+        {
             SinglyLinkedListNode<T> n = Head;
-            while (n != null) {
+            while (n != null)
+            {
                 yield return n.Value;
                 n = n.Next;
             }
@@ -257,7 +305,8 @@ namespace Dsa.DataStructures {
         /// Returns an enumerator that iterates through the SinglyLinkedListCollection.
         /// </summary>
         /// <returns>An IEnumerator object.</returns>
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {
+        IEnumerator IEnumerable.GetEnumerator()
+        {
             return GetEnumerator();
         }
 
@@ -269,14 +318,16 @@ namespace Dsa.DataStructures {
         /// Adds a node to the tail of the SinglyLinkedListCollection.
         /// </summary>
         /// <param name="item">Item to add to the SinglyLinkedListCollection.</param>
-        void ICollection<T>.Add(T item) {
+        void ICollection<T>.Add(T item)
+        {
             AddLast(item);
         }
 
         /// <summary>
         /// Removes all the nodes from the SinglyLinkedListCollection.
         /// </summary>
-        public void Clear() {
+        public void Clear()
+        {
             _head = null;
             _tail = null;
             _count = 0;
@@ -287,9 +338,11 @@ namespace Dsa.DataStructures {
         /// </summary>
         /// <param name="item">Value to search for.</param>
         /// <returns>True if the value is in the collection, false otherwise.</returns>
-        public bool Contains(T item) {
+        public bool Contains(T item)
+        {
             EqualityComparer<T> comparer = EqualityComparer<T>.Default;
-            foreach (T value in this) {
+            foreach (T value in this)
+            {
                 if (comparer.Equals(value, item)) return true;
             }
             return false;
@@ -299,7 +352,8 @@ namespace Dsa.DataStructures {
         /// Copies the entire SinglyLinkedListCollection to a compatible one-dimensional Array.
         /// </summary>
         /// <param name="array">Array to copy SinglyLinkedListCollection to.</param>
-        public void CopyTo(T[] array) {
+        public void CopyTo(T[] array)
+        {
             Array.Copy(ToArray(), array, _count);
         }
 
@@ -308,7 +362,8 @@ namespace Dsa.DataStructures {
         /// </summary>
         /// <param name="array">Array to copy SinglyLinkedListCollection to.</param>
         /// <param name="arrayIndex">Index of array to start copying to.</param>
-        public void CopyTo(T[] array, int arrayIndex) {
+        public void CopyTo(T[] array, int arrayIndex)
+        {
             Array.Copy(ToArray(), 0, array, arrayIndex, _count);
         }
 
@@ -317,15 +372,19 @@ namespace Dsa.DataStructures {
         /// </summary>
         /// <param name="item">Value to remove</param>
         /// <returns>True if the value was found and removed, false otherwise.</returns>
-        public bool Remove(T item) {
-            if (IsEmpty()) {
+        public bool Remove(T item)
+        {
+            if (IsEmpty())
+            {
                 throw new InvalidOperationException(Resources.SinglyLinkedListEmpty);
             }
             SinglyLinkedListNode<T> n = _head;
             EqualityComparer<T> comparer = EqualityComparer<T>.Default;
-            if (comparer.Equals(n.Value, item)) {
+            if (comparer.Equals(n.Value, item))
+            {
                 // node to be removed is the head node
-                if (n == _tail) {
+                if (n == _tail)
+                {
                     _tail = null; // n is head and tail, make tail null
                 }
                 // if n was the only node in the list then head is now null as well as tail, if not head has been updated to its next node
@@ -333,10 +392,13 @@ namespace Dsa.DataStructures {
                 _count--;
                 return true;
             }
-            while (n != null) {
+            while (n != null)
+            {
                 if (!comparer.Equals(n.Value, item) && n.Next == null) break;
-                else if (comparer.Equals(n.Next.Value, item)) {
-                    if (n.Next == _tail) {
+                else if (comparer.Equals(n.Next.Value, item))
+                {
+                    if (n.Next == _tail)
+                    {
                         // the node to be removed was the tail so we need to make n the new tail
                         _tail = n;
                         n.Next = null;
@@ -347,7 +409,8 @@ namespace Dsa.DataStructures {
                     _count--;
                     return true;
                 }
-                else {
+                else
+                {
                     n = n.Next;
                 }
             }
@@ -357,14 +420,16 @@ namespace Dsa.DataStructures {
         /// <summary>
         /// Returns false.  SinglyLinkedListCollection is not readonly.
         /// </summary>
-        public bool IsReadOnly {
+        public bool IsReadOnly
+        {
             get { return false; }
         }
 
         /// <summary>
         /// Get's the count of nodes in the SinglyLinkedListCollection.
         /// </summary>
-        public int Count {
+        public int Count
+        {
             get { return _count; }
         }
 
@@ -374,19 +439,24 @@ namespace Dsa.DataStructures {
         /// Returns an enumerator that iterates through the SinglyLinkedListCollection in reverse order.
         /// </summary>
         /// <returns>A generic IEnumerator object.</returns>
-        public IEnumerable<T> GetReverseEnumerator() {
-            if (_head == null) {
+        public IEnumerable<T> GetReverseEnumerator()
+        {
+            if (_head == null)
+            {
                 throw new InvalidOperationException(Resources.SinglyLinkedListEmpty);
             }
             SinglyLinkedListNode<T> n = _head;
             SinglyLinkedListNode<T> curr = _tail;
-            while (n != curr) {
-                if (n.Next == curr) {
+            while (n != curr)
+            {
+                if (n.Next == curr)
+                {
                     yield return curr.Value;
                     curr = n;
                     n = _head;
                 }
-                else {
+                else
+                {
                     n = n.Next;
                 }
             }
@@ -400,23 +470,28 @@ namespace Dsa.DataStructures {
         /// </summary>
         /// <param name="array">Array to copy elements to.</param>
         /// <param name="index">Index of array to start copying to.</param>
-        void ICollection.CopyTo(Array array, int index) {
+        void ICollection.CopyTo(Array array, int index)
+        {
             throw new NotSupportedException(Resources.ICollectionCopyToNotSupported);
         }
 
         /// <summary>
         /// Gets a value indicating whether access to the ICollection is synchronized (thread safe).
         /// </summary>
-        bool ICollection.IsSynchronized {
+        bool ICollection.IsSynchronized
+        {
             get { return false; }
         }
 
         /// <summary>
         /// Gets an object that can be used to synchronize access to the ICollection.
         /// </summary>
-        object ICollection.SyncRoot {
-            get {
-                if (_syncRoot == null) {
+        object ICollection.SyncRoot
+        {
+            get
+            {
+                if (_syncRoot == null)
+                {
                     Interlocked.CompareExchange(ref _syncRoot, new object(), null);
                 }
                 return _syncRoot;

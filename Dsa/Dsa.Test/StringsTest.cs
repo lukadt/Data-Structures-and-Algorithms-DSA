@@ -18,7 +18,7 @@ namespace Dsa.Test {
             string s = "Granville";
             string actual = s.Reverse();
 
-            Assert.AreEqual<string>("ellivnarG", actual);
+            Assert.AreEqual("ellivnarG", actual);
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace Dsa.Test {
         public void ReverseEmptyStringTest() {
             string s = "";
 
-            Assert.AreEqual<string>("", s.Reverse());
+            Assert.AreEqual("", s.Reverse());
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace Dsa.Test {
         public void ReverseStringOfLength1Test() {
             string s = "t";
 
-            Assert.AreEqual<string>("t", s.Reverse());
+            Assert.AreEqual("t", s.Reverse());
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace Dsa.Test {
         public void AnyMatchingCharTest() {
             string s = "test";
 
-            Assert.AreEqual<int>(2, s.Any("prtest"));
+            Assert.AreEqual(2, s.Any("prtest"));
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace Dsa.Test {
         public void AnyNoMatchingCharTest() {
             string s = "test";
 
-            Assert.AreEqual<int>(-1, s.Any("bbc"));
+            Assert.AreEqual(-1, s.Any("bbc"));
         }
 
         /// <summary>
@@ -102,8 +102,8 @@ namespace Dsa.Test {
             string first = "   test";
             string second = "Gra as asdf  asdf";
 
-            Assert.AreEqual<int>(4, first.Any("   pters"));
-            Assert.AreEqual<int>(13, second.Any("T kf   q w   r fg"));
+            Assert.AreEqual(4, first.Any("   pters"));
+            Assert.AreEqual(13, second.Any("T kf   q w   r fg"));
         }
 
         /// <summary>
@@ -164,7 +164,7 @@ namespace Dsa.Test {
         public void StripTest() {
             string actual = "asdf!!?*    p $$£";
 
-            Assert.AreEqual<string>("asdfp", actual.Strip());
+            Assert.AreEqual("asdfp", actual.Strip());
         }
 
         /// <summary>
@@ -185,7 +185,7 @@ namespace Dsa.Test {
         public void WordCountTest() {
             string actual = "The boat is in";
 
-            Assert.AreEqual<int>(4, actual.WordCount());
+            Assert.AreEqual(4, actual.WordCount());
         }
 
         /// <summary>
@@ -195,7 +195,7 @@ namespace Dsa.Test {
         public void WordCountWhitespaceTest() {
             string actual = "   I ate pie    ";
 
-            Assert.AreEqual<int>(3, actual.WordCount());
+            Assert.AreEqual(3, actual.WordCount());
         }
 
         /// <summary>
@@ -205,7 +205,7 @@ namespace Dsa.Test {
         public void WordCountPureWhiteSpace() {
             string actual = "      ";
 
-            Assert.AreEqual<int>(0, actual.WordCount());
+            Assert.AreEqual(0, actual.WordCount());
         }
 
         /// <summary>

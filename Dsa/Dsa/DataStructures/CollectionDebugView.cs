@@ -2,19 +2,23 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace Dsa.DataStructures {
+namespace Dsa.DataStructures
+{
 
     /// <summary>
     /// CollectionDebugView is a class to be used to assist with the locals debug window in
     /// VS.  Can be used with any custom collection that implements ICollection(Of T).
     /// </summary>
     /// <typeparam name="T">Type of the CollectionDebugView.</typeparam>
-    internal sealed class CollectionDebugView<T> {
+    internal sealed class CollectionDebugView<T>
+    {
 
         private ICollection<T> _collection;
 
-        public CollectionDebugView(ICollection<T> collection) {
-            if (collection == null) {
+        public CollectionDebugView(ICollection<T> collection)
+        {
+            if (collection == null)
+            {
                 throw new ArgumentNullException("collection");
             }
             _collection = collection;
@@ -26,8 +30,10 @@ namespace Dsa.DataStructures {
         /// elements of the property Items, rather just items of the array.
         /// </summary>
         [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
-        public T[] Items {
-            get {
+        public T[] Items
+        {
+            get
+            {
                 T[] items = new T[_collection.Count];
                 _collection.CopyTo(items, 0);
                 return items;

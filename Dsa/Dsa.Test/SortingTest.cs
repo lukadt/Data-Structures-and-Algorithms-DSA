@@ -2,17 +2,20 @@
 using Dsa.Algorithms;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Dsa.Test {
+namespace Dsa.Test
+{
 
     [TestClass]
-    public class SortingTest {
+    public class SortingTest
+    {
 
         /// <summary>
         /// Test to see that the bubblesort algorithm sorts the items
         /// in ascending order.
         /// </summary>
         [TestMethod]
-        public void BubbleSortAscTest() {
+        public void BubbleSortAscTest()
+        {
             int[] myInts = { 23, 1, 44, 62, 1, 6, 90, 34 };
             int[] actual = new int[myInts.Length];
             int[] expected = { 1, 1, 6, 23, 34, 44, 62, 90 };
@@ -28,7 +31,8 @@ namespace Dsa.Test {
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void BubbleSortNullArrayTest() {
+        public void BubbleSortNullArrayTest()
+        {
             int[] actual = null;
 
             actual.BubbleSort();

@@ -5,7 +5,8 @@ using System.Threading;
 using Dsa.Properties;
 using System.Diagnostics;
 
-namespace Dsa.DataStructures {
+namespace Dsa.DataStructures
+{
 
     /// <summary>
     /// StackCollection(Of T).
@@ -15,7 +16,8 @@ namespace Dsa.DataStructures {
     [Serializable]
     [DebuggerDisplay("Count={Count}")]
     [DebuggerTypeProxy(typeof(CollectionDebugView<>))]
-    public sealed class StackCollection<T> : ICollection<T>, ICollection where T: IEquatable<T> {
+    public sealed class StackCollection<T> : ICollection<T>, ICollection where T : IEquatable<T>
+    {
 
         [NonSerialized]
         private SinglyLinkedListCollection<T> _stack;
@@ -25,7 +27,8 @@ namespace Dsa.DataStructures {
         /// <summary>
         /// Initializes a new instance of the StackCollection class.
         /// </summary>
-        public StackCollection() {
+        public StackCollection()
+        {
             _stack = new SinglyLinkedListCollection<T>();
         }
 
@@ -33,7 +36,8 @@ namespace Dsa.DataStructures {
         /// Pushes an item onto the top of the StackCollection.
         /// </summary>
         /// <param name="item">Item to push onto top of the StackCollection.</param>
-        public void Push(T item) {
+        public void Push(T item)
+        {
             _stack.AddLast(item);
         }
 
@@ -41,7 +45,8 @@ namespace Dsa.DataStructures {
         /// Returns the item at the top of the StackCollection.
         /// </summary>
         /// <returns>Item at the top of the StackCollection.</returns>
-        public T Peek() {
+        public T Peek()
+        {
             return _stack.Tail.Value;
         }
 
@@ -49,8 +54,9 @@ namespace Dsa.DataStructures {
         /// Removes and returns the item at the top of the StackCollection.
         /// </summary>
         /// <returns>Item at the top of the StackColleciton.</returns>
-        public T Pop() {
-            T peek = _stack.Tail.Value; 
+        public T Pop()
+        {
+            T peek = _stack.Tail.Value;
             _stack.RemoveLast();
             return peek;
         }
@@ -59,7 +65,8 @@ namespace Dsa.DataStructures {
         /// Converts the StackCollection and its items to an array.
         /// </summary>
         /// <returns>An array containing the items from the StackCollection.</returns>
-        public T[] ToArray() {
+        public T[] ToArray()
+        {
             return _stack.ToReverseArray();
         }
 
@@ -69,14 +76,16 @@ namespace Dsa.DataStructures {
         /// Pushes an item onto the top of the StackCollection.
         /// </summary>
         /// <param name="item">Item to push onto top of the StackCollection.</param>
-        void ICollection<T>.Add(T item) {
+        void ICollection<T>.Add(T item)
+        {
             _stack.AddLast(item);
         }
 
         /// <summary>
         /// Removes all items from the StackCollection(Of T).
         /// </summary>
-        public void Clear() {
+        public void Clear()
+        {
             _stack.Clear();
         }
 
@@ -85,7 +94,8 @@ namespace Dsa.DataStructures {
         /// </summary>
         /// <param name="item">Item to locate in the StackCollection(Of T).</param>
         /// <returns>True if the item was found in the StackCollection(Of T), false otherwise.</returns>
-        public bool Contains(T item) {
+        public bool Contains(T item)
+        {
             return _stack.Contains(item);
         }
 
@@ -95,21 +105,24 @@ namespace Dsa.DataStructures {
         /// <param name="array">The one-dimensional Array that is the destination of the elements copied 
         /// from StackCollection. The Array must have zero-based indexing</param>
         /// <param name="arrayIndex">The zero-based index in array at which copying begins.</param>
-        public void CopyTo(T[] array, int arrayIndex) {
+        public void CopyTo(T[] array, int arrayIndex)
+        {
             _stack.CopyTo(array, arrayIndex);
         }
 
         /// <summary>
         /// Gets the number of items stored in the StackCollection.
         /// </summary>
-        public int Count {
+        public int Count
+        {
             get { return _stack.Count; }
         }
 
         /// <summary>
         /// Returns false.  StackCollection is not readonly.
         /// </summary>
-        bool ICollection<T>.IsReadOnly {
+        bool ICollection<T>.IsReadOnly
+        {
             get { return false; }
         }
 
@@ -118,7 +131,8 @@ namespace Dsa.DataStructures {
         /// </summary>
         /// <param name="item">Item to remove from the StackCollection.</param>
         /// <returns>True if the item was found and removed, false otherwise.</returns>
-        bool ICollection<T>.Remove(T item) {
+        bool ICollection<T>.Remove(T item)
+        {
             return _stack.Remove(item);
         }
 
@@ -130,7 +144,8 @@ namespace Dsa.DataStructures {
         /// Returns an enumerator that iterates through the StackCollection.
         /// </summary>
         /// <returns>A generic IEnumerator object.</returns>
-        public IEnumerator<T> GetEnumerator() {
+        public IEnumerator<T> GetEnumerator()
+        {
             return _stack.GetReverseEnumerator().GetEnumerator();
         }
 
@@ -142,7 +157,8 @@ namespace Dsa.DataStructures {
         /// Returns an enumerator that iterates through the StackCollection.
         /// </summary>
         /// <returns>An IEnumerator object.</returns>
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {
+        IEnumerator IEnumerable.GetEnumerator()
+        {
             return GetEnumerator();
         }
 
@@ -155,23 +171,28 @@ namespace Dsa.DataStructures {
         /// </summary>
         /// <param name="array">Array to copy elements to.</param>
         /// <param name="index">Index of array to start copying to.</param>
-        void ICollection.CopyTo(System.Array array, int index) {
+        void ICollection.CopyTo(Array array, int index)
+        {
             throw new NotSupportedException(Resources.ICollectionCopyToNotSupported);
         }
 
         /// <summary>
         /// Gets a value indicating whether access to the ICollection is synchronized (thread safe).
         /// </summary>
-        bool ICollection.IsSynchronized {
+        bool ICollection.IsSynchronized
+        {
             get { return false; }
         }
 
         /// <summary>
         /// Gets an object that can be used to synchronize access to the ICollection.
         /// </summary>
-        object ICollection.SyncRoot {
-            get {
-                if (_syncRoot == null) {
+        object ICollection.SyncRoot
+        {
+            get
+            {
+                if (_syncRoot == null)
+                {
                     Interlocked.CompareExchange(ref _syncRoot, new object(), null);
                 }
                 return _syncRoot;
@@ -179,6 +200,7 @@ namespace Dsa.DataStructures {
         }
 
         #endregion
+
     }
 
 }

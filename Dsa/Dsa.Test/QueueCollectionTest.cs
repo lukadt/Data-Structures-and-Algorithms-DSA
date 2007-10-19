@@ -4,40 +4,44 @@ using Dsa.DataStructures;
 using System.Collections;
 using System;
 
-namespace Dsa.Test {
+namespace Dsa.Test
+{
 
     /// <summary>
     /// Tests for Queue(Of T).
     /// </summary>
     [TestClass]
-    public class QueueCollectionTest {
+    public class QueueCollectionTest
+    {
 
         /// <summary>
         /// Test to see that Enqueue adds an item to the back of the queue, or front of the queue
         /// if the queue is empty.
         /// </summary>
         [TestMethod]
-        public void EnqueueTest() {
+        public void EnqueueTest()
+        {
             QueueCollection<int> myQueue = new QueueCollection<int>();
 
             myQueue.Enqueue(10);
             myQueue.Enqueue(20);
             myQueue.Enqueue(30);
 
-            Assert.AreEqual<int>(10, myQueue.Peek());
+            Assert.AreEqual(10, myQueue.Peek());
         }
 
         /// <summary>
         /// Test to see that peek returns the item at the front of the queue.
         /// </summary>
         [TestMethod]
-        public void PeekTest() {
+        public void PeekTest()
+        {
             QueueCollection<int> myQueue = new QueueCollection<int>();
 
             myQueue.Enqueue(10);
             myQueue.Enqueue(20);
 
-            Assert.AreEqual<int>(10, myQueue.Peek());
+            Assert.AreEqual(10, myQueue.Peek());
         }
 
         /// <summary>
@@ -45,35 +49,38 @@ namespace Dsa.Test {
         /// inline to the front of the queue.
         /// </summary>
         [TestMethod]
-        public void DequeueTest() {
+        public void DequeueTest()
+        {
             QueueCollection<int> myQueue = new QueueCollection<int>();
 
             myQueue.Enqueue(10);
             myQueue.Enqueue(20);
             myQueue.Enqueue(30);
-            
-            Assert.AreEqual<int>(10, myQueue.Dequeue());
-            Assert.AreEqual<int>(20, myQueue.Peek());
+
+            Assert.AreEqual(10, myQueue.Dequeue());
+            Assert.AreEqual(20, myQueue.Peek());
         }
 
         /// <summary>
         /// Test to see that the Count property returns the correct number of items.
         /// </summary>
         [TestMethod]
-        public void CountTest() {
+        public void CountTest()
+        {
             QueueCollection<int> myQueue = new QueueCollection<int>();
 
             myQueue.Enqueue(10);
             myQueue.Enqueue(20);
 
-            Assert.AreEqual<int>(2, myQueue.Count);
+            Assert.AreEqual(2, myQueue.Count);
         }
 
         /// <summary>
         /// Test to see that the CopyTo method works as expected.
         /// </summary>
         [TestMethod]
-        public void CopyToTest() {
+        public void CopyToTest()
+        {
             QueueCollection<int> myQueue = new QueueCollection<int>();
 
             myQueue.Enqueue(10);
@@ -90,7 +97,8 @@ namespace Dsa.Test {
         /// Test to make sure that QueueCollection is not readonly.
         /// </summary>
         [TestMethod]
-        public void IsReadonlyTest() {
+        public void IsReadonlyTest()
+        {
             QueueCollection<int> myQueue = new QueueCollection<int>();
             ICollection<int> collectionQueue = myQueue;
 
@@ -101,7 +109,8 @@ namespace Dsa.Test {
         /// Test to see that Contains returns the expected result.
         /// </summary>
         [TestMethod]
-        public void ContainsTest() {
+        public void ContainsTest()
+        {
             QueueCollection<int> myQueue = new QueueCollection<int>();
 
             myQueue.Enqueue(10);
@@ -115,7 +124,8 @@ namespace Dsa.Test {
         /// Test to make sure that Clear returns the QueueCollection to its default state.
         /// </summary>
         [TestMethod]
-        public void ClearTest() {
+        public void ClearTest()
+        {
             QueueCollection<int> myQueue = new QueueCollection<int>();
 
             myQueue.Enqueue(10);
@@ -123,14 +133,15 @@ namespace Dsa.Test {
             myQueue.Enqueue(30);
             myQueue.Clear();
 
-            Assert.AreEqual<int>(0, myQueue.Count);
+            Assert.AreEqual(0, myQueue.Count);
         }
 
         /// <summary>
         /// Test to make sure that Add works as expected.
         /// </summary>
         [TestMethod]
-        public void AddTest() {
+        public void AddTest()
+        {
             QueueCollection<int> myQueue = new QueueCollection<int>();
             ICollection<int> collectionQueue = myQueue;
 
@@ -138,15 +149,16 @@ namespace Dsa.Test {
             collectionQueue.Add(20);
             collectionQueue.Add(30);
 
-            Assert.AreEqual<int>(10, myQueue.Peek());
-            Assert.AreEqual<int>(3, myQueue.Count);
+            Assert.AreEqual(10, myQueue.Peek());
+            Assert.AreEqual(3, myQueue.Count);
         }
 
         /// <summary>
         /// Test to see that the IEnumerable(Of T).GetEnumerator returns an Enumerator that is not null.
         /// </summary>
         [TestMethod]
-        public void GetEnumeratorGenericTest() {
+        public void GetEnumeratorGenericTest()
+        {
             QueueCollection<int> myQueue = new QueueCollection<int>();
 
             myQueue.Enqueue(10);
@@ -158,7 +170,8 @@ namespace Dsa.Test {
         /// Test to see that the IEnumerable.GetEnumerator returns an Enumerator that is not null.
         /// </summary>
         [TestMethod]
-        public void GetEnumeratorTest() {
+        public void GetEnumeratorTest()
+        {
             QueueCollection<int> myQueue = new QueueCollection<int>();
             IEnumerable enumeratorQueue = myQueue;
 
@@ -171,7 +184,8 @@ namespace Dsa.Test {
         /// Test to see that ICollection(Of T).Remove method leaves teh QueueCollction in the correct state.
         /// </summary>
         [TestMethod]
-        public void RemoveTest() {
+        public void RemoveTest()
+        {
             QueueCollection<int> myQueue = new QueueCollection<int>();
             ICollection<int> collQueue = myQueue;
 
@@ -179,14 +193,15 @@ namespace Dsa.Test {
             myQueue.Enqueue(20);
             collQueue.Remove(10);
 
-            Assert.AreEqual<int>(20, myQueue.Peek());
+            Assert.AreEqual(20, myQueue.Peek());
         }
 
         /// <summary>
         /// Test to make sure that the expected array is returned.
         /// </summary>
         [TestMethod]
-        public void ToArrayTest() {
+        public void ToArrayTest()
+        {
             QueueCollection<string> myQueue = new QueueCollection<string>();
 
             myQueue.Enqueue("London");
@@ -201,7 +216,8 @@ namespace Dsa.Test {
         /// Test to see that false is returned.
         /// </summary>
         [TestMethod]
-        public void IsSynchronizedTest() {
+        public void IsSynchronizedTest()
+        {
             QueueCollection<int> myQueue = new QueueCollection<int>();
             ICollection collQueue = myQueue;
 
@@ -212,7 +228,8 @@ namespace Dsa.Test {
         /// Test to make sure that the SyncRoot property returns a non null object.
         /// </summary>
         [TestMethod]
-        public void SyncRootIsNotNullTest() {
+        public void SyncRootIsNotNullTest()
+        {
             QueueCollection<int> myQueue = new QueueCollection<int>();
             ICollection collQueue = myQueue;
 
@@ -224,7 +241,8 @@ namespace Dsa.Test {
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(NotSupportedException))]
-        public void CopyToNongenericTest() {
+        public void CopyToNongenericTest()
+        {
             QueueCollection<int> myQueue = new QueueCollection<int>();
             ICollection collQeuue = myQueue;
 
@@ -236,7 +254,8 @@ namespace Dsa.Test {
         /// Test to make sure that two collections containing the same items pass the CollectionAssert.AreEqual.
         /// </summary>
         [TestMethod]
-        public void QueueCollectionItemsTest() {
+        public void QueueCollectionItemsTest()
+        {
             QueueCollection<int> target = new QueueCollection<int>();
             QueueCollection<int> expected = new QueueCollection<int>();
 

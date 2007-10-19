@@ -4,19 +4,22 @@ using System;
 using System.Collections.Generic;
 using System.Collections;
 
-namespace Dsa.Test {
+namespace Dsa.Test
+{
 
     /// <summary>
     /// Tests for DoublyLinkedListCollection.
     /// </summary>
     [TestClass]
-    public class DoublyLinkedListCollectionTest {
+    public class DoublyLinkedListCollectionTest
+    {
 
         /// <summary>
         /// Simple test just to see if CollectionAssert.AreEqual passes for twocollection containing the same values.
         /// </summary>
         [TestMethod]
-        public void ItemsAreEqualTest() {
+        public void ItemsAreEqualTest()
+        {
             DoublyLinkedListCollection<int> actual = new DoublyLinkedListCollection<int>();
             DoublyLinkedListCollection<int> expected = new DoublyLinkedListCollection<int>();
 
@@ -32,31 +35,33 @@ namespace Dsa.Test {
         /// Test to see that AddLast adds a node onto the tail of the list.
         /// </summary>
         [TestMethod]
-        public void AddLastTest() {
+        public void AddLastTest()
+        {
             DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
 
             dll.AddLast(10);
             dll.AddLast(20);
             dll.AddLast(30);
 
-            Assert.AreEqual<int>(10, dll.Head.Value);
-            Assert.AreEqual<int>(20, dll.Head.Next.Value);
-            Assert.AreEqual<int>(10, dll.Head.Next.Prev.Value);
-            Assert.AreEqual<int>(30, dll.Tail.Value);
-            Assert.AreEqual<int>(20, dll.Tail.Prev.Value);
+            Assert.AreEqual(10, dll.Head.Value);
+            Assert.AreEqual(20, dll.Head.Next.Value);
+            Assert.AreEqual(10, dll.Head.Next.Prev.Value);
+            Assert.AreEqual(30, dll.Tail.Value);
+            Assert.AreEqual(20, dll.Tail.Prev.Value);
         }
 
         /// <summary>
         /// Test to see that AddFirst adds a node to the head of the linked list.
         /// </summary>
         [TestMethod]
-        public void AddFirstTest() {
+        public void AddFirstTest()
+        {
             DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
 
             dll.AddFirst(10);
             dll.AddFirst(20);
 
-            Assert.AreEqual<int>(20, dll.Head.Value);
+            Assert.AreEqual(20, dll.Head.Value);
         }
 
         /// <summary>
@@ -64,7 +69,8 @@ namespace Dsa.Test {
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void AddAfterNoNodesTest() {
+        public void AddAfterNoNodesTest()
+        {
             DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
 
             dll.AddAfter(dll.Head, 10);
@@ -75,10 +81,11 @@ namespace Dsa.Test {
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void AddAfterNullNodeTest() {
+        public void AddAfterNullNodeTest()
+        {
             DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
 
-            dll.AddLast(10); 
+            dll.AddLast(10);
             dll.AddAfter(null, 10);
         }
 
@@ -86,21 +93,23 @@ namespace Dsa.Test {
         /// Test to see that calling AddAfter passing in the tail node updates the internal tail node pointer.
         /// </summary>
         [TestMethod]
-        public void AddAfterTailTest() {
+        public void AddAfterTailTest()
+        {
             DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
 
             dll.AddLast(10);
             dll.AddAfter(dll.Head, 20);
 
-            Assert.AreEqual<int>(20, dll.Tail.Value);
-            Assert.AreEqual<int>(10, dll.Tail.Prev.Value);
+            Assert.AreEqual(20, dll.Tail.Value);
+            Assert.AreEqual(10, dll.Tail.Prev.Value);
         }
 
         /// <summary>
         /// Test to see that calling AddAfter passing in a node that isn't the tail results in the expected state.
         /// </summary>
         [TestMethod]
-        public void AddAfterTest() {
+        public void AddAfterTest()
+        {
             DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
 
             dll.AddLast(10);
@@ -108,10 +117,10 @@ namespace Dsa.Test {
             dll.AddLast(30);
             dll.AddAfter(dll.Head.Next, 25);
 
-            Assert.AreEqual<int>(25, dll.Head.Next.Next.Value);
-            Assert.AreEqual<int>(20, dll.Head.Next.Next.Prev.Value);
-            Assert.AreEqual<int>(30, dll.Head.Next.Next.Next.Value);
-            Assert.AreEqual<int>(25, dll.Tail.Prev.Value);
+            Assert.AreEqual(25, dll.Head.Next.Next.Value);
+            Assert.AreEqual(20, dll.Head.Next.Next.Prev.Value);
+            Assert.AreEqual(30, dll.Head.Next.Next.Next.Value);
+            Assert.AreEqual(25, dll.Tail.Prev.Value);
         }
 
         /// <summary>
@@ -119,32 +128,34 @@ namespace Dsa.Test {
         /// adding before the head node.
         /// </summary>
         [TestMethod]
-        public void AddBeforeHeadTest() {
+        public void AddBeforeHeadTest()
+        {
             DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
 
             dll.AddLast(10);
             dll.AddBefore(dll.Head, 5);
 
-            Assert.AreEqual<int>(5, dll.Head.Value);
-            Assert.AreEqual<int>(10, dll.Head.Next.Value);
-            Assert.AreEqual<int>(5, dll.Head.Next.Prev.Value);
+            Assert.AreEqual(5, dll.Head.Value);
+            Assert.AreEqual(10, dll.Head.Next.Value);
+            Assert.AreEqual(5, dll.Head.Next.Prev.Value);
         }
 
         /// <summary>
         /// Test to see that when calling AddBefore the node is placed in the correct position within the linked list.
         /// </summary>
         [TestMethod]
-        public void AddBeforeTest() {
+        public void AddBeforeTest()
+        {
             DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
 
             dll.AddLast(10);
             dll.AddLast(30);
             dll.AddBefore(dll.Head.Next, 20);
 
-            Assert.AreEqual<int>(20, dll.Head.Next.Value);
-            Assert.AreEqual<int>(10, dll.Head.Next.Prev.Value);
-            Assert.AreEqual<int>(30, dll.Head.Next.Next.Value);
-            Assert.AreEqual<int>(20, dll.Tail.Prev.Value);
+            Assert.AreEqual(20, dll.Head.Next.Value);
+            Assert.AreEqual(10, dll.Head.Next.Prev.Value);
+            Assert.AreEqual(30, dll.Head.Next.Next.Value);
+            Assert.AreEqual(20, dll.Tail.Prev.Value);
         }
 
         /// <summary>
@@ -152,7 +163,8 @@ namespace Dsa.Test {
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void AddBeforeEmptyListTest() {
+        public void AddBeforeEmptyListTest()
+        {
             DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
 
             dll.AddBefore(dll.Head, 10);
@@ -163,7 +175,8 @@ namespace Dsa.Test {
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void AddBeforeNullNode() {
+        public void AddBeforeNullNode()
+        {
             DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
 
             dll.AddLast(10);
@@ -174,7 +187,8 @@ namespace Dsa.Test {
         /// Test to see that the IsEmpty method returns the correct value.
         /// </summary>
         [TestMethod]
-        public void IEmptyTest() {
+        public void IEmptyTest()
+        {
             DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
 
             Assert.IsTrue(dll.IsEmpty());
@@ -184,7 +198,8 @@ namespace Dsa.Test {
         /// Test to see that a call to RemoveLast on a non empty list results in the expected behaviour.
         /// </summary>
         [TestMethod]
-        public void RemoveLastTest() {
+        public void RemoveLastTest()
+        {
             DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
 
             dll.AddLast(10);
@@ -198,15 +213,16 @@ namespace Dsa.Test {
         /// Test to see that a call to RemoveLast when there are two nodes in the linked list reassigns the tail node.
         /// </summary>
         [TestMethod]
-        public void RemoveLastTwoNodesTest() {
+        public void RemoveLastTwoNodesTest()
+        {
             DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
 
             dll.AddLast(10);
             dll.AddLast(20);
             dll.RemoveLast();
 
-            Assert.AreEqual<int>(10, dll.Head.Value);
-            Assert.AreEqual<int>(10, dll.Tail.Value);
+            Assert.AreEqual(10, dll.Head.Value);
+            Assert.AreEqual(10, dll.Tail.Value);
             Assert.IsNull(dll.Tail.Next);
             Assert.IsNull(dll.Head.Next);
         }
@@ -215,7 +231,8 @@ namespace Dsa.Test {
         /// Test to see that calling RemoveLast when there are more than two nodes results in the expected behaviour.
         /// </summary>
         [TestMethod]
-        public void RemoveLastTestMultipleNodesTest() {
+        public void RemoveLastTestMultipleNodesTest()
+        {
             DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
 
             dll.AddLast(10);
@@ -223,7 +240,7 @@ namespace Dsa.Test {
             dll.AddLast(30);
             dll.RemoveLast();
 
-            Assert.AreEqual<int>(20, dll.Tail.Value);
+            Assert.AreEqual(20, dll.Tail.Value);
             Assert.IsNull(dll.Tail.Next);
         }
 
@@ -232,7 +249,8 @@ namespace Dsa.Test {
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void RemoveLastEmptyListTest() {
+        public void RemoveLastEmptyListTest()
+        {
             DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
 
             dll.RemoveLast();
@@ -243,7 +261,8 @@ namespace Dsa.Test {
         /// results in the expected behaviour.
         /// </summary>
         [TestMethod]
-        public void RemoveFirstSingleNodeTest() {
+        public void RemoveFirstSingleNodeTest()
+        {
             DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
 
             dll.AddLast(10);
@@ -258,14 +277,15 @@ namespace Dsa.Test {
         /// results in the expected behaviour.
         /// </summary>
         [TestMethod]
-        public void RemoveFirstTwoNodesTest() {
+        public void RemoveFirstTwoNodesTest()
+        {
             DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
 
             dll.AddLast(10);
             dll.AddLast(20);
             dll.RemoveFirst();
 
-            Assert.AreEqual<int>(20, dll.Head.Value);
+            Assert.AreEqual(20, dll.Head.Value);
             Assert.IsNull(dll.Head.Prev);
         }
 
@@ -274,7 +294,8 @@ namespace Dsa.Test {
         /// results in the expected behaviour.
         /// </summary>
         [TestMethod]
-        public void RemoveFirstMoreThanTwoNodesTest() {
+        public void RemoveFirstMoreThanTwoNodesTest()
+        {
             DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
 
             dll.AddLast(10);
@@ -282,7 +303,7 @@ namespace Dsa.Test {
             dll.AddLast(30);
             dll.RemoveFirst();
 
-            Assert.AreEqual<int>(20, dll.Head.Value);
+            Assert.AreEqual(20, dll.Head.Value);
             Assert.IsNull(dll.Head.Prev);
         }
 
@@ -292,7 +313,8 @@ namespace Dsa.Test {
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void RemoveFirstEmptyListTest() {
+        public void RemoveFirstEmptyListTest()
+        {
             DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
 
             dll.RemoveFirst();
@@ -302,15 +324,16 @@ namespace Dsa.Test {
         /// Test to see that calling ICollection(Of T).Add results in the expected behaviour.
         /// </summary>
         [TestMethod]
-        public void AddTest() {
+        public void AddTest()
+        {
             DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
             ICollection<int> actual = dll;
 
             actual.Add(10);
             actual.Add(20);
 
-            Assert.AreEqual<int>(10, dll.Head.Value);
-            Assert.AreEqual<int>(20, dll.Tail.Value);
+            Assert.AreEqual(10, dll.Head.Value);
+            Assert.AreEqual(20, dll.Tail.Value);
             Assert.IsNull(dll.Head.Prev);
             Assert.IsNull(dll.Tail.Next);
         }
@@ -320,7 +343,8 @@ namespace Dsa.Test {
         /// default state.
         /// </summary>
         [TestMethod]
-        public void ClearTest() {
+        public void ClearTest()
+        {
             DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
 
             dll.AddLast(10);
@@ -330,14 +354,15 @@ namespace Dsa.Test {
 
             Assert.IsNull(dll.Head);
             Assert.IsNull(dll.Tail);
-            Assert.AreEqual<int>(0, dll.Count);
+            Assert.AreEqual(0, dll.Count);
         }
 
         /// <summary>
         /// Test to see that the Count property returns the expected value.
         /// </summary>
         [TestMethod]
-        public void CountTest() {
+        public void CountTest()
+        {
             DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
 
             dll.AddLast(10);
@@ -348,14 +373,15 @@ namespace Dsa.Test {
             dll.AddAfter(dll.Head, 30);
             dll.AddBefore(dll.Head.Next, 20);
 
-            Assert.AreEqual<int>(3, dll.Count);
+            Assert.AreEqual(3, dll.Count);
         }
 
         /// <summary>
         /// Test to see that Contains returns the correct value.
         /// </summary>
         [TestMethod]
-        public void ContainsTest() {
+        public void ContainsTest()
+        {
             DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
 
             dll.AddLast(10);
@@ -370,7 +396,8 @@ namespace Dsa.Test {
         /// Test to see that a call to CopyTo results in the correct population of an array.
         /// </summary>
         [TestMethod]
-        public void CopyToTest() {
+        public void CopyToTest()
+        {
             DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
 
             dll.AddLast(10);
@@ -387,7 +414,8 @@ namespace Dsa.Test {
         /// Test to see that calling ToArray on the linked list results in the expected array.
         /// </summary>
         [TestMethod]
-        public void ToArrayTest() {
+        public void ToArrayTest()
+        {
             DoublyLinkedListCollection<string> dll = new DoublyLinkedListCollection<string>();
 
             dll.AddLast("London");
@@ -404,7 +432,8 @@ namespace Dsa.Test {
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void ToArrayEmptyListTest() {
+        public void ToArrayEmptyListTest()
+        {
             DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
 
             dll.ToArray();
@@ -414,7 +443,8 @@ namespace Dsa.Test {
         /// Test to see that the IsReadonly property returns false.
         /// </summary>
         [TestMethod]
-        public void IsReadonlyTest() {
+        public void IsReadonlyTest()
+        {
             DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
             ICollection<int> actual = dll;
 
@@ -427,7 +457,8 @@ namespace Dsa.Test {
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void RemoveEmptyListTest() {
+        public void RemoveEmptyListTest()
+        {
             DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
 
             dll.Remove(10);
@@ -438,7 +469,8 @@ namespace Dsa.Test {
         /// declared as empty.
         /// </summary>
         [TestMethod]
-        public void RemoveSingleNodeTest() {
+        public void RemoveSingleNodeTest()
+        {
             DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
 
             dll.AddLast(10);
@@ -447,7 +479,7 @@ namespace Dsa.Test {
             Assert.IsTrue(dll.IsEmpty());
             Assert.IsNull(dll.Head);
             Assert.IsNull(dll.Tail);
-            Assert.AreEqual<int>(0, dll.Count);
+            Assert.AreEqual(0, dll.Count);
         }
 
         /// <summary>
@@ -455,16 +487,17 @@ namespace Dsa.Test {
         /// a list with two nodes.
         /// </summary>
         [TestMethod]
-        public void RemoveHeadTwoNodes() {
+        public void RemoveHeadTwoNodes()
+        {
             DoublyLinkedListCollection<string> dll = new DoublyLinkedListCollection<string>();
 
             dll.AddLast("London");
             dll.AddLast("Paris");
             dll.Remove("London");
 
-            Assert.AreEqual<string>("Paris", dll.Head.Value);
-            Assert.AreEqual<string>("Paris", dll.Tail.Value);
-            Assert.AreEqual<int>(1, dll.Count);
+            Assert.AreEqual("Paris", dll.Head.Value);
+            Assert.AreEqual("Paris", dll.Tail.Value);
+            Assert.AreEqual(1, dll.Count);
         }
 
         /// <summary>
@@ -472,16 +505,17 @@ namespace Dsa.Test {
         /// a list with two nodes.
         /// </summary>
         [TestMethod]
-        public void RemoveTailTwoNodes() {
+        public void RemoveTailTwoNodes()
+        {
             DoublyLinkedListCollection<string> dll = new DoublyLinkedListCollection<string>();
 
             dll.AddLast("London");
             dll.AddLast("Paris");
             dll.Remove("Paris");
 
-            Assert.AreEqual<string>("London", dll.Head.Value);
-            Assert.AreEqual<string>("London", dll.Tail.Value);
-            Assert.AreEqual<int>(1, dll.Count);
+            Assert.AreEqual("London", dll.Head.Value);
+            Assert.AreEqual("London", dll.Tail.Value);
+            Assert.AreEqual(1, dll.Count);
         }
 
         /// <summary>
@@ -489,7 +523,8 @@ namespace Dsa.Test {
         /// middle node value from a list of 3 or more nodes.
         /// </summary>
         [TestMethod]
-        public void RemoveMiddleMultipleNodesTest() {
+        public void RemoveMiddleMultipleNodesTest()
+        {
             DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
 
             dll.AddLast(10);
@@ -497,9 +532,9 @@ namespace Dsa.Test {
             dll.AddLast(30);
             dll.Remove(20);
 
-            Assert.AreEqual<int>(30, dll.Head.Next.Value);
-            Assert.AreEqual<int>(10, dll.Tail.Prev.Value);
-            Assert.AreEqual<int>(2, dll.Count);
+            Assert.AreEqual(30, dll.Head.Next.Value);
+            Assert.AreEqual(10, dll.Tail.Prev.Value);
+            Assert.AreEqual(2, dll.Count);
         }
 
         /// <summary>
@@ -507,7 +542,8 @@ namespace Dsa.Test {
         /// head node value from a list of 3 or more nodes.
         /// </summary>
         [TestMethod]
-        public void RemoveHeadMultipleNodesTest() {
+        public void RemoveHeadMultipleNodesTest()
+        {
             DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
 
             dll.AddLast(10);
@@ -515,9 +551,9 @@ namespace Dsa.Test {
             dll.AddLast(30);
             dll.Remove(10);
 
-            Assert.AreEqual<int>(20, dll.Head.Value);
+            Assert.AreEqual(20, dll.Head.Value);
             Assert.IsNull(dll.Head.Prev);
-            Assert.AreEqual<int>(2, dll.Count);
+            Assert.AreEqual(2, dll.Count);
         }
 
         /// <summary>
@@ -525,7 +561,8 @@ namespace Dsa.Test {
         /// middle node value from a list of 3 or more nodes.
         /// </summary>
         [TestMethod]
-        public void RemoveTailMultipleNodesTest() {
+        public void RemoveTailMultipleNodesTest()
+        {
             DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
 
             dll.AddLast(10);
@@ -533,9 +570,9 @@ namespace Dsa.Test {
             dll.AddLast(30);
             dll.Remove(30);
 
-            Assert.AreEqual<int>(20, dll.Tail.Value);
+            Assert.AreEqual(20, dll.Tail.Value);
             Assert.IsNull(dll.Tail.Next);
-            Assert.AreEqual<int>(2, dll.Count);
+            Assert.AreEqual(2, dll.Count);
         }
 
         /// <summary>
@@ -543,7 +580,8 @@ namespace Dsa.Test {
         /// DoublyLinkedListCollection(Of T).
         /// </summary>
         [TestMethod]
-        public void RemoveNoMatchTest() {
+        public void RemoveNoMatchTest()
+        {
             DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
 
             dll.AddLast(10);
@@ -555,16 +593,15 @@ namespace Dsa.Test {
         /// Test to see that an non null IEnumerator object is returned.
         /// </summary>
         [TestMethod]
-        public void GetEnumeratorTest() {
+        public void GetEnumeratorTest()
+        {
             DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
 
             dll.AddLast(10);
             dll.AddLast(20);
             dll.AddLast(30);
 
-            foreach (int i in dll) {
-                Console.WriteLine(i);
-            }
+            foreach (int i in dll) Console.WriteLine(i);
 
             Assert.IsNotNull(dll.GetEnumerator());
         }
@@ -573,7 +610,8 @@ namespace Dsa.Test {
         /// Test to see that an non null IEnumerator object is returned.
         /// </summary>
         [TestMethod]
-        public void GetEnumeratorNonGenericTest() {
+        public void GetEnumeratorNonGenericTest()
+        {
             DoublyLinkedListCollection<string> dll = new DoublyLinkedListCollection<string>();
             IEnumerable actual = dll;
 
@@ -585,7 +623,8 @@ namespace Dsa.Test {
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(NotSupportedException))]
-        public void CopyToNonGenericTest() {
+        public void CopyToNonGenericTest()
+        {
             DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
             ICollection actual = dll;
 
@@ -597,7 +636,8 @@ namespace Dsa.Test {
         /// Test to see that the IsSynchronized returns false.
         /// </summary>
         [TestMethod]
-        public void IsSynchronizedTest() {
+        public void IsSynchronizedTest()
+        {
             DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
             ICollection actual = dll;
 
@@ -608,7 +648,8 @@ namespace Dsa.Test {
         /// Test to see that the SyncRoot property returns a non-null object.
         /// </summary>
         [TestMethod]
-        public void SyncRootTest() {
+        public void SyncRootTest()
+        {
             DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
             ICollection actual = dll;
 
