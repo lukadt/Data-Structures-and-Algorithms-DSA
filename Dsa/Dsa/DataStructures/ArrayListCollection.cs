@@ -28,12 +28,14 @@ namespace Dsa.DataStructures
         private T[] _items;
         [NonSerialized]
         private object _syncRoot;
+        [NonSerialized] 
+        private static readonly EqualityComparer<T> _comparer = EqualityComparer<T>.Default;
 
         /// <summary>
         /// Initializes a new instance of the ArrayListCollection class that is empty and has the default initial capacity.
         /// </summary>
         public ArrayListCollection()
-        { // t: a constructor that allows you to set the default size.
+        { 
             _items = new T[_capacity];
         }
 
@@ -44,12 +46,8 @@ namespace Dsa.DataStructures
         /// <returns>The index of the ArrayListCollection(Of T) the value was added to.</returns>
         public int Add(T value)
         {
-            if (_count == _capacity)
-            {
-                Array.Resize(ref _items, _capacity *= 2);
-            }
-            EqualityComparer<T> comparer = EqualityComparer<T>.Default;
-            while (!comparer.Equals(_items[_currentIndex], default(T))) _currentIndex++;
+            if (_count == _capacity) Array.Resize(ref _items, _capacity *= 2);
+            while (!_comparer.Equals(_items[_currentIndex], default(T))) _currentIndex++;
             _count++;
             _items[_currentIndex] = value;
             return _currentIndex++;
@@ -279,10 +277,9 @@ namespace Dsa.DataStructures
         /// <returns>IEnumerator(Of T).</returns>
         public IEnumerator<T> GetEnumerator()
         {
-            EqualityComparer<T> comparer = EqualityComparer<T>.Default;
             for (int i = 0; i < _count; i++)
             {
-                while (comparer.Equals(_items[i], default(T))) i++;
+                while (_comparer.Equals(_items[i], default(T))) i++;
                 yield return _items[i];
             }
         }
