@@ -8,7 +8,7 @@
     public class DoublyLinkedListNode<T>
     {
 
-        private T _value;
+        private readonly T _value;
         private DoublyLinkedListNode<T> _next;
         private DoublyLinkedListNode<T> _prev;
 

@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArrayListCollectionTest.cs" />
+    <Compile Include="BinarySearchTreeTest.cs" />
+    <Compile Include="BinaryTreeNodeTest.cs" />
     <Compile Include="DoublyLinkedListCollectionTest.cs" />
     <Compile Include="DoublyLinkedListNodeTest.cs" />
     <Compile Include="NumbersTest.cs" />
