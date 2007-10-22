@@ -1,0 +1,69 @@
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+/* An algorithm to insert a node into the BST at the correct  position */
+algorithm Insert (value)
+	Pre: 	value is an integer or a type that supports math < operator
+	Post: 	the node is either assigned as the root or a child of the root in the appropriate place
+	if the root node is null
+		insert the new node here
+	else
+		call the recursive InsertNode function passing the root node and value as parameters
+	end if
+end Insert
+
+algorithm InsertNode (node, value)
+	Pre:	node is initially the root node and is not null
+	Post:	each node is located in the correct position within the tree
+	if the value < the current nodes' value
+		if the current nodes' left child pointer is free
+			insert the new node here
+		else
+			call this function passing the current nodes' left child pointer as the node
+		end if
+	else // the value is >= to the current nodes' value
+		if the current nodes' right child pointer is free
+			insert the new node here
+		else
+			call this function passing the current nodes' right child pointer as the node
+		end if
+	end if
+end InsertNode
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+/* Preorder traversal passing each node on the left */
+algorithm Preorder (root)
+	Pre:  	root is the root node of the tree
+	Post:	each node is visited and value is printed when we pass the node on the left
+	if root != null
+		display the current nodes value
+		Make a recursive call to Preorder passing the current nodes left child as the parameter to Preorder
+		Make a recursive call to Preorder the current nodes right child as the parameter to Preorder
+	end if
+end Preorder
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+/* Postorder traversal passing each node on the left */
+algorithm Postorder (root)	
+	Pre:	root is the root node of the tree
+	Post:	each node is visited and value is printed when we pass the node on the right
+	if root != null
+		make a recursive call to Postorder passing the left child of the current node as the parameter
+		make a recursive call to Postorder passing the right child of the current node as the parameter
+		display the current nodes value
+	end if
+end Postorder
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+/* Inorder Travesal passing each node underneath */
+algorithm Inorder (root) 
+	Pre:	root is the root node of the tree
+	Post:	each node is visited and value is printed when passing underneath the node
+	if root != null
+		make a recursive call to Inorder passing the left child of the current node as the parameter
+		display the current nodes value
+		make a recursive call to Inorder passing the right child of the current node as the parameter
+	end if
+end Inorder

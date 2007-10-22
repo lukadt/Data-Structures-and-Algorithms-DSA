@@ -1,0 +1,17 @@
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+/* Bubblesort */
+algorithm Bubblesort (array) 
+	Pre:	array is an array of integers
+	Post:	a sorted array from lowest to highest values
+	for i to the length of array - 1 
+		for j to the length of the array - 1
+			if the value of array[i] < array[j]
+				swap i and j around
+			end if
+		end for
+	end for
+	return array
+end Bubblesort
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
