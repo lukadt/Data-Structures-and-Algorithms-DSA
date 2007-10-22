@@ -8,7 +8,7 @@ namespace Dsa.DataStructures
     /// BinarySearchTree(Of T).
     /// </summary>
     /// <typeparam name="T">Type of BinarySearchTree.</typeparam>
-    public class BinarySearchTreeCollection<T> : ICollection, ICollection<T>
+    public sealed class BinarySearchTreeCollection<T> : ICollection, ICollection<T>
     {
 
         private BinaryTreeNode<T> _root;

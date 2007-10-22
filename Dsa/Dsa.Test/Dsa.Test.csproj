@@ -53,6 +53,7 @@
     <Compile Include="NumbersTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueueCollectionTest.cs" />
+    <Compile Include="SearchingTest.cs" />
     <Compile Include="SinglyLinkedListCollectionTest.cs" />
     <Compile Include="SinglyLinkedListNodeTest.cs" />
     <Compile Include="SortingTest.cs" />

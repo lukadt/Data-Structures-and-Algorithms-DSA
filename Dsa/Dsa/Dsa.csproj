@@ -39,17 +39,12 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Xml.Linq">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Data.DataSetExtensions">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algorithms\Numbers.cs" />
+    <Compile Include="Algorithms\Searching.cs" />
     <Compile Include="Algorithms\Sorting.cs" />
     <Compile Include="DataStructures\ArrayListCollection.cs" />
     <Compile Include="DataStructures\BinarySearchTreeCollection.cs" />

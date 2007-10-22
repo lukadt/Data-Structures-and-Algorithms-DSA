@@ -1,0 +1,14 @@
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+/* Sequential Search. O(n). */
+
+algorithm SequentialSearch (item, array)
+	Pre:	item is an integer, array is an array of integers and the variable i <- 0.
+	Post:	The index of the item if found is returned, otherwise -1 denotes the item is not in the array.
+	for i to length of array - 1
+		if array[i] = item we are searching for
+			return i
+		end if
+	end for
+	return -1
+end SequentialSearch

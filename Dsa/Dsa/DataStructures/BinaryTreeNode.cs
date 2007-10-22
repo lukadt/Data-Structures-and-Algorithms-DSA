@@ -5,7 +5,7 @@
     /// BinaryTreeNode(Of T).
     /// </summary>
     /// <typeparam name="T">Type of the BinaryTreeNode.</typeparam>
-    public class BinaryTreeNode<T> : DoublyLinkedListNode<T>
+    public sealed class BinaryTreeNode<T> : DoublyLinkedListNode<T>
     {
 
         /// <summary>
