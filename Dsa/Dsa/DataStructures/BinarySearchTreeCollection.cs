@@ -55,6 +55,49 @@ namespace Dsa.DataStructures
             }
         }
 
+        /// <summary>
+        /// Traverses the tree in preorder, i.e. returning the values of the nodes passed on the left.
+        /// </summary>
+        /// <param name="root">The root node of the BinarySearchTree.</param>
+        /// <param name="arrayList">A <see cref="T:Dsa.DataStructures.ArrayListCollection`1" /> to store the traversed node values.</param>
+        /// <returns>A <see cref="T:Dsa.DataStructures.ArrayListCollection`1" /> populated with the items from the traversal.</returns>
+        private static ArrayListCollection<T> preorderTraveral(BinaryTreeNode<T> root, ArrayListCollection<T> arrayList)
+        {
+            if (root != null)
+            {
+                arrayList.Add(root.Value); // add the value of the current node to the arraylist.
+                preorderTraveral(root.Left, arrayList); // make a recursive call to preorderTraveral passing the left child of the current node.
+                preorderTraveral(root.Right, arrayList); // make a recursive call to preorderTraveral passing the right child of the current node.
+            }
+            return arrayList;
+        }
+
+        /// <summary>
+        /// Traverses the tree in postorder, i.e. returning the values of the nodes passed on the right.
+        /// </summary>
+        /// <param name="root">The root node of the BinarySearchTree.</param>
+        /// <param name="arrayList">A <see cref="T:Dsa.DataStructures.ArrayListCollection`1" /> to store the traversed node values.</param>
+        /// <returns>A <see cref="T:Dsa.DataStructures.ArrayListCollection`1" /> populated with the items from the traversal.</returns>
+        private static ArrayListCollection<T> postorderTraversal(BinaryTreeNode<T> root, ArrayListCollection<T> arrayList)
+        {
+            if (root != null)
+            {
+                postorderTraversal(root.Left, arrayList);  // make a recursive call to postorderTraversal passing the left child of the current node.
+                postorderTraversal(root.Right, arrayList);  // make a recursive call to postorderTraversal passing the right child of the current node.
+                arrayList.Add(root.Value); // add the value of the current node to the arraylist.
+            }
+            return arrayList;
+        }
+
+        ///<summary>
+        /// Traverses the BinarySearchTree in postorder traversal.
+        ///</summary>
+        ///<returns>A <see cref="T:System.Collections.Generic.IEnumerable`1" /> enumeator.</returns>
+        public IEnumerable<T> GetPostorderEnumerator()
+        {
+            ArrayListCollection<T> arrayListCollection = new ArrayListCollection<T>();
+            return postorderTraversal(_root, arrayListCollection);
+        }
 
         #region ICollection<T> Members
 
@@ -73,23 +116,6 @@ namespace Dsa.DataStructures
             {
                 insertNode(_root, item); // call the recursive method insertNode to see where this value is to be placed in the tree.
             }
-        }
-
-        /// <summary>
-        /// Traverses the tree in preorder, i.e. returning the values of the nodes passed on the left.
-        /// </summary>
-        /// <param name="root">The root node of the BinaryTree.</param>
-        /// <param name="arrayList">A <see cref="T:Dsa.DataStructures.ArrayListCollection`1" /> to store the traversed node values.</param>
-        /// <returns>A <see cref="T:Dsa.DataStructures.ArrayListCollection`1" /> populated with the items from the traversal.</returns>
-        private ArrayListCollection<T> preorderTraveral(BinaryTreeNode<T> root, ArrayListCollection<T> arrayList)
-        {
-            if (root != null)
-            {
-                arrayList.Add(root.Value); // return the value of the current node
-                preorderTraveral(root.Left, arrayList); // make a recursive call to preorderTraveral passing the current nodes left child as the parameter to Preorder
-                preorderTraveral(root.Right, arrayList); // make a recursive call to preorderTraveral passing the current nodes right child as the parameter to Preorder
-            }
-            return arrayList;
         }
 
         public void Clear()
@@ -127,7 +153,7 @@ namespace Dsa.DataStructures
         #region IEnumerable<T> Members
 
         ///<summary>
-        /// Returns an enumerator that iterates through the collection.  By default Preorder traversal of the tree.
+        /// An enumerator that iterates through the collection.  By default Preorder traversal of the tree.
         ///</summary>
         ///<returns>
         /// A <see cref="T:System.Collections.Generic.IEnumerator`1" /> that can be used to iterate through the collection.
