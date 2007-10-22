@@ -52,7 +52,7 @@
     <Compile Include="Algorithms\Numbers.cs" />
     <Compile Include="Algorithms\Sorting.cs" />
     <Compile Include="DataStructures\ArrayListCollection.cs" />
-    <Compile Include="DataStructures\BinarySearchTree.cs" />
+    <Compile Include="DataStructures\BinarySearchTreeCollection.cs" />
     <Compile Include="DataStructures\BinaryTreeNode.cs" />
     <Compile Include="DataStructures\CollectionDebugView.cs" />
     <Compile Include="DataStructures\DoublyLinkedListCollection.cs" />

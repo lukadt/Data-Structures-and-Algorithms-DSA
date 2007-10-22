@@ -15,7 +15,7 @@ namespace Dsa.DataStructures
     [Serializable]
     [DebuggerDisplay("Count={Count}")]
     [DebuggerTypeProxy(typeof(CollectionDebugView<>))]
-    public sealed class ArrayListCollection<T> : IList, IList<T> where T : IEquatable<T>
+    public sealed class ArrayListCollection<T> : IList, IList<T>
     {
 
         [NonSerialized]
