@@ -99,5 +99,25 @@ namespace Dsa.Test
             Assert.IsNotNull(bst.GetPostorderEnumerator());
         }
 
+        /// <summary>
+        /// Test to see that a non-null IEnumerator object is returned when calling the GetInorderEnumerator on a bst object.
+        /// </summary>
+        [TestMethod]
+        public void GetInorderEnumeratorTest()
+        {
+            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+
+            bst.Add(10);
+            bst.Add(5);
+            bst.Add(3);
+            bst.Add(20);
+            bst.Add(17);
+            bst.Add(30);
+
+            foreach (int i in bst.GetInorderEnumerator()) Debug.WriteLine(i);
+
+            Assert.IsNotNull(bst.GetInorderEnumerator());
+        }
+
     }
 }

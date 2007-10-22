@@ -65,9 +65,9 @@ namespace Dsa.DataStructures
         {
             if (root != null)
             {
-                arrayList.Add(root.Value); // add the value of the current node to the arraylist.
-                preorderTraveral(root.Left, arrayList); // make a recursive call to preorderTraveral passing the left child of the current node.
-                preorderTraveral(root.Right, arrayList); // make a recursive call to preorderTraveral passing the right child of the current node.
+                arrayList.Add(root.Value); 
+                preorderTraveral(root.Left, arrayList); 
+                preorderTraveral(root.Right, arrayList); 
             }
             return arrayList;
         }
@@ -82,9 +82,26 @@ namespace Dsa.DataStructures
         {
             if (root != null)
             {
-                postorderTraversal(root.Left, arrayList);  // make a recursive call to postorderTraversal passing the left child of the current node.
-                postorderTraversal(root.Right, arrayList);  // make a recursive call to postorderTraversal passing the right child of the current node.
-                arrayList.Add(root.Value); // add the value of the current node to the arraylist.
+                postorderTraversal(root.Left, arrayList);  
+                postorderTraversal(root.Right, arrayList);  
+                arrayList.Add(root.Value); 
+            }
+            return arrayList;
+        }
+
+        /// <summary>
+        /// Traverses the tree in inorder, i.e. returning the values of the nodes when a node is passed underneath.
+        /// </summary>
+        /// <param name="root">The root node of the BinarySearchTree.</param>
+        /// <param name="arrayList">A <see cref="T:Dsa.DataStructures.ArrayListCollection`1" /> to store the traversed node values.</param>
+        /// <returns>A <see cref="T:Dsa.DataStructures.ArrayListCollection`1" /> populated with the items from the traversal.</returns>
+        private static ArrayListCollection<T> inorderTraversal(BinaryTreeNode<T> root, ArrayListCollection<T> arrayList)
+        {
+            if (root != null)
+            {
+                inorderTraversal(root.Left, arrayList);
+                arrayList.Add(root.Value);
+                inorderTraversal(root.Right, arrayList);
             }
             return arrayList;
         }
@@ -97,6 +114,16 @@ namespace Dsa.DataStructures
         {
             ArrayListCollection<T> arrayListCollection = new ArrayListCollection<T>();
             return postorderTraversal(_root, arrayListCollection);
+        }
+
+        /// <summary>
+        /// Traverses the BinarySearchTree in inorder traversal.
+        /// </summary>
+        /// <returns>A <see cref="T:System.Collections.Generic.IEnumerable`1" /> enumeator.</returns>
+        public  IEnumerable<T> GetInorderEnumerator()
+        {
+            ArrayListCollection<T> arrayListCollection = new ArrayListCollection<T>();
+            return inorderTraversal(_root, arrayListCollection);
         }
 
         #region ICollection<T> Members
