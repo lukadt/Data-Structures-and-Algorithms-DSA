@@ -279,7 +279,6 @@ namespace Dsa.DataStructures
         {
             for (int i = 0; i < _count; i++)
             {
-                while (_comparer.Equals(_items[i], default(T))) i++;
                 yield return _items[i];
             }
         }
