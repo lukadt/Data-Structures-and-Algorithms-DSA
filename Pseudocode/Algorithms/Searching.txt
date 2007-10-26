@@ -3,9 +3,10 @@
 /* Sequential Search. O(n). */
 
 algorithm SequentialSearch (item, array)
-	Pre:	Item is an integer.
-			Array is an array of integers
-	Post:	The index of the item if found is returned, otherwise -1 denotes the item is not in the array.
+	Pre:		Item is an integer.
+				Array is an array of integers
+	Post:		The items location is the value of i if found, -1 otherwise.
+	Returns:	i
 	i <- 0
 	while i < array.Length && array[i] != item
 		i++
@@ -17,6 +18,8 @@ algorithm SequentialSearch (item, array)
 	end if
 end SequentialSearch
 
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
 /* 
 Priority Search. O(n).
 
@@ -27,10 +30,10 @@ most probable, the ones nearer the back are least probable.
 */
 
 algorithm ProbabilitySearch(item, array)
-	Pre:	array contains at least one item.
-			item is the value being searched for in the array.
-	Post:	item if found has its priority increased
-			true is returned if the item is found, false otherwise.
+	Pre:		array contains at least one item.
+				item is the value being searched for in the array.
+	Post:		item if found has its priority increased by swapping item with item previous to it in the array
+	Returns:	True if the item was found, false otherwise
 	i <- 0
 	while i < length of array && array[i] != item
 		i++

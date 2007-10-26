@@ -17,8 +17,8 @@
         {
             int i = 0;
             while (i < array.Length && array[i] != item) i++;
-            if (i < array.Length && array[i] == item) return i;
-            else return -1;
+            if (i < array.Length && array[i] == item) return i; // item found return index
+            return -1; // item not found
         }
 
         /// <summary>
@@ -43,10 +43,7 @@
                 }
                 return true;
             }
-            else
-            {
-                return false; // item not found
-            }
+            return false; // item not found
         }
 
     }

@@ -67,3 +67,6 @@ algorithm Inorder (root)
 		make a recursive call to Inorder passing the right child of the current node as the parameter
 	end if
 end Inorder
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+

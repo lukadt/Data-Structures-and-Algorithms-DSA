@@ -1,6 +1,9 @@
 -------------------------------------------------------------------------------------------------------------------------------------------------
 
-/* Bubblesort */
+/* 
+Bubblesort 
+
+*/
 algorithm Bubblesort (array) 
 	Pre:	array is an array of integers. i <- 0, j <- 0.
 	Post:	a sorted array from lowest to highest values

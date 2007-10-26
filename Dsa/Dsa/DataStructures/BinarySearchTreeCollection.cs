@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace Dsa.DataStructures
 {
@@ -13,6 +14,8 @@ namespace Dsa.DataStructures
 
         private BinaryTreeNode<T> _root;
         private readonly Comparer<T> _comparer = Comparer<T>.Default;
+        private int _count;
+        private object _syncRoot;
 
         /// <summary>
         /// Gets the node at the root of the BinarySearchTree(Of T).
@@ -143,11 +146,16 @@ namespace Dsa.DataStructures
             {
                 insertNode(_root, item); // call the recursive method insertNode to see where this value is to be placed in the tree.
             }
+            _count++; // update count as we have added a new node to the bst
         }
 
+        /// <summary>
+        /// Removes all items from the BinarySearchTreeCollection.
+        /// </summary>
         public void Clear()
         {
-            throw new System.NotImplementedException();
+            _root = null;
+            _count = 0;
         }
 
         public bool Contains(T item)
@@ -160,14 +168,20 @@ namespace Dsa.DataStructures
             throw new System.NotImplementedException();
         }
 
+        /// <summary>
+        /// Gets the number of items contained in the BinarySearchTree.
+        /// </summary>
         public int Count
         {
-            get { throw new System.NotImplementedException(); }
+            get { return _count; }
         }
 
-        public bool IsReadOnly
+        /// <summary>
+        /// Gets whether or not the collection is read only.
+        /// </summary>
+        bool ICollection<T>.IsReadOnly
         {
-            get { throw new System.NotImplementedException(); }
+            get { return false; }
         }
 
         public bool Remove(T item)
@@ -195,9 +209,15 @@ namespace Dsa.DataStructures
 
         #region IEnumerable Members
 
+        ///<summary>
+        /// An enumerator that iterates through the collection.  By default Preorder traversal of the tree.
+        ///</summary>
+        ///<returns>
+        /// A <see cref="T:System.Collections.Generic.IEnumerator" /> that can be used to iterate through the collection.
+        ///</returns>
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new System.NotImplementedException();
+            return GetEnumerator();
         }
 
         #endregion
@@ -209,14 +229,27 @@ namespace Dsa.DataStructures
             throw new System.NotImplementedException();
         }
 
+        /// <summary>
+        /// Gets whether or not the collection is thread safe.
+        /// </summary>
         public bool IsSynchronized
         {
-            get { throw new System.NotImplementedException(); }
+            get { return false; }
         }
 
-        public object SyncRoot
+        /// <summary>
+        /// Gets an object that can be used to synchronize accesss to the collection.
+        /// </summary>
+        object ICollection.SyncRoot
         {
-            get { throw new System.NotImplementedException(); }
+            get 
+            {
+                if (_syncRoot == null)
+                {
+                    Interlocked.CompareExchange(ref _syncRoot, new object(), null);
+                }
+                return _syncRoot;
+            }
         }
 
         #endregion

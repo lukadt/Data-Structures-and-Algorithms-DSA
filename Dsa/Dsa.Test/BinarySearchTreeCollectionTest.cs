@@ -1,6 +1,8 @@
 ﻿using System.Diagnostics;
 using Dsa.DataStructures;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
+using System.Collections;
 
 namespace Dsa.Test
 {
@@ -117,6 +119,86 @@ namespace Dsa.Test
             foreach (int i in bst.GetInorderEnumerator()) Debug.WriteLine(i);
 
             Assert.IsNotNull(bst.GetInorderEnumerator());
+        }
+
+        /// <summary>
+        /// Test to see that count returns the correct value.
+        /// </summary>
+        [TestMethod]
+        public void CountTest()
+        {
+            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+
+            bst.Add(10);
+            bst.Add(4);
+            bst.Add(67);
+
+            Assert.AreEqual(3, bst.Count);
+        }
+
+        /// <summary>
+        /// Test to see that IsReadOnly property returns the correct value.
+        /// </summary>
+        [TestMethod]
+        public void ReadOnlyTest()
+        {
+            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+            ICollection<int> actual = bst;
+
+            Assert.IsFalse(actual.IsReadOnly);
+        }
+
+        /// <summary>
+        /// Test to see that IsSynchronized property returns the correct value.
+        /// </summary>
+        [TestMethod]
+        public void IsSynchronizedTest()
+        {
+            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+            ICollection actual = bst;
+
+            Assert.IsFalse(actual.IsSynchronized);
+        }
+
+        /// <summary>
+        /// Test to see that a non null enumerator object is returned.
+        /// </summary>
+        [TestMethod]
+        public void ICollectionGetEnumeratorTest()
+        {
+            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+            ICollection actual = bst;
+
+            Assert.IsNotNull(actual.GetEnumerator());
+        }
+
+        /// <summary>
+        /// Test to see that SyncRoot returns a non null object.
+        /// </summary>
+        [TestMethod]
+        public void SyncRootTest()
+        {
+            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+            ICollection actual = bst;
+
+            Assert.IsNotNull(actual.SyncRoot);
+        }
+
+        /// <summary>
+        /// Test to see that calling Clear resets the collection to its default state.
+        /// </summary>
+        [TestMethod]
+        public void ClearTest()
+        {
+            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+
+            bst.Add(10);
+            bst.Add(5);
+            bst.Add(15);
+            bst.Clear();
+
+            Assert.IsNull(bst.Root);
+            Assert.AreEqual(0, bst.Count);
         }
 
     }
