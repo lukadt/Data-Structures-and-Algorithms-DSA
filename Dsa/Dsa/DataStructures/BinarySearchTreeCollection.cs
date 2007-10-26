@@ -13,7 +13,7 @@ namespace Dsa.DataStructures
     {
 
         private BinaryTreeNode<T> _root;
-        private readonly Comparer<T> _comparer = Comparer<T>.Default;
+        private static readonly Comparer<T> _comparer = Comparer<T>.Default;
         private int _count;
         private object _syncRoot;
 
@@ -198,9 +198,37 @@ namespace Dsa.DataStructures
             _count = 0;
         }
 
+        /// <summary>
+        /// Determines whether an item is contained with the BinarySearchTreeCollection.
+        /// </summary>
+        /// <param name="item">Item to search the BinarySearchTreeCollection for.</param>
+        /// <returns>True if the item is contained within the bst, false otherwise.</returns>
         public bool Contains(T item)
         {
-            throw new System.NotImplementedException();
+            return contains(_root, item);
+        }
+
+        /// <summary>
+        /// Determines whether an item is contained within the bst.
+        /// </summary>
+        /// <param name="root">The root node of the bst.</param>
+        /// <param name="item">The item to be located in the bst.</param>
+        /// <returns>True if the item is contained within the bst, false otherwise.</returns>
+        private bool contains(BinaryTreeNode<T> root, T item)
+        {
+            if (root == null) return false; // if the root is null then we have exhausted all the nodes in the tree, thus the item isn't in the bst
+            if (_comparer.Compare(root.Value, item) == 0)
+            {
+                return true; // we have found the item
+            }
+            else if (_comparer.Compare(item, root.Value) < 0)
+            {
+                return contains(root.Left, item); // search the left subtree of the current node for the item
+            }
+            else
+            {
+                return contains(root.Right, item); // search the right subtree of the current node for the item
+            }
         }
 
         public void CopyTo(T[] array, int arrayIndex)

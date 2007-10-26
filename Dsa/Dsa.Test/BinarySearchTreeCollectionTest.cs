@@ -236,5 +236,42 @@ namespace Dsa.Test
             Assert.AreEqual(42, bst.FindMax());
         }
 
+        /// <summary>
+        /// Test to see that Contains returns the correct value.
+        /// </summary>
+        [TestMethod]
+        public void ContainsTest()
+        {
+            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+
+            bst.Add(12);
+            bst.Add(5);
+            bst.Add(3);
+            bst.Add(8);
+            bst.Add(42);
+
+            Assert.IsTrue(bst.Contains(12));
+            Assert.IsTrue(bst.Contains(3));
+            Assert.IsTrue(bst.Contains(42));
+        }
+
+        /// <summary>
+        /// Test to see that the correct value is returned when the item is not contained within the bst.
+        /// </summary>
+        [TestMethod]
+        public void ContainsItemNotPresentTest()
+        {
+            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+
+            bst.Add(12);
+            bst.Add(5);
+            bst.Add(3);
+            bst.Add(8);
+            bst.Add(42);
+
+            Assert.IsFalse(bst.Contains(99));
+            Assert.IsFalse(bst.Contains(1));
+        }
+
     }
 }

@@ -95,3 +95,23 @@ algorithm FindMax(root)
 	end if
 	return FindMax(root.Right) // continue walking down the right side of the tree to locate largest value
 end FindMax
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+/* contains checks to see if the bst contains a specified item */
+algorithm Contains(root, item)
+	Pre:		root is the root node of the tree
+				item is the item to be located in the bst
+	Post:		the item is either located or not
+	Returns:	true if the item is located, false otherwise
+	if root = null // if the root is null then we have exhausted all the nodes in the tree, thus the item isn't in the bst
+		return false
+	end if
+	if root.Value = item // we have found the item
+		return true
+	else if item < root.Value
+		return Contains(root.Left, item) // search the left subtree of the current node for the item
+	else
+		return Contains(root.Right, item) // search the right subtree of the current node for the item
+	end if
+end Contains
