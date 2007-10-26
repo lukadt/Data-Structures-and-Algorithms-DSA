@@ -129,6 +129,46 @@ namespace Dsa.DataStructures
             return inorderTraversal(_root, arrayListCollection);
         }
 
+        /// <summary>
+        /// Finds smallest value in the bst.
+        /// </summary>
+        /// <returns>Smallest value in the bst.</returns>
+        public T FindMin()
+        {
+            return findMin(_root);
+        }
+
+        /// <summary>
+        /// Finds the smallest value in the bst.
+        /// </summary>
+        /// <param name="root">Root node of the bst.</param>
+        /// <returns>Smallest value in the bst.</returns>
+        private T findMin(BinaryTreeNode<T> root)
+        {
+            if (root.Left == null) return root.Value; // if the left child of the current node is null then we have found the smallest value in the tree
+            return findMin(root.Left); // continue walking down the left side of the tree to locate smallest value
+        }
+
+        /// <summary>
+        /// Finds the largest value in the bst.
+        /// </summary>
+        /// <returns>Largest value in the bst.</returns>
+        public T FindMax()
+        {
+            return findMax(_root);
+        }
+
+        /// <summary>
+        /// Find the largest value in the bst.
+        /// </summary>
+        /// <param name="root">Root node of the bst.</param>
+        /// <returns>Largest value in the bst.</returns>
+        private T findMax(BinaryTreeNode<T> root)
+        {
+            if (root.Right == null) return root.Value; // if the right child of the current node is null then we have found the largest value in the tree
+            return findMax(root.Right); // continue walking down the right side of the tree to locate largest value
+        }
+
         #region ICollection<T> Members
 
         /// <summary>

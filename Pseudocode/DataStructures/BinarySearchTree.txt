@@ -70,3 +70,28 @@ end Inorder
 
 -------------------------------------------------------------------------------------------------------------------------------------------------
 
+/* find smallest value in bst */
+algorithm FindMin(root) 
+	Pre:		root is root node of the tree
+				root is not null
+	Post:		Smallest value in bst is located
+	Returns:	Smallest value in bst
+	if root.Left = null // if the left child of the current node is null then we have found the smallest value in the tree
+		return root.Value
+	end if
+	FindMin(root.Left) // continue walking down the left side of the tree to locate smallest value
+end FindMin
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+/* find largest value in bst */
+algorithm FindMax(root) 
+	Pre:		root is root node of the tree
+				root is not null
+	Post:		largest value in the bst is located
+	Returns:	largest value in the bst
+	if root.Right = null // if the right child of the current node is null then we have found the largest value in the tree
+		return root.Value 
+	end if
+	return FindMax(root.Right) // continue walking down the right side of the tree to locate largest value
+end FindMax

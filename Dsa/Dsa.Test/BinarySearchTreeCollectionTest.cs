@@ -3,6 +3,7 @@ using Dsa.DataStructures;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Collections;
+using System;
 
 namespace Dsa.Test
 {
@@ -199,6 +200,40 @@ namespace Dsa.Test
 
             Assert.IsNull(bst.Root);
             Assert.AreEqual(0, bst.Count);
+        }
+
+        /// <summary>
+        /// Test to see that the FindMin method returns the correct value.
+        /// </summary>
+        [TestMethod]
+        public void FindMinTest()
+        {
+            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+
+            bst.Add(12);
+            bst.Add(8);
+            bst.Add(42);
+            bst.Add(6);
+            bst.Add(11);
+
+            Assert.AreEqual(6, bst.FindMin());
+        }
+
+        /// <summary>
+        /// Test to see that FindMax returns the largest value in the bst.
+        /// </summary>
+        [TestMethod]
+        public void FindMaxTest()
+        {
+            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+
+            bst.Add(12);
+            bst.Add(8);
+            bst.Add(42);
+            bst.Add(6);
+            bst.Add(11);
+
+            Assert.AreEqual(42, bst.FindMax());
         }
 
     }
