@@ -33,6 +33,49 @@ namespace Dsa.Test
             Assert.AreEqual(-1, actual.SequentialSearch(99));
         }
 
+        /// <summary>
+        /// Test to see that the correct value is returned when performing a probability search when the item is
+        /// in the array and that the array state is correct.
+        /// </summary>
+        [TestMethod]
+        public void ProbabilitySearchTest()
+        {
+            int[] actual = { 12, 9, 8, 5, 1, 4 };
+            int[] expected = { 12, 9, 5, 8, 1, 4 };
+
+            Assert.IsTrue(actual.ProbabilitySearch(5));
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        /// Test to see that the correct value is returned when the item being searched for is not in the array and that
+        /// the array's state is left alone.
+        /// </summary>
+        /// <returns></returns>
+        [TestMethod]
+        public void ProbabilitySearchItemNotFoundTest()
+        {
+            int[] actual = { 12, 9, 8, 5, 1, 4 };
+            int[] expected = { 12, 9, 8, 5, 1, 4 };
+
+            Assert.IsFalse(actual.ProbabilitySearch(23));
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        /// Test to see that when the item is found at the first element of the array then 
+        /// a swap does not occur.
+        /// </summary>
+        [TestMethod]
+        public void ProbabilitySearchItemAtFrontOfArrayTest()
+        {
+            int[] actual = { 12, 9, 8, 5, 1, 4 };
+            int[] expected = { 12, 9, 8, 5, 1, 4 };
+
+            Assert.IsTrue(actual.ProbabilitySearch(12));
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
     }
 
 }

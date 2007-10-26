@@ -3,12 +3,47 @@
 /* Sequential Search. O(n). */
 
 algorithm SequentialSearch (item, array)
-	Pre:	item is an integer, array is an array of integers and the variable i <- 0.
+	Pre:	Item is an integer.
+			Array is an array of integers
 	Post:	The index of the item if found is returned, otherwise -1 denotes the item is not in the array.
-	for i to length of array - 1
-		if array[i] = item we are searching for
-			return i
-		end if
-	end for
-	return -1
+	i <- 0
+	while i < array.Length && array[i] != item
+		i++
+	end while
+	if i < array.Length && array[i] = item
+		return i
+	else 
+		return -1
+	end if
 end SequentialSearch
+
+/* 
+Priority Search. O(n).
+
+If the item being searched for is found then that item, if the array has a size > 0
+is moved closer to the front of the array by swapping the item with it's predecessor
+thus increasing its priority in the array.  The items near the front of the array are the
+most probable, the ones nearer the back are least probable.
+*/
+
+algorithm ProbabilitySearch(item, array)
+	Pre:	array contains at least one item.
+			item is the value being searched for in the array.
+	Post:	item if found has its priority increased
+			true is returned if the item is found, false otherwise.
+	i <- 0
+	while i < length of array && array[i] != item
+		i++
+	end while
+	if i < length of array && array[i] = item // the item is found
+		if i > 0 // if the array has a size of 1 then increasing priority would mean going outside the bounds of the array, thus i > 0 to increase priority
+			// swap the found item with its predecessor to increase the items priority
+			temp <- array[i-1]
+			array[i-1] <- array[i]
+			array[i] <- temp
+		end if
+		return true // item was found so return true
+	else // we didn't find the item within the array
+		return false
+	end if
+end PrioritySearch
