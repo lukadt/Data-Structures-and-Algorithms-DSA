@@ -304,5 +304,63 @@ namespace Dsa.Test
             CollectionAssert.AreEqual(expected, actual);
         }
 
+        /// <summary>
+        /// Test to see that the correct exception is raised when calling the ToArray method 
+        /// on a bst object with no items in it.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void ToArrayNoItemsInBstTest()
+        {
+            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+
+            bst.ToArray();
+        }
+
+        /// <summary>
+        /// Test to see that calling CopyTo results in the target array being updated correctly.
+        /// </summary>
+        [TestMethod]
+        public void CopyToTest()
+        {
+            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>() { 12, 8, 6, 11, 42 };
+
+            int[] expected = { 12, 8, 42, 6, 11 };
+            int[] actual = new int[bst.Count];
+            bst.CopyTo(actual);
+
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        /// Test to see that calling CopyTo starting at specified index results in the target array being updated correctly.
+        /// </summary>
+        [TestMethod]
+        public void CopyToStartingSpecifiedIndexTest()
+        {
+            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>() { 12, 8, 6, 11, 42 };
+
+            int[] expected = { 0, 0, 0, 12, 8, 42, 6, 11 };
+            int[] actual = new int[bst.Count + 3];
+            bst.CopyTo(actual, 3);
+
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        /// Test to see that calling ICollection.CopyTo throws the correct exception.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(NotSupportedException))]
+        public void ICollectionCopyToTest()
+        {
+            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+            ICollection actual = bst;
+
+            int[] array = new int[5];
+
+            actual.CopyTo(array, 0);
+        }
+
     }
 }

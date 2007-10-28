@@ -70,6 +70,15 @@ namespace Dsa.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to BinarySearchTreeCollection(Of T) is empty..
+        /// </summary>
+        internal static string BinarySearchTreeEmpty {
+            get {
+                return ResourceManager.GetString("BinarySearchTreeEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to DoublyLinkedListCollection(Of T) is empty..
         /// </summary>
         internal static string DoublyLinkedListEmpty {

@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using Dsa.Properties;
 
 namespace Dsa.DataStructures
 {
@@ -216,6 +218,10 @@ namespace Dsa.DataStructures
         /// <returns>An array containing the items of the BinarySearchTree.</returns>
         public T[] ToArray()
         {
+            if (_count < 1)
+            {
+                throw new InvalidOperationException(Resources.BinarySearchTreeEmpty); // to array is not permitted on a bst with no items.
+            }
             int i = 0;
             T[] array = new T[_count];
             foreach (T item in GetBreadthFirstEnumerator())
@@ -288,9 +294,23 @@ namespace Dsa.DataStructures
             }
         }
 
+        /// <summary>
+        /// Copies all the BinarySearchTree items to a compatible one-dimensional Array.
+        /// </summary>
+        /// <param name="array">A one-dimensional array to copy the bst items to.</param>
+        public void CopyTo(T[] array)
+        {
+            Array.Copy(ToArray(), array, _count);
+        }
+
+        /// <summary>
+        /// Copies all the BinarySearchTree items to a compatible one-dimensional Array, starting at the specified index of the target array.
+        /// </summary>
+        /// <param name="array">A one-dimensional array to copy the bst items to.</param>
+        /// <param name="arrayIndex">Index of target array where copying begins.</param>
         public void CopyTo(T[] array, int arrayIndex)
         {
-            throw new System.NotImplementedException();
+            Array.Copy(ToArray(), 0, array, arrayIndex, _count);
         }
 
         /// <summary>
@@ -349,9 +369,14 @@ namespace Dsa.DataStructures
 
         #region ICollection Members
 
-        public void CopyTo(System.Array array, int index)
+        /// <summary>
+        /// Not Supported.  Copies items in bst to a target array.
+        /// </summary>
+        /// <param name="array">Target array to copy items to.</param>
+        /// <param name="index">Index to starty copying items to.</param>
+        public void CopyTo(Array array, int index)
         {
-            throw new System.NotImplementedException();
+            throw new NotSupportedException(Resources.ICollectionCopyToNotSupported);
         }
 
         /// <summary>

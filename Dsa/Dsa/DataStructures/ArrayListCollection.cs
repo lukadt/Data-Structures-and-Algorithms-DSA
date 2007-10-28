@@ -80,7 +80,7 @@ namespace Dsa.DataStructures
         /// <returns>True if the object can be safely casted to type T; otherwise false.</returns>
         private static bool isCompatibleType(object value)
         {
-            return (!(value is T) || value == null || typeof(T).IsValueType) ? false : true;
+            return (!(value is T) && value != null || typeof(T).IsValueType) ? false : true;
         }
 
         #region IList Members
