@@ -109,10 +109,51 @@ namespace Dsa.DataStructures
             return arrayList;
         }
 
+        /// <summary>
+        /// Traverse the tree in breadth first order, i.e. each node is visited on the same depth to depth n where n is the depth of the tree.
+        /// </summary>
+        /// <param name="root">The root node of the BinarySearchTree.</param>
+        /// <returns>A <see cref="T:Dsa.DataStructures.ArrayListCollection`1" /> populated with the items from the traversal.</returns>
+        private static ArrayListCollection<T> breadthFirstTraversal(BinaryTreeNode<T> root)
+        {
+            QueueCollection<BinaryTreeNode<T>> queue = new QueueCollection<BinaryTreeNode<T>>(); // stores the nodes we have yet to visit
+            ArrayListCollection<T> visitOrder = new ArrayListCollection<T>(); // stores the value of the nodes visited in bf order
+            while (root != null)
+            {
+                visitOrder.Add(root.Value); // add current nodes value to the list
+                if (root.Left != null)
+                {
+                    queue.Enqueue(root.Left); // add the roots left child node to the queue of nodes to visit
+                }
+                if (root.Right != null)
+                {
+                    queue.Enqueue(root.Right); // add the roots right child node to the queue of nodes to visit
+                }
+                if (!(queue.Count < 1))
+                {
+                    root = queue.Dequeue(); // we still have nodes to visit, root is assigned to the next node to visit
+                }
+                else
+                {
+                    root = null; // we have ran out of nodes to visit
+                }
+            }
+            return visitOrder;
+        }
+
+        /// <summary>
+        /// Traverses the BinarySearchTree in breadth first order.
+        /// </summary>
+        /// <returns>A <see cref="T:System.Collections.Generic.IEnumerable`1" /> enumerator.</returns>
+        public IEnumerable<T> GetBreadthFirstEnumerator()
+        {
+            return breadthFirstTraversal(_root);
+        }
+
         ///<summary>
         /// Traverses the BinarySearchTree in postorder traversal.
         ///</summary>
-        ///<returns>A <see cref="T:System.Collections.Generic.IEnumerable`1" /> enumeator.</returns>
+        ///<returns>A <see cref="T:System.Collections.Generic.IEnumerable`1" /> enumerator.</returns>
         public IEnumerable<T> GetPostorderEnumerator()
         {
             ArrayListCollection<T> arrayListCollection = new ArrayListCollection<T>();
@@ -122,7 +163,7 @@ namespace Dsa.DataStructures
         /// <summary>
         /// Traverses the BinarySearchTree in inorder traversal.
         /// </summary>
-        /// <returns>A <see cref="T:System.Collections.Generic.IEnumerable`1" /> enumeator.</returns>
+        /// <returns>A <see cref="T:System.Collections.Generic.IEnumerable`1" /> enumerator.</returns>
         public  IEnumerable<T> GetInorderEnumerator()
         {
             ArrayListCollection<T> arrayListCollection = new ArrayListCollection<T>();
@@ -167,6 +208,22 @@ namespace Dsa.DataStructures
         {
             if (root.Right == null) return root.Value; // if the right child of the current node is null then we have found the largest value in the tree
             return findMax(root.Right); // continue walking down the right side of the tree to locate largest value
+        }
+
+        /// <summary>
+        /// Returns the items in the bst as an array using breadth first traversal.
+        /// </summary>
+        /// <returns>An array containing the items of the BinarySearchTree.</returns>
+        public T[] ToArray()
+        {
+            int i = 0;
+            T[] array = new T[_count];
+            foreach (T item in GetBreadthFirstEnumerator())
+            {
+                array[i] = item;
+                i++;
+            }
+            return array;
         }
 
         #region ICollection<T> Members

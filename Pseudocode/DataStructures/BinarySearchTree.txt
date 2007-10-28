@@ -70,6 +70,32 @@ end Inorder
 
 -------------------------------------------------------------------------------------------------------------------------------------------------
 
+/* Breadth First traversal, traveses nodes per depth */
+algorithm BreadthFirst (root) 
+	Pre:		root is the root node of the tree
+				root is not null
+				q is a queue
+				l is a list
+	Post:		each item in the tree is visited
+	Returns:	a list l containing the items in breadth first order
+	while root != null
+		l.Add(root.Value) // add the current nodes value to the list
+		if root.Left != null
+			q.Enqueue(root.Left) // store the node in the queue to visit later
+		end if
+		if root.Right != null
+			q.Enqueue(root.Right) // store the node in the queue to visit later
+		end if
+		if q not empty
+			root <- q.Dequeue() // root is the first node in the queue
+		else
+			root <- null // we have ran out of nodes to visit
+		end if
+	end while
+end BreadthFirst
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
 /* find smallest value in bst */
 algorithm FindMin(root) 
 	Pre:		root is root node of the tree

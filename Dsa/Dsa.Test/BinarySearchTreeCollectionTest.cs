@@ -273,5 +273,36 @@ namespace Dsa.Test
             Assert.IsFalse(bst.Contains(1));
         }
 
+        /// <summary>
+        /// Test to see that calling GetBreadthFirstEnumerator returns a non null enumerator.
+        /// </summary>
+        [TestMethod]
+        public void GetBreadthFirstEnumeratorTest()
+        {
+            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+
+            Assert.IsNotNull(bst.GetBreadthFirstEnumerator());
+        }
+
+        /// <summary>
+        /// Test to see that calling ToArray returns the correct array.
+        /// </summary>
+        [TestMethod]
+        public void ToArrayTest()
+        {
+            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+
+            bst.Add(12);
+            bst.Add(8);
+            bst.Add(6);
+            bst.Add(11);
+            bst.Add(42);
+
+            int[] actual = bst.ToArray();
+            int[] expected = {12, 8, 42, 6, 11};
+
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
     }
 }

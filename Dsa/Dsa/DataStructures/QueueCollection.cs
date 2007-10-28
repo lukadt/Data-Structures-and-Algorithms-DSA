@@ -16,7 +16,7 @@ namespace Dsa.DataStructures
     [Serializable]
     [DebuggerDisplay("Count={Count}")]
     [DebuggerTypeProxy(typeof(CollectionDebugView<>))]
-    public sealed class QueueCollection<T> : ICollection<T>, ICollection where T : IEquatable<T>
+    public sealed class QueueCollection<T> : ICollection<T>, ICollection
     {
 
         [NonSerialized]
