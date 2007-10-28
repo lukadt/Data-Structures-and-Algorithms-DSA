@@ -1,20 +1,23 @@
 -------------------------------------------------------------------------------------------------------------------------------------------------
 
-/* 
-Bubblesort 
-
+/*  
+Bubblesort  
+Uses two loops, O(n^2). Sorts items of array in asc order.
 */
 algorithm Bubblesort (array) 
-	Pre:	array is an array of integers. i <- 0, j <- 0.
-	Post:	a sorted array from lowest to highest values
-	for i to the length of array - 1 
-		for j to the length of the array - 1
-			if the value of array[i] < array[j]
-				swap i and j around
+	Pre:		array is an array of integers.
+				i <- 0
+				j <- 0
+	Post:		a sorted array from lowest to highest values.
+	Returns:	a sorted array.
+	for i..array.Length - 1
+		for j..array.Length - 1
+			if array[i] < array[j] 
+				swap i and j around // i < j so swap the items around
 			end if
 		end for
 	end for
-	return array
+	return array // the sorted array
 end Bubblesort
 
 -------------------------------------------------------------------------------------------------------------------------------------------------

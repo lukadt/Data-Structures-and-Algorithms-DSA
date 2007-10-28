@@ -8,13 +8,13 @@ algorithm SequentialSearch (item, array)
 	Post:		The items location is the value of i if found, -1 otherwise.
 	Returns:	i
 	i <- 0
-	while i < array.Length && array[i] != item
+	while i < array.Length && array[i] != item // we have yet to find the item so keep going through the array
 		i++
 	end while
-	if i < array.Length && array[i] = item
-		return i
+	if i < array.Length && array[i] = item // we have found the item
+		return i 
 	else 
-		return -1
+		return -1 // item not found
 	end if
 end SequentialSearch
 
