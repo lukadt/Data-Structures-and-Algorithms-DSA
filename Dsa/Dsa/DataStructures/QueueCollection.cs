@@ -70,6 +70,14 @@ namespace Dsa.DataStructures
             return _queue.ToArray();
         }
 
+        /// <summary>
+        /// Determines whether or not the queue is empty.
+        /// </summary>
+        /// <returns>True if the queue is empty, false otherwise.</returns>
+        public bool IsEmpty()
+        {
+            return _queue.IsEmpty();
+        }
 
         #region ICollection<T> Members
 

@@ -362,5 +362,20 @@ namespace Dsa.Test
             actual.CopyTo(array, 0);
         }
 
+        /// <summary>
+        /// Test to see that deleting a right leaf results in the correct state of the bst.
+        /// </summary>
+        [TestMethod]
+        public void DeleteRightLeafTest()
+        {
+            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+
+            bst.Add(23);
+            bst.Add(18);
+            bst.Add(44);
+
+            Assert.IsTrue(bst.Remove(44));
+        }
+
     }
 }

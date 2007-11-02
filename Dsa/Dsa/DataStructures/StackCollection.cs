@@ -70,6 +70,15 @@ namespace Dsa.DataStructures
             return _stack.ToReverseArray();
         }
 
+        /// <summary>
+        /// Determines whether or not the stack is empty.
+        /// </summary>
+        /// <returns>True if the stack is empty, false otherwise.</returns>
+        public bool IsEmpty()
+        {
+            return _stack.IsEmpty();
+        }
+
         #region ICollection<T> Members
 
         /// <summary>

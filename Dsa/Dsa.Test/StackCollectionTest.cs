@@ -249,6 +249,22 @@ namespace Dsa.Test
             Assert.IsNotNull(actual.GetEnumerator());
         }
 
+        /// <summary>
+        /// Test to see that IsEmpty returns the correct value.
+        /// </summary>
+        [TestMethod]
+        public void IsEmptyTest()
+        {
+            StackCollection<int> stack = new StackCollection<int>();
+
+            Assert.IsTrue(stack.IsEmpty());
+
+            stack.Push(10);
+            stack.Push(20);
+
+            Assert.IsFalse(stack.IsEmpty());
+        }
+
     }
 
 }

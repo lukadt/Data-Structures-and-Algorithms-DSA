@@ -141,3 +141,34 @@ algorithm Contains(root, item)
 		return Contains(root.Right, item) // search the right subtree of the current node for the item
 	end if
 end Contains
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+algorithm Delete (root, value)
+	Pre:		root is the root node of the bst
+	Post:		the node with the value specified is deleted
+	Returns:	true if the node was delelted, false otherwise
+	if node = null
+		return false // value wasn't found so can't delete
+	end if
+	if value < root.Value
+		return Delete(root.Left, value)
+	else if value > root.Value
+		return Delete(root.Right, value)
+	else // we have found the value
+		if root.Left = null
+			root <- root.Right
+			return true
+		else if root.Right = null
+			root <- root.Left
+			return true
+		else // the node to delete isn't a leaf, find the largest value in the left subtree
+			Node n <- root
+			while n.Right != null
+				n = n.Right
+			end while // we have the largest value in the left subtree
+			root.Value <- n.Value // replace the node to delete value with the largest value we found in the left subtree
+			return true
+		end if
+	end if
+end Delete

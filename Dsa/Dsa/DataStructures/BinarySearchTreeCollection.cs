@@ -131,7 +131,7 @@ namespace Dsa.DataStructures
                 {
                     queue.Enqueue(root.Right); // add the roots right child node to the queue of nodes to visit
                 }
-                if (!(queue.Count < 1))
+                if (!queue.IsEmpty())
                 {
                     root = queue.Dequeue(); // we still have nodes to visit, root is assigned to the next node to visit
                 }
@@ -329,9 +329,52 @@ namespace Dsa.DataStructures
             get { return false; }
         }
 
+        /// <summary>
+        /// Removes a node with the specified value from the tree.
+        /// </summary>
+        /// <param name="item">Item to remove from the the BST.</param>
+        /// <returns>True if the item was removed, false otherwise.</returns>
         public bool Remove(T item)
         {
-            throw new System.NotImplementedException();
+            return removeNode(_root, item);
+        }
+
+        /// <summary>
+        /// Recrusive method that removes a node with the specified value from the bst.
+        /// </summary>
+        /// <param name="root">The root node of the bst.</param>
+        /// <param name="value">Value to remove from the bst.</param>
+        /// <returns>True if the node was removed, false otherwise.</returns>
+        public bool removeNode(BinaryTreeNode<T> root, T value)
+        {
+            // check to see if we need to go either left or right in the bst
+            if (_comparer.Compare(value, root.Value) < 0)
+            {
+                return removeNode(root.Left, value);
+            }
+            else if (_comparer.Compare(value, root.Value) > 0)
+            {
+                return removeNode(root.Right, value);
+            }
+            else // the value to delete is neither < or > than the current nodes value so we have found the node to delete
+            {
+                // test for leaf node
+                if (root.Left == null) 
+                {
+                    root = root.Right; 
+                    return true;
+                }
+                else if (root.Right == null)
+                {
+                    root = root.Left;
+                    return true;
+                }
+                else
+                {
+                    // the node to delete is not a leaf
+                    return false;
+                }
+            }
         }
 
         #endregion

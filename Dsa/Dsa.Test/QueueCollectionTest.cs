@@ -269,6 +269,21 @@ namespace Dsa.Test
             CollectionAssert.AreEqual(expected, target);
         }
 
+        /// <summary>
+        /// Test to see that calling IsEmpty returns the correct value.
+        /// </summary>
+        [TestMethod]
+        public void IsEmptyTest()
+        {
+            QueueCollection<int> queue = new QueueCollection<int>();
+
+            Assert.IsTrue(queue.IsEmpty());
+
+            queue.Enqueue(10);
+
+            Assert.IsFalse(queue.IsEmpty());
+        }
+
     }
 
 }
