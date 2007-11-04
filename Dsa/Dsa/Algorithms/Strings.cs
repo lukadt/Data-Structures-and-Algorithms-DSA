@@ -12,33 +12,41 @@ namespace Dsa.Algorithms
     {
 
         /// <summary>
-        /// Reverses the characters of a string.
+        /// Reverses the characters of a <see cref="string"/>.
         /// </summary>
-        /// <param name="value">The string to reverse the characters of.</param>
-        /// <returns>A reversed string of the parameter.</returns>
+        /// <param name="value">The <see cref="string"/> to reverse the characters of.</param>
+        /// <returns>A reversed <see cref="string"/> of the parameter.</returns>
+        /// <exception cref="ArgumentNullException"><strong>value</strong> is <strong>null</strong>.</exception>
         public static string Reverse(this string value)
         {
             if (value == null)
             {
                 throw new ArgumentNullException("value");
             }
-            if (value.Length < 2) return value;
-            char[] resultingString = new char[value.Length];
+            if (value.Length < 2) return value; // array only has a size of 1 so just return the original array
+            char[] resultingString = new char[value.Length]; // create a buffer array to store reversed chars in
             for (int i = value.Length - 1, j = 0; i >= 0; i--, j++)
             {
-                resultingString[j] = value[i];
+                resultingString[j] = value[i]; // populate buffer array
             }
             return new string(resultingString);
         }
 
         /// <summary>
-        /// Returns the index of the first character in the match string that matches any 
-        /// character in the word string.  Case sensitive, whitespace is ignored.
+        /// Returns the index of the first character in the match <see cref="string"/> that matches any 
+        /// character in the word <see cref="string"/>.
         /// </summary>
+        /// <remarks>Case sensitive, whitespace is ignored.</remarks>
         /// <param name="word">Word to run the any match against.</param>
-        /// <param name="match">The string of characters to match against the word.</param>
-        /// <returns>A non-negative Int32 index that represents the location of the first character in the match string that was also in the word string; 
-        /// otherwise -1 if no characters in the match string matched any of the characters in the word string.</returns>
+        /// <param name="match">The <see cref="string"/> of characters to match against the word.</param>
+        /// <returns>A non-negative <see cref="Int32"/> index that represents the location of the first character in the match <see cref="string"/> that was 
+        /// also in the word <see cref="string"/>; otherwise -1 if no characters in the match <see cref="string"/> matched any of the characters in the 
+        /// word <see cref="string"/>.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// <strong>word</strong> is <strong>null</strong>.<br />
+        /// -or-<br/>
+        /// <strong>match</strong> is <strong>null</strong>.
+        /// </exception>
         public static int Any(this string word, string match)
         {
             if (word == null)
@@ -51,11 +59,11 @@ namespace Dsa.Algorithms
             }
             for (int i = 0; i < word.Length; i++)
             {
-                while (char.IsWhiteSpace(word[i])) i++;
+                while (char.IsWhiteSpace(word[i])) i++; // skip the whitespace in the word string
                 for (int j = 0; j < match.Length; j++)
                 {
-                    while (char.IsWhiteSpace(match[j])) j++;
-                    if (match[j] == word[i]) return j;
+                    while (char.IsWhiteSpace(match[j])) j++; // skip whitespace in teh match string
+                    if (match[j] == word[i]) return j; // we have a match, return the index of the match string
                 }
             }
             return -1;
@@ -64,8 +72,12 @@ namespace Dsa.Algorithms
         /// <summary>
         /// Detects whether or not the input string is a palindrome.
         /// </summary>
-        /// <param name="word">String that you want to test is a palindrome or not.</param>
+        /// <remarks>
+        /// Case, whitespace, punctuation and symbols are ignored.
+        /// </remarks>
+        /// <param name="word"><see cref="string"/> that you want to test is a palindrome or not.</param>
         /// <returns>True if the string is a palindrome; otherwise false.</returns>
+        /// <exception cref="ArgumentNullException"><strong>word</strong> is <strong>null</strong>.</exception>
         public static bool IsPalindrome(this string word)
         {
             if (word == null)
@@ -75,7 +87,8 @@ namespace Dsa.Algorithms
             word = word.Strip().ToUpper(CultureInfo.InvariantCulture); // palindromes are case insensitive
             int begin = 0;
             int end = word.Length - 1;
-            while (word[begin] == word[end] && begin < end)
+            // march in from either end of the string checking for equality and making sure that the begin pointer has a value less than the end pointer
+            while (word[begin] == word[end] && begin < end) 
             {
                 begin++;
                 end--;
@@ -84,10 +97,11 @@ namespace Dsa.Algorithms
         }
 
         /// <summary>
-        /// Takes a string and strips it of whitespace, punctuation and symbols returning the resulting stripped string.
+        /// Takes a <see cref="string"/> and strips it of whitespace, punctuation and symbols returning the resulting stripped <see cref="string"/>.
         /// </summary>
-        /// <param name="value">String to strip.</param>
-        /// <returns>The stripped version of the string.</returns>
+        /// <param name="value"><see cref="string"/> to strip.</param>
+        /// <returns>The stripped version of the <see cref="string"/>.</returns>
+        /// <exception cref="ArgumentNullException"><strong>value</strong> is <strong>null</strong>.</exception>
         public static string Strip(this string value)
         {
             if (value == null)
@@ -106,18 +120,19 @@ namespace Dsa.Algorithms
         }
 
         /// <summary>
-        /// Counts the number of words in a string.
+        /// Counts the number of words in a <see cref="string"/>.
         /// </summary>
-        /// <param name="value">The string to count the words of.</param>
-        /// <returns>An Int32 indicating the number of words in the string.</returns>
+        /// <param name="value">The <see cref="string"/> to count the words of.</param>
+        /// <returns>An <see cref="Int32"/> indicating the number of words in the <see cref="string"/>.</returns>
+        /// <exception cref="ArgumentNullException"><strong>value</strong> is <strong>null</strong>.</exception>
         public static int WordCount(this string value)
         {
             if (value == null)
             {
                 throw new ArgumentNullException("value");
             }
-            bool inWord = true;
-            int count = 0;
+            bool inWord = true; // flag used to monitor whether we are currently in a word
+            int count = 0; // keeps track of the number of words in the string
             int index = 0;
             while (char.IsWhiteSpace(value[index]) && index < value.Length - 1) index++; // skip all of the initial whitespace in the string
             if (index == value.Length - 1 && char.IsWhiteSpace(value[index])) return 0; // the string was pure whitepace

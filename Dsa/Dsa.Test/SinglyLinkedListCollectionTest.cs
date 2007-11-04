@@ -433,8 +433,9 @@ namespace Dsa.Test
         public void IsReadOnlyTest()
         {
             SinglyLinkedListCollection<int> sll = new SinglyLinkedListCollection<int>();
+            ICollection<int> actual = sll;
 
-            Assert.IsFalse(sll.IsReadOnly);
+            Assert.IsFalse(actual.IsReadOnly);
         }
 
         /// <summary>
@@ -783,8 +784,9 @@ namespace Dsa.Test
         public void IsReadonlyTest()
         {
             SinglyLinkedListCollection<string> sll = new SinglyLinkedListCollection<string>();
+            ICollection<string> actual = sll;
 
-            Assert.IsFalse(sll.IsReadOnly);
+            Assert.IsFalse(actual.IsReadOnly);
         }
 
         /// <summary>
@@ -868,18 +870,6 @@ namespace Dsa.Test
             sll.AddLast(30);
 
             Assert.IsNotNull(sll.GetReverseEnumerator());
-        }
-
-        /// <summary>
-        /// Test to make sure that the correct exception is raised when calling GetReverseEnumerator on a collection with 0 items.
-        /// </summary>
-        [TestMethod]
-        [ExpectedException(typeof(InvalidOperationException))]
-        public void GetReverseEnumeratorNoItemsTest()
-        {
-            SinglyLinkedListCollection<int> sll = new SinglyLinkedListCollection<int>();
-
-            foreach (int i in sll.GetReverseEnumerator()) { }
         }
 
         /// <summary>

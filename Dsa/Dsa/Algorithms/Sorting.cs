@@ -10,10 +10,11 @@ namespace Dsa.Algorithms
     {
 
         /// <summary>
-        /// Sorts an array of integers in ascending order.
+        /// Sorts an <see cref="System.Array"/> of <see cref="Int32"/> in ascending order.
         /// </summary>
-        /// <param name="array">The array to sort.</param>
-        /// <returns>The sorted array.</returns>
+        /// <param name="array">The <see cref="System.Array"/> to sort.</param>
+        /// <returns>The sorted <see cref="System.Array"/>.</returns>
+        /// <exception cref="ArgumentNullException"><strong>array</strong> is <strong>null</strong>.</exception>
         public static int[] BubbleSort(this int[] array)
         {
             if (array == null)
@@ -27,6 +28,7 @@ namespace Dsa.Algorithms
                     int temp = array[j];
                     if (array[i] < array[j])
                     {
+                        // swap items around
                         array[j] = array[i];
                         array[i] = temp;
                     }

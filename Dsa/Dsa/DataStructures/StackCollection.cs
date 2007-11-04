@@ -9,10 +9,9 @@ namespace Dsa.DataStructures
 {
 
     /// <summary>
-    /// StackCollection(Of T).
-    /// SinglyLinkedList implementation.
+    /// <see cref="StackCollection{T}"/> is a singly linked list implementation of the stack data structure.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">Type of the <see cref="StackCollection{T}"/></typeparam>
     [Serializable]
     [DebuggerDisplay("Count={Count}")]
     [DebuggerTypeProxy(typeof(CollectionDebugView<>))]
@@ -25,7 +24,7 @@ namespace Dsa.DataStructures
         private object _syncRoot;
 
         /// <summary>
-        /// Initializes a new instance of the StackCollection class.
+        /// Initializes a new instance of the <see cref="StackCollection{T}"/> class.
         /// </summary>
         public StackCollection()
         {
@@ -33,27 +32,27 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Pushes an item onto the top of the StackCollection.
+        /// Pushes an item onto the top of the <see cref="StackCollection{T}"/>.
         /// </summary>
-        /// <param name="item">Item to push onto top of the StackCollection.</param>
+        /// <param name="item">Item to push onto top of the <see cref="StackCollection{T}"/>.</param>
         public void Push(T item)
         {
             _stack.AddLast(item);
         }
 
         /// <summary>
-        /// Returns the item at the top of the StackCollection.
+        /// Returns the item at the top of the <see cref="StackCollection{T}"/>.
         /// </summary>
-        /// <returns>Item at the top of the StackCollection.</returns>
+        /// <returns>Item at the top of the <see cref="StackCollection{T}"/>.</returns>
         public T Peek()
         {
             return _stack.Tail.Value;
         }
 
         /// <summary>
-        /// Removes and returns the item at the top of the StackCollection.
+        /// Removes and returns the item at the top of the <see cref="StackCollection{T}"/>.
         /// </summary>
-        /// <returns>Item at the top of the StackColleciton.</returns>
+        /// <returns>Item at the top of the <see cref="StackCollection{T}"/>.</returns>
         public T Pop()
         {
             T peek = _stack.Tail.Value;
@@ -62,18 +61,18 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Converts the StackCollection and its items to an array.
+        /// Converts the <see cref="StackCollection{T}"/> and its items to an <see cref="Array"/>.
         /// </summary>
-        /// <returns>An array containing the items from the StackCollection.</returns>
+        /// <returns>An <see cref="Array"/> containing the items from the <see cref="StackCollection{T}"/>.</returns>
         public T[] ToArray()
         {
             return _stack.ToReverseArray();
         }
 
         /// <summary>
-        /// Determines whether or not the stack is empty.
+        /// Determines whether or not the <see cref="StackCollection{T}"/> is empty.
         /// </summary>
-        /// <returns>True if the stack is empty, false otherwise.</returns>
+        /// <returns>True if the stack is empty; false otherwise.</returns>
         public bool IsEmpty()
         {
             return _stack.IsEmpty();
@@ -82,16 +81,16 @@ namespace Dsa.DataStructures
         #region ICollection<T> Members
 
         /// <summary>
-        /// Pushes an item onto the top of the StackCollection.
+        /// Adds an item to the <see cref="ICollection"/>.
         /// </summary>
-        /// <param name="item">Item to push onto top of the StackCollection.</param>
+        /// <param name="item">Item to add to the <see cref="ICollection"/>.</param>
         void ICollection<T>.Add(T item)
         {
             _stack.AddLast(item);
         }
 
         /// <summary>
-        /// Removes all items from the StackCollection(Of T).
+        /// Resets the <see cref="StackCollection{T}"/> to its default state.
         /// </summary>
         public void Clear()
         {
@@ -99,20 +98,20 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Determines where an item is in the StackCollection(Of T).
+        /// Determines whether an item is in the <see cref="StackCollection{T}"/>
         /// </summary>
-        /// <param name="item">Item to locate in the StackCollection(Of T).</param>
-        /// <returns>True if the item was found in the StackCollection(Of T), false otherwise.</returns>
+        /// <param name="item">Item to locate in the <see cref="StackCollection{T}"/>.</param>
+        /// <returns>True if the item was found; false otherwise.</returns>
         public bool Contains(T item)
         {
             return _stack.Contains(item);
         }
 
         /// <summary>
-        /// Copies the items in the StackCollection to an array starting at the specified array index.
+        /// Copies the items in the <see cref="StackCollection{T}"/> to an <see cref="Array"/> starting at the specified array index.
         /// </summary>
         /// <param name="array">The one-dimensional Array that is the destination of the elements copied 
-        /// from StackCollection. The Array must have zero-based indexing</param>
+        /// from <see cref="StackCollection{T}"/>.</param>
         /// <param name="arrayIndex">The zero-based index in array at which copying begins.</param>
         public void CopyTo(T[] array, int arrayIndex)
         {
@@ -120,7 +119,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Gets the number of items stored in the StackCollection.
+        /// Gets the number of items stored in the <see cref="StackCollection{T}"/>.
         /// </summary>
         public int Count
         {
@@ -128,7 +127,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Returns false.  StackCollection is not readonly.
+        /// Gets whether the <see cref="ICollection{T}"/> is read only.
         /// </summary>
         bool ICollection<T>.IsReadOnly
         {
@@ -136,10 +135,10 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Removes the first occurence of an item from the StackCollection.
+        /// Removes the first occurence of an item from the <see cref="ICollection{T}"/>.
         /// </summary>
-        /// <param name="item">Item to remove from the StackCollection.</param>
-        /// <returns>True if the item was found and removed, false otherwise.</returns>
+        /// <param name="item">Item to remove from the <see cref="StackCollection{T}"/>.</param>
+        /// <returns>True if the item was found and removed; false otherwise.</returns>
         bool ICollection<T>.Remove(T item)
         {
             return _stack.Remove(item);
@@ -150,9 +149,9 @@ namespace Dsa.DataStructures
         #region IEnumerable<T> Members
 
         /// <summary>
-        /// Returns an enumerator that iterates through the StackCollection.
+        /// Returns an <see cref="IEnumerator{T}"/> that iterates through the <see cref="StackCollection{T}"/>.
         /// </summary>
-        /// <returns>A generic IEnumerator object.</returns>
+        /// <returns>An <see cref="IEnumerator{T}"/> that can be used to traverse the items in the <see cref="StackCollection{T}"/>.</returns>
         public IEnumerator<T> GetEnumerator()
         {
             return _stack.GetReverseEnumerator().GetEnumerator();
@@ -163,9 +162,9 @@ namespace Dsa.DataStructures
         #region IEnumerable Members
 
         /// <summary>
-        /// Returns an enumerator that iterates through the StackCollection.
+        /// Returns an <see cref="IEnumerator"/> that iterates through the <see cref="IEnumerable"/>.
         /// </summary>
-        /// <returns>An IEnumerator object.</returns>
+        /// <returns>An <see cref="IEnumerator"/> that can be used to traverse the items in the <see cref="IEnumerable"/>.</returns>
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
@@ -176,7 +175,7 @@ namespace Dsa.DataStructures
         #region ICollection Members
 
         /// <summary>
-        /// Copies the elements of the ICollection to an Array, starting at a particular Array index.
+        /// Copies the elements of the <see cref="ICollection"/> to an <see cref="Array"/>, starting at a specified array index.
         /// </summary>
         /// <param name="array">Array to copy elements to.</param>
         /// <param name="index">Index of array to start copying to.</param>
@@ -186,7 +185,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Gets a value indicating whether access to the ICollection is synchronized (thread safe).
+        /// Gets a value indicating whether access to the <see cref="ICollection"/> is synchronized (thread safe).
         /// </summary>
         bool ICollection.IsSynchronized
         {
@@ -194,7 +193,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Gets an object that can be used to synchronize access to the ICollection.
+        /// Gets an object that can be used to synchronize access to the <see cref="ICollection"/>.
         /// </summary>
         object ICollection.SyncRoot
         {

@@ -181,8 +181,9 @@ namespace Dsa.Test
         public void IListIsReadonlyTest()
         {
             ArrayListCollection<int> actual = new ArrayListCollection<int>();
+            IList iL = actual;
 
-            Assert.IsFalse(actual.IsReadOnly);
+            Assert.IsFalse(iL.IsReadOnly);
         }
 
         /// <summary>
@@ -195,6 +196,18 @@ namespace Dsa.Test
             IList actual = acl;
 
             Assert.IsFalse(actual.IsFixedSize);
+        }
+
+        /// <summary>
+        /// Test to see that the correct value is returned by ICollection{T}.IsReadOnly property.
+        /// </summary>
+        [TestMethod]
+        public void ICollectionIsReadOnlyTest()
+        {
+            ArrayListCollection<int> alc = new ArrayListCollection<int>();
+            ICollection<int> actual = alc;
+
+            Assert.IsFalse(actual.IsReadOnly);
         }
 
         /// <summary>

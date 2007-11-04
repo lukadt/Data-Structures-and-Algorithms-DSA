@@ -9,10 +9,9 @@ namespace Dsa.DataStructures
 {
 
     /// <summary>
-    /// Queue(Of T).
-    /// SinglyLinkedList implementation.
+    /// <see cref="QueueCollection{T}"/> is a singly linked list implementation of a queue data structure.
     /// </summary>
-    /// <typeparam name="T">Type of the QueueCollection.</typeparam>
+    /// <typeparam name="T">Type of the <see cref="QueueCollection{T}"/>.</typeparam>
     [Serializable]
     [DebuggerDisplay("Count={Count}")]
     [DebuggerTypeProxy(typeof(CollectionDebugView<>))]
@@ -25,7 +24,7 @@ namespace Dsa.DataStructures
         private object _syncRoot;
 
         /// <summary>
-        /// Initializes a new instance of the QueueCollection(Of T) class.
+        /// Initializes a new instance of the <see cref="QueueCollection{T}"/> class.
         /// </summary>
         public QueueCollection()
         {
@@ -33,27 +32,27 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Add an item to the back of the queue.
+        /// Add an item to the back of the <see cref="QueueCollection{T}"/>.
         /// </summary>
-        /// <param name="item">Item to add to the back of the queue.</param>
+        /// <param name="item">Item to add to the back of the <see cref="QueueCollection{T}"/>.</param>
         public void Enqueue(T item)
         {
             _queue.AddLast(item);
         }
 
         /// <summary>
-        /// Gets the item at the front of the queue without removing it from the queue.
+        /// Gets the item at the front of the <see cref="QueueCollection{T}"/> without removing it from the <see cref="QueueCollection{T}"/>.
         /// </summary>
-        /// <returns>Item at the front of the queue.</returns>
+        /// <returns>Item at the front of the <see cref="QueueCollection{T}"/>.</returns>
         public T Peek()
         {
             return _queue.Head.Value;
         }
 
         /// <summary>
-        /// Gets the item at the front of the queue and removes it from the queue.
+        /// Gets the item at the front of the <see cref="QueueCollection{T}"/> and removes it from the <see cref="QueueCollection{T}"/>.
         /// </summary>
-        /// <returns>Item at the front of the queue.</returns>
+        /// <returns>Item at the front of the <see cref="QueueCollection{T}"/>.</returns>
         public T Dequeue()
         {
             T front = _queue.Head.Value;
@@ -62,18 +61,18 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Converts the QueueCollection and its items to an array.
+        /// Converts the <see cref="QueueCollection{T}"/> and its items to an <see cref="Array"/>.
         /// </summary>
-        /// <returns>An array containing the items from the QueueCollection.</returns>
+        /// <returns>An <see cref="Array"/> containing the items from the <see cref="QueueCollection{T}"/>.</returns>
         public T[] ToArray()
         {
             return _queue.ToArray();
         }
 
         /// <summary>
-        /// Determines whether or not the queue is empty.
+        /// Determines whether or not the <see cref="QueueCollection{T}"/> is empty.
         /// </summary>
-        /// <returns>True if the queue is empty, false otherwise.</returns>
+        /// <returns>True if the <see cref="QueueCollection{T}"/> is empty; false otherwise.</returns>
         public bool IsEmpty()
         {
             return _queue.IsEmpty();
@@ -82,16 +81,16 @@ namespace Dsa.DataStructures
         #region ICollection<T> Members
 
         /// <summary>
-        /// Adds an item to the back of the QueueCollection.
+        /// Adds an item to the <see cref="ICollection"/>.
         /// </summary>
-        /// <param name="item">Item to add to the back of the QueueCollection.</param>
+        /// <param name="item">Item to add to the <see cref="ICollection"/>.</param>
         void ICollection<T>.Add(T item)
         {
             Enqueue(item);
         }
 
         /// <summary>
-        /// Removes all items from the QueueCollection(Of T).
+        /// Resets the <see cref="QueueCollection{T}"/> to its default state.
         /// </summary>
         public void Clear()
         {
@@ -99,28 +98,28 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Determines where an item is in the QueueCollection(Of T).
+        /// Determines where an item is in the <see cref="QueueCollection{T}"/>.
         /// </summary>
-        /// <param name="item">Item to locate in the QueueCollection(Of T).</param>
-        /// <returns>True if the item was found in the QueueCollection(Of T), false otherwise.</returns>
+        /// <param name="item">Item to locate in the <see cref="QueueCollection{T}"/>.</param>
+        /// <returns>True if the item was found in the <see cref="QueueCollection{T}"/>; false otherwise.</returns>
         public bool Contains(T item)
         {
             return _queue.Contains(item);
         }
 
         /// <summary>
-        /// Copies the items in the QueueCollection to an array starting at the specified array index.
+        /// Copies the items in the <see cref="QueueCollection{T}"/> to an <see cref="Array"/> starting at the specified array index.
         /// </summary>
-        /// <param name="array">The one-dimensional Array that is the destination of the elements copied 
-        /// from QueueCollection. The Array must have zero-based indexing</param>
-        /// <param name="arrayIndex">The zero-based index in array at which copying begins.</param>
+        /// <param name="array">The one-dimensional <see cref="Array"/> that is the destination of the elements copied 
+        /// from the <see cref="QueueCollection{T}"/>.</param>
+        /// <param name="arrayIndex">The zero-based index of the target <see cref="Array"/> at which copying begins.</param>
         public void CopyTo(T[] array, int arrayIndex)
         {
             _queue.CopyTo(array, arrayIndex);
         }
 
         /// <summary>
-        /// Gets the number of items stored in the QueueCollection.
+        /// Gets the number of items stored in the <see cref="QueueCollection{T}"/>.
         /// </summary>
         public int Count
         {
@@ -128,7 +127,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Returns false.  QueueCollection is not readonly.
+        /// Gets whether or not the <see cref="ICollection"/> is read only.
         /// </summary>
         bool ICollection<T>.IsReadOnly
         {
@@ -136,10 +135,10 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Removes the first occurence of an item from the QueueCollection.
+        /// Removes the first occurence of an item from the <see cref="ICollection"/>.
         /// </summary>
-        /// <param name="item">Item to remove from the QueueCollection.</param>
-        /// <returns>True if the item was found and removed, false otherwise.</returns>
+        /// <param name="item">Item to remove from the <see cref="ICollection"/>.</param>
+        /// <returns>True if the item was found and removed; false otherwise.</returns>
         bool ICollection<T>.Remove(T item)
         {
             return _queue.Remove(item);
@@ -150,9 +149,9 @@ namespace Dsa.DataStructures
         #region IEnumerable<T> Members
 
         /// <summary>
-        /// Returns an enumerator that iterates through the items in the QueueCollection.
+        /// Returns an <see cref="IEnumerator{T}"/> that iterates through the items in the <see cref="QueueCollection{T}"/>.
         /// </summary>
-        /// <returns>A generic IEnumerator object.</returns>
+        /// <returns>An <see cref="IEnumerator{T}" /> that can be used to iterate through the <see cref="QueueCollection{T}"/>.</returns>
         public IEnumerator<T> GetEnumerator()
         {
             return _queue.GetEnumerator();
@@ -163,9 +162,9 @@ namespace Dsa.DataStructures
         #region IEnumerable Members
 
         /// <summary>
-        /// Returns an enumerator that iterates through the QueueCollection.
+        /// Returns an <see cref="IEnumerator"/> that iterates through the items in the <see cref="IEnumerable"/>.
         /// </summary>
-        /// <returns>An IEnumerator object.</returns>
+        /// <returns>An <see cref="IEnumerator" /> that can be used to iterate through the <see cref="IEnumerable"/>.</returns>
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
@@ -176,7 +175,7 @@ namespace Dsa.DataStructures
         #region ICollection Members
 
         /// <summary>
-        /// Copies the elements of the ICollection to an Array, starting at a particular Array index.
+        /// Copies the elements of the <see cref="ICollection"/> to an <see cref="Array"/>, starting at a particular <see cref="Array"/> index.
         /// </summary>
         /// <param name="array">Array to copy elements to.</param>
         /// <param name="index">Index of array to start copying to.</param>
@@ -186,7 +185,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Gets a value indicating whether access to the ICollection is synchronized (thread safe).
+        /// Gets a value indicating whether access to the <see cref="ICollection"/> is synchronized (thread safe).
         /// </summary>
         bool ICollection.IsSynchronized
         {
@@ -194,7 +193,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Gets an object that can be used to synchronize access to the ICollection.
+        /// Gets an object that can be used to synchronize access to the <see cref="ICollection"/>.
         /// </summary>
         object ICollection.SyncRoot
         {

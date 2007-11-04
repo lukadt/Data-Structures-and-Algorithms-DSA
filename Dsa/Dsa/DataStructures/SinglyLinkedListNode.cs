@@ -2,9 +2,9 @@
 {
 
     /// <summary>
-    /// Dsa.DataStructures.SinglyLinkedListNode.
+    /// <see cref="SinglyLinkedListNode{T}"/> is an implementation of a node used in a singly linked list data structure.
     /// </summary>
-    /// <typeparam name="T">Type of the node.</typeparam>
+    /// <typeparam name="T">Type of the <see cref="SinglyLinkedListNode{T}"/>.</typeparam>
     public sealed class SinglyLinkedListNode<T>
     {
 
@@ -12,16 +12,16 @@
         private SinglyLinkedListNode<T> _next;
 
         /// <summary>
-        /// Initializes a new instance of the SinglyLinkedListNode class with a specified value.
+        /// Initializes a new instance of the <see cref="SinglyLinkedListNode{T}"/> class with a specified value.
         /// </summary>
-        /// <param name="value"> <typeparamref name="T"/> of node.</param>
+        /// <param name="value">Value of node.</param>
         public SinglyLinkedListNode(T value)
         {
             _value = value;
         }
 
         /// <summary>
-        /// Gets Value of node.
+        /// Gets the value of <see cref="SinglyLinkedListNode{T}"/>.
         /// </summary>
         public T Value
         {
@@ -29,7 +29,7 @@
         }
 
         /// <summary>
-        /// Gets pointer to the next node, or sets the pointer to the next node.
+        /// Gets or sets the pointer to the next <see cref="SinglyLinkedListNode{T}"/>.
         /// </summary>
         public SinglyLinkedListNode<T> Next
         {
