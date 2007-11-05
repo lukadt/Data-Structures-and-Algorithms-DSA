@@ -48,6 +48,7 @@
     <Compile Include="ArrayListCollectionTest.cs" />
     <Compile Include="BinarySearchTreeCollectionTest.cs" />
     <Compile Include="BinaryTreeNodeTest.cs" />
+    <Compile Include="CoordinateComparer.cs" />
     <Compile Include="DoublyLinkedListCollectionTest.cs" />
     <Compile Include="DoublyLinkedListNodeTest.cs" />
     <Compile Include="NumbersTest.cs" />

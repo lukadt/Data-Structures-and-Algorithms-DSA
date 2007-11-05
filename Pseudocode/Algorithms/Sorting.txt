@@ -19,3 +19,37 @@ algorithm Bubblesort (array)
 end Bubblesort
 
 -------------------------------------------------------------------------------------------------------------------------------------------------
+
+/* Mergesort */
+algorithm Mergesort (a1, a2)
+	Pre:		a1 and a2 are arrays	
+				a1 and a2 contain at least 1 item each
+				left, right and merge are all index pointers initially set to 0
+				merged is an array of the size of the length of a1 and a2 added
+	Post:		the items in a1 and a2 are merged into a single array
+	Returns:	the merged array
+	while left < a1.Length && right < a2.Length
+		if a1[left] < a2[right]
+			merged[merge] <- a1[left]
+			left++
+		else
+			merged[merge] <- a2[right]
+			right++
+		end if
+		m++
+	end while
+	if left < a1.Length
+		while left < a1.Length
+			merged[merge] <- a1[left]
+			left++
+			merge++
+		end while
+	else
+		while right < a2.Length
+			merged[merge] <- a2[right]
+			right++
+			merge++
+		end while
+	end if
+	return merged
+end Mergesort

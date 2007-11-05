@@ -27,6 +27,29 @@ namespace Dsa.Test
         }
 
         /// <summary>
+        /// Test to see that the specified comparer is not null.
+        /// </summary>
+        [TestMethod]
+        public void OverloadedConstructorTest()
+        {
+            IComparer<Coordinate> comparer = new CoordinateComparer();
+            ArrayListCollection<Coordinate> actual = new ArrayListCollection<Coordinate>(comparer);
+
+            Assert.IsNotNull(actual.Comparer);
+        }
+
+        /// <summary>
+        /// Test to check that the constructor throws the correct exception when passed a null IComparer.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void OverloadedConstructorNullComparerTest()
+        {
+            IComparer<Coordinate> comparer = null;
+            ArrayListCollection<Coordinate> actual = new ArrayListCollection<Coordinate>(comparer);
+        }
+
+        /// <summary>
         /// Test to see that Count returns the expected value.
         /// </summary>
         [TestMethod]
@@ -44,7 +67,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that Capacity returns the expected value when no resixing occurs.
+        /// Test to see that IComcity returns the expected value when no resixing occurs.
         /// </summary>
         [TestMethod]
         public void CapacityNoResizeTest()
@@ -268,6 +291,7 @@ namespace Dsa.Test
             alc.Add(20);
             alc.Add(30);
             alc.Add(40);
+            alc.Add(50);
             alc.Clear();
 
             Assert.AreEqual(0, alc.Count);

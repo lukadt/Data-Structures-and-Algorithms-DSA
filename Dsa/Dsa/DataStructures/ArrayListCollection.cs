@@ -29,7 +29,7 @@ namespace Dsa.DataStructures
         [NonSerialized]
         private object _syncRoot;
         [NonSerialized] 
-        private static readonly EqualityComparer<T> _comparer = EqualityComparer<T>.Default;
+        private readonly IComparer<T> _comparer;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ArrayListCollection{T}"/> class that is empty and has the default initial capacity of 4.
@@ -37,6 +37,23 @@ namespace Dsa.DataStructures
         public ArrayListCollection()
         { 
             _items = new T[_capacity];
+            _comparer = Comparer<T>.Default;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ArrayListCollection{T}"/> class that is empty and has the default initial capacity of 4 with a 
+        /// specified <see cref="IComparer{T}"/>.
+        /// </summary>
+        /// <param name="comparer">The comparer to use.</param>
+        /// <exception cref="ArgumentNullException"><strong>comparer</strong> is <strong>null</strong>.</exception>
+        public ArrayListCollection(IComparer<T> comparer) 
+            : this()
+        {
+            if (comparer == null)
+            {
+                throw new ArgumentNullException("comparer");
+            }
+            _comparer = comparer;
         }
 
         /// <summary>
@@ -53,7 +70,7 @@ namespace Dsa.DataStructures
             {
                 Array.Resize(ref _items, _capacity *= 2); // we need to double the size of the array
             }
-            while (!_comparer.Equals(_items[_currentIndex], default(T)))
+            while (_comparer.Compare(_items[_currentIndex], default(T)) != 0)
             {
                 /* honour the values that have been added by explicitly stating the index to which they should to stored at 
                  * within the _items array.  We skip all values which are not the default for that particular type. */
@@ -75,6 +92,14 @@ namespace Dsa.DataStructures
         public int Capacity
         {
             get { return _capacity; }
+        }
+
+        /// <summary>
+        /// Gets the comparer being used for the <see cref="ArrayListCollection{T}"/>.
+        /// </summary>
+        public IComparer<T> Comparer
+        {
+            get { return _comparer; }
         }
 
         /// <summary>
@@ -235,11 +260,10 @@ namespace Dsa.DataStructures
         /// </summary>
         public void Clear()
         {
-            for (int i = 0; i < _count; i++)
-            {
-                _items[i] = default(T);
-            }
             _count = 0;
+            _currentIndex = 0;
+            _capacity = 4; // reset capacity to default size
+            _items = new T[_capacity]; // let the GC clean the old items array up, we simply assign items to a new array with the deafult capacity size
         }
 
         /// <summary>
