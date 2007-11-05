@@ -45,21 +45,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArrayListCollectionTest.cs" />
-    <Compile Include="BinarySearchTreeCollectionTest.cs" />
-    <Compile Include="BinaryTreeNodeTest.cs" />
-    <Compile Include="CoordinateComparer.cs" />
-    <Compile Include="DoublyLinkedListCollectionTest.cs" />
-    <Compile Include="DoublyLinkedListNodeTest.cs" />
-    <Compile Include="NumbersTest.cs" />
+    <Compile Include="Algorithms\NumbersTest.cs" />
+    <Compile Include="Algorithms\SearchingTest.cs" />
+    <Compile Include="Algorithms\SortingTest.cs" />
+    <Compile Include="Algorithms\StringsTest.cs" />
+    <Compile Include="DataStructures\ArrayListCollectionTest.cs" />
+    <Compile Include="DataStructures\BinarySearchTreeCollectionTest.cs" />
+    <Compile Include="DataStructures\BinaryTreeNodeTest.cs" />
+    <Compile Include="Util\CoordinateComparer.cs" />
+    <Compile Include="DataStructures\DoublyLinkedListCollectionTest.cs" />
+    <Compile Include="DataStructures\DoublyLinkedListNodeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QueueCollectionTest.cs" />
-    <Compile Include="SearchingTest.cs" />
-    <Compile Include="SinglyLinkedListCollectionTest.cs" />
-    <Compile Include="SinglyLinkedListNodeTest.cs" />
-    <Compile Include="SortingTest.cs" />
-    <Compile Include="StackCollectionTest.cs" />
-    <Compile Include="StringsTest.cs" />
+    <Compile Include="DataStructures\QueueCollectionTest.cs" />
+    <Compile Include="DataStructures\SinglyLinkedListCollectionTest.cs" />
+    <Compile Include="DataStructures\SinglyLinkedListNodeTest.cs" />
+    <Compile Include="DataStructures\StackCollectionTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
