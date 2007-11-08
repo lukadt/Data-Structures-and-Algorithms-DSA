@@ -12,7 +12,7 @@ namespace Dsa.Test
     {
 
         /// <summary>
-        /// Test to see that a node is created and its state initialized correctly.
+        /// Check to see that a node is created and its state initialized correctly.
         /// </summary>
         [TestMethod]
         public void ConstructorTest()

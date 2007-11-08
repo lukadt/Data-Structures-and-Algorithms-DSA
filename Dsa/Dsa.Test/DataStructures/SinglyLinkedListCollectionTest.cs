@@ -15,7 +15,30 @@ namespace Dsa.Test
     {
 
         /// <summary>
-        /// Test to see that the SinglyLinkedListCollectionCollection reports as empty when it is.
+        /// Check to see the comparer is not null.
+        /// </summary>
+        [TestMethod]
+        public void ConstructorTest()
+        {
+            SinglyLinkedListCollection<int> sll = new SinglyLinkedListCollection<int>();
+
+            Assert.IsNotNull(sll.Comparer);
+        }
+
+        /// <summary>
+        /// Check to see that the provided comparer is not null.
+        /// </summary>
+        [TestMethod]
+        public void OverloadedConstructorTest()
+        {
+            IComparer<Coordinate> comparer = new CoordinateComparer();
+            SinglyLinkedListCollection<Coordinate> sll = new SinglyLinkedListCollection<Coordinate>(comparer);
+
+            Assert.IsNotNull(sll.Comparer);
+        }
+
+        /// <summary>
+        /// Check to see that the SinglyLinkedListCollectionCollection reports as empty when it is.
         /// </summary>
         [TestMethod]
         public void IsEmptyTest()
@@ -26,7 +49,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that nodes are added correctly to the tail of the SinglyLinkedListCollection.
+        /// Check to see that nodes are added correctly to the tail of the SinglyLinkedListCollection.
         /// </summary>
         [TestMethod]
         public void AddLastTest()
@@ -44,7 +67,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that nodes are added correctly to the head of the SinglyLinkedListCollection.
+        /// Check to see that nodes are added correctly to the head of the SinglyLinkedListCollection.
         /// </summary>
         [TestMethod]
         public void AddFirstTest()
@@ -61,7 +84,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the value of the Head node of the SinglyLinkedListCollection is as expected.
+        /// Check to see that the value of the Head node of the SinglyLinkedListCollection is as expected.
         /// </summary>
         [TestMethod]
         public void HeadTest()
@@ -74,7 +97,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the value of the Tail node of the SinglyLinkedListCollection is as expected.
+        /// Check to see that the value of the Tail node of the SinglyLinkedListCollection is as expected.
         /// </summary>
         [TestMethod]
         public void TailTest()
@@ -87,7 +110,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the Count property of the SinglyLinkedListCollection returns the correct nummber.
+        /// Check to see that the Count property of the SinglyLinkedListCollection returns the correct nummber.
         /// </summary>
         [TestMethod]
         public void CountTest()
@@ -101,7 +124,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that SinglyLinkedListCollection returns the correct items from the collection.
+        /// Check to see that SinglyLinkedListCollection returns the correct items from the collection.
         /// </summary>
         [TestMethod]
         public void ForeachTest()
@@ -121,7 +144,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the expected array is returned from a SinglyLinkedListCollection that contains nodes.
+        /// Check to see that the expected array is returned from a SinglyLinkedListCollection that contains nodes.
         /// </summary>
         [TestMethod]
         public void ToArrayOfValidSinglyLinkedListCollectionTest()
@@ -138,7 +161,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the expected exception is raised when ToArray is called on a SinglyLinkedListCollection
+        /// Check to see that the expected exception is raised when ToArray is called on a SinglyLinkedListCollection
         /// that has no nodes.
         /// </summary>
         [TestMethod]
@@ -151,7 +174,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to make sure that removing the only node from the SinglyLinkedListCollection results in the expected behaviour.
+        /// Check to make sure that removing the only node from the SinglyLinkedListCollection results in the expected behaviour.
         /// </summary>
         [TestMethod]
         public void RemoveLastValidSinglyLinkedListCollectionWithOnlyOneNodeTest()
@@ -168,7 +191,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to make sure that removing the last node from the SinglyLinkedListCollection results in the expected behaviour.
+        /// Check to make sure that removing the last node from the SinglyLinkedListCollection results in the expected behaviour.
         /// </summary>
         [TestMethod]
         public void RemoveLastValidSinglyLinkedListCollectionWithMultipleNodesTest()
@@ -186,7 +209,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to make sure that removing the last node from SinglyLinkedListCollection results in the expected behaviour.
+        /// Check to make sure that removing the last node from SinglyLinkedListCollection results in the expected behaviour.
         /// </summary>
         [TestMethod]
         public void RemoveLastValidSinglyLinkedListCollectionWithMultipleNodesTest2()
@@ -207,7 +230,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Calls remove when there is only one node in the SinglyLinkedList.
+        /// Check remove when there is only one node in the SinglyLinkedList.
         /// </summary>
         [TestMethod]
         public void RemoveOnlyOneNodeInListTest()
@@ -222,7 +245,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to make sure that removing all the nodes from a SinglyLinkedListCollection using the RemoveLast method works, then
+        /// Check to make sure that removing all the nodes from a SinglyLinkedListCollection using the RemoveLast method works, then
         /// reassigning the head and tail returns the expected results.
         /// </summary>
         [TestMethod]
@@ -248,7 +271,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the appropriate exception is raised when calling RemoveLast on a SinglyLinkedListCollection
+        /// Check to see that the appropriate exception is raised when calling RemoveLast on a SinglyLinkedListCollection
         /// object containing no nodes.
         /// </summary>
         [TestMethod]
@@ -263,7 +286,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that calling RemoveFirst on SinglyLinkedListCollection with only 1 node results in the expected behaviour.
+        /// Check to see that calling RemoveFirst on SinglyLinkedListCollection with only 1 node results in the expected behaviour.
         /// </summary>
         [TestMethod]
         public void RemoveFirstValidSinglyLinkedListCollectionWithOnlyOneNodeTest()
@@ -279,7 +302,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that when calling the RemoveFirst method on a SinglyLinkedListCollection with more than one node
+        /// Check to see that when calling the RemoveFirst method on a SinglyLinkedListCollection with more than one node
         /// results in the expected object state.
         /// </summary>
         [TestMethod]
@@ -301,7 +324,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that when calling the RemoveFirst method on a SinglyLinkedListCollection with more than one node
+        /// Check to see that when calling the RemoveFirst method on a SinglyLinkedListCollection with more than one node
         /// results in the expected object state.
         /// </summary>
         [TestMethod]
@@ -323,7 +346,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to make sure that removing all the nodes in a SinglyLinkedListCollection using the RemoveFirst method, then
+        /// Check to make sure that removing all the nodes in a SinglyLinkedListCollection using the RemoveFirst method, then
         /// reassigning the head and tail returns the expected results.
         /// </summary>
         [TestMethod]
@@ -347,7 +370,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the appropriate exception is raised when calling RemoveFirst on a SinglyLinkedListCollection
+        /// Check to see that the appropriate exception is raised when calling RemoveFirst on a SinglyLinkedListCollection
         /// object containing no nodes.
         /// </summary>
         [TestMethod]
@@ -360,7 +383,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the appropriate exception is raised when calling RemoveFirst on a SinglyLinkedListCollection
+        /// Check to see that the appropriate exception is raised when calling RemoveFirst on a SinglyLinkedListCollection
         /// object containing no nodes.
         /// </summary>
         [TestMethod]
@@ -375,7 +398,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the Add method is leaving the SinglyLinkedListCollection object in the correct state.
+        /// Check to see that the Add method is leaving the SinglyLinkedListCollection object in the correct state.
         /// </summary>
         [TestMethod]
         public void ICollectionAddTest()
@@ -392,7 +415,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that calling the Clear method resets the SinglyLinkedListCollection object's internal state.
+        /// Check to see that calling the Clear method resets the SinglyLinkedListCollection object's internal state.
         /// </summary>
         [TestMethod]
         public void ClearTest()
@@ -410,7 +433,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the contains method returns the correct bool depending on whether the item is in the 
+        /// Check to see that the contains method returns the correct bool depending on whether the item is in the 
         /// SinglyLinkedListCollection or not.
         /// </summary>
         [TestMethod]
@@ -427,7 +450,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the SinglyLinkedListCollection is not readonly.
+        /// Check to see that the SinglyLinkedListCollection is not readonly.
         /// </summary>
         [TestMethod]
         public void IsReadOnlyTest()
@@ -439,7 +462,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that all items of the SinglyLinkedListCollection are copied to the target array, beginning at index 0.
+        /// Check to see that all items of the SinglyLinkedListCollection are copied to the target array, beginning at index 0.
         /// </summary>
         [TestMethod]
         public void CopyToTest()
@@ -459,7 +482,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to make sure that a null array cannot be used as an argument to CopyTo.
+        /// Check to make sure that a null array cannot be used as an argument to CopyTo.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
@@ -473,7 +496,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the correct exception is raised when using a negative index for the arrayIndex parameter
+        /// Check to see that the correct exception is raised when using a negative index for the arrayIndex parameter
         /// for CopyTo.
         /// </summary>
         [TestMethod]
@@ -490,7 +513,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that passing in an index that is equal to or greater than the array size throws
+        /// Check to see that passing in an index that is equal to or greater than the array size throws
         /// the correct exception.
         /// </summary>
         [TestMethod]
@@ -507,7 +530,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that CopyTo copies all items of SinglyLinkedListCollection to an array beginning at a specified index.
+        /// Check to see that CopyTo copies all items of SinglyLinkedListCollection to an array beginning at a specified index.
         /// </summary>
         [TestMethod]
         public void ArrayCopyWithDefinedStartIndexTest()
@@ -526,7 +549,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the correct exception is raised when attempting to remove an item from an empty
+        /// Check to see that the correct exception is raised when attempting to remove an item from an empty
         /// SinglyLinkedListCollection.
         /// </summary>
         [TestMethod]
@@ -539,7 +562,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that Remove leaves the SinglyLinkedListCollection in the correct state where the value of Remove
+        /// Check to see that Remove leaves the SinglyLinkedListCollection in the correct state where the value of Remove
         /// is equal to that of the head node.
         /// </summary>
         [TestMethod]
@@ -560,7 +583,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that Remove leaves the SinglyLinkedListCollection in the correct state, when remove is any node but head or tail.
+        /// Check to see that Remove leaves the SinglyLinkedListCollection in the correct state, when remove is any node but head or tail.
         /// </summary>
         [TestMethod]
         public void RemoveMiddleItemTest()
@@ -580,7 +603,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that Remove leaves the SinglyLinkedListCollection in the correct state where the value of Remove
+        /// Check to see that Remove leaves the SinglyLinkedListCollection in the correct state where the value of Remove
         /// is equal to that of the tail node.
         /// </summary>
         [TestMethod]
@@ -602,7 +625,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that when calling the Remove method passing in a value that is not contained in the SinglyLinkedListCollection
+        /// Check to see that when calling the Remove method passing in a value that is not contained in the SinglyLinkedListCollection
         /// returns false.
         /// </summary>
         [TestMethod]
@@ -619,7 +642,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the head and tail nodes are correct after adding a node after the only node in the SinglyLinkedListCollection.
+        /// Check to see that the head and tail nodes are correct after adding a node after the only node in the SinglyLinkedListCollection.
         /// </summary>
         [TestMethod]
         public void AddAfterOnlyOneNodeInSinglyLinkedListCollectionTest()
@@ -636,7 +659,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the tail node is updated after adding a node after the tail in the SinglyLinkedListCollection.
+        /// Check to see that the tail node is updated after adding a node after the tail in the SinglyLinkedListCollection.
         /// </summary>
         [TestMethod]
         public void AddAfterTailTest()
@@ -653,7 +676,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that adding a node somewhere in the middle of the SinglyLinkedListCollection leaves the SinglyLinkedListCollection
+        /// Check to see that adding a node somewhere in the middle of the SinglyLinkedListCollection leaves the SinglyLinkedListCollection
         /// in the correct state.
         /// </summary>
         [TestMethod]
@@ -672,7 +695,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the correct exception is raised when AddAfter is invoked on a SinglyLinkedListCollection with no nodes.
+        /// Check to see that the correct exception is raised when AddAfter is invoked on a SinglyLinkedListCollection with no nodes.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
@@ -684,7 +707,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that AddAfter raises the correct exception when trying to add a new node after a null node in the SinglyLinkedListCollection.
+        /// Check to see that AddAfter raises the correct exception when trying to add a new node after a null node in the SinglyLinkedListCollection.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
@@ -697,7 +720,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that AddBefore when passing in the head node of the SinglyLinkedListCollection results in the expected state.
+        /// Check to see that AddBefore when passing in the head node of the SinglyLinkedListCollection results in the expected state.
         /// </summary>
         [TestMethod]
         public void AddBeforeHeadTest()
@@ -715,7 +738,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to make sure that adding before tail results in the expected object state.
+        /// Check to make sure that adding before tail results in the expected object state.
         /// </summary>
         [TestMethod]
         public void AddBeforeTailTest()
@@ -732,7 +755,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that AddBefore a middle node results in the expected state of the SinglyLinkedListCollection.
+        /// Check to see that AddBefore a middle node results in the expected state of the SinglyLinkedListCollection.
         /// </summary>
         [TestMethod]
         public void AddBeforeMiddleNodeTest()
@@ -750,7 +773,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the correct exception is raised when calling AddBefore on a SinglyLinkedListCollection with no nodes.
+        /// Check to see that the correct exception is raised when calling AddBefore on a SinglyLinkedListCollection with no nodes.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
@@ -762,7 +785,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the correct exception is raised when calling AddBefore on a SinglyLinkedListCollection when 
+        /// Check to see that the correct exception is raised when calling AddBefore on a SinglyLinkedListCollection when 
         /// passing in a null node.
         /// </summary>
         [TestMethod]
@@ -778,7 +801,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test IsReadonly property to see that false is returned.
+        /// Check IsReadonly property to see that false is returned.
         /// </summary>
         [TestMethod]
         public void IsReadonlyTest()
@@ -790,7 +813,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to make sure SyncRoot object is not null.
+        /// Check to make sure SyncRoot object is not null.
         /// </summary>
         [TestMethod]
         public void ICollectionSyncRootTest()
@@ -802,7 +825,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that IsSynchronized returns false.
+        /// Check to see that IsSynchronized returns false.
         /// </summary>
         [TestMethod]
         public void ICollectionIsSynchronizedTest()
@@ -814,7 +837,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that ICollection.CopyTo works as expected.
+        /// Check to see that ICollection.CopyTo works as expected.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(NotSupportedException))]
@@ -831,7 +854,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to make sure that the IEnumerator returned by the GetEnumerator is not null.
+        /// Check to make sure that the IEnumerator returned by the GetEnumerator is not null.
         /// </summary>
         [TestMethod]
         public void GetEnumeratorGenericTest()
@@ -844,7 +867,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to make sure that IEnumerable.GetEnumerator returns an IEnumerator that is not null.
+        /// Check to make sure that IEnumerable.GetEnumerator returns an IEnumerator that is not null.
         /// </summary>
         [TestMethod]
         public void GetEnumeratorTest()
@@ -858,7 +881,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to make sure that GetReverseEnumerator returns a non-null IEnumerator(Of T) object.
+        /// Check to make sure that GetReverseEnumerator returns a non-null IEnumerator(Of T) object.
         /// </summary>
         [TestMethod]
         public void GetReverseEnumeratorTest()
@@ -873,7 +896,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the correct array is returned from a call to ToReverseArray.
+        /// Check to see that the correct array is returned from a call to ToReverseArray.
         /// </summary>
         [TestMethod]
         public void ToReverseArrayTest()
@@ -889,7 +912,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that calling ToReverseArray on a SinglyLinkedListCollection with no items raises the correct
+        /// Check to see that calling ToReverseArray on a SinglyLinkedListCollection with no items raises the correct
         /// exception.
         /// </summary>
         [TestMethod]

@@ -4,12 +4,15 @@ using Dsa.Algorithms;
 namespace Dsa.Test
 {
 
+    /// <summary>
+    /// Numbers tests.
+    /// </summary>
     [TestClass]
     public class NumbersTest
     {
 
         /// <summary>
-        /// Test to see that calling Fibonacci algiorithm returns the correct value.
+        /// Check to see that calling Fibonacci algiorithm returns the correct value.
         /// </summary>
         [TestMethod]
         public void FibonacciTest()
@@ -18,7 +21,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that calling Factorial algorithm returns the correct value.
+        /// Check to see that calling Factorial algorithm returns the correct value.
         /// </summary>
         [TestMethod]
         public void FactorialTest()
@@ -27,7 +30,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the power method returns the correct value.
+        /// Check to see that the power method returns the correct value.
         /// </summary>
         [TestMethod]
         public void PowerNotZeroTest()
@@ -36,7 +39,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that 1 is returned when the exponent is 0
+        /// Check to see that 1 is returned when the exponent is 0
         /// </summary>
         [TestMethod]
         public void PowerZeroTest()
@@ -45,7 +48,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that calling the Gcd method results in the expected value being returned.
+        /// Check to see that calling the Gcd method results in the expected value being returned.
         /// </summary>
         [TestMethod]
         public void GcdTest()

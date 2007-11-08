@@ -15,7 +15,30 @@ namespace Dsa.Test
     {
 
         /// <summary>
-        /// Simple test just to see if CollectionAssert.AreEqual passes for twocollection containing the same values.
+        /// Check to see that comparer used is the default and not null.
+        /// </summary>
+        [TestMethod]
+        public void ConstructorTest()
+        {
+            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+
+            Assert.IsNotNull(dll.Comparer);
+        }
+
+        /// <summary>
+        /// Check to see that a comparer can be specified.
+        /// </summary>
+        [TestMethod]
+        public void OverloadedConstructorTest()
+        {
+            IComparer<Coordinate> comparer = new CoordinateComparer();
+            DoublyLinkedListCollection<Coordinate> dll = new DoublyLinkedListCollection<Coordinate>(comparer);
+
+            Assert.IsNotNull(dll.Comparer);
+        }
+
+        /// <summary>
+        /// Check to see if CollectionAssert.AreEqual passes for twocollection containing the same values.
         /// </summary>
         [TestMethod]
         public void ItemsAreEqualTest()
@@ -32,7 +55,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that AddLast adds a node onto the tail of the list.
+        /// Check to see that AddLast adds a node onto the tail of the list.
         /// </summary>
         [TestMethod]
         public void AddLastTest()
@@ -51,7 +74,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that AddFirst adds a node to the head of the linked list.
+        /// Check to see that AddFirst adds a node to the head of the linked list.
         /// </summary>
         [TestMethod]
         public void AddFirstTest()
@@ -65,7 +88,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that a call to AddAfter raises the corrext exception when there are no nodes to add after.
+        /// Check to see that a call to AddAfter raises the corrext exception when there are no nodes to add after.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
@@ -77,7 +100,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the correct exception is raised when adding after a null node.
+        /// Check to see that the correct exception is raised when adding after a null node.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
@@ -90,7 +113,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that calling AddAfter passing in the tail node updates the internal tail node pointer.
+        /// Check to see that calling AddAfter passing in the tail node updates the internal tail node pointer.
         /// </summary>
         [TestMethod]
         public void AddAfterTailTest()
@@ -105,7 +128,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that calling AddAfter passing in a node that isn't the tail results in the expected state.
+        /// Check to see that calling AddAfter passing in a node that isn't the tail results in the expected state.
         /// </summary>
         [TestMethod]
         public void AddAfterTest()
@@ -124,7 +147,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that calling AddBefore results in the node being placed in the correct position in the DoublyLinkedList when
+        /// Check to see that calling AddBefore results in the node being placed in the correct position in the DoublyLinkedList when
         /// adding before the head node.
         /// </summary>
         [TestMethod]
@@ -141,7 +164,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that when calling AddBefore the node is placed in the correct position within the linked list.
+        /// Check to see that when calling AddBefore the node is placed in the correct position within the linked list.
         /// </summary>
         [TestMethod]
         public void AddBeforeTest()
@@ -159,7 +182,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that calling AddBefore when the list is empty results in the correct exception being raised.
+        /// Checkto see that calling AddBefore when the list is empty results in the correct exception being raised.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
@@ -171,7 +194,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that a call to AddBefore when passing in a null node raises the correct exception.
+        /// Check to see that a call to AddBefore when passing in a null node raises the correct exception.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
@@ -184,7 +207,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the IsEmpty method returns the correct value.
+        /// Check to see that the IsEmpty method returns the correct value.
         /// </summary>
         [TestMethod]
         public void IEmptyTest()
@@ -195,7 +218,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that a call to RemoveLast on a non empty list results in the expected behaviour.
+        /// Check to see that a call to RemoveLast on a non empty list results in the expected behaviour.
         /// </summary>
         [TestMethod]
         public void RemoveLastTest()
@@ -210,7 +233,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that a call to RemoveLast when there are two nodes in the linked list reassigns the tail node.
+        /// Check to see that a call to RemoveLast when there are two nodes in the linked list reassigns the tail node.
         /// </summary>
         [TestMethod]
         public void RemoveLastTwoNodesTest()
@@ -228,7 +251,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that calling RemoveLast when there are more than two nodes results in the expected behaviour.
+        /// Check to see that calling RemoveLast when there are more than two nodes results in the expected behaviour.
         /// </summary>
         [TestMethod]
         public void RemoveLastTestMultipleNodesTest()
@@ -245,7 +268,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that calling RemoveLast on an empty list throws the correct exception.
+        /// Check to see that calling RemoveLast on an empty list throws the correct exception.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
@@ -257,7 +280,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that a call to RemoveFirst when there is only a single node in the linked list
+        /// Check to see that a call to RemoveFirst when there is only a single node in the linked list
         /// results in the expected behaviour.
         /// </summary>
         [TestMethod]
@@ -273,7 +296,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that a call to RemoveFirst when there are two node in the linked list
+        /// Check to see that a call to RemoveFirst when there are two node in the linked list
         /// results in the expected behaviour.
         /// </summary>
         [TestMethod]
@@ -290,7 +313,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that calling RemoveFirst when there are more than two nodes in the linked list
+        /// Check to see that calling RemoveFirst when there are more than two nodes in the linked list
         /// results in the expected behaviour.
         /// </summary>
         [TestMethod]
@@ -308,7 +331,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that calling RemoveFirst on a linked list with no nodes throws the correct
+        /// Check to see that calling RemoveFirst on a linked list with no nodes throws the correct
         /// exception.
         /// </summary>
         [TestMethod]
@@ -321,7 +344,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that calling ICollection(Of T).Add results in the expected behaviour.
+        /// Check to see that calling ICollection(Of T).Add results in the expected behaviour.
         /// </summary>
         [TestMethod]
         public void AddTest()
@@ -339,7 +362,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that calling Clear results in the DoublyLinkedListCollection(Of T) being reset to its
+        /// Check to see that calling Clear results in the DoublyLinkedListCollection(Of T) being reset to its
         /// default state.
         /// </summary>
         [TestMethod]
@@ -358,7 +381,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the Count property returns the expected value.
+        /// Check to see that the Count property returns the expected value.
         /// </summary>
         [TestMethod]
         public void CountTest()
@@ -377,7 +400,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that Contains returns the correct value.
+        /// Check to see that Contains returns the correct value.
         /// </summary>
         [TestMethod]
         public void ContainsTest()
@@ -393,7 +416,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that a call to CopyTo results in the correct population of an array.
+        /// Check to see that a call to CopyTo results in the correct population of an array.
         /// </summary>
         [TestMethod]
         public void CopyToTest()
@@ -411,7 +434,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that calling ToArray on the linked list results in the expected array.
+        /// Check to see that calling ToArray on the linked list results in the expected array.
         /// </summary>
         [TestMethod]
         public void ToArrayTest()
@@ -427,7 +450,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that calling ToArray on a DoublyLinkedListCollection(Of T) that contains no nodes throws the 
+        /// Check to see that calling ToArray on a DoublyLinkedListCollection(Of T) that contains no nodes throws the 
         /// correct exception.
         /// </summary>
         [TestMethod]
@@ -440,7 +463,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the IsReadonly property returns false.
+        /// Check to see that the IsReadonly property returns false.
         /// </summary>
         [TestMethod]
         public void IsReadonlyTest()
@@ -452,7 +475,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that calling Remove on a DoublyLinkedListCollection(Of T) that contains no nodes results in the
+        /// Check to see that calling Remove on a DoublyLinkedListCollection(Of T) that contains no nodes results in the
         /// correct raised exception.
         /// </summary>
         [TestMethod]
@@ -465,7 +488,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that removing a single node from the DoublyLinkedListCollection(Of T) results in the list being
+        /// Check to see that removing a single node from the DoublyLinkedListCollection(Of T) results in the list being
         /// declared as empty.
         /// </summary>
         [TestMethod]
@@ -483,7 +506,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the DoublyLinkedListCollection(Of T) is left in the correct state after removing head value from 
+        /// Check to see that the DoublyLinkedListCollection(Of T) is left in the correct state after removing head value from 
         /// a list with two nodes.
         /// </summary>
         [TestMethod]
@@ -501,7 +524,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the DoublyLinkedListCollection(Of T) is left in the correct state after removing tail value from 
+        /// Check to see that the DoublyLinkedListCollection(Of T) is left in the correct state after removing tail value from 
         /// a list with two nodes.
         /// </summary>
         [TestMethod]
@@ -519,7 +542,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the DoublyLinkedListCollection(Of T) is left in the correct state when removing
+        /// Check to see that the DoublyLinkedListCollection(Of T) is left in the correct state when removing
         /// middle node value from a list of 3 or more nodes.
         /// </summary>
         [TestMethod]
@@ -538,7 +561,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the DoublyLinkedListCollection(Of T) is left in the correct state when removing
+        /// Check to see that the DoublyLinkedListCollection(Of T) is left in the correct state when removing
         /// head node value from a list of 3 or more nodes.
         /// </summary>
         [TestMethod]
@@ -557,7 +580,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the DoublyLinkedListCollection(Of T) is left in the correct state when removing
+        /// Check to see that the DoublyLinkedListCollection(Of T) is left in the correct state when removing
         /// middle node value from a list of 3 or more nodes.
         /// </summary>
         [TestMethod]
@@ -576,7 +599,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the correct value is returned when the value to be removed is not in the
+        /// Check to see that the correct value is returned when the value to be removed is not in the
         /// DoublyLinkedListCollection(Of T).
         /// </summary>
         [TestMethod]
@@ -590,7 +613,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that an non null IEnumerator object is returned.
+        /// Check to see that an non null IEnumerator object is returned.
         /// </summary>
         [TestMethod]
         public void GetEnumeratorTest()
@@ -607,7 +630,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that an non null IEnumerator object is returned.
+        /// Check to see that an non null IEnumerator object is returned.
         /// </summary>
         [TestMethod]
         public void GetEnumeratorNonGenericTest()
@@ -619,7 +642,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that ICollection.CopyTo raises the corrrect exception.
+        /// Check to see that ICollection.CopyTo raises the corrrect exception.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(NotSupportedException))]
@@ -633,7 +656,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the IsSynchronized returns false.
+        /// Check to see that the IsSynchronized returns false.
         /// </summary>
         [TestMethod]
         public void IsSynchronizedTest()
@@ -645,7 +668,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the SyncRoot property returns a non-null object.
+        /// Check to see that the SyncRoot property returns a non-null object.
         /// </summary>
         [TestMethod]
         public void SyncRootTest()

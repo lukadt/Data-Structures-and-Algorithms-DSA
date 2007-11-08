@@ -8,14 +8,14 @@ namespace Dsa.Test
 {
 
     /// <summary>
-    /// Tests for Queue(Of T).
+    /// Tests for QueueCollection.
     /// </summary>
     [TestClass]
     public class QueueCollectionTest
     {
 
         /// <summary>
-        /// Test to see that Enqueue adds an item to the back of the queue, or front of the queue
+        /// Check to see that Enqueue adds an item to the back of the queue, or front of the queue
         /// if the queue is empty.
         /// </summary>
         [TestMethod]
@@ -31,7 +31,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that peek returns the item at the front of the queue.
+        /// Check to see that peek returns the item at the front of the queue.
         /// </summary>
         [TestMethod]
         public void PeekTest()
@@ -45,7 +45,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that popping an item from the queue returns the correct item, and promotes the next item
+        /// Check to see that popping an item from the queue returns the correct item, and promotes the next item
         /// inline to the front of the queue.
         /// </summary>
         [TestMethod]
@@ -62,7 +62,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the Count property returns the correct number of items.
+        /// Check to see that the Count property returns the correct number of items.
         /// </summary>
         [TestMethod]
         public void CountTest()
@@ -76,7 +76,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the CopyTo method works as expected.
+        /// Check to see that the CopyTo method works as expected.
         /// </summary>
         [TestMethod]
         public void CopyToTest()
@@ -94,7 +94,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to make sure that QueueCollection is not readonly.
+        /// Check to make sure that QueueCollection is not readonly.
         /// </summary>
         [TestMethod]
         public void IsReadonlyTest()
@@ -106,7 +106,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that Contains returns the expected result.
+        /// Check to see that Contains returns the expected result.
         /// </summary>
         [TestMethod]
         public void ContainsTest()
@@ -121,7 +121,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to make sure that Clear returns the QueueCollection to its default state.
+        /// Check to make sure that Clear returns the QueueCollection to its default state.
         /// </summary>
         [TestMethod]
         public void ClearTest()
@@ -137,7 +137,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to make sure that Add works as expected.
+        /// Check to make sure that Add works as expected.
         /// </summary>
         [TestMethod]
         public void AddTest()
@@ -154,7 +154,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the IEnumerable(Of T).GetEnumerator returns an Enumerator that is not null.
+        /// Check to see that the IEnumerable(Of T).GetEnumerator returns an Enumerator that is not null.
         /// </summary>
         [TestMethod]
         public void GetEnumeratorGenericTest()
@@ -167,7 +167,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the IEnumerable.GetEnumerator returns an Enumerator that is not null.
+        /// Check to see that the IEnumerable.GetEnumerator returns an Enumerator that is not null.
         /// </summary>
         [TestMethod]
         public void GetEnumeratorTest()
@@ -181,7 +181,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that ICollection(Of T).Remove method leaves teh QueueCollction in the correct state.
+        /// Check to see that ICollection(Of T).Remove method leaves teh QueueCollction in the correct state.
         /// </summary>
         [TestMethod]
         public void RemoveTest()
@@ -197,7 +197,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to make sure that the expected array is returned.
+        /// Check to make sure that the expected array is returned.
         /// </summary>
         [TestMethod]
         public void ToArrayTest()
@@ -213,7 +213,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that false is returned.
+        /// Check to see that false is returned.
         /// </summary>
         [TestMethod]
         public void IsSynchronizedTest()
@@ -225,7 +225,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to make sure that the SyncRoot property returns a non null object.
+        /// Check to make sure that the SyncRoot property returns a non null object.
         /// </summary>
         [TestMethod]
         public void SyncRootIsNotNullTest()
@@ -237,7 +237,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the ICollection.CopyTo throw not implemented exception.
+        /// Check to see that the ICollection.CopyTo throw not implemented exception.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(NotSupportedException))]
@@ -251,7 +251,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to make sure that two collections containing the same items pass the CollectionAssert.AreEqual.
+        /// Check to make sure that two collections containing the same items pass the CollectionAssert.AreEqual.
         /// </summary>
         [TestMethod]
         public void QueueCollectionItemsTest()
@@ -270,7 +270,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that calling IsEmpty returns the correct value.
+        /// Check to see that calling IsEmpty returns the correct value.
         /// </summary>
         [TestMethod]
         public void IsEmptyTest()

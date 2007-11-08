@@ -12,7 +12,7 @@ namespace Dsa.Test
     {
         
         /// <summary>
-        /// Test to see that SequentialSearch returns the correct index for an item that is in the array.
+        /// Check to see that SequentialSearch returns the correct index for an item that is in the array.
         /// </summary>
         [TestMethod]
         public void SequentialSearchItemPresentTest()
@@ -23,7 +23,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that SequentialSearch returns -1 when the item is not found within the array.
+        /// Check to see that SequentialSearch returns -1 when the item is not found within the array.
         /// </summary>
         [TestMethod]
         public void SequentialSearchItemNotPresentTest()
@@ -34,7 +34,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the correct value is returned when performing a probability search when the item is
+        /// Check to see that the correct value is returned when performing a probability search when the item is
         /// in the array and that the array state is correct.
         /// </summary>
         [TestMethod]
@@ -48,7 +48,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the correct value is returned when the item being searched for is not in the array and that
+        /// Check to see that the correct value is returned when the item being searched for is not in the array and that
         /// the array's state is left alone.
         /// </summary>
         /// <returns></returns>
@@ -63,7 +63,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that when the item is found at the first element of the array then 
+        /// Check to see that when the item is found at the first element of the array then 
         /// a swap does not occur.
         /// </summary>
         [TestMethod]

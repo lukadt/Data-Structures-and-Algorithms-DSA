@@ -9,7 +9,7 @@ namespace Dsa.Test
     {
 
         /// <summary>
-        /// Test to see that the expected Int32 value of a node is returned.
+        /// Check to see that the expected Int32 value of a node is returned.
         /// </summary>
         [TestMethod]
         public void ValueIntTest()
@@ -19,7 +19,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the expected string reference type value of a node is returned.
+        /// Check to see that the expected string reference type value of a node is returned.
         /// </summary>
         [TestMethod]
         public void ValueStringTest()
@@ -29,7 +29,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the next node of a node is correct.
+        /// Check to see that the next node of a node is correct.
         /// </summary>
         [TestMethod]
         public void NextTest()

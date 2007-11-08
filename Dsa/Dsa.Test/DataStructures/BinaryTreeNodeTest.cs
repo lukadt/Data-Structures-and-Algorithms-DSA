@@ -12,7 +12,7 @@ namespace Dsa.Test
     {
 
         /// <summary>
-        /// Test to see that a BinaryTreeNode is initialzed to the correct
+        /// Check to see that a BinaryTreeNode is initialzed to the correct
         /// values.
         /// </summary>
         [TestMethod]
@@ -26,7 +26,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that child nodes are appended properly.
+        /// Check to see that child nodes are appended properly.
         /// </summary>
         [TestMethod]
         public void AssignNodeTest()

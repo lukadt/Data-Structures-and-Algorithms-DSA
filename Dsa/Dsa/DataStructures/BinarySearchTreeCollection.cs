@@ -11,18 +11,29 @@ namespace Dsa.DataStructures
     /// <see cref="BinarySearchTreeCollection{T}"/> is an implementation of a binary search tree.
     /// </summary>
     /// <typeparam name="T">Type of items to store in the <see cref="BinarySearchTreeCollection{T}"/>.</typeparam>
-    public sealed class BinarySearchTreeCollection<T> : ICollection, ICollection<T>
+    [Serializable]
+    public sealed class BinarySearchTreeCollection<T> : ComparerProvider<T>, ICollection, ICollection<T>
     {
 
+        [NonSerialized]
         private BinaryTreeNode<T> _root;
-        private static readonly Comparer<T> _comparer = Comparer<T>.Default;
+        [NonSerialized]
         private int _count;
+        [NonSerialized]
         private object _syncRoot;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BinarySearchTreeCollection{T}"/> class
+        /// Initializes a new instance of the <see cref="BinarySearchTreeCollection{T}"/> class.
         /// </summary>
         public BinarySearchTreeCollection() { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BinarySearchTreeCollection{T}"/> class using a provided <see cref="IComparer{T}"/>.
+        /// </summary>
+        /// <param name="comparer">Comparer to use with <see cref="BinarySearchTreeCollection{T}"/>.</param>
+        public BinarySearchTreeCollection(IComparer<T> comparer) : base(comparer)
+        {
+        }
 
         /// <summary>
         /// Gets the root node of the <see cref="BinarySearchTreeCollection{T}"/>.
@@ -39,7 +50,7 @@ namespace Dsa.DataStructures
         /// <param name="value">Value to insert into the Bst.</param>
         private void insertNode(BinaryTreeNode<T> node, T value)
         {
-            if (_comparer.Compare(value, node.Value) < 0)
+            if (Comparer.Compare(value, node.Value) < 0)
             {
                 // the value is less than the current nodes value, so go left.
                 if (node.Left == null)
@@ -292,11 +303,11 @@ namespace Dsa.DataStructures
         private bool contains(BinaryTreeNode<T> root, T item)
         {
             if (root == null) return false; // if the root is null then we have exhausted all the nodes in the tree, thus the item isn't in the bst
-            if (_comparer.Compare(root.Value, item) == 0)
+            if (Comparer.Compare(root.Value, item) == 0)
             {
                 return true; // we have found the item
             }
-            else if (_comparer.Compare(item, root.Value) < 0)
+            else if (Comparer.Compare(item, root.Value) < 0)
             {
                 return contains(root.Left, item); // search the left subtree of the current node for the item
             }
@@ -361,11 +372,11 @@ namespace Dsa.DataStructures
         private bool removeNode(BinaryTreeNode<T> root, T value)
         {
             // check to see if we need to go either left or right in the bst
-            if (_comparer.Compare(value, root.Value) < 0)
+            if (Comparer.Compare(value, root.Value) < 0)
             {
                 return removeNode(root.Left, value);
             }
-            else if (_comparer.Compare(value, root.Value) > 0)
+            else if (Comparer.Compare(value, root.Value) > 0)
             {
                 return removeNode(root.Right, value);
             }

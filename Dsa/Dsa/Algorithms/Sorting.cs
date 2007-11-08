@@ -25,6 +25,7 @@ namespace Dsa.Algorithms
             {
                 for (int j = 0; j < array.Length; j++)
                 {
+                    // search to see if the element at i is less than j for all j in the array
                     int temp = array[j];
                     if (array[i] < array[j])
                     {

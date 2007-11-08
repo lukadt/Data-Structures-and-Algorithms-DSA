@@ -7,12 +7,15 @@ using System.Collections.Generic;
 namespace Dsa.Test
 {
 
+    /// <summary>
+    /// Tests for ArrayListCollection.
+    /// </summary>
     [TestClass]
     public class ArrayListCollectionTest
     {
 
         /// <summary>
-        /// Test to see that Add returns the correct value.
+        /// Check to see that Add returns the correct value.
         /// </summary>
         [TestMethod]
         public void AddTest()
@@ -27,7 +30,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the specified comparer is not null.
+        /// Check to see that the specified comparer is not null.
         /// </summary>
         [TestMethod]
         public void OverloadedConstructorTest()
@@ -39,7 +42,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to check that the constructor throws the correct exception when passed a null IComparer.
+        /// Check to check that the constructor throws the correct exception when passed a null IComparer.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
@@ -50,7 +53,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that Count returns the expected value.
+        /// Check to see that Count returns the expected value.
         /// </summary>
         [TestMethod]
         public void CountTest()
@@ -67,7 +70,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that IComcity returns the expected value when no resixing occurs.
+        /// Check to see that IComcity returns the expected value when no resixing occurs.
         /// </summary>
         [TestMethod]
         public void CapacityNoResizeTest()
@@ -78,7 +81,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that Capacity returns the expected value when resizing has occurred.
+        /// Check to see that Capacity returns the expected value when resizing has occurred.
         /// </summary>
         [TestMethod]
         public void CapacityResizeTest()
@@ -95,7 +98,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the correct index is returned for an item in the ArrayListColleciton.
+        /// Check to see that the correct index is returned for an item in the ArrayListColleciton.
         /// </summary>
         [TestMethod]
         public void IndexOfTest()
@@ -111,7 +114,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test top see that the correct value is returned by index.
+        /// Check top see that the correct value is returned by index.
         /// </summary>
         [TestMethod]
         public void IndexInRangeTest()
@@ -128,7 +131,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that calling by index with a negative number throws the correct exception.
+        /// Check to see that calling by index with a negative number throws the correct exception.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(IndexOutOfRangeException))]
@@ -140,7 +143,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that accessing an index which is out of range, e.g. in this scenario we have the default
+        /// Check to see that accessing an index which is out of range, e.g. in this scenario we have the default
         /// array size of 4, so accessing index of 4 will result in accessing an index which is out of range.
         /// </summary>
         [TestMethod]
@@ -153,7 +156,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that setting the value at an index works as expected.
+        /// Check to see that setting the value at an index works as expected.
         /// </summary>
         [TestMethod]
         public void IndexSetTest()
@@ -172,7 +175,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the correct exception is raised when trying to set the value of an index
+        /// Check to see that the correct exception is raised when trying to set the value of an index
         /// that is out of range.
         /// </summary>
         [TestMethod]
@@ -185,7 +188,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that when setting an index which is out of range, e.g. in this scenario we have the default
+        /// Check to see that when setting an index which is out of range, e.g. in this scenario we have the default
         /// array size of 4, so setting index of 4 will result in accessing an index which is out of range.
         /// </summary>
         [TestMethod]
@@ -198,7 +201,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that IsReadonly returns false.
+        /// Check to see that IsReadonly returns false.
         /// </summary>
         [TestMethod]
         public void IListIsReadonlyTest()
@@ -210,7 +213,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that IList.IsFixedSize returns false.
+        /// Check to see that IList.IsFixedSize returns false.
         /// </summary>
         [TestMethod]
         public void IListIsFixedSizeTest()
@@ -222,7 +225,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the correct value is returned by ICollection{T}.IsReadOnly property.
+        /// Check to see that the correct value is returned by ICollection{T}.IsReadOnly property.
         /// </summary>
         [TestMethod]
         public void ICollectionIsReadOnlyTest()
@@ -234,7 +237,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that calling ICollection(Of T).Add results in the expected behaviour.
+        /// Check to see that calling ICollection(Of T).Add results in the expected behaviour.
         /// </summary>
         [TestMethod]
         public void ICollectionGenericAddTest()
@@ -249,7 +252,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that calling IList.Add on a value type collection results in the expected exception.
+        /// Check to see that calling IList.Add on a value type collection results in the expected exception.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
@@ -264,7 +267,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that adding a reference type using IList.Add that is the same as T is accepted and results in the expected
+        /// Check to see that adding a reference type using IList.Add that is the same as T is accepted and results in the expected
         /// behaviour.
         /// </summary>
         [TestMethod]
@@ -279,7 +282,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that clear defaults every value in the array list (null for reference types, 0 for value types)
+        /// Check to see that clear defaults every value in the array list (null for reference types, 0 for value types)
         /// and resets count to 0. 
         /// </summary>
         [TestMethod]
@@ -299,7 +302,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see calling insert specifying a index which has already been allocated results inteh expected
+        /// Check to see calling insert specifying a index which has already been allocated results inteh expected
         /// behaviour, i.e. count is not incremented and the existing value at the index is overwritten.
         /// </summary>
         [TestMethod]
@@ -317,7 +320,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that Add honours a previous Insert.
+        /// Check to see that Add honours a previous Insert.
         /// </summary>
         [TestMethod]
         public void AddHonoursInsertTest()
@@ -335,7 +338,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that when inserting and specifying an out of range index results in the correct exception
+        /// Check to see that when inserting and specifying an out of range index results in the correct exception
         /// being raised.
         /// </summary>
         [TestMethod]
@@ -348,7 +351,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to make sure that RemoveAt leaves the array in the correct state.
+        /// Check to make sure that RemoveAt leaves the array in the correct state.
         /// </summary>
         [TestMethod]
         public void RemoveAtTest()
@@ -368,7 +371,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to make sure that RemoveAt leaves the array in the correct state.
+        /// Check to make sure that RemoveAt leaves the array in the correct state.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
@@ -384,7 +387,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to make sure that Remove leaves the array in the correct state.
+        /// Check to make sure that Remove leaves the array in the correct state.
         /// </summary>
         [TestMethod]
         public void RemoveTest()
@@ -404,7 +407,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that IList.Contains returns the correct value.
+        /// Check to see that IList.Contains returns the correct value.
         /// </summary>
         [TestMethod]
         public void IListContainsTest()
@@ -421,7 +424,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that using a non-compatiable type results in expected exception.
+        /// Check to see that using a non-compatiable type results in expected exception.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
@@ -434,7 +437,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the correct index is passed back when calling IndexOf.
+        /// Check to see that the correct index is passed back when calling IndexOf.
         /// </summary>
         [TestMethod]
         public void IListIndexOfTest()
@@ -451,7 +454,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the correct exception is raied when using a non compatible type.
+        /// Check to see that the correct exception is raied when using a non compatible type.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
@@ -464,7 +467,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that calling IList.Insert results in the expected behaviour.
+        /// Check to see that calling IList.Insert results in the expected behaviour.
         /// </summary>
         [TestMethod]
         public void IListInsertTest()
@@ -478,7 +481,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that IList.Insert raises the correct exception when inserting an unsupoorted type.
+        /// Check to see that IList.Insert raises the correct exception when inserting an unsupoorted type.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
@@ -491,7 +494,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that IList.RemoveAt results in the expected object state.
+        /// Check to see that IList.RemoveAt results in the expected object state.
         /// </summary>
         [TestMethod]
         public void IListRemoveAtTest()
@@ -508,7 +511,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that calling IList.Remove results in the expected behaviour.
+        /// Check to see that calling IList.Remove results in the expected behaviour.
         /// </summary>
         [TestMethod]
         public void IListRemoveTest()
@@ -526,7 +529,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the correct exception is raised when remove is called with an unsupported type.
+        /// Check to see that the correct exception is raised when remove is called with an unsupported type.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
@@ -539,7 +542,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that setting by index results in the correct behaviour.
+        /// Check to see that setting by index results in the correct behaviour.
         /// </summary>
         [TestMethod]
         public void IListByIndexTest()
@@ -559,7 +562,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that setting by index when the value is a type that is not supported results in the
+        /// Check to see that setting by index when the value is a type that is not supported results in the
         /// expected exception being raised.
         /// </summary>
         [TestMethod]
@@ -573,7 +576,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that IsSynchronized returns false.
+        /// Check to see that IsSynchronized returns false.
         /// </summary>
         [TestMethod]
         public void IsSynchronizedTest()
@@ -585,7 +588,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that SyncRoot returns a non null object.
+        /// Check to see that SyncRoot returns a non null object.
         /// </summary>
         [TestMethod]
         public void SyncRootTest()
@@ -597,7 +600,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that Contains returns the expected value.
+        /// Check to see that Contains returns the expected value.
         /// </summary>
         [TestMethod]
         public void ContainsTest()
@@ -615,7 +618,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that CopyTo results in the expected array.
+        /// Check to see that CopyTo results in the expected array.
         /// </summary>
         [TestMethod]
         public void CopyToTest()
@@ -633,7 +636,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the correct exception is raised when using the non-generic CopyTo method.
+        /// Check to see that the correct exception is raised when using the non-generic CopyTo method.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(NotSupportedException))]
@@ -646,6 +649,9 @@ namespace Dsa.Test
             actual.CopyTo(expected, 0);
         }
 
+        /// <summary>
+        /// Check to see that two ArrayListCollections with the same value items are equal.
+        /// </summary>
         [TestMethod]
         public void ItemsAreSameTest()
         {
@@ -663,7 +669,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the IEnumerator(Of T) returned from GetEnumerator is not null.
+        /// Check to see that the IEnumerator(Of T) returned from GetEnumerator is not null.
         /// </summary>
         [TestMethod]
         public void GetEnumeratorTest()
@@ -678,7 +684,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that ICollection.GetEnumerator returns a non-null IEnumerator.
+        /// Check to see that ICollection.GetEnumerator returns a non-null IEnumerator.
         /// </summary>
         [TestMethod]
         public void ICollectionGetEnumeratorTest()

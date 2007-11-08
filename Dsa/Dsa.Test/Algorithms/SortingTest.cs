@@ -5,12 +5,15 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Dsa.Test
 {
 
+    /// <summary>
+    /// Sorting tests.
+    /// </summary>
     [TestClass]
     public class SortingTest
     {
 
         /// <summary>
-        /// Test to see that the bubblesort algorithm sorts the items
+        /// Check to see that the bubblesort algorithm sorts the items
         /// in ascending order.
         /// </summary>
         [TestMethod]
@@ -26,7 +29,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that passing in a null array to BubbleSort results in the expected
+        /// Check to see that passing in a null array to BubbleSort results in the expected
         /// exception being thrown.
         /// </summary>
         [TestMethod]

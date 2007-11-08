@@ -15,7 +15,7 @@ namespace Dsa.DataStructures
     [Serializable]
     [DebuggerDisplay("Count={Count}")]
     [DebuggerTypeProxy(typeof(CollectionDebugView<>))]
-    public sealed class SinglyLinkedListCollection<T> : ICollection<T>, ICollection
+    public sealed class SinglyLinkedListCollection<T> : ComparerProvider<T>, ICollection<T>, ICollection
     {
 
         [NonSerialized]
@@ -26,6 +26,18 @@ namespace Dsa.DataStructures
         private int _count;
         [NonSerialized]
         private object _syncRoot;
+
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SinglyLinkedListCollection{T}"/> class.
+        /// </summary>
+        public SinglyLinkedListCollection() { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SinglyLinkedListCollection{T}"/> class using a specified <see cref="IComparer{T}"/>.
+        /// </summary>
+        /// <param name="comparer">Comparer to use.</param>
+        public SinglyLinkedListCollection(IComparer<T> comparer) : base(comparer) { }
 
         /// <summary>
         /// Adds a node to the tail of the <see cref="SinglyLinkedListCollection{T}"/>.
@@ -349,10 +361,9 @@ namespace Dsa.DataStructures
         /// <returns>True if the value is in the <see cref="SinglyLinkedListCollection{T}"/>; false otherwise.</returns>
         public bool Contains(T item)
         {
-            EqualityComparer<T> comparer = EqualityComparer<T>.Default;
             foreach (T value in this)
             {
-                if (comparer.Equals(value, item)) return true; // we have found the item
+                if (Comparer.Compare(value, item) == 0) return true; // we have found the item
             }
             return false;
         }
@@ -390,8 +401,7 @@ namespace Dsa.DataStructures
                 throw new InvalidOperationException(Resources.SinglyLinkedListEmpty); // nothing to remove
             }
             SinglyLinkedListNode<T> n = _head;
-            EqualityComparer<T> comparer = EqualityComparer<T>.Default;
-            if (comparer.Equals(n.Value, item))
+            if (Comparer.Compare(n.Value, item) == 0)
             {
                 // node to be removed is the head node
                 if (n == _tail)
@@ -405,8 +415,8 @@ namespace Dsa.DataStructures
             }
             while (n != null)
             {
-                if (!comparer.Equals(n.Value, item) && n.Next == null) break; // we couldn't find the value to remove in the sll
-                else if (comparer.Equals(n.Next.Value, item)) // we have found the node to remove
+                if (!(Comparer.Compare(n.Value, item) == 0) && n.Next == null) break; // we couldn't find the value to remove in the sll
+                else if (Comparer.Compare(n.Next.Value, item) == 0) // we have found the node to remove
                 {
                     if (n.Next == _tail)
                     {

@@ -16,7 +16,7 @@ namespace Dsa.Test
     {
 
         /// <summary>
-        /// Test to see that the fields are intialized correctly.
+        /// Check to see that the fields are intialized correctly.
         /// </summary>
         [TestMethod]
         public void ConstructorTest()
@@ -27,7 +27,19 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the insert asserts the correct state changes.
+        /// Check to see that a bst can have a user provided comparer to use.
+        /// </summary>
+        [TestMethod]
+        public void OverloadedConstructorTest()
+        {
+            IComparer<Coordinate> comparer = new CoordinateComparer();
+            BinarySearchTreeCollection<Coordinate> bst = new BinarySearchTreeCollection<Coordinate>(comparer);
+
+            Assert.IsNotNull(bst.Comparer);
+        }
+
+        /// <summary>
+        /// Check to see that the insert asserts the correct state changes.
         /// </summary>
         [TestMethod]
         public void InsertRootNullTest()
@@ -40,7 +52,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the state of the BinarySearchTree is updated correctly when inserting
+        /// Check to see that the state of the BinarySearchTree is updated correctly when inserting
         /// more than one node into the tree.
         /// </summary>
         [TestMethod]
@@ -63,7 +75,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to make sure that a non-null IEnumerator object is returned when calling GetEnumerator on a bst object.
+        /// Check to make sure that a non-null IEnumerator object is returned when calling GetEnumerator on a bst object.
         /// </summary>
         [TestMethod]
         public void GetEnumeratorGenericTest()
@@ -83,7 +95,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to make sure that a non-null IEnumerator object is returned when calling the GetPostorderEnumerator on a bst object.
+        /// Check to make sure that a non-null IEnumerator object is returned when calling the GetPostorderEnumerator on a bst object.
         /// </summary>
         [TestMethod]
         public void GetPostorderEnumeratorTest()
@@ -103,7 +115,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that a non-null IEnumerator object is returned when calling the GetInorderEnumerator on a bst object.
+        /// Check to see that a non-null IEnumerator object is returned when calling the GetInorderEnumerator on a bst object.
         /// </summary>
         [TestMethod]
         public void GetInorderEnumeratorTest()
@@ -123,7 +135,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that count returns the correct value.
+        /// Check to see that count returns the correct value.
         /// </summary>
         [TestMethod]
         public void CountTest()
@@ -138,7 +150,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that IsReadOnly property returns the correct value.
+        /// Check to see that IsReadOnly property returns the correct value.
         /// </summary>
         [TestMethod]
         public void ReadOnlyTest()
@@ -150,7 +162,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that IsSynchronized property returns the correct value.
+        /// Check to see that IsSynchronized property returns the correct value.
         /// </summary>
         [TestMethod]
         public void IsSynchronizedTest()
@@ -162,7 +174,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that a non null enumerator object is returned.
+        /// Check to see that a non null enumerator object is returned.
         /// </summary>
         [TestMethod]
         public void ICollectionGetEnumeratorTest()
@@ -174,7 +186,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that SyncRoot returns a non null object.
+        /// Check to see that SyncRoot returns a non null object.
         /// </summary>
         [TestMethod]
         public void SyncRootTest()
@@ -186,7 +198,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that calling Clear resets the collection to its default state.
+        /// Check to see that calling Clear resets the collection to its default state.
         /// </summary>
         [TestMethod]
         public void ClearTest()
@@ -203,7 +215,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the FindMin method returns the correct value.
+        /// Check to see that the FindMin method returns the correct value.
         /// </summary>
         [TestMethod]
         public void FindMinTest()
@@ -220,7 +232,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that FindMax returns the largest value in the bst.
+        /// Check to see that FindMax returns the largest value in the bst.
         /// </summary>
         [TestMethod]
         public void FindMaxTest()
@@ -237,7 +249,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that Contains returns the correct value.
+        /// Check to see that Contains returns the correct value.
         /// </summary>
         [TestMethod]
         public void ContainsTest()
@@ -256,7 +268,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the correct value is returned when the item is not contained within the bst.
+        /// Check to see that the correct value is returned when the item is not contained within the bst.
         /// </summary>
         [TestMethod]
         public void ContainsItemNotPresentTest()
@@ -274,7 +286,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that calling GetBreadthFirstEnumerator returns a non null enumerator.
+        /// Check to see that calling GetBreadthFirstEnumerator returns a non null enumerator.
         /// </summary>
         [TestMethod]
         public void GetBreadthFirstEnumeratorTest()
@@ -285,7 +297,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that calling ToArray returns the correct array.
+        /// Check to see that calling ToArray returns the correct array.
         /// </summary>
         [TestMethod]
         public void ToArrayTest()
@@ -305,7 +317,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the correct exception is raised when calling the ToArray method 
+        /// Check to see that the correct exception is raised when calling the ToArray method 
         /// on a bst object with no items in it.
         /// </summary>
         [TestMethod]
@@ -318,7 +330,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that calling CopyTo results in the target array being updated correctly.
+        /// Check to see that calling CopyTo results in the target array being updated correctly.
         /// </summary>
         [TestMethod]
         public void CopyToTest()
@@ -333,7 +345,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that calling CopyTo starting at specified index results in the target array being updated correctly.
+        /// Check to see that calling CopyTo starting at specified index results in the target array being updated correctly.
         /// </summary>
         [TestMethod]
         public void CopyToStartingSpecifiedIndexTest()
@@ -348,7 +360,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that calling ICollection.CopyTo throws the correct exception.
+        /// Check to see that calling ICollection.CopyTo throws the correct exception.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(NotSupportedException))]
@@ -363,7 +375,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that deleting a right leaf results in the correct state of the bst.
+        /// Check to see that deleting a right leaf results in the correct state of the bst.
         /// </summary>
         [TestMethod]
         public void DeleteRightLeafTest()

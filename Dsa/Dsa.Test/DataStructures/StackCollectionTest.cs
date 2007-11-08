@@ -7,12 +7,15 @@ using System.Collections;
 namespace Dsa.Test
 {
 
+    /// <summary>
+    /// Tests for StackCollection.
+    /// </summary>
     [TestClass]
     public class StackCollectionTest
     {
 
         /// <summary>
-        /// Test to see that Pushing an item onto the stack results in the intended behaviour.
+        /// Check to see that Pushing an item onto the stack results in the intended behaviour.
         /// </summary>
         [TestMethod]
         public void PushTest()
@@ -29,7 +32,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that calling Peek returns the correct item.
+        /// Check to see that calling Peek returns the correct item.
         /// </summary>
         [TestMethod]
         public void PeekTest()
@@ -44,7 +47,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the correct item is returned and the item at the top of the stack is 
+        /// Check to see that the correct item is returned and the item at the top of the stack is 
         /// updated appropriatley after calling Pop.
         /// </summary>
         [TestMethod]
@@ -61,7 +64,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that ICollection(Of T).Add results in the expected behaviour.
+        /// Check to see that ICollection(Of T).Add results in the expected behaviour.
         /// </summary>
         [TestMethod]
         public void AddTest()
@@ -76,7 +79,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that Count returns the number of items on the StackCollection.
+        /// Check to see that Count returns the number of items on the StackCollection.
         /// </summary>
         [TestMethod]
         public void CountTest()
@@ -90,7 +93,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that CopyTo results in the correct population of an array with the items in the 
+        /// Check to see that CopyTo results in the correct population of an array with the items in the 
         /// StackCollection.
         /// </summary>
         [TestMethod]
@@ -109,7 +112,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that calling Remove returns the correct value.
+        /// Check to see that calling Remove returns the correct value.
         /// </summary>
         [TestMethod]
         public void RemoveTest()
@@ -126,7 +129,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that IsReadonly returns false.
+        /// Check to see that IsReadonly returns false.
         /// </summary>
         [TestMethod]
         public void IsReadonlyTest()
@@ -138,7 +141,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to make sure that the StackCollection is reset to its default state.
+        /// Check to make sure that the StackCollection is reset to its default state.
         /// </summary>
         [TestMethod]
         public void ClearTest()
@@ -154,7 +157,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that calling Contains returns the expected value.
+        /// Check to see that calling Contains returns the expected value.
         /// </summary>
         [TestMethod]
         public void ContainsTest()
@@ -169,7 +172,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that a non null IEnumerator(Of T) object is returned.
+        /// Check to see that a non null IEnumerator(Of T) object is returned.
         /// </summary>
         [TestMethod]
         public void GetEnumeratorTest()
@@ -184,7 +187,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to make sure that the correct exception is raised when calling ICollection.CopyTo.
+        /// Check to make sure that the correct exception is raised when calling ICollection.CopyTo.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(NotSupportedException))]
@@ -198,7 +201,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to make sure that IsSynchronized property returns false.
+        /// Check to make sure that IsSynchronized property returns false.
         /// </summary>
         [TestMethod]
         public void IsSynchronizedTest()
@@ -210,7 +213,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to make sure that the object returned from SyncRoot is not null.
+        /// Check to make sure that the object returned from SyncRoot is not null.
         /// </summary>
         [TestMethod]
         public void SyncRootTest()
@@ -222,7 +225,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that the expected array is returned.
+        /// Check to see that the expected array is returned.
         /// </summary>
         [TestMethod]
         public void ToArrayTest()
@@ -238,7 +241,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that ICollection.GetEnumerator returns a non-null IEnumerator.
+        /// Check to see that ICollection.GetEnumerator returns a non-null IEnumerator.
         /// </summary>
         [TestMethod]
         public void GetEnumeratorNonGenericTest()
@@ -250,7 +253,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Test to see that IsEmpty returns the correct value.
+        /// Check to see that IsEmpty returns the correct value.
         /// </summary>
         [TestMethod]
         public void IsEmptyTest()
