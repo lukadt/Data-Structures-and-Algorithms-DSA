@@ -38,6 +38,17 @@ namespace Dsa.Test
         }
 
         /// <summary>
+        /// Check to see that the correct exception is raised when the comparer is null.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void OverloadedConstructorComparerNullTest()
+        {
+            IComparer<Coordinate> comparer = null;
+            SinglyLinkedListCollection<Coordinate> actual = new SinglyLinkedListCollection<Coordinate>(comparer);
+        }
+
+        /// <summary>
         /// Check to see that the SinglyLinkedListCollectionCollection reports as empty when it is.
         /// </summary>
         [TestMethod]

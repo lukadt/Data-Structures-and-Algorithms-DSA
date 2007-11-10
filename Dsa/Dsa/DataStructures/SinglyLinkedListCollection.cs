@@ -15,7 +15,7 @@ namespace Dsa.DataStructures
     [Serializable]
     [DebuggerDisplay("Count={Count}")]
     [DebuggerTypeProxy(typeof(CollectionDebugView<>))]
-    public sealed class SinglyLinkedListCollection<T> : ComparerProvider<T>, ICollection<T>, ICollection
+    public sealed class SinglyLinkedListCollection<T> : ICollection<T>, ICollection, IComparerProvider<T>
     {
 
         [NonSerialized]
@@ -26,18 +26,31 @@ namespace Dsa.DataStructures
         private int _count;
         [NonSerialized]
         private object _syncRoot;
+        [NonSerialized]
+        private IComparer<T> _comparer;
 
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SinglyLinkedListCollection{T}"/> class.
         /// </summary>
-        public SinglyLinkedListCollection() { }
+        public SinglyLinkedListCollection() 
+        {
+            _comparer = Comparer<T>.Default;
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SinglyLinkedListCollection{T}"/> class using a specified <see cref="IComparer{T}"/>.
         /// </summary>
         /// <param name="comparer">Comparer to use.</param>
-        public SinglyLinkedListCollection(IComparer<T> comparer) : base(comparer) { }
+        /// <exception cref="ArgumentNullException"><strong>comparer</strong> is <strong>null</strong>.</exception>
+        public SinglyLinkedListCollection(IComparer<T> comparer) 
+        {
+            if (comparer == null)
+            {
+                throw new ArgumentNullException("comparer");
+            }
+            _comparer = comparer;
+        }
 
         /// <summary>
         /// Adds a node to the tail of the <see cref="SinglyLinkedListCollection{T}"/>.
@@ -513,6 +526,18 @@ namespace Dsa.DataStructures
                 }
                 return _syncRoot;
             }
+        }
+
+        #endregion
+
+        #region IComparerProvider<T> Members
+
+        /// <summary>
+        /// Gets the <seealso cref=" IComparer{T}"/> being used.
+        /// </summary>
+        public IComparer<T> Comparer
+        {
+            get { return _comparer; }
         }
 
         #endregion

@@ -39,6 +39,17 @@ namespace Dsa.Test
         }
 
         /// <summary>
+        /// Check to see that the correct exception is raised when the comparer is null.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void OverloadedConstructorComparerNullTest()
+        {
+            IComparer<Coordinate> comparer = null;
+            BinarySearchTreeCollection<Coordinate> actual = new BinarySearchTreeCollection<Coordinate>(comparer);
+        }
+
+        /// <summary>
         /// Check to see that the insert asserts the correct state changes.
         /// </summary>
         [TestMethod]

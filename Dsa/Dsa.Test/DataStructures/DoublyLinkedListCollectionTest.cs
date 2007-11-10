@@ -38,6 +38,17 @@ namespace Dsa.Test
         }
 
         /// <summary>
+        /// Check to see that the correct exception is raised when using a null comparer.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void OverloadedConstructorComparerNullTest()
+        {
+            IComparer<Coordinate> comparer = null;
+            DoublyLinkedListCollection<Coordinate> actual = new DoublyLinkedListCollection<Coordinate>(comparer);
+        }
+
+        /// <summary>
         /// Check to see if CollectionAssert.AreEqual passes for twocollection containing the same values.
         /// </summary>
         [TestMethod]
