@@ -59,7 +59,7 @@ namespace Dsa.DataStructures
         /// </summary>
         /// <param name="node">Node to start searching from.</param>
         /// <param name="value">Value to insert into the Bst.</param>
-        private void insertNode(BinaryTreeNode<T> node, T value)
+        private void InsertNode(BinaryTreeNode<T> node, T value)
         {
             if (_comparer.Compare(value, node.Value) < 0)
             {
@@ -70,7 +70,7 @@ namespace Dsa.DataStructures
                 }
                 else
                 {
-                    insertNode(node.Left, value); // call the insertNode method going left in the tree.
+                    InsertNode(node.Left, value); // call the insertNode method going left in the tree.
                 }
             }
             else
@@ -82,7 +82,7 @@ namespace Dsa.DataStructures
                 }
                 else
                 {
-                    insertNode(node.Right, value); // call the insertNode method going right in the tree.
+                    InsertNode(node.Right, value); // call the insertNode method going right in the tree.
                 }
             }
         }
@@ -93,13 +93,13 @@ namespace Dsa.DataStructures
         /// <param name="root">The root node of the BinarySearchTree.</param>
         /// <param name="arrayList">A ArrayList to store the traversed node values.</param>
         /// <returns>ArrayList populated with the items from the traversal.</returns>
-        private static ArrayListCollection<T> preorderTraveral(BinaryTreeNode<T> root, ArrayListCollection<T> arrayList)
+        private static ArrayListCollection<T> PreorderTraveral(BinaryTreeNode<T> root, ArrayListCollection<T> arrayList)
         {
             if (root != null)
             {
                 arrayList.Add(root.Value); 
-                preorderTraveral(root.Left, arrayList); 
-                preorderTraveral(root.Right, arrayList); 
+                PreorderTraveral(root.Left, arrayList); 
+                PreorderTraveral(root.Right, arrayList); 
             }
             return arrayList;
         }
@@ -110,12 +110,12 @@ namespace Dsa.DataStructures
         /// <param name="root">The root node of the BinarySearchTree.</param>
         /// <param name="arrayList">ArrayList to store the traversed node values.</param>
         /// <returns>ArrayList populated with the items from the traversal.</returns>
-        private static ArrayListCollection<T> postorderTraversal(BinaryTreeNode<T> root, ArrayListCollection<T> arrayList)
+        private static ArrayListCollection<T> PostorderTraversal(BinaryTreeNode<T> root, ArrayListCollection<T> arrayList)
         {
             if (root != null)
             {
-                postorderTraversal(root.Left, arrayList);  
-                postorderTraversal(root.Right, arrayList);  
+                PostorderTraversal(root.Left, arrayList);  
+                PostorderTraversal(root.Right, arrayList);  
                 arrayList.Add(root.Value); 
             }
             return arrayList;
@@ -127,13 +127,13 @@ namespace Dsa.DataStructures
         /// <param name="root">The root node of the BinarySearchTree.</param>
         /// <param name="arrayList">ArrayList to store the traversed node values.</param>
         /// <returns>ArrayList populated with the items from the traversal.</returns>
-        private static ArrayListCollection<T> inorderTraversal(BinaryTreeNode<T> root, ArrayListCollection<T> arrayList)
+        private static ArrayListCollection<T> InorderTraversal(BinaryTreeNode<T> root, ArrayListCollection<T> arrayList)
         {
             if (root != null)
             {
-                inorderTraversal(root.Left, arrayList);
+                InorderTraversal(root.Left, arrayList);
                 arrayList.Add(root.Value);
-                inorderTraversal(root.Right, arrayList);
+                InorderTraversal(root.Right, arrayList);
             }
             return arrayList;
         }
@@ -143,7 +143,7 @@ namespace Dsa.DataStructures
         /// </summary>
         /// <param name="root">The root node of the BinarySearchTree.</param>
         /// <returns>ArrayList populated with the items from the traversal.</returns>
-        private static ArrayListCollection<T> breadthFirstTraversal(BinaryTreeNode<T> root)
+        private static ArrayListCollection<T> BreadthFirstTraversal(BinaryTreeNode<T> root)
         {
             QueueCollection<BinaryTreeNode<T>> queue = new QueueCollection<BinaryTreeNode<T>>(); // stores the nodes we have yet to visit
             ArrayListCollection<T> visitOrder = new ArrayListCollection<T>(); // stores the value of the nodes visited in bf order
@@ -176,7 +176,7 @@ namespace Dsa.DataStructures
         /// <returns>An <see cref="IEnumerator{T}" /> that can be used to iterate through the <see cref="BinarySearchTreeCollection{T}"/>.</returns>
         public IEnumerable<T> GetBreadthFirstEnumerator()
         {
-            return breadthFirstTraversal(_root);
+            return BreadthFirstTraversal(_root);
         }
 
         ///<summary>
@@ -186,7 +186,7 @@ namespace Dsa.DataStructures
         public IEnumerable<T> GetPostorderEnumerator()
         {
             ArrayListCollection<T> arrayListCollection = new ArrayListCollection<T>();
-            return postorderTraversal(_root, arrayListCollection);
+            return PostorderTraversal(_root, arrayListCollection);
         }
 
         /// <summary>
@@ -196,7 +196,7 @@ namespace Dsa.DataStructures
         public  IEnumerable<T> GetInorderEnumerator()
         {
             ArrayListCollection<T> arrayListCollection = new ArrayListCollection<T>();
-            return inorderTraversal(_root, arrayListCollection);
+            return InorderTraversal(_root, arrayListCollection);
         }
 
         /// <summary>
@@ -205,7 +205,7 @@ namespace Dsa.DataStructures
         /// <returns>Smallest value in the <see cref="BinarySearchTreeCollection{T}"/>.</returns>
         public T FindMin()
         {
-            return findMin(_root);
+            return FindMin(_root);
         }
 
         /// <summary>
@@ -213,10 +213,10 @@ namespace Dsa.DataStructures
         /// </summary>
         /// <param name="root">Root node of the bst.</param>
         /// <returns>Smallest value in the bst.</returns>
-        private T findMin(BinaryTreeNode<T> root)
+        private T FindMin(BinaryTreeNode<T> root)
         {
             if (root.Left == null) return root.Value; // if the left child of the current node is null then we have found the smallest value in the tree
-            return findMin(root.Left); // continue walking down the left side of the tree to locate smallest value
+            return FindMin(root.Left); // continue walking down the left side of the tree to locate smallest value
         }
 
         /// <summary>
@@ -225,7 +225,7 @@ namespace Dsa.DataStructures
         /// <returns>Largest value in the <see cref="BinarySearchTreeCollection{T}"/>.</returns>
         public T FindMax()
         {
-            return findMax(_root);
+            return FindMax(_root);
         }
 
         /// <summary>
@@ -233,10 +233,10 @@ namespace Dsa.DataStructures
         /// </summary>
         /// <param name="root">Root node of the bst.</param>
         /// <returns>Largest value in the bst.</returns>
-        private T findMax(BinaryTreeNode<T> root)
+        private T FindMax(BinaryTreeNode<T> root)
         {
             if (root.Right == null) return root.Value; // if the right child of the current node is null then we have found the largest value in the tree
-            return findMax(root.Right); // continue walking down the right side of the tree to locate largest value
+            return FindMax(root.Right); // continue walking down the right side of the tree to locate largest value
         }
 
         /// <summary>
@@ -281,7 +281,7 @@ namespace Dsa.DataStructures
             }
             else
             {
-                insertNode(_root, item); // call the recursive method insertNode to see where this value is to be placed in the tree.
+                InsertNode(_root, item); // call the recursive method insertNode to see where this value is to be placed in the tree.
             }
             _count++; // update count as we have added a new node to the bst
         }
@@ -302,7 +302,7 @@ namespace Dsa.DataStructures
         /// <returns>True if the item is contained within the <see cref="BinarySearchTreeCollection{T}"/>; false otherwise.</returns>
         public bool Contains(T item)
         {
-            return contains(_root, item);
+            return Contains(_root, item);
         }
 
         /// <summary>
@@ -311,7 +311,7 @@ namespace Dsa.DataStructures
         /// <param name="root">The root node of the bst.</param>
         /// <param name="item">The item to be located in the bst.</param>
         /// <returns>True if the item is contained within the bst, false otherwise.</returns>
-        private bool contains(BinaryTreeNode<T> root, T item)
+        private bool Contains(BinaryTreeNode<T> root, T item)
         {
             if (root == null) return false; // if the root is null then we have exhausted all the nodes in the tree, thus the item isn't in the bst
             if (_comparer.Compare(root.Value, item) == 0)
@@ -320,11 +320,11 @@ namespace Dsa.DataStructures
             }
             else if (_comparer.Compare(item, root.Value) < 0)
             {
-                return contains(root.Left, item); // search the left subtree of the current node for the item
+                return Contains(root.Left, item); // search the left subtree of the current node for the item
             }
             else
             {
-                return contains(root.Right, item); // search the right subtree of the current node for the item
+                return Contains(root.Right, item); // search the right subtree of the current node for the item
             }
         }
 
@@ -371,7 +371,7 @@ namespace Dsa.DataStructures
         /// <returns>True if the item was removed; false otherwise.</returns>
         public bool Remove(T item)
         {
-            return removeNode(_root, item);
+            return RemoveNode(_root, item);
         }
 
         /// <summary>
@@ -380,16 +380,16 @@ namespace Dsa.DataStructures
         /// <param name="root">The root node of the bst.</param>
         /// <param name="value">Value to remove from the bst.</param>
         /// <returns>True if the node was removed, false otherwise.</returns>
-        private bool removeNode(BinaryTreeNode<T> root, T value)
+        private bool RemoveNode(BinaryTreeNode<T> root, T value)
         {
             // check to see if we need to go either left or right in the bst
             if (_comparer.Compare(value, root.Value) < 0)
             {
-                return removeNode(root.Left, value);
+                return RemoveNode(root.Left, value);
             }
             else if (_comparer.Compare(value, root.Value) > 0)
             {
-                return removeNode(root.Right, value);
+                return RemoveNode(root.Right, value);
             }
             else // the value to delete is neither < or > than the current nodes value so we have found the node to delete
             {
@@ -425,7 +425,7 @@ namespace Dsa.DataStructures
         public IEnumerator<T> GetEnumerator()
         {
             ArrayListCollection<T> arrayListCollection = new ArrayListCollection<T>();
-            return preorderTraveral(_root, arrayListCollection).GetEnumerator();
+            return PreorderTraveral(_root, arrayListCollection).GetEnumerator();
         }
 
         #endregion

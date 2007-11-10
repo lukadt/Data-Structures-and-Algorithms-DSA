@@ -102,7 +102,7 @@ namespace Dsa.DataStructures
         /// <param name="value">The value of the node to add after the specified node.</param>
         public void AddAfter(DoublyLinkedListNode<T> node, T value)
         {
-            validateAddArgs(node);
+            ValidateAddArgs(node);
             DoublyLinkedListNode<T> n = new DoublyLinkedListNode<T>(value);
             if (node == _tail) // the node we are adding will be the new tail node
             {
@@ -128,7 +128,7 @@ namespace Dsa.DataStructures
         /// <param name="value">The value of the node to add after the specified node.</param>
         public void AddBefore(DoublyLinkedListNode<T> node, T value)
         {
-            validateAddArgs(node);
+            ValidateAddArgs(node);
             DoublyLinkedListNode<T> n = new DoublyLinkedListNode<T>(value);
             if (node == _head) // the node we are adding will be the new head node
             {
@@ -229,7 +229,7 @@ namespace Dsa.DataStructures
         /// This method is used by AddAfter, and AddBefore.
         /// </summary>
         /// <param name="node">Node to verify whether or not is null.</param>
-        private void validateAddArgs(DoublyLinkedListNode<T> node)
+        private void ValidateAddArgs(DoublyLinkedListNode<T> node)
         {
             if (IsEmpty())
             {

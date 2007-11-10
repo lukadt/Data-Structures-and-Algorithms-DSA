@@ -50,7 +50,6 @@
     <Compile Include="DataStructures\BinarySearchTreeCollection.cs" />
     <Compile Include="DataStructures\BinaryTreeNode.cs" />
     <Compile Include="DataStructures\CollectionDebugView.cs" />
-    <Compile Include="DataStructures\ComparerProvider.cs" />
     <Compile Include="DataStructures\DoublyLinkedListCollection.cs" />
     <Compile Include="DataStructures\DoublyLinkedListNode.cs" />
     <Compile Include="DataStructures\IComparerProvider.cs" />
