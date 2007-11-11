@@ -68,12 +68,11 @@ namespace Dsa.DataStructures
         {
             if (_count == _capacity)
             {
-                Array.Resize(ref _items, _capacity *= 2); // we need to double the size of the array
+                Array.Resize(ref _items, _capacity *= 2); // the array is full, we need to double it
             }
+            // skip all the items in the _items array that do not have the default value of T, this way we honour items inserted explicitly by index
             while (_comparer.Compare(_items[_currentIndex], default(T)) != 0)
             {
-                /* honour the values that have been added by explicitly stating the index to which they should to stored at 
-                 * within the _items array.  We skip all values which are not the default for that particular type. */
                 _currentIndex++;
             }
             _count++;
@@ -100,7 +99,7 @@ namespace Dsa.DataStructures
         /// </summary>
         /// <param name="index">Index of items array to access.</param>
         /// <returns>True if the index within the range of the array; otherwise false.</returns>
-        private bool isInRange(int index)
+        private bool IsInRange(int index)
         {
             return (index < 0 || index > _items.Length - 1) ? false : true;
         }
@@ -111,7 +110,7 @@ namespace Dsa.DataStructures
         /// </summary>
         /// <param name="value">Object to test for compatibility.</param>
         /// <returns>True if the object can be safely casted to type T; otherwise false.</returns>
-        private static bool isCompatibleType(object value)
+        private static bool IsCompatibleType(object value)
         {
             return (!(value is T) && value != null || typeof(T).IsValueType) ? false : true;
         }
@@ -125,7 +124,7 @@ namespace Dsa.DataStructures
         /// <returns>The index of the <see cref="IList"/> the value was added to.</returns>
         int IList.Add(object value)
         {
-            if (!isCompatibleType(value))
+            if (!IsCompatibleType(value))
             {
                 throw new ArgumentException(Resources.TypeNotCompatible);
             }
@@ -139,7 +138,7 @@ namespace Dsa.DataStructures
         /// <returns>True if the value was located in the <see cref="IList"/>; otherwise false.</returns>
         bool IList.Contains(object value)
         {
-            if (!isCompatibleType(value))
+            if (!IsCompatibleType(value))
             {
                 throw new ArgumentException(Resources.TypeNotCompatible);
             }
@@ -153,7 +152,7 @@ namespace Dsa.DataStructures
         /// <returns>The zero-based index of the first occurrence of item within the entire <see cref="IList"/>, if found; otherwise, –1.</returns>
         int IList.IndexOf(object value)
         {
-            if (!isCompatibleType(value))
+            if (!IsCompatibleType(value))
             {
                 throw new ArgumentException(Resources.TypeNotCompatible);
             }
@@ -167,7 +166,7 @@ namespace Dsa.DataStructures
         /// <param name="value">Value to insert into the <see cref="IList"/>.</param>
         void IList.Insert(int index, object value)
         {
-            if (!isCompatibleType(value))
+            if (!IsCompatibleType(value))
             {
                 throw new ArgumentException(Resources.TypeNotCompatible);
             }
@@ -188,7 +187,7 @@ namespace Dsa.DataStructures
         /// <param name="value">Value to remove.</param>
         void IList.Remove(object value)
         {
-            if (!isCompatibleType(value))
+            if (!IsCompatibleType(value))
             {
                 throw new ArgumentException(Resources.TypeNotCompatible);
             }
@@ -217,7 +216,7 @@ namespace Dsa.DataStructures
             }
             set
             {
-                if (!isCompatibleType(value))
+                if (!IsCompatibleType(value))
                 {
                     throw new ArgumentException(Resources.TypeNotCompatible);
                 }
@@ -252,10 +251,11 @@ namespace Dsa.DataStructures
         /// </summary>
         public void Clear()
         {
+            // reset all object state to their default values
             _count = 0;
             _currentIndex = 0;
-            _capacity = 4; // reset capacity to default size
-            _items = new T[_capacity]; // let the GC clean the old items array up, we simply assign items to a new array with the deafult capacity size
+            _capacity = 4; 
+            _items = new T[_capacity]; 
         }
 
         /// <summary>
@@ -293,7 +293,10 @@ namespace Dsa.DataStructures
         /// <returns>True if the item was found and removed; otherwise false.</returns>
         public bool Remove(T item)
         {
-            if (IndexOf(item) < 0) return false;
+            if (IndexOf(item) < 0)
+            {
+                return false;
+            }
             RemoveAt(IndexOf(item));
             return true;
         }
@@ -396,8 +399,9 @@ namespace Dsa.DataStructures
         /// <see cref="ArrayListCollection{T}"/>'s array.</exception>
         public void Insert(int index, T item)
         {
-            if (isInRange(index))
+            if (IsInRange(index))
             {
+                // if the index is less than _currentIndex we are overwriting a previous value in the  _items array so there is no need to increment count
                 if (index < _currentIndex)
                 {
                     _items[index] = item;
@@ -422,14 +426,17 @@ namespace Dsa.DataStructures
         /// <see cref="ArrayListCollection{T}"/>'s array.</exception>
         public void RemoveAt(int index)
         {
-            if (isInRange(index))
+            if (IsInRange(index))
             {
                 _count--;
                 _currentIndex--;
                 if (index < _count)
                 {
+                    // copy the items after the item to be deleted and shift them one place to the left
                     Array.Copy(_items, index + 1, _items, index, 1);
                 }
+                /* set the last item in the _items array to the default for T - remember all values have been shifted one position to the left
+                 * so this value is repeated twice, once here and also at _count-1 */
                 _items[_count] = default(T);
             }
             else
@@ -454,6 +461,7 @@ namespace Dsa.DataStructures
             }
             set
             {
+                // if we are inserting an item at an index that is within the capacity of _items but greater than _count then we need to increment _count
                 if (!(index < _count))
                 {
                     _count++;

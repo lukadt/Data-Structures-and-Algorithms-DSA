@@ -67,6 +67,7 @@ namespace Dsa.DataStructures
             }
             else
             {
+                // there is at least one node in the linked list so tack this node onto the _tail node
                 _tail.Next = n;
                 _tail = n;
             }
@@ -82,12 +83,13 @@ namespace Dsa.DataStructures
             SinglyLinkedListNode<T> n = new SinglyLinkedListNode<T>(item);
             if (IsEmpty())
             {
-                // this is the first node in the SinglyLinkedListCollection, head and tail point to the same node
+                // this is the first node in the linked list, head and tail point to the same node
                 _head = n;
                 _tail = n;
             }
             else
             {
+                // there is at least one node in the linked list so adjust the next pointer of this node to head then make this node the head node
                 n.Next = _head;
                 _head = n;
             }
@@ -107,33 +109,30 @@ namespace Dsa.DataStructures
             {
                 throw new InvalidOperationException(Resources.SinglyLinkedListEmpty); // nothing to add after
             }
-            if (node == null)
+            else if (node == null)
             {
                 throw new ArgumentNullException("node");
             }
+            SinglyLinkedListNode<T> n = new SinglyLinkedListNode<T>(item);
+            // check to see if node is the only node in the linked list
+            if (node == _head && node == _tail)
+            {
+                _head.Next = n;
+                _tail = n;
+            }
+            else if (node == _tail)
+            {
+                // we need to tack n after the tail node and then make n the new tail
+                _tail.Next = n;
+                _tail = n;
+            }
             else
             {
-                SinglyLinkedListNode<T> n = new SinglyLinkedListNode<T>(item);
-                if (node == _head && node == _tail)
-                {
-                    // node passed in is the only node in the SinglyLinkedListCollection
-                    _head.Next = n;
-                    _tail = n;
-                }
-                else if (node == _tail)
-                {
-                    // node passed in is the tail node
-                    _tail.Next = n;
-                    _tail = n;
-                }
-                else
-                {
-                    // we are adding a node somewhere in the middle of the sll
-                    n.Next = node.Next;
-                    node.Next = n;
-                }
-                _count++;
+                // we are adding a node somewhere in the middle of the linked list
+                n.Next = node.Next;
+                node.Next = n;
             }
+            _count++;
         }
 
         /// <summary>
@@ -153,31 +152,29 @@ namespace Dsa.DataStructures
             {
                 throw new ArgumentNullException("node");
             }
+            SinglyLinkedListNode<T> n = new SinglyLinkedListNode<T>(item);
+            if (node == _head)
+            {
+                // we are adding a node before the head node so we need to make the next pointer of n point to head then make n the head node
+                n.Next = _head;
+                _head = n;
+            }
             else
             {
-                SinglyLinkedListNode<T> n = new SinglyLinkedListNode<T>(item);
-                if (node == _head)
+                SinglyLinkedListNode<T> curr = _head;
+                while (curr != null)
                 {
-                    // we are adding a node before the head node
-                    n.Next = _head;
-                    _head = n;
-                }
-                else
-                {
-                    SinglyLinkedListNode<T> curr = _head;
-                    while (curr != null)
+                    // check to see if we have found the node to add before
+                    if (curr.Next == node) 
                     {
-                        if (curr.Next == node) // we have found the node to add before
-                        {
-                            n.Next = node;
-                            curr.Next = n;
-                            break;
-                        }
-                        curr = curr.Next;
+                        n.Next = node;
+                        curr.Next = n;
+                        break;
                     }
+                    curr = curr.Next;
                 }
-                _count++;
             }
+            _count++;
         }
 
         /// <summary>
@@ -200,17 +197,14 @@ namespace Dsa.DataStructures
             {
                 throw new InvalidOperationException(Resources.SinglyLinkedListEmpty); // nothing to copy to array
             }
-            else
+            int curr = 0; // index pointer used to insert items into correct array location
+            T[] arrayResult = new T[_count];
+            foreach (T value in this)
             {
-                int curr = 0; // index of array at which current nodes value is stored
-                T[] arrayResult = new T[_count];
-                foreach (T value in this)
-                {
-                    arrayResult[curr] = value; // copy items to array
-                    curr++;
-                }
-                return arrayResult;
+                arrayResult[curr] = value; // add item to array
+                curr++;
             }
+            return arrayResult;
         }
 
         /// <summary>
@@ -224,17 +218,14 @@ namespace Dsa.DataStructures
             {
                 throw new InvalidOperationException(Resources.SinglyLinkedListEmpty); // nothing to add to array
             }
-            else
+            int curr = 0;
+            T[] arrayResult = new T[_count];
+            foreach (T item in GetReverseEnumerator())
             {
-                int curr = 0;
-                T[] arrayResult = new T[_count];
-                foreach (T item in GetReverseEnumerator())
-                {
-                    arrayResult[curr] = item; // add item to array
-                    curr++;
-                }
-                return arrayResult;
+                arrayResult[curr] = item; // add item to array
+                curr++;
             }
+            return arrayResult;
         }
 
         /// <summary>
@@ -247,31 +238,29 @@ namespace Dsa.DataStructures
             {
                 throw new InvalidOperationException(Resources.SinglyLinkedListEmpty); // nothing to remove
             }
+            // check to see if there is only one node in the linked list
+            if (_head.Next == null)
+            {
+                _head = null;
+                _tail = null;
+            }
             else
             {
-                if (_head.Next == null)
+                SinglyLinkedListNode<T> n = _head;
+                // traverse the linked list util we find the tail node
+                while (n != null)
                 {
-                    // only one node in the SinglyLinkedListCollection
-                    _head = null;
-                    _tail = null;
-                }
-                else
-                {
-                    // traverse SinglyLinkedListCollection until we find the tail
-                    SinglyLinkedListNode<T> n = _head;
-                    while (n != null)
+                    // check to see if the next node of n is the tail node
+                    if (n.Next == _tail) 
                     {
-                        if (n.Next == _tail) // we have found the tail node
-                        {
-                            _tail = n;
-                            _tail.Next = null;
-                            break;
-                        }
-                        n = n.Next;
+                        _tail = n;
+                        _tail.Next = null;
+                        break;
                     }
+                    n = n.Next;
                 }
-                _count--;
             }
+            _count--;
         }
 
         /// <summary>
@@ -284,19 +273,17 @@ namespace Dsa.DataStructures
             {
                 throw new InvalidOperationException(Resources.SinglyLinkedListEmpty); // nothing to remove
             }
+            // check to see if there is only one node in the linked list
+            if (_head.Next == null) 
+            {
+                _head = null;
+                _tail = null;
+            }
             else
             {
-                if (_head.Next == null) // only one node in the sll
-                {
-                    _head = null;
-                    _tail = null;
-                }
-                else
-                {
-                    _head = _head.Next; // the head node is the prevoius head nodes next link
-                }
-                _count--;
+                _head = _head.Next; // the head node is the prevoius head nodes next node
             }
+            _count--;
         }
 
         /// <summary>
@@ -376,7 +363,11 @@ namespace Dsa.DataStructures
         {
             foreach (T value in this)
             {
-                if (Comparer.Compare(value, item) == 0) return true; // we have found the item
+                // check to see if we have found the item we are looking for
+                if (_comparer.Compare(value, item) == 0)
+                {
+                    return true;
+                }
             }
             return false;
         }
@@ -414,21 +405,26 @@ namespace Dsa.DataStructures
                 throw new InvalidOperationException(Resources.SinglyLinkedListEmpty); // nothing to remove
             }
             SinglyLinkedListNode<T> n = _head;
+            // check to see if the node to be removed is the head node
             if (Comparer.Compare(n.Value, item) == 0)
             {
-                // node to be removed is the head node
+                // check to see if n is also the tail - if it is then we only have one node in the linked list
                 if (n == _tail)
                 {
-                    _tail = null; // n is head and tail, make tail null
+                    _tail = null; 
                 }
-                // if n was the only node in the list then head is now null as well as tail, if not head has been updated to its next node
+                // if n was the only node in the linked list then head is now null as well as tail, if not head has been updated to its next node
                 _head = _head.Next;
                 _count--;
                 return true;
             }
+            // loop through the linked list looking for the first node that equals item
             while (n != null)
             {
-                if (!(Comparer.Compare(n.Value, item) == 0) && n.Next == null) break; // we couldn't find the value to remove in the sll
+                if (!(Comparer.Compare(n.Value, item) == 0) && n.Next == null)
+                {
+                    break; // we couldn't find the value to remove in the sll
+                }
                 else if (Comparer.Compare(n.Next.Value, item) == 0) // we have found the node to remove
                 {
                     if (n.Next == _tail)
@@ -439,6 +435,7 @@ namespace Dsa.DataStructures
                         _count--;
                         return true;
                     }
+                    // the node to remove is somewhere in the middle of the linked list
                     n.Next = n.Next.Next;
                     _count--;
                     return true;

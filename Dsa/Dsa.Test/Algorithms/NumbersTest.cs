@@ -53,12 +53,12 @@ namespace Dsa.Test
         [TestMethod]
         public void GcdTest()
         {
-            Assert.AreEqual(1, Numbers.Gcd(9, 4));
-            Assert.AreEqual(3, Numbers.Gcd(3, 9));
-            Assert.AreEqual(5, Numbers.Gcd(10, 5));
-            Assert.AreEqual(1, Numbers.Gcd(5, 12));
-            Assert.AreEqual(5, Numbers.Gcd(-10, 5));
-            Assert.AreEqual(5, Numbers.Gcd(5, -10));
+            Assert.AreEqual(1, Numbers.GreatestCommonDenominator(9, 4));
+            Assert.AreEqual(3, Numbers.GreatestCommonDenominator(3, 9));
+            Assert.AreEqual(5, Numbers.GreatestCommonDenominator(10, 5));
+            Assert.AreEqual(1, Numbers.GreatestCommonDenominator(5, 12));
+            Assert.AreEqual(5, Numbers.GreatestCommonDenominator(-10, 5));
+            Assert.AreEqual(5, Numbers.GreatestCommonDenominator(5, -10));
         }
     }
 

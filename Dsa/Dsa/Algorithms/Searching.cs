@@ -16,9 +16,21 @@
         public static int SequentialSearch(this int[] array, int item)
         {
             int i = 0;
-            while (i < array.Length && array[i] != item) i++; // skip the item if it is not what we are looking for
-            if (i < array.Length && array[i] == item) return i; // item found return index
-            return -1; // item not found
+            // skip the item if it is not what we are looking for
+            while (i < array.Length && array[i] != item)
+            {
+                i++;
+            }
+            /* if the item at index i is the item we are looking for then return i (the index at which it was found), else 
+            return -1 we didn't find it in the array. */
+            if (i < array.Length && array[i] == item)
+            {
+                return i;
+            }
+            else
+            {
+                return -1; 
+            }
         }
 
         /// <summary>
@@ -31,18 +43,27 @@
         public static bool ProbabilitySearch(this int[] array, int item)
         {
             int i = 0;
-            while (i < array.Length && array[i] != item) i++; // skip the current item if it is not what we are looking for
-            if (i < array.Length && array[i] == item) // we have found the item
+            // skip the current item if it is not what we are looking for
+            while (i < array.Length && array[i] != item)
             {
-                if (i > 0) // we can increase the items priority as the item is not the first element in the array
+                i++;
+            }
+            // check to see if the item at index i is the one we are looking for
+            if (i < array.Length && array[i] == item)
+            {
+                // we can increase the items priority as the item is not the first element in the array
+                if (i > 0)
                 {
                     int temp = array[i - 1];
                     array[i - 1] = array[i]; // increase the items priority
                     array[i] = temp;
                 }
-                return true; 
+                return true;
             }
-            return false; // item not found
+            else
+            {
+                return false; // item not found
+            }
         }
 
     }

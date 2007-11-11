@@ -3,7 +3,7 @@
   <Class Name="Dsa.DataStructures.ArrayListCollection&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="6" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AkIAEEAACIAEABgBGAAABDQSYBUIAAAECACACABQIQI=</HashCode>
+      <HashCode>AkIAEEAACIAEABABGAAABDQSYBUIAAAECACAAABQKQo=</HashCode>
       <FileName>DataStructures\ArrayListCollection.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
@@ -18,7 +18,7 @@
   <Class Name="Dsa.DataStructures.BinarySearchTreeCollection&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="7.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABIQEAAAAQCUALAAAAAABBQAAAAIQAAsEEGAABBQIQA=</HashCode>
+      <HashCode>AAIQMAAAAACUADEAAAAABBQCAAAIAAAMAEGBQBBRIQA=</HashCode>
       <FileName>DataStructures\BinarySearchTreeCollection.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
@@ -33,7 +33,7 @@
   <Class Name="Dsa.DataStructures.DoublyLinkedListCollection&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="11.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AADIEBAACAAUAJAAAAAAJBQAYAAYAAAEAACCAABRIQI=</HashCode>
+      <HashCode>AADIEBAACAAUAJAAAAAAJBQAIAAYAEAEAACCAABRIQI=</HashCode>
       <FileName>DataStructures\DoublyLinkedListCollection.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
@@ -111,5 +111,12 @@
       <FileName>DataStructures\IComparerProvider.cs</FileName>
     </TypeIdentifier>
   </Interface>
+  <Enum Name="Dsa.Algorithms.SortType" Collapsed="true">
+    <Position X="6" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Algorithms\SortType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

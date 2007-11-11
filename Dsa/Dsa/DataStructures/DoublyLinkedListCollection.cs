@@ -66,9 +66,9 @@ namespace Dsa.DataStructures
             }
             else
             {
-                _tail.Next = n; // adjust the tails next pointer to this node
-                n.Prev = _tail; // set this nodes prev pointer to the tail node
-                _tail = n; // make n the new tail node
+                _tail.Next = n; 
+                n.Prev = _tail; 
+                _tail = n; 
             }
             _count++;
         }
@@ -88,9 +88,9 @@ namespace Dsa.DataStructures
             }
             else
             {
-                _head.Prev = n; // add the node before the current head node by adjusting the current head nodes prev pointer to point to n
-                n.Next = _head; // make the next pointer of n point to the head node
-                _head = n; // n is now the new head node of the dll
+                _head.Prev = n; 
+                n.Next = _head; 
+                _head = n; 
             }
             _count++;
         }
@@ -130,7 +130,8 @@ namespace Dsa.DataStructures
         {
             ValidateAddArgs(node);
             DoublyLinkedListNode<T> n = new DoublyLinkedListNode<T>(value);
-            if (node == _head) // the node we are adding will be the new head node
+            // check to see if we are adding before the head node
+            if (node == _head) 
             {
                 n.Next = _head;
                 _head.Prev = n;
@@ -155,9 +156,10 @@ namespace Dsa.DataStructures
         {
             if (IsEmpty())
             {
-                throw new InvalidOperationException(Resources.DoublyLinkedListEmpty); // nothing to remove
+                throw new InvalidOperationException(Resources.DoublyLinkedListEmpty); 
             }
-            if (_tail == _head) // we are removing the only item in the dll
+            // check to see if there is only 1 item in the linked list
+            if (_tail == _head) 
             {
                 _head = null;
                 _tail = null;
@@ -297,7 +299,7 @@ namespace Dsa.DataStructures
         {
             foreach (T value in this)
             {
-                if (Comparer.Compare(value, item) == 0) return true; // item found
+                if (_comparer.Compare(value, item) == 0) return true; // item found
             }
             return false;
         }
@@ -341,7 +343,7 @@ namespace Dsa.DataStructures
             {
                 throw new InvalidOperationException(Resources.DoublyLinkedListEmpty); // no items to remove
             }
-            if (_head.Next == null && Comparer.Compare(_head.Value, item) == 0)
+            if (_head.Next == null && _comparer.Compare(_head.Value, item) == 0)
             {
                 // we are removing the only node in the dll
                 _head = null;
@@ -351,14 +353,14 @@ namespace Dsa.DataStructures
             }
             else if (_head.Next == _tail) // there are only two nodes in the dll
             {
-                if (Comparer.Compare(_head.Value, item) == 0) // the head node is to be removed
+                if (_comparer.Compare(_head.Value, item) == 0) // the head node is to be removed
                 {
                     _head = _head.Next; // the new head node is the old head nodes next node
                     _head.Prev = null;
                     _count--;
                     return true;
                 }
-                else if (Comparer.Compare(_tail.Value, item) == 0) // the tail node is to be removed
+                else if (_comparer.Compare(_tail.Value, item) == 0) // the tail node is to be removed
                 {
                     _tail = _head; // as there are only two nodes in the dll make the head node the tail also
                     _head.Next = null;
@@ -371,7 +373,7 @@ namespace Dsa.DataStructures
                 DoublyLinkedListNode<T> n = _head;
                 while (n != null)
                 {
-                    if (Comparer.Compare(n.Value, item) == 0) // we have found a node with the value specified to remove
+                    if (_comparer.Compare(n.Value, item) == 0) // we have found a node with the value specified to remove
                     {
                         if (n == _head) // the node to remove is the head node
                         {

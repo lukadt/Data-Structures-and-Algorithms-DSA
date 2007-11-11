@@ -55,7 +55,7 @@ namespace Dsa.DataStructures
         /// <returns>Item at the top of the <see cref="StackCollection{T}"/>.</returns>
         public T Pop()
         {
-            T peek = _stack.Tail.Value;
+            T peek = _stack.Tail.Value; // store the value of the top items value
             _stack.RemoveLast();
             return peek;
         }

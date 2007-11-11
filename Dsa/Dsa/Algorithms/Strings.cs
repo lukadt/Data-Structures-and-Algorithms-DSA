@@ -23,8 +23,14 @@ namespace Dsa.Algorithms
             {
                 throw new ArgumentNullException("value");
             }
-            if (value.Length < 2) return value; // array only has a size of 1 so just return the original array
-            char[] resultingString = new char[value.Length]; // create a buffer array to store reversed chars in
+            // if the string only has a length of 1 we can just return the original string
+            if (value.Length < 2)
+            {
+                return value; 
+            }
+            // create a buffer array to store reversed chars in
+            char[] resultingString = new char[value.Length]; 
+            // loop through the string placing each char in its new location within the resultingString buffer
             for (int i = value.Length - 1, j = 0; i >= 0; i--, j++)
             {
                 resultingString[j] = value[i]; // populate buffer array
@@ -57,16 +63,29 @@ namespace Dsa.Algorithms
             {
                 throw new ArgumentNullException("match");
             }
+            // loop through each character in the word string
             for (int i = 0; i < word.Length; i++)
             {
-                while (char.IsWhiteSpace(word[i])) i++; // skip the whitespace in the word string
+                // skip any whitespace in the word string
+                while (char.IsWhiteSpace(word[i]))
+                {
+                    i++;
+                }
                 for (int j = 0; j < match.Length; j++)
                 {
-                    while (char.IsWhiteSpace(match[j])) j++; // skip whitespace in teh match string
-                    if (match[j] == word[i]) return j; // we have a match, return the index of the match string
+                    // skip any whitespace in the match string
+                    while (char.IsWhiteSpace(match[j]))
+                    {
+                        j++;
+                    }
+                    // check to see if we have a match, if we do return the index of the matching char in the match string
+                    if (match[j] == word[i])
+                    {
+                        return j;
+                    }
                 }
             }
-            return -1;
+            return -1; // no match
         }
 
         /// <summary>
@@ -84,7 +103,9 @@ namespace Dsa.Algorithms
             {
                 throw new ArgumentNullException("word");
             }
-            word = word.Strip().ToUpper(CultureInfo.InvariantCulture); // palindromes are case insensitive
+            // palindromes are case insensitive so convert all chars in word to lowercase
+            word = word.Strip().ToUpper(CultureInfo.InvariantCulture); 
+            // set beginning and end index pointers
             int begin = 0;
             int end = word.Length - 1;
             // march in from either end of the string checking for equality and making sure that the begin pointer has a value less than the end pointer
@@ -93,6 +114,7 @@ namespace Dsa.Algorithms
                 begin++;
                 end--;
             }
+            // if the two chars we are pointing two are equal we have a palindrome
             return word[begin] == word[end];
         }
 
@@ -108,9 +130,11 @@ namespace Dsa.Algorithms
             {
                 throw new ArgumentNullException("value");
             }
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder(); // will hold the stripped string
             for (int i = 0; i < value.Length; i++)
             {
+                /* check the char at index i of value to see that it is not whitespace, punctuation or a symbol - if all 3 properties are
+                satisfied then we can add the char at the current index to sb. */
                 if (!char.IsWhiteSpace(value[i]) && !char.IsPunctuation(value[i]) && !char.IsSymbol(value[i]))
                 {
                     sb.Append(value[i]);
@@ -131,25 +155,43 @@ namespace Dsa.Algorithms
             {
                 throw new ArgumentNullException("value");
             }
-            bool inWord = true; // flag used to monitor whether we are currently in a word
-            int count = 0; // keeps track of the number of words in the string
+            // flag used to monitor whether we are currently in a word
+            bool inWord = true; 
+            // keep track of the number of words encountered within value
+            int count = 0; 
             int index = 0;
-            while (char.IsWhiteSpace(value[index]) && index < value.Length - 1) index++; // skip all of the initial whitespace in the string
-            if (index == value.Length - 1 && char.IsWhiteSpace(value[index])) return 0; // the string was pure whitepace
+            // skip any initial whitespace in value
+            while (char.IsWhiteSpace(value[index]) && index < value.Length - 1)
+            {
+                index++;
+            }
+            // check to see if value was only whitespace, if it was then there are 0 words
+            if (index == value.Length - 1 && char.IsWhiteSpace(value[index]))
+            {
+                return 0;
+            }
             for (; index < value.Length; index++)
             {
                 if (char.IsWhiteSpace(value[index]))
                 {
-                    while (char.IsWhiteSpace(value[index]) && index < value.Length - 1) index++; // skip all consecutive whitespace
+                    // skip all consecutive whitespace
+                    while (char.IsWhiteSpace(value[index]) && index < value.Length - 1)
+                    {
+                        index++;
+                    }
                     inWord = false; // as we are hitting whitespace we are not in a word
-                    count++; // I assume that words are delimitd by whitespace, thus count should be incremented.
+                    count++; // I assume that words are delimitd by whitespace, thus count should be incremented
                 }
                 else
                 {
-                    inWord = true;
+                    inWord = true; 
                 }
             }
-            if (inWord) count++; // the last word may of not been followed by whitespace, in that case increment count.
+            // the last word may of not been followed by whitespace, in that case increment count
+            if (inWord)
+            {
+                count++; 
+            }
             return count;
         }
 
