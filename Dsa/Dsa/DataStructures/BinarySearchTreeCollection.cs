@@ -88,6 +88,46 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
+        /// Finds a node in the <see cref="BinarySearchTreeCollection{T}"/> with the specified value.
+        /// </summary>
+        /// <param name="value">Value to find.</param>
+        /// <returns>A <see cref="BinaryTreeNode{T}"/> if a node was found with the value provided; otherwise null.</returns>
+        public BinaryTreeNode<T> FindNode(T value)
+        {
+            return FindNode(value, _root);
+        }
+
+        /// <summary>
+        /// Finds a node in the <see cref="BinarySearchTreeCollection{T}"/> with the specified value.
+        /// </summary>
+        /// <param name="value">Value to find.</param>
+        /// <param name="root">Node to start search from.</param>
+        /// <returns>A <see cref="BinaryTreeNode{T}"/> if a node was found with the value provided; otherwise null.</returns>
+        private BinaryTreeNode<T> FindNode(T value, BinaryTreeNode<T> root)
+        {
+            if (root == null)
+            {
+                return null; // there is no node in the bst with the value specified
+            }
+            /* check to see which way in the bst to go - left if value is less than the value of root, or right
+            * if value is greater than the value of root.*/
+            if (_comparer.Compare(value, root.Value) < 0)
+            {
+                return FindNode(value, root.Left);
+            }
+            else if (_comparer.Compare(value, root.Value) > 0)
+            {
+                return FindNode(value, root.Right);
+            }
+            else
+            {
+                /* the value is neither greater than or less than the value of root - thus we have found the 
+                 * node we are looking for. */
+                return root; 
+            }
+        }
+
+        /// <summary>
         /// Traverses the tree in preorder, i.e. returning the values of the nodes passed on the left.
         /// </summary>
         /// <param name="root">The root node of the BinarySearchTree.</param>
@@ -313,7 +353,10 @@ namespace Dsa.DataStructures
         /// <returns>True if the item is contained within the bst, false otherwise.</returns>
         private bool Contains(BinaryTreeNode<T> root, T item)
         {
-            if (root == null) return false; // if the root is null then we have exhausted all the nodes in the tree, thus the item isn't in the bst
+            if (root == null)
+            {
+                return false; // if the root is null then we have exhausted all the nodes in the tree, thus the item isn't in the bst
+            }
             if (_comparer.Compare(root.Value, item) == 0)
             {
                 return true; // we have found the item

@@ -400,5 +400,54 @@ namespace Dsa.Test
             Assert.IsTrue(bst.Remove(44));
         }
 
+        /// <summary>
+        /// Check to see if a non-null reference is returned for a node that is in the 
+        /// bst with the specified value that is located in the left subtree.
+        /// </summary>
+        [TestMethod]
+        public void FindNodeValidLeftChildTest()
+        {
+            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+
+            bst.Add(10);
+            bst.Add(5);
+            bst.Add(14);
+
+            Assert.IsNotNull(bst.FindNode(5));
+            Assert.AreEqual(5, bst.FindNode(5).Value);
+        }
+
+        /// <summary>
+        /// Check to see if a non-null reference is returned for a node that is in the 
+        /// bst with the specified value that is located in the right subtree.
+        /// </summary>
+        [TestMethod]
+        public void FindNodeValidRightChildTest()
+        {
+            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+
+            bst.Add(10);
+            bst.Add(5);
+            bst.Add(14);
+
+            Assert.IsNotNull(bst.FindNode(14));
+            Assert.AreEqual(14, bst.FindNode(14).Value);
+        }
+
+        /// <summary>
+        /// Check to see that FindNode returns null when a value that isn't in the bst is specified.
+        /// </summary>
+        [TestMethod]
+        public void FindNodeNotInBstTest()
+        {
+            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+
+            bst.Add(10);
+            bst.Add(5);
+            bst.Add(15);
+
+            Assert.IsNull(bst.FindNode(34));
+        }
+
     }
 }

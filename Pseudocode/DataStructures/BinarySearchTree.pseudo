@@ -172,3 +172,28 @@ algorithm Delete (root <node>, value <integer>)
 		end if
 	end if
 end Delete
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+/* find a reference to a node with a given value */
+
+algorithm FindNode(value <integer>, root <node>)
+	Pre:		value is the value we are looking for a node to contain
+				root is the root node of the bst
+	Post:		the node with the specified value is either found or not
+	Returns:	a reference to a node if a node with the specified value was found, otherwise null
+	if root = null
+		return null // there is no node with that value
+	end if
+	if value < root.Value
+		return FindNode(value, root.Left) // go left in the tree as the value specified is less than the current nodes value
+	else if value > root.Value
+		return FindNode(value, root.Right) // go right in the tree as the value specified is greater than the current nodes value
+	else
+		return root // we have found the node with the specified value
+	end if
+end FindNode
+
+
+
+
