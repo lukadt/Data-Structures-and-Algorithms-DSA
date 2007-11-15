@@ -128,6 +128,72 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
+        /// Finds the parent node of a node with the specified value.
+        /// </summary>
+        /// <param name="value">Value of node to find parent of.</param>
+        /// <returns><see cref="BinaryTreeNode{T}"/> if the parent was found, otherwise null.</returns>
+        public BinaryTreeNode<T> FindParent(T value)
+        {
+            /* check to see if there are any items in the bst, if not then you cannot search the bst for a parent
+             * node of a specified value. */
+            if (_root == null)
+            {
+                throw new InvalidOperationException(Resources.BinarySearchTreeEmpty);
+            }
+            /* check to see if the value is the same as that of the root node, if it is then the root 
+             * has no parent so return null. */
+            if (_comparer.Compare(value, _root.Value) == 0)
+            {
+                return null;
+            }
+            return FindParent(value, _root);
+        }
+
+        /// <summary>
+        /// Finds the parent of a node with the specified value, starting the search from a specified node in the bst.
+        /// </summary>
+        /// <param name="value">Value of node to find parent of.</param>
+        /// <param name="root">Node to start the search at.</param>
+        /// <returns><see cref="BinaryTreeNode{T}"/> if the parent was found, otherwise null.</returns>
+        private BinaryTreeNode<T> FindParent(T value, BinaryTreeNode<T> root)
+        {
+            if (_comparer.Compare(value, root.Value) < 0)
+            {
+                // check to see if the left child of root is null, if it is then the value is not in the bst
+                if (root.Left == null)
+                {
+                    return null;
+                }
+                else if (_comparer.Compare(value, root.Left.Value) == 0)
+                {
+                    // root is the parent of the node with the value searching for
+                    return root;
+                }
+                else
+                {
+                    return FindParent(value, root.Left); // search the left subtree of root for the node with the spoecified value
+                }
+            }
+            else
+            {
+                // check to see if the right child of root is null, if it is then the value is not in the bst
+                if (root.Right == null)
+                {
+                    return null; 
+                }
+                else if (_comparer.Compare(value, root.Right.Value) == 0)
+                {
+                    // root is the parent of the node with the value searching for
+                    return root;
+                }
+                else
+                {
+                    return FindParent(value, root.Right); // search the right subtree of root for the node with the spoecified value
+                }
+            }
+        }
+
+        /// <summary>
         /// Traverses the tree in preorder, i.e. returning the values of the nodes passed on the left.
         /// </summary>
         /// <param name="root">The root node of the BinarySearchTree.</param>
@@ -414,45 +480,7 @@ namespace Dsa.DataStructures
         /// <returns>True if the item was removed; false otherwise.</returns>
         public bool Remove(T item)
         {
-            return RemoveNode(_root, item);
-        }
-
-        /// <summary>
-        /// Recursive method that removes a node with the specified value from the bst.
-        /// </summary>
-        /// <param name="root">The root node of the bst.</param>
-        /// <param name="value">Value to remove from the bst.</param>
-        /// <returns>True if the node was removed, false otherwise.</returns>
-        private bool RemoveNode(BinaryTreeNode<T> root, T value)
-        {
-            // check to see if we need to go either left or right in the bst
-            if (_comparer.Compare(value, root.Value) < 0)
-            {
-                return RemoveNode(root.Left, value);
-            }
-            else if (_comparer.Compare(value, root.Value) > 0)
-            {
-                return RemoveNode(root.Right, value);
-            }
-            else // the value to delete is neither < or > than the current nodes value so we have found the node to delete
-            {
-                // test for leaf node
-                if (root.Left == null) 
-                {
-                    root = root.Right; 
-                    return true;
-                }
-                else if (root.Right == null)
-                {
-                    root = root.Left;
-                    return true;
-                }
-                else
-                {
-                    // the node to delete is not a leaf
-                    return false;
-                }
-            }
+            return false;
         }
 
         #endregion

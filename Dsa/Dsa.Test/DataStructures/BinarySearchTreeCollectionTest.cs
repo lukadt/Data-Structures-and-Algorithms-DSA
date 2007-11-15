@@ -386,21 +386,6 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Check to see that deleting a right leaf results in the correct state of the bst.
-        /// </summary>
-        [TestMethod]
-        public void DeleteRightLeafTest()
-        {
-            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
-
-            bst.Add(23);
-            bst.Add(18);
-            bst.Add(44);
-
-            Assert.IsTrue(bst.Remove(44));
-        }
-
-        /// <summary>
         /// Check to see if a non-null reference is returned for a node that is in the 
         /// bst with the specified value that is located in the left subtree.
         /// </summary>
@@ -447,6 +432,113 @@ namespace Dsa.Test
             bst.Add(15);
 
             Assert.IsNull(bst.FindNode(34));
+        }
+
+        /// <summary>
+        /// Check to see that the correct node is returned when finding the parent of a node with
+        /// the specified value located in the left subtree.
+        /// </summary>
+        [TestMethod]
+        public void FindParentLeftSubTreeTest()
+        {
+            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>() 
+            {
+                10,
+                9,
+                23,
+                17,
+                4
+            };
+
+            Assert.AreEqual(10, bst.FindParent(9).Value);
+            Assert.AreEqual(9, bst.FindParent(4).Value);
+        }
+
+        /// <summary>
+        /// Check to see that the correct node is returned when finding the parent of a node with
+        /// the specified value located in the right subtree.
+        /// </summary>
+        [TestMethod]
+        public void FindParentRightSubTreeTest()
+        {
+            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>() 
+            { 
+                10, 
+                9, 
+                23, 
+                17,
+                4
+            };
+
+            Assert.AreEqual(10, bst.FindParent(23).Value);
+            Assert.AreEqual(23, bst.FindParent(17).Value);
+        }
+
+        /// <summary>
+        /// Check to see that null is returned when looking for a value that should be located in the
+        /// right subtree.
+        /// </summary>
+        [TestMethod]
+        public void FindParentRightSubTreeNodeNotPresentTest()
+        {
+            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>()
+            {
+                10,
+                9,
+                23,
+                17
+            };
+
+            Assert.IsNull(bst.FindParent(32));
+        }
+
+        /// <summary>
+        /// Check to see that null is returned when looking for a value that should be located in the
+        /// left subtree.
+        /// </summary>
+        [TestMethod]
+        public void FindParentLeftSubTreeNodeNotPresentTest()
+        {
+            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>()
+            {
+                10,
+                9,
+                23,
+                17
+            };
+
+            Assert.IsNull(bst.FindParent(4));
+        }
+
+        /// <summary>
+        /// Check to see that calling FindParent using the value of the root node returns null as the
+        /// root node has no parent node.
+        /// </summary>
+        [TestMethod]
+        public void FindParentRootNodeTest()
+        {
+            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>()
+            {
+                10,
+                10,
+                23,
+                9
+            };
+
+            Assert.IsNull(bst.FindParent(10));
+        }
+
+        /// <summary>
+        /// Check to see that the correct exception is raised if calling FindParent on a bst object
+        /// that contains 0 items.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void FindParentNoItemsInBstTest()
+        {
+            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+
+            bst.FindParent(45);
         }
 
     }

@@ -194,6 +194,64 @@ algorithm FindNode(value <integer>, root <node>)
 	end if
 end FindNode
 
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+/* find the parent of a specified node */
+
+algorithm FindParent(value <integer>, root <node>)
+	Pre:		value is the value of the node we want to find the parent of
+				root is the root node of the binary search tree
+				root is not null
+	Post:		the parent node of the node with the specified value is either found or not
+	Returns:	a reference to the parent node if found otherwise false
+	// check to see if the value is equal to that of the root nodes, if it return null the root has no parents
+	if value = root.Value 
+		return null
+	end if
+	if value < root.Value
+		// check to see if the left child is null, if it is then the value we are looking for is not in the bst
+		if root.Left = null
+			return null
+		else if root.Left.Value = value
+			return root // we have found the parent
+		else
+			return FindParent(value, root.Left) // go left in the bst
+		end if
+	else
+	// check to see if the right child is null, if it is then the value we are looking for is not in the bst
+		if root.Right = null
+			return null
+		else if root.Right.Value = value
+			return root // we have found the parent
+		else
+			return FindParent(value, root.Right) // go right in the bst
+		end if
+	end if
+end FindParent
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
