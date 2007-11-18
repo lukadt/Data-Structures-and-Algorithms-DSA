@@ -60,7 +60,7 @@
     <Compile Include="DataStructures\SinglyLinkedListCollectionTest.cs" />
     <Compile Include="DataStructures\SinglyLinkedListNodeTest.cs" />
     <Compile Include="DataStructures\StackCollectionTest.cs" />
-    <Compile Include="Util\CoordinateComparer.cs" />
+    <Compile Include="Utility\CoordinateComparer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
