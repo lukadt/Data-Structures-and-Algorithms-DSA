@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading;
 using Dsa.Properties;
 using Dsa.Utility;
+using System.Diagnostics;
 
 namespace Dsa.DataStructures
 {
@@ -13,6 +14,8 @@ namespace Dsa.DataStructures
     /// </summary>
     /// <typeparam name="T">Type of items to store in the <see cref="BinarySearchTreeCollection{T}"/>.</typeparam>
     [Serializable]
+    [DebuggerDisplay("Count={Count}")]
+    [DebuggerTypeProxy(typeof(CollectionDebugView<>))]
     public sealed class BinarySearchTreeCollection<T> : ICollection, ICollection<T>, IComparerProvider<T>
     {
 
