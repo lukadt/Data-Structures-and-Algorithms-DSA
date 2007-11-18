@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using Dsa.Properties;
+using Dsa.Utility;
 
 namespace Dsa.DataStructures
 {
@@ -61,7 +62,7 @@ namespace Dsa.DataStructures
         /// <param name="value">Value to insert into the Bst.</param>
         private void InsertNode(BinaryTreeNode<T> node, T value)
         {
-            if (_comparer.Compare(value, node.Value) < 0)
+            if (Compare.IsLessThan(value, node.Value, _comparer))
             {
                 // the value is less than the current nodes value, so go left.
                 if (node.Left == null)
@@ -111,11 +112,11 @@ namespace Dsa.DataStructures
             }
             /* check to see which way in the bst to go - left if value is less than the value of root, or right
             * if value is greater than the value of root.*/
-            if (_comparer.Compare(value, root.Value) < 0)
+            if (Compare.IsLessThan(value, root.Value, _comparer))
             {
                 return FindNode(value, root.Left);
             }
-            else if (_comparer.Compare(value, root.Value) > 0)
+            else if (Compare.IsGreaterThan(value, root.Value, _comparer))
             {
                 return FindNode(value, root.Right);
             }
@@ -142,7 +143,7 @@ namespace Dsa.DataStructures
             }
             /* check to see if the value is the same as that of the root node, if it is then the root 
              * has no parent so return null. */
-            if (_comparer.Compare(value, _root.Value) == 0)
+            if (Compare.AreEqual(value, _root.Value, _comparer))
             {
                 return null;
             }
@@ -157,14 +158,14 @@ namespace Dsa.DataStructures
         /// <returns><see cref="BinaryTreeNode{T}"/> if the parent was found, otherwise null.</returns>
         private BinaryTreeNode<T> FindParent(T value, BinaryTreeNode<T> root)
         {
-            if (_comparer.Compare(value, root.Value) < 0)
+            if (Compare.IsLessThan(value, root.Value, _comparer))
             {
                 // check to see if the left child of root is null, if it is then the value is not in the bst
                 if (root.Left == null)
                 {
                     return null;
                 }
-                else if (_comparer.Compare(value, root.Left.Value) == 0)
+                else if (Compare.AreEqual(value, root.Left.Value, _comparer))
                 {
                     // root is the parent of the node with the value searching for
                     return root;
@@ -181,7 +182,7 @@ namespace Dsa.DataStructures
                 {
                     return null; 
                 }
-                else if (_comparer.Compare(value, root.Right.Value) == 0)
+                else if (Compare.AreEqual(value, root.Right.Value, _comparer))
                 {
                     // root is the parent of the node with the value searching for
                     return root;
@@ -423,11 +424,11 @@ namespace Dsa.DataStructures
             {
                 return false; // if the root is null then we have exhausted all the nodes in the tree, thus the item isn't in the bst
             }
-            if (_comparer.Compare(root.Value, item) == 0)
+            if (Compare.AreEqual(root.Value, item, _comparer))
             {
                 return true; // we have found the item
             }
-            else if (_comparer.Compare(item, root.Value) < 0)
+            else if (Compare.IsLessThan(item, root.Value, _comparer))
             {
                 return Contains(root.Left, item); // search the left subtree of the current node for the item
             }
@@ -480,7 +481,73 @@ namespace Dsa.DataStructures
         /// <returns>True if the item was removed; false otherwise.</returns>
         public bool Remove(T item)
         {
-            return false;
+            BinaryTreeNode<T> nodeToRemove = FindNode(item);
+            // check to see if the item is not in the bst
+            if (nodeToRemove == null)
+            {
+                return false;
+            }
+
+            BinaryTreeNode<T> parent = FindParent(item);
+
+            // check to see if nodeToRemove is the only node in the bst
+            if (_count == 1)
+            {
+                _root = null;
+            }
+            else if (nodeToRemove.Left == null && nodeToRemove.Right == null)
+            {
+                // nodeToRemove is a leaf
+                if (Compare.IsLessThan(nodeToRemove.Value, parent.Value, _comparer))
+                {
+                    parent.Left = null;
+                }
+                else
+                {
+                    parent.Right = null;
+                }
+            }
+            else if (nodeToRemove.Left == null && nodeToRemove.Right != null)
+            {
+                // nodeToRemove has only a right subtree
+                if (Compare.IsLessThan(nodeToRemove.Value, parent.Value, _comparer))
+                {
+                    parent.Left = nodeToRemove.Right;
+                }
+                else
+                {
+                    parent.Right = nodeToRemove.Right;
+                }
+            }
+            else if (nodeToRemove.Left != null && nodeToRemove.Right == null)
+            {
+                // nodeToRemove has only a left subtree
+                if (Compare.IsLessThan(nodeToRemove.Value, parent.Value, _comparer))
+                {
+                    parent.Left = nodeToRemove.Left;
+                }
+                else
+                {
+                    parent.Right = nodeToRemove.Left;
+                }
+            }
+            else
+            {
+                // nodeToRemove has both a left and right subtree
+                BinaryTreeNode<T> largestValue = nodeToRemove.Left;
+                // find the largest value in the left subtree of nodeToRemove
+                while (largestValue.Right != null)
+                {
+                    largestValue = largestValue.Right;
+                }
+                /* find the parent of the largest value in the left subtree of nodeToDelete and sets its
+                 * * Right property to null. */
+                FindParent(largestValue.Value).Right = null;
+                // set value of nodeToRemove to the value of largestValue
+                nodeToRemove.Value = largestValue.Value;
+            }
+            _count--;
+            return true;
         }
 
         #endregion

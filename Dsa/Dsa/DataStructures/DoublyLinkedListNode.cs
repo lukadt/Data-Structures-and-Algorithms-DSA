@@ -8,7 +8,7 @@
     public class DoublyLinkedListNode<T>
     {
 
-        private readonly T _value;
+        private T _value;
         private DoublyLinkedListNode<T> _next;
         private DoublyLinkedListNode<T> _prev;
 
@@ -22,11 +22,12 @@
         }
 
         /// <summary>
-        /// Gets the value of the <see cref="DoublyLinkedListNode{T}"/>.
+        /// Gets or sets the value of the <see cref="DoublyLinkedListNode{T}"/>.
         /// </summary>
         public T Value
         {
             get { return _value; }
+            set { _value = value; }
         }
 
         /// <summary>

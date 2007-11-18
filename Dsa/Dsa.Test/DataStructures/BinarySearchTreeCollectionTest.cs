@@ -541,5 +541,194 @@ namespace Dsa.Test
             bst.FindParent(45);
         }
 
+        /// <summary>
+        /// Check to see that trying to remove a node that is not in the bst returns the correct value.
+        /// </summary>
+        [TestMethod]
+        public void RemoveNodeNotFoundTest()
+        {
+            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>()
+            {
+                10,
+                7,
+                12
+            };
+
+            Assert.IsFalse(bst.Remove(4));
+        }
+
+        /// <summary>
+        /// Check to see that removing a leaf node with a value less than its parent leaves
+        /// the bst in the correct state.
+        /// </summary>
+        [TestMethod]
+        public void RemoveLeafValueLessThanParentTest()
+        {
+            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>() 
+            {
+                10,
+                7,
+                12,
+                11
+            };
+
+            Assert.IsTrue(bst.Remove(7));
+            Assert.IsNull(bst.Root.Left);
+            Assert.AreEqual(3, bst.Count);
+        }
+
+        /// <summary>
+        /// Check to see taht removing a leaf node with a value greater than or equal to its parent
+        /// leaves the bst in the correct state.
+        /// </summary>
+        [TestMethod]
+        public void RemoveLeafValueGreaterThanOrEqualToParentTest()
+        {
+            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>()
+            {
+                10, 
+                7,
+                12
+            };
+
+            Assert.IsTrue(bst.Remove(12));
+            Assert.IsNull(bst.Root.Right);
+            Assert.AreEqual(2, bst.Count);
+        }
+
+        /// <summary>
+        /// Check to see that removing a node that has only a right subtree leaves the bst
+        /// in the correct state when the value of the nodeToRemove is greater than or equal 
+        /// to the parent.
+        /// </summary>
+        [TestMethod]
+        public void RemoveNodeWithRightSubtreeOnlyChildGreaterThanOrEqualToParentTest()
+        {
+            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>()
+            {
+                10,
+                7,
+                12,
+                13
+            };
+
+            Assert.IsTrue(bst.Remove(12));
+            Assert.AreEqual(13, bst.Root.Right.Value);
+            Assert.AreEqual(3, bst.Count);
+        }
+
+        /// <summary>
+        /// Check to see that removing a node that has only a right subtree leaves the bst
+        /// in the correct state when the value of the nodeToRemove is less than the parent.
+        /// </summary>
+        [TestMethod]
+        public void RemoveNodeWithRightSubtreeOnlyChildLessThanParentTest()
+        {
+            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>()
+            {
+                10,
+                7,
+                12, 
+                13,
+                8
+            };
+
+            Assert.IsTrue(bst.Remove(7));
+            Assert.AreEqual(8, bst.Root.Left.Value);
+            Assert.AreEqual(4, bst.Count);
+        }
+
+        /// <summary>
+        /// Check to see that removing a node that has only a left subtree leaves the bst
+        /// in the correct state when the value of the nodeToRemove is less than the parent. 
+        /// </summary>
+        [TestMethod]
+        public void RemoveNodeWithLeftSubtreeOnlyChildLessThanParentTest()
+        {
+            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>()
+            {
+                35,
+                21,
+                43,
+                17,
+                26,
+                59,
+                13,
+                15
+            };
+
+            Assert.IsTrue(bst.Remove(17));
+            Assert.AreEqual(13, bst.Root.Left.Left.Value);
+            Assert.AreEqual(7, bst.Count);
+        }
+
+        /// <summary>
+        /// Check to see that removing a node that has only a left subtree leaves the bst
+        /// in the correct state when the value of the nodeToRemove is greater than or equal to the parent. 
+        /// </summary>
+        [TestMethod]
+        public void RemoveNodeWithLeftSubtreeOnlyChildGreaterThanOrEqualToParentTest()
+        {
+            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>()
+            {
+                35,
+                21,
+                43,
+                17,
+                26,
+                59,
+                13,
+                15,
+                65,
+                61
+            };
+
+            Assert.IsTrue(bst.Remove(65));
+            Assert.AreEqual(61, bst.Root.Right.Right.Right.Value);
+            Assert.AreEqual(9, bst.Count);
+        }
+
+        /// <summary>
+        /// Check to see that removing a node with a left and righ subtree leaves the bst in
+        /// the correct state.
+        /// </summary>
+        [TestMethod]
+        public void RemoveNodeWithBothSubtreesTest()
+        {
+            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>()
+            {
+                33,
+                21,
+                17,
+                24,
+                19,
+                14,
+                50,
+                49
+            };
+
+            Assert.IsTrue(bst.Remove(21));
+            Assert.IsNull(bst.FindNode(21));
+            Assert.AreEqual(19, bst.Root.Left.Value);
+            Assert.AreEqual(7, bst.Count);
+        }
+
+        /// <summary>
+        /// Check to see that removing the root node when root is the only node in the
+        /// bst leaves the bst in the correct state.
+        /// </summary>
+        [TestMethod]
+        public void RemoveRootNoSubtreesTest()
+        {
+            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>()
+            {
+                33
+            };
+
+            Assert.IsTrue(bst.Remove(33));
+            Assert.IsNull(bst.Root);
+            Assert.AreEqual(0, bst.Count);
+        }
+
     }
 }

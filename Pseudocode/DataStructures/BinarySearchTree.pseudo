@@ -229,6 +229,64 @@ algorithm FindParent(value <integer>, root <node>)
 	end if
 end FindParent
 
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+/* remove a node from the bst */
+
+algorithm Remove(value <integer>)
+	Pre:		value is value of node to remove from bst
+	Post:		node with value is removed
+	Returns:	true if the node is removed, false otherwise.
+	Node nodeToRemove <- FindNode(value)
+	if nodeToRemove = null
+		return false // value not in the bst
+	end if
+	
+	Node parent <- FindParent(value)
+	
+	if (count = 1)
+		root <- null // we are removing the only node in the bst
+	else if nodeToRemove.Left = null && nodeToRemove.Right = null
+		// nodeToRemove is a leaf
+		// figure out which pointer of parent to set to null
+		if nodeToRemove.Value < parent.Value
+			parent.Left <- null
+		else
+			parent.Right <- null
+		end if
+	else if nodeToRemove.Left = null && nodeToRemove.Right != null
+		// nodeToRemove only has a right subtree
+		// figure out which pointer of parent to set to null
+		if nodeToRemove.Value < parent.Value
+			parent.Left = nodeToRemove.Right
+		else
+			parent.Right <- nodeToRemove.Right
+		end if
+	else if nodeToRemove.Left != null && nodeToRemove.Right = null
+		// node to remove only has a left subtree
+		// figure out which pointer of parent to set to null
+		if nodeToRemove.Value < parent.Value
+			parent.Left <- nodeToRemove.Left
+		else
+			parent.Right <- nodeToRemove.Left
+		end if
+	else
+		// nodeToRemove has both left and right subtrees
+		// we will replace the value of nodeToRemove with the largest value found in the left subtree of nodeToRemove
+		Node largestValue <- nodeToRemove.Left
+		// find largest key in nodeToRemove left subtree
+		while largestValue.Right != null
+			largestValue <- largestValue.Right
+		end while
+		// set the parent of the largest key in nodeToRemove right pointer to null
+		FindParent(largestValue.Value).Right <- null
+		// set value of nodeToRemove to the value of largestValue
+		nodeToRemove.Value <- largestValue.Value
+	end if
+	count-- // decrement count as we've removed a node
+	return true
+end Remove
+
 
 
 

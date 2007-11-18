@@ -52,7 +52,7 @@
     <Compile Include="DataStructures\ArrayListCollectionTest.cs" />
     <Compile Include="DataStructures\BinarySearchTreeCollectionTest.cs" />
     <Compile Include="DataStructures\BinaryTreeNodeTest.cs" />
-    <Compile Include="Util\CoordinateComparer.cs" />
+    <Compile Include="Utility\CompareTest.cs" />
     <Compile Include="DataStructures\DoublyLinkedListCollectionTest.cs" />
     <Compile Include="DataStructures\DoublyLinkedListNodeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -60,6 +60,7 @@
     <Compile Include="DataStructures\SinglyLinkedListCollectionTest.cs" />
     <Compile Include="DataStructures\SinglyLinkedListNodeTest.cs" />
     <Compile Include="DataStructures\StackCollectionTest.cs" />
+    <Compile Include="Util\CoordinateComparer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
