@@ -9,13 +9,13 @@ namespace Dsa.DataStructures
 {
 
     /// <summary>
-    /// <see cref="DoublyLinkedListCollection{T}"/> is an implementation of a doubly linked list data structure.
+    /// <see cref="DoublyLinkedList{T}"/> is an implementation of a doubly linked list data structure.
     /// </summary>
-    /// <typeparam name="T">Type of <see cref="DoublyLinkedListCollection{T}"/>.</typeparam>
+    /// <typeparam name="T">Type of <see cref="DoublyLinkedList{T}"/>.</typeparam>
     [Serializable]
     [DebuggerDisplay("Count={Count}")]
     [DebuggerTypeProxy(typeof(CollectionDebugView<>))]
-    public sealed class DoublyLinkedListCollection<T> : ICollection<T>, ICollection, IComparerProvider<T>
+    public sealed class DoublyLinkedList<T> : ICollection<T>, ICollection, IComparerProvider<T>
     {
 
         [NonSerialized]
@@ -30,19 +30,19 @@ namespace Dsa.DataStructures
         private IComparer<T> _comparer;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DoublyLinkedListCollection{T}"/> class.
+        /// Initializes a new instance of the <see cref="DoublyLinkedList{T}"/> class.
         /// </summary>
-        public DoublyLinkedListCollection() 
+        public DoublyLinkedList() 
         {
             _comparer = Comparer<T>.Default;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DoublyLinkedListCollection{T}"/> class with a specified <see cref="IComparer{T}"/>.
+        /// Initializes a new instance of the <see cref="DoublyLinkedList{T}"/> class with a specified <see cref="IComparer{T}"/>.
         /// </summary>
-        /// <param name="comparer">Comparer to use for the <see cref="DoublyLinkedListCollection{T}"/>.</param>
+        /// <param name="comparer">Comparer to use for the <see cref="DoublyLinkedList{T}"/>.</param>
         /// <exception cref="ArgumentNullException"><strong>comparer</strong> is <strong>null</strong>.</exception>
-        public DoublyLinkedListCollection(IComparer<T> comparer) 
+        public DoublyLinkedList(IComparer<T> comparer) 
         {
             if (comparer == null)
             {
@@ -52,9 +52,9 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Adds a node to the tail of the <see cref="DoublyLinkedListCollection{T}"/>.
+        /// Adds a node to the tail of the <see cref="DoublyLinkedList{T}"/>.
         /// </summary>
-        /// <param name="value">Value to add to the <see cref="DoublyLinkedListCollection{T}"/>.</param>
+        /// <param name="value">Value to add to the <see cref="DoublyLinkedList{T}"/>.</param>
         public void AddLast(T value)
         {
             DoublyLinkedListNode<T> n = new DoublyLinkedListNode<T>(value);
@@ -74,9 +74,9 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Adds a node to the head of the <see cref="DoublyLinkedListCollection{T}"/>.
+        /// Adds a node to the head of the <see cref="DoublyLinkedList{T}"/>.
         /// </summary>
-        /// <param name="value">Value to add to the <see cref="DoublyLinkedListCollection{T}"/>.</param>
+        /// <param name="value">Value to add to the <see cref="DoublyLinkedList{T}"/>.</param>
         public void AddFirst(T value)
         {
             DoublyLinkedListNode<T> n = new DoublyLinkedListNode<T>(value);
@@ -96,7 +96,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Adds a node after a specified node in the <see cref="DoublyLinkedListCollection{T}"/>.
+        /// Adds a node after a specified node in the <see cref="DoublyLinkedList{T}"/>.
         /// </summary>
         /// <param name="node">The <see cref="DoublyLinkedListNode{T}"/> to add after.</param>
         /// <param name="value">The value of the node to add after the specified node.</param>
@@ -122,7 +122,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Adds a node before a specified node in the <see cref="DoublyLinkedListCollection{T}"/>.
+        /// Adds a node before a specified node in the <see cref="DoublyLinkedList{T}"/>.
         /// </summary>
         /// <param name="node">The <see cref="DoublyLinkedListNode{T}"/> to add before.</param>
         /// <param name="value">The value of the node to add after the specified node.</param>
@@ -149,9 +149,9 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Removes a node from the tail of the <see cref="DoublyLinkedListCollection{T}"/>.
+        /// Removes a node from the tail of the <see cref="DoublyLinkedList{T}"/>.
         /// </summary>
-        /// <exception cref="InvalidOperationException"><see cref="DoublyLinkedListCollection{T}"/> contains <strong>0 items</strong>.</exception>
+        /// <exception cref="InvalidOperationException"><see cref="DoublyLinkedList{T}"/> contains <strong>0 items</strong>.</exception>
         public void RemoveLast()
         {
             if (IsEmpty())
@@ -178,9 +178,9 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Removes the node at the head of the <see cref="DoublyLinkedListCollection{T}"/>.
+        /// Removes the node at the head of the <see cref="DoublyLinkedList{T}"/>.
         /// </summary>
-        /// <exception cref="InvalidOperationException"><see cref="DoublyLinkedListCollection{T}"/> contains <strong>0 items</strong>.</exception>
+        /// <exception cref="InvalidOperationException"><see cref="DoublyLinkedList{T}"/> contains <strong>0 items</strong>.</exception>
         public void RemoveFirst()
         {
             if (IsEmpty())
@@ -206,10 +206,10 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Returns an array containing all the values of the nodes contained within the <see cref="DoublyLinkedListCollection{T}"/>.
+        /// Returns an array containing all the values of the nodes contained within the <see cref="DoublyLinkedList{T}"/>.
         /// </summary>
-        /// <returns><see cref="Array"/> containing the values of the nodes contained in the <see cref="DoublyLinkedListCollection{T}"/>.</returns>
-        /// <exception cref="InvalidOperationException"><see cref="DoublyLinkedListCollection{T}"/> contains <strong>0 items</strong>.</exception>
+        /// <returns><see cref="Array"/> containing the values of the nodes contained in the <see cref="DoublyLinkedList{T}"/>.</returns>
+        /// <exception cref="InvalidOperationException"><see cref="DoublyLinkedList{T}"/> contains <strong>0 items</strong>.</exception>
         public T[] ToArray()
         {
             if (IsEmpty())
@@ -244,16 +244,16 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Indicates whether the <see cref="DoublyLinkedListCollection{T}"/> is empty or not.
+        /// Indicates whether the <see cref="DoublyLinkedList{T}"/> is empty or not.
         /// </summary>
-        /// <returns>Returns true if the <see cref="DoublyLinkedListCollection{T}"/> is empty, or false otherwise.</returns>
+        /// <returns>Returns true if the <see cref="DoublyLinkedList{T}"/> is empty, or false otherwise.</returns>
         public bool IsEmpty()
         {
             return _head == null;
         }
 
         /// <summary>
-        /// Gets the node at the head of the <see cref="DoublyLinkedListCollection{T}"/>.
+        /// Gets the node at the head of the <see cref="DoublyLinkedList{T}"/>.
         /// </summary>
         public DoublyLinkedListNode<T> Head
         {
@@ -261,7 +261,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Gets the node at the end of the <see cref="DoublyLinkedListCollection{T}"/>.
+        /// Gets the node at the end of the <see cref="DoublyLinkedList{T}"/>.
         /// </summary>
         public DoublyLinkedListNode<T> Tail
         {
@@ -281,7 +281,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Resets the <see cref="DoublyLinkedListCollection{T}"/> back to its default state.
+        /// Resets the <see cref="DoublyLinkedList{T}"/> back to its default state.
         /// </summary>
         public void Clear()
         {
@@ -291,9 +291,9 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Determines whether a value is in the <see cref="DoublyLinkedListCollection{T}"/>.
+        /// Determines whether a value is in the <see cref="DoublyLinkedList{T}"/>.
         /// </summary>
-        /// <param name="item">Value to search the <see cref="DoublyLinkedListCollection{T}"/> for.</param>
+        /// <param name="item">Value to search the <see cref="DoublyLinkedList{T}"/> for.</param>
         /// <returns>True if the value was found; false otherwise.</returns>
         public bool Contains(T item)
         {
@@ -305,10 +305,10 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Copies the entire <see cref="DoublyLinkedListCollection{T}"/> to a compatible one-dimensional <see cref="Array"/>, starting at 
+        /// Copies the entire <see cref="DoublyLinkedList{T}"/> to a compatible one-dimensional <see cref="Array"/>, starting at 
         /// the specified index of the target array.
         /// </summary>
-        /// <param name="array"><see cref="Array"/> to copy values of <see cref="DoublyLinkedListCollection{T}"/> to.</param>
+        /// <param name="array"><see cref="Array"/> to copy values of <see cref="DoublyLinkedList{T}"/> to.</param>
         /// <param name="arrayIndex">Index of array to start copying to.</param>
         public void CopyTo(T[] array, int arrayIndex)
         {
@@ -316,7 +316,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Gets the number of nodes contained in the <see cref="DoublyLinkedListCollection{T}"/>.
+        /// Gets the number of nodes contained in the <see cref="DoublyLinkedList{T}"/>.
         /// </summary>
         public int Count
         {
@@ -332,11 +332,11 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Removes the first occurrence of a value from the <see cref="DoublyLinkedListCollection{T}"/>.
+        /// Removes the first occurrence of a value from the <see cref="DoublyLinkedList{T}"/>.
         /// </summary>
-        /// <param name="item">Value to remove from the <see cref="DoublyLinkedListCollection{T}"/>.</param>
-        /// <returns>True if the value was removed from the <see cref="DoublyLinkedListCollection{T}"/>; false otherwise.</returns>
-        /// <exception cref="InvalidOperationException"><see cref="DoublyLinkedListCollection{T}"/> contains <strong>0 items</strong>.</exception>
+        /// <param name="item">Value to remove from the <see cref="DoublyLinkedList{T}"/>.</param>
+        /// <returns>True if the value was removed from the <see cref="DoublyLinkedList{T}"/>; false otherwise.</returns>
+        /// <exception cref="InvalidOperationException"><see cref="DoublyLinkedList{T}"/> contains <strong>0 items</strong>.</exception>
         public bool Remove(T item)
         {
             if (IsEmpty())
@@ -404,9 +404,9 @@ namespace Dsa.DataStructures
         #region IEnumerable<T> Members
 
         /// <summary>
-        /// Traverses the items in the <see cref="DoublyLinkedListCollection{T}"/>.
+        /// Traverses the items in the <see cref="DoublyLinkedList{T}"/>.
         /// </summary>
-        /// <returns>An <see cref="IEnumerator{T}" /> that can be used to iterate through the <see cref="DoublyLinkedListCollection{T}"/>.</returns>
+        /// <returns>An <see cref="IEnumerator{T}" /> that can be used to iterate through the <see cref="DoublyLinkedList{T}"/>.</returns>
         public IEnumerator<T> GetEnumerator()
         {
             DoublyLinkedListNode<T> n = _head;

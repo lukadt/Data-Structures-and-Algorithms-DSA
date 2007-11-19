@@ -9,7 +9,7 @@ namespace Dsa.Test
 {
 
     /// <summary>
-    /// BinarySearhTree(Of T) tests.
+    /// Tests for BinarySearchTree.
     /// </summary>
     [TestClass]
     public class BinarySearchTreeCollectionTest
@@ -21,7 +21,7 @@ namespace Dsa.Test
         [TestMethod]
         public void ConstructorTest()
         {
-            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+            BinarySearchTree<int> bst = new BinarySearchTree<int>();
 
             Assert.IsNull(bst.Root);
         }
@@ -33,7 +33,7 @@ namespace Dsa.Test
         public void OverloadedConstructorTest()
         {
             IComparer<Coordinate> comparer = new CoordinateComparer();
-            BinarySearchTreeCollection<Coordinate> bst = new BinarySearchTreeCollection<Coordinate>(comparer);
+            BinarySearchTree<Coordinate> bst = new BinarySearchTree<Coordinate>(comparer);
 
             Assert.IsNotNull(bst.Comparer);
         }
@@ -46,7 +46,7 @@ namespace Dsa.Test
         public void OverloadedConstructorComparerNullTest()
         {
             IComparer<Coordinate> comparer = null;
-            BinarySearchTreeCollection<Coordinate> actual = new BinarySearchTreeCollection<Coordinate>(comparer);
+            BinarySearchTree<Coordinate> actual = new BinarySearchTree<Coordinate>(comparer);
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace Dsa.Test
         [TestMethod]
         public void InsertRootNullTest()
         {
-            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+            BinarySearchTree<int> bst = new BinarySearchTree<int>();
 
             bst.Add(10);
 
@@ -69,7 +69,7 @@ namespace Dsa.Test
         [TestMethod]
         public void InsertTest()
         {
-            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+            BinarySearchTree<int> bst = new BinarySearchTree<int>();
 
             bst.Add(10);
             bst.Add(20);
@@ -91,7 +91,7 @@ namespace Dsa.Test
         [TestMethod]
         public void GetEnumeratorGenericTest()
         {
-            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+            BinarySearchTree<int> bst = new BinarySearchTree<int>();
             
             bst.Add(10);
             bst.Add(5);
@@ -111,7 +111,7 @@ namespace Dsa.Test
         [TestMethod]
         public void GetPostorderEnumeratorTest()
         {
-            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+            BinarySearchTree<int> bst = new BinarySearchTree<int>();
 
             bst.Add(10);
             bst.Add(5);
@@ -131,7 +131,7 @@ namespace Dsa.Test
         [TestMethod]
         public void GetInorderEnumeratorTest()
         {
-            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+            BinarySearchTree<int> bst = new BinarySearchTree<int>();
 
             bst.Add(10);
             bst.Add(5);
@@ -151,7 +151,7 @@ namespace Dsa.Test
         [TestMethod]
         public void CountTest()
         {
-            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+            BinarySearchTree<int> bst = new BinarySearchTree<int>();
 
             bst.Add(10);
             bst.Add(4);
@@ -166,7 +166,7 @@ namespace Dsa.Test
         [TestMethod]
         public void ReadOnlyTest()
         {
-            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+            BinarySearchTree<int> bst = new BinarySearchTree<int>();
             ICollection<int> actual = bst;
 
             Assert.IsFalse(actual.IsReadOnly);
@@ -178,7 +178,7 @@ namespace Dsa.Test
         [TestMethod]
         public void IsSynchronizedTest()
         {
-            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+            BinarySearchTree<int> bst = new BinarySearchTree<int>();
             ICollection actual = bst;
 
             Assert.IsFalse(actual.IsSynchronized);
@@ -190,7 +190,7 @@ namespace Dsa.Test
         [TestMethod]
         public void ICollectionGetEnumeratorTest()
         {
-            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+            BinarySearchTree<int> bst = new BinarySearchTree<int>();
             ICollection actual = bst;
 
             Assert.IsNotNull(actual.GetEnumerator());
@@ -202,7 +202,7 @@ namespace Dsa.Test
         [TestMethod]
         public void SyncRootTest()
         {
-            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+            BinarySearchTree<int> bst = new BinarySearchTree<int>();
             ICollection actual = bst;
 
             Assert.IsNotNull(actual.SyncRoot);
@@ -214,7 +214,7 @@ namespace Dsa.Test
         [TestMethod]
         public void ClearTest()
         {
-            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+            BinarySearchTree<int> bst = new BinarySearchTree<int>();
 
             bst.Add(10);
             bst.Add(5);
@@ -231,7 +231,7 @@ namespace Dsa.Test
         [TestMethod]
         public void FindMinTest()
         {
-            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+            BinarySearchTree<int> bst = new BinarySearchTree<int>();
 
             bst.Add(12);
             bst.Add(8);
@@ -248,7 +248,7 @@ namespace Dsa.Test
         [TestMethod]
         public void FindMaxTest()
         {
-            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+            BinarySearchTree<int> bst = new BinarySearchTree<int>();
 
             bst.Add(12);
             bst.Add(8);
@@ -265,7 +265,7 @@ namespace Dsa.Test
         [TestMethod]
         public void ContainsTest()
         {
-            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+            BinarySearchTree<int> bst = new BinarySearchTree<int>();
 
             bst.Add(12);
             bst.Add(5);
@@ -284,7 +284,7 @@ namespace Dsa.Test
         [TestMethod]
         public void ContainsItemNotPresentTest()
         {
-            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+            BinarySearchTree<int> bst = new BinarySearchTree<int>();
 
             bst.Add(12);
             bst.Add(5);
@@ -302,7 +302,7 @@ namespace Dsa.Test
         [TestMethod]
         public void GetBreadthFirstEnumeratorTest()
         {
-            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+            BinarySearchTree<int> bst = new BinarySearchTree<int>();
 
             Assert.IsNotNull(bst.GetBreadthFirstEnumerator());
         }
@@ -313,7 +313,7 @@ namespace Dsa.Test
         [TestMethod]
         public void ToArrayTest()
         {
-            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+            BinarySearchTree<int> bst = new BinarySearchTree<int>();
 
             bst.Add(12);
             bst.Add(8);
@@ -335,7 +335,7 @@ namespace Dsa.Test
         [ExpectedException(typeof(InvalidOperationException))]
         public void ToArrayNoItemsInBstTest()
         {
-            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+            BinarySearchTree<int> bst = new BinarySearchTree<int>();
 
             bst.ToArray();
         }
@@ -346,7 +346,7 @@ namespace Dsa.Test
         [TestMethod]
         public void CopyToTest()
         {
-            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>() { 12, 8, 6, 11, 42 };
+            BinarySearchTree<int> bst = new BinarySearchTree<int>() { 12, 8, 6, 11, 42 };
 
             int[] expected = { 12, 8, 42, 6, 11 };
             int[] actual = new int[bst.Count];
@@ -361,7 +361,7 @@ namespace Dsa.Test
         [TestMethod]
         public void CopyToStartingSpecifiedIndexTest()
         {
-            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>() { 12, 8, 6, 11, 42 };
+            BinarySearchTree<int> bst = new BinarySearchTree<int>() { 12, 8, 6, 11, 42 };
 
             int[] expected = { 0, 0, 0, 12, 8, 42, 6, 11 };
             int[] actual = new int[bst.Count + 3];
@@ -377,7 +377,7 @@ namespace Dsa.Test
         [ExpectedException(typeof(NotSupportedException))]
         public void ICollectionCopyToTest()
         {
-            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+            BinarySearchTree<int> bst = new BinarySearchTree<int>();
             ICollection actual = bst;
 
             int[] array = new int[5];
@@ -392,7 +392,7 @@ namespace Dsa.Test
         [TestMethod]
         public void FindNodeValidLeftChildTest()
         {
-            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+            BinarySearchTree<int> bst = new BinarySearchTree<int>();
 
             bst.Add(10);
             bst.Add(5);
@@ -409,7 +409,7 @@ namespace Dsa.Test
         [TestMethod]
         public void FindNodeValidRightChildTest()
         {
-            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+            BinarySearchTree<int> bst = new BinarySearchTree<int>();
 
             bst.Add(10);
             bst.Add(5);
@@ -425,7 +425,7 @@ namespace Dsa.Test
         [TestMethod]
         public void FindNodeNotInBstTest()
         {
-            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+            BinarySearchTree<int> bst = new BinarySearchTree<int>();
 
             bst.Add(10);
             bst.Add(5);
@@ -441,7 +441,7 @@ namespace Dsa.Test
         [TestMethod]
         public void FindParentLeftSubTreeTest()
         {
-            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>() 
+            BinarySearchTree<int> bst = new BinarySearchTree<int>() 
             {
                 10,
                 9,
@@ -461,7 +461,7 @@ namespace Dsa.Test
         [TestMethod]
         public void FindParentRightSubTreeTest()
         {
-            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>() 
+            BinarySearchTree<int> bst = new BinarySearchTree<int>() 
             { 
                 10, 
                 9, 
@@ -481,7 +481,7 @@ namespace Dsa.Test
         [TestMethod]
         public void FindParentRightSubTreeNodeNotPresentTest()
         {
-            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>()
+            BinarySearchTree<int> bst = new BinarySearchTree<int>()
             {
                 10,
                 9,
@@ -499,7 +499,7 @@ namespace Dsa.Test
         [TestMethod]
         public void FindParentLeftSubTreeNodeNotPresentTest()
         {
-            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>()
+            BinarySearchTree<int> bst = new BinarySearchTree<int>()
             {
                 10,
                 9,
@@ -517,7 +517,7 @@ namespace Dsa.Test
         [TestMethod]
         public void FindParentRootNodeTest()
         {
-            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>()
+            BinarySearchTree<int> bst = new BinarySearchTree<int>()
             {
                 10,
                 10,
@@ -536,7 +536,7 @@ namespace Dsa.Test
         [ExpectedException(typeof(InvalidOperationException))]
         public void FindParentNoItemsInBstTest()
         {
-            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>();
+            BinarySearchTree<int> bst = new BinarySearchTree<int>();
 
             bst.FindParent(45);
         }
@@ -547,7 +547,7 @@ namespace Dsa.Test
         [TestMethod]
         public void RemoveNodeNotFoundTest()
         {
-            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>()
+            BinarySearchTree<int> bst = new BinarySearchTree<int>()
             {
                 10,
                 7,
@@ -564,7 +564,7 @@ namespace Dsa.Test
         [TestMethod]
         public void RemoveLeafValueLessThanParentTest()
         {
-            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>() 
+            BinarySearchTree<int> bst = new BinarySearchTree<int>() 
             {
                 10,
                 7,
@@ -584,7 +584,7 @@ namespace Dsa.Test
         [TestMethod]
         public void RemoveLeafValueGreaterThanOrEqualToParentTest()
         {
-            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>()
+            BinarySearchTree<int> bst = new BinarySearchTree<int>()
             {
                 10, 
                 7,
@@ -604,7 +604,7 @@ namespace Dsa.Test
         [TestMethod]
         public void RemoveNodeWithRightSubtreeOnlyChildGreaterThanOrEqualToParentTest()
         {
-            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>()
+            BinarySearchTree<int> bst = new BinarySearchTree<int>()
             {
                 10,
                 7,
@@ -624,7 +624,7 @@ namespace Dsa.Test
         [TestMethod]
         public void RemoveNodeWithRightSubtreeOnlyChildLessThanParentTest()
         {
-            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>()
+            BinarySearchTree<int> bst = new BinarySearchTree<int>()
             {
                 10,
                 7,
@@ -645,7 +645,7 @@ namespace Dsa.Test
         [TestMethod]
         public void RemoveNodeWithLeftSubtreeOnlyChildLessThanParentTest()
         {
-            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>()
+            BinarySearchTree<int> bst = new BinarySearchTree<int>()
             {
                 35,
                 21,
@@ -669,7 +669,7 @@ namespace Dsa.Test
         [TestMethod]
         public void RemoveNodeWithLeftSubtreeOnlyChildGreaterThanOrEqualToParentTest()
         {
-            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>()
+            BinarySearchTree<int> bst = new BinarySearchTree<int>()
             {
                 35,
                 21,
@@ -695,7 +695,7 @@ namespace Dsa.Test
         [TestMethod]
         public void RemoveNodeWithBothSubtreesTest()
         {
-            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>()
+            BinarySearchTree<int> bst = new BinarySearchTree<int>()
             {
                 33,
                 21,
@@ -720,7 +720,7 @@ namespace Dsa.Test
         [TestMethod]
         public void RemoveRootNoSubtreesTest()
         {
-            BinarySearchTreeCollection<int> bst = new BinarySearchTreeCollection<int>()
+            BinarySearchTree<int> bst = new BinarySearchTree<int>()
             {
                 33
             };

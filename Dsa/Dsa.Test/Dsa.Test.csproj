@@ -49,14 +49,14 @@
     <Compile Include="Algorithms\SearchingTest.cs" />
     <Compile Include="Algorithms\SortingTest.cs" />
     <Compile Include="Algorithms\StringsTest.cs" />
-    <Compile Include="DataStructures\ArrayListCollectionTest.cs" />
-    <Compile Include="DataStructures\BinarySearchTreeCollectionTest.cs" />
+    <Compile Include="DataStructures\ArrayListTest.cs" />
+    <Compile Include="DataStructures\BinarySearchTreeTest.cs" />
     <Compile Include="DataStructures\BinaryTreeNodeTest.cs" />
+    <Compile Include="DataStructures\DoublyLinkedListTest.cs" />
+    <Compile Include="DataStructures\SinglyLinkedListTest.cs" />
     <Compile Include="Utility\CompareTest.cs" />
-    <Compile Include="DataStructures\DoublyLinkedListCollectionTest.cs" />
     <Compile Include="DataStructures\DoublyLinkedListNodeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DataStructures\SinglyLinkedListCollectionTest.cs" />
     <Compile Include="DataStructures\SinglyLinkedListNodeTest.cs" />
     <Compile Include="Utility\CoordinateComparer.cs" />
   </ItemGroup>

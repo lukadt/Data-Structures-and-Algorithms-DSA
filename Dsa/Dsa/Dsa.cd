@@ -4,7 +4,7 @@
     <Position X="6" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AkIAEEAACIAEABABGAAABDQSYBUIAAAECACAAABQKQo=</HashCode>
-      <FileName>DataStructures\ArrayListCollection.cs</FileName>
+      <FileName>DataStructures\ArrayList.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
@@ -15,11 +15,11 @@
       <FileName>DataStructures\CollectionDebugView.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Dsa.DataStructures.BinarySearchTreeCollection&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
+  <Class Name="Dsa.DataStructures.BinarySearchTree&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="7.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAIQMAAAAACUADAAAAAABBQCAEAIAAAMQEGBQBBRIQA=</HashCode>
-      <FileName>DataStructures\BinarySearchTreeCollection.cs</FileName>
+      <FileName>DataStructures\BinarySearchTree.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
@@ -30,11 +30,11 @@
       <FileName>DataStructures\BinaryTreeNode.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Dsa.DataStructures.DoublyLinkedListCollection&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
+  <Class Name="Dsa.DataStructures.DoublyLinkedList&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="6" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AADIEBAACAAUAJAAAAAAJBQAIAAYAEAEAACCAABRIQI=</HashCode>
-      <FileName>DataStructures\DoublyLinkedListCollection.cs</FileName>
+      <FileName>DataStructures\DoublyLinkedList.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
@@ -45,11 +45,11 @@
       <FileName>DataStructures\DoublyLinkedListNode.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Dsa.DataStructures.SinglyLinkedListCollection&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
+  <Class Name="Dsa.DataStructures.SinglyLinkedList&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="11.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AALIEBAACAAUAJAAAAAAJBQAAAAYAAAEABCCBABRIQI=</HashCode>
-      <FileName>DataStructures\SinglyLinkedListCollection.cs</FileName>
+      <FileName>DataStructures\SinglyLinkedList.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>

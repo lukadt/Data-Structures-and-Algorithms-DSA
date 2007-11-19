@@ -10,13 +10,13 @@ namespace Dsa.DataStructures
 {
 
     /// <summary>
-    /// <see cref="BinarySearchTreeCollection{T}"/> is an implementation of a binary search tree.
+    /// <see cref="BinarySearchTree{T}"/> is an implementation of a binary search tree.
     /// </summary>
-    /// <typeparam name="T">Type of items to store in the <see cref="BinarySearchTreeCollection{T}"/>.</typeparam>
+    /// <typeparam name="T">Type of items to store in the <see cref="BinarySearchTree{T}"/>.</typeparam>
     [Serializable]
     [DebuggerDisplay("Count={Count}")]
     [DebuggerTypeProxy(typeof(CollectionDebugView<>))]
-    public sealed class BinarySearchTreeCollection<T> : ICollection, ICollection<T>, IComparerProvider<T>
+    public sealed class BinarySearchTree<T> : ICollection, ICollection<T>, IComparerProvider<T>
     {
 
         [NonSerialized]
@@ -29,19 +29,19 @@ namespace Dsa.DataStructures
         private IComparer<T> _comparer;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BinarySearchTreeCollection{T}"/> class.
+        /// Initializes a new instance of the <see cref="BinarySearchTree{T}"/> class.
         /// </summary>
-        public BinarySearchTreeCollection() 
+        public BinarySearchTree() 
         {
             _comparer = Comparer<T>.Default;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BinarySearchTreeCollection{T}"/> class using a provided <see cref="IComparer{T}"/>.
+        /// Initializes a new instance of the <see cref="BinarySearchTree{T}"/> class using a provided <see cref="IComparer{T}"/>.
         /// </summary>
-        /// <param name="comparer">Comparer to use with <see cref="BinarySearchTreeCollection{T}"/>.</param>
+        /// <param name="comparer">Comparer to use with <see cref="BinarySearchTree{T}"/>.</param>
         /// <exception cref="ArgumentNullException"><strong>comparer</strong> is <strong>null</strong>.</exception>
-        public BinarySearchTreeCollection(IComparer<T> comparer)
+        public BinarySearchTree(IComparer<T> comparer)
         {
             if (comparer == null)
             {
@@ -51,7 +51,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Gets the root node of the <see cref="BinarySearchTreeCollection{T}"/>.
+        /// Gets the root node of the <see cref="BinarySearchTree{T}"/>.
         /// </summary>
         public BinaryTreeNode<T> Root
         {
@@ -92,7 +92,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Finds a node in the <see cref="BinarySearchTreeCollection{T}"/> with the specified value.
+        /// Finds a node in the <see cref="BinarySearchTree{T}"/> with the specified value.
         /// </summary>
         /// <param name="value">Value to find.</param>
         /// <returns>A <see cref="BinaryTreeNode{T}"/> if a node was found with the value provided; otherwise null.</returns>
@@ -102,7 +102,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Finds a node in the <see cref="BinarySearchTreeCollection{T}"/> with the specified value.
+        /// Finds a node in the <see cref="BinarySearchTree{T}"/> with the specified value.
         /// </summary>
         /// <param name="value">Value to find.</param>
         /// <param name="root">Node to start search from.</param>
@@ -281,18 +281,18 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Traverses the <see cref="BinarySearchTreeCollection{T}"/> in breadth first order.
+        /// Traverses the <see cref="BinarySearchTree{T}"/> in breadth first order.
         /// </summary>
-        /// <returns>An <see cref="IEnumerator{T}" /> that can be used to iterate through the <see cref="BinarySearchTreeCollection{T}"/>.</returns>
+        /// <returns>An <see cref="IEnumerator{T}" /> that can be used to iterate through the <see cref="BinarySearchTree{T}"/>.</returns>
         public IEnumerable<T> GetBreadthFirstEnumerator()
         {
             return BreadthFirstTraversal(_root);
         }
 
         ///<summary>
-        /// Traverses the <see cref="BinarySearchTreeCollection{T}"/> in postorder traversal.
+        /// Traverses the <see cref="BinarySearchTree{T}"/> in postorder traversal.
         ///</summary>
-        ///<returns>An <see cref="IEnumerator{T}" /> that can be used to iterate through the <see cref="BinarySearchTreeCollection{T}"/>.</returns>
+        ///<returns>An <see cref="IEnumerator{T}" /> that can be used to iterate through the <see cref="BinarySearchTree{T}"/>.</returns>
         public IEnumerable<T> GetPostorderEnumerator()
         {
             ArrayList<T> arrayListCollection = new ArrayList<T>();
@@ -300,9 +300,9 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Traverses the <see cref="BinarySearchTreeCollection{T}"/> in inorder traversal.
+        /// Traverses the <see cref="BinarySearchTree{T}"/> in inorder traversal.
         /// </summary>
-        /// <returns>An <see cref="IEnumerator{T}" /> that can be used to iterate through the <see cref="BinarySearchTreeCollection{T}"/>.</returns>
+        /// <returns>An <see cref="IEnumerator{T}" /> that can be used to iterate through the <see cref="BinarySearchTree{T}"/>.</returns>
         public  IEnumerable<T> GetInorderEnumerator()
         {
             ArrayList<T> arrayListCollection = new ArrayList<T>();
@@ -310,9 +310,9 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Finds smallest value in the <see cref="BinarySearchTreeCollection{T}"/>.
+        /// Finds smallest value in the <see cref="BinarySearchTree{T}"/>.
         /// </summary>
-        /// <returns>Smallest value in the <see cref="BinarySearchTreeCollection{T}"/>.</returns>
+        /// <returns>Smallest value in the <see cref="BinarySearchTree{T}"/>.</returns>
         public T FindMin()
         {
             return FindMin(_root);
@@ -330,9 +330,9 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Finds the largest value in the <see cref="BinarySearchTreeCollection{T}"/>.
+        /// Finds the largest value in the <see cref="BinarySearchTree{T}"/>.
         /// </summary>
-        /// <returns>Largest value in the <see cref="BinarySearchTreeCollection{T}"/>.</returns>
+        /// <returns>Largest value in the <see cref="BinarySearchTree{T}"/>.</returns>
         public T FindMax()
         {
             return FindMax(_root);
@@ -350,15 +350,15 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Returns the items in the <see cref="BinarySearchTreeCollection{T}"/> as an <see cref="Array"/> using 
-        /// <see cref="BinarySearchTreeCollection{T}.GetBreadthFirstEnumerator"/> traversal.
+        /// Returns the items in the <see cref="BinarySearchTree{T}"/> as an <see cref="Array"/> using 
+        /// <see cref="BinarySearchTree{T}.GetBreadthFirstEnumerator"/> traversal.
         /// </summary>
         /// <remarks>
-        /// You cannot call the <see cref="BinarySearchTreeCollection{T}.ToArray"/> method on a <see cref="BinarySearchTreeCollection{T}"/> that is
+        /// You cannot call the <see cref="BinarySearchTree{T}.ToArray"/> method on a <see cref="BinarySearchTree{T}"/> that is
         /// empty.
         /// </remarks>
-        /// <returns>An <see cref="Array"/> containing the items of the <see cref="BinarySearchTreeCollection{T}"/>.</returns>
-        /// <exception cref="InvalidOperationException"><see cref="BinarySearchTreeCollection{T}"/> is <strong>empty</strong>.</exception>
+        /// <returns>An <see cref="Array"/> containing the items of the <see cref="BinarySearchTree{T}"/>.</returns>
+        /// <exception cref="InvalidOperationException"><see cref="BinarySearchTree{T}"/> is <strong>empty</strong>.</exception>
         public T[] ToArray()
         {
             if (_count < 1)
@@ -380,7 +380,7 @@ namespace Dsa.DataStructures
 
         /// <summary>
         /// Inserts a new node with the specified value at the appropriate location
-        /// in the <see cref="BinarySearchTreeCollection{T}"/>.
+        /// in the <see cref="BinarySearchTree{T}"/>.
         /// </summary>
         /// <param name="item">Value to insert.</param>
         public void Add(T item)
@@ -397,7 +397,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Removes all items from the <see cref="BinarySearchTreeCollection{T}"/>.
+        /// Removes all items from the <see cref="BinarySearchTree{T}"/>.
         /// </summary>
         public void Clear()
         {
@@ -406,10 +406,10 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Determines whether an item is contained with the <see cref="BinarySearchTreeCollection{T}"/>.
+        /// Determines whether an item is contained with the <see cref="BinarySearchTree{T}"/>.
         /// </summary>
-        /// <param name="item">Item to search the <see cref="BinarySearchTreeCollection{T}"/> for.</param>
-        /// <returns>True if the item is contained within the <see cref="BinarySearchTreeCollection{T}"/>; false otherwise.</returns>
+        /// <param name="item">Item to search the <see cref="BinarySearchTree{T}"/> for.</param>
+        /// <returns>True if the item is contained within the <see cref="BinarySearchTree{T}"/>; false otherwise.</returns>
         public bool Contains(T item)
         {
             return Contains(_root, item);
@@ -442,19 +442,19 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Copies all the <see cref="BinarySearchTreeCollection{T}"/> items to a compatible one-dimensional <see cref="Array"/>.
+        /// Copies all the <see cref="BinarySearchTree{T}"/> items to a compatible one-dimensional <see cref="Array"/>.
         /// </summary>
-        /// <param name="array">A one-dimensional <see cref="Array"/> to copy the <see cref="BinarySearchTreeCollection{T}"/> items to.</param>
+        /// <param name="array">A one-dimensional <see cref="Array"/> to copy the <see cref="BinarySearchTree{T}"/> items to.</param>
         public void CopyTo(T[] array)
         {
             Array.Copy(ToArray(), array, _count);
         }
 
         /// <summary>
-        /// Copies all the <see cref="BinarySearchTreeCollection{T}"/> items to a compatible one-dimensional <see cref="Array"/>, 
+        /// Copies all the <see cref="BinarySearchTree{T}"/> items to a compatible one-dimensional <see cref="Array"/>, 
         /// starting at the specified index of the target <see cref="Array"/>.
         /// </summary>
-        /// <param name="array">A one-dimensional <see cref="Array"/> to copy the <see cref="BinarySearchTreeCollection{T}"/> items to.</param>
+        /// <param name="array">A one-dimensional <see cref="Array"/> to copy the <see cref="BinarySearchTree{T}"/> items to.</param>
         /// <param name="arrayIndex">Index of target <see cref="Array"/> where copying begins.</param>
         public void CopyTo(T[] array, int arrayIndex)
         {
@@ -462,7 +462,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Gets the number of items contained in the <see cref="BinarySearchTreeCollection{T}"/>.
+        /// Gets the number of items contained in the <see cref="BinarySearchTree{T}"/>.
         /// </summary>
         public int Count
         {
@@ -478,9 +478,9 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Removes a node with the specified value from the <see cref="BinarySearchTreeCollection{T}"/>.
+        /// Removes a node with the specified value from the <see cref="BinarySearchTree{T}"/>.
         /// </summary>
-        /// <param name="item">Item to remove from the the <see cref="BinarySearchTreeCollection{T}"/>.</param>
+        /// <param name="item">Item to remove from the the <see cref="BinarySearchTree{T}"/>.</param>
         /// <returns>True if the item was removed; false otherwise.</returns>
         public bool Remove(T item)
         {
@@ -558,10 +558,10 @@ namespace Dsa.DataStructures
         #region IEnumerable<T> Members
 
         ///<summary>
-        /// An <see cref="IEnumerator{T}"/> that iterates through the <see cref="BinarySearchTreeCollection{T}"/>.  By default Preorder traversal of the tree.
+        /// An <see cref="IEnumerator{T}"/> that iterates through the <see cref="BinarySearchTree{T}"/>.  By default Preorder traversal of the tree.
         ///</summary>
         ///<returns>
-        /// An <see cref="IEnumerator{T}" /> that can be used to iterate through the <see cref="BinarySearchTreeCollection{T}"/>.
+        /// An <see cref="IEnumerator{T}" /> that can be used to iterate through the <see cref="BinarySearchTree{T}"/>.
         ///</returns>
         public IEnumerator<T> GetEnumerator()
         {

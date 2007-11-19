@@ -8,7 +8,7 @@ namespace Dsa.Test
 {
 
     /// <summary>
-    /// Tests for DoublyLinkedListCollection.
+    /// Tests for DoublyLinkedList.
     /// </summary>
     [TestClass]
     public class DoublyLinkedListCollectionTest
@@ -20,7 +20,7 @@ namespace Dsa.Test
         [TestMethod]
         public void ConstructorTest()
         {
-            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
 
             Assert.IsNotNull(dll.Comparer);
         }
@@ -32,7 +32,7 @@ namespace Dsa.Test
         public void OverloadedConstructorTest()
         {
             IComparer<Coordinate> comparer = new CoordinateComparer();
-            DoublyLinkedListCollection<Coordinate> dll = new DoublyLinkedListCollection<Coordinate>(comparer);
+            DoublyLinkedList<Coordinate> dll = new DoublyLinkedList<Coordinate>(comparer);
 
             Assert.IsNotNull(dll.Comparer);
         }
@@ -45,7 +45,7 @@ namespace Dsa.Test
         public void OverloadedConstructorComparerNullTest()
         {
             IComparer<Coordinate> comparer = null;
-            DoublyLinkedListCollection<Coordinate> actual = new DoublyLinkedListCollection<Coordinate>(comparer);
+            DoublyLinkedList<Coordinate> actual = new DoublyLinkedList<Coordinate>(comparer);
         }
 
         /// <summary>
@@ -54,8 +54,8 @@ namespace Dsa.Test
         [TestMethod]
         public void ItemsAreEqualTest()
         {
-            DoublyLinkedListCollection<int> actual = new DoublyLinkedListCollection<int>();
-            DoublyLinkedListCollection<int> expected = new DoublyLinkedListCollection<int>();
+            DoublyLinkedList<int> actual = new DoublyLinkedList<int>();
+            DoublyLinkedList<int> expected = new DoublyLinkedList<int>();
 
             actual.AddLast(10);
             actual.AddLast(20);
@@ -71,7 +71,7 @@ namespace Dsa.Test
         [TestMethod]
         public void AddLastTest()
         {
-            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
 
             dll.AddLast(10);
             dll.AddLast(20);
@@ -90,7 +90,7 @@ namespace Dsa.Test
         [TestMethod]
         public void AddFirstTest()
         {
-            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
 
             dll.AddFirst(10);
             dll.AddFirst(20);
@@ -105,7 +105,7 @@ namespace Dsa.Test
         [ExpectedException(typeof(InvalidOperationException))]
         public void AddAfterNoNodesTest()
         {
-            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
 
             dll.AddAfter(dll.Head, 10);
         }
@@ -117,7 +117,7 @@ namespace Dsa.Test
         [ExpectedException(typeof(ArgumentNullException))]
         public void AddAfterNullNodeTest()
         {
-            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
 
             dll.AddLast(10);
             dll.AddAfter(null, 10);
@@ -129,7 +129,7 @@ namespace Dsa.Test
         [TestMethod]
         public void AddAfterTailTest()
         {
-            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
 
             dll.AddLast(10);
             dll.AddAfter(dll.Head, 20);
@@ -144,7 +144,7 @@ namespace Dsa.Test
         [TestMethod]
         public void AddAfterTest()
         {
-            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
 
             dll.AddLast(10);
             dll.AddLast(20);
@@ -164,7 +164,7 @@ namespace Dsa.Test
         [TestMethod]
         public void AddBeforeHeadTest()
         {
-            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
 
             dll.AddLast(10);
             dll.AddBefore(dll.Head, 5);
@@ -180,7 +180,7 @@ namespace Dsa.Test
         [TestMethod]
         public void AddBeforeTest()
         {
-            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
 
             dll.AddLast(10);
             dll.AddLast(30);
@@ -199,7 +199,7 @@ namespace Dsa.Test
         [ExpectedException(typeof(InvalidOperationException))]
         public void AddBeforeEmptyListTest()
         {
-            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
 
             dll.AddBefore(dll.Head, 10);
         }
@@ -211,7 +211,7 @@ namespace Dsa.Test
         [ExpectedException(typeof(ArgumentNullException))]
         public void AddBeforeNullNode()
         {
-            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
 
             dll.AddLast(10);
             dll.AddBefore(dll.Head.Next, 20);
@@ -223,7 +223,7 @@ namespace Dsa.Test
         [TestMethod]
         public void IEmptyTest()
         {
-            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
 
             Assert.IsTrue(dll.IsEmpty());
         }
@@ -234,7 +234,7 @@ namespace Dsa.Test
         [TestMethod]
         public void RemoveLastTest()
         {
-            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
 
             dll.AddLast(10);
             dll.RemoveLast();
@@ -249,7 +249,7 @@ namespace Dsa.Test
         [TestMethod]
         public void RemoveLastTwoNodesTest()
         {
-            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
 
             dll.AddLast(10);
             dll.AddLast(20);
@@ -267,7 +267,7 @@ namespace Dsa.Test
         [TestMethod]
         public void RemoveLastTestMultipleNodesTest()
         {
-            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
 
             dll.AddLast(10);
             dll.AddLast(20);
@@ -285,7 +285,7 @@ namespace Dsa.Test
         [ExpectedException(typeof(InvalidOperationException))]
         public void RemoveLastEmptyListTest()
         {
-            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
 
             dll.RemoveLast();
         }
@@ -297,7 +297,7 @@ namespace Dsa.Test
         [TestMethod]
         public void RemoveFirstSingleNodeTest()
         {
-            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
 
             dll.AddLast(10);
             dll.RemoveFirst();
@@ -313,7 +313,7 @@ namespace Dsa.Test
         [TestMethod]
         public void RemoveFirstTwoNodesTest()
         {
-            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
 
             dll.AddLast(10);
             dll.AddLast(20);
@@ -330,7 +330,7 @@ namespace Dsa.Test
         [TestMethod]
         public void RemoveFirstMoreThanTwoNodesTest()
         {
-            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
 
             dll.AddLast(10);
             dll.AddLast(20);
@@ -349,7 +349,7 @@ namespace Dsa.Test
         [ExpectedException(typeof(InvalidOperationException))]
         public void RemoveFirstEmptyListTest()
         {
-            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
 
             dll.RemoveFirst();
         }
@@ -360,7 +360,7 @@ namespace Dsa.Test
         [TestMethod]
         public void AddTest()
         {
-            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
             ICollection<int> actual = dll;
 
             actual.Add(10);
@@ -379,7 +379,7 @@ namespace Dsa.Test
         [TestMethod]
         public void ClearTest()
         {
-            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
 
             dll.AddLast(10);
             dll.AddLast(20);
@@ -397,7 +397,7 @@ namespace Dsa.Test
         [TestMethod]
         public void CountTest()
         {
-            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
 
             dll.AddLast(10);
             dll.AddFirst(5);
@@ -416,7 +416,7 @@ namespace Dsa.Test
         [TestMethod]
         public void ContainsTest()
         {
-            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
 
             dll.AddLast(10);
             dll.AddLast(20);
@@ -432,7 +432,7 @@ namespace Dsa.Test
         [TestMethod]
         public void CopyToTest()
         {
-            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
 
             dll.AddLast(10);
             dll.AddLast(20);
@@ -450,7 +450,7 @@ namespace Dsa.Test
         [TestMethod]
         public void ToArrayTest()
         {
-            DoublyLinkedListCollection<string> dll = new DoublyLinkedListCollection<string>();
+            DoublyLinkedList<string> dll = new DoublyLinkedList<string>();
 
             dll.AddLast("London");
             dll.AddLast("Paris");
@@ -468,7 +468,7 @@ namespace Dsa.Test
         [ExpectedException(typeof(InvalidOperationException))]
         public void ToArrayEmptyListTest()
         {
-            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
 
             dll.ToArray();
         }
@@ -479,7 +479,7 @@ namespace Dsa.Test
         [TestMethod]
         public void IsReadonlyTest()
         {
-            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
             ICollection<int> actual = dll;
 
             Assert.IsFalse(actual.IsReadOnly);
@@ -493,7 +493,7 @@ namespace Dsa.Test
         [ExpectedException(typeof(InvalidOperationException))]
         public void RemoveEmptyListTest()
         {
-            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
 
             dll.Remove(10);
         }
@@ -505,7 +505,7 @@ namespace Dsa.Test
         [TestMethod]
         public void RemoveSingleNodeTest()
         {
-            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
 
             dll.AddLast(10);
             dll.Remove(10);
@@ -523,7 +523,7 @@ namespace Dsa.Test
         [TestMethod]
         public void RemoveHeadTwoNodes()
         {
-            DoublyLinkedListCollection<string> dll = new DoublyLinkedListCollection<string>();
+            DoublyLinkedList<string> dll = new DoublyLinkedList<string>();
 
             dll.AddLast("London");
             dll.AddLast("Paris");
@@ -541,7 +541,7 @@ namespace Dsa.Test
         [TestMethod]
         public void RemoveTailTwoNodes()
         {
-            DoublyLinkedListCollection<string> dll = new DoublyLinkedListCollection<string>();
+            DoublyLinkedList<string> dll = new DoublyLinkedList<string>();
 
             dll.AddLast("London");
             dll.AddLast("Paris");
@@ -559,7 +559,7 @@ namespace Dsa.Test
         [TestMethod]
         public void RemoveMiddleMultipleNodesTest()
         {
-            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
 
             dll.AddLast(10);
             dll.AddLast(20);
@@ -578,7 +578,7 @@ namespace Dsa.Test
         [TestMethod]
         public void RemoveHeadMultipleNodesTest()
         {
-            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
 
             dll.AddLast(10);
             dll.AddLast(20);
@@ -597,7 +597,7 @@ namespace Dsa.Test
         [TestMethod]
         public void RemoveTailMultipleNodesTest()
         {
-            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
 
             dll.AddLast(10);
             dll.AddLast(20);
@@ -616,7 +616,7 @@ namespace Dsa.Test
         [TestMethod]
         public void RemoveNoMatchTest()
         {
-            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
 
             dll.AddLast(10);
 
@@ -629,7 +629,7 @@ namespace Dsa.Test
         [TestMethod]
         public void GetEnumeratorTest()
         {
-            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
 
             dll.AddLast(10);
             dll.AddLast(20);
@@ -646,7 +646,7 @@ namespace Dsa.Test
         [TestMethod]
         public void GetEnumeratorNonGenericTest()
         {
-            DoublyLinkedListCollection<string> dll = new DoublyLinkedListCollection<string>();
+            DoublyLinkedList<string> dll = new DoublyLinkedList<string>();
             IEnumerable actual = dll;
 
             Assert.IsNotNull(actual.GetEnumerator());
@@ -659,7 +659,7 @@ namespace Dsa.Test
         [ExpectedException(typeof(NotSupportedException))]
         public void CopyToNonGenericTest()
         {
-            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
             ICollection actual = dll;
 
             int[] myArray = new int[4];
@@ -672,7 +672,7 @@ namespace Dsa.Test
         [TestMethod]
         public void IsSynchronizedTest()
         {
-            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
             ICollection actual = dll;
 
             Assert.IsFalse(actual.IsSynchronized);
@@ -684,7 +684,7 @@ namespace Dsa.Test
         [TestMethod]
         public void SyncRootTest()
         {
-            DoublyLinkedListCollection<int> dll = new DoublyLinkedListCollection<int>();
+            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
             ICollection actual = dll;
 
             Assert.IsNotNull(actual.SyncRoot);

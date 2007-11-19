@@ -8,7 +8,7 @@ namespace Dsa.Test
 {
 
     /// <summary>
-    /// Tests for ArrayListCollection.
+    /// Tests for ArrayList.
     /// </summary>
     [TestClass]
     public class ArrayListCollectionTest
@@ -20,7 +20,7 @@ namespace Dsa.Test
         [TestMethod]
         public void AddTest()
         {
-            ArrayListCollection<int> actual = new ArrayListCollection<int>();
+            ArrayList<int> actual = new ArrayList<int>();
 
             Assert.AreEqual(0, actual.Add(10));
             Assert.AreEqual(1, actual.Add(20));
@@ -36,7 +36,7 @@ namespace Dsa.Test
         public void OverloadedConstructorTest()
         {
             IComparer<Coordinate> comparer = new CoordinateComparer();
-            ArrayListCollection<Coordinate> actual = new ArrayListCollection<Coordinate>(comparer);
+            ArrayList<Coordinate> actual = new ArrayList<Coordinate>(comparer);
 
             Assert.IsNotNull(actual.Comparer);
         }
@@ -49,7 +49,7 @@ namespace Dsa.Test
         public void OverloadedConstructorNullComparerTest()
         {
             IComparer<Coordinate> comparer = null;
-            ArrayListCollection<Coordinate> actual = new ArrayListCollection<Coordinate>(comparer);
+            ArrayList<Coordinate> actual = new ArrayList<Coordinate>(comparer);
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace Dsa.Test
         [TestMethod]
         public void CountTest()
         {
-            ArrayListCollection<int> actual = new ArrayListCollection<int>();
+            ArrayList<int> actual = new ArrayList<int>();
 
             actual.Add(10);
             actual.Add(20);
@@ -75,7 +75,7 @@ namespace Dsa.Test
         [TestMethod]
         public void CapacityNoResizeTest()
         {
-            ArrayListCollection<int> actual = new ArrayListCollection<int>();
+            ArrayList<int> actual = new ArrayList<int>();
 
             Assert.AreEqual(4, actual.Capacity);
         }
@@ -86,7 +86,7 @@ namespace Dsa.Test
         [TestMethod]
         public void CapacityResizeTest()
         {
-            ArrayListCollection<int> actual = new ArrayListCollection<int>();
+            ArrayList<int> actual = new ArrayList<int>();
 
             actual.Add(10);
             actual.Add(20);
@@ -103,7 +103,7 @@ namespace Dsa.Test
         [TestMethod]
         public void IndexOfTest()
         {
-            ArrayListCollection<string> actual = new ArrayListCollection<string>();
+            ArrayList<string> actual = new ArrayList<string>();
 
             actual.Add("London");
             actual.Add("Paris");
@@ -119,7 +119,7 @@ namespace Dsa.Test
         [TestMethod]
         public void IndexInRangeTest()
         {
-            ArrayListCollection<int> actual = new ArrayListCollection<int>();
+            ArrayList<int> actual = new ArrayList<int>();
 
             actual.Add(10);
             actual.Add(20);
@@ -137,7 +137,7 @@ namespace Dsa.Test
         [ExpectedException(typeof(IndexOutOfRangeException))]
         public void IndexNegRangTest()
         {
-            ArrayListCollection<int> alc = new ArrayListCollection<int>();
+            ArrayList<int> alc = new ArrayList<int>();
 
             int actual = alc[-1];
         }
@@ -150,7 +150,7 @@ namespace Dsa.Test
         [ExpectedException(typeof(IndexOutOfRangeException))]
         public void IndexOutOfRange()
         {
-            ArrayListCollection<int> alc = new ArrayListCollection<int>();
+            ArrayList<int> alc = new ArrayList<int>();
 
             int actual = alc[4];
         }
@@ -161,7 +161,7 @@ namespace Dsa.Test
         [TestMethod]
         public void IndexSetTest()
         {
-            ArrayListCollection<int> actual = new ArrayListCollection<int>();
+            ArrayList<int> actual = new ArrayList<int>();
 
             actual.Add(10);
             actual.Add(20);
@@ -182,7 +182,7 @@ namespace Dsa.Test
         [ExpectedException(typeof(IndexOutOfRangeException))]
         public void IndexSetNegTest()
         {
-            ArrayListCollection<int> actual = new ArrayListCollection<int>();
+            ArrayList<int> actual = new ArrayList<int>();
 
             actual[4] = 10;
         }
@@ -195,7 +195,7 @@ namespace Dsa.Test
         [ExpectedException(typeof(IndexOutOfRangeException))]
         public void IndexSetOutOfRange()
         {
-            ArrayListCollection<int> actual = new ArrayListCollection<int>();
+            ArrayList<int> actual = new ArrayList<int>();
 
             actual[4] = 5;
         }
@@ -206,7 +206,7 @@ namespace Dsa.Test
         [TestMethod]
         public void IListIsReadonlyTest()
         {
-            ArrayListCollection<int> actual = new ArrayListCollection<int>();
+            ArrayList<int> actual = new ArrayList<int>();
             IList iL = actual;
 
             Assert.IsFalse(iL.IsReadOnly);
@@ -218,7 +218,7 @@ namespace Dsa.Test
         [TestMethod]
         public void IListIsFixedSizeTest()
         {
-            ArrayListCollection<int> acl = new ArrayListCollection<int>();
+            ArrayList<int> acl = new ArrayList<int>();
             IList actual = acl;
 
             Assert.IsFalse(actual.IsFixedSize);
@@ -230,7 +230,7 @@ namespace Dsa.Test
         [TestMethod]
         public void ICollectionIsReadOnlyTest()
         {
-            ArrayListCollection<int> alc = new ArrayListCollection<int>();
+            ArrayList<int> alc = new ArrayList<int>();
             ICollection<int> actual = alc;
 
             Assert.IsFalse(actual.IsReadOnly);
@@ -242,7 +242,7 @@ namespace Dsa.Test
         [TestMethod]
         public void ICollectionGenericAddTest()
         {
-            ArrayListCollection<int> alc = new ArrayListCollection<int>();
+            ArrayList<int> alc = new ArrayList<int>();
             ICollection<int> actual = alc;
 
             actual.Add(10);
@@ -258,7 +258,7 @@ namespace Dsa.Test
         [ExpectedException(typeof(ArgumentException))]
         public void IListAddValueTypeTest()
         {
-            ArrayListCollection<int> alc = new ArrayListCollection<int>();
+            ArrayList<int> alc = new ArrayList<int>();
             IList actual = alc;
 
             Assert.AreEqual(0, actual.Add(10));
@@ -273,7 +273,7 @@ namespace Dsa.Test
         [TestMethod]
         public void IListAddTest()
         {
-            ArrayListCollection<string> alc = new ArrayListCollection<string>();
+            ArrayList<string> alc = new ArrayList<string>();
             IList actual = alc;
 
             Assert.AreEqual(0, actual.Add("London"));
@@ -288,7 +288,7 @@ namespace Dsa.Test
         [TestMethod]
         public void ClearTest()
         {
-            ArrayListCollection<int> alc = new ArrayListCollection<int>();
+            ArrayList<int> alc = new ArrayList<int>();
 
             alc.Add(10);
             alc.Add(20);
@@ -308,7 +308,7 @@ namespace Dsa.Test
         [TestMethod]
         public void InsertExisistingIndexTakenTest()
         {
-            ArrayListCollection<int> actual = new ArrayListCollection<int>();
+            ArrayList<int> actual = new ArrayList<int>();
 
             actual.Add(10);
             actual.Add(20);
@@ -325,7 +325,7 @@ namespace Dsa.Test
         [TestMethod]
         public void AddHonoursInsertTest()
         {
-            ArrayListCollection<int> actual = new ArrayListCollection<int>();
+            ArrayList<int> actual = new ArrayList<int>();
 
             actual.Insert(2, 30);
             actual.Add(10);
@@ -345,7 +345,7 @@ namespace Dsa.Test
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void InsertOutOfRangeIndexTest()
         {
-            ArrayListCollection<int> actual = new ArrayListCollection<int>();
+            ArrayList<int> actual = new ArrayList<int>();
 
             actual.Insert(7, 30);
         }
@@ -356,7 +356,7 @@ namespace Dsa.Test
         [TestMethod]
         public void RemoveAtTest()
         {
-            ArrayListCollection<int> actual = new ArrayListCollection<int>();
+            ArrayList<int> actual = new ArrayList<int>();
 
             actual.Add(10);
             actual.Add(20);
@@ -377,7 +377,7 @@ namespace Dsa.Test
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void RemoveAtOutOfRangeIndexTest()
         {
-            ArrayListCollection<int> actual = new ArrayListCollection<int>();
+            ArrayList<int> actual = new ArrayList<int>();
 
             actual.Add(10);
             actual.Add(20);
@@ -392,7 +392,7 @@ namespace Dsa.Test
         [TestMethod]
         public void RemoveTest()
         {
-            ArrayListCollection<int> actual = new ArrayListCollection<int>();
+            ArrayList<int> actual = new ArrayList<int>();
 
             actual.Add(10);
             actual.Add(20);
@@ -412,7 +412,7 @@ namespace Dsa.Test
         [TestMethod]
         public void IListContainsTest()
         {
-            ArrayListCollection<string> alc = new ArrayListCollection<string>();
+            ArrayList<string> alc = new ArrayList<string>();
             IList actual = alc;
 
             actual.Add("London");
@@ -430,7 +430,7 @@ namespace Dsa.Test
         [ExpectedException(typeof(ArgumentException))]
         public void IListContainsNonCompatTypeTest()
         {
-            ArrayListCollection<int> alc = new ArrayListCollection<int>();
+            ArrayList<int> alc = new ArrayList<int>();
             IList actual = alc;
 
             actual.Contains(10);
@@ -442,7 +442,7 @@ namespace Dsa.Test
         [TestMethod]
         public void IListIndexOfTest()
         {
-            ArrayListCollection<string> alc = new ArrayListCollection<string>();
+            ArrayList<string> alc = new ArrayList<string>();
             IList actual = alc;
 
             actual.Add("London");
@@ -460,7 +460,7 @@ namespace Dsa.Test
         [ExpectedException(typeof(ArgumentException))]
         public void IListIndexOfUnsupportedTypeTest()
         {
-            ArrayListCollection<int> alc = new ArrayListCollection<int>();
+            ArrayList<int> alc = new ArrayList<int>();
             IList actual = alc;
 
             actual.IndexOf(30);
@@ -472,7 +472,7 @@ namespace Dsa.Test
         [TestMethod]
         public void IListInsertTest()
         {
-            ArrayListCollection<string> alc = new ArrayListCollection<string>();
+            ArrayList<string> alc = new ArrayList<string>();
             IList actual = alc;
 
             actual.Insert(2, "London");
@@ -487,7 +487,7 @@ namespace Dsa.Test
         [ExpectedException(typeof(ArgumentException))]
         public void IListInsertUnsupportedTypeTest()
         {
-            ArrayListCollection<int> alc = new ArrayListCollection<int>();
+            ArrayList<int> alc = new ArrayList<int>();
             IList actual = alc;
 
             actual.Insert(2, 5);
@@ -499,7 +499,7 @@ namespace Dsa.Test
         [TestMethod]
         public void IListRemoveAtTest()
         {
-            ArrayListCollection<string> alc = new ArrayListCollection<string>();
+            ArrayList<string> alc = new ArrayList<string>();
             IList actual = alc;
 
             actual.Add("London");
@@ -516,7 +516,7 @@ namespace Dsa.Test
         [TestMethod]
         public void IListRemoveTest()
         {
-            ArrayListCollection<string> alc = new ArrayListCollection<string>();
+            ArrayList<string> alc = new ArrayList<string>();
             IList actual = alc;
 
             actual.Add("Paris");
@@ -535,7 +535,7 @@ namespace Dsa.Test
         [ExpectedException(typeof(ArgumentException))]
         public void IListRemoveNotSupportedTypeTest()
         {
-            ArrayListCollection<int> alc = new ArrayListCollection<int>();
+            ArrayList<int> alc = new ArrayList<int>();
             IList actual = alc;
 
             actual.Remove(20);
@@ -547,7 +547,7 @@ namespace Dsa.Test
         [TestMethod]
         public void IListByIndexTest()
         {
-            ArrayListCollection<string> alc = new ArrayListCollection<string>();
+            ArrayList<string> alc = new ArrayList<string>();
             IList actual = alc;
 
             actual.Add("London");
@@ -569,7 +569,7 @@ namespace Dsa.Test
         [ExpectedException(typeof(ArgumentException))]
         public void IListByIndexNotSupportedTypeTest()
         {
-            ArrayListCollection<string> alc = new ArrayListCollection<string>();
+            ArrayList<string> alc = new ArrayList<string>();
             IList actual = alc;
 
             actual[0] = new Hashtable();
@@ -581,7 +581,7 @@ namespace Dsa.Test
         [TestMethod]
         public void IsSynchronizedTest()
         {
-            ArrayListCollection<int> alc = new ArrayListCollection<int>();
+            ArrayList<int> alc = new ArrayList<int>();
             ICollection actual = alc;
 
             Assert.IsFalse(actual.IsSynchronized);
@@ -593,7 +593,7 @@ namespace Dsa.Test
         [TestMethod]
         public void SyncRootTest()
         {
-            ArrayListCollection<int> alc = new ArrayListCollection<int>();
+            ArrayList<int> alc = new ArrayList<int>();
             ICollection actual = alc;
 
             Assert.IsNotNull(actual.SyncRoot);
@@ -605,7 +605,7 @@ namespace Dsa.Test
         [TestMethod]
         public void ContainsTest()
         {
-            ArrayListCollection<int> actual = new ArrayListCollection<int>();
+            ArrayList<int> actual = new ArrayList<int>();
 
             actual.Add(10);
             actual.Add(20);
@@ -623,7 +623,7 @@ namespace Dsa.Test
         [TestMethod]
         public void CopyToTest()
         {
-            ArrayListCollection<int> acl = new ArrayListCollection<int>();
+            ArrayList<int> acl = new ArrayList<int>();
 
             acl.Add(10);
             acl.Add(20);
@@ -642,7 +642,7 @@ namespace Dsa.Test
         [ExpectedException(typeof(NotSupportedException))]
         public void ICollectionCopyToTest()
         {
-            ArrayListCollection<int> alc = new ArrayListCollection<int>();
+            ArrayList<int> alc = new ArrayList<int>();
             ICollection actual = alc;
 
             int[] expected = new int[alc.Capacity];
@@ -655,8 +655,8 @@ namespace Dsa.Test
         [TestMethod]
         public void ItemsAreSameTest()
         {
-            ArrayListCollection<int> actual = new ArrayListCollection<int>();
-            ArrayListCollection<int> expected = new ArrayListCollection<int>();
+            ArrayList<int> actual = new ArrayList<int>();
+            ArrayList<int> expected = new ArrayList<int>();
 
             actual.Add(10);
             actual.Add(20);
@@ -674,7 +674,7 @@ namespace Dsa.Test
         [TestMethod]
         public void GetEnumeratorTest()
         {
-            ArrayListCollection<int> actual = new ArrayListCollection<int>();
+            ArrayList<int> actual = new ArrayList<int>();
 
             actual.Add(10);
             actual.Insert(2, 30);
@@ -689,7 +689,7 @@ namespace Dsa.Test
         [TestMethod]
         public void ICollectionGetEnumeratorTest()
         {
-            ArrayListCollection<int> alc = new ArrayListCollection<int>();
+            ArrayList<int> alc = new ArrayList<int>();
             ICollection actual = alc;
 
             Assert.IsNotNull(actual.GetEnumerator());

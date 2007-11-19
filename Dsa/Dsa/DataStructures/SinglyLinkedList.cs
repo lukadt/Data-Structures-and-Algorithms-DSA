@@ -9,13 +9,13 @@ namespace Dsa.DataStructures
 {
 
     /// <summary>
-    /// <see cref="SinglyLinkedListCollection{T}"/> is an implementation of a singly linked list data structure.
+    /// <see cref="SinglyLinkedList{T}"/> is an implementation of a singly linked list data structure.
     /// </summary>
-    /// <typeparam name="T">Type of the <see cref="SinglyLinkedListCollection{T}"/>.</typeparam>
+    /// <typeparam name="T">Type of the <see cref="SinglyLinkedList{T}"/>.</typeparam>
     [Serializable]
     [DebuggerDisplay("Count={Count}")]
     [DebuggerTypeProxy(typeof(CollectionDebugView<>))]
-    public sealed class SinglyLinkedListCollection<T> : ICollection<T>, ICollection, IComparerProvider<T>
+    public sealed class SinglyLinkedList<T> : ICollection<T>, ICollection, IComparerProvider<T>
     {
 
         [NonSerialized]
@@ -31,19 +31,19 @@ namespace Dsa.DataStructures
 
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SinglyLinkedListCollection{T}"/> class.
+        /// Initializes a new instance of the <see cref="SinglyLinkedList{T}"/> class.
         /// </summary>
-        public SinglyLinkedListCollection() 
+        public SinglyLinkedList() 
         {
             _comparer = Comparer<T>.Default;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SinglyLinkedListCollection{T}"/> class using a specified <see cref="IComparer{T}"/>.
+        /// Initializes a new instance of the <see cref="SinglyLinkedList{T}"/> class using a specified <see cref="IComparer{T}"/>.
         /// </summary>
         /// <param name="comparer">Comparer to use.</param>
         /// <exception cref="ArgumentNullException"><strong>comparer</strong> is <strong>null</strong>.</exception>
-        public SinglyLinkedListCollection(IComparer<T> comparer) 
+        public SinglyLinkedList(IComparer<T> comparer) 
         {
             if (comparer == null)
             {
@@ -53,9 +53,9 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Adds a node to the tail of the <see cref="SinglyLinkedListCollection{T}"/>.
+        /// Adds a node to the tail of the <see cref="SinglyLinkedList{T}"/>.
         /// </summary>
-        /// <param name="item">Item to add to the <see cref="SinglyLinkedListCollection{T}"/>.</param>
+        /// <param name="item">Item to add to the <see cref="SinglyLinkedList{T}"/>.</param>
         public void AddLast(T item)
         {
             SinglyLinkedListNode<T> n = new SinglyLinkedListNode<T>(item);
@@ -75,9 +75,9 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Adds a node to the head of the <see cref="SinglyLinkedListCollection{T}"/>.
+        /// Adds a node to the head of the <see cref="SinglyLinkedList{T}"/>.
         /// </summary>
-        /// <param name="item">Item to add to the <see cref="SinglyLinkedListCollection{T}"/>.</param>
+        /// <param name="item">Item to add to the <see cref="SinglyLinkedList{T}"/>.</param>
         public void AddFirst(T item)
         {
             SinglyLinkedListNode<T> n = new SinglyLinkedListNode<T>(item);
@@ -99,9 +99,9 @@ namespace Dsa.DataStructures
         /// <summary>
         /// Adds a node after the specified <see cref="SinglyLinkedListNode{T}"/> with the value of item.
         /// </summary>
-        /// <param name="node">Node in <see cref="SinglyLinkedListCollection{T}"/> to add node after.</param>
-        /// <param name="item">Item to add to <see cref="SinglyLinkedListCollection{T}"/>.</param>
-        /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedListCollection{T}"/> contains <strong>0 items</strong>.</exception>
+        /// <param name="node">Node in <see cref="SinglyLinkedList{T}"/> to add node after.</param>
+        /// <param name="item">Item to add to <see cref="SinglyLinkedList{T}"/>.</param>
+        /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedList{T}"/> contains <strong>0 items</strong>.</exception>
         /// <exception cref="ArgumentNullException"><strong>node</strong> is <strong>null</strong>.</exception>
         public void AddAfter(SinglyLinkedListNode<T> node, T item)
         {
@@ -138,9 +138,9 @@ namespace Dsa.DataStructures
         /// <summary>
         /// Adds a <see cref="SinglyLinkedListNode{T}"/> before the specified <see cref="SinglyLinkedListNode{T}"/> with the specified value.
         /// </summary>
-        /// <param name="node">Node in the <see cref="SinglyLinkedListCollection{T}"/> to add node before.</param>
-        /// <param name="item">Item to add to the <see cref="SinglyLinkedListCollection{T}"/>.</param>
-        /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedListCollection{T}"/> contains <strong>0 items</strong>.</exception>
+        /// <param name="node">Node in the <see cref="SinglyLinkedList{T}"/> to add node before.</param>
+        /// <param name="item">Item to add to the <see cref="SinglyLinkedList{T}"/>.</param>
+        /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedList{T}"/> contains <strong>0 items</strong>.</exception>
         /// <exception cref="ArgumentNullException"><strong>node</strong> is <strong>null</strong>.</exception>
         public void AddBefore(SinglyLinkedListNode<T> node, T item)
         {
@@ -178,19 +178,19 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Determines whether the <see cref="SinglyLinkedListCollection{T}"/> is empty.
+        /// Determines whether the <see cref="SinglyLinkedList{T}"/> is empty.
         /// </summary>
-        /// <returns>True if the <see cref="SinglyLinkedListCollection{T}"/> is empty; false otherwise.</returns>
+        /// <returns>True if the <see cref="SinglyLinkedList{T}"/> is empty; false otherwise.</returns>
         public bool IsEmpty()
         {
             return _head == null;
         }
 
         /// <summary>
-        /// Converts the <see cref="SinglyLinkedListCollection{T}"/> and its items to an <see cref="Array"/>.
+        /// Converts the <see cref="SinglyLinkedList{T}"/> and its items to an <see cref="Array"/>.
         /// </summary>
-        /// <returns>An <see cref="Array"/> containing the items from the <see cref="SinglyLinkedListCollection{T}"/>.</returns>
-        /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedListCollection{T}"/> contains <strong>0 items</strong>.</exception>
+        /// <returns>An <see cref="Array"/> containing the items from the <see cref="SinglyLinkedList{T}"/>.</returns>
+        /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedList{T}"/> contains <strong>0 items</strong>.</exception>
         public T[] ToArray()
         {
             if (IsEmpty())
@@ -208,10 +208,10 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Converts the <see cref="SinglyLinkedListCollection{T}"/> and its items to an <see cref="Array"/>.
+        /// Converts the <see cref="SinglyLinkedList{T}"/> and its items to an <see cref="Array"/>.
         /// </summary>
-        /// <returns>An <see cref="Array"/> containing the items from the <see cref="SinglyLinkedListCollection{T}"/> in reverse order.</returns>
-        /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedListCollection{T}"/> contains <strong>0 items</strong>.</exception>
+        /// <returns>An <see cref="Array"/> containing the items from the <see cref="SinglyLinkedList{T}"/> in reverse order.</returns>
+        /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedList{T}"/> contains <strong>0 items</strong>.</exception>
         public T[] ToReverseArray()
         {
             if (IsEmpty())
@@ -229,9 +229,9 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Removes the last node from the <see cref="SinglyLinkedListCollection{T}"/>.
+        /// Removes the last node from the <see cref="SinglyLinkedList{T}"/>.
         /// </summary>
-        /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedListCollection{T}"/> contains <strong>0 items</strong>.</exception>
+        /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedList{T}"/> contains <strong>0 items</strong>.</exception>
         public void RemoveLast()
         {
             if (IsEmpty())
@@ -264,9 +264,9 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Removes the first node from the <see cref="SinglyLinkedListCollection{T}"/>.
+        /// Removes the first node from the <see cref="SinglyLinkedList{T}"/>.
         /// </summary>
-        /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedListCollection{T}"/> contains <strong>0 items</strong>.</exception>
+        /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedList{T}"/> contains <strong>0 items</strong>.</exception>
         public void RemoveFirst()
         {
             if (IsEmpty())
@@ -287,7 +287,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Get's the node at the head of the <see cref="SinglyLinkedListCollection{T}"/>.
+        /// Get's the node at the head of the <see cref="SinglyLinkedList{T}"/>.
         /// </summary>
         public SinglyLinkedListNode<T> Head
         {
@@ -295,7 +295,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Get's the node at the tail of the <see cref="SinglyLinkedListCollection{T}"/>.
+        /// Get's the node at the tail of the <see cref="SinglyLinkedList{T}"/>.
         /// </summary>
         public SinglyLinkedListNode<T> Tail
         {
@@ -305,9 +305,9 @@ namespace Dsa.DataStructures
         #region IEnumerable<T> Members
 
         /// <summary>
-        /// Returns an <see cref="IEnumerator{T}"/> that iterates through the items in the <see cref="SinglyLinkedListCollection{T}"/>.
+        /// Returns an <see cref="IEnumerator{T}"/> that iterates through the items in the <see cref="SinglyLinkedList{T}"/>.
         /// </summary>
-        /// <returns>An <see cref="IEnumerator{T}" /> that can be used to iterate through the <see cref="SinglyLinkedListCollection{T}"/>.</returns>
+        /// <returns>An <see cref="IEnumerator{T}" /> that can be used to iterate through the <see cref="SinglyLinkedList{T}"/>.</returns>
         public IEnumerator<T> GetEnumerator()
         {
             SinglyLinkedListNode<T> n = Head;
@@ -336,16 +336,16 @@ namespace Dsa.DataStructures
         #region ICollection<T> Members
 
         /// <summary>
-        /// Adds an item to the tail of the <see cref="SinglyLinkedListCollection{T}"/>.
+        /// Adds an item to the tail of the <see cref="SinglyLinkedList{T}"/>.
         /// </summary>
-        /// <param name="item">Item to add to the <see cref="SinglyLinkedListCollection{T}"/>.</param>
+        /// <param name="item">Item to add to the <see cref="SinglyLinkedList{T}"/>.</param>
         public void Add(T item)
         {
             AddLast(item);
         }
 
         /// <summary>
-        /// Resets the <see cref="SinglyLinkedListCollection{T}"/> to its default state.
+        /// Resets the <see cref="SinglyLinkedList{T}"/> to its default state.
         /// </summary>
         public void Clear()
         {
@@ -355,10 +355,10 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Determines whether a value is in the <see cref="SinglyLinkedListCollection{T}"/>.
+        /// Determines whether a value is in the <see cref="SinglyLinkedList{T}"/>.
         /// </summary>
         /// <param name="item">Value to search for.</param>
-        /// <returns>True if the value is in the <see cref="SinglyLinkedListCollection{T}"/>; false otherwise.</returns>
+        /// <returns>True if the value is in the <see cref="SinglyLinkedList{T}"/>; false otherwise.</returns>
         public bool Contains(T item)
         {
             foreach (T value in this)
@@ -373,19 +373,19 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Copies the entire <see cref="SinglyLinkedListCollection{T}"/> to a compatible one-dimensional <see cref="Array"/>.
+        /// Copies the entire <see cref="SinglyLinkedList{T}"/> to a compatible one-dimensional <see cref="Array"/>.
         /// </summary>
-        /// <param name="array">Array to copy <see cref="SinglyLinkedListCollection{T}"/> items to.</param>
+        /// <param name="array">Array to copy <see cref="SinglyLinkedList{T}"/> items to.</param>
         public void CopyTo(T[] array)
         {
             Array.Copy(ToArray(), array, _count);
         }
 
         /// <summary>
-        /// Copies the entire <see cref="SinglyLinkedListCollection{T}"/> to a compatible one-dimensional <see cref="Array"/>, starting at the specified 
+        /// Copies the entire <see cref="SinglyLinkedList{T}"/> to a compatible one-dimensional <see cref="Array"/>, starting at the specified 
         /// index of the target <see cref="Array"/>.
         /// </summary>
-        /// <param name="array">Array to copy <see cref="SinglyLinkedListCollection{T}"/> to.</param>
+        /// <param name="array">Array to copy <see cref="SinglyLinkedList{T}"/> to.</param>
         /// <param name="arrayIndex">Index of array to start copying to.</param>
         public void CopyTo(T[] array, int arrayIndex)
         {
@@ -393,11 +393,11 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Removes the first occurrence of a value from the <see cref="SinglyLinkedListCollection{T}"/>.
+        /// Removes the first occurrence of a value from the <see cref="SinglyLinkedList{T}"/>.
         /// </summary>
         /// <param name="item">Value to remove</param>
         /// <returns>True if the value was found and removed; false otherwise.</returns>
-        /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedListCollection{T}"/> contains <strong>0 items</strong>.</exception>
+        /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedList{T}"/> contains <strong>0 items</strong>.</exception>
         public bool Remove(T item)
         {
             if (IsEmpty())
@@ -457,7 +457,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Get's the count of nodes in the <see cref="SinglyLinkedListCollection{T}"/>.
+        /// Get's the count of nodes in the <see cref="SinglyLinkedList{T}"/>.
         /// </summary>
         public int Count
         {
@@ -467,9 +467,9 @@ namespace Dsa.DataStructures
         #endregion
 
         /// <summary>
-        /// Returns an <see cref="IEnumerable{T}"/> that iterates through the items in the <see cref="SinglyLinkedListCollection{T}"/> in reverse order.
+        /// Returns an <see cref="IEnumerable{T}"/> that iterates through the items in the <see cref="SinglyLinkedList{T}"/> in reverse order.
         /// </summary>
-        /// <returns>An <see cref="IEnumerable{T}" /> that can be used to iterate through the <see cref="SinglyLinkedListCollection{T}"/>.</returns>
+        /// <returns>An <see cref="IEnumerable{T}" /> that can be used to iterate through the <see cref="SinglyLinkedList{T}"/>.</returns>
         public IEnumerable<T> GetReverseEnumerator()
         {
             SinglyLinkedListNode<T> n = _head;
