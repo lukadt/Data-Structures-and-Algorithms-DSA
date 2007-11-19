@@ -51,6 +51,8 @@
     <Compile Include="DataStructures\BinarySearchTreeCollection.cs" />
     <Compile Include="DataStructures\BinaryTreeNode.cs" />
     <Compile Include="DataStructures\CollectionDebugView.cs" />
+    <Compile Include="DataStructures\ArrayList.cs" />
+    <Compile Include="DataStructures\BinarySearchTree.cs" />
     <Compile Include="DataStructures\DoublyLinkedListCollection.cs" />
     <Compile Include="DataStructures\DoublyLinkedListNode.cs" />
     <Compile Include="DataStructures\IComparerProvider.cs" />
@@ -60,10 +62,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="DataStructures\QueueCollection.cs" />
     <Compile Include="DataStructures\SinglyLinkedListCollection.cs" />
     <Compile Include="DataStructures\SinglyLinkedListNode.cs" />
-    <Compile Include="DataStructures\StackCollection.cs" />
     <Compile Include="Algorithms\Strings.cs" />
     <Compile Include="Utility\Compare.cs" />
   </ItemGroup>
