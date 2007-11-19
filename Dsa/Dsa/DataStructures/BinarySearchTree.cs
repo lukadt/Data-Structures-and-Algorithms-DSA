@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
 using Dsa.Properties;
 using Dsa.Utility;
-using System.Diagnostics;
 
 namespace Dsa.DataStructures
 {
@@ -14,17 +12,11 @@ namespace Dsa.DataStructures
     /// </summary>
     /// <typeparam name="T">Type of items to store in the <see cref="BinarySearchTree{T}"/>.</typeparam>
     [Serializable]
-    [DebuggerDisplay("Count={Count}")]
-    [DebuggerTypeProxy(typeof(CollectionDebugView<>))]
-    public sealed class BinarySearchTree<T> : ICollection, ICollection<T>, IComparerProvider<T>
+    public sealed class BinarySearchTree<T> : CollectionBase<T>, ICollection, ICollection<T>, IComparerProvider<T>
     {
 
         [NonSerialized]
         private BinaryTreeNode<T> _root;
-        [NonSerialized]
-        private int _count;
-        [NonSerialized]
-        private object _syncRoot;
         [NonSerialized]
         private IComparer<T> _comparer;
 
@@ -359,14 +351,14 @@ namespace Dsa.DataStructures
         /// </remarks>
         /// <returns>An <see cref="Array"/> containing the items of the <see cref="BinarySearchTree{T}"/>.</returns>
         /// <exception cref="InvalidOperationException"><see cref="BinarySearchTree{T}"/> is <strong>empty</strong>.</exception>
-        public T[] ToArray()
+        public override T[] ToArray()
         {
-            if (_count < 1)
+            if (base.Count < 1)
             {
                 throw new InvalidOperationException(Resources.BinarySearchTreeEmpty); // to array is not permitted on a bst with no items.
             }
             int i = 0;
-            T[] array = new T[_count];
+            T[] array = new T[base.Count];
             foreach (T item in GetBreadthFirstEnumerator())
             {
                 // loop through items copying them to an array
@@ -383,7 +375,7 @@ namespace Dsa.DataStructures
         /// in the <see cref="BinarySearchTree{T}"/>.
         /// </summary>
         /// <param name="item">Value to insert.</param>
-        public void Add(T item)
+        public override void Add(T item)
         {
             if (_root == null)
             {
@@ -393,24 +385,24 @@ namespace Dsa.DataStructures
             {
                 InsertNode(_root, item); // call the recursive method insertNode to see where this value is to be placed in the tree.
             }
-            _count++; // update count as we have added a new node to the bst
+            base.Count++; // update count as we have added a new node to the bst
         }
 
         /// <summary>
-        /// Removes all items from the <see cref="BinarySearchTree{T}"/>.
+        /// Clears all items from the <see cref="BinarySearchTree{T}"/>.
         /// </summary>
-        public void Clear()
+        public override void Clear()
         {
             _root = null;
-            _count = 0;
+            base.Count = 0;
         }
 
         /// <summary>
-        /// Determines whether an item is contained with the <see cref="BinarySearchTree{T}"/>.
+        /// Determines whether an item is contained within the <see cref="BinarySearchTree{T}"/>.
         /// </summary>
         /// <param name="item">Item to search the <see cref="BinarySearchTree{T}"/> for.</param>
         /// <returns>True if the item is contained within the <see cref="BinarySearchTree{T}"/>; false otherwise.</returns>
-        public bool Contains(T item)
+        public override bool Contains(T item)
         {
             return Contains(_root, item);
         }
@@ -447,34 +439,7 @@ namespace Dsa.DataStructures
         /// <param name="array">A one-dimensional <see cref="Array"/> to copy the <see cref="BinarySearchTree{T}"/> items to.</param>
         public void CopyTo(T[] array)
         {
-            Array.Copy(ToArray(), array, _count);
-        }
-
-        /// <summary>
-        /// Copies all the <see cref="BinarySearchTree{T}"/> items to a compatible one-dimensional <see cref="Array"/>, 
-        /// starting at the specified index of the target <see cref="Array"/>.
-        /// </summary>
-        /// <param name="array">A one-dimensional <see cref="Array"/> to copy the <see cref="BinarySearchTree{T}"/> items to.</param>
-        /// <param name="arrayIndex">Index of target <see cref="Array"/> where copying begins.</param>
-        public void CopyTo(T[] array, int arrayIndex)
-        {
-            Array.Copy(ToArray(), 0, array, arrayIndex, _count);
-        }
-
-        /// <summary>
-        /// Gets the number of items contained in the <see cref="BinarySearchTree{T}"/>.
-        /// </summary>
-        public int Count
-        {
-            get { return _count; }
-        }
-
-        /// <summary>
-        /// Gets whether or not the collection is read only.
-        /// </summary>
-        bool ICollection<T>.IsReadOnly
-        {
-            get { return false; }
+            Array.Copy(ToArray(), array, base.Count);
         }
 
         /// <summary>
@@ -482,7 +447,7 @@ namespace Dsa.DataStructures
         /// </summary>
         /// <param name="item">Item to remove from the the <see cref="BinarySearchTree{T}"/>.</param>
         /// <returns>True if the item was removed; false otherwise.</returns>
-        public bool Remove(T item)
+        public override bool Remove(T item)
         {
             BinaryTreeNode<T> nodeToRemove = FindNode(item);
             // check to see if the item is not in the bst
@@ -494,7 +459,7 @@ namespace Dsa.DataStructures
             BinaryTreeNode<T> parent = FindParent(item);
 
             // check to see if nodeToRemove is the only node in the bst
-            if (_count == 1)
+            if (base.Count == 1)
             {
                 _root = null;
             }
@@ -549,7 +514,7 @@ namespace Dsa.DataStructures
                 // set value of nodeToRemove to the value of largestValue
                 nodeToRemove.Value = largestValue.Value;
             }
-            _count--;
+            base.Count--;
             return true;
         }
 
@@ -563,62 +528,10 @@ namespace Dsa.DataStructures
         ///<returns>
         /// An <see cref="IEnumerator{T}" /> that can be used to iterate through the <see cref="BinarySearchTree{T}"/>.
         ///</returns>
-        public IEnumerator<T> GetEnumerator()
+        public override IEnumerator<T> GetEnumerator()
         {
             ArrayList<T> arrayListCollection = new ArrayList<T>();
             return PreorderTraveral(_root, arrayListCollection).GetEnumerator();
-        }
-
-        #endregion
-
-        #region IEnumerable Members
-
-        ///<summary>
-        /// An <see cref="IEnumerator"/> that iterates through the collection.  By default Preorder traversal of the tree.
-        ///</summary>
-        ///<returns>
-        /// A <see cref="IEnumerator" /> that can be used to iterate through the collection.
-        ///</returns>
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
-
-        #endregion
-
-        #region ICollection Members
-
-        /// <summary>
-        /// Not Supported.  Copies items in bst to a target array.
-        /// </summary>
-        /// <param name="array">Target array to copy items to.</param>
-        /// <param name="index">Index to starty copying items to.</param>
-        public void CopyTo(Array array, int index)
-        {
-            throw new NotSupportedException(Resources.ICollectionCopyToNotSupported);
-        }
-
-        /// <summary>
-        /// Gets whether or not the collection is thread safe.
-        /// </summary>
-        public bool IsSynchronized
-        {
-            get { return false; }
-        }
-
-        /// <summary>
-        /// Gets an object that can be used to synchronize accesss to the collection.
-        /// </summary>
-        object ICollection.SyncRoot
-        {
-            get 
-            {
-                if (_syncRoot == null)
-                {
-                    Interlocked.CompareExchange(ref _syncRoot, new object(), null);
-                }
-                return _syncRoot;
-            }
         }
 
         #endregion
