@@ -83,28 +83,19 @@ namespace Dsa.DataStructures
         /// Adds an item to the <see cref="ICollection{T}"/>.
         /// </summary>
         /// <param name="item">Item to add to collection.</param>
-        public virtual void Add(T item)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void Add(T item);
 
         /// <summary>
         /// Clears all items from the <see cref="ICollection{T}"/>.
         /// </summary>
-        public virtual void Clear()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void Clear();
 
         /// <summary>
         /// Determines whether an item is contained within the <see cref="ICollection{T}"/>.
         /// </summary>
         /// <param name="item">Item to search the <see cref="ICollection{T}"/> for.</param>
         /// <returns>True if the item is in the <see cref="ICollection{T}"/>; otherwise false.</returns>
-        public virtual bool Contains(T item)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract bool Contains(T item);
 
         /// <summary>
         /// Copies all the <see cref="ICollection{T}"/> items to a compatible one-dimensional <see cref="Array"/>, 
@@ -114,7 +105,7 @@ namespace Dsa.DataStructures
         /// <param name="arrayIndex">Index of target <see cref="Array"/> where copying begins.</param>
         public void CopyTo(T[] array, int arrayIndex)
         {
-            Array.Copy(this.ToArray(), 0, array, arrayIndex, Count);
+            Array.Copy(ToArray(), 0, array, arrayIndex, Count);
         }
 
         /// <summary>
@@ -139,10 +130,7 @@ namespace Dsa.DataStructures
         /// </summary>
         /// <param name="item">Item to remove from collection.</param>
         /// <returns>True if the item was removed; otherwise false.</returns>
-        public virtual bool Remove(T item)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract bool Remove(T item);
 
         #endregion
 
@@ -152,10 +140,7 @@ namespace Dsa.DataStructures
         /// An <see cref="IEnumerator{T}"/> that iterates through the <see cref="ICollection{T}"/>.
         /// </summary>
         /// <returns>An <see cref="IEnumerator{T}" /> that can be used to iterate through the <see cref="ICollection{T}"/>.</returns>
-        public virtual IEnumerator<T> GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract IEnumerator<T> GetEnumerator();
 
         #endregion
 
@@ -164,5 +149,6 @@ namespace Dsa.DataStructures
         /// </summary>
         /// <returns>An array of the items in the collection.</returns>
         public abstract T[] ToArray();
+
     }
 }

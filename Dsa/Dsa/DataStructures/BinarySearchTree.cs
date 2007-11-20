@@ -12,7 +12,7 @@ namespace Dsa.DataStructures
     /// </summary>
     /// <typeparam name="T">Type of items to store in the <see cref="BinarySearchTree{T}"/>.</typeparam>
     [Serializable]
-    public sealed class BinarySearchTree<T> : CollectionBase<T>, ICollection, ICollection<T>, IComparerProvider<T>
+    public sealed class BinarySearchTree<T> : CollectionBase<T>, IComparerProvider<T>
     {
 
         [NonSerialized]
@@ -353,12 +353,12 @@ namespace Dsa.DataStructures
         /// <exception cref="InvalidOperationException"><see cref="BinarySearchTree{T}"/> is <strong>empty</strong>.</exception>
         public override T[] ToArray()
         {
-            if (base.Count < 1)
+            if (Count < 1)
             {
                 throw new InvalidOperationException(Resources.BinarySearchTreeEmpty); // to array is not permitted on a bst with no items.
             }
             int i = 0;
-            T[] array = new T[base.Count];
+            T[] array = new T[Count];
             foreach (T item in GetBreadthFirstEnumerator())
             {
                 // loop through items copying them to an array
@@ -367,8 +367,6 @@ namespace Dsa.DataStructures
             }
             return array;
         }
-
-        #region ICollection<T> Members
 
         /// <summary>
         /// Inserts a new node with the specified value at the appropriate location
@@ -385,7 +383,7 @@ namespace Dsa.DataStructures
             {
                 InsertNode(_root, item); // call the recursive method insertNode to see where this value is to be placed in the tree.
             }
-            base.Count++; // update count as we have added a new node to the bst
+            Count++; // update count as we have added a new node to the bst
         }
 
         /// <summary>
@@ -394,7 +392,7 @@ namespace Dsa.DataStructures
         public override void Clear()
         {
             _root = null;
-            base.Count = 0;
+            Count = 0;
         }
 
         /// <summary>
@@ -439,7 +437,7 @@ namespace Dsa.DataStructures
         /// <param name="array">A one-dimensional <see cref="Array"/> to copy the <see cref="BinarySearchTree{T}"/> items to.</param>
         public void CopyTo(T[] array)
         {
-            Array.Copy(ToArray(), array, base.Count);
+            Array.Copy(ToArray(), array, Count);
         }
 
         /// <summary>
@@ -459,7 +457,7 @@ namespace Dsa.DataStructures
             BinaryTreeNode<T> parent = FindParent(item);
 
             // check to see if nodeToRemove is the only node in the bst
-            if (base.Count == 1)
+            if (Count == 1)
             {
                 _root = null;
             }
@@ -514,13 +512,9 @@ namespace Dsa.DataStructures
                 // set value of nodeToRemove to the value of largestValue
                 nodeToRemove.Value = largestValue.Value;
             }
-            base.Count--;
+            Count--;
             return true;
         }
-
-        #endregion
-
-        #region IEnumerable<T> Members
 
         ///<summary>
         /// An <see cref="IEnumerator{T}"/> that iterates through the <see cref="BinarySearchTree{T}"/>.  By default Preorder traversal of the tree.
@@ -533,8 +527,6 @@ namespace Dsa.DataStructures
             ArrayList<T> arrayListCollection = new ArrayList<T>();
             return PreorderTraveral(_root, arrayListCollection).GetEnumerator();
         }
-
-        #endregion
 
         #region IComparerProvider<T> Members
 

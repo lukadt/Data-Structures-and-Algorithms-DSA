@@ -221,7 +221,7 @@ namespace Dsa.Test
         /// Check to see that the IsEmpty method returns the correct value.
         /// </summary>
         [TestMethod]
-        public void IEmptyTest()
+        public void IsEmptyTest()
         {
             DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
 
@@ -427,24 +427,6 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Check to see that a call to CopyTo results in the correct population of an array.
-        /// </summary>
-        [TestMethod]
-        public void CopyToTest()
-        {
-            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
-
-            dll.AddLast(10);
-            dll.AddLast(20);
-            dll.AddLast(30);
-            int[] actual = new int[dll.Count];
-            dll.CopyTo(actual, 0);
-            int[] expected = { 10, 20, 30 };
-
-            CollectionAssert.AreEqual(expected, actual);
-        }
-
-        /// <summary>
         /// Check to see that calling ToArray on the linked list results in the expected array.
         /// </summary>
         [TestMethod]
@@ -471,18 +453,6 @@ namespace Dsa.Test
             DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
 
             dll.ToArray();
-        }
-
-        /// <summary>
-        /// Check to see that the IsReadonly property returns false.
-        /// </summary>
-        [TestMethod]
-        public void IsReadonlyTest()
-        {
-            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
-            ICollection<int> actual = dll;
-
-            Assert.IsFalse(actual.IsReadOnly);
         }
 
         /// <summary>
@@ -638,56 +608,6 @@ namespace Dsa.Test
             foreach (int i in dll) Console.WriteLine(i);
 
             Assert.IsNotNull(dll.GetEnumerator());
-        }
-
-        /// <summary>
-        /// Check to see that an non null IEnumerator object is returned.
-        /// </summary>
-        [TestMethod]
-        public void GetEnumeratorNonGenericTest()
-        {
-            DoublyLinkedList<string> dll = new DoublyLinkedList<string>();
-            IEnumerable actual = dll;
-
-            Assert.IsNotNull(actual.GetEnumerator());
-        }
-
-        /// <summary>
-        /// Check to see that ICollection.CopyTo raises the corrrect exception.
-        /// </summary>
-        [TestMethod]
-        [ExpectedException(typeof(NotSupportedException))]
-        public void CopyToNonGenericTest()
-        {
-            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
-            ICollection actual = dll;
-
-            int[] myArray = new int[4];
-            actual.CopyTo(myArray, 0);
-        }
-
-        /// <summary>
-        /// Check to see that the IsSynchronized returns false.
-        /// </summary>
-        [TestMethod]
-        public void IsSynchronizedTest()
-        {
-            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
-            ICollection actual = dll;
-
-            Assert.IsFalse(actual.IsSynchronized);
-        }
-
-        /// <summary>
-        /// Check to see that the SyncRoot property returns a non-null object.
-        /// </summary>
-        [TestMethod]
-        public void SyncRootTest()
-        {
-            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
-            ICollection actual = dll;
-
-            Assert.IsNotNull(actual.SyncRoot);
         }
 
     }

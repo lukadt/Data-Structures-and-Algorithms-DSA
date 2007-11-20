@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Threading;
 using Dsa.Properties;
 
 namespace Dsa.DataStructures
@@ -13,9 +11,7 @@ namespace Dsa.DataStructures
     /// </summary>
     /// <typeparam name="T">Type of the <see cref="SinglyLinkedList{T}"/>.</typeparam>
     [Serializable]
-    [DebuggerDisplay("Count={Count}")]
-    [DebuggerTypeProxy(typeof(CollectionDebugView<>))]
-    public sealed class SinglyLinkedList<T> : ICollection<T>, ICollection, IComparerProvider<T>
+    public sealed class SinglyLinkedList<T> : CollectionBase<T>, IComparerProvider<T>
     {
 
         [NonSerialized]
@@ -23,12 +19,7 @@ namespace Dsa.DataStructures
         [NonSerialized]
         private SinglyLinkedListNode<T> _tail;
         [NonSerialized]
-        private int _count;
-        [NonSerialized]
-        private object _syncRoot;
-        [NonSerialized]
         private IComparer<T> _comparer;
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SinglyLinkedList{T}"/> class.
@@ -71,7 +62,7 @@ namespace Dsa.DataStructures
                 _tail.Next = n;
                 _tail = n;
             }
-            _count++;
+            Count++;
         }
 
         /// <summary>
@@ -93,7 +84,7 @@ namespace Dsa.DataStructures
                 n.Next = _head;
                 _head = n;
             }
-            _count++;
+            Count++;
         }
 
         /// <summary>
@@ -132,7 +123,7 @@ namespace Dsa.DataStructures
                 n.Next = node.Next;
                 node.Next = n;
             }
-            _count++;
+            Count++;
         }
 
         /// <summary>
@@ -174,7 +165,7 @@ namespace Dsa.DataStructures
                     curr = curr.Next;
                 }
             }
-            _count++;
+            Count++;
         }
 
         /// <summary>
@@ -191,14 +182,14 @@ namespace Dsa.DataStructures
         /// </summary>
         /// <returns>An <see cref="Array"/> containing the items from the <see cref="SinglyLinkedList{T}"/>.</returns>
         /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedList{T}"/> contains <strong>0 items</strong>.</exception>
-        public T[] ToArray()
+        public override T[] ToArray()
         {
             if (IsEmpty())
             {
                 throw new InvalidOperationException(Resources.SinglyLinkedListEmpty); // nothing to copy to array
             }
             int curr = 0; // index pointer used to insert items into correct array location
-            T[] arrayResult = new T[_count];
+            T[] arrayResult = new T[Count];
             foreach (T value in this)
             {
                 arrayResult[curr] = value; // add item to array
@@ -219,7 +210,7 @@ namespace Dsa.DataStructures
                 throw new InvalidOperationException(Resources.SinglyLinkedListEmpty); // nothing to add to array
             }
             int curr = 0;
-            T[] arrayResult = new T[_count];
+            T[] arrayResult = new T[Count];
             foreach (T item in GetReverseEnumerator())
             {
                 arrayResult[curr] = item; // add item to array
@@ -260,7 +251,7 @@ namespace Dsa.DataStructures
                     n = n.Next;
                 }
             }
-            _count--;
+            Count--;
         }
 
         /// <summary>
@@ -283,7 +274,7 @@ namespace Dsa.DataStructures
             {
                 _head = _head.Next; // the head node is the prevoius head nodes next node
             }
-            _count--;
+            Count--;
         }
 
         /// <summary>
@@ -302,13 +293,11 @@ namespace Dsa.DataStructures
             get { return _tail; }
         }
 
-        #region IEnumerable<T> Members
-
         /// <summary>
         /// Returns an <see cref="IEnumerator{T}"/> that iterates through the items in the <see cref="SinglyLinkedList{T}"/>.
         /// </summary>
         /// <returns>An <see cref="IEnumerator{T}" /> that can be used to iterate through the <see cref="SinglyLinkedList{T}"/>.</returns>
-        public IEnumerator<T> GetEnumerator()
+        public override IEnumerator<T> GetEnumerator()
         {
             SinglyLinkedListNode<T> n = Head;
             while (n != null)
@@ -318,28 +307,11 @@ namespace Dsa.DataStructures
             }
         }
 
-        #endregion
-
-        #region IEnumerable Members
-
-        /// <summary>
-        /// Returns an <see cref="IEnumerator"/> that iterates through the items in the <see cref="IEnumerable"/>.
-        /// </summary>
-        /// <returns>An <see cref="IEnumerator" /> that can be used to iterate through the <see cref="IEnumerable"/>.</returns>
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
-
-        #endregion
-
-        #region ICollection<T> Members
-
         /// <summary>
         /// Adds an item to the tail of the <see cref="SinglyLinkedList{T}"/>.
         /// </summary>
         /// <param name="item">Item to add to the <see cref="SinglyLinkedList{T}"/>.</param>
-        public void Add(T item)
+        public override void Add(T item)
         {
             AddLast(item);
         }
@@ -347,11 +319,11 @@ namespace Dsa.DataStructures
         /// <summary>
         /// Resets the <see cref="SinglyLinkedList{T}"/> to its default state.
         /// </summary>
-        public void Clear()
+        public override void Clear()
         {
             _head = null;
             _tail = null;
-            _count = 0;
+            Count = 0;
         }
 
         /// <summary>
@@ -359,7 +331,7 @@ namespace Dsa.DataStructures
         /// </summary>
         /// <param name="item">Value to search for.</param>
         /// <returns>True if the value is in the <see cref="SinglyLinkedList{T}"/>; false otherwise.</returns>
-        public bool Contains(T item)
+        public override bool Contains(T item)
         {
             foreach (T value in this)
             {
@@ -373,32 +345,12 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Copies the entire <see cref="SinglyLinkedList{T}"/> to a compatible one-dimensional <see cref="Array"/>.
-        /// </summary>
-        /// <param name="array">Array to copy <see cref="SinglyLinkedList{T}"/> items to.</param>
-        public void CopyTo(T[] array)
-        {
-            Array.Copy(ToArray(), array, _count);
-        }
-
-        /// <summary>
-        /// Copies the entire <see cref="SinglyLinkedList{T}"/> to a compatible one-dimensional <see cref="Array"/>, starting at the specified 
-        /// index of the target <see cref="Array"/>.
-        /// </summary>
-        /// <param name="array">Array to copy <see cref="SinglyLinkedList{T}"/> to.</param>
-        /// <param name="arrayIndex">Index of array to start copying to.</param>
-        public void CopyTo(T[] array, int arrayIndex)
-        {
-            Array.Copy(ToArray(), 0, array, arrayIndex, _count);
-        }
-
-        /// <summary>
         /// Removes the first occurrence of a value from the <see cref="SinglyLinkedList{T}"/>.
         /// </summary>
         /// <param name="item">Value to remove</param>
         /// <returns>True if the value was found and removed; false otherwise.</returns>
         /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedList{T}"/> contains <strong>0 items</strong>.</exception>
-        public bool Remove(T item)
+        public override bool Remove(T item)
         {
             if (IsEmpty())
             {
@@ -415,7 +367,7 @@ namespace Dsa.DataStructures
                 }
                 // if n was the only node in the linked list then head is now null as well as tail, if not head has been updated to its next node
                 _head = _head.Next;
-                _count--;
+                Count--;
                 return true;
             }
             // loop through the linked list looking for the first node that equals item
@@ -432,12 +384,12 @@ namespace Dsa.DataStructures
                         // the node to be removed was the tail so we need to make n the new tail
                         _tail = n;
                         n.Next = null;
-                        _count--;
+                        Count--;
                         return true;
                     }
                     // the node to remove is somewhere in the middle of the linked list
                     n.Next = n.Next.Next;
-                    _count--;
+                    Count--;
                     return true;
                 }
                 else
@@ -447,24 +399,6 @@ namespace Dsa.DataStructures
             }
             return false;
         }
-
-        /// <summary>
-        /// Gets whether the <see cref="ICollection{T}"/> is read only.
-        /// </summary>
-        bool ICollection<T>.IsReadOnly
-        {
-            get { return false; }
-        }
-
-        /// <summary>
-        /// Get's the count of nodes in the <see cref="SinglyLinkedList{T}"/>.
-        /// </summary>
-        public int Count
-        {
-            get { return _count; }
-        }
-
-        #endregion
 
         /// <summary>
         /// Returns an <see cref="IEnumerable{T}"/> that iterates through the items in the <see cref="SinglyLinkedList{T}"/> in reverse order.
@@ -489,43 +423,6 @@ namespace Dsa.DataStructures
             }
             yield return n.Value;
         }
-
-        #region ICollection Members
-
-        /// <summary>
-        /// Copies the elements of the <see cref="ICollection"/> to an <see cref="Array"/>, starting at a particular <see cref="Array"/> index.
-        /// </summary>
-        /// <param name="array">Array to copy elements to.</param>
-        /// <param name="index">Index of array to start copying to.</param>
-        void ICollection.CopyTo(Array array, int index)
-        {
-            throw new NotSupportedException(Resources.ICollectionCopyToNotSupported);
-        }
-
-        /// <summary>
-        /// Gets a value indicating whether access to the <see cref="ICollection"/> is synchronized (thread safe).
-        /// </summary>
-        bool ICollection.IsSynchronized
-        {
-            get { return false; }
-        }
-
-        /// <summary>
-        /// Gets an object that can be used to synchronize access to the <see cref="ICollection"/>.
-        /// </summary>
-        object ICollection.SyncRoot
-        {
-            get
-            {
-                if (_syncRoot == null)
-                {
-                    Interlocked.CompareExchange(ref _syncRoot, new object(), null);
-                }
-                return _syncRoot;
-            }
-        }
-
-        #endregion
 
         #region IComparerProvider<T> Members
 

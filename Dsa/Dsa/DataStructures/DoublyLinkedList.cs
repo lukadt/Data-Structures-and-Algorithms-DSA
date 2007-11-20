@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Threading;
 using Dsa.Properties;
 
 namespace Dsa.DataStructures
@@ -13,19 +10,13 @@ namespace Dsa.DataStructures
     /// </summary>
     /// <typeparam name="T">Type of <see cref="DoublyLinkedList{T}"/>.</typeparam>
     [Serializable]
-    [DebuggerDisplay("Count={Count}")]
-    [DebuggerTypeProxy(typeof(CollectionDebugView<>))]
-    public sealed class DoublyLinkedList<T> : ICollection<T>, ICollection, IComparerProvider<T>
+    public sealed class DoublyLinkedList<T> : CollectionBase<T>, IComparerProvider<T>
     {
 
         [NonSerialized]
         private DoublyLinkedListNode<T> _head;
         [NonSerialized]
         private DoublyLinkedListNode<T> _tail;
-        [NonSerialized]
-        private int _count;
-        [NonSerialized]
-        private object _syncRoot;
         [NonSerialized]
         private IComparer<T> _comparer;
 
@@ -70,7 +61,7 @@ namespace Dsa.DataStructures
                 n.Prev = _tail; 
                 _tail = n; 
             }
-            _count++;
+            Count++;
         }
 
         /// <summary>
@@ -92,7 +83,7 @@ namespace Dsa.DataStructures
                 n.Next = _head; 
                 _head = n; 
             }
-            _count++;
+            Count++;
         }
 
         /// <summary>
@@ -118,7 +109,7 @@ namespace Dsa.DataStructures
                 node.Next = n;
                 n.Prev = node;
             }
-            _count++;
+            Count++;
         }
 
         /// <summary>
@@ -145,7 +136,7 @@ namespace Dsa.DataStructures
                 n.Prev = node.Prev;
                 node.Prev = n;
             }
-            _count++;
+            Count++;
         }
 
         /// <summary>
@@ -174,7 +165,7 @@ namespace Dsa.DataStructures
                 _tail = _tail.Prev; // set tail to be the old tails prev node
                 _tail.Next = null;
             }
-            _count--;
+            Count--;
         }
 
         /// <summary>
@@ -202,7 +193,7 @@ namespace Dsa.DataStructures
                 _head = _head.Next; // the new head is the old head nodes next node
                 _head.Prev = null;
             }
-            _count--;
+            Count--;
         }
 
         /// <summary>
@@ -210,14 +201,14 @@ namespace Dsa.DataStructures
         /// </summary>
         /// <returns><see cref="Array"/> containing the values of the nodes contained in the <see cref="DoublyLinkedList{T}"/>.</returns>
         /// <exception cref="InvalidOperationException"><see cref="DoublyLinkedList{T}"/> contains <strong>0 items</strong>.</exception>
-        public T[] ToArray()
+        public override T[] ToArray()
         {
             if (IsEmpty())
             {
                 throw new InvalidOperationException(Resources.DoublyLinkedListEmpty); // nothing to make an array out of
             }
             int index = 0;
-            T[] resultArray = new T[_count]; 
+            T[] resultArray = new T[Count]; 
             foreach (T value in this)
             {
                 resultArray[index] = value; // copy dll's items to array
@@ -268,14 +259,11 @@ namespace Dsa.DataStructures
             get { return _tail; }
         }
 
-
-        #region ICollection<T> Members
-
         /// <summary>
         /// Adds an item to the <see cref="ICollection{T}"/>.
         /// </summary>
         /// <param name="item">Item to add to the <see cref="ICollection{T}"/>.</param>
-        void ICollection<T>.Add(T item)
+        public override void Add(T item)
         {
             AddLast(item);
         }
@@ -283,11 +271,11 @@ namespace Dsa.DataStructures
         /// <summary>
         /// Resets the <see cref="DoublyLinkedList{T}"/> back to its default state.
         /// </summary>
-        public void Clear()
+        public override void Clear()
         {
             _head = null;
             _tail = null;
-            _count = 0;
+           Count = 0;
         }
 
         /// <summary>
@@ -295,7 +283,7 @@ namespace Dsa.DataStructures
         /// </summary>
         /// <param name="item">Value to search the <see cref="DoublyLinkedList{T}"/> for.</param>
         /// <returns>True if the value was found; false otherwise.</returns>
-        public bool Contains(T item)
+        public override bool Contains(T item)
         {
             foreach (T value in this)
             {
@@ -305,39 +293,12 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Copies the entire <see cref="DoublyLinkedList{T}"/> to a compatible one-dimensional <see cref="Array"/>, starting at 
-        /// the specified index of the target array.
-        /// </summary>
-        /// <param name="array"><see cref="Array"/> to copy values of <see cref="DoublyLinkedList{T}"/> to.</param>
-        /// <param name="arrayIndex">Index of array to start copying to.</param>
-        public void CopyTo(T[] array, int arrayIndex)
-        {
-            Array.Copy(ToArray(), array, _count);
-        }
-
-        /// <summary>
-        /// Gets the number of nodes contained in the <see cref="DoublyLinkedList{T}"/>.
-        /// </summary>
-        public int Count
-        {
-            get { return _count; }
-        }
-
-        /// <summary>
-        /// Gets whether or not the <see cref="IList"/> is readonly.
-        /// </summary>
-        bool ICollection<T>.IsReadOnly
-        {
-            get { return false; }
-        }
-
-        /// <summary>
         /// Removes the first occurrence of a value from the <see cref="DoublyLinkedList{T}"/>.
         /// </summary>
         /// <param name="item">Value to remove from the <see cref="DoublyLinkedList{T}"/>.</param>
         /// <returns>True if the value was removed from the <see cref="DoublyLinkedList{T}"/>; false otherwise.</returns>
         /// <exception cref="InvalidOperationException"><see cref="DoublyLinkedList{T}"/> contains <strong>0 items</strong>.</exception>
-        public bool Remove(T item)
+        public override bool Remove(T item)
         {
             if (IsEmpty())
             {
@@ -348,7 +309,7 @@ namespace Dsa.DataStructures
                 // we are removing the only node in the dll
                 _head = null;
                 _tail = null;
-                _count--;
+                Count--;
                 return true;
             }
             else if (_head.Next == _tail) // there are only two nodes in the dll
@@ -357,14 +318,14 @@ namespace Dsa.DataStructures
                 {
                     _head = _head.Next; // the new head node is the old head nodes next node
                     _head.Prev = null;
-                    _count--;
+                    Count--;
                     return true;
                 }
                 else if (_comparer.Compare(_tail.Value, item) == 0) // the tail node is to be removed
                 {
                     _tail = _head; // as there are only two nodes in the dll make the head node the tail also
                     _head.Next = null;
-                    _count--;
+                    Count--;
                     return true;
                 }
             }
@@ -390,7 +351,7 @@ namespace Dsa.DataStructures
                             n.Prev.Next = n.Next;
                             n.Next.Prev = n.Prev;
                         }
-                        _count--;
+                        Count--;
                         return true;
                     }
                     n = n.Next; 
@@ -399,15 +360,11 @@ namespace Dsa.DataStructures
             return false; // we didn't find the value in the dll
         }
 
-        #endregion
-
-        #region IEnumerable<T> Members
-
         /// <summary>
         /// Traverses the items in the <see cref="DoublyLinkedList{T}"/>.
         /// </summary>
         /// <returns>An <see cref="IEnumerator{T}" /> that can be used to iterate through the <see cref="DoublyLinkedList{T}"/>.</returns>
-        public IEnumerator<T> GetEnumerator()
+        public override IEnumerator<T> GetEnumerator()
         {
             DoublyLinkedListNode<T> n = _head;
             while (n != null)
@@ -416,59 +373,6 @@ namespace Dsa.DataStructures
                 n = n.Next;
             }
         }
-
-        #endregion
-
-        #region IEnumerable Members
-
-        /// <summary>
-        /// Traverses the items in the <see cref="IEnumerable"/>.
-        /// </summary>
-        /// <returns>An <see cref="IEnumerator" /> that can be used to iterate through the <see cref="IEnumerable"/>.</returns>
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
-
-        #endregion
-
-        #region ICollection Members
-
-        /// <summary>
-        /// Copies the elements of the <see cref="ICollection"/> to an <see cref="Array"/>, starting at a particular <see cref="Array"/> index.
-        /// </summary>
-        /// <param name="array">Array to copy elements to.</param>
-        /// <param name="index">Index of array to start copying to.</param>
-        void ICollection.CopyTo(Array array, int index)
-        {
-            throw new NotSupportedException(Resources.ICollectionCopyToNotSupported);
-        }
-
-        /// <summary>
-        /// Gets a value indicating whether access to the <see cref="ICollection"/> is synchronized (thread safe).
-        /// </summary>
-        bool ICollection.IsSynchronized
-        {
-            get { return false; }
-        }
-
-        /// <summary>
-        /// Gets an object that can be used to synchronize access to the <see cref="ICollection"/>.
-        /// </summary>
-        object ICollection.SyncRoot
-        {
-            get
-            {
-                if (_syncRoot == null)
-                {
-                    Interlocked.CompareExchange(ref _syncRoot, new object(), null);
-                }
-                return _syncRoot;
-            }
-        }
-
-        #endregion
-
 
         #region IComparerProvider<T> Members
 

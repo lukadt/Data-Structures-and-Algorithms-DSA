@@ -461,52 +461,6 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Check to see that the SinglyLinkedListCollection is not readonly.
-        /// </summary>
-        [TestMethod]
-        public void IsReadOnlyTest()
-        {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
-            ICollection<int> actual = sll;
-
-            Assert.IsFalse(actual.IsReadOnly);
-        }
-
-        /// <summary>
-        /// Check to see that all items of the SinglyLinkedListCollection are copied to the target array, beginning at index 0.
-        /// </summary>
-        [TestMethod]
-        public void CopyToTest()
-        {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
-
-            sll.AddLast(10);
-            sll.AddLast(20);
-            sll.AddLast(30);
-            sll.AddLast(40);
-            sll.AddLast(50);
-            int[] actual = new int[sll.Count];
-            sll.CopyTo(actual);
-
-            int[] expected = { 10, 20, 30, 40, 50 };
-            CollectionAssert.AreEqual(expected, actual);
-        }
-
-        /// <summary>
-        /// Check to make sure that a null array cannot be used as an argument to CopyTo.
-        /// </summary>
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void CopyToNullArrayTest()
-        {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
-
-            sll.AddLast(1);
-            int[] myArray = null;
-            sll.CopyTo(myArray);
-        }
-
-        /// <summary>
         /// Check to see that the correct exception is raised when using a negative index for the arrayIndex parameter
         /// for CopyTo.
         /// </summary>
@@ -809,59 +763,6 @@ namespace Dsa.Test
             sll.AddLast(20);
             sll.AddLast(30);
             sll.AddBefore(sll.Tail.Next, 40);
-        }
-
-        /// <summary>
-        /// Check IsReadonly property to see that false is returned.
-        /// </summary>
-        [TestMethod]
-        public void IsReadonlyTest()
-        {
-            SinglyLinkedList<string> sll = new SinglyLinkedList<string>();
-            ICollection<string> actual = sll;
-
-            Assert.IsFalse(actual.IsReadOnly);
-        }
-
-        /// <summary>
-        /// Check to make sure SyncRoot object is not null.
-        /// </summary>
-        [TestMethod]
-        public void ICollectionSyncRootTest()
-        {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
-            ICollection collectionSll = sll;
-
-            Assert.IsNotNull(collectionSll.SyncRoot);
-        }
-
-        /// <summary>
-        /// Check to see that IsSynchronized returns false.
-        /// </summary>
-        [TestMethod]
-        public void ICollectionIsSynchronizedTest()
-        {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
-            ICollection collectionSll = sll;
-
-            Assert.IsFalse(collectionSll.IsSynchronized);
-        }
-
-        /// <summary>
-        /// Check to see that ICollection.CopyTo works as expected.
-        /// </summary>
-        [TestMethod]
-        [ExpectedException(typeof(NotSupportedException))]
-        public void ICollectionCopyToTest()
-        {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
-            ICollection collectionSll = sll;
-
-            sll.AddLast(1);
-            sll.AddLast(2);
-            sll.AddLast(3);
-            int[] myArray = new int[sll.Count];
-            collectionSll.CopyTo(myArray, 0);
         }
 
         /// <summary>
