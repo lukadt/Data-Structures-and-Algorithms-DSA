@@ -97,6 +97,15 @@ namespace Dsa.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Set(Of T) is empty..
+        /// </summary>
+        internal static string SetEmpty {
+            get {
+                return ResourceManager.GetString("SetEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SinglyLinkedListCollection(Of T) is empty..
         /// </summary>
         internal static string SinglyLinkedListEmpty {

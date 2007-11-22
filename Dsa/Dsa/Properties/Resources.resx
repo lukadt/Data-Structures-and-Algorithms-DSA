@@ -133,6 +133,10 @@
     <value>ICollection.CopyTo is not supported.  Use the ICollection(Of T).CopyTo method instead.</value>
     <comment>ICollection.CopyTo not supported text.</comment>
   </data>
+  <data name="SetEmpty" xml:space="preserve">
+    <value>Set(Of T) is empty.</value>
+    <comment>When exceptions arise as a result of the Set being empty.</comment>
+  </data>
   <data name="SinglyLinkedListEmpty" xml:space="preserve">
     <value>SinglyLinkedListCollection(Of T) is empty.</value>
     <comment>When exceptions arise as a result of an empty singly linked list.</comment>
