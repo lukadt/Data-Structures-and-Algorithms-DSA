@@ -36,7 +36,7 @@ namespace Dsa.Test
         public void OverloadedConstructorTest()
         {
             IComparer<Coordinate> comparer = new CoordinateComparer();
-            ArrayList<Coordinate> actual = new ArrayList<Coordinate>(comparer);
+            IComparerProvider<Coordinate> actual = new ArrayList<Coordinate>(comparer);
 
             Assert.IsNotNull(actual.Comparer);
         }

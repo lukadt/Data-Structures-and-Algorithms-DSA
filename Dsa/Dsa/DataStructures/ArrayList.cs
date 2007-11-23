@@ -29,7 +29,7 @@ namespace Dsa.DataStructures
         [NonSerialized]
         private object _syncRoot;
         [NonSerialized]
-        private IComparer<T> _comparer;
+        private IComparer<T> _comparer = Comparer<T>.Default;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ArrayList{T}"/> class that is empty and has the default initial capacity of 4.
@@ -37,7 +37,6 @@ namespace Dsa.DataStructures
         public ArrayList()
         { 
             _items = new T[_capacity];
-            _comparer = Comparer<T>.Default;
         }
 
         /// <summary>
@@ -46,13 +45,13 @@ namespace Dsa.DataStructures
         /// </summary>
         /// <param name="comparer">The comparer to use.</param>
         /// <exception cref="ArgumentNullException"><strong>comparer</strong> is <strong>null</strong>.</exception>
-        public ArrayList(IComparer<T> comparer)
+        public ArrayList(IComparer<T> comparer) :
+            this()
         {
             if (comparer == null)
             {
                 throw new ArgumentNullException("comparer");
             }
-            _items = new T[_capacity];
             _comparer = comparer;
         }
 
@@ -477,7 +476,7 @@ namespace Dsa.DataStructures
         /// <summary>
         /// Gets the <see cref="IComparer{T}"/> being used.
         /// </summary>
-        public IComparer<T> Comparer
+        IComparer<T> IComparerProvider<T>.Comparer
         {
             get { return _comparer; }
         }

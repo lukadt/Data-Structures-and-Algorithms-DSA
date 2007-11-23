@@ -379,7 +379,7 @@ namespace Dsa.DataStructures
         /// <summary>
         /// Gets the <see cref="IComparer{T}"/> being used.
         /// </summary>
-        public IComparer<T> Comparer
+        IComparer<T> IComparerProvider<T>.Comparer
         {
             get { return _comparer; }
         }

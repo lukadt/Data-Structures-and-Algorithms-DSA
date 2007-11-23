@@ -1,5 +1,6 @@
 ﻿using System;
 using Dsa.DataStructures;
+using Dsa.Test.Utility;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
@@ -145,6 +146,18 @@ namespace Dsa.Test.DataStructures
 
             Assert.IsNotNull(set.GetEnumerator());
             CollectionAssert.AreEqual(set, expected);
+        }
+
+        /// <summary>
+        /// Check to see that the comparer is not null.
+        /// </summary>
+        [TestMethod]
+        public void ComparerTest()
+        {
+            IComparer<Coordinate> comaparer = new CoordinateComparer();
+            IComparerProvider<Coordinate> actual = new Set<Coordinate>(comaparer);
+
+            Assert.IsNotNull(actual.Comparer);
         }
 
     }

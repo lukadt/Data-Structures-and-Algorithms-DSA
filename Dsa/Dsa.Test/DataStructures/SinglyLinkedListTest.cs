@@ -20,9 +20,9 @@ namespace Dsa.Test
         [TestMethod]
         public void ConstructorTest()
         {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
+            IComparerProvider<int> actual = new SinglyLinkedList<int>();
 
-            Assert.IsNotNull(sll.Comparer);
+            Assert.IsNotNull(actual.Comparer);
         }
 
         /// <summary>
@@ -32,9 +32,9 @@ namespace Dsa.Test
         public void OverloadedConstructorTest()
         {
             IComparer<Coordinate> comparer = new CoordinateComparer();
-            SinglyLinkedList<Coordinate> sll = new SinglyLinkedList<Coordinate>(comparer);
+            IComparerProvider<Coordinate> actual = new SinglyLinkedList<Coordinate>(comparer);
 
-            Assert.IsNotNull(sll.Comparer);
+            Assert.IsNotNull(actual.Comparer);
         }
 
         /// <summary>

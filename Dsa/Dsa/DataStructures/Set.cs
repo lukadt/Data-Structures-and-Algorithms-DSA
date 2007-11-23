@@ -9,10 +9,11 @@ namespace Dsa.DataStructures
     /// <see cref="Set{T}"/> is an implementation of the mathmatical set.  This is a <see cref="BinarySearchTree{T}"/> implementation. 
     /// </summary>
     /// <typeparam name="T">Type of Set.</typeparam>
-    public class Set<T> : CollectionBase<T>
+    public class Set<T> : CollectionBase<T>, IComparerProvider<T>
     {
 
         private BinarySearchTree<T> _bst;
+        private IComparer<T> _comparer = Comparer<T>.Default;
 
         /// <summary>
         /// Initializes a new <see cref="Set{T}"/> data structure.
@@ -20,6 +21,16 @@ namespace Dsa.DataStructures
         public Set()
         {
             _bst = new BinarySearchTree<T>();
+        }
+
+        /// <summary>
+        /// Initializes a new <see cref="Set{T}"/> using a specified <see cref="IComparer{T}"/>.
+        /// </summary>
+        /// <param name="comparer"></param>
+        public Set(IComparer<T> comparer) :
+            this()
+        {
+            _comparer = comparer;
         }
 
         /// <summary>
@@ -94,6 +105,18 @@ namespace Dsa.DataStructures
             }
             return array;
         }
+
+        #region IComparerProvider<T> Members
+
+        /// <summary>
+        /// Gets the comparer used for the <see cref="Set{T}"/>.
+        /// </summary>
+        IComparer<T> IComparerProvider<T>.Comparer
+        {
+            get { return _comparer; }
+        }
+
+        #endregion
     }
 
 }

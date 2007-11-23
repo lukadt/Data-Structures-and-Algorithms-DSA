@@ -3,7 +3,7 @@
   <Class Name="Dsa.DataStructures.ArrayList&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="12.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AkIAEEAACIAEABABGAAABDQSYBUIAAAECACAAABQKQo=</HashCode>
+      <HashCode>AkIAEEAACIAEABABGAAABDQWYBUIAAAECACAAABQKAo=</HashCode>
       <FileName>DataStructures\ArrayList.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
@@ -18,7 +18,7 @@
   <Class Name="Dsa.DataStructures.BinarySearchTree&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="3" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIQIAAAAAAQADAAAAAABBACAEAAAAAIQEEBQBBRIQA=</HashCode>
+      <HashCode>AAIQIAAAAAAQADAAAAAABBAGAEAAAAAIQEEBQBBRIAA=</HashCode>
       <FileName>DataStructures\BinarySearchTree.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
@@ -33,7 +33,7 @@
   <Class Name="Dsa.DataStructures.DoublyLinkedList&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="9.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AALIABAAAAAQAJAAAAAAJBAAAAAQAEAAAAACAABRAQA=</HashCode>
+      <HashCode>AALIABAAAAAQAJAAAAAAJBAEAAAQAEAAAAACAABRAAA=</HashCode>
       <FileName>DataStructures\DoublyLinkedList.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
@@ -48,7 +48,7 @@
   <Class Name="Dsa.DataStructures.SinglyLinkedList&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="5.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AALIABAAAAAQAJAAAAAAJBAAAAAQAAAAABACBABRAQA=</HashCode>
+      <HashCode>AALIABAAAAAQAJAAAAAAJBAEAAAQAAAAABACBABRAAA=</HashCode>
       <FileName>DataStructures\SinglyLinkedList.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
@@ -110,9 +110,10 @@
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAAAAABAAAAAABAAAAAAAAAAAAAACAABQAAA=</HashCode>
+      <HashCode>AAIAAAAAAAAAABAAAAAABBAEAAAAAAAAAAACAABQAAA=</HashCode>
       <FileName>DataStructures\Set.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Interface Name="Dsa.DataStructures.IComparerProvider&lt;T&gt;" Collapsed="true">
     <Position X="12.25" Y="3.75" Width="1.5" />

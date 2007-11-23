@@ -20,9 +20,9 @@ namespace Dsa.Test
         [TestMethod]
         public void ConstructorTest()
         {
-            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
+            IComparerProvider<int> actual = new DoublyLinkedList<int>();
 
-            Assert.IsNotNull(dll.Comparer);
+            Assert.IsNotNull(actual.Comparer);
         }
 
         /// <summary>
@@ -32,9 +32,9 @@ namespace Dsa.Test
         public void OverloadedConstructorTest()
         {
             IComparer<Coordinate> comparer = new CoordinateComparer();
-            DoublyLinkedList<Coordinate> dll = new DoublyLinkedList<Coordinate>(comparer);
+            IComparerProvider<Coordinate> actual = new DoublyLinkedList<Coordinate>(comparer);
 
-            Assert.IsNotNull(dll.Comparer);
+            Assert.IsNotNull(actual.Comparer);
         }
 
         /// <summary>

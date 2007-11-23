@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Dsa.Properties;
+using Dsa.Utility;
 
 namespace Dsa.DataStructures
 {
@@ -358,7 +359,7 @@ namespace Dsa.DataStructures
             }
             SinglyLinkedListNode<T> n = _head;
             // check to see if the node to be removed is the head node
-            if (Comparer.Compare(n.Value, item) == 0)
+            if (Compare.AreEqual(n.Value, item, _comparer))
             {
                 // check to see if n is also the tail - if it is then we only have one node in the linked list
                 if (n == _tail)
@@ -373,11 +374,11 @@ namespace Dsa.DataStructures
             // loop through the linked list looking for the first node that equals item
             while (n != null)
             {
-                if (!(Comparer.Compare(n.Value, item) == 0) && n.Next == null)
+                if (!(Compare.AreEqual(n.Value, item, _comparer)) && n.Next == null)
                 {
                     break; // we couldn't find the value to remove in the sll
                 }
-                else if (Comparer.Compare(n.Next.Value, item) == 0) // we have found the node to remove
+                else if (Compare.AreEqual(n.Next.Value, item, _comparer)) // we have found the node to remove
                 {
                     if (n.Next == _tail)
                     {
@@ -429,7 +430,7 @@ namespace Dsa.DataStructures
         /// <summary>
         /// Gets the <seealso cref=" IComparer{T}"/> being used.
         /// </summary>
-        public IComparer<T> Comparer
+        IComparer<T> IComparerProvider<T>.Comparer
         {
             get { return _comparer; }
         }

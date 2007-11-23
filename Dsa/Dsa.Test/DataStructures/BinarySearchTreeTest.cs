@@ -33,9 +33,9 @@ namespace Dsa.Test
         public void OverloadedConstructorTest()
         {
             IComparer<Coordinate> comparer = new CoordinateComparer();
-            BinarySearchTree<Coordinate> bst = new BinarySearchTree<Coordinate>(comparer);
+            IComparerProvider<Coordinate> actual = new BinarySearchTree<Coordinate>(comparer);
 
-            Assert.IsNotNull(bst.Comparer);
+            Assert.IsNotNull(actual.Comparer);
         }
 
         /// <summary>
