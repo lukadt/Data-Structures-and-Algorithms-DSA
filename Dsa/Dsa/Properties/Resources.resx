@@ -133,6 +133,10 @@
     <value>ICollection.CopyTo is not supported.  Use the ICollection(Of T).CopyTo method instead.</value>
     <comment>ICollection.CopyTo not supported text.</comment>
   </data>
+  <data name="MedianLeftArrayLengthLessThanThree" xml:space="preserve">
+    <value>Cannot invoke MedianLeft on an array with a length of less than 3.</value>
+    <comment>When an exception is raised as a result of calling MedianLeft on an array of length &lt;3.</comment>
+  </data>
   <data name="SetEmpty" xml:space="preserve">
     <value>Set(Of T) is empty.</value>
     <comment>When exceptions arise as a result of the Set being empty.</comment>

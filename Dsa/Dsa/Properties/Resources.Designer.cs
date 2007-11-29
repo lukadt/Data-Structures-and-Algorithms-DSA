@@ -97,6 +97,15 @@ namespace Dsa.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot invoke MedianLeft on an array with a length of less than 3..
+        /// </summary>
+        internal static string MedianLeftArrayLengthLessThanThree {
+            get {
+                return ResourceManager.GetString("MedianLeftArrayLengthLessThanThree", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Set(Of T) is empty..
         /// </summary>
         internal static string SetEmpty {

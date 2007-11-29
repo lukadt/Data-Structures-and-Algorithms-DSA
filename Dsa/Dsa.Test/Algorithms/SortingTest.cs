@@ -57,6 +57,53 @@ namespace Dsa.Test
             actual.BubbleSort(SortType.Ascending);
         }
 
+        /// <summary>
+        /// Check to see that the median value of the array is in the correct location of the array.
+        /// </summary>
+        [TestMethod]
+        public void MedianLeftTest()
+        {
+            int[] actual = { 2, 5, 23, 17, 1 };
+            int[] expected = { 2, 5, 1, 17, 23 };
+
+            CollectionAssert.AreEqual(expected, actual.MedianLeft());
+        }
+
+        /// <summary>
+        /// Check to see that the median value of the array is in the correct location of the array.
+        /// </summary>
+        [TestMethod]
+        public void MedianLeftLeftIsGreaterThanMidTest()
+        {
+            int[] actual = { 23, 1, 4, 8, 10 };
+            int[] expected = { 10, 1, 4, 8, 23 };
+
+            CollectionAssert.AreEqual(expected, actual.MedianLeft());
+        }
+
+        /// <summary>
+        /// Check to see that the MedianLeft method throws the correct exception when applying the method to an
+        /// array that doesn't have a length or at least 3.
+        /// We need at least a length of 3 to select the three keys from the array - left, right and med.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void MedianLeftArrayLengthLessThanThreeTest()
+        {
+            int[] actual = { 23, 1 };
+
+            actual.MedianLeft();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void MedianLeftArrayNullTest()
+        {
+            int[] actual = null;
+
+            actual.MedianLeft();
+        }
+
     }
 
 }
