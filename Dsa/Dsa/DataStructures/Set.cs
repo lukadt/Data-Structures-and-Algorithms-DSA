@@ -6,7 +6,7 @@ namespace Dsa.DataStructures
 {
 
     /// <summary>
-    /// <see cref="Set{T}"/> is an implementation of the mathmatical set.  This is a <see cref="BinarySearchTree{T}"/> implementation. 
+    /// <see cref="Set{T}"/> is an implementation of the mathmatical set.  This is a <see cref="BinarySearchTree{T}"/> implementation (not balanced). 
     /// </summary>
     /// <typeparam name="T">Type of Set.</typeparam>
     public class Set<T> : CollectionBase<T>, IComparerProvider<T>
@@ -104,6 +104,72 @@ namespace Dsa.DataStructures
                 i++;
             }
             return array;
+        }
+
+        /// <summary>
+        /// Performs set union of two <see cref="Set{T}"/>.
+        /// </summary>
+        /// <param name="set1">First set.</param>
+        /// <param name="set2">Second set.</param>
+        /// <returns>The set union of the two sets if there is at least 1 item in the unioned set, otherwise null denoting an empty set..</returns>
+        /// <exception cref="ArgumentNullException"><strong>set1</strong> is <strong>null</strong>.</exception>
+        /// <exception cref="ArgumentNullException"><strong>set2</strong> is <strong>null</strong>.</exception>
+        public static Set<T> Union(Set<T> set1, Set<T> set2)
+        {
+            if (set1 == null)
+            {
+                throw new ArgumentNullException("set1");
+            }
+            else if (set2 == null)
+            {
+                throw new ArgumentNullException("set2");
+            }
+
+            Set<T> union = new Set<T>();
+            // add each item from each set to union
+            foreach (T item in set1)
+            {
+                union.Add(item);
+            }
+            foreach (T item in set2)
+            {
+                union.Add(item);
+            }
+            // if the union set has 0 items then return null (empty set) otherwise return union
+            return union.Count < 1 ? null : union;
+        }
+
+        /// <summary>
+        /// Performs set intersection of two <see cref="Set{T}"/>.
+        /// </summary>
+        /// <param name="set1">First set.</param>
+        /// <param name="set2">Second set.</param>
+        /// <returns>The set intersection of the two sets if there is at least 1 item in the intersection set, otherwise null denoting an empty set.</returns>
+        /// <exception cref="ArgumentNullException"><strong>set1</strong> is <strong>null</strong>.</exception>
+        /// <exception cref="ArgumentNullException"><strong>set2</strong> is <strong>null</strong>.</exception>
+        public static Set<T> Intersection(Set<T> set1, Set<T> set2)
+        {
+            if (set1 == null)
+            {
+                throw new ArgumentNullException("set1");
+            }
+            else if (set2 == null)
+            {
+                throw new ArgumentNullException("set2");
+            }
+
+            Set<T> intersection = new Set<T>();
+            // loop through each item in set1 and check whether this item is in set2
+            foreach (T item in set1)
+            {
+                if (set2.Contains(item))
+                {
+                    // set1 and set2 both contain this item so add it to the intersection set
+                    intersection.Add(item);
+                }
+            }
+            // if the intersection set has 0 items then return null (empty set) otherwise return union
+            return intersection.Count < 1 ? null : intersection;
         }
 
         #region IComparerProvider<T> Members
