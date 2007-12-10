@@ -9,7 +9,7 @@ namespace Dsa.DataStructures
     /// <see cref="Set{T}"/> is an implementation of the mathmatical set.  This is a <see cref="BinarySearchTree{T}"/> implementation (not balanced). 
     /// </summary>
     /// <typeparam name="T">Type of Set.</typeparam>
-    public class Set<T> : CollectionBase<T>, IComparerProvider<T>
+    public sealed class Set<T> : CollectionBase<T>, IComparerProvider<T>
     {
 
         private BinarySearchTree<T> _bst;

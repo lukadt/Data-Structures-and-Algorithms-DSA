@@ -9,18 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dsa.Test", "Dsa.Test\Dsa.Te
 	EndProjectSection
 EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 3
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://tfs04.codeplex.com/
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = Dsa.Test\\Dsa.Test.csproj
-		SccProjectName1 = Dsa.Test
-		SccLocalPath1 = Dsa.Test
-		SccProjectUniqueName2 = Dsa\\Dsa.csproj
-		SccProjectName2 = Dsa
-		SccLocalPath2 = Dsa
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU

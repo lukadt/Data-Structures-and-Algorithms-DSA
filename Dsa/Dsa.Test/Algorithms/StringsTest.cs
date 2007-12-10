@@ -241,6 +241,37 @@ namespace Dsa.Test
             actual.WordCount();
         }
 
+        /// <summary>
+        /// Check to see that the words of the string are reversed correctly.
+        /// </summary>
+        [TestMethod]
+        public void ReverseWordsTest()
+        {
+            Assert.AreEqual("day dad my", "my dad day".ReverseWords());
+            Assert.AreEqual("belly beer a home went then and pop ate I", "I ate pop and then went home a beer belly".ReverseWords());
+        }
+
+        /// <summary>
+        /// Check to see that any amount of whitespace doesn't affect the reverse words algorithm.  The whitespace is ignored.
+        /// </summary>
+        [TestMethod]
+        public void ReverseWordsWhiteSpaceTest()
+        {
+            Assert.AreEqual("belly beer a home went then and pop ate I", "    I ate         pop and then  went home a   beer belly    ".ReverseWords());
+        }
+
+        /// <summary>
+        /// Check to see that the correct exception is thrown when calling reverse words on a null string.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ReverseWordsStringNullTest()
+        {
+            string s = null;
+
+            s.ReverseWords();
+        }
+
     }
 
 }

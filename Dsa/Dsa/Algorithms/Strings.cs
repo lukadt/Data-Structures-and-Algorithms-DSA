@@ -195,6 +195,59 @@ namespace Dsa.Algorithms
             return count;
         }
 
+        /// <summary>
+        /// Reverses the words of a string.
+        /// </summary>
+        /// <param name="value">String to reverse the words of.</param>
+        /// <returns>The reversed string.</returns>
+        public static string ReverseWords(this string value)
+        {
+            if (value == null)
+            {
+                throw new ArgumentNullException("value");
+            }
+
+            int last = value.Length - 1;
+            int start = last; // will be used to mark the beginning of a word in the string
+            StringBuilder sb = new StringBuilder();
+
+            // make sure that the value of last is at the very least 0, the first index of the string
+            while (last >= 0)
+            {
+                // skip all the whitespace
+                while (start >= 0 && char.IsWhiteSpace(value[start]))
+                {
+                    start--;
+                }
+                last = start; 
+                // march the start index down to the index before a word starts
+                while (start >= 0 && !char.IsWhiteSpace(value[start]))
+                {
+                    start--;
+                }
+                // collect the chars of the word into sb
+                for (int i = start + 1; i < last + 1; i++)
+                {
+                    sb.Append(value[i]);
+                }
+                /* add whitespace to delimit the words in sb if this is not the last word. If the first word has 
+                 * whitespace before it then we will still add this whitespace - this is then cut just before we return the string. */
+                if (start > 0)
+                {
+                    sb.Append(' ');
+                }
+                // point last to the index of the last char in the next word
+                last = start - 1;
+                start = last;
+            }
+            // check to see if we have added some whitespace at the end of sb if so just cut the sb length by 1
+            if (char.IsWhiteSpace(sb[sb.Length - 1]))
+            {
+                sb.Length = sb.Length - 1;
+            }
+            return sb.ToString();
+        }
+
     }
 
 }
