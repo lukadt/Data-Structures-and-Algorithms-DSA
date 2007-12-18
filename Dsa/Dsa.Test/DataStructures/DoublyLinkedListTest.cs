@@ -79,9 +79,9 @@ namespace Dsa.Test
 
             Assert.AreEqual(10, dll.Head.Value);
             Assert.AreEqual(20, dll.Head.Next.Value);
-            Assert.AreEqual(10, dll.Head.Next.Prev.Value);
+            Assert.AreEqual(10, dll.Head.Next.Previous.Value);
             Assert.AreEqual(30, dll.Tail.Value);
-            Assert.AreEqual(20, dll.Tail.Prev.Value);
+            Assert.AreEqual(20, dll.Tail.Previous.Value);
         }
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace Dsa.Test
             dll.AddAfter(dll.Head, 20);
 
             Assert.AreEqual(20, dll.Tail.Value);
-            Assert.AreEqual(10, dll.Tail.Prev.Value);
+            Assert.AreEqual(10, dll.Tail.Previous.Value);
         }
 
         /// <summary>
@@ -152,9 +152,9 @@ namespace Dsa.Test
             dll.AddAfter(dll.Head.Next, 25);
 
             Assert.AreEqual(25, dll.Head.Next.Next.Value);
-            Assert.AreEqual(20, dll.Head.Next.Next.Prev.Value);
+            Assert.AreEqual(20, dll.Head.Next.Next.Previous.Value);
             Assert.AreEqual(30, dll.Head.Next.Next.Next.Value);
-            Assert.AreEqual(25, dll.Tail.Prev.Value);
+            Assert.AreEqual(25, dll.Tail.Previous.Value);
         }
 
         /// <summary>
@@ -171,7 +171,7 @@ namespace Dsa.Test
 
             Assert.AreEqual(5, dll.Head.Value);
             Assert.AreEqual(10, dll.Head.Next.Value);
-            Assert.AreEqual(5, dll.Head.Next.Prev.Value);
+            Assert.AreEqual(5, dll.Head.Next.Previous.Value);
         }
 
         /// <summary>
@@ -187,9 +187,9 @@ namespace Dsa.Test
             dll.AddBefore(dll.Head.Next, 20);
 
             Assert.AreEqual(20, dll.Head.Next.Value);
-            Assert.AreEqual(10, dll.Head.Next.Prev.Value);
+            Assert.AreEqual(10, dll.Head.Next.Previous.Value);
             Assert.AreEqual(30, dll.Head.Next.Next.Value);
-            Assert.AreEqual(20, dll.Tail.Prev.Value);
+            Assert.AreEqual(20, dll.Tail.Previous.Value);
         }
 
         /// <summary>
@@ -320,7 +320,7 @@ namespace Dsa.Test
             dll.RemoveFirst();
 
             Assert.AreEqual(20, dll.Head.Value);
-            Assert.IsNull(dll.Head.Prev);
+            Assert.IsNull(dll.Head.Previous);
         }
 
         /// <summary>
@@ -338,7 +338,7 @@ namespace Dsa.Test
             dll.RemoveFirst();
 
             Assert.AreEqual(20, dll.Head.Value);
-            Assert.IsNull(dll.Head.Prev);
+            Assert.IsNull(dll.Head.Previous);
         }
 
         /// <summary>
@@ -368,7 +368,7 @@ namespace Dsa.Test
 
             Assert.AreEqual(10, dll.Head.Value);
             Assert.AreEqual(20, dll.Tail.Value);
-            Assert.IsNull(dll.Head.Prev);
+            Assert.IsNull(dll.Head.Previous);
             Assert.IsNull(dll.Tail.Next);
         }
 
@@ -537,7 +537,7 @@ namespace Dsa.Test
             dll.Remove(20);
 
             Assert.AreEqual(30, dll.Head.Next.Value);
-            Assert.AreEqual(10, dll.Tail.Prev.Value);
+            Assert.AreEqual(10, dll.Tail.Previous.Value);
             Assert.AreEqual(2, dll.Count);
         }
 
@@ -556,7 +556,7 @@ namespace Dsa.Test
             dll.Remove(10);
 
             Assert.AreEqual(20, dll.Head.Value);
-            Assert.IsNull(dll.Head.Prev);
+            Assert.IsNull(dll.Head.Previous);
             Assert.AreEqual(2, dll.Count);
         }
 

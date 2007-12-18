@@ -1,5 +1,8 @@
 ﻿using System;
+using Dsa.Utility;
 using Dsa.Properties;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Dsa.Algorithms
 {
@@ -61,7 +64,7 @@ namespace Dsa.Algorithms
         {
             if (array == null)
             {
-                throw new ArgumentNullException("items");
+                throw new ArgumentNullException("array");
             }
             else if (array.Length < 3)
             {
@@ -104,6 +107,48 @@ namespace Dsa.Algorithms
             int temp = array[first];
             array[first] = array[second];
             array[second] = temp;
+        }
+
+        /// <summary>
+        /// Merges two ordered arrays into a single ordered array.
+        /// </summary>
+        /// <typeparam name="T">Type of the two array's to merge.</typeparam>
+        /// <param name="first">First array.</param>
+        /// <param name="second">Second array.</param>
+        /// <returns>The merged array of a1 and a2.</returns>
+        /// <exception cref="ArgumentNullException"><strong>a1</strong> or <strong>a2</strong> are null.</exception>
+        public static T[] MergeOrdered<T>(T[] first, T[] second)
+        {
+            if (first == null)
+            {
+                throw new ArgumentNullException("first");
+            }
+            else if (second == null)
+            {
+                throw new ArgumentNullException("second");
+            }
+
+            T[] merged = new T[first.Length + second.Length];
+            // merge the items in both arrays
+            for (int i = 0, j = 0, m = 0; m < merged.Length; m++)
+            {
+                if (i == first.Length)
+                {
+                    // all items in a1 have been exhausted so copy the remaining items (if any) from a2 starting at index j to merged
+                    Array.Copy(second, j, merged, m, merged.Length - m);
+                }
+                else if (j == second.Length)
+                {
+                    // all items in a2 have been exhausted
+                    Array.Copy(first, i, merged, m, merged.Length - m);
+                }
+                else
+                {
+                    // add the smallest item of the two arrays at indexes i and j respectively to merged
+                    merged[m] = Compare.IsLessThan(first[i], second[j], Comparer<T>.Default) ? first[i++] : second[j++];
+                }
+            }
+            return merged;
         }
 
     }

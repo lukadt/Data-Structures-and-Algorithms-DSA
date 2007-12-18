@@ -273,7 +273,7 @@ namespace Dsa.DataStructures
             }
             else
             {
-                _head = _head.Next; // the head node is the prevoius head nodes next node
+                _head = _head.Next; // the head node is the Previousoius head nodes next node
             }
             Count--;
         }

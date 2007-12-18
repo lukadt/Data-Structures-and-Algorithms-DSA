@@ -58,7 +58,7 @@ namespace Dsa.DataStructures
             else
             {
                 _tail.Next = n; 
-                n.Prev = _tail; 
+                n.Previous = _tail; 
                 _tail = n; 
             }
             Count++;
@@ -79,7 +79,7 @@ namespace Dsa.DataStructures
             }
             else
             {
-                _head.Prev = n; 
+                _head.Previous = n; 
                 n.Next = _head; 
                 _head = n; 
             }
@@ -97,7 +97,7 @@ namespace Dsa.DataStructures
             DoublyLinkedListNode<T> n = new DoublyLinkedListNode<T>(value);
             if (node == _tail) // the node we are adding will be the new tail node
             {
-                n.Prev = _tail;
+                n.Previous = _tail;
                 _tail.Next = n;
                 _tail = n;
             }
@@ -105,9 +105,9 @@ namespace Dsa.DataStructures
             {
                 // setup the n's pointers accordingly
                 n.Next = node.Next;
-                n.Next.Prev = n;
+                n.Next.Previous = n;
                 node.Next = n;
-                n.Prev = node;
+                n.Previous = node;
             }
             Count++;
         }
@@ -125,16 +125,16 @@ namespace Dsa.DataStructures
             if (node == _head) 
             {
                 n.Next = _head;
-                _head.Prev = n;
+                _head.Previous = n;
                 _head = n;
             }
             else
             {
                 // setup the n's pointers accordingly
                 n.Next = node;
-                node.Prev.Next = n;
-                n.Prev = node.Prev;
-                node.Prev = n;
+                node.Previous.Next = n;
+                n.Previous = node.Previous;
+                node.Previous = n;
             }
             Count++;
         }
@@ -162,7 +162,7 @@ namespace Dsa.DataStructures
             }
             else
             {
-                _tail = _tail.Prev; // set tail to be the old tails prev node
+                _tail = _tail.Previous; // set tail to be the old tails Previous node
                 _tail.Next = null;
             }
             Count--;
@@ -186,12 +186,12 @@ namespace Dsa.DataStructures
             else if (_head.Next == _tail) // only two nodes in the dll
             {
                 _head = _tail;
-                _head.Prev = null;
+                _head.Previous = null;
             }
             else
             {
                 _head = _head.Next; // the new head is the old head nodes next node
-                _head.Prev = null;
+                _head.Previous = null;
             }
             Count--;
         }
@@ -317,7 +317,7 @@ namespace Dsa.DataStructures
                 if (_comparer.Compare(_head.Value, item) == 0) // the head node is to be removed
                 {
                     _head = _head.Next; // the new head node is the old head nodes next node
-                    _head.Prev = null;
+                    _head.Previous = null;
                     Count--;
                     return true;
                 }
@@ -339,17 +339,17 @@ namespace Dsa.DataStructures
                         if (n == _head) // the node to remove is the head node
                         {
                             _head = _head.Next;
-                            _head.Prev = null;
+                            _head.Previous = null;
                         }
                         else if (n == _tail) // the node to remove is the tail node
                         {
-                            _tail = _tail.Prev;
+                            _tail = _tail.Previous;
                             _tail.Next = null;
                         }
                         else // the node to remove is somewhere in the middle of the dll
                         {
-                            n.Prev.Next = n.Next;
-                            n.Next.Prev = n.Prev;
+                            n.Previous.Next = n.Next;
+                            n.Next.Previous = n.Previous;
                         }
                         Count--;
                         return true;

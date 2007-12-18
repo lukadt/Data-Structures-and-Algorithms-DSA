@@ -20,8 +20,8 @@
         /// </summary>
         public BinaryTreeNode<T> Left
         {
-            get { return Prev as BinaryTreeNode<T>; }
-            set { Prev = value; }
+            get { return Previous as BinaryTreeNode<T>; }
+            set { Previous = value; }
         }
 
         /// <summary>

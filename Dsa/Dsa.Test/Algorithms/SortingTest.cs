@@ -95,6 +95,9 @@ namespace Dsa.Test
             actual.MedianLeft();
         }
 
+        /// <summary>
+        /// Check to see that median left raise the correct exception when the array is null.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void MedianLeftArrayNullTest()
@@ -102,6 +105,74 @@ namespace Dsa.Test
             int[] actual = null;
 
             actual.MedianLeft();
+        }
+
+        /// <summary>
+        /// Check to see that an array with the correct ordering of its items is returned.
+        /// </summary>
+        [TestMethod]
+        public void MergeOrderedTest()
+        {
+            int[] a1 = { 1, 5, 9 };
+            int[] a2 = { 1, 3, 6, 11 };
+
+            int[] expected = { 1, 1, 3, 5, 6, 9, 11 };
+
+            CollectionAssert.AreEqual(expected, Sorting.MergeOrdered(a1, a2));
+        }
+
+        /// <summary>
+        /// Check to see that the correct array is returned when the first array is smaller than the second.
+        /// </summary>
+        [TestMethod]
+        public void MergeOrderedFirstArraySmallerTest()
+        {
+            int[] a1 = { 1, 4, 12 };
+            int[] a2 = { 5, 9, 10, 14 };
+
+            int[] expected = { 1, 4, 5, 9, 10, 12, 14 };
+
+            CollectionAssert.AreEqual(expected, Sorting.MergeOrdered(a1, a2));
+        }
+
+        /// <summary>
+        /// Check to see that the correct array is returned when the second array is smaller than the first.
+        /// </summary>
+        [TestMethod]
+        public void MergeOrderedSecondArraySmallerTest()
+        {
+            int[] a1 = { 5, 9, 10, 14 };
+            int[] a2 = { 1, 4, 12 };
+
+            int[] expected = { 1, 4, 5, 9, 10, 12, 14 };
+
+            CollectionAssert.AreEqual(expected, Sorting.MergeOrdered(a1, a2));
+        }
+
+        /// <summary>
+        /// Check to see the correct expection is raised when the first array is null.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void MergeOrderedArrayOneNullTest()
+        {
+            int[] a1 = null;
+            int[] a2 = { 1, 2 };
+
+            Sorting.MergeOrdered(a1, a2);
+        }
+
+        /// <summary>
+        /// Check to see the the correct exception is raised when the second array is null.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void MergeOrderedArrayTwoNullTest()
+        {
+            int[] a1 = { 1, 2 };
+            int[] a2 = null;
+
+            Sorting.MergeOrdered(a1, a2);
         }
 
     }

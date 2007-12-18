@@ -20,36 +20,29 @@ end Bubblesort
 
 -------------------------------------------------------------------------------------------------------------------------------------------------
 
-/* Mergesort */
-algorithm Mergesort (a1, a2)
-	Pre:		a1 and a2 are arrays	
+/* Merge ordered arrays */
+algorithm MergeOrdered (a1 <array>, a2 <array>)
+	Pre:		a1 and a2 are not null
 				a1 and a2 contain at least 1 item each
-				left, right and merge are all index pointers initially set to 0
-				merged is an array of the size of the length of a1 and a2 added
-	Post:		the items in a1 and a2 are merged into a single array
-	Returns:	the merged array
-	while left < a1.Length && right < a2.Length
-		if a1[left] < a2[right]
-			merged[merge] <- a1[left]
-			left++
+				a1 and a2 are already ordered
+	Post:		both arrays are merged into a single ordered array
+	Returns:	the single ordered merged array
+	merged <- array[a1.Length + a2.Length]
+	// merge all the items in both arrays
+	for i <- 0, j <- 0, m <- 0; m < merged.Length; m++
+		if i = a1.Length
+			// we have exhausted all items from a1
+			// copy items from a2 starting at index j to merged
+		else if j = a2.Length
+			// we have exhausted all items from a2
+			// copy items from a1 starting at index i to merged
 		else
-			merged[merge] <- a2[right]
-			right++
+			if a1[i] < a2[j]
+				merged[m] <- a1[i++]
+			else
+				merged[m] <- a2[j++]
+			end if
 		end if
-		m++
-	end while
-	if left < a1.Length
-		while left < a1.Length
-			merged[merge] <- a1[left]
-			left++
-			merge++
-		end while
-	else
-		while right < a2.Length
-			merged[merge] <- a2[right]
-			right++
-			merge++
-		end while
-	end if
+	end for
 	return merged
-end Mergesort
+end MergeOrdered

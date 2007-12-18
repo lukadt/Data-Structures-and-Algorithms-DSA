@@ -400,7 +400,7 @@ namespace Dsa.DataStructures
         {
             if (IsInRange(index))
             {
-                // if the index is less than _currentIndex we are overwriting a previous value in the  _items array so there is no need to increment count
+                // if the index is less than _currentIndex we are overwriting a Previousious value in the  _items array so there is no need to increment count
                 if (index < _currentIndex)
                 {
                     _items[index] = item;

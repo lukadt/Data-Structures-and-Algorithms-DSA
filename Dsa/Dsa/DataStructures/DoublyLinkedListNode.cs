@@ -10,7 +10,7 @@
 
         private T _value;
         private DoublyLinkedListNode<T> _next;
-        private DoublyLinkedListNode<T> _prev;
+        private DoublyLinkedListNode<T> _previous;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DoublyLinkedListNode{T}"/> class with a specified value.
@@ -40,12 +40,12 @@
         }
 
         /// <summary>
-        /// Gets or sets the previous <see cref="DoublyLinkedListNode{T}"/> that this <see cref="DoublyLinkedListNode{T}"/> links to.
+        /// Gets or sets the Previous <see cref="DoublyLinkedListNode{T}"/> that this <see cref="DoublyLinkedListNode{T}"/> links to.
         /// </summary>
-        public DoublyLinkedListNode<T> Prev
+        public DoublyLinkedListNode<T> Previous
         {
-            get { return _prev; }
-            set { _prev = value; }
+            get { return _previous; }
+            set { _previous = value; }
         }
 
     }

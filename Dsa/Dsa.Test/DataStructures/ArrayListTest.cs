@@ -320,7 +320,7 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Check to see that Add honours a previous Insert.
+        /// Check to see that Add honours a Previousious Insert.
         /// </summary>
         [TestMethod]
         public void AddHonoursInsertTest()
