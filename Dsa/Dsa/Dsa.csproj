@@ -51,7 +51,6 @@
     <Compile Include="DataStructures\BinaryTreeNode.cs" />
     <Compile Include="DataStructures\CollectionBase.cs" />
     <Compile Include="DataStructures\CollectionDebugView.cs" />
-    <Compile Include="DataStructures\ArrayList.cs" />
     <Compile Include="DataStructures\BinarySearchTree.cs" />
     <Compile Include="DataStructures\DoublyLinkedList.cs" />
     <Compile Include="DataStructures\DoublyLinkedListNode.cs" />

@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.20706</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{E7E55A03-08AD-48BE-98E1-EC80F478AE39}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -49,7 +49,6 @@
     <Compile Include="Algorithms\SearchingTest.cs" />
     <Compile Include="Algorithms\SortingTest.cs" />
     <Compile Include="Algorithms\StringsTest.cs" />
-    <Compile Include="DataStructures\ArrayListTest.cs" />
     <Compile Include="DataStructures\BinarySearchTreeTest.cs" />
     <Compile Include="DataStructures\BinaryTreeNodeTest.cs" />
     <Compile Include="DataStructures\DoublyLinkedListTest.cs" />

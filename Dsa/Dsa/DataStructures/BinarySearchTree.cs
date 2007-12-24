@@ -195,7 +195,7 @@ namespace Dsa.DataStructures
         /// <param name="root">The root node of the BinarySearchTree.</param>
         /// <param name="arrayList">A ArrayList to store the traversed node values.</param>
         /// <returns>ArrayList populated with the items from the traversal.</returns>
-        private static ArrayList<T> PreorderTraveral(BinaryTreeNode<T> root, ArrayList<T> arrayList)
+        private static List<T> PreorderTraveral(BinaryTreeNode<T> root, List<T> arrayList)
         {
             if (root != null)
             {
@@ -212,7 +212,7 @@ namespace Dsa.DataStructures
         /// <param name="root">The root node of the BinarySearchTree.</param>
         /// <param name="arrayList">ArrayList to store the traversed node values.</param>
         /// <returns>ArrayList populated with the items from the traversal.</returns>
-        private static ArrayList<T> PostorderTraversal(BinaryTreeNode<T> root, ArrayList<T> arrayList)
+        private static List<T> PostorderTraversal(BinaryTreeNode<T> root, List<T> arrayList)
         {
             if (root != null)
             {
@@ -229,7 +229,7 @@ namespace Dsa.DataStructures
         /// <param name="root">The root node of the BinarySearchTree.</param>
         /// <param name="arrayList">ArrayList to store the traversed node values.</param>
         /// <returns>ArrayList populated with the items from the traversal.</returns>
-        private static ArrayList<T> InorderTraversal(BinaryTreeNode<T> root, ArrayList<T> arrayList)
+        private static List<T> InorderTraversal(BinaryTreeNode<T> root, List<T> arrayList)
         {
             if (root != null)
             {
@@ -245,10 +245,10 @@ namespace Dsa.DataStructures
         /// </summary>
         /// <param name="root">The root node of the BinarySearchTree.</param>
         /// <returns>ArrayList populated with the items from the traversal.</returns>
-        private static ArrayList<T> BreadthFirstTraversal(BinaryTreeNode<T> root)
+        private static List<T> BreadthFirstTraversal(BinaryTreeNode<T> root)
         {
             Queue<BinaryTreeNode<T>> queue = new Queue<BinaryTreeNode<T>>(); // stores the nodes we have yet to visit
-            ArrayList<T> visitOrder = new ArrayList<T>(); // stores the value of the nodes visited in bf order
+            List<T> visitOrder = new List<T>(); // stores the value of the nodes visited in bf order
             while (root != null)
             {
                 visitOrder.Add(root.Value); // add current nodes value to the list
@@ -287,7 +287,7 @@ namespace Dsa.DataStructures
         ///<returns>An <see cref="IEnumerator{T}" /> that can be used to iterate through the <see cref="BinarySearchTree{T}"/>.</returns>
         public IEnumerable<T> GetPostorderEnumerator()
         {
-            ArrayList<T> arrayListCollection = new ArrayList<T>();
+            List<T> arrayListCollection = new List<T>();
             return PostorderTraversal(_root, arrayListCollection);
         }
 
@@ -297,7 +297,7 @@ namespace Dsa.DataStructures
         /// <returns>An <see cref="IEnumerator{T}" /> that can be used to iterate through the <see cref="BinarySearchTree{T}"/>.</returns>
         public  IEnumerable<T> GetInorderEnumerator()
         {
-            ArrayList<T> arrayListCollection = new ArrayList<T>();
+            List<T> arrayListCollection = new List<T>();
             return InorderTraversal(_root, arrayListCollection);
         }
 
@@ -524,7 +524,7 @@ namespace Dsa.DataStructures
         ///</returns>
         public override IEnumerator<T> GetEnumerator()
         {
-            ArrayList<T> arrayListCollection = new ArrayList<T>();
+            List<T> arrayListCollection = new List<T>();
             return PreorderTraveral(_root, arrayListCollection).GetEnumerator();
         }
 
