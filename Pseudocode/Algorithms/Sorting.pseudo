@@ -20,7 +20,9 @@ end Bubblesort
 
 -------------------------------------------------------------------------------------------------------------------------------------------------
 
-/* Merge ordered arrays */
+/* Merge ordered arrays
+ * O(n).
+ */
 algorithm MergeOrdered (a1 <array>, a2 <array>)
 	Pre:		a1 and a2 are not null
 				a1 and a2 contain at least 1 item each
@@ -46,3 +48,34 @@ algorithm MergeOrdered (a1 <array>, a2 <array>)
 	end for
 	return merged
 end MergeOrdered
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+/* Merge sort algorithm
+ * Note: MergeSort uses the MergeOrdered function as well.
+ * O(n log n).
+ */
+algorithm MergeSort (value <array>)
+	Pre:		value is not null
+	Post:		value has been sorted in ascending order
+	Returns:	sorted value array
+	if value.Length = 1
+		return value // base case an array with only one value is already sorted
+	else
+		m <- value.Length / 2
+		left <- array[m]
+		right <- array[value.Length - m]
+		// populate left and right arrays with appropriate items from value
+		for i <- 0; i < left.Length; i++
+			left[i] <- value[i]
+		end for
+		for i <- 0; i < right.Length; i++, m++
+			right[i] <- value[m]
+		end for
+		// apply the function recursively to both left and right arrays to get two sorted arrays
+		left <- MergeSort(left)
+		right <- MergeSort(right)
+		// merge the two sorted arrays usin the MergeOrdered function
+		return MergeOrdered(left, right)
+	end if
+end MergeSort

@@ -114,9 +114,9 @@ namespace Dsa.Test
         public void MergeOrderedTest()
         {
             int[] a1 = { 1, 5, 9 };
-            int[] a2 = { 1, 3, 6, 11 };
+            int[] a2 = { 1, 3, 6 };
 
-            int[] expected = { 1, 1, 3, 5, 6, 9, 11 };
+            int[] expected = { 1, 1, 3, 5, 6, 9 };
 
             CollectionAssert.AreEqual(expected, Sorting.MergeOrdered(a1, a2));
         }
@@ -173,6 +173,42 @@ namespace Dsa.Test
             int[] a2 = null;
 
             Sorting.MergeOrdered(a1, a2);
+        }
+
+        /// <summary>
+        /// Check to see that MergeSort orders the array correctly.
+        /// </summary>
+        [TestMethod]
+        public void MergeSortTest()
+        {
+            int[] actual = { 12, 9, 4, 67, 3, 25 };
+            int[] expected = { 3, 4, 9, 12, 25, 67 };
+
+            CollectionAssert.AreEqual(expected, actual.MergeSort());
+        }
+
+        /// <summary>
+        /// Check to see that the char data type is ordered correctly when using merge ordered.
+        /// </summary>
+        [TestMethod]
+        public void MergeOrderedCharsTest()
+        {
+            char[] actual = { 'g', 'r', 'f', 'b', 'z', 'k' };
+            char[] expected = { 'b', 'f', 'g', 'k', 'r', 'z' };
+
+            CollectionAssert.AreEqual(expected, actual.MergeSort());
+        }
+
+        /// <summary>
+        /// Check to see that the correct exception is thrown when the array passed is null.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void MergeSortArrayNullTest()
+        {
+            int[] actual = null;
+
+            actual.MergeSort();
         }
 
     }

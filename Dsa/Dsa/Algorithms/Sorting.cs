@@ -136,11 +136,13 @@ namespace Dsa.Algorithms
                 {
                     // all items in a1 have been exhausted so copy the remaining items (if any) from a2 starting at index j to merged
                     Array.Copy(second, j, merged, m, merged.Length - m);
+                    break;
                 }
                 else if (j == second.Length)
                 {
                     // all items in a2 have been exhausted
                     Array.Copy(first, i, merged, m, merged.Length - m);
+                    break;
                 }
                 else
                 {
@@ -149,6 +151,46 @@ namespace Dsa.Algorithms
                 }
             }
             return merged;
+        }
+
+        /// <summary>
+        /// Sorts the items of an array using the merge sort algorithm.
+        /// </summary>
+        /// <param name="value">Array to be sorted.</param>
+        /// <returns>Sorted array.</returns>
+        /// <exception cref="ArgumentNullException"><strong>value</strong> is <strong>null</strong>.</exception>
+        public static T[] MergeSort<T>(this T[] value)
+        {
+            if (value == null)
+            {
+                throw new ArgumentNullException("value");
+            }
+
+            if (value.Length <= 1)
+            {
+                return value; // base case the array is of size one hence it is already sorted
+            }
+            else
+            {
+                int m = value.Length / 2; // find middle or thereabouts of the array
+                // create two arrays to store the left and right items of array split
+                T[] left = new T[m];
+                T[] right = new T[value.Length - m];
+                // populate left and right arrays with the appropriate items from value
+                for (int i = 0; i < left.Length; i++)
+                {
+                    left[i] = value[i];
+                }
+                for (int i = 0; i < right.Length; i++, m++)
+                {
+                    right[i] = value[m];
+                }
+                // merge the sorted array branches into their respective sides
+                left = MergeSort(left);
+                right = MergeSort(right);
+                // merge and return the ordered left and right arrays
+                return MergeOrdered(left, right);
+            }
         }
 
     }
