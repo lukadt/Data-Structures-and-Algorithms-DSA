@@ -8,7 +8,7 @@ namespace Dsa.Test.DataStructures
 {
 
     /// <summary>
-    /// Tests for Set.
+    /// Tests for OrderedSet.
     /// </summary>
     [TestClass]
     public class SetTest
@@ -20,7 +20,7 @@ namespace Dsa.Test.DataStructures
         [TestMethod]
         public void AddTest()
         {
-            Set<int> actual = new Set<int>()
+            OrderedSet<int> actual = new OrderedSet<int>()
             {
                 43, 
                 17, 
@@ -40,7 +40,7 @@ namespace Dsa.Test.DataStructures
         [TestMethod]
         public void ClearTest()
         {
-            Set<int> actual = new Set<int>()
+            OrderedSet<int> actual = new OrderedSet<int>()
             {
                 15, 
                 16,
@@ -58,7 +58,7 @@ namespace Dsa.Test.DataStructures
         [TestMethod]
         public void ContainsTest()
         {
-            Set<int> actual = new Set<int>()
+            OrderedSet<int> actual = new OrderedSet<int>()
             {
                 12,
                 19,
@@ -76,7 +76,7 @@ namespace Dsa.Test.DataStructures
         [TestMethod]
         public void RemoveTest()
         {
-            Set<int> actual = new Set<int>()
+            OrderedSet<int> actual = new OrderedSet<int>()
             {
                 10,
                 8,
@@ -95,7 +95,7 @@ namespace Dsa.Test.DataStructures
         [TestMethod]
         public void ToArrayTest()
         {
-            Set<int> set = new Set<int>()
+            OrderedSet<int> set = new OrderedSet<int>()
             {
                 10,
                 8,
@@ -118,7 +118,7 @@ namespace Dsa.Test.DataStructures
         [ExpectedException(typeof(InvalidOperationException))]
         public void ToArraySetEmptyTest()
         {
-            Set<int> actual = new Set<int>();
+            OrderedSet<int> actual = new OrderedSet<int>();
 
             actual.ToArray();
         }
@@ -129,7 +129,7 @@ namespace Dsa.Test.DataStructures
         [TestMethod]
         public void GetEnumeratorTest()
         {
-            Set<int> set = new Set<int>()
+            OrderedSet<int> set = new OrderedSet<int>()
             {
                 10,
                 23,
@@ -155,7 +155,7 @@ namespace Dsa.Test.DataStructures
         public void ComparerTest()
         {
             IComparer<Coordinate> comaparer = new CoordinateComparer();
-            IComparerProvider<Coordinate> actual = new Set<Coordinate>(comaparer);
+            IComparerProvider<Coordinate> actual = new OrderedSet<Coordinate>(comaparer);
 
             Assert.IsNotNull(actual.Comparer);
         }
@@ -166,21 +166,21 @@ namespace Dsa.Test.DataStructures
         [TestMethod]
         public void SetUnionTest()
         {
-            Set<int> set1 = new Set<int>()
+            OrderedSet<int> set1 = new OrderedSet<int>()
             {
                 10, 
                 4,
                 6
             };
-            Set<int> set2 = new Set<int>()
+            OrderedSet<int> set2 = new OrderedSet<int>()
             {
                 1,
                 5,
                 90
             };
 
-            Set<int> actual = Set<int>.Union(set1, set2);
-            Set<int> expected = new Set<int>()
+            OrderedSet<int> actual = OrderedSet<int>.Union(set1, set2);
+            OrderedSet<int> expected = new OrderedSet<int>()
             {
                 10,
                 4,
@@ -200,7 +200,7 @@ namespace Dsa.Test.DataStructures
         [ExpectedException(typeof(ArgumentNullException))]
         public void SetUnionSet1NullTest()
         {
-            Set<int>.Union(null, null);
+            OrderedSet<int>.Union(null, null);
         }
 
         /// <summary>
@@ -210,9 +210,9 @@ namespace Dsa.Test.DataStructures
         [ExpectedException(typeof(ArgumentNullException))]
         public void SetUnionSet2NullTest()
         {
-            Set<int> actual = new Set<int>();
+            OrderedSet<int> actual = new OrderedSet<int>();
 
-            Set<int>.Union(actual, null);
+            OrderedSet<int>.Union(actual, null);
         }
 
         /// <summary>
@@ -222,10 +222,10 @@ namespace Dsa.Test.DataStructures
         [TestMethod]
         public void SetUnionEmptySetTest()
         {
-            Set<int> set1 = new Set<int>();
-            Set<int> set2 = new Set<int>();
+            OrderedSet<int> set1 = new OrderedSet<int>();
+            OrderedSet<int> set2 = new OrderedSet<int>();
 
-            Assert.IsNull(Set<int>.Union(set1, set2));
+            Assert.IsNull(OrderedSet<int>.Union(set1, set2));
         }
 
         /// <summary>
@@ -234,14 +234,14 @@ namespace Dsa.Test.DataStructures
         [TestMethod]
         public void SetIntersectionTest()
         {
-            Set<int> set1 = new Set<int>()
+            OrderedSet<int> set1 = new OrderedSet<int>()
             {
                 5,
                 8,
                 12,
                 15
             };
-            Set<int> set2 = new Set<int>()
+            OrderedSet<int> set2 = new OrderedSet<int>()
             {
                 20, 
                 1,
@@ -249,13 +249,13 @@ namespace Dsa.Test.DataStructures
                 15
             };
 
-            Set<int> expected = new Set<int>()
+            OrderedSet<int> expected = new OrderedSet<int>()
             {
                 12,
                 15
             };
 
-            CollectionAssert.AreEqual(expected, Set<int>.Intersection(set1, set2));
+            CollectionAssert.AreEqual(expected, OrderedSet<int>.Intersection(set1, set2));
         }
 
         /// <summary>
@@ -265,17 +265,17 @@ namespace Dsa.Test.DataStructures
         [TestMethod]
         public void SetIntersectionNoCommonItemsTest()
         {
-            Set<int> set1 = new Set<int>()
+            OrderedSet<int> set1 = new OrderedSet<int>()
             {
                 12,
                 4
             };
-            Set<int> set2 = new Set<int>()
+            OrderedSet<int> set2 = new OrderedSet<int>()
             {
                 1
             };
 
-            Assert.IsNull(Set<int>.Intersection(set1, set2));
+            Assert.IsNull(OrderedSet<int>.Intersection(set1, set2));
         }
 
         /// <summary>
@@ -285,7 +285,7 @@ namespace Dsa.Test.DataStructures
         [ExpectedException(typeof(ArgumentNullException))]
         public void SetIntersectionSet1IsNullTest()
         {
-            Set<int>.Intersection(null, null);
+            OrderedSet<int>.Intersection(null, null);
         }
 
         /// <summary>
@@ -295,9 +295,9 @@ namespace Dsa.Test.DataStructures
         [ExpectedException(typeof(ArgumentNullException))]
         public void SetIntersectionSet2IsNullTest()
         {
-            Set<int> set1 = new Set<int>();
+            OrderedSet<int> set1 = new OrderedSet<int>();
 
-            Set<int>.Intersection(set1, null);
+            OrderedSet<int>.Intersection(set1, null);
         }
 
     }

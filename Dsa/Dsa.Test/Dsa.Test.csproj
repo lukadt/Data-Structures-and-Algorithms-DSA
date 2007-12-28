@@ -53,7 +53,6 @@
     <Compile Include="DataStructures\BinaryTreeNodeTest.cs" />
     <Compile Include="DataStructures\OrderedSet.cs" />
     <Compile Include="DataStructures\DoublyLinkedListTest.cs" />
-    <Compile Include="DataStructures\SetTest.cs" />
     <Compile Include="DataStructures\SinglyLinkedListTest.cs" />
     <Compile Include="Utility\CompareTest.cs" />
     <Compile Include="DataStructures\DoublyLinkedListNodeTest.cs" />

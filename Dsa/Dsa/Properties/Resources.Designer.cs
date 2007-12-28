@@ -106,7 +106,7 @@ namespace Dsa.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Set(Of T) is empty..
+        ///   Looks up a localized string similar to OrderedSet(Of T) is empty..
         /// </summary>
         internal static string SetEmpty {
             get {
