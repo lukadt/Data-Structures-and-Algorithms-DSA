@@ -52,6 +52,7 @@
     <Compile Include="DataStructures\CollectionBase.cs" />
     <Compile Include="DataStructures\CollectionDebugView.cs" />
     <Compile Include="DataStructures\BinarySearchTree.cs" />
+    <Compile Include="DataStructures\OrderedSet.cs" />
     <Compile Include="DataStructures\DoublyLinkedList.cs" />
     <Compile Include="DataStructures\DoublyLinkedListNode.cs" />
     <Compile Include="DataStructures\IComparerProvider.cs" />
