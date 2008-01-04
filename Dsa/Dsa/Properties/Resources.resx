@@ -129,6 +129,14 @@
     <value>DoublyLinkedListCollection(Of T) is empty.</value>
     <comment>When exceptions arise as a result of an empty doubly linked list.</comment>
   </data>
+  <data name="FactorialLessThanZero" xml:space="preserve">
+    <value>Factorial cannot be called with an integer value less than 0.</value>
+    <comment>Error text when Factorial is called with a negative integer.</comment>
+  </data>
+  <data name="FibonacciLessThanZero" xml:space="preserve">
+    <value>Fibonacci cannot be called with an integer value less than 0.</value>
+    <comment>Error text when Fibonacci is called with a negative integer.</comment>
+  </data>
   <data name="ICollectionCopyToNotSupported" xml:space="preserve">
     <value>ICollection.CopyTo is not supported.  Use the ICollection(Of T).CopyTo method instead.</value>
     <comment>ICollection.CopyTo not supported text.</comment>
@@ -136,6 +144,10 @@
   <data name="MedianLeftArrayLengthLessThanThree" xml:space="preserve">
     <value>Cannot invoke MedianLeft on an array with a length of less than 3.</value>
     <comment>When an exception is raised as a result of calling MedianLeft on an array of length &lt;3.</comment>
+  </data>
+  <data name="PowerExponentLessThanZero" xml:space="preserve">
+    <value>Power cannot be called with an exponent less than 0.</value>
+    <comment>Error text when the exponent used in a call to Power is negative.</comment>
   </data>
   <data name="SetEmpty" xml:space="preserve">
     <value>Set(Of T) is empty.</value>

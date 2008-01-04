@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Dsa.Algorithms;
+using System;
 
 namespace Dsa.Test
 {
@@ -17,7 +18,24 @@ namespace Dsa.Test
         [TestMethod]
         public void FibonacciTest()
         {
-            Assert.AreEqual(13, Numbers.Fibonacci(6));
+            Assert.AreEqual(0, Numbers.Fibonacci(0));
+            Assert.AreEqual(1, Numbers.Fibonacci(1));
+            Assert.AreEqual(1, Numbers.Fibonacci(2));
+            Assert.AreEqual(2, Numbers.Fibonacci(3));
+            Assert.AreEqual(3, Numbers.Fibonacci(4));
+            Assert.AreEqual(5, Numbers.Fibonacci(5));
+            Assert.AreEqual(8, Numbers.Fibonacci(6));
+            Assert.AreEqual(13, Numbers.Fibonacci(7));
+        }
+
+        /// <summary>
+        /// Check to see that the correct exception is thrown when fibonacci is called with a number less than 0.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void FibonacciNumberLessThanZeroTest()
+        {
+            Numbers.Fibonacci(-1);
         }
 
         /// <summary>
@@ -26,7 +44,23 @@ namespace Dsa.Test
         [TestMethod]
         public void FactorialTest()
         {
+            Assert.AreEqual(1, Numbers.Factorial(0));
+            Assert.AreEqual(1, Numbers.Factorial(1));
+            Assert.AreEqual(2, Numbers.Factorial(2));
+            Assert.AreEqual(6, Numbers.Factorial(3));
+            Assert.AreEqual(24, Numbers.Factorial(4));
+            Assert.AreEqual(120, Numbers.Factorial(5));
             Assert.AreEqual(720, Numbers.Factorial(6));
+        }
+
+        /// <summary>
+        /// Check to see that the correct exception is thrown when calling Factorial using a negative integer.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void FactorialNumberLessThanZeroTest()
+        {
+            Numbers.Factorial(-1);
         }
 
         /// <summary>
@@ -35,16 +69,21 @@ namespace Dsa.Test
         [TestMethod]
         public void PowerNotZeroTest()
         {
+            Assert.AreEqual(1, Numbers.Power(0, 0));
             Assert.AreEqual(4, Numbers.Power(2, 2));
+            Assert.AreEqual(243, Numbers.Power(3, 5));
+            Assert.AreEqual(1024, Numbers.Power(2, 10));
+            Assert.AreEqual(4, Numbers.Power(-2, 2));
         }
-
+        
         /// <summary>
-        /// Check to see that 1 is returned when the exponent is 0
+        /// Check to see that the correct expception is thrown when the exponent is negative.
         /// </summary>
         [TestMethod]
-        public void PowerZeroTest()
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void PowerExponentLessThanZeroTest()
         {
-            Assert.AreEqual(1, Numbers.Power(2, 0));
+            Numbers.Power(2, -1);
         }
 
         /// <summary>
