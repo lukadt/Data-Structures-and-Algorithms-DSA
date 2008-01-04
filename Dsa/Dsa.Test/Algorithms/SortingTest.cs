@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using Dsa.Algorithms;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 
 namespace Dsa.Test
 {
@@ -19,13 +21,16 @@ namespace Dsa.Test
         [TestMethod]
         public void BubbleSortAscTest()
         {
-            int[] myInts = { 23, 1, 44, 62, 1, 6, 90, 34 };
-            int[] actual = new int[myInts.Length];
-            int[] expected = { 1, 1, 6, 23, 34, 44, 62, 90 };
+            List<int> myInts = new List<int>() { 23, 1, 44, 62, 1, 6, 90, 34 };
+            IList<int> actual = new List<int>();
+            List<int> expected = new List<int>() { 1, 1, 6, 23, 34, 44, 62, 90 };
 
             actual = myInts.BubbleSort(SortType.Ascending);
 
-            CollectionAssert.AreEqual(expected, actual);
+            for (int i = 0; i < expected.Count; i++)
+            {
+                Assert.AreEqual(expected[i], actual[i]);
+            }
         }
 
         /// <summary>
@@ -35,13 +40,16 @@ namespace Dsa.Test
         [TestMethod]
         public void BubbleSortDescTest()
         {
-            int[] myInts = { 23, 1, 44, 62, 1, 6, 90, 34 };
-            int[] actual = new int[myInts.Length];
-            int[] expected = { 90, 62, 44, 34, 23, 6, 1, 1 };
+            List<int> myInts = new List<int>() { 23, 1, 44, 62, 1, 6, 90, 34 };
+            IList<int> actual = new List<int>();
+            List<int> expected = new List<int>() { 90, 62, 44, 34, 23, 6, 1, 1 };
 
             actual = myInts.BubbleSort(SortType.Descending);
 
-            CollectionAssert.AreEqual(expected, actual);
+            for (int i = 0; i < expected.Count; i++)
+            {
+                Assert.AreEqual(expected[i], actual[i]);
+            }
         }
 
         /// <summary>
@@ -52,7 +60,7 @@ namespace Dsa.Test
         [ExpectedException(typeof(ArgumentNullException))]
         public void BubbleSortNullArrayTest()
         {
-            int[] actual = null;
+            IList<int> actual = null;
 
             actual.BubbleSort(SortType.Ascending);
         }
@@ -63,10 +71,14 @@ namespace Dsa.Test
         [TestMethod]
         public void MedianLeftTest()
         {
-            int[] actual = { 2, 5, 23, 17, 1 };
-            int[] expected = { 2, 5, 1, 17, 23 };
+            List<int> actual = new List<int>() { 2, 5, 23, 17, 1 };
+            List<int> expected = new List<int>() { 2, 5, 1, 17, 23 };
 
-            CollectionAssert.AreEqual(expected, actual.MedianLeft());
+            actual.MedianLeft();
+            for (int i = 0; i < expected.Count; i++)
+            {
+                Assert.AreEqual(expected[i], actual[i]);
+            }
         }
 
         /// <summary>
@@ -75,10 +87,14 @@ namespace Dsa.Test
         [TestMethod]
         public void MedianLeftLeftIsGreaterThanMidTest()
         {
-            int[] actual = { 23, 1, 4, 8, 10 };
-            int[] expected = { 10, 1, 4, 8, 23 };
+            List<int> actual = new List<int>() { 23, 1, 4, 8, 10 };
+            List<int> expected = new List<int>() { 10, 1, 4, 8, 23 };
 
-            CollectionAssert.AreEqual(expected, actual.MedianLeft());
+            actual.MedianLeft();
+            for (int i = 0; i < expected.Count; i++)
+            {
+                Assert.AreEqual(expected[i], actual[i]);
+            }
         }
 
         /// <summary>
@@ -117,8 +133,12 @@ namespace Dsa.Test
             int[] a2 = { 1, 3, 6 };
 
             int[] expected = { 1, 1, 3, 5, 6, 9 };
+            IList<int> actual = Sorting.MergeOrdered(a1, a2);
 
-            CollectionAssert.AreEqual(expected, Sorting.MergeOrdered(a1, a2));
+            for (int i = 0; i < expected.Length; i++)
+            {
+                Assert.AreEqual(expected[i], actual[i]);
+            }
         }
 
         /// <summary>
@@ -131,8 +151,12 @@ namespace Dsa.Test
             int[] a2 = { 5, 9, 10, 14 };
 
             int[] expected = { 1, 4, 5, 9, 10, 12, 14 };
+            IList<int> actual = Sorting.MergeOrdered(a1, a2);
 
-            CollectionAssert.AreEqual(expected, Sorting.MergeOrdered(a1, a2));
+            for (int i = 0; i < expected.Length; i++)
+            {
+                Assert.AreEqual(expected[i], actual[i]);
+            }
         }
 
         /// <summary>
@@ -145,8 +169,12 @@ namespace Dsa.Test
             int[] a2 = { 1, 4, 12 };
 
             int[] expected = { 1, 4, 5, 9, 10, 12, 14 };
+            IList<int> actual = Sorting.MergeOrdered(a1, a2);
 
-            CollectionAssert.AreEqual(expected, Sorting.MergeOrdered(a1, a2));
+            for (int i = 0; i < expected.Length; i++)
+            {
+                Assert.AreEqual(expected[i], actual[i]);
+            }
         }
 
         /// <summary>
@@ -181,10 +209,15 @@ namespace Dsa.Test
         [TestMethod]
         public void MergeSortTest()
         {
-            int[] actual = { 12, 9, 4, 67, 3, 25 };
+            int[] unsorted = { 12, 9, 4, 67, 3, 25 };
             int[] expected = { 3, 4, 9, 12, 25, 67 };
 
-            CollectionAssert.AreEqual(expected, actual.MergeSort());
+            IList<int> actual = unsorted.MergeSort();
+
+            for (int i = 0; i < expected.Length; i++)
+            {
+                Assert.AreEqual(expected[i], actual[i]);
+            }
         }
 
         /// <summary>
@@ -193,10 +226,15 @@ namespace Dsa.Test
         [TestMethod]
         public void MergeOrderedCharsTest()
         {
-            char[] actual = { 'g', 'r', 'f', 'b', 'z', 'k' };
+            char[] unsorted = { 'g', 'r', 'f', 'b', 'z', 'k' };
             char[] expected = { 'b', 'f', 'g', 'k', 'r', 'z' };
 
-            CollectionAssert.AreEqual(expected, actual.MergeSort());
+            IList<char> actual = unsorted.MergeSort();
+
+            for (int i = 0; i < expected.Length; i++)
+            {
+                Assert.AreEqual(expected[i], actual[i]);
+            }
         }
 
         /// <summary>

@@ -1,8 +1,9 @@
 ﻿using System;
-using Dsa.Utility;
-using Dsa.Properties;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Dsa.Properties;
+using Dsa.Utility;
 
 namespace Dsa.Algorithms
 {
@@ -14,110 +15,113 @@ namespace Dsa.Algorithms
     {
 
         /// <summary>
-        /// Sorts an <see cref="System.Array"/> of <see cref="Int32"/> in ascending order.
+        /// Sorts any <see cref="System.Collections.Generic"/> that implements <see cref="IList{T}"/> in ascending or descending order using the bubble
+        /// sort algorithm.
         /// </summary>
-        /// <param name="array">The <see cref="System.Array"/> to sort.</param>
-        /// <param name="sortType">Specification of how the items are to be sorted.</param>
-        /// <returns>The sorted <see cref="System.Array"/>.</returns>
-        /// <exception cref="ArgumentNullException"><strong>array</strong> is <strong>null</strong>.</exception>
-        public static int[] BubbleSort(this int[] array, SortType sortType)
+        /// <param name="list">The <see cref="IList{T}"/> to sort.</param>
+        /// <param name="sortType">The order in which the items of the <see cref="IList{T}"/> are to be sorted.</param>
+        /// <returns>The sorted <see cref="IList{T}"/>.</returns>
+        /// <exception cref="ArgumentNullException"><strong>list</strong> is <strong>null</strong>.</exception>
+        public static IList<T> BubbleSort<T>(this IList<T> list, SortType sortType)
         {
-            if (array == null)
+            if (list == null)
             {
-                throw new ArgumentNullException("array");
+                throw new ArgumentNullException("list");
             }
-            // compare each item of the array with every other item in the array - O(n^2) runtime
-            for (int i = 0; i < array.Length; i++)
+            Comparer<T> comparer = Comparer<T>.Default;
+            // compare each item of the list with every other item in the list - O(n^2) runtime
+            for (int i = 0; i < list.Count; i++)
             {
-                for (int j = 0; j < array.Length; j++)
+                for (int j = 0; j < list.Count; j++)
                 {
-                    // check which SortType is being used to sort the items in array
+                    // check which SortType is being used to sort the items in list
                     switch (sortType)
                     {
                         case SortType.Ascending:
-                            if (array[i] < array[j])
+                            if (Compare.IsLessThan(list[i], list[j], comparer))
                             {
-                                Exchange(ref array, j, i);
+                                Exchange(ref list, j, i);
                             }
                             break;
                         case SortType.Descending:
-                            if (array[i] > array[j])
+                            if (Compare.IsGreaterThan(list[i], list[j], comparer))
                             {
-                                Exchange(ref array, j, i);
+                                Exchange(ref list, j, i);
                             }
                             break;
                     }
                 }
             }
-            return array;
+            return list;
         }
 
         /// <summary>
-        /// Sorts an array placing the median value of 3 keys (left, right, and mid) at index 0 (left) of the array.
+        /// Sorts an <see cref="IList{T}"/> placing the median value of 3 keys (left, right, and mid) at index 0 (left) of the <see cref="IList{T}"/>.
         /// </summary>
-        /// <param name="array">The array to find the median value of.</param>
-        /// <returns>The modified array with the median key at index 0.</returns>
-        /// <exception cref="ArgumentNullException"><strong>array</strong> is <strong>null</strong>.</exception>
-        /// <exception cref="InvalidOperationException"><strong>array</strong> has a length less than <strong>3</strong> making it not
+        /// <param name="list">The <see cref="IList{T}"/> to find the median value of.</param>
+        /// <returns>The modified <see cref="IList{T}"/> with the median key at index 0.</returns>
+        /// <exception cref="ArgumentNullException"><strong>list</strong> is <strong>null</strong>.</exception>
+        /// <exception cref="InvalidOperationException"><strong>list</strong> has a length less than <strong>3</strong> making it not
         /// possible to select 3 keys to assist in finding the median value of the array.</exception>
-        public static int[] MedianLeft(this int[] array)
+        public static IList<T> MedianLeft<T>(this IList<T> list)
         {
-            if (array == null)
+            if (list == null)
             {
-                throw new ArgumentNullException("array");
+                throw new ArgumentNullException("list");
             }
-            else if (array.Length < 3)
+            else if (list.Count < 3)
             {
                 throw new InvalidOperationException(Resources.MedianLeftArrayLengthLessThanThree);
             }
-            // find the middle item of array
-            int mid = array.Length / 2;
-            // define left and right bounds of the array
+            Comparer<T> comparer = Comparer<T>.Default;
+            // find the middle item of list
+            int mid = list.Count / 2;
+            // define left and right bounds of the list
             int left = 0;
-            int right = array.Length - 1;
-            // place the keys at the right index in array
-            if (array[left] > array[mid])
+            int right = list.Count - 1;
+            // place the key in the correct index in list
+            if (Compare.IsGreaterThan(list[left], list[mid], comparer))
             {
-                Exchange(ref array, left, mid);
+                Exchange(ref list, left, mid);
             }
 
-            if (array[left] > array[right])
+            if (Compare.IsGreaterThan(list[left], list[right], comparer))
             {
-                Exchange(ref array, left, right);
+                Exchange(ref list, left, right);
             }
 
-            if (array[mid] > array[right])
+            if (Compare.IsGreaterThan(list[mid], list[right], comparer))
             {
-                Exchange(ref array, mid, right);
+                Exchange(ref list, mid, right);
             }
-            // exchange the value of items[mid] with items[left] placing the median key at index 0 of the array
-            Exchange(ref array, mid, left);
+            // exchange the value of list[mid] with list[left] placing the median key at index 0 of the list
+            Exchange(ref list, mid, left);
 
-            return array;
+            return list;
         }
 
         /// <summary>
-        /// Exchanges two items in an array.
+        /// Exchanges two items in an <see cref="IList{T}"/>.
         /// </summary>
-        /// <param name="array">Array that holds the items to be exchanged.</param>
+        /// <param name="list"><see cref="IList{T}"/> that holds the items to be exchanged.</param>
         /// <param name="first">Index of first item.</param>
         /// <param name="second">Index of second item.</param>
-        private static void Exchange(ref int[] array, int first, int second)
+        private static void Exchange<T>(ref IList<T> list, int first, int second)
         {
-            int temp = array[first];
-            array[first] = array[second];
-            array[second] = temp;
+            T temp = list[first];
+            list[first] = list[second];
+            list[second] = temp;
         }
 
         /// <summary>
-        /// Merges two ordered arrays into a single ordered array.
+        /// Merges two ordered <see cref="IList{T}"/> collections into a single ordered <see cref="IList{T}"/>.
         /// </summary>
         /// <typeparam name="T">Type of the two array's to merge.</typeparam>
-        /// <param name="first">First array.</param>
-        /// <param name="second">Second array.</param>
-        /// <returns>The merged array of a1 and a2.</returns>
-        /// <exception cref="ArgumentNullException"><strong>a1</strong> or <strong>a2</strong> are null.</exception>
-        public static T[] MergeOrdered<T>(T[] first, T[] second)
+        /// <param name="first">First <see cref="IList{T}"/>.</param>
+        /// <param name="second">Second <see cref="IList{T}"/>.</param>
+        /// <returns>The merged <see cref="IList{T}"/> of first and second.</returns>
+        /// <exception cref="ArgumentNullException"><strong>first</strong> or <strong>second</strong> are null.</exception>
+        public static IList<T> MergeOrdered<T>(IList<T> first, IList<T> second)
         {
             if (first == null)
             {
@@ -128,20 +132,20 @@ namespace Dsa.Algorithms
                 throw new ArgumentNullException("second");
             }
 
-            T[] merged = new T[first.Length + second.Length];
+            T[] merged = new T[first.Count + second.Count];
             // merge the items in both arrays
             for (int i = 0, j = 0, m = 0; m < merged.Length; m++)
             {
-                if (i == first.Length)
+                if (i == first.Count)
                 {
                     // all items in a1 have been exhausted so copy the remaining items (if any) from a2 starting at index j to merged
-                    Array.Copy(second, j, merged, m, merged.Length - m);
+                    Array.Copy(second.ToArray(), j, merged, m, merged.Length - m);
                     break;
                 }
-                else if (j == second.Length)
+                else if (j == second.Count)
                 {
                     // all items in a2 have been exhausted
-                    Array.Copy(first, i, merged, m, merged.Length - m);
+                    Array.Copy(first.ToArray(), i, merged, m, merged.Length - m);
                     break;
                 }
                 else
@@ -150,44 +154,45 @@ namespace Dsa.Algorithms
                     merged[m] = Compare.IsLessThan(first[i], second[j], Comparer<T>.Default) ? first[i++] : second[j++];
                 }
             }
+
             return merged;
         }
 
         /// <summary>
-        /// Sorts the items of an array using the merge sort algorithm.
+        /// Sorts the items of an <see cref="IList{T}"/> using the merge sort algorithm.
         /// </summary>
-        /// <param name="value">Array to be sorted.</param>
-        /// <returns>Sorted array.</returns>
-        /// <exception cref="ArgumentNullException"><strong>value</strong> is <strong>null</strong>.</exception>
-        public static T[] MergeSort<T>(this T[] value)
+        /// <param name="list">List to be sorted.</param>
+        /// <returns>Sorted List.</returns>
+        /// <exception cref="ArgumentNullException"><strong>list</strong> is <strong>null</strong>.</exception>
+        public static IList<T> MergeSort<T>(this IList<T> list)
         {
-            if (value == null)
+            if (list == null)
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException("list");
             }
 
-            if (value.Length <= 1)
+            if (list.Count <= 1)
             {
-                return value; // base case the array is of size one hence it is already sorted
+                return list; // base case the array is of size one hence it is already sorted
             }
             else
             {
-                int m = value.Length / 2; // find middle or thereabouts of the array
+                int m = list.Count / 2; // find middle or thereabouts of the array
                 // create two arrays to store the left and right items of array split
                 T[] left = new T[m];
-                T[] right = new T[value.Length - m];
-                // populate left and right arrays with the appropriate items from value
+                T[] right = new T[list.Count - m];
+                // populate left and right arrays with the appropriate items from list
                 for (int i = 0; i < left.Length; i++)
                 {
-                    left[i] = value[i];
+                    left[i] = list[i];
                 }
                 for (int i = 0; i < right.Length; i++, m++)
                 {
-                    right[i] = value[m];
+                    right[i] = list[m];
                 }
                 // merge the sorted array branches into their respective sides
-                left = MergeSort(left);
-                right = MergeSort(right);
+                left = MergeSort(left) as T[];
+                right = MergeSort(right) as T[];
                 // merge and return the ordered left and right arrays
                 return MergeOrdered(left, right);
             }
