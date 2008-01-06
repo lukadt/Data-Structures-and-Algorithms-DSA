@@ -73,6 +73,7 @@ namespace Dsa.Algorithms
             {
                 throw new InvalidOperationException(Resources.MedianLeftArrayLengthLessThanThree);
             }
+
             Comparer<T> comparer = Comparer<T>.Default;
             // find the middle item of list
             int mid = list.Count / 2;
@@ -170,7 +171,22 @@ namespace Dsa.Algorithms
             {
                 throw new ArgumentNullException("list");
             }
+            else
+            {
+                return MergeSortInternal(list);
+            }
+        }
 
+        /// <summary>
+        /// Sorts the items of an <see cref="IList{T}"/> using the merge sort algorithm.
+        /// </summary>
+        /// <remarks>
+        /// This is the internal recursive merge sort algorithm used by <see cref="Sorting.MergeSort{T}"/>.
+        /// </remarks>
+        /// <param name="list">List to be sorted.</param>
+        /// <returns>Sorted List.</returns>
+        public static IList<T> MergeSortInternal<T>(IList<T> list)
+        {
             if (list.Count <= 1)
             {
                 return list; // base case the array is of size one hence it is already sorted
@@ -191,8 +207,8 @@ namespace Dsa.Algorithms
                     right[i] = list[m];
                 }
                 // merge the sorted array branches into their respective sides
-                left = MergeSort(left) as T[];
-                right = MergeSort(right) as T[];
+                left = MergeSortInternal(left) as T[];
+                right = MergeSortInternal(right) as T[];
                 // merge and return the ordered left and right arrays
                 return MergeOrdered(left, right);
             }

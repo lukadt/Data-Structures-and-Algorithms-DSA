@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Dsa.Algorithms;
+using System;
 
 namespace Dsa.Test
 {
@@ -29,8 +30,20 @@ namespace Dsa.Test
         public void SequentialSearchItemNotPresentTest()
         {
             int[] actual = {1, 4, 5, 6, 9};
-
+            
             Assert.AreEqual(-1, actual.SequentialSearch(99));
+        }
+
+        /// <summary>
+        /// Check to see that when the list is null the correct exception is thrown.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void SequentialSearchListNullTest()
+        {
+            char[] actual = null;
+
+            actual.SequentialSearch('b');
         }
 
         /// <summary>
@@ -74,6 +87,18 @@ namespace Dsa.Test
 
             Assert.IsTrue(actual.ProbabilitySearch(12));
             CollectionAssert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        /// Check to see that the correct exception is thrown when the list is null.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ProbabilitySearchListNullTest()
+        {
+            char[] actual = null;
+
+            actual.ProbabilitySearch('r');
         }
 
     }
