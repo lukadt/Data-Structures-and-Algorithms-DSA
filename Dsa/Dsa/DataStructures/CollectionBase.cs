@@ -140,7 +140,10 @@ namespace Dsa.DataStructures
         /// An <see cref="IEnumerator{T}"/> that iterates through the <see cref="ICollection{T}"/>.
         /// </summary>
         /// <returns>An <see cref="IEnumerator{T}" /> that can be used to iterate through the <see cref="ICollection{T}"/>.</returns>
-        public abstract IEnumerator<T> GetEnumerator();
+        public virtual IEnumerator<T> GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
 
         #endregion
 

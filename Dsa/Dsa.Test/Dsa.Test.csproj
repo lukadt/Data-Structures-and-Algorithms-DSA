@@ -54,6 +54,7 @@
     <Compile Include="DataStructures\OrderedSet.cs" />
     <Compile Include="DataStructures\DoublyLinkedListTest.cs" />
     <Compile Include="DataStructures\SinglyLinkedListTest.cs" />
+    <Compile Include="DataStructures\UnorderedSetTest.cs" />
     <Compile Include="Utility\CompareTest.cs" />
     <Compile Include="DataStructures\DoublyLinkedListNodeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

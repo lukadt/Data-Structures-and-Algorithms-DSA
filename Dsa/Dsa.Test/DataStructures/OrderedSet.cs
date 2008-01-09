@@ -179,7 +179,7 @@ namespace Dsa.Test.DataStructures
                 90
             };
 
-            OrderedSet<int> actual = OrderedSet<int>.Union(set1, set2);
+            OrderedSet<int> actual = OrderedSet<int>.Union(set1, set2) as OrderedSet<int>;
             OrderedSet<int> expected = new OrderedSet<int>()
             {
                 10,
