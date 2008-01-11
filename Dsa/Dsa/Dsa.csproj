@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Algorithms\Numbers.cs" />
     <Compile Include="Algorithms\Searching.cs" />
+    <Compile Include="Algorithms\Sets.cs" />
     <Compile Include="Algorithms\Sorting.cs" />
     <Compile Include="Algorithms\SortType.cs" />
     <Compile Include="DataStructures\BinaryTreeNode.cs" />
