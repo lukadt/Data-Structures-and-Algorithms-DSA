@@ -98,20 +98,6 @@ namespace Dsa.Test
         }
 
         /// <summary>
-        /// Check to see that the MedianLeft method throws the correct exception when applying the method to an
-        /// array that doesn't have a length or at least 3.
-        /// We need at least a length of 3 to select the three keys from the array - left, right and med.
-        /// </summary>
-        [TestMethod]
-        [ExpectedException(typeof(InvalidOperationException))]
-        public void MedianLeftArrayLengthLessThanThreeTest()
-        {
-            int[] actual = { 23, 1 };
-
-            actual.MedianLeft();
-        }
-
-        /// <summary>
         /// Check to see that median left raise the correct exception when the array is null.
         /// </summary>
         [TestMethod]
@@ -247,6 +233,92 @@ namespace Dsa.Test
             int[] actual = null;
 
             actual.MergeSort();
+        }
+
+        /// <summary>
+        /// Check to see that the correct list is returned when concatenating 3 arrays.
+        /// </summary>
+        [TestMethod]
+        public void ConcatenateTest()
+        {
+            int[] array1 = { 5, 7, 8 };
+            int[] array2 = { 6, 2 };
+            int[] array3 = { 1 };
+            int[] expected = { 5, 7, 8, 6, 2 };
+            IList<int> actual = Sorting.Concatenate(array1, array2, array3);
+
+            for (int i = 0; i < expected.Length; i++)
+            {
+                Assert.AreEqual(expected[i], actual[i]);
+            }
+        }
+
+        /// <summary>
+        /// Check to see that the correct exception is thrown when the first list is null.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ConcatenateFirstListNullTest()
+        {
+            char[] second = { 'a' };
+            char[] third = { 'c' };
+
+            Sorting.Concatenate(null, second, third);
+        }
+
+        /// <summary>
+        /// Check to see that the correct exception is thrown when the second list is null.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ConcatenateSecondListNullTest()
+        {
+            char[] first = { 'a' };
+            char[] third = { 'c' };
+
+            Sorting.Concatenate(first, null, third);
+        }
+
+        /// <summary>
+        /// Check to see that the correct exception is thrown when the third list is null.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ConcatenateThirdListNullTest()
+        {
+            char[] first = { 'a' };
+            char[] second = { 'c' };
+
+            Sorting.Concatenate(first, second, null);
+        }
+
+        /// <summary>
+        /// Test to see that the correct list is returned when quick sorting a list.
+        /// </summary>
+        [TestMethod]
+        public void QuickSortTest()
+        {
+            int[] unsorted = { 10, 9, 7, 16 };
+            int[] expected = { 7, 9, 10, 16 };
+
+            IList<int> actual = unsorted.QuickSort();
+
+            for (int i = 0; i < expected.Length; i++)
+            {
+                Assert.AreEqual(expected[i], actual[i]);
+            }
+        }
+
+        /// <summary>
+        /// Check to see that the correct exception is raised when the list is null.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void QuickSortListNullTest()
+        {
+            char[] actual = null;
+
+            actual.QuickSort();
         }
 
     }

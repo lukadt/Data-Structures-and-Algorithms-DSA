@@ -69,10 +69,6 @@ namespace Dsa.Algorithms
             {
                 throw new ArgumentNullException("list");
             }
-            else if (list.Count < 3)
-            {
-                throw new InvalidOperationException(Resources.MedianLeftArrayLengthLessThanThree);
-            }
 
             Comparer<T> comparer = Comparer<T>.Default;
             // find the middle item of list
@@ -211,6 +207,101 @@ namespace Dsa.Algorithms
                 right = MergeSortInternal(right) as T[];
                 // merge and return the ordered left and right arrays
                 return MergeOrdered(left, right);
+            }
+        }
+
+        /// <summary>
+        /// Concatenates three <see cref="IList{T}"/>'s into a single <see cref="IList{T}"/>.
+        /// </summary>
+        /// <typeparam name="T">Type of <see cref="IList{T}"/> to concatenate.</typeparam>
+        /// <param name="first">First list.</param>
+        /// <param name="second">Second list.</param>
+        /// <param name="third">Third list.</param>
+        /// <returns>Concatenated list.</returns>
+        /// <exception cref="ArgumentNullException"><strong>first</strong>, <strong>second</strong>, or <strong>third</strong> are 
+        /// <strong>null</strong>.</exception>
+        public static IList<T> Concatenate<T>(IList<T> first, IList<T> second, IList<T> third)
+        {
+            if (first == null)
+            {
+                throw new ArgumentNullException("first");
+            }
+            else if (second == null)
+            {
+                throw new ArgumentNullException("second");
+            }
+            else if (third == null)
+            {
+                throw new ArgumentNullException("third");
+            }
+
+            List<T> concatenated = new List<T>();
+            foreach (T item in first)
+            {
+                concatenated.Add(item);
+            }
+            foreach (T item in second)
+            {
+                concatenated.Add(item);
+            }
+            foreach (T item in third)
+            {
+                concatenated.Add(item);
+            }
+            return concatenated;
+        }
+
+        /// <summary>
+        /// QuickSort's an <see cref="IList{T}"/>.
+        /// </summary>
+        /// <typeparam name="T">Type of <see cref="IList{T}"/> to sort.</typeparam>
+        /// <param name="list">List to sort.</param>
+        /// <returns>Sorted list.</returns>
+        public static IList<T> QuickSort<T>(this IList<T> list)
+        {
+            if (list == null)
+            {
+                throw new ArgumentNullException("list");
+            }
+            Comparer<T> comparer = Comparer<T>.Default;
+            return QuickSortInternal(list, ref comparer);
+        }
+
+        /// <summary>
+        /// Quicksort's an <see cref="IList{T}"/>.
+        /// </summary>
+        /// <typeparam name="T">Type of <see cref="IList{T}"/> to sort.</typeparam>
+        /// <param name="list">List to sort.</param>
+        /// <param name="comparer">Comparer to use.</param>
+        /// <returns>Sorted list.</returns>
+        private static IList<T> QuickSortInternal<T>(IList<T> list, ref Comparer<T> comparer)
+        {
+            if (list.Count <= 1)
+            {
+                return list;
+            }
+            else
+            {
+                List<T> less = new List<T>();
+                List<T> greater = new List<T>();
+                List<T> equal = new List<T>();
+                list = MedianLeft(list);
+                foreach (T item in list)
+                {
+                    if (Compare.IsLessThan(item, list[0], comparer))
+                    {
+                        less.Add(item);
+                    }
+                    else if (Compare.IsGreaterThan(item, list[0], comparer))
+                    {
+                        greater.Add(item);
+                    }
+                    else
+                    {
+                        equal.Add(item);
+                    }
+                }
+                return Concatenate(QuickSortInternal(less, ref comparer), equal, QuickSortInternal(greater, ref comparer));
             }
         }
 
