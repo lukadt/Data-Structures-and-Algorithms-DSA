@@ -1,0 +1,18 @@
+/*****************************************************************************
+* Max Heapify
+* 
+* Max heapifies a Heap so that the value of each parent key is >= to that of 
+* its children :. the key at the root of the Heap is the largest in the Heap.
+*****************************************************************************/
+
+algorithm MaxHeapify()
+	Pre:	index is a pointer to the next index in an array used to store the
+			Heap items
+	Post:	The Heap has been max heapified
+	i <- index - 1
+	parent <- (i - 1) / 2
+	while (k > 0 && heap[k] > heap[parent])
+		swap(heap[k], heap[parent])
+		k <- parent
+	end while
+end MaxHeapify
