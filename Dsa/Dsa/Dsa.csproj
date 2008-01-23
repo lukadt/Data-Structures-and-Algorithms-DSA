@@ -54,6 +54,7 @@
     <Compile Include="DataStructures\CollectionDebugView.cs" />
     <Compile Include="DataStructures\BinarySearchTree.cs" />
     <Compile Include="DataStructures\Heap.cs" />
+    <Compile Include="DataStructures\HeapType.cs" />
     <Compile Include="DataStructures\OrderedSet.cs" />
     <Compile Include="DataStructures\DoublyLinkedList.cs" />
     <Compile Include="DataStructures\DoublyLinkedListNode.cs" />
