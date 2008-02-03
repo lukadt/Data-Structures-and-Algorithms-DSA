@@ -88,7 +88,7 @@ namespace Dsa.DataStructures
         /// <returns>True is the item is in the Heap; otherwise false.</returns>
         public override bool Contains(T item)
         {
-            throw new System.NotImplementedException();
+            return Array.IndexOf(_heap, item) < 0 ? false : true;
         }
 
         /// <summary>
@@ -131,7 +131,14 @@ namespace Dsa.DataStructures
         /// <returns>Array populated with the items from the Heap.</returns>
         public override T[] ToArray()
         {
-            throw new System.NotImplementedException();
+            T[] heap = new T[Count];
+            int i = 0;
+            foreach (T item in this)
+            {
+                heap[i] = item;
+                i++;
+            }
+            return heap;
         }
 
         /// <summary>

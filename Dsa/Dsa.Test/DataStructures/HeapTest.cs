@@ -191,5 +191,45 @@ namespace Dsa.Test.DataStructures
             CollectionAssert.AreEqual(expected, actual);
         }
 
+        /// <summary>
+        /// Check to see that the correct array is returned.
+        /// </summary>
+        [TestMethod]
+        public void ToArrayTest()
+        {
+            Heap<int> actual = new Heap<int>()
+            {
+                78,
+                9,
+                12,
+                56,
+                12,
+                1,
+            };
+            int[] expected = { 1, 12, 9, 78, 56, 12 };
+
+            CollectionAssert.AreEqual(expected, actual.ToArray());
+        }
+
+        /// <summary>
+        /// Check to see that the correct value is returned when seeing if an item
+        /// exists in the heap.
+        /// </summary>
+        [TestMethod]
+        public void ContainsTest()
+        {
+            Heap<char> actual = new Heap<char>()
+            {
+                'g',
+                'r',
+                'a',
+                'n',
+                'v'
+            };
+
+            Assert.IsTrue(actual.Contains('a'));
+            Assert.IsFalse(actual.Contains('l'));
+        }
+
     }
 }
