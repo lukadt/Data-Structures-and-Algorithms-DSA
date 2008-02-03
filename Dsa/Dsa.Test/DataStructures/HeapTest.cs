@@ -83,5 +83,113 @@ namespace Dsa.Test.DataStructures
             Assert.IsNotNull(actual.Comparer);
         }
 
+        /// <summary>
+        /// Check to see that removing the last item in the heap results in the state
+        /// of the heap being affected correctly.
+        /// </summary>
+        [TestMethod]
+        public void RemoveLastItemTest()
+        {
+            Heap<int> actual = new Heap<int>()
+            {
+                56,
+                23,
+                34,
+                1,
+                3
+            };
+            Heap<int> expected = new Heap<int>()
+            {
+                56,
+                34,
+                1,
+                3
+            };
+
+            Assert.IsTrue(actual.Remove(23));
+            Assert.AreEqual(4, actual.Count);
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        /// Check to see that the correct value is returned when the value
+        /// being removed is not contained within the heap.
+        /// </summary>
+        [TestMethod]
+        public void RemoveItemNotPresentTest()
+        {
+            Heap<int> actual = new Heap<int>()
+            {
+                2,
+                78,
+                1,
+                0,
+                56
+            };
+
+            Assert.IsFalse(actual.Remove(99));
+        }
+
+        /// <summary>
+        /// Check to see that the heap is left in the correct state when the root is removed.
+        /// </summary>
+        [TestMethod]
+        public void RemoveRootTest()
+        {
+            Heap<int> actual = new Heap<int>()
+            {
+                33,
+                12,
+                41,
+                15,
+                60
+            };
+            Heap<int> expected = new Heap<int>()
+            {
+                15,
+                33,
+                41,
+                60
+            };
+
+            Assert.IsTrue(actual.Remove(12));
+            Assert.AreEqual(4, actual.Count);
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        /// Check to see that at some stage the right child is less than the left when
+        /// when moving the hole down the tree.
+        /// </summary>
+        [TestMethod]
+        public void RemoveRightChildLessThanLeftTest()
+        {
+            Heap<int> actual = new Heap<int>()
+            {
+                5,
+                3,
+                8,
+                10,
+                6,
+                11,
+                12,
+                13
+            };
+            Heap<int> expected = new Heap<int>()
+            {
+                3,
+                6,
+                8,
+                10,
+                13,
+                11,
+                12
+            };
+
+            Assert.IsTrue(actual.Remove(5));
+            Assert.AreEqual(7, actual.Count);
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
     }
 }

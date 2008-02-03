@@ -98,7 +98,31 @@ namespace Dsa.DataStructures
         /// <returns>True if the item was found and removed; otherwise false.</returns>
         public override bool Remove(T item)
         {
-            throw new System.NotImplementedException();
+            int index = Array.IndexOf(_heap, item);
+            if (index < 0)
+            {
+                return false;
+            }
+            else
+            {
+                _heap[index] = _heap[--_index];
+                while (2 * index + 1 < _index && (Compare.IsGreaterThan(_heap[index], _heap[2 * index + 1], _comparer) || 
+                    Compare.IsGreaterThan(_heap[index], _heap[2 * index + 2], _comparer)))
+                {
+                    if (Compare.IsLessThan(_heap[2 * index + 1], _heap[2 * index + 2], _comparer))
+                    {
+                        Swap(ref _heap, index, 2 * index + 1);
+                        index = 2 * index + 1;
+                    }
+                    else
+                    {
+                        Swap(ref _heap, index, 2 * index + 2);
+                        index = 2 * index + 2;
+                    }
+                }
+                Count--;
+                return true;
+            }
         }
 
         /// <summary>
