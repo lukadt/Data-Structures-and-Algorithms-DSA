@@ -158,6 +158,33 @@ namespace Dsa.Test.DataStructures
         }
 
         /// <summary>
+        /// Check to see that the heap is left in the correct state when removing from a 
+        /// max heap.
+        /// </summary>
+        [TestMethod]
+        public void RemoveMaxHeapTest()
+        {
+            Heap<int> actual = new Heap<int>(HeapType.Max)
+            {
+                12,
+                2,
+                67,
+                90,
+                10
+            };
+            Heap<int> expected = new Heap<int>(HeapType.Max)
+            {
+                12,
+                2,
+                67,
+                10
+            };
+
+            Assert.IsTrue(actual.Remove(90));
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
         /// Check to see that at some stage the right child is less than the left when
         /// when moving the hole down the tree.
         /// </summary>
@@ -187,6 +214,40 @@ namespace Dsa.Test.DataStructures
             };
 
             Assert.IsTrue(actual.Remove(5));
+            Assert.AreEqual(7, actual.Count);
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        /// Check to see that at some stage the right child is greater than the left when
+        /// when moving the hole down the tree.
+        /// </summary>
+        [TestMethod]
+        public void RemoveMaxRightChildGreaterTest()
+        {
+            Heap<int> actual = new Heap<int>(HeapType.Max)
+            {
+                46,
+                23,
+                44,
+                66,
+                51,
+                32,
+                17,
+                8
+            };
+            Heap<int> expected = new Heap<int>(HeapType.Max)
+            {
+                66,
+                46,
+                44,
+                23,
+                8,
+                32,
+                17
+            };
+
+            Assert.IsTrue(actual.Remove(51));
             Assert.AreEqual(7, actual.Count);
             CollectionAssert.AreEqual(expected, actual);
         }
@@ -229,6 +290,25 @@ namespace Dsa.Test.DataStructures
 
             Assert.IsTrue(actual.Contains('a'));
             Assert.IsFalse(actual.Contains('l'));
+        }
+
+        /// <summary>
+        /// Check to see that the Heap is restored to its default state.
+        /// </summary>
+        [TestMethod]
+        public void ClearTest()
+        {
+            Heap<int> actual = new Heap<int>()
+            {
+                12,
+                3,
+                21,
+                0
+            };
+
+            actual.Clear();
+
+            Assert.AreEqual(0, actual.Count);
         }
 
     }
