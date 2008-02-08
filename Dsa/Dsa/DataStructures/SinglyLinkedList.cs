@@ -48,6 +48,9 @@ namespace Dsa.DataStructures
         /// Adds a node to the tail of the <see cref="SinglyLinkedList{T}"/>.
         /// </summary>
         /// <param name="item">Item to add to the <see cref="SinglyLinkedList{T}"/>.</param>
+        /// <remarks>
+        /// This method is an O(1) operation, the <see cref="Tail"/> node is always known thus is constant time.
+        /// </remarks>
         public void AddLast(T item)
         {
             SinglyLinkedListNode<T> n = new SinglyLinkedListNode<T>(item);
@@ -70,6 +73,9 @@ namespace Dsa.DataStructures
         /// Adds a node to the head of the <see cref="SinglyLinkedList{T}"/>.
         /// </summary>
         /// <param name="item">Item to add to the <see cref="SinglyLinkedList{T}"/>.</param>
+        /// <remarks>
+        /// This method is an O(1) operation, the <see cref="Head"/> node is always known thus is constant time.
+        /// </remarks>
         public void AddFirst(T item)
         {
             SinglyLinkedListNode<T> n = new SinglyLinkedListNode<T>(item);
@@ -95,6 +101,10 @@ namespace Dsa.DataStructures
         /// <param name="item">Item to add to <see cref="SinglyLinkedList{T}"/>.</param>
         /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedList{T}"/> contains <strong>0 items</strong>.</exception>
         /// <exception cref="ArgumentNullException"><strong>node</strong> is <strong>null</strong>.</exception>
+        /// <remarks>
+        /// This method is an O(1) operation, the node to add after and new nodes links are updated without having to perform any
+        /// traversal of the linked list.
+        /// </remarks>
         public void AddAfter(SinglyLinkedListNode<T> node, T item)
         {
             if (IsEmpty())
@@ -134,6 +144,10 @@ namespace Dsa.DataStructures
         /// <param name="item">Item to add to the <see cref="SinglyLinkedList{T}"/>.</param>
         /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedList{T}"/> contains <strong>0 items</strong>.</exception>
         /// <exception cref="ArgumentNullException"><strong>node</strong> is <strong>null</strong>.</exception>
+        /// <remarks>
+        /// This method's best case is an O(1) operation where the node to be added before is the <see cref="Head"/> node, otherwise the
+        /// method is an O(n) operation where n is the number of nodes to be traversed in order to find the node before the node to add before.
+        /// </remarks>
         public void AddBefore(SinglyLinkedListNode<T> node, T item)
         {
             if (IsEmpty())
@@ -173,6 +187,9 @@ namespace Dsa.DataStructures
         /// Determines whether the <see cref="SinglyLinkedList{T}"/> is empty.
         /// </summary>
         /// <returns>True if the <see cref="SinglyLinkedList{T}"/> is empty; false otherwise.</returns>
+        /// <remarks>
+        /// This method is an O(1) operation.
+        /// </remarks>
         public bool IsEmpty()
         {
             return _head == null;
@@ -183,6 +200,9 @@ namespace Dsa.DataStructures
         /// </summary>
         /// <returns>An <see cref="Array"/> containing the items from the <see cref="SinglyLinkedList{T}"/>.</returns>
         /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedList{T}"/> contains <strong>0 items</strong>.</exception>
+        /// <remarks>
+        /// This method is an O(n) operation where n is the number of nodes in the linked list.
+        /// </remarks>
         public override T[] ToArray()
         {
             if (IsEmpty())
@@ -204,6 +224,9 @@ namespace Dsa.DataStructures
         /// </summary>
         /// <returns>An <see cref="Array"/> containing the items from the <see cref="SinglyLinkedList{T}"/> in reverse order.</returns>
         /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedList{T}"/> contains <strong>0 items</strong>.</exception>
+        /// <remarks>
+        /// This method is an O(n) operation where n is the number of nodes in the linked list.
+        /// </remarks>
         public T[] ToReverseArray()
         {
             if (IsEmpty())
@@ -224,6 +247,11 @@ namespace Dsa.DataStructures
         /// Removes the last node from the <see cref="SinglyLinkedList{T}"/>.
         /// </summary>
         /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedList{T}"/> contains <strong>0 items</strong>.</exception>
+        /// <remarks>
+        /// This method's best case is an O(1) operation when the last node to remove is both the head and tail, i.e. there is only one node
+        /// in the linked list, otherwise the method is an O(n) operation where n nodes have to be traversed in order to locate the node that
+        /// preceeds the last node.
+        /// </remarks>
         public void RemoveLast()
         {
             if (IsEmpty())
@@ -259,6 +287,10 @@ namespace Dsa.DataStructures
         /// Removes the first node from the <see cref="SinglyLinkedList{T}"/>.
         /// </summary>
         /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedList{T}"/> contains <strong>0 items</strong>.</exception>
+        /// <remarks>
+        /// This method is an O(1) operation, the <see cref="Head"/> is always know and it's <see cref="SinglyLinkedListNode{T}.Next"/> property is
+        /// simply updated to the next node after <see cref="Head"/>.
+        /// </remarks>
         public void RemoveFirst()
         {
             if (IsEmpty())
@@ -281,6 +313,9 @@ namespace Dsa.DataStructures
         /// <summary>
         /// Get's the node at the head of the <see cref="SinglyLinkedList{T}"/>.
         /// </summary>
+        /// <remarks>
+        /// This is an O(1) operation, the <see cref="Head"/> node is always known.
+        /// </remarks>
         public SinglyLinkedListNode<T> Head
         {
             get { return _head; }
@@ -289,6 +324,9 @@ namespace Dsa.DataStructures
         /// <summary>
         /// Get's the node at the tail of the <see cref="SinglyLinkedList{T}"/>.
         /// </summary>
+        /// <remarks>
+        /// This is an O(1) operation, the <see cref="Tail"/> node is always known.
+        /// </remarks>
         public SinglyLinkedListNode<T> Tail
         {
             get { return _tail; }
@@ -298,6 +336,9 @@ namespace Dsa.DataStructures
         /// Returns an <see cref="IEnumerator{T}"/> that iterates through the items in the <see cref="SinglyLinkedList{T}"/>.
         /// </summary>
         /// <returns>An <see cref="IEnumerator{T}" /> that can be used to iterate through the <see cref="SinglyLinkedList{T}"/>.</returns>
+        /// <remarks>
+        /// This method is an O(n) operation where n is the number of nodes in the linked list. 
+        /// </remarks>
         public override IEnumerator<T> GetEnumerator()
         {
             SinglyLinkedListNode<T> n = Head;
@@ -312,6 +353,9 @@ namespace Dsa.DataStructures
         /// Adds an item to the tail of the <see cref="SinglyLinkedList{T}"/>.
         /// </summary>
         /// <param name="item">Item to add to the <see cref="SinglyLinkedList{T}"/>.</param>
+        /// <remarks>
+        /// This method is an O(1) operation, the <see cref="Tail"/> node is always known thus is constant time.
+        /// </remarks>
         public override void Add(T item)
         {
             AddLast(item);
@@ -320,6 +364,9 @@ namespace Dsa.DataStructures
         /// <summary>
         /// Resets the <see cref="SinglyLinkedList{T}"/> to its default state.
         /// </summary>
+        /// <remarks>
+        /// This method is an O(1) operation, the <see cref="Head"/>, and <see cref="Tail"/> are always known.
+        /// </remarks>
         public override void Clear()
         {
             _head = null;
@@ -332,6 +379,9 @@ namespace Dsa.DataStructures
         /// </summary>
         /// <param name="item">Value to search for.</param>
         /// <returns>True if the value is in the <see cref="SinglyLinkedList{T}"/>; false otherwise.</returns>
+        /// <remarks>
+        /// This method is an O(n) operation where n is the number of nodes in the linked list.
+        /// </remarks>
         public override bool Contains(T item)
         {
             foreach (T value in this)
@@ -351,6 +401,10 @@ namespace Dsa.DataStructures
         /// <param name="item">Value to remove</param>
         /// <returns>True if the value was found and removed; false otherwise.</returns>
         /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedList{T}"/> contains <strong>0 items</strong>.</exception>
+        /// <remarks>
+        /// This method has a best case O(1) operation where te node to be removed is the head node, otherwise the method is an O(n) operation
+        /// where n represents the number of nodes to traverse in order to update the node pointers appropriatley.
+        /// </remarks>
         public override bool Remove(T item)
         {
             if (IsEmpty())
@@ -405,6 +459,9 @@ namespace Dsa.DataStructures
         /// Returns an <see cref="IEnumerable{T}"/> that iterates through the items in the <see cref="SinglyLinkedList{T}"/> in reverse order.
         /// </summary>
         /// <returns>An <see cref="IEnumerable{T}" /> that can be used to iterate through the <see cref="SinglyLinkedList{T}"/>.</returns>
+        /// <remarks>
+        /// This method is an O(n) operation where n is the number of nodes in the linked list.
+        /// </remarks>
         public IEnumerable<T> GetReverseEnumerator()
         {
             SinglyLinkedListNode<T> n = _head;

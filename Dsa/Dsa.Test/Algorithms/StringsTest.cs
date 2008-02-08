@@ -257,7 +257,8 @@ namespace Dsa.Test
         [TestMethod]
         public void ReverseWordsWhiteSpaceTest()
         {
-            Assert.AreEqual("belly beer a home went then and pop ate I", "    I ate         pop and then  went home a   beer belly    ".ReverseWords());
+            Assert.AreEqual("belly beer a home went then and pop ate I", 
+                "    I ate         pop and then  went home a   beer belly    ".ReverseWords());
         }
 
         /// <summary>
@@ -270,6 +271,42 @@ namespace Dsa.Test
             string s = null;
 
             s.ReverseWords();
+        }
+
+        /// <summary>
+        /// Check to see that the correct value is returned.
+        /// </summary>
+        [TestMethod]
+        public void RepeatedWordCountTest()
+        {
+            string actual = "Granville went to the market but Granville has yet to see the light";
+
+            Assert.AreEqual(3, actual.RepeatedWordCount());
+        }
+
+        /// <summary>
+        /// Check to see that the correct exception is thrown when the string is null.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void RepeatedWordCountStringNullTest()
+        {
+            string actual = null;
+
+            actual.RepeatedWordCount();
+        }
+
+        /// <summary>
+        /// Check to see that words followed immediatley with any kind of punctuation is removed so a more
+        /// accurate count of repeated words can be done, e.g. Granville Granville! are both the same word but the latter
+        /// has trailing punctuation that should be removed.
+        /// </summary>
+        [TestMethod]
+        public void RepeatedWordCountWithPunctuationTest()
+        {
+            string s = "Granville is hopeless. But is still persisting though! poor Granville!";
+
+            Assert.AreEqual(2, s.RepeatedWordCount());
         }
 
     }

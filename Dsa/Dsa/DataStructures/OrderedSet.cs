@@ -35,6 +35,9 @@ namespace Dsa.DataStructures
         /// Returns an <see cref="IEnumerator{T}"/> to provide a simple traversal through the items in the <see cref="OrderedSet{T}"/>.
         /// </summary>
         /// <returns>An <see cref="IEnumerator{T}"/> to traverse the <see cref="OrderedSet{T}"/>.</returns>
+        /// <remarks>
+        /// This method is an O(n) operation where n is the number of items in the <see cref="OrderedSet{T}"/>.
+        /// </remarks>
         public override IEnumerator<T> GetEnumerator()
         {
             return (Collection as BinarySearchTree<T>).GetInorderEnumerator().GetEnumerator();

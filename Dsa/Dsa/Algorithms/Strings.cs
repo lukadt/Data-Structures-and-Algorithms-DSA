@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Text;
+using Dsa.DataStructures;
 
 namespace Dsa.Algorithms
 {
@@ -17,6 +18,9 @@ namespace Dsa.Algorithms
         /// <param name="value">The <see cref="string"/> to reverse the characters of.</param>
         /// <returns>A reversed <see cref="string"/> of the parameter.</returns>
         /// <exception cref="ArgumentNullException"><strong>value</strong> is <strong>null</strong>.</exception>
+        /// <remarks>
+        /// This method is an O(n) operation where n is the number of chars in the string to reverse.
+        /// </remarks>
         public static string Reverse(this string value)
         {
             if (value == null)
@@ -42,16 +46,16 @@ namespace Dsa.Algorithms
         /// Returns the index of the first character in the match <see cref="string"/> that matches any 
         /// character in the word <see cref="string"/>.
         /// </summary>
-        /// <remarks>Case sensitive, whitespace is ignored.</remarks>
+        /// <remarks>Case sensitive, whitespace is ignored.
+        /// </remarks>
         /// <param name="word">Word to run the any match against.</param>
         /// <param name="match">The <see cref="string"/> of characters to match against the word.</param>
-        /// <returns>A non-negative <see cref="Int32"/> index that represents the location of the first character in the match <see cref="string"/> that was 
-        /// also in the word <see cref="string"/>; otherwise -1 if no characters in the match <see cref="string"/> matched any of the characters in the 
+        /// <returns>A non-negative <see cref="Int32"/> index that represents the location of the first character in the 
+        /// match <see cref="string"/> that was also in the word <see cref="string"/>; otherwise -1 if no characters in the 
+        /// match <see cref="string"/> matched any of the characters in the 
         /// word <see cref="string"/>.</returns>
         /// <exception cref="ArgumentNullException">
-        /// <strong>word</strong> is <strong>null</strong>.<br />
-        /// -or-<br/>
-        /// <strong>match</strong> is <strong>null</strong>.
+        /// <strong>word</strong> is <strong>null</strong> or <strong>match</strong> is <strong>null</strong>.
         /// </exception>
         public static int Any(this string word, string match)
         {
@@ -108,7 +112,8 @@ namespace Dsa.Algorithms
             // set beginning and end index pointers
             int begin = 0;
             int end = word.Length - 1;
-            // march in from either end of the string checking for equality and making sure that the begin pointer has a value less than the end pointer
+            /* march in from either end of the string checking for equality and making sure that the begin pointer has a value less 
+             * than the end pointer */
             while (word[begin] == word[end] && begin < end) 
             {
                 begin++;
@@ -119,7 +124,8 @@ namespace Dsa.Algorithms
         }
 
         /// <summary>
-        /// Takes a <see cref="string"/> and strips it of whitespace, punctuation and symbols returning the resulting stripped <see cref="string"/>.
+        /// Takes a <see cref="string"/> and strips it of whitespace, punctuation and symbols returning the resulting stripped 
+        /// <see cref="string"/>.
         /// </summary>
         /// <param name="value"><see cref="string"/> to strip.</param>
         /// <returns>The stripped version of the <see cref="string"/>.</returns>
@@ -246,6 +252,27 @@ namespace Dsa.Algorithms
                 sb.Length = sb.Length - 1;
             }
             return sb.ToString();
+        }
+
+        /// <summary>
+        /// Counts the number of words that are repeated within a string.
+        /// </summary>
+        /// <param name="value">String to count repeated words of.</param>
+        /// <returns>Number of words repeated in the given string.</returns>
+        public static int RepeatedWordCount(this string value)
+        {
+            if (value == null)
+            {
+                throw new ArgumentNullException("value");
+            }
+
+            string[] words = value.Split(' ');
+            UnorderedSet<string> uniques = new UnorderedSet<string>();
+            foreach (string s in words)
+            {
+                uniques.Add(s.Strip());
+            }
+            return words.Length - uniques.Count;
         }
 
     }
