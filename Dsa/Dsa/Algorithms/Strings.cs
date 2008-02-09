@@ -46,14 +46,14 @@ namespace Dsa.Algorithms
         /// Returns the index of the first character in the match <see cref="string"/> that matches any 
         /// character in the word <see cref="string"/>.
         /// </summary>
-        /// <remarks>Case sensitive, whitespace is ignored.
-        /// </remarks>
+        /// <remarks>Case sensitive, whitespace is ignored.</remarks>
         /// <param name="word">Word to run the any match against.</param>
         /// <param name="match">The <see cref="string"/> of characters to match against the word.</param>
-        /// <returns>A non-negative <see cref="Int32"/> index that represents the location of the first character in the 
-        /// match <see cref="string"/> that was also in the word <see cref="string"/>; otherwise -1 if no characters in the 
-        /// match <see cref="string"/> matched any of the characters in the 
-        /// word <see cref="string"/>.</returns>
+        /// <returns>
+        /// A non-negative <see cref="Int32"/> index that represents the location of the first character in the match <see cref="string"/> that was 
+        /// also in the word <see cref="string"/>; otherwise -1 if no characters in the match <see cref="string"/> matched any of the characters in the 
+        /// word <see cref="string"/>.
+        /// </returns>
         /// <exception cref="ArgumentNullException">
         /// <strong>word</strong> is <strong>null</strong> or <strong>match</strong> is <strong>null</strong>.
         /// </exception>
@@ -212,15 +212,12 @@ namespace Dsa.Algorithms
             {
                 throw new ArgumentNullException("value");
             }
-
             int last = value.Length - 1;
             int start = last; // will be used to mark the beginning of a word in the string
             StringBuilder sb = new StringBuilder();
-
             // make sure that the value of last is at the very least 0, the first index of the string
             while (last >= 0)
             {
-                // skip all the whitespace
                 while (start >= 0 && char.IsWhiteSpace(value[start]))
                 {
                     start--;
@@ -236,8 +233,7 @@ namespace Dsa.Algorithms
                 {
                     sb.Append(value[i]);
                 }
-                /* add whitespace to delimit the words in sb if this is not the last word. If the first word has 
-                 * whitespace before it then we will still add this whitespace - this is then cut just before we return the string. */
+                // add whitespace to delimit the words in sb if this is not the last word. Whitespace at the beginning of a string is cut.
                 if (start > 0)
                 {
                     sb.Append(' ');
@@ -265,7 +261,6 @@ namespace Dsa.Algorithms
             {
                 throw new ArgumentNullException("value");
             }
-
             string[] words = value.Split(' ');
             UnorderedSet<string> uniques = new UnorderedSet<string>();
             foreach (string s in words)

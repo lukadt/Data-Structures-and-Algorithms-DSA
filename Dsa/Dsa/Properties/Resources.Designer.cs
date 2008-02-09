@@ -61,15 +61,6 @@ namespace Dsa.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Index specified for the ArrayListCollection is out of range..
-        /// </summary>
-        internal static string ArrayListCollectionOutOfRangeIndex {
-            get {
-                return ResourceManager.GetString("ArrayListCollectionOutOfRangeIndex", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to BinarySearchTreeCollection(Of T) is empty..
         /// </summary>
         internal static string BinarySearchTreeEmpty {
@@ -115,15 +106,6 @@ namespace Dsa.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cannot invoke MedianLeft on an array with a length of less than 3..
-        /// </summary>
-        internal static string MedianLeftArrayLengthLessThanThree {
-            get {
-                return ResourceManager.GetString("MedianLeftArrayLengthLessThanThree", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Power cannot be called with an exponent less than 0..
         /// </summary>
         internal static string PowerExponentLessThanZero {
@@ -147,15 +129,6 @@ namespace Dsa.Properties {
         internal static string SinglyLinkedListEmpty {
             get {
                 return ResourceManager.GetString("SinglyLinkedListEmpty", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The type specified is not compatible with this method..
-        /// </summary>
-        internal static string TypeNotCompatible {
-            get {
-                return ResourceManager.GetString("TypeNotCompatible", resourceCulture);
             }
         }
     }

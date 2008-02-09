@@ -15,7 +15,9 @@ namespace Dsa.Algorithms
         /// </summary>
         /// <param name="set1">First set.</param>
         /// <param name="set2">Second set.</param>
-        /// <returns>The set union of the two sets if there is at least 1 item in the unioned set, otherwise null denoting an empty set..</returns>
+        /// <returns>
+        /// The set union of the two sets if there is at least 1 item in the unioned set, otherwise null denoting an empty set.
+        /// </returns>
         /// <exception cref="ArgumentNullException"><strong>set1</strong> is <strong>null</strong>.</exception>
         /// <exception cref="ArgumentNullException"><strong>set2</strong> is <strong>null</strong>.</exception>
         public static Set<T> Union<T>(this Set<T> set1, Set<T> set2)

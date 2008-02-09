@@ -1,9 +1,7 @@
--------------------------------------------------------------------------------------------------------------------------------------------------
-
-/*  
-Bubblesort  
-O(n^2). Sorts items of array in asc order.
-*/
+/*****************************************************************************
+* Bubblesort  
+* O(n^2). Sorts items of array in asc order.
+*****************************************************************************/
 algorithm Bubblesort (array) 
 	Pre:		array is an array of integers.
 	Post:		a sorted array from lowest to highest values.
@@ -18,11 +16,10 @@ algorithm Bubblesort (array)
 	return array // the sorted array
 end Bubblesort
 
--------------------------------------------------------------------------------------------------------------------------------------------------
-
-/* Merge ordered arrays
- * O(n).
- */
+/*****************************************************************************
+* Merge ordered arrays
+* O(n).
+*****************************************************************************/
 algorithm MergeOrdered (a1 <array>, a2 <array>)
 	Pre:		a1 and a2 are not null
 				a1 and a2 contain at least 1 item each
@@ -49,12 +46,11 @@ algorithm MergeOrdered (a1 <array>, a2 <array>)
 	return merged
 end MergeOrdered
 
--------------------------------------------------------------------------------------------------------------------------------------------------
-
-/* Merge sort algorithm
- * Note: MergeSort uses the MergeOrdered function as well.
- * O(n log n).
- */
+/*****************************************************************************
+* Merge sort
+* Note: MergeSort uses the MergeOrdered function as well.
+* O(n log n).
+*****************************************************************************/
 algorithm MergeSort (value <array>)
 	Pre:		value is not null
 	Post:		value has been sorted in ascending order
@@ -79,3 +75,37 @@ algorithm MergeSort (value <array>)
 		return MergeOrdered(left, right)
 	end if
 end MergeSort
+
+/*****************************************************************************
+* Insertion sort
+*****************************************************************************/
+algorithm InsertionSort(value <array>)
+	Pre:		value is not null
+	Post:		value is sorted in asc order using insertion sort
+	Returns:	sorted array
+	unsorted <- 1 // starting index of unsorted values in value
+	while unsorted < value.Length
+		hold <- value[unsorted]
+		i <- unsorted - 1
+		while i >= 0 AND hold < value[i]
+			value[i + 1] <- value[i]
+			i--
+		end while
+		value[i + 1] <- hold
+		unsorted++
+	end while
+	return value
+end InsertionSort
+
+
+
+
+
+
+
+
+
+
+
+
+

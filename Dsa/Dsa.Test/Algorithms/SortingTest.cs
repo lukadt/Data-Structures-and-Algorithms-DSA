@@ -321,6 +321,35 @@ namespace Dsa.Test
             actual.QuickSort();
         }
 
+        /// <summary>
+        /// Check to see that a list is sorted correctly when using insertion sort.
+        /// </summary>
+        [TestMethod]
+        public void InsertionSortTest()
+        {
+            int[] unsorted = { 78, 5, 23, 101, 1 };
+            int[] expected = { 1, 5, 23, 78, 101 };
+            int[] actual = unsorted.InsertionSort() as int[];
+
+            for (int i = 0; i < expected.Length; i++)
+            {
+                Assert.AreEqual(expected[i], actual[i]);
+            }
+        }
+
+        /// <summary>
+        /// Check to see that the correct exception is thrown when the list to 
+        /// insertion sort is null.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void InsertionSortListNullTest()
+        {
+            char[] actual = null;
+
+            actual.InsertionSort();
+        }
+
     }
 
 }

@@ -117,10 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ArrayListCollectionOutOfRangeIndex" xml:space="preserve">
-    <value>Index specified for the ArrayListCollection is out of range.</value>
-    <comment>When an index that is negative or greater than the size of the array is accessed.</comment>
-  </data>
   <data name="BinarySearchTreeEmpty" xml:space="preserve">
     <value>BinarySearchTreeCollection(Of T) is empty.</value>
     <comment>When exceptions arise as a result of an empty bst.</comment>
@@ -141,10 +137,6 @@
     <value>ICollection.CopyTo is not supported.  Use the ICollection(Of T).CopyTo method instead.</value>
     <comment>ICollection.CopyTo not supported text.</comment>
   </data>
-  <data name="MedianLeftArrayLengthLessThanThree" xml:space="preserve">
-    <value>Cannot invoke MedianLeft on an array with a length of less than 3.</value>
-    <comment>When an exception is raised as a result of calling MedianLeft on an array of length &lt;3.</comment>
-  </data>
   <data name="PowerExponentLessThanZero" xml:space="preserve">
     <value>Power cannot be called with an exponent less than 0.</value>
     <comment>Error text when the exponent used in a call to Power is negative.</comment>
@@ -156,9 +148,5 @@
   <data name="SinglyLinkedListEmpty" xml:space="preserve">
     <value>SinglyLinkedListCollection(Of T) is empty.</value>
     <comment>When exceptions arise as a result of an empty singly linked list.</comment>
-  </data>
-  <data name="TypeNotCompatible" xml:space="preserve">
-    <value>The type specified is not compatible with this method.</value>
-    <comment>When an object cannot be safely casted to the type being used for a collection.</comment>
   </data>
 </root>

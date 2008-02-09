@@ -15,8 +15,8 @@ namespace Dsa.Algorithms
     {
 
         /// <summary>
-        /// Sorts any <see cref="System.Collections.Generic"/> that implements <see cref="IList{T}"/> in ascending or descending order using the bubble
-        /// sort algorithm.
+        /// Sorts any <see cref="System.Collections.Generic"/> that implements <see cref="IList{T}"/> in ascending or descending order 
+        /// using the bubble sort algorithm.
         /// </summary>
         /// <param name="list">The <see cref="IList{T}"/> to sort.</param>
         /// <param name="sortType">The order in which the items of the <see cref="IList{T}"/> are to be sorted.</param>
@@ -56,7 +56,8 @@ namespace Dsa.Algorithms
         }
 
         /// <summary>
-        /// Sorts an <see cref="IList{T}"/> placing the median value of 3 keys (left, right, and mid) at index 0 (left) of the <see cref="IList{T}"/>.
+        /// Sorts an <see cref="IList{T}"/> placing the median value of 3 keys (left, right, and mid) at index 0 (left) of the 
+        /// <see cref="IList{T}"/>.
         /// </summary>
         /// <param name="list">The <see cref="IList{T}"/> to find the median value of.</param>
         /// <returns>The modified <see cref="IList{T}"/> with the median key at index 0.</returns>
@@ -303,6 +304,34 @@ namespace Dsa.Algorithms
                 }
                 return Concatenate(QuickSortInternal(less, ref comparer), equal, QuickSortInternal(greater, ref comparer));
             }
+        }
+
+        /// <summary>
+        /// Insertion sort's an <see cref="IList{T}"/>.
+        /// </summary>
+        /// <typeparam name="T">Type of <see cref="IList{T}"/> to sort.</typeparam>
+        /// <param name="list">List to sort.</param>
+        /// <returns>Sorted <see cref="IList{T}"/>.</returns>
+        public static IList<T> InsertionSort<T>(this IList<T> list)
+        {
+            if (list == null)
+            {
+                throw new ArgumentNullException("list");
+            }
+            Comparer<T> comparer = Comparer<T>.Default;
+            int unsorted = 1;
+            while (unsorted < list.Count)
+            {
+                T hold = list[unsorted];
+                int i = unsorted - 1;
+                while (i >= 0 && Compare.IsLessThan(hold, list[i], comparer))
+                {
+                    list[i + 1] = list[i--];
+                }
+                list[i + 1] = hold;
+                unsorted++;
+            }
+            return list;
         }
 
     }
