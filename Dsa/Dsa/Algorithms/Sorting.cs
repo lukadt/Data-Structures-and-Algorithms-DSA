@@ -325,6 +325,40 @@ namespace Dsa.Algorithms
             return list;
         }
 
+        /// <summary>
+        /// Shell sort's an <see cref="IList{T}"/>.
+        /// </summary>
+        /// <typeparam name="T">Type of <see cref="IList{T}"/> to sort.</typeparam>
+        /// <param name="list"><see cref="IList{T}"/> to sort.</param>
+        /// <returns>Sorted <see cref="IList{T}"/>.</returns>
+        public static IList<T> ShellSort<T>(this IList<T> list)
+        {
+            if (list == null)
+            {
+                throw new ArgumentNullException("list");
+            }
+            Comparer<T> comparer = Comparer<T>.Default;
+            int increment = list.Count / 2;
+            while (increment != 0)
+            {
+                int current = increment;
+                while (current < list.Count)
+                {
+                    T hold = list[current];
+                    int i = current - increment;
+                    while (i >= 0 && Compare.IsLessThan(hold, list[i], comparer))
+                    {
+                        list[i + increment] = list[i];
+                        i -= increment;
+                    }
+                    list[i + increment] = hold;
+                    current++;
+                }
+                increment /= 2;
+            }
+            return list;
+        }
+
     }
 
 }

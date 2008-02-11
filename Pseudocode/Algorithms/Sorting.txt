@@ -98,14 +98,32 @@ algorithm InsertionSort(value <array>)
 end InsertionSort
 
 
-
-
-
-
-
-
-
-
+/*****************************************************************************
+* Insertion sort
+* Items are compared at decreasing increments
+*****************************************************************************/
+algorithm ShellSort(list <array>)
+	Pre:		list is not null
+	Post:		list items have been sorted in ascending order
+	Returns:	sorted list
+	increment <- list.Length / 2
+	// 1 is the smallest interval, 0 will be a result of its division by 2
+	while increment != 0
+		current <- increment
+		while current < list.Length
+			hold <- list[current]
+			i <- current - increment
+			while i >= 0 AND hold < list[i]
+				list[i + increment] <- list[i]
+				i -= increment
+			end while
+			list[i + increment] <- hold
+			current++
+		end while
+		increment /= 2
+	end while
+	return list
+end ShellSort
 
 
 

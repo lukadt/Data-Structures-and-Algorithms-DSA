@@ -12,7 +12,7 @@ end Gcd
 
 -------------------------------------------------------------------------------------------------------------------------------------------------
 
-algorithm ToBaseTwo(value <int>)
+algorithm ToBinary(value <int>)
 	Pre:		Converts a base 10 integer to base 2 (binary)
 				list is a list of ints
 	Post:		value has been converted to base 2

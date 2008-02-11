@@ -350,6 +350,34 @@ namespace Dsa.Test
             actual.InsertionSort();
         }
 
+        /// <summary>
+        /// Check to see that the correct array is returned.
+        /// </summary>
+        [TestMethod]
+        public void ShellSortTest()
+        {
+            int[] unsorted = { 34, 78, 12, 9, 0, 3 };
+            int[] expected = { 0, 3, 9, 12, 34, 78 };
+            int[] actual = unsorted.ShellSort() as int[];
+
+            for (int i = 0; i < expected.Length; i++)
+            {
+                Assert.AreEqual(expected[i], actual[i]);
+            }
+        }
+
+        /// <summary>
+        /// Check to see that the correct exception is thrown when the list is null.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ShellSortListNullTest()
+        {
+            char[] actual = null;
+
+            actual.ShellSort();
+        }
+
     }
 
 }
