@@ -12,11 +12,11 @@ namespace Dsa.Algorithms
     {
 
         /// <summary>
-        /// A sequential search for an item within an <see cref="IList{T}"/>.
+        /// Sequential search for an item within an <see cref="IList{T}"/>.
         /// </summary>
         /// <param name="list"><see cref="IList{T}"/> to search item for.</param>
         /// <param name="item">Item to search for.</param>
-        /// <returns>The index of the item if found is returned, otherwise -1 denotes the item is not in the <see cref="IList{T}"/>.</returns>
+        /// <returns>The index of the item if found is returned; otherwise -1.</returns>
         /// <exception cref="ArgumentNullException"><strong>list</strong> is <strong>null</strong>.</exception>
         public static int SequentialSearch<T>(this IList<T> list, T item)
         {
@@ -32,25 +32,25 @@ namespace Dsa.Algorithms
             {
                 i++;
             }
-            /* if the item at index i is the item we are looking for then return i (the index at which it was found), else 
-            return -1 we didn't find it in the array. */
+            // check if the item at index i is that which we are looking for
             if (i < list.Count && Compare.AreEqual(list[i], item, comparer))
             {
                 return i;
             }
             else
             {
-                return -1; 
+                return -1; // not found
             }
         }
 
         /// <summary>
-        /// Searches an <see cref="IList{T}"/> for a specifited item.  If the item is in the <see cref="IList{T}"/> then the item has its priority
-        /// increased by swapping the item with the one before it.
+        /// Probability search for an item in an <see cref="IList{T}"/>.  
         /// </summary>
         /// <param name="list"><see cref="IList{T}"/> to search.</param>
         /// <param name="item">The item to search the <see cref="IList{T}"/> for.</param>
         /// <returns>True if the item was found; false otherwise.</returns>
+        /// <remarks>If the item is found in the <see cref="IList{T}"/> then it's priority is increased by swapping it with it's predecessor 
+        /// in the <see cref="IList{T}"/>.</remarks>
         /// <exception cref="ArgumentNullException"><strong>list</strong> is <strong>null</strong>.</exception>
         public static bool ProbabilitySearch<T>(this IList<T> list, T item)
         {

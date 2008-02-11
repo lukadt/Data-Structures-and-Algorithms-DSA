@@ -99,6 +99,54 @@ namespace Dsa.Test
             Assert.AreEqual(5, Numbers.GreatestCommonDenominator(-10, 5));
             Assert.AreEqual(5, Numbers.GreatestCommonDenominator(5, -10));
         }
+
+        /// <summary>
+        /// Check to see that the integer returned is correct.
+        /// </summary>
+        [TestMethod]
+        public void ToBaseTwoTest()
+        {
+            int actual = 23;
+
+            Assert.AreEqual(10111, actual.ToBinary());
+        }
+
+        /// <summary>
+        /// Check to see that the correct exception is raised when the int to convert to binary is negative.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void ToBaseTwoNegativeIntTest()
+        {
+            int actual = -1;
+
+            actual.ToBinary();
+        }
+
+        /// <summary>
+        /// Check to see that the correct value is returned when converting a base 10 integer to
+        /// it's base 8 counterpart.
+        /// </summary>
+        [TestMethod]
+        public void ToOctalTest()
+        {
+            int actual = 18;
+
+            Assert.AreEqual(22, actual.ToOctal());
+        }
+
+        /// <summary>
+        /// Check to see that the correct exception is thrown when the int to covert to octal is negative.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void ToOctalNegativeIntTest()
+        {
+            int actual = -1;
+
+            actual.ToOctal();
+        }
+
     }
 
 }

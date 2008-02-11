@@ -131,5 +131,14 @@ namespace Dsa.Properties {
                 return ResourceManager.GetString("SinglyLinkedListEmpty", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can only convert positive integers..
+        /// </summary>
+        internal static string ToBaseNIntNegative {
+            get {
+                return ResourceManager.GetString("ToBaseNIntNegative", resourceCulture);
+            }
+        }
     }
 }

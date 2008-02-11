@@ -453,9 +453,7 @@ namespace Dsa.DataStructures
             {
                 return false;
             }
-
             BinaryTreeNode<T> parent = FindParent(item);
-
             // check to see if nodeToRemove is the only node in the bst
             if (Count == 1)
             {
@@ -506,8 +504,7 @@ namespace Dsa.DataStructures
                 {
                     largestValue = largestValue.Right;
                 }
-                /* find the parent of the largest value in the left subtree of nodeToDelete and sets its
-                 * * Right property to null. */
+                // find the parent of the largest value in the left subtree of nodeToDelete and sets its right property to null.
                 FindParent(largestValue.Value).Right = null;
                 // set value of nodeToRemove to the value of largestValue
                 nodeToRemove.Value = largestValue.Value;

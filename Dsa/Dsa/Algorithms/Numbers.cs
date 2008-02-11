@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Globalization;
+using System.Text;
 using Dsa.Properties;
 
 namespace Dsa.Algorithms
@@ -11,10 +13,10 @@ namespace Dsa.Algorithms
     {
 
         /// <summary>
-        /// Computes the fibonnaci number of a positive <see cref="System.Int32"/>.
+        /// Computes the fibonacci number of a positive <see cref="System.Int32"/>.
         /// </summary>
-        /// <param name="number">The <see cref="System.Int32"/> to compute the fibonnacci number for.</param>
-        /// <returns>An <see cref="System.Int32"/> representing the fibonacci number.</returns>
+        /// <param name="number">Integer to compute the fibonacci number for.</param>
+        /// <returns>Fibonacci number for the specified <see cref="Int32"/>.</returns>
         /// <exception cref="ArgumentOutOfRangeException"><strong>number</strong> is less than <strong>0</strong>.</exception>
         public static int Fibonacci(int number)
         {
@@ -22,19 +24,17 @@ namespace Dsa.Algorithms
             {
                 throw new ArgumentOutOfRangeException(Resources.FibonacciLessThanZero);
             }
-
-            // base cases
-            if (number == 0) // fibonacci of 0 is 0
+            
+            if (number == 0)
             {
                 return 0;
             }
-            else if (number == 1) // fibonacci of 1 is 1
+            else if (number == 1)
             {
                 return 1;
             }
             else
             {
-                // number > 1
                 int[] fibs = new int[number + 1];
                 fibs[0] = 0;
                 fibs[1] = 1;
@@ -50,7 +50,7 @@ namespace Dsa.Algorithms
         /// <summary>
         /// Computes the factorial of an <see cref="System.Int32"/>.
         /// </summary>
-        /// <param name="number"><see cref="System.Int32"/> to compute the factorial of.</param>
+        /// <param name="number">Integer to compute the factorial of.</param>
         /// <returns>The factorial of the specified <see cref="System.Int32"/>.</returns>
         /// <exception cref="ArgumentOutOfRangeException"><strong>number</strong> is less than <strong>0</strong>.</exception>
         public static int Factorial(int number)
@@ -60,7 +60,6 @@ namespace Dsa.Algorithms
                 throw new ArgumentOutOfRangeException(Resources.FactorialLessThanZero);
             }
 
-            // factorial of 0, and 1 is 1
             if (number < 2)
             {
                 return 1;
@@ -80,8 +79,8 @@ namespace Dsa.Algorithms
         /// <summary>
         /// Computes the power of an <see cref="System.Int32"/> to a given exponent.
         /// </summary>
-        /// <param name="baseNumber">The base number.</param>
-        /// <param name="exponent">The exponent.</param>
+        /// <param name="baseNumber">Base number.</param>
+        /// <param name="exponent">Exponent.</param>
         /// <returns>The value of the base raised to the exponent.</returns>
         /// <exception cref="ArgumentOutOfRangeException"><strong>exponent</strong> is less than <strong>0</strong>.</exception>
         public static int Power(int baseNumber, int exponent)
@@ -91,10 +90,9 @@ namespace Dsa.Algorithms
                 throw new ArgumentOutOfRangeException(Resources.PowerExponentLessThanZero);
             }
 
-            // the law of indicies states that a base with the exponent of 0 is 1
             if (exponent == 0)
             {
-                return 1;
+                return 1; // n^0 = 1
             }
             else
             {
@@ -110,20 +108,59 @@ namespace Dsa.Algorithms
 
         /// <summary>
         /// Computes the greatest common denominator of two <see cref="System.Int32"/>'s.
-        /// This is an implementation of Euclid's algorithm.
         /// </summary>
-        /// <param name="first">First <see cref="System.Int32"/>.</param>
-        /// <param name="second">Second <see cref="System.Int32"/>.</param>
-        /// <returns>The greatest common denominator of the two <see cref="System.Int32"/>'s provided.</returns>
+        /// <param name="first">First integer.</param>
+        /// <param name="second">Second integer.</param>
+        /// <returns>The greatest common denominator of the two <see cref="System.Int32"/>'s.</returns>
         public static int GreatestCommonDenominator(int first, int second)
         {
-            // is second is 0 then the greatest common denominator is first
             if (second == 0)
             {
                 return first;
             }
-            // call Gcd recursively swapping the arguments around with each recursive call
-            return GreatestCommonDenominator(second, first % second);
+            return GreatestCommonDenominator(second, first % second); 
+        }
+
+        /// <summary>
+        /// Converts a positive base 10 integer to it's binary counterpart (base 2).
+        /// </summary>
+        /// <param name="value">Integer to convert to binary form.</param>
+        /// <returns>Binary (base 2) representation of value.</returns>
+        /// <exception cref="ArgumentOutOfRangeException"><strong>value</strong> is less than<strong>0</strong>.</exception>
+        public static int ToBinary(this int value)
+        {
+            if (value < 0)
+            {
+                throw new ArgumentOutOfRangeException(Resources.ToBaseNIntNegative);
+            }
+            StringBuilder sb = new StringBuilder();
+            while (value > 0)
+            {
+                sb.Append(value % 2);
+                value /= 2;
+            }
+            return Int32.Parse(sb.ToString().Reverse(), CultureInfo.InvariantCulture);
+        }
+
+        /// <summary>
+        /// Converts a positive base 10 integer to it's octal counterpart (base 8).
+        /// </summary>
+        /// <param name="value">Integer to convert to octal form.</param>
+        /// <returns>Octal (base 8) representation of value.</returns>
+        /// <exception cref="ArgumentOutOfRangeException"><strong>value</strong> is less than <strong>0</strong>.</exception>
+        public static int ToOctal(this int value)
+        {
+            if (value < 0)
+            {
+                throw new ArgumentOutOfRangeException(Resources.ToBaseNIntNegative);
+            }
+            StringBuilder sb = new StringBuilder();
+            while (value > 0)
+            {
+                sb.Append(value % 8);
+                value /= 8;
+            }
+            return Int32.Parse(sb.ToString().Reverse(), CultureInfo.InvariantCulture);
         }
 
     }

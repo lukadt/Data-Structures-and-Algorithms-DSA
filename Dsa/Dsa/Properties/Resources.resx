@@ -149,4 +149,8 @@
     <value>SinglyLinkedListCollection(Of T) is empty.</value>
     <comment>When exceptions arise as a result of an empty singly linked list.</comment>
   </data>
+  <data name="ToBaseNIntNegative" xml:space="preserve">
+    <value>Can only convert positive integers.</value>
+    <comment>When a call to a ToBaseN method is called with a negative integer.</comment>
+  </data>
 </root>

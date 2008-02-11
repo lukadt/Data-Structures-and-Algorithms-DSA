@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Dsa.Properties;
 using Dsa.Utility;
 
 namespace Dsa.Algorithms
@@ -15,11 +14,10 @@ namespace Dsa.Algorithms
     {
 
         /// <summary>
-        /// Sorts any <see cref="System.Collections.Generic"/> that implements <see cref="IList{T}"/> in ascending or descending order 
-        /// using the bubble sort algorithm.
+        /// Bubble sort's the items in an <see cref="IList{T}"/>.
         /// </summary>
-        /// <param name="list">The <see cref="IList{T}"/> to sort.</param>
-        /// <param name="sortType">The order in which the items of the <see cref="IList{T}"/> are to be sorted.</param>
+        /// <param name="list"><see cref="IList{T}"/> to sort.</param>
+        /// <param name="sortType">Order in which the items of the <see cref="IList{T}"/> are to be sorted.</param>
         /// <returns>The sorted <see cref="IList{T}"/>.</returns>
         /// <exception cref="ArgumentNullException"><strong>list</strong> is <strong>null</strong>.</exception>
         public static IList<T> BubbleSort<T>(this IList<T> list, SortType sortType)
@@ -56,14 +54,11 @@ namespace Dsa.Algorithms
         }
 
         /// <summary>
-        /// Sorts an <see cref="IList{T}"/> placing the median value of 3 keys (left, right, and mid) at index 0 (left) of the 
-        /// <see cref="IList{T}"/>.
+        /// Places the median value of 3 keys (left, right, and mid) at index 0 (left) in the <see cref="IList{T}"/>.
         /// </summary>
-        /// <param name="list">The <see cref="IList{T}"/> to find the median value of.</param>
-        /// <returns>The modified <see cref="IList{T}"/> with the median key at index 0.</returns>
+        /// <param name="list"><see cref="IList{T}"/> to find the median value of.</param>
+        /// <returns><see cref="IList{T}"/> with the median key at index 0.</returns>
         /// <exception cref="ArgumentNullException"><strong>list</strong> is <strong>null</strong>.</exception>
-        /// <exception cref="InvalidOperationException"><strong>list</strong> has a length less than <strong>3</strong> making it not
-        /// possible to select 3 keys to assist in finding the median value of the array.</exception>
         public static IList<T> MedianLeft<T>(this IList<T> list)
         {
             if (list == null)
@@ -94,7 +89,6 @@ namespace Dsa.Algorithms
             }
             // exchange the value of list[mid] with list[left] placing the median key at index 0 of the list
             Exchange(ref list, mid, left);
-
             return list;
         }
 
@@ -114,10 +108,10 @@ namespace Dsa.Algorithms
         /// <summary>
         /// Merges two ordered <see cref="IList{T}"/> collections into a single ordered <see cref="IList{T}"/>.
         /// </summary>
-        /// <typeparam name="T">Type of the two array's to merge.</typeparam>
+        /// <typeparam name="T">Type of the <see cref="IList{T}"/>'s to merge.</typeparam>
         /// <param name="first">First <see cref="IList{T}"/>.</param>
         /// <param name="second">Second <see cref="IList{T}"/>.</param>
-        /// <returns>The merged <see cref="IList{T}"/> of first and second.</returns>
+        /// <returns>Merged <see cref="IList{T}"/>.</returns>
         /// <exception cref="ArgumentNullException"><strong>first</strong> or <strong>second</strong> are null.</exception>
         public static IList<T> MergeOrdered<T>(IList<T> first, IList<T> second)
         {
@@ -157,10 +151,10 @@ namespace Dsa.Algorithms
         }
 
         /// <summary>
-        /// Sorts the items of an <see cref="IList{T}"/> using the merge sort algorithm.
+        /// Merge sort's an <see cref="IList{T}"/>.
         /// </summary>
-        /// <param name="list">List to be sorted.</param>
-        /// <returns>Sorted List.</returns>
+        /// <param name="list"><see cref="IList{T}"/> to be sorted.</param>
+        /// <returns>Sorted <see cref="IList{T}"/>.</returns>
         /// <exception cref="ArgumentNullException"><strong>list</strong> is <strong>null</strong>.</exception>
         public static IList<T> MergeSort<T>(this IList<T> list)
         {
@@ -175,18 +169,15 @@ namespace Dsa.Algorithms
         }
 
         /// <summary>
-        /// Sorts the items of an <see cref="IList{T}"/> using the merge sort algorithm.
+        /// Merge sort's an <see cref="IList{T}"/>.
         /// </summary>
-        /// <remarks>
-        /// This is the internal recursive merge sort algorithm used by <see cref="Sorting.MergeSort{T}"/>.
-        /// </remarks>
-        /// <param name="list">List to be sorted.</param>
-        /// <returns>Sorted List.</returns>
+        /// <param name="list"><see cref="IList{T}"/> to be sorted.</param>
+        /// <returns>Sorted <see cref="IList{T}"/>.</returns>
         public static IList<T> MergeSortInternal<T>(IList<T> list)
         {
             if (list.Count <= 1)
             {
-                return list; // base case the array is of size one hence it is already sorted
+                return list; // base case the array is of size one thus it is already sorted
             }
             else
             {
@@ -214,11 +205,11 @@ namespace Dsa.Algorithms
         /// <summary>
         /// Concatenates three <see cref="IList{T}"/>'s into a single <see cref="IList{T}"/>.
         /// </summary>
-        /// <typeparam name="T">Type of <see cref="IList{T}"/> to concatenate.</typeparam>
-        /// <param name="first">First list.</param>
-        /// <param name="second">Second list.</param>
-        /// <param name="third">Third list.</param>
-        /// <returns>Concatenated list.</returns>
+        /// <typeparam name="T">Type of <see cref="IList{T}"/>'s to concatenate.</typeparam>
+        /// <param name="first">First <see cref="IList{T}"/>.</param>
+        /// <param name="second">Second <see cref="IList{T}"/>.</param>
+        /// <param name="third">Third <see cref="IList{T}"/>.</param>
+        /// <returns>Concatenated <see cref="IList{T}"/>.</returns>
         /// <exception cref="ArgumentNullException"><strong>first</strong>, <strong>second</strong>, or <strong>third</strong> are 
         /// <strong>null</strong>.</exception>
         public static IList<T> Concatenate<T>(IList<T> first, IList<T> second, IList<T> third)
@@ -253,11 +244,11 @@ namespace Dsa.Algorithms
         }
 
         /// <summary>
-        /// QuickSort's an <see cref="IList{T}"/>.
+        /// Quick sort's an <see cref="IList{T}"/>.
         /// </summary>
         /// <typeparam name="T">Type of <see cref="IList{T}"/> to sort.</typeparam>
-        /// <param name="list">List to sort.</param>
-        /// <returns>Sorted list.</returns>
+        /// <param name="list"><see cref="IList{T}"/> to sort.</param>
+        /// <returns>Sorted <see cref="IList{T}"/>.</returns>
         public static IList<T> QuickSort<T>(this IList<T> list)
         {
             if (list == null)
@@ -269,12 +260,12 @@ namespace Dsa.Algorithms
         }
 
         /// <summary>
-        /// Quicksort's an <see cref="IList{T}"/>.
+        /// Quick sort's an <see cref="IList{T}"/>.
         /// </summary>
         /// <typeparam name="T">Type of <see cref="IList{T}"/> to sort.</typeparam>
-        /// <param name="list">List to sort.</param>
+        /// <param name="list"><see cref="IList{T}"/> to sort.</param>
         /// <param name="comparer">Comparer to use.</param>
-        /// <returns>Sorted list.</returns>
+        /// <returns>Sorted <see cref="IList{T}"/>.</returns>
         private static IList<T> QuickSortInternal<T>(IList<T> list, ref Comparer<T> comparer)
         {
             if (list.Count <= 1)
@@ -310,7 +301,7 @@ namespace Dsa.Algorithms
         /// Insertion sort's an <see cref="IList{T}"/>.
         /// </summary>
         /// <typeparam name="T">Type of <see cref="IList{T}"/> to sort.</typeparam>
-        /// <param name="list">List to sort.</param>
+        /// <param name="list"><see cref="IList{T}"/> to sort.</param>
         /// <returns>Sorted <see cref="IList{T}"/>.</returns>
         public static IList<T> InsertionSort<T>(this IList<T> list)
         {

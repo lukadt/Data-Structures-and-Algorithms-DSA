@@ -15,11 +15,8 @@ namespace Dsa.Algorithms
         /// </summary>
         /// <param name="set1">First set.</param>
         /// <param name="set2">Second set.</param>
-        /// <returns>
-        /// The set union of the two sets if there is at least 1 item in the unioned set, otherwise null denoting an empty set.
-        /// </returns>
-        /// <exception cref="ArgumentNullException"><strong>set1</strong> is <strong>null</strong>.</exception>
-        /// <exception cref="ArgumentNullException"><strong>set2</strong> is <strong>null</strong>.</exception>
+        /// <returns>The set union of the two sets if there is at least 1 item in the unioned set, otherwise null denoting an empty set.</returns>
+        /// <exception cref="ArgumentNullException"><strong>set1</strong> or <strong>set2</strong> is <strong>null</strong>.</exception>
         public static Set<T> Union<T>(this Set<T> set1, Set<T> set2)
         {
             if (set1 == null)
@@ -41,7 +38,6 @@ namespace Dsa.Algorithms
             {
                 union.Add(item);
             }
-            // if the union set has 0 items then return null (empty set) otherwise return union
             return union.Count < 1 ? null : union;
         }
 
@@ -51,8 +47,7 @@ namespace Dsa.Algorithms
         /// <param name="set1">First set.</param>
         /// <param name="set2">Second set.</param>
         /// <returns>The set intersection of the two sets if there is at least 1 item in the intersection set, otherwise null denoting an empty set.</returns>
-        /// <exception cref="ArgumentNullException"><strong>set1</strong> is <strong>null</strong>.</exception>
-        /// <exception cref="ArgumentNullException"><strong>set2</strong> is <strong>null</strong>.</exception>
+        /// <exception cref="ArgumentNullException"><strong>set1</strong> or <strong>set2</strong> is <strong>null</strong>.</exception>
         public static Set<T> Intersection<T>(this Set<T> set1, Set<T> set2)
         {
             if (set1 == null)
@@ -74,7 +69,6 @@ namespace Dsa.Algorithms
                     intersection.Add(item);
                 }
             }
-            // if the intersection set has 0 items then return null (empty set) otherwise return union
             return intersection.Count < 1 ? null : intersection;
         }
 
