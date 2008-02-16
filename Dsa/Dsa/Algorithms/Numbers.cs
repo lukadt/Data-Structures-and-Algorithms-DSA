@@ -15,6 +15,9 @@ namespace Dsa.Algorithms
         /// <summary>
         /// Computes the fibonacci number of a positive <see cref="System.Int32"/>.
         /// </summary>
+        /// <remarks>
+        /// This method is an O(1) operation for inputs 0 or 1, O(n) for larger numbers.
+        /// </remarks>
         /// <param name="number">Integer to compute the fibonacci number for.</param>
         /// <returns>Fibonacci number for the specified <see cref="Int32"/>.</returns>
         /// <exception cref="ArgumentOutOfRangeException"><strong>number</strong> is less than <strong>0</strong>.</exception>
@@ -50,6 +53,9 @@ namespace Dsa.Algorithms
         /// <summary>
         /// Computes the factorial of an <see cref="System.Int32"/>.
         /// </summary>
+        /// <remarks>
+        /// This method is an O(1) operation for inputs less than 2, O(n) for larger numbers.
+        /// </remarks>
         /// <param name="number">Integer to compute the factorial of.</param>
         /// <returns>The factorial of the specified <see cref="System.Int32"/>.</returns>
         /// <exception cref="ArgumentOutOfRangeException"><strong>number</strong> is less than <strong>0</strong>.</exception>
@@ -79,6 +85,9 @@ namespace Dsa.Algorithms
         /// <summary>
         /// Computes the power of an <see cref="System.Int32"/> to a given exponent.
         /// </summary>
+        /// <remarks>
+        /// This method is an O(1) method when the exponent is 1, otherwise O(n) for larger exponents.
+        /// </remarks>
         /// <param name="baseNumber">Base number.</param>
         /// <param name="exponent">Exponent.</param>
         /// <returns>The value of the base raised to the exponent.</returns>

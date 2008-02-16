@@ -372,6 +372,9 @@ namespace Dsa.DataStructures
         /// Inserts a new node with the specified value at the appropriate location
         /// in the <see cref="BinarySearchTree{T}"/>.
         /// </summary>
+        /// <remarks>
+        /// This method is an O(log n) operation.
+        /// </remarks>
         /// <param name="item">Value to insert.</param>
         public override void Add(T item)
         {
@@ -408,6 +411,9 @@ namespace Dsa.DataStructures
         /// <summary>
         /// Determines whether an item is contained within the bst.
         /// </summary>
+        /// <remarks>
+        /// This method is an O(log n) operation.
+        /// </remarks>
         /// <param name="root">The root node of the bst.</param>
         /// <param name="item">The item to be located in the bst.</param>
         /// <returns>True if the item is contained within the bst, false otherwise.</returns>
@@ -516,6 +522,9 @@ namespace Dsa.DataStructures
         ///<summary>
         /// An <see cref="IEnumerator{T}"/> that iterates through the <see cref="BinarySearchTree{T}"/>.  By default Preorder traversal of the tree.
         ///</summary>
+        ///<remarks>
+        /// This method is an O(n) operation.
+        /// </remarks>
         ///<returns>
         /// An <see cref="IEnumerator{T}" /> that can be used to iterate through the <see cref="BinarySearchTree{T}"/>.
         ///</returns>

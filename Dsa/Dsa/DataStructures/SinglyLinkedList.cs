@@ -365,7 +365,7 @@ namespace Dsa.DataStructures
         /// Resets the <see cref="SinglyLinkedList{T}"/> to its default state.
         /// </summary>
         /// <remarks>
-        /// This method is an O(1) operation, the <see cref="Head"/>, and <see cref="Tail"/> are always known.
+        /// This method is an O(1) operation.
         /// </remarks>
         public override void Clear()
         {

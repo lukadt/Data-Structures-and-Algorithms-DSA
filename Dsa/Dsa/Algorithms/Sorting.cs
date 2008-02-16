@@ -16,6 +16,9 @@ namespace Dsa.Algorithms
         /// <summary>
         /// Bubble sort's the items in an <see cref="IList{T}"/>.
         /// </summary>
+        /// <remarks>
+        /// This method is an O(n^2) operation.
+        /// </remarks>
         /// <param name="list"><see cref="IList{T}"/> to sort.</param>
         /// <param name="sortType">Order in which the items of the <see cref="IList{T}"/> are to be sorted.</param>
         /// <returns>The sorted <see cref="IList{T}"/>.</returns>
@@ -56,6 +59,9 @@ namespace Dsa.Algorithms
         /// <summary>
         /// Places the median value of 3 keys (left, right, and mid) at index 0 (left) in the <see cref="IList{T}"/>.
         /// </summary>
+        /// <remarks>
+        /// This method is an O(1) operation.
+        /// </remarks>
         /// <param name="list"><see cref="IList{T}"/> to find the median value of.</param>
         /// <returns><see cref="IList{T}"/> with the median key at index 0.</returns>
         /// <exception cref="ArgumentNullException"><strong>list</strong> is <strong>null</strong>.</exception>
@@ -108,6 +114,9 @@ namespace Dsa.Algorithms
         /// <summary>
         /// Merges two ordered <see cref="IList{T}"/> collections into a single ordered <see cref="IList{T}"/>.
         /// </summary>
+        /// <remarks>
+        /// This method is an O(n) operation where n is the number of items in both lists.
+        /// </remarks>
         /// <typeparam name="T">Type of the <see cref="IList{T}"/>'s to merge.</typeparam>
         /// <param name="first">First <see cref="IList{T}"/>.</param>
         /// <param name="second">Second <see cref="IList{T}"/>.</param>
@@ -153,6 +162,9 @@ namespace Dsa.Algorithms
         /// <summary>
         /// Merge sort's an <see cref="IList{T}"/>.
         /// </summary>
+        /// <remarks>
+        /// This method is an O(n log n) operation.
+        /// </remarks>
         /// <param name="list"><see cref="IList{T}"/> to be sorted.</param>
         /// <returns>Sorted <see cref="IList{T}"/>.</returns>
         /// <exception cref="ArgumentNullException"><strong>list</strong> is <strong>null</strong>.</exception>
@@ -205,6 +217,9 @@ namespace Dsa.Algorithms
         /// <summary>
         /// Concatenates three <see cref="IList{T}"/>'s into a single <see cref="IList{T}"/>.
         /// </summary>
+        /// <remarks>
+        /// This method is an O(n) operation where n is the number os items in the three lists combined.
+        /// </remarks>
         /// <typeparam name="T">Type of <see cref="IList{T}"/>'s to concatenate.</typeparam>
         /// <param name="first">First <see cref="IList{T}"/>.</param>
         /// <param name="second">Second <see cref="IList{T}"/>.</param>
@@ -246,6 +261,9 @@ namespace Dsa.Algorithms
         /// <summary>
         /// Quick sort's an <see cref="IList{T}"/>.
         /// </summary>
+        /// <remarks>
+        /// This method is an O(n log n) operation.
+        /// </remarks>
         /// <typeparam name="T">Type of <see cref="IList{T}"/> to sort.</typeparam>
         /// <param name="list"><see cref="IList{T}"/> to sort.</param>
         /// <returns>Sorted <see cref="IList{T}"/>.</returns>
@@ -300,6 +318,9 @@ namespace Dsa.Algorithms
         /// <summary>
         /// Insertion sort's an <see cref="IList{T}"/>.
         /// </summary>
+        /// <remarks>
+        /// This method is an O(n^2) operation.
+        /// </remarks>
         /// <typeparam name="T">Type of <see cref="IList{T}"/> to sort.</typeparam>
         /// <param name="list"><see cref="IList{T}"/> to sort.</param>
         /// <returns>Sorted <see cref="IList{T}"/>.</returns>
@@ -328,6 +349,9 @@ namespace Dsa.Algorithms
         /// <summary>
         /// Shell sort's an <see cref="IList{T}"/>.
         /// </summary>
+        /// <remarks>
+        /// This method is an O(n^1.25) operation.
+        /// </remarks>
         /// <typeparam name="T">Type of <see cref="IList{T}"/> to sort.</typeparam>
         /// <param name="list"><see cref="IList{T}"/> to sort.</param>
         /// <returns>Sorted <see cref="IList{T}"/>.</returns>

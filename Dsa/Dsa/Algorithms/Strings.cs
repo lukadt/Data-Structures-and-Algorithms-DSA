@@ -46,7 +46,9 @@ namespace Dsa.Algorithms
         /// Returns the index of the first character in the match <see cref="string"/> that matches any 
         /// character in the word <see cref="string"/>.
         /// </summary>
-        /// <remarks>Case sensitive, whitespace is ignored.</remarks>
+        /// <remarks>
+        /// <para>Case sensitive, whitespace is ignored.</para>
+        /// </remarks>
         /// <param name="word">Word to run the any match against.</param>
         /// <param name="match">The <see cref="string"/> of characters to match against the word.</param>
         /// <returns>
@@ -96,7 +98,8 @@ namespace Dsa.Algorithms
         /// Detects whether or not the input string is a palindrome.
         /// </summary>
         /// <remarks>
-        /// Case, whitespace, punctuation and symbols are ignored.
+        /// <para>This method is an O(n) operation where n is the number of chars to traverse in order to verify the string is a palindrome.</para>
+        /// <para>Case, whitespace, punctuation and symbols are ignored.</para>
         /// </remarks>
         /// <param name="word"><see cref="string"/> that you want to test is a palindrome or not.</param>
         /// <returns>True if the string is a palindrome; otherwise false.</returns>
@@ -127,6 +130,9 @@ namespace Dsa.Algorithms
         /// Takes a <see cref="string"/> and strips it of whitespace, punctuation and symbols returning the resulting stripped 
         /// <see cref="string"/>.
         /// </summary>
+        /// <remarks>
+        /// This methods is an O(n) operation where n is the number of chars in the string to strip.
+        /// </remarks>
         /// <param name="value"><see cref="string"/> to strip.</param>
         /// <returns>The stripped version of the <see cref="string"/>.</returns>
         /// <exception cref="ArgumentNullException"><strong>value</strong> is <strong>null</strong>.</exception>
@@ -152,6 +158,9 @@ namespace Dsa.Algorithms
         /// <summary>
         /// Counts the number of words in a <see cref="string"/>.
         /// </summary>
+        /// <remarks>
+        /// This is an O(n) operation where n is the number of chars in the string to count the words of.
+        /// </remarks>
         /// <param name="value">The <see cref="string"/> to count the words of.</param>
         /// <returns>An <see cref="Int32"/> indicating the number of words in the <see cref="string"/>.</returns>
         /// <exception cref="ArgumentNullException"><strong>value</strong> is <strong>null</strong>.</exception>
@@ -204,6 +213,9 @@ namespace Dsa.Algorithms
         /// <summary>
         /// Reverses the words of a string.
         /// </summary>
+        /// <remarks>
+        /// This is an O(n) operation where n is the number of chars in the string to reverse the words of.
+        /// </remarks>
         /// <param name="value">String to reverse the words of.</param>
         /// <returns>The reversed string.</returns>
         public static string ReverseWords(this string value)
@@ -253,6 +265,9 @@ namespace Dsa.Algorithms
         /// <summary>
         /// Counts the number of words that are repeated within a string.
         /// </summary>
+        /// <remarks>
+        /// This method is an O(n) operation where n is the number of words in the string delimited by whitespace.
+        /// </remarks>
         /// <param name="value">String to count repeated words of.</param>
         /// <returns>Number of words repeated in the given string.</returns>
         public static int RepeatedWordCount(this string value)
