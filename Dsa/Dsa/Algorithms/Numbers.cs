@@ -152,7 +152,7 @@ namespace Dsa.Algorithms
         }
 
         /// <summary>
-        /// Converts a positive base 10 integer to it's octal counterpart (base 8).
+        /// Converts a positive base 10 integer into it's octal counterpart (base 8).
         /// </summary>
         /// <param name="value">Integer to convert to octal form.</param>
         /// <returns>Octal (base 8) representation of value.</returns>
@@ -170,6 +170,66 @@ namespace Dsa.Algorithms
                 value /= 8;
             }
             return Int32.Parse(sb.ToString().Reverse(), CultureInfo.InvariantCulture);
+        }
+
+        /// <summary>
+        /// Converts a positive base 10 integer into it's hexadecimal counterpart (base 16).
+        /// </summary>
+        /// <param name="value">Integer to convert to hexidecimal form.</param>
+        /// <returns>Hexidecimal (base 16) representation of value.</returns>
+        public static string ToHex(this int value)
+        {
+            if (value < 0)
+            {
+                throw new ArgumentOutOfRangeException(Resources.ToBaseNIntNegative);
+            }
+            StringBuilder sb = new StringBuilder();
+            while (value > 0)
+            {
+                int result = value % 16;
+                if (result < 10)
+                {
+                    sb.Append(result);
+                }
+                else
+                {
+                    sb.Append(GetHexSymbol(result));
+                }
+                value /= 16;
+            }
+            return sb.ToString().Reverse();
+        }
+
+        /// <summary>
+        /// Gets char symbol for hex numbers 10 .. 15 (A .. F).
+        /// </summary>
+        /// <param name="result">Integer to get hex symbol for.</param>
+        /// <returns>Hex symbol for that number.</returns>
+        private static char GetHexSymbol(int result)
+        {
+            char symbol = ' ';
+            switch (result)
+            {
+                case 10:
+                    symbol = 'A';
+                    break;
+                case 11:
+                    symbol = 'B';
+                    break;
+                case 12:
+                    symbol = 'C';
+                    break;
+                case 13:
+                    symbol = 'D';
+                    break;
+                case 14:
+                    symbol = 'E';
+                    break;
+                case 15:
+                    symbol = 'F';
+                    break;
+            }
+            return symbol;
         }
 
     }

@@ -147,6 +147,38 @@ namespace Dsa.Test
             actual.ToOctal();
         }
 
+        /// <summary>
+        /// Check to see that the correct string is returned when converting a base 10 integer its base 16
+        /// equivalent.
+        /// </summary>
+        [TestMethod]
+        public void ToHexTest()
+        {
+            int actual1 = 63923;
+            int actual2 = 2362;
+            int actual3 = 14397;
+            int actual4 = 222;
+            int actual5 = 43975;
+
+            Assert.AreEqual("F9B3", actual1.ToHex());
+            Assert.AreEqual("93A", actual2.ToHex());
+            Assert.AreEqual("383D", actual3.ToHex());
+            Assert.AreEqual("DE", actual4.ToHex());
+            Assert.AreEqual("ABC7", actual5.ToHex());
+        }
+
+        /// <summary>
+        /// Check to see the correct exception is raised when the value provided is negative.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void ToHexNegativeIntTest()
+        {
+            int actual = -1;
+
+            actual.ToHex();
+        }
+
     }
 
 }
