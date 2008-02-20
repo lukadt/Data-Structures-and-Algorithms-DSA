@@ -1,8 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Dsa.DataStructures;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using Dsa.DataStructures;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Dsa.Test
 {

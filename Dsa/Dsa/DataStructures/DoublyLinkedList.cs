@@ -6,7 +6,7 @@ namespace Dsa.DataStructures
 {
 
     /// <summary>
-    /// <see cref="DoublyLinkedList{T}"/> is an implementation of a doubly linked list data structure.
+    /// Doubly linked list.
     /// </summary>
     /// <typeparam name="T">Type of <see cref="DoublyLinkedList{T}"/>.</typeparam>
     [Serializable]
@@ -39,19 +39,22 @@ namespace Dsa.DataStructures
             {
                 throw new ArgumentNullException("comparer");
             }
+
             _comparer = comparer;
         }
 
         /// <summary>
         /// Adds a node to the tail of the <see cref="DoublyLinkedList{T}"/>.
         /// </summary>
+        /// <remarks>
+        /// This method is an O(1) operation. The last node is always known.
+        /// </remarks>
         /// <param name="value">Value to add to the <see cref="DoublyLinkedList{T}"/>.</param>
         public void AddLast(T value)
         {
             DoublyLinkedListNode<T> n = new DoublyLinkedListNode<T>(value);
             if (IsEmpty())
             {
-                // this is the first node being added to the dll, so both the head and tail is n
                 _head = n;
                 _tail = n;
             }
@@ -67,13 +70,15 @@ namespace Dsa.DataStructures
         /// <summary>
         /// Adds a node to the head of the <see cref="DoublyLinkedList{T}"/>.
         /// </summary>
+        /// <remarks>
+        /// This method is an O(1) operation. The head node is always known.
+        /// </remarks>
         /// <param name="value">Value to add to the <see cref="DoublyLinkedList{T}"/>.</param>
         public void AddFirst(T value)
         {
             DoublyLinkedListNode<T> n = new DoublyLinkedListNode<T>(value);
             if (IsEmpty())
             {
-                // this is the first node being added to the dll, so both the head and tail is n
                 _head = n;
                 _tail = n;
             }
@@ -89,13 +94,16 @@ namespace Dsa.DataStructures
         /// <summary>
         /// Adds a node after a specified node in the <see cref="DoublyLinkedList{T}"/>.
         /// </summary>
+        /// <remarks>
+        /// This is an O(1) operation.
+        /// </remarks>
         /// <param name="node">The <see cref="DoublyLinkedListNode{T}"/> to add after.</param>
         /// <param name="value">The value of the node to add after the specified node.</param>
         public void AddAfter(DoublyLinkedListNode<T> node, T value)
         {
             ValidateAddArgs(node);
             DoublyLinkedListNode<T> n = new DoublyLinkedListNode<T>(value);
-            if (node == _tail) // the node we are adding will be the new tail node
+            if (node == _tail)
             {
                 n.Previous = _tail;
                 _tail.Next = n;
@@ -103,7 +111,6 @@ namespace Dsa.DataStructures
             }
             else
             {
-                // setup the n's pointers accordingly
                 n.Next = node.Next;
                 n.Next.Previous = n;
                 node.Next = n;
@@ -115,13 +122,15 @@ namespace Dsa.DataStructures
         /// <summary>
         /// Adds a node before a specified node in the <see cref="DoublyLinkedList{T}"/>.
         /// </summary>
+        /// <remarks>
+        /// This method is an O(1) operation.
+        /// </remarks>
         /// <param name="node">The <see cref="DoublyLinkedListNode{T}"/> to add before.</param>
         /// <param name="value">The value of the node to add after the specified node.</param>
         public void AddBefore(DoublyLinkedListNode<T> node, T value)
         {
             ValidateAddArgs(node);
             DoublyLinkedListNode<T> n = new DoublyLinkedListNode<T>(value);
-            // check to see if we are adding before the head node
             if (node == _head) 
             {
                 n.Next = _head;
@@ -130,7 +139,6 @@ namespace Dsa.DataStructures
             }
             else
             {
-                // setup the n's pointers accordingly
                 n.Next = node;
                 node.Previous.Next = n;
                 n.Previous = node.Previous;
@@ -142,6 +150,9 @@ namespace Dsa.DataStructures
         /// <summary>
         /// Removes a node from the tail of the <see cref="DoublyLinkedList{T}"/>.
         /// </summary>
+        /// <remarks>
+        /// This method is an O(1) operation.
+        /// </remarks>
         /// <exception cref="InvalidOperationException"><see cref="DoublyLinkedList{T}"/> contains <strong>0 items</strong>.</exception>
         public void RemoveLast()
         {
@@ -149,6 +160,7 @@ namespace Dsa.DataStructures
             {
                 throw new InvalidOperationException(Resources.DoublyLinkedListEmpty); 
             }
+
             // check to see if there is only 1 item in the linked list
             if (_tail == _head) 
             {
@@ -162,7 +174,7 @@ namespace Dsa.DataStructures
             }
             else
             {
-                _tail = _tail.Previous; // set tail to be the old tails Previous node
+                _tail = _tail.Previous;
                 _tail.Next = null;
             }
             Count--;
@@ -171,6 +183,9 @@ namespace Dsa.DataStructures
         /// <summary>
         /// Removes the node at the head of the <see cref="DoublyLinkedList{T}"/>.
         /// </summary>
+        /// <remarks>
+        /// This method is an O(1) operation.
+        /// </remarks>
         /// <exception cref="InvalidOperationException"><see cref="DoublyLinkedList{T}"/> contains <strong>0 items</strong>.</exception>
         public void RemoveFirst()
         {
@@ -178,6 +193,7 @@ namespace Dsa.DataStructures
             {
                 throw new InvalidOperationException(Resources.DoublyLinkedListEmpty); // nothing to remove
             }
+
             if (_head.Next == null) // only one node in the dll
             {
                 _head = null;
@@ -199,7 +215,10 @@ namespace Dsa.DataStructures
         /// <summary>
         /// Returns an array containing all the values of the nodes contained within the <see cref="DoublyLinkedList{T}"/>.
         /// </summary>
-        /// <returns><see cref="Array"/> containing the values of the nodes contained in the <see cref="DoublyLinkedList{T}"/>.</returns>
+        /// <remarks>
+        /// This method is an O(n) operation where n is the number of nodes in the <see cref="DoublyLinkedList{T}"/>.
+        /// </remarks>
+        /// <returns>A one-dimensional <see cref="Array"/> containing the values of the nodes contained in the <see cref="DoublyLinkedList{T}"/>.</returns>
         /// <exception cref="InvalidOperationException"><see cref="DoublyLinkedList{T}"/> contains <strong>0 items</strong>.</exception>
         public override T[] ToArray()
         {
@@ -207,11 +226,12 @@ namespace Dsa.DataStructures
             {
                 throw new InvalidOperationException(Resources.DoublyLinkedListEmpty); // nothing to make an array out of
             }
+
             int index = 0;
             T[] resultArray = new T[Count]; 
             foreach (T value in this)
             {
-                resultArray[index] = value; // copy dll's items to array
+                resultArray[index] = value;
                 index++;
             }
             return resultArray;
@@ -237,6 +257,9 @@ namespace Dsa.DataStructures
         /// <summary>
         /// Indicates whether the <see cref="DoublyLinkedList{T}"/> is empty or not.
         /// </summary>
+        /// <remarks>
+        /// This method is an O(1) operation.
+        /// </remarks>
         /// <returns>Returns true if the <see cref="DoublyLinkedList{T}"/> is empty, or false otherwise.</returns>
         public bool IsEmpty()
         {
@@ -248,7 +271,10 @@ namespace Dsa.DataStructures
         /// </summary>
         public DoublyLinkedListNode<T> Head
         {
-            get { return _head; }
+            get
+            {
+                return _head;
+            }
         }
 
         /// <summary>
@@ -256,12 +282,18 @@ namespace Dsa.DataStructures
         /// </summary>
         public DoublyLinkedListNode<T> Tail
         {
-            get { return _tail; }
+            get
+            {
+                return _tail;
+            }
         }
 
         /// <summary>
         /// Adds an item to the <see cref="ICollection{T}"/>.
         /// </summary>
+        /// <remarks>
+        /// This method is an O(1) operation.
+        /// </remarks>
         /// <param name="item">Item to add to the <see cref="ICollection{T}"/>.</param>
         public override void Add(T item)
         {
@@ -281,13 +313,19 @@ namespace Dsa.DataStructures
         /// <summary>
         /// Determines whether a value is in the <see cref="DoublyLinkedList{T}"/>.
         /// </summary>
+        /// <remarks>
+        /// This method is an O(n) operation.
+        /// </remarks>
         /// <param name="item">Value to search the <see cref="DoublyLinkedList{T}"/> for.</param>
-        /// <returns>True if the value was found; false otherwise.</returns>
+        /// <returns>True if the value was found; otherwise false.</returns>
         public override bool Contains(T item)
         {
             foreach (T value in this)
             {
-                if (_comparer.Compare(value, item) == 0) return true; // item found
+                if (_comparer.Compare(value, item) == 0)
+                {
+                    return true;
+                }
             }
             return false;
         }
@@ -295,6 +333,9 @@ namespace Dsa.DataStructures
         /// <summary>
         /// Removes the first occurrence of a value from the <see cref="DoublyLinkedList{T}"/>.
         /// </summary>
+        /// <remarks>
+        /// This is an O(1) operation (best case) when there are only two nodes in the <see cref="DoublyLinkedList{T}"/>; othwerise it is an O(n) operation.
+        /// </remarks>
         /// <param name="item">Value to remove from the <see cref="DoublyLinkedList{T}"/>.</param>
         /// <returns>True if the value was removed from the <see cref="DoublyLinkedList{T}"/>; false otherwise.</returns>
         /// <exception cref="InvalidOperationException"><see cref="DoublyLinkedList{T}"/> contains <strong>0 items</strong>.</exception>
@@ -304,6 +345,7 @@ namespace Dsa.DataStructures
             {
                 throw new InvalidOperationException(Resources.DoublyLinkedListEmpty); // no items to remove
             }
+
             if (_head.Next == null && _comparer.Compare(_head.Value, item) == 0)
             {
                 // we are removing the only node in the dll
@@ -314,20 +356,18 @@ namespace Dsa.DataStructures
             }
             else if (_head.Next == _tail) // there are only two nodes in the dll
             {
-                if (_comparer.Compare(_head.Value, item) == 0) // the head node is to be removed
+                if (_comparer.Compare(_head.Value, item) == 0) 
                 {
-                    _head = _head.Next; // the new head node is the old head nodes next node
+                    _head = _head.Next; 
                     _head.Previous = null;
-                    Count--;
-                    return true;
                 }
-                else if (_comparer.Compare(_tail.Value, item) == 0) // the tail node is to be removed
+                else if (_comparer.Compare(_tail.Value, item) == 0) 
                 {
-                    _tail = _head; // as there are only two nodes in the dll make the head node the tail also
+                    _tail = _head; 
                     _head.Next = null;
-                    Count--;
-                    return true;
                 }
+                Count--;
+                return true;
             }
             else // there are more than 2 nodes in the dll
             {
@@ -357,12 +397,15 @@ namespace Dsa.DataStructures
                     n = n.Next; 
                 }
             }
-            return false; // we didn't find the value in the dll
+            return false;
         }
 
         /// <summary>
         /// Traverses the items in the <see cref="DoublyLinkedList{T}"/>.
         /// </summary>
+        /// <remarks>
+        /// This method is an O(n) operation, where n is the number of nodes in the <see cref="DoublyLinkedList{T}"/>.
+        /// </remarks>
         /// <returns>An <see cref="IEnumerator{T}" /> that can be used to iterate through the <see cref="DoublyLinkedList{T}"/>.</returns>
         public override IEnumerator<T> GetEnumerator()
         {
@@ -374,17 +417,17 @@ namespace Dsa.DataStructures
             }
         }
 
-        #region IComparerProvider<T> Members
-
         /// <summary>
         /// Gets the <see cref="IComparer{T}"/> being used.
         /// </summary>
         IComparer<T> IComparerProvider<T>.Comparer
         {
-            get { return _comparer; }
+            get
+            {
+                return _comparer;
+            }
         }
 
-        #endregion
     }
 
 }

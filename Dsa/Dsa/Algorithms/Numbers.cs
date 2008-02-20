@@ -45,7 +45,6 @@ namespace Dsa.Algorithms
                 {
                     fibs[i] = fibs[i - 1] + fibs[i - 2];
                 }
-
                 return fibs[number];
             }
         }
@@ -77,7 +76,6 @@ namespace Dsa.Algorithms
                 {
                     factorial *= i;
                 }
-
                 return factorial;
             }
         }
@@ -142,6 +140,7 @@ namespace Dsa.Algorithms
             {
                 throw new ArgumentOutOfRangeException(Resources.ToBaseNIntNegative);
             }
+
             StringBuilder sb = new StringBuilder();
             while (value > 0)
             {
@@ -163,6 +162,7 @@ namespace Dsa.Algorithms
             {
                 throw new ArgumentOutOfRangeException(Resources.ToBaseNIntNegative);
             }
+
             StringBuilder sb = new StringBuilder();
             while (value > 0)
             {
@@ -177,12 +177,14 @@ namespace Dsa.Algorithms
         /// </summary>
         /// <param name="value">Integer to convert to hexidecimal form.</param>
         /// <returns>Hexidecimal (base 16) representation of value.</returns>
+        /// <exception cref="ArgumentOutOfRangeException"><strong>value</strong> is less than <strong>0</strong>.</exception>
         public static string ToHex(this int value)
         {
             if (value < 0)
             {
                 throw new ArgumentOutOfRangeException(Resources.ToBaseNIntNegative);
             }
+
             StringBuilder sb = new StringBuilder();
             while (value > 0)
             {

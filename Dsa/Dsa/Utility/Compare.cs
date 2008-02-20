@@ -2,6 +2,7 @@
 
 namespace Dsa.Utility
 {
+
     /// <summary>
     /// Methods for comparing generic types.
     /// </summary>

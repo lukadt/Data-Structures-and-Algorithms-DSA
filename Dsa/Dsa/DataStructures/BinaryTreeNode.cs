@@ -2,7 +2,7 @@
 {
 
     /// <summary>
-    /// <see cref="BinaryTreeNode{T}"/> is an implementation of a node used with a tree data structure.
+    /// Node used in <see cref="BinarySearchTree{T}"/>.
     /// </summary>
     /// <typeparam name="T">Type of the <see cref="BinaryTreeNode{T}"/>.</typeparam>
     public sealed class BinaryTreeNode<T> : DoublyLinkedListNode<T>
@@ -16,22 +16,35 @@
             : base(value) {}
 
         /// <summary>
-        /// Gets or Sets the left child of the <see cref="BinaryTreeNode{T}"/>.
+        /// Gets or sets the left child of the <see cref="BinaryTreeNode{T}"/>.
         /// </summary>
         public BinaryTreeNode<T> Left
         {
-            get { return Previous as BinaryTreeNode<T>; }
-            set { Previous = value; }
+            get
+            {
+                return Previous as BinaryTreeNode<T>;
+            }
+            set
+            {
+                Previous = value;
+            }
         }
 
         /// <summary>
-        /// Gets or Sets the right child of the <see cref="BinaryTreeNode{T}"/>.
+        /// Gets or sets the right child of the <see cref="BinaryTreeNode{T}"/>.
         /// </summary>
         public BinaryTreeNode<T> Right
         {
-            get { return Next as BinaryTreeNode<T>; }
-            set { Next = value; }
+            get
+            {
+                return Next as BinaryTreeNode<T>;
+            }
+            set
+            {
+                Next = value;
+            }
         }
 
     }
+
 }

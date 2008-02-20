@@ -1,7 +1,8 @@
 ﻿namespace Dsa.DataStructures
 {
+
     /// <summary>
-    /// Defines the type of the Heap.
+    /// Defines the type of the <see cref="Heap{T}"/>.
     /// </summary>
     public enum HeapType
     {
@@ -14,4 +15,5 @@
         /// </summary>
         Max
     }
+
 }

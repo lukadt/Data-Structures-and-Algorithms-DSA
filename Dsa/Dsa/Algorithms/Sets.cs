@@ -13,6 +13,9 @@ namespace Dsa.Algorithms
         /// <summary>
         /// Performs set union of two <see cref="Set{T}"/>.
         /// </summary>
+        /// <remarks>
+        /// This method is an O(n) operation where n is the number of elements in both sets to union.
+        /// </remarks>
         /// <param name="set1">First set.</param>
         /// <param name="set2">Second set.</param>
         /// <returns>The set union of the two sets if there is at least 1 item in the unioned set, otherwise null denoting an empty set.</returns>
@@ -29,7 +32,6 @@ namespace Dsa.Algorithms
             }
 
             OrderedSet<T> union = new OrderedSet<T>();
-            // add each item from each set to union
             foreach (T item in set1)
             {
                 union.Add(item);
@@ -44,6 +46,9 @@ namespace Dsa.Algorithms
         /// <summary>
         /// Performs set intersection of two <see cref="Set{T}"/>.
         /// </summary>
+        /// <remarks>
+        /// This method is an O(n) operation where n is the number of elements common to both sets.
+        /// </remarks>
         /// <param name="set1">First set.</param>
         /// <param name="set2">Second set.</param>
         /// <returns>The set intersection of the two sets if there is at least 1 item in the intersection set, otherwise null denoting an empty set.</returns>
@@ -60,7 +65,6 @@ namespace Dsa.Algorithms
             }
 
             OrderedSet<T> intersection = new OrderedSet<T>();
-            // loop through each item in set1 and check whether this item is in set2
             foreach (T item in set1)
             {
                 if (set2.Contains(item))

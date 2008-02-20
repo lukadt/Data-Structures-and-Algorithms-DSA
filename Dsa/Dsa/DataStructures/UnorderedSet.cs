@@ -2,8 +2,9 @@
 
 namespace Dsa.DataStructures
 {
+
     /// <summary>
-    /// <see cref="UnorderedSet{T}"/> is an implementation of a mathematical set where the items in the set are unordered.
+    /// Based on a standard mathematical set.
     /// </summary>
     /// <typeparam name="T">Type of the <see cref="UnorderedSet{T}"/>.</typeparam>
     public class UnorderedSet<T> : Set<T>
@@ -32,4 +33,5 @@ namespace Dsa.DataStructures
         }
 
     }
+
 }

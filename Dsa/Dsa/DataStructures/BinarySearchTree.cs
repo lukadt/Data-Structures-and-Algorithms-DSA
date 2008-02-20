@@ -8,9 +8,9 @@ namespace Dsa.DataStructures
 {
 
     /// <summary>
-    /// <see cref="BinarySearchTree{T}"/> is an implementation of a binary search tree.
+    /// A binary search tree (BST).
     /// </summary>
-    /// <typeparam name="T">Type of items to store in the <see cref="BinarySearchTree{T}"/>.</typeparam>
+    /// <typeparam name="T">Type of <see cref="BinarySearchTree{T}"/>.</typeparam>
     [Serializable]
     public sealed class BinarySearchTree<T> : CollectionBase<T>, IComparerProvider<T>
     {
@@ -39,15 +39,8 @@ namespace Dsa.DataStructures
             {
                 throw new ArgumentNullException("comparer");
             }
-            _comparer = comparer;
-        }
 
-        /// <summary>
-        /// Gets the root node of the <see cref="BinarySearchTree{T}"/>.
-        /// </summary>
-        public BinaryTreeNode<T> Root
-        {
-            get { return _root; }
+            _comparer = comparer;
         }
 
         /// <summary>
@@ -59,14 +52,13 @@ namespace Dsa.DataStructures
         {
             if (Compare.IsLessThan(value, node.Value, _comparer))
             {
-                // the value is less than the current nodes value, so go left.
                 if (node.Left == null)
                 {
-                    node.Left = new BinaryTreeNode<T>(value); // the left child of the current node is null so insert the node here.
+                    node.Left = new BinaryTreeNode<T>(value); 
                 }
                 else
                 {
-                    InsertNode(node.Left, value); // call the insertNode method going left in the tree.
+                    InsertNode(node.Left, value);
                 }
             }
             else
@@ -74,11 +66,11 @@ namespace Dsa.DataStructures
                 // the value is greater than or equal to the current nodes value so go right.
                 if (node.Right == null)
                 { 
-                    node.Right = new BinaryTreeNode<T>(value); // the right child of the current node is null so insert the node here.
+                    node.Right = new BinaryTreeNode<T>(value); 
                 }
                 else
                 {
-                    InsertNode(node.Right, value); // call the insertNode method going right in the tree.
+                    InsertNode(node.Right, value);
                 }
             }
         }
@@ -86,6 +78,9 @@ namespace Dsa.DataStructures
         /// <summary>
         /// Finds a node in the <see cref="BinarySearchTree{T}"/> with the specified value.
         /// </summary>
+        /// <remarks>
+        /// This method is an O(log n) operation.
+        /// </remarks>
         /// <param name="value">Value to find.</param>
         /// <returns>A <see cref="BinaryTreeNode{T}"/> if a node was found with the value provided; otherwise null.</returns>
         public BinaryTreeNode<T> FindNode(T value)
@@ -103,10 +98,9 @@ namespace Dsa.DataStructures
         {
             if (root == null)
             {
-                return null; // there is no node in the bst with the value specified
+                return null; 
             }
-            /* check to see which way in the bst to go - left if value is less than the value of root, or right
-            * if value is greater than the value of root.*/
+
             if (Compare.IsLessThan(value, root.Value, _comparer))
             {
                 return FindNode(value, root.Left);
@@ -117,8 +111,7 @@ namespace Dsa.DataStructures
             }
             else
             {
-                /* the value is neither greater than or less than the value of root - thus we have found the 
-                 * node we are looking for. */
+                // we have found the value
                 return root; 
             }
         }
@@ -128,19 +121,17 @@ namespace Dsa.DataStructures
         /// </summary>
         /// <param name="value">Value of node to find parent of.</param>
         /// <returns><see cref="BinaryTreeNode{T}"/> if the parent was found, otherwise null.</returns>
+        /// <exception cref="InvalidOperationException"><see cref="BinarySearchTree{T}"/> is <strong>empty</strong>.</exception>
         public BinaryTreeNode<T> FindParent(T value)
         {
-            /* check to see if there are any items in the bst, if not then you cannot search the bst for a parent
-             * node of a specified value. */
             if (_root == null)
             {
                 throw new InvalidOperationException(Resources.BinarySearchTreeEmpty);
             }
-            /* check to see if the value is the same as that of the root node, if it is then the root 
-             * has no parent so return null. */
+
             if (Compare.AreEqual(value, _root.Value, _comparer))
             {
-                return null;
+                return null; // root node has no parent
             }
             return FindParent(value, _root);
         }
@@ -148,6 +139,9 @@ namespace Dsa.DataStructures
         /// <summary>
         /// Finds the parent of a node with the specified value, starting the search from a specified node in the bst.
         /// </summary>
+        /// <remarks>
+        /// This method is an O(log n) operation.
+        /// </remarks>
         /// <param name="value">Value of node to find parent of.</param>
         /// <param name="root">Node to start the search at.</param>
         /// <returns><see cref="BinaryTreeNode{T}"/> if the parent was found, otherwise null.</returns>
@@ -162,29 +156,27 @@ namespace Dsa.DataStructures
                 }
                 else if (Compare.AreEqual(value, root.Left.Value, _comparer))
                 {
-                    // root is the parent of the node with the value searching for
+                    // root is the parent of the node with the value we are searching for
                     return root;
                 }
                 else
                 {
-                    return FindParent(value, root.Left); // search the left subtree of root for the node with the spoecified value
+                    return FindParent(value, root.Left);
                 }
             }
             else
             {
-                // check to see if the right child of root is null, if it is then the value is not in the bst
                 if (root.Right == null)
                 {
                     return null; 
                 }
                 else if (Compare.AreEqual(value, root.Right.Value, _comparer))
                 {
-                    // root is the parent of the node with the value searching for
                     return root;
                 }
                 else
                 {
-                    return FindParent(value, root.Right); // search the right subtree of root for the node with the spoecified value
+                    return FindParent(value, root.Right);
                 }
             }
         }
@@ -247,34 +239,38 @@ namespace Dsa.DataStructures
         /// <returns>ArrayList populated with the items from the traversal.</returns>
         private static List<T> BreadthFirstTraversal(BinaryTreeNode<T> root)
         {
-            Queue<BinaryTreeNode<T>> queue = new Queue<BinaryTreeNode<T>>(); // stores the nodes we have yet to visit
-            List<T> visitOrder = new List<T>(); // stores the value of the nodes visited in bf order
+            Queue<BinaryTreeNode<T>> unvisited = new Queue<BinaryTreeNode<T>>(); 
+            List<T> visited = new List<T>();
+
             while (root != null)
             {
-                visitOrder.Add(root.Value); // add current nodes value to the list
+                visited.Add(root.Value);
                 if (root.Left != null)
                 {
-                    queue.Enqueue(root.Left); // add the roots left child node to the queue of nodes to visit
+                    unvisited.Enqueue(root.Left);
                 }
                 if (root.Right != null)
                 {
-                    queue.Enqueue(root.Right); // add the roots right child node to the queue of nodes to visit
+                    unvisited.Enqueue(root.Right); 
                 }
-                if (queue.Count > 0)
+                if (unvisited.Count > 0)
                 {
-                    root = queue.Dequeue(); // we still have nodes to visit, root is assigned to the next node to visit
+                    root = unvisited.Dequeue();
                 }
                 else
                 {
                     root = null; // we have ran out of nodes to visit
                 }
             }
-            return visitOrder;
+            return visited;
         }
 
         /// <summary>
         /// Traverses the <see cref="BinarySearchTree{T}"/> in breadth first order.
         /// </summary>
+        /// <remarks>
+        /// This method is an O(n) operation where n is the number of nodes in the <see cref="BinarySearchTree{T}"/> .
+        /// </remarks>
         /// <returns>An <see cref="IEnumerator{T}" /> that can be used to iterate through the <see cref="BinarySearchTree{T}"/>.</returns>
         public IEnumerable<T> GetBreadthFirstEnumerator()
         {
@@ -284,6 +280,9 @@ namespace Dsa.DataStructures
         ///<summary>
         /// Traverses the <see cref="BinarySearchTree{T}"/> in postorder traversal.
         ///</summary>
+        ///<remarks>
+        ///This method is an O(n) operation where n is the number of nodes in the <see cref="BinarySearchTree{T}"/> .
+        /// </remarks>
         ///<returns>An <see cref="IEnumerator{T}" /> that can be used to iterate through the <see cref="BinarySearchTree{T}"/>.</returns>
         public IEnumerable<T> GetPostorderEnumerator()
         {
@@ -294,6 +293,9 @@ namespace Dsa.DataStructures
         /// <summary>
         /// Traverses the <see cref="BinarySearchTree{T}"/> in inorder traversal.
         /// </summary>
+        /// <remarks>
+        /// This method is an O(n) operation where n is the number of nodes in the <see cref="BinarySearchTree{T}"/>.
+        /// </remarks>
         /// <returns>An <see cref="IEnumerator{T}" /> that can be used to iterate through the <see cref="BinarySearchTree{T}"/>.</returns>
         public  IEnumerable<T> GetInorderEnumerator()
         {
@@ -304,6 +306,9 @@ namespace Dsa.DataStructures
         /// <summary>
         /// Finds smallest value in the <see cref="BinarySearchTree{T}"/>.
         /// </summary>
+        /// <remarks>
+        /// This method is an O(log n) operation.
+        /// </remarks>
         /// <returns>Smallest value in the <see cref="BinarySearchTree{T}"/>.</returns>
         public T FindMin()
         {
@@ -317,13 +322,19 @@ namespace Dsa.DataStructures
         /// <returns>Smallest value in the bst.</returns>
         private T FindMin(BinaryTreeNode<T> root)
         {
-            if (root.Left == null) return root.Value; // if the left child of the current node is null then we have found the smallest value in the tree
-            return FindMin(root.Left); // continue walking down the left side of the tree to locate smallest value
+            if (root.Left == null)
+            {
+                return root.Value;
+            }
+            return FindMin(root.Left);
         }
 
         /// <summary>
         /// Finds the largest value in the <see cref="BinarySearchTree{T}"/>.
         /// </summary>
+        /// <remarks>
+        /// This method is an O(log n) operation.
+        /// </remarks>
         /// <returns>Largest value in the <see cref="BinarySearchTree{T}"/>.</returns>
         public T FindMax()
         {
@@ -337,19 +348,26 @@ namespace Dsa.DataStructures
         /// <returns>Largest value in the bst.</returns>
         private T FindMax(BinaryTreeNode<T> root)
         {
-            if (root.Right == null) return root.Value; // if the right child of the current node is null then we have found the largest value in the tree
-            return FindMax(root.Right); // continue walking down the right side of the tree to locate largest value
+            if (root.Right == null)
+            {
+                return root.Value;
+            }
+            return FindMax(root.Right); 
         }
 
         /// <summary>
-        /// Returns the items in the <see cref="BinarySearchTree{T}"/> as an <see cref="Array"/> using 
-        /// <see cref="BinarySearchTree{T}.GetBreadthFirstEnumerator"/> traversal.
+        /// Returns the items in the <see cref="BinarySearchTree{T}"/> as an <see cref="Array"/> using <see cref="BinarySearchTree{T}.GetBreadthFirstEnumerator"/> 
+        /// traversal.
         /// </summary>
         /// <remarks>
-        /// You cannot call the <see cref="BinarySearchTree{T}.ToArray"/> method on a <see cref="BinarySearchTree{T}"/> that is
-        /// empty.
+        /// <para>
+        /// This method is an O(n) operation where n is the number of nodes in the <see cref="BinarySearchTree{T}"/>.
+        /// </para>
+        /// <para>
+        /// You cannot call the <see cref="BinarySearchTree{T}.ToArray"/> method on a <see cref="BinarySearchTree{T}"/> that is empty.
+        /// </para>
         /// </remarks>
-        /// <returns>An <see cref="Array"/> containing the items of the <see cref="BinarySearchTree{T}"/>.</returns>
+        /// <returns>A one-dimensional <see cref="Array"/> containing the items of the <see cref="BinarySearchTree{T}"/>.</returns>
         /// <exception cref="InvalidOperationException"><see cref="BinarySearchTree{T}"/> is <strong>empty</strong>.</exception>
         public override T[] ToArray()
         {
@@ -357,11 +375,11 @@ namespace Dsa.DataStructures
             {
                 throw new InvalidOperationException(Resources.BinarySearchTreeEmpty); // to array is not permitted on a bst with no items.
             }
+
             int i = 0;
             T[] array = new T[Count];
             foreach (T item in GetBreadthFirstEnumerator())
             {
-                // loop through items copying them to an array
                 array[i] = item;
                 i++;
             }
@@ -380,18 +398,21 @@ namespace Dsa.DataStructures
         {
             if (_root == null)
             {
-                _root = new BinaryTreeNode<T>(item); // first node to be inserted into the tree.
+                _root = new BinaryTreeNode<T>(item);
             }
             else
             {
-                InsertNode(_root, item); // call the recursive method insertNode to see where this value is to be placed in the tree.
+                InsertNode(_root, item);
             }
-            Count++; // update count as we have added a new node to the bst
+            Count++; 
         }
 
         /// <summary>
         /// Clears all items from the <see cref="BinarySearchTree{T}"/>.
         /// </summary>
+        /// <remarks>
+        /// This method is an O(1) operation.
+        /// </remarks>
         public override void Clear()
         {
             _root = null;
@@ -401,6 +422,9 @@ namespace Dsa.DataStructures
         /// <summary>
         /// Determines whether an item is contained within the <see cref="BinarySearchTree{T}"/>.
         /// </summary>
+        /// <remarks>
+        /// This method is an O(log n) operation.
+        /// </remarks>
         /// <param name="item">Item to search the <see cref="BinarySearchTree{T}"/> for.</param>
         /// <returns>True if the item is contained within the <see cref="BinarySearchTree{T}"/>; false otherwise.</returns>
         public override bool Contains(T item)
@@ -411,9 +435,6 @@ namespace Dsa.DataStructures
         /// <summary>
         /// Determines whether an item is contained within the bst.
         /// </summary>
-        /// <remarks>
-        /// This method is an O(log n) operation.
-        /// </remarks>
         /// <param name="root">The root node of the bst.</param>
         /// <param name="item">The item to be located in the bst.</param>
         /// <returns>True if the item is contained within the bst, false otherwise.</returns>
@@ -425,15 +446,15 @@ namespace Dsa.DataStructures
             }
             if (Compare.AreEqual(root.Value, item, _comparer))
             {
-                return true; // we have found the item
+                return true; 
             }
             else if (Compare.IsLessThan(item, root.Value, _comparer))
             {
-                return Contains(root.Left, item); // search the left subtree of the current node for the item
+                return Contains(root.Left, item); 
             }
             else
             {
-                return Contains(root.Right, item); // search the right subtree of the current node for the item
+                return Contains(root.Right, item);
             }
         }
 
@@ -449,18 +470,19 @@ namespace Dsa.DataStructures
         /// <summary>
         /// Removes a node with the specified value from the <see cref="BinarySearchTree{T}"/>.
         /// </summary>
+        /// <remarks>
+        /// This method is an O(log n) operation.
+        /// </remarks>
         /// <param name="item">Item to remove from the the <see cref="BinarySearchTree{T}"/>.</param>
         /// <returns>True if the item was removed; false otherwise.</returns>
         public override bool Remove(T item)
         {
             BinaryTreeNode<T> nodeToRemove = FindNode(item);
-            // check to see if the item is not in the bst
             if (nodeToRemove == null)
             {
                 return false;
             }
             BinaryTreeNode<T> parent = FindParent(item);
-            // check to see if nodeToRemove is the only node in the bst
             if (Count == 1)
             {
                 _root = null;
@@ -524,7 +546,7 @@ namespace Dsa.DataStructures
         ///</summary>
         ///<remarks>
         /// This method is an O(n) operation.
-        /// </remarks>
+        ///</remarks>
         ///<returns>
         /// An <see cref="IEnumerator{T}" /> that can be used to iterate through the <see cref="BinarySearchTree{T}"/>.
         ///</returns>
@@ -534,17 +556,28 @@ namespace Dsa.DataStructures
             return PreorderTraveral(_root, arrayListCollection).GetEnumerator();
         }
 
-        #region IComparerProvider<T> Members
+        /// <summary>
+        /// Gets the root node of the <see cref="BinarySearchTree{T}"/>.
+        /// </summary>
+        public BinaryTreeNode<T> Root
+        {
+            get
+            {
+                return _root;
+            }
+        }
 
         /// <summary>
         /// Gets the <see cref="IComparer{T}"/> being used.
         /// </summary>
         IComparer<T> IComparerProvider<T>.Comparer
         {
-            get { return _comparer; }
+            get
+            {
+                return _comparer;
+            }
         }
 
-        #endregion
     }
 
 }

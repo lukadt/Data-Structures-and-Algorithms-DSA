@@ -25,10 +25,12 @@ namespace Dsa.DataStructures
         /// <summary>
         /// Adds an item to the <see cref="Set{T}"/>.
         /// </summary>
+        /// <remarks>
+        /// This is an O(1) operation if an <see cref="UnorderedSet{T}"/>, for an <see cref="OrderedSet{T}"/> this is an O(log n) operation.
+        /// </remarks>
         /// <param name="item">Item to add to the <see cref="Set{T}"/>.</param>
         public override void Add(T item)
         {
-            // check to make sure that the OrderedSet doesn't already contain the item to be added
             if (!_collection.Contains(item))
             {
                 _collection.Add(item);
@@ -48,6 +50,9 @@ namespace Dsa.DataStructures
         /// <summary>
         /// Determines whether or not an item is contained within the <see cref="UnorderedSet{T}"/>.
         /// </summary>
+        /// <remarks>
+        /// This is an O(n) operation for an <see cref="UnorderedSet{T}"/>, for a <see cref="OrderedSet{T}"/> this is an O(log n) operation.
+        /// </remarks>
         /// <param name="item">Item to search the <see cref="Set{T}"/> for.</param>
         /// <returns>True if the item is contained within the <see cref="Set{T}"/>; othwerise false.</returns>
         public override bool Contains(T item)
@@ -58,11 +63,13 @@ namespace Dsa.DataStructures
         /// <summary>
         /// Removes an item from the <see cref="Set{T}"/>.
         /// </summary>
+        /// <remarks>
+        /// This is an O(n) operation for an <see cref="UnorderedSet{T}"/>, for a <see cref="OrderedSet{T}"/> this is an O(log n) operation.
+        /// </remarks>
         /// <param name="item">Item to remove from the <see cref="Set{T}"/>.</param>
         /// <returns>True if the item was removed; false otherwise.</returns>
         public override bool Remove(T item)
         {
-            // HACK check this code over!!!!
             int count = Count;
             if (_collection.Remove(item))
             {
@@ -74,24 +81,34 @@ namespace Dsa.DataStructures
         /// <summary>
         /// Gets the collection being used for the set implementation.
         /// </summary>
+        /// <remarks>
+        /// For an <see cref="UnorderedSet{T}"/> this is a <see cref="SinglyLinkedList{T}"/>, an <see cref="OrderedSet{T}"/> uses 
+        /// a <see cref="BinarySearchTree{T}"/>.
+        /// </remarks>
         protected CollectionBase<T> Collection
         {
-            get { return _collection; }
+            get
+            {
+                return _collection;
+            }
         }
 
         /// <summary>
         /// Returns the items in the <see cref="Set{T}"/> as a one-dimensional <see cref="Array"/>.
         /// </summary>
-        /// <returns>An array populated with the items from the <see cref="Set{T}"/>.</returns>
+        /// <remarks>
+        /// This is an O(n) operation where n is the number of items in the <see cref="Set{T}"/>.
+        /// </remarks>
+        /// <returns>A one dimensional <see cref="Array"/> populated with the items from the <see cref="Set{T}"/>.</returns>
         public override T[] ToArray()
         {
-            // check to see that the set actually has some items in it
             if (Count < 1)
             {
                 throw new InvalidOperationException(Resources.SetEmpty);
             }
+
             T[] array = new T[Count];
-            int i = 0; // used for index
+            int i = 0;
             foreach (T item in this)
             {
                 array[i] = item;

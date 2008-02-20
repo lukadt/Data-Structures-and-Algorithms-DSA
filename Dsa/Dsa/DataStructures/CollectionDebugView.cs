@@ -6,9 +6,11 @@ namespace Dsa.DataStructures
 {
 
     /// <summary>
-    /// CollectionDebugView is a class to be used to assist with the locals debug window in
-    /// VS.  Can be used with any custom collection that implements ICollection(Of T).
+    /// CollectionDebugView assists the locals debug window in Visual Studio. All collections in DSA get this support for free.
     /// </summary>
+    /// <remarks>
+    /// This emulates BCL collections that provide a simple view of collections and a more intimate view (this is called the raw view).
+    /// </remarks>
     /// <typeparam name="T">Type of the CollectionDebugView.</typeparam>
     internal sealed class CollectionDebugView<T>
     {
@@ -25,8 +27,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Get's all the items in the collection as an array.
-        /// By making the RootHidden the debugger doesn't display the items as
+        /// Get's all the items in the collection as an array. By making the RootHidden the debugger doesn't display the items as
         /// elements of the property Items, rather just items of the array.
         /// </summary>
         [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]

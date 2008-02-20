@@ -1,6 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
 using Dsa.DataStructures;
-using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Dsa.Test.DataStructures
 {

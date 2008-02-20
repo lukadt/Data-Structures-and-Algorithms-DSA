@@ -15,31 +15,30 @@ namespace Dsa.Algorithms
         /// <summary>
         /// Reverses the characters of a <see cref="string"/>.
         /// </summary>
-        /// <param name="value">The <see cref="string"/> to reverse the characters of.</param>
-        /// <returns>A reversed <see cref="string"/> of the parameter.</returns>
-        /// <exception cref="ArgumentNullException"><strong>value</strong> is <strong>null</strong>.</exception>
         /// <remarks>
         /// This method is an O(n) operation where n is the number of chars in the string to reverse.
         /// </remarks>
+        /// <param name="value"><see cref="String"/> to reverse the characters of.</param>
+        /// <returns><see cref="String"/> with characters in reverse order.</returns>
+        /// <exception cref="ArgumentNullException"><strong>value</strong> is <strong>null</strong>.</exception>
         public static string Reverse(this string value)
         {
             if (value == null)
             {
                 throw new ArgumentNullException("value");
             }
-            // if the string only has a length of 1 we can just return the original string
+
             if (value.Length < 2)
             {
-                return value; 
+                return value; // string only has 1 char
             }
-            // create a buffer array to store reversed chars in
-            char[] resultingString = new char[value.Length]; 
-            // loop through the string placing each char in its new location within the resultingString buffer
+            char[] buffer = new char[value.Length]; 
+            // place each char from value in its new location within the buffer
             for (int i = value.Length - 1, j = 0; i >= 0; i--, j++)
             {
-                resultingString[j] = value[i]; // populate buffer array
+                buffer[j] = value[i]; 
             }
-            return new string(resultingString);
+            return new string(buffer);
         }
 
         /// <summary>
@@ -47,7 +46,13 @@ namespace Dsa.Algorithms
         /// character in the word <see cref="string"/>.
         /// </summary>
         /// <remarks>
-        /// <para>Case sensitive, whitespace is ignored.</para>
+        /// <para>
+        /// This method is an O(n^2) operation.
+        /// <see cref="char"/> is the same as that in the word <see cref="string"/>.
+        /// </para>
+        /// <para>
+        /// Case sensitive, whitespace is ignored.
+        /// </para>
         /// </remarks>
         /// <param name="word">Word to run the any match against.</param>
         /// <param name="match">The <see cref="string"/> of characters to match against the word.</param>
@@ -56,9 +61,7 @@ namespace Dsa.Algorithms
         /// also in the word <see cref="string"/>; otherwise -1 if no characters in the match <see cref="string"/> matched any of the characters in the 
         /// word <see cref="string"/>.
         /// </returns>
-        /// <exception cref="ArgumentNullException">
-        /// <strong>word</strong> is <strong>null</strong> or <strong>match</strong> is <strong>null</strong>.
-        /// </exception>
+        /// <exception cref="ArgumentNullException"><strong>word</strong> is <strong>null</strong> or <strong>match</strong> is <strong>null</strong>.</exception>
         public static int Any(this string word, string match)
         {
             if (word == null)
@@ -69,22 +72,19 @@ namespace Dsa.Algorithms
             {
                 throw new ArgumentNullException("match");
             }
-            // loop through each character in the word string
+            
             for (int i = 0; i < word.Length; i++)
             {
-                // skip any whitespace in the word string
                 while (char.IsWhiteSpace(word[i]))
                 {
                     i++;
                 }
                 for (int j = 0; j < match.Length; j++)
                 {
-                    // skip any whitespace in the match string
                     while (char.IsWhiteSpace(match[j]))
                     {
                         j++;
                     }
-                    // check to see if we have a match, if we do return the index of the matching char in the match string
                     if (match[j] == word[i])
                     {
                         return j;
@@ -98,8 +98,12 @@ namespace Dsa.Algorithms
         /// Detects whether or not the input string is a palindrome.
         /// </summary>
         /// <remarks>
-        /// <para>This method is an O(n) operation where n is the number of chars to traverse in order to verify the string is a palindrome.</para>
-        /// <para>Case, whitespace, punctuation and symbols are ignored.</para>
+        /// <para>
+        /// This method is an O(n) operation where n is the number of chars to traverse in order to verify the string is a palindrome.
+        /// </para>
+        /// <para>
+        /// Case, whitespace, punctuation and symbols are ignored.
+        /// </para>
         /// </remarks>
         /// <param name="word"><see cref="string"/> that you want to test is a palindrome or not.</param>
         /// <returns>True if the string is a palindrome; otherwise false.</returns>
@@ -110,25 +114,22 @@ namespace Dsa.Algorithms
             {
                 throw new ArgumentNullException("word");
             }
-            // palindromes are case insensitive so convert all chars in word to lowercase
+            
             word = word.Strip().ToUpper(CultureInfo.InvariantCulture); 
-            // set beginning and end index pointers
-            int begin = 0;
-            int end = word.Length - 1;
-            /* march in from either end of the string checking for equality and making sure that the begin pointer has a value less 
-             * than the end pointer */
-            while (word[begin] == word[end] && begin < end) 
+            int left = 0;
+            int right = word.Length - 1;
+            // march in from the left and right bounds of the string
+            while (word[left] == word[right] && left < right) 
             {
-                begin++;
-                end--;
+                left++;
+                right--;
             }
-            // if the two chars we are pointing two are equal we have a palindrome
-            return word[begin] == word[end];
+            // if the two chars we are pointing to are equal we have a palindrome
+            return word[left] == word[right];
         }
 
         /// <summary>
-        /// Takes a <see cref="string"/> and strips it of whitespace, punctuation and symbols returning the resulting stripped 
-        /// <see cref="string"/>.
+        /// Takes a <see cref="string"/> and strips it of whitespace, punctuation and symbols returning the resulting stripped <see cref="string"/>.
         /// </summary>
         /// <remarks>
         /// This methods is an O(n) operation where n is the number of chars in the string to strip.
@@ -142,11 +143,9 @@ namespace Dsa.Algorithms
             {
                 throw new ArgumentNullException("value");
             }
-            StringBuilder sb = new StringBuilder(); // will hold the stripped string
+            StringBuilder sb = new StringBuilder(); 
             for (int i = 0; i < value.Length; i++)
             {
-                /* check the char at index i of value to see that it is not whitespace, punctuation or a symbol - if all 3 properties are
-                satisfied then we can add the char at the current index to sb. */
                 if (!char.IsWhiteSpace(value[i]) && !char.IsPunctuation(value[i]) && !char.IsSymbol(value[i]))
                 {
                     sb.Append(value[i]);
@@ -170,12 +169,10 @@ namespace Dsa.Algorithms
             {
                 throw new ArgumentNullException("value");
             }
-            // flag used to monitor whether we are currently in a word
+            
             bool inWord = true; 
-            // keep track of the number of words encountered within value
-            int count = 0; 
+            int wordCount = 0; 
             int index = 0;
-            // skip any initial whitespace in value
             while (char.IsWhiteSpace(value[index]) && index < value.Length - 1)
             {
                 index++;
@@ -195,19 +192,19 @@ namespace Dsa.Algorithms
                         index++;
                     }
                     inWord = false; // as we are hitting whitespace we are not in a word
-                    count++; // I assume that words are delimitd by whitespace, thus count should be incremented
+                    wordCount++; // I assume that words are delimitd by whitespace, thus wordCount should be incremented
                 }
                 else
                 {
                     inWord = true; 
                 }
             }
-            // the last word may of not been followed by whitespace, in that case increment count
+            // the last word may of not been followed by whitespace, in that case increment wordCount
             if (inWord)
             {
-                count++; 
+                wordCount++; 
             }
-            return count;
+            return wordCount;
         }
 
         /// <summary>
@@ -216,18 +213,19 @@ namespace Dsa.Algorithms
         /// <remarks>
         /// This is an O(n) operation where n is the number of chars in the string to reverse the words of.
         /// </remarks>
-        /// <param name="value">String to reverse the words of.</param>
-        /// <returns>The reversed string.</returns>
+        /// <param name="value"><see cref="string"/> to reverse the words of.</param>
+        /// <returns><see cref="string"/> with original words in reverse order.</returns>
+        /// <exception cref="ArgumentNullException"><strong>value</strong> is <strong>null</strong>.</exception>
         public static string ReverseWords(this string value)
         {
             if (value == null)
             {
                 throw new ArgumentNullException("value");
             }
+
             int last = value.Length - 1;
             int start = last; // will be used to mark the beginning of a word in the string
             StringBuilder sb = new StringBuilder();
-            // make sure that the value of last is at the very least 0, the first index of the string
             while (last >= 0)
             {
                 while (start >= 0 && char.IsWhiteSpace(value[start]))
@@ -240,7 +238,6 @@ namespace Dsa.Algorithms
                 {
                     start--;
                 }
-                // collect the chars of the word into sb
                 for (int i = start + 1; i < last + 1; i++)
                 {
                     sb.Append(value[i]);
@@ -254,7 +251,7 @@ namespace Dsa.Algorithms
                 last = start - 1;
                 start = last;
             }
-            // check to see if we have added some whitespace at the end of sb if so just cut the sb length by 1
+            // check to see if we have added some whitespace at the right of sb if so just cut the sb length by 1
             if (char.IsWhiteSpace(sb[sb.Length - 1]))
             {
                 sb.Length = sb.Length - 1;
@@ -268,14 +265,16 @@ namespace Dsa.Algorithms
         /// <remarks>
         /// This method is an O(n) operation where n is the number of words in the string delimited by whitespace.
         /// </remarks>
-        /// <param name="value">String to count repeated words of.</param>
+        /// <param name="value"><see cref="string"/> to count repeated words of.</param>
         /// <returns>Number of words repeated in the given string.</returns>
+        /// <exception cref="ArgumentNullException"><strong>value</strong> is <strong>null</strong>.</exception>
         public static int RepeatedWordCount(this string value)
         {
             if (value == null)
             {
                 throw new ArgumentNullException("value");
             }
+
             string[] words = value.Split(' ');
             UnorderedSet<string> uniques = new UnorderedSet<string>();
             foreach (string s in words)

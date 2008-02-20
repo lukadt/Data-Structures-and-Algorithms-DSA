@@ -9,14 +9,20 @@ namespace Dsa.DataStructures
 {
 
     /// <summary>
-    /// Makes implementing <see cref="ICollection"/> and <see cref="ICollection{T}"/> easier.
+    /// <para>
+    /// Base class for all DSA collections.
+    /// </para>
     /// </summary>
+    /// <remarks>
+    /// Makes implementing <see cref="ICollection"/> and <see cref="ICollection{T}"/> easier. Just derive from this type and override the relevant methods etc.
+    /// </remarks>
     /// <typeparam name="T">Type of <see cref="CollectionBase"/>.</typeparam>
     [Serializable]
     [DebuggerDisplay("Count={Count}")]
     [DebuggerTypeProxy(typeof(CollectionDebugView<>))]
     public abstract class CollectionBase<T> : ICollection, ICollection<T>
     {
+
         [NonSerialized]
         private object _syncRoot;
         [NonSerialized]
@@ -36,18 +42,39 @@ namespace Dsa.DataStructures
 
         /// <summary>
         /// Gets whether or not the collection is thread safe.
-        /// <remarks>
-        /// This is always false in DSA.
-        /// </remarks>
         /// </summary>
+        /// <remarks>
+        /// All collections in DSA are not thread safe. The programmer must compose the relevant code to ensure thread safety.
+        /// </remarks>
         public bool IsSynchronized
         {
-            get { return false; }
+            get
+            {
+                return false;
+            }
         }
 
         /// <summary>
         /// Gets an object that can be used to synchronize accesss to the collection.
         /// </summary>
+        /// <remarks>
+        /// Use the object returned by this property for locks rather than this.
+        /// </remarks>
+        /// <example>
+        /// <code>
+        /// lock (myCollection.SyncRoot)
+        /// {
+        /// // ...
+        /// }
+        /// </code>
+        /// Not:
+        /// <code>
+        /// lock (this)
+        /// {
+        /// // ...
+        /// }
+        /// </code>
+        /// </example>
         object ICollection.SyncRoot
         {
             get
@@ -113,20 +140,32 @@ namespace Dsa.DataStructures
         /// </summary>
         public int Count
         {
-            get { return _count; }
-            protected set { _count = value; }
+            get
+            {
+                return _count;
+            }
+            protected set
+            {
+                _count = value;
+            }
         }
 
         /// <summary>
         /// Gets whether or not the <see cref="ICollection{T}"/> is read only.
         /// </summary>
+        /// <remarks>
+        /// All DSA collections are read/write.
+        /// </remarks>
         bool ICollection<T>.IsReadOnly
         {
-            get { return false; }
+            get
+            {
+                return false;
+            }
         }
 
         /// <summary>
-        /// Removes an items from the <see cref="ICollection{T}"/>.
+        /// Removes an item from the <see cref="ICollection{T}"/>.
         /// </summary>
         /// <param name="item">Item to remove from collection.</param>
         /// <returns>True if the item was removed; otherwise false.</returns>

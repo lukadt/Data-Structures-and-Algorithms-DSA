@@ -1,14 +1,18 @@
-﻿namespace Dsa.DataStructures
+﻿using System;
+
+namespace Dsa.DataStructures
 {
 
     /// <summary>
-    /// <see cref="SinglyLinkedListNode{T}"/> is an implementation of a node used in a singly linked list data structure.
+    /// Node used in <see cref="SinglyLinkedList{T}"/>.
     /// </summary>
     /// <typeparam name="T">Type of the <see cref="SinglyLinkedListNode{T}"/>.</typeparam>
     public sealed class SinglyLinkedListNode<T>
     {
 
+        [NonSerialized]
         private T _value;
+        [NonSerialized]
         private SinglyLinkedListNode<T> _next;
 
         /// <summary>
@@ -25,7 +29,10 @@
         /// </summary>
         public T Value
         {
-            get { return _value; }
+            get
+            {
+                return _value;
+            }
         }
 
         /// <summary>
@@ -33,8 +40,14 @@
         /// </summary>
         public SinglyLinkedListNode<T> Next
         {
-            get { return _next; }
-            set { _next = value; }
+            get
+            {
+                return _next;
+            }
+            set
+            {
+                _next = value;
+            }
         }
 
     }

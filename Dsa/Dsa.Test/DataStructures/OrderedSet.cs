@@ -1,8 +1,7 @@
 ﻿using System;
-using Dsa.DataStructures;
-using Dsa.Test.Utility;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using Dsa.DataStructures;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Dsa.Test.DataStructures
 {

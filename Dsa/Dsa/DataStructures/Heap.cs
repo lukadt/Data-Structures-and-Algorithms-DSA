@@ -15,8 +15,11 @@ namespace Dsa.DataStructures
     public sealed class Heap<T> : CollectionBase<T>, IComparerProvider<T>
     {
 
+        [NonSerialized]
         private T[] _heap;
+        [NonSerialized]
         private IComparer<T> _comparer = Comparer<T>.Default;
+        [NonSerialized]
         private HeapType _heapType = HeapType.Min;
 
         /// <summary>
@@ -28,8 +31,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Initializes a new instance of <see cref="Heap{T}"/> using a
-        /// specified <see cref="HeapType"/>.
+        /// Initializes a new instance of <see cref="Heap{T}"/> using a specified <see cref="HeapType"/>.
         /// </summary>
         /// <param name="heapType">Type of Heap.</param>
         public Heap(HeapType heapType)
@@ -39,8 +41,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Initializes a new instance of <see cref="Heap{T}"/> using a specified
-        /// <see cref="HeapType"/> and <see cref="IComparer{T}"/>.
+        /// Initializes a new instance of <see cref="Heap{T}"/> using a specified <see cref="HeapType"/> and <see cref="IComparer{T}"/>.
         /// </summary>
         /// <param name="heapType">Type of Heap.</param>
         /// <param name="comparer">Comparer to use.</param>
@@ -53,6 +54,9 @@ namespace Dsa.DataStructures
         /// <summary>
         /// Adds an item to the <see cref="Heap{T}"/>.
         /// </summary>
+        /// <remarks>
+        /// This method is an O(1) operation.
+        /// </remarks>
         /// <param name="item">Item to add to the heap.</param>
         public override void Add(T item)
         {
@@ -60,6 +64,7 @@ namespace Dsa.DataStructures
             {
                 Array.Resize(ref _heap, 2 * _heap.Length);
             }
+
             _heap[Count++] = item;
             if (_heapType == HeapType.Min)
             {
@@ -83,6 +88,9 @@ namespace Dsa.DataStructures
         /// <summary>
         /// Determines whether or not the <see cref="Heap{T}"/> contains a specific item.
         /// </summary>
+        /// <remarks>
+        /// This is an O(n) operation where n is the number of items in the <see cref="Heap{T}"/>.
+        /// </remarks>
         /// <param name="item">Item to see if the Heap contains.</param>
         /// <returns>True is the item is in the Heap; otherwise false.</returns>
         public override bool Contains(T item)
@@ -93,6 +101,9 @@ namespace Dsa.DataStructures
         /// <summary>
         /// Removes an item from the <see cref="Heap{T}"/>.
         /// </summary>
+        /// <remarks>
+        /// This method is an O(log n) operation.
+        /// </remarks>
         /// <param name="item">Item to remove from the Heap.</param>
         /// <returns>True if the item was found and removed; otherwise false.</returns>
         public override bool Remove(T item)
@@ -144,8 +155,11 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Converts the <see cref="Heap{T}"/> to a one-dimension array.
+        /// Converts the <see cref="Heap{T}"/> to a one-dimensional array.
         /// </summary>
+        /// <remarks>
+        /// This method is an O(n) operation where n is the number of items in the <see cref="Heap{T}"/>.
+        /// </remarks>
         /// <returns>Array populated with the items from the Heap.</returns>
         public override T[] ToArray()
         {
@@ -162,6 +176,9 @@ namespace Dsa.DataStructures
         /// <summary>
         /// Returns an enumerator that iterates through the <see cref="Heap{T}"/> in breadth first order.
         /// </summary>
+        /// <remarks>
+        /// This method is an O(n) operation where n is the number of items in the <see cref="Heap{T}"/>.
+        /// </remarks>
         /// <returns>An <see cref="IEnumerator{T}"/> for the <see cref="Heap{T}"/>.</returns>
         public override IEnumerator<T> GetEnumerator()
         {
@@ -175,8 +192,13 @@ namespace Dsa.DataStructures
         /// Min heapifies the <see cref="Heap{T}"/>.
         /// </summary>
         /// <remarks>
-        /// The key of the parent is less than or equal to that of its child, this property holds
-        /// throughout the Heap :. the key at the root of the Heap is the smallest key in the Heap.
+        /// <para>
+        /// This method is an O(log n) operation.
+        /// </para>
+        /// <para>
+        /// The key of the parent is less than or equal to that of its child, this property holds throughout the Heap :. the key at the root of the Heap 
+        /// is the smallest key in the Heap.
+        /// </para>
         /// </remarks>
         private void MinHeapify()
         {
@@ -192,8 +214,13 @@ namespace Dsa.DataStructures
         /// Max heapifies the <see cref="Heap{T}"/>.
         /// </summary>
         /// <remarks>
-        /// The key of the parent is greater than or equal to that of its child, this property holds
-        /// throughout the Heap :. the key at the root of the Heap is the greatest key in the Heap.
+        /// <para>
+        /// This method is an O(log n) operation.
+        /// </para>
+        /// <para>
+        /// The key of the parent is greater than or equal to that of its child, this property holds throughout the Heap :. the key at the root of the Heap is 
+        /// the greatest key in the Heap.
+        /// </para>
         /// </remarks>
         private void MaxHeapify()
         {
