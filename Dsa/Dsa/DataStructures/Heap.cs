@@ -102,7 +102,7 @@ namespace Dsa.DataStructures
         /// Removes an item from the <see cref="Heap{T}"/>.
         /// </summary>
         /// <remarks>
-        /// This method is an O(log n) operation.
+        /// This method is an O(n) operation.
         /// </remarks>
         /// <param name="item">Item to remove from the Heap.</param>
         /// <returns>True if the item was found and removed; otherwise false.</returns>

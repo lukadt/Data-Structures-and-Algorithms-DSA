@@ -91,7 +91,7 @@ namespace Dsa.Algorithms
             {
                 Exchange(ref list, middle, right);
             }
-            // put the median key at index 0
+            // place the median key at index 0
             Exchange(ref list, middle, left);
             return list;
         }
