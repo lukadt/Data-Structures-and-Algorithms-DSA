@@ -99,7 +99,7 @@ namespace Dsa.DataStructures
         /// </remarks>
         /// <param name="node">Node in <see cref="SinglyLinkedList{T}"/> to add node after.</param>
         /// <param name="item">Item to add to <see cref="SinglyLinkedList{T}"/>.</param>
-        /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedList{T}"/> contains <strong>0 items</strong>.</exception>
+        /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedList{T}"/> contains <strong>0 k</strong>.</exception>
         /// <exception cref="ArgumentNullException"><strong>node</strong> is <strong>null</strong>.</exception>
         public void AddAfter(SinglyLinkedListNode<T> node, T item)
         {
@@ -141,7 +141,7 @@ namespace Dsa.DataStructures
         /// </remarks>
         /// <param name="node">Node in the <see cref="SinglyLinkedList{T}"/> to add node before.</param>
         /// <param name="item">Item to add to the <see cref="SinglyLinkedList{T}"/>.</param>
-        /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedList{T}"/> contains <strong>0 items</strong>.</exception>
+        /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedList{T}"/> contains <strong>0 k</strong>.</exception>
         /// <exception cref="ArgumentNullException"><strong>node</strong> is <strong>null</strong>.</exception>
         public void AddBefore(SinglyLinkedListNode<T> node, T item)
         {
@@ -190,13 +190,13 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Converts the <see cref="SinglyLinkedList{T}"/> and its items to an <see cref="Array"/>.
+        /// Converts the <see cref="SinglyLinkedList{T}"/> and its k to an <see cref="Array"/>.
         /// </summary>
         /// <remarks>
         /// This method is an O(n) operation where n is the number of nodes in the linked list.
         /// </remarks>
-        /// <returns>A one-dimensional <see cref="Array"/> containing the items from the <see cref="SinglyLinkedList{T}"/>.</returns>
-        /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedList{T}"/> contains <strong>0 items</strong>.</exception>
+        /// <returns>A one-dimensional <see cref="Array"/> containing the k from the <see cref="SinglyLinkedList{T}"/>.</returns>
+        /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedList{T}"/> contains <strong>0 k</strong>.</exception>
         public override T[] ToArray()
         {
             if (IsEmpty())
@@ -215,13 +215,13 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Converts the <see cref="SinglyLinkedList{T}"/> and its items to an <see cref="Array"/>.
+        /// Converts the <see cref="SinglyLinkedList{T}"/> and its k to an <see cref="Array"/>.
         /// </summary>
         /// <remarks>
         /// This method is an O(n) operation where n is the number of nodes in the linked list.
         /// </remarks>
-        /// <returns>A one-dimensional <see cref="Array"/> containing the items from the <see cref="SinglyLinkedList{T}"/> in reverse order.</returns>
-        /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedList{T}"/> contains <strong>0 items</strong>.</exception>
+        /// <returns>A one-dimensional <see cref="Array"/> containing the k from the <see cref="SinglyLinkedList{T}"/> in reverse order.</returns>
+        /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedList{T}"/> contains <strong>0 k</strong>.</exception>
         public T[] ToReverseArray()
         {
             if (IsEmpty())
@@ -247,7 +247,7 @@ namespace Dsa.DataStructures
         /// in the linked list, otherwise the method is an O(n) operation where n nodes have to be traversed in order to locate the node that
         /// preceeds the last node.
         /// </remarks>
-        /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedList{T}"/> contains <strong>0 items</strong>.</exception>
+        /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedList{T}"/> contains <strong>0 k</strong>.</exception>
         public void RemoveLast()
         {
             if (IsEmpty())
@@ -283,7 +283,7 @@ namespace Dsa.DataStructures
         /// <remarks>
         /// This method is an O(1) operation, the <see cref="Head"/> is always known.
         /// </remarks>
-        /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedList{T}"/> contains <strong>0 items</strong>.</exception>
+        /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedList{T}"/> contains <strong>0 k</strong>.</exception>
         public void RemoveFirst()
         {
             if (IsEmpty())
@@ -320,7 +320,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Returns an <see cref="IEnumerator{T}"/> that iterates through the items in the <see cref="SinglyLinkedList{T}"/>.
+        /// Returns an <see cref="IEnumerator{T}"/> that iterates through the k in the <see cref="SinglyLinkedList{T}"/>.
         /// </summary>
         /// <remarks>
         /// This method is an O(n) operation where n is the number of nodes in the linked list. 
@@ -387,7 +387,7 @@ namespace Dsa.DataStructures
         /// </remarks>
         /// <param name="item">Value to remove</param>
         /// <returns>True if the value was found and removed; false otherwise.</returns>
-        /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedList{T}"/> contains <strong>0 items</strong>.</exception>
+        /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedList{T}"/> contains <strong>0 k</strong>.</exception>
         public override bool Remove(T item)
         {
             if (IsEmpty())
@@ -438,7 +438,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Returns an <see cref="IEnumerable{T}"/> that iterates through the items in the <see cref="SinglyLinkedList{T}"/> in reverse order.
+        /// Returns an <see cref="IEnumerable{T}"/> that iterates through the k in the <see cref="SinglyLinkedList{T}"/> in reverse order.
         /// </summary>
         /// <remarks>
         /// This method is an O(n) operation where n is the number of nodes in the linked list.

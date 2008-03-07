@@ -106,6 +106,15 @@ namespace Dsa.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The number of item permutations must be greater than 0..
+        /// </summary>
+        internal static string PermutationsKGreaterThanZero {
+            get {
+                return ResourceManager.GetString("PermutationsKGreaterThanZero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Power cannot be called with an exponent less than 0..
         /// </summary>
         internal static string PowerExponentLessThanZero {

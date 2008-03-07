@@ -21,7 +21,7 @@ namespace Dsa.Algorithms
         /// <param name="number">Integer to compute the fibonacci number for.</param>
         /// <returns>Fibonacci number for the specified <see cref="Int32"/>.</returns>
         /// <exception cref="ArgumentOutOfRangeException"><strong>number</strong> is less than <strong>0</strong>.</exception>
-        public static int Fibonacci(int number)
+        public static int Fibonacci(this int number)
         {
             if (number < 0)
             {
@@ -58,7 +58,7 @@ namespace Dsa.Algorithms
         /// <param name="number">Integer to compute the factorial of.</param>
         /// <returns>The factorial of the specified <see cref="System.Int32"/>.</returns>
         /// <exception cref="ArgumentOutOfRangeException"><strong>number</strong> is less than <strong>0</strong>.</exception>
-        public static int Factorial(int number)
+        public static int Factorial(this int number)
         {
             if (number < 0)
             {

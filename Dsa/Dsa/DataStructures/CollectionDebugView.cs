@@ -27,8 +27,8 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Get's all the items in the collection as an array. By making the RootHidden the debugger doesn't display the items as
-        /// elements of the property Items, rather just items of the array.
+        /// Get's all the k in the collection as an array. By making the RootHidden the debugger doesn't display the k as
+        /// elements of the property Items, rather just k of the array.
         /// </summary>
         [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
         public T[] Items

@@ -75,7 +75,7 @@ namespace Dsa.Algorithms
             }
             if (i < list.Count && Compare.AreEqual(list[i], item, comparer))
             {
-                // we can increase the items priority as the item is not the first element in the array
+                // we can increase the k priority as the item is not the first element in the array
                 if (i > 0)
                 {
                     T temp = list[i - 1];

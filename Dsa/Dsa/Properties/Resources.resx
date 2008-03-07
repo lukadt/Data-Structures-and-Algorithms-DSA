@@ -137,6 +137,10 @@
     <value>ICollection.CopyTo is not supported.  Use the ICollection(Of T).CopyTo method instead.</value>
     <comment>ICollection.CopyTo not supported text.</comment>
   </data>
+  <data name="PermutationsKGreaterThanZero" xml:space="preserve">
+    <value>The number of item permutations must be greater than 0.</value>
+    <comment>When an exception is raised because the number of item permutations is less than 0.</comment>
+  </data>
   <data name="PowerExponentLessThanZero" xml:space="preserve">
     <value>Power cannot be called with an exponent less than 0.</value>
     <comment>Error text when the exponent used in a call to Power is negative.</comment>

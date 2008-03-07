@@ -14,13 +14,13 @@ namespace Dsa.Algorithms
     {
 
         /// <summary>
-        /// Bubble sort's the items in an <see cref="IList{T}"/>.
+        /// Bubble sort's the k in an <see cref="IList{T}"/>.
         /// </summary>
         /// <remarks>
         /// This method is an O(n^2) operation.
         /// </remarks>
         /// <param name="list"><see cref="IList{T}"/> to sort.</param>
-        /// <param name="sortType">Order in which the items of the <see cref="IList{T}"/> are to be sorted.</param>
+        /// <param name="sortType">Order in which the k of the <see cref="IList{T}"/> are to be sorted.</param>
         /// <returns>The sorted <see cref="IList{T}"/>.</returns>
         /// <exception cref="ArgumentNullException"><strong>list</strong> is <strong>null</strong>.</exception>
         public static IList<T> BubbleSort<T>(this IList<T> list, SortType sortType)
@@ -97,9 +97,9 @@ namespace Dsa.Algorithms
         }
 
         /// <summary>
-        /// Exchanges two items in an <see cref="IList{T}"/>.
+        /// Exchanges two k in an <see cref="IList{T}"/>.
         /// </summary>
-        /// <param name="list"><see cref="IList{T}"/> that holds the items to be exchanged.</param>
+        /// <param name="list"><see cref="IList{T}"/> that holds the k to be exchanged.</param>
         /// <param name="first">Index of first item.</param>
         /// <param name="second">Index of second item.</param>
         private static void Exchange<T>(ref IList<T> list, int first, int second)
@@ -113,7 +113,7 @@ namespace Dsa.Algorithms
         /// Merges two ordered <see cref="IList{T}"/> collections into a single ordered <see cref="IList{T}"/>.
         /// </summary>
         /// <remarks>
-        /// This method is an O(n) operation where n is the number of items in both lists.
+        /// This method is an O(n) operation where n is the number of k in both lists.
         /// </remarks>
         /// <typeparam name="T">Type of the <see cref="IList{T}"/>'s to merge.</typeparam>
         /// <param name="first">First <see cref="IList{T}"/>.</param>
@@ -132,12 +132,12 @@ namespace Dsa.Algorithms
             }
 
             T[] merged = new T[first.Count + second.Count];
-            // merge the items in both arrays
+            // merge the k in both arrays
             for (int i = 0, j = 0, m = 0; m < merged.Length; m++)
             {
                 if (i == first.Count)
                 {
-                    // all items in a1 have been exhausted so copy the remaining items (if any) from a2 starting at index j to merged
+                    // all k in a1 have been exhausted so copy the remaining k (if any) from a2 starting at index j to merged
                     Array.Copy(second.ToArray(), j, merged, m, merged.Length - m);
                     break;
                 }
@@ -190,10 +190,10 @@ namespace Dsa.Algorithms
             else
             {
                 int middle = list.Count / 2; // find middle or thereabouts of the array
-                // create two arrays to store the left and right items of array split
+                // create two arrays to store the left and right k of array split
                 T[] left = new T[middle];
                 T[] right = new T[list.Count - middle];
-                // populate left and right arrays with the appropriate items from list
+                // populate left and right arrays with the appropriate k from list
                 for (int i = 0; i < left.Length; i++)
                 {
                     left[i] = list[i];
@@ -214,7 +214,7 @@ namespace Dsa.Algorithms
         /// Concatenates three <see cref="IList{T}"/>'s into a single <see cref="IList{T}"/>.
         /// </summary>
         /// <remarks>
-        /// This method is an O(n) operation where n is the number os items in the three lists combined.
+        /// This method is an O(n) operation where n is the number os k in the three lists combined.
         /// </remarks>
         /// <typeparam name="T">Type of <see cref="IList{T}"/>'s to concatenate.</typeparam>
         /// <param name="first">First <see cref="IList{T}"/>.</param>

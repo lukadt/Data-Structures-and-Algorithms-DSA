@@ -7,11 +7,11 @@
     public enum SortType
     {
         /// <summary>
-        /// Sort items in ascending order.
+        /// Sort k in ascending order.
         /// </summary>
         Ascending,
         /// <summary>
-        /// Sort items in descending order.
+        /// Sort k in descending order.
         /// </summary>
         Descending
     }

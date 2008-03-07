@@ -77,7 +77,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Clears the <see cref="Heap{T}"/> of its items.
+        /// Clears the <see cref="Heap{T}"/> of its k.
         /// </summary>
         public override void Clear()
         {
@@ -89,7 +89,7 @@ namespace Dsa.DataStructures
         /// Determines whether or not the <see cref="Heap{T}"/> contains a specific item.
         /// </summary>
         /// <remarks>
-        /// This is an O(n) operation where n is the number of items in the <see cref="Heap{T}"/>.
+        /// This is an O(n) operation where n is the number of k in the <see cref="Heap{T}"/>.
         /// </remarks>
         /// <param name="item">Item to see if the Heap contains.</param>
         /// <returns>True is the item is in the Heap; otherwise false.</returns>
@@ -158,9 +158,9 @@ namespace Dsa.DataStructures
         /// Converts the <see cref="Heap{T}"/> to a one-dimensional array.
         /// </summary>
         /// <remarks>
-        /// This method is an O(n) operation where n is the number of items in the <see cref="Heap{T}"/>.
+        /// This method is an O(n) operation where n is the number of k in the <see cref="Heap{T}"/>.
         /// </remarks>
-        /// <returns>Array populated with the items from the Heap.</returns>
+        /// <returns>Array populated with the k from the Heap.</returns>
         public override T[] ToArray()
         {
             T[] heap = new T[Count];
@@ -177,7 +177,7 @@ namespace Dsa.DataStructures
         /// Returns an enumerator that iterates through the <see cref="Heap{T}"/> in breadth first order.
         /// </summary>
         /// <remarks>
-        /// This method is an O(n) operation where n is the number of items in the <see cref="Heap{T}"/>.
+        /// This method is an O(n) operation where n is the number of k in the <see cref="Heap{T}"/>.
         /// </remarks>
         /// <returns>An <see cref="IEnumerator{T}"/> for the <see cref="Heap{T}"/>.</returns>
         public override IEnumerator<T> GetEnumerator()
@@ -233,9 +233,9 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Swaps the values around of items in an <see cref="Array"/>.
+        /// Swaps the values around of k in an <see cref="Array"/>.
         /// </summary>
-        /// <param name="array">Array which holds the items to swap around.</param>
+        /// <param name="array">Array which holds the k to swap around.</param>
         /// <param name="first">Index of first item to swap.</param>
         /// <param name="second">Index of second item to swap.</param>
         private static void Swap(ref T[] array, int first, int second)

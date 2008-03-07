@@ -19,13 +19,13 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Returns an <see cref="IEnumerator{T}"/> to provide a simple traversal through the items in the <see cref="UnorderedSet{T}"/>.
+        /// Returns an <see cref="IEnumerator{T}"/> to provide a simple traversal through the k in the <see cref="UnorderedSet{T}"/>.
         /// </summary>
         /// <returns>
         /// An <see cref="IEnumerator{T}"/> to traverse the <see cref="UnorderedSet{T}"/>.
         /// </returns>
         /// <remarks>
-        /// This method is an O(n) operation where n is the number of items in the <see cref="UnorderedSet{T}"/>.
+        /// This method is an O(n) operation where n is the number of k in the <see cref="UnorderedSet{T}"/>.
         /// </remarks>
         public override IEnumerator<T> GetEnumerator()
         {
