@@ -1,34 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using Dsa.DataStructures;
+using Dsa.Test.Utility;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Dsa.Test.DataStructures
 {
-
     /// <summary>
     /// Tests for OrderedSet.
     /// </summary>
     [TestClass]
     public class SetTest
     {
-
         /// <summary>
         /// Check to see that items are added correctly and duplicate values are ignored.
         /// </summary>
         [TestMethod]
         public void AddTest()
         {
-            OrderedSet<int> actual = new OrderedSet<int>()
-            {
-                43, 
-                17, 
-                34, 
-                78,
-                17,
-                56,
-                78
-            };
+            OrderedSet<int> actual = new OrderedSet<int> {43, 17, 34, 78, 17, 56, 78};
 
             Assert.AreEqual(5, actual.Count);
         }
@@ -39,12 +29,7 @@ namespace Dsa.Test.DataStructures
         [TestMethod]
         public void ClearTest()
         {
-            OrderedSet<int> actual = new OrderedSet<int>()
-            {
-                15, 
-                16,
-                89
-            };
+            OrderedSet<int> actual = new OrderedSet<int> {15, 16, 89};
 
             actual.Clear();
 
@@ -57,13 +42,7 @@ namespace Dsa.Test.DataStructures
         [TestMethod]
         public void ContainsTest()
         {
-            OrderedSet<int> actual = new OrderedSet<int>()
-            {
-                12,
-                19,
-                1,
-                23
-            };
+            OrderedSet<int> actual = new OrderedSet<int> {12, 19, 1, 23};
 
             Assert.IsTrue(actual.Contains(19));
             Assert.IsFalse(actual.Contains(99));
@@ -75,14 +54,7 @@ namespace Dsa.Test.DataStructures
         [TestMethod]
         public void RemoveTest()
         {
-            OrderedSet<int> actual = new OrderedSet<int>()
-            {
-                10,
-                8,
-                9,
-                23,
-                9
-            };
+            OrderedSet<int> actual = new OrderedSet<int> {10, 8, 9, 23, 9};
 
             Assert.IsTrue(actual.Remove(9));
             Assert.IsFalse(actual.Remove(9));
@@ -94,18 +66,10 @@ namespace Dsa.Test.DataStructures
         [TestMethod]
         public void ToArrayTest()
         {
-            OrderedSet<int> set = new OrderedSet<int>()
-            {
-                10,
-                8,
-                23,
-                1,
-                23,
-                56
-            };
+            OrderedSet<int> set = new OrderedSet<int> {10, 8, 23, 1, 23, 56};
+            int[] expected = { 1, 8, 10, 23, 56 };
 
             int[] actual = set.ToArray();
-            int[] expected = { 1, 8, 10, 23, 56 };
 
             CollectionAssert.AreEqual(actual, expected);
         }
@@ -128,20 +92,10 @@ namespace Dsa.Test.DataStructures
         [TestMethod]
         public void GetEnumeratorTest()
         {
-            OrderedSet<int> set = new OrderedSet<int>()
-            {
-                10,
-                23,
-                1,
-                89,
-                34
-            };
-
+            OrderedSet<int> set = new OrderedSet<int> {10, 23, 1, 89, 34};
             List<int> expected = new List<int>();
-            foreach (int item in set)
-            {
-                expected.Add(item);
-            }
+
+            foreach (int item in set) expected.Add(item);
 
             Assert.IsNotNull(set.GetEnumerator());
             CollectionAssert.AreEqual(set, expected);
@@ -158,7 +112,5 @@ namespace Dsa.Test.DataStructures
 
             Assert.IsNotNull(actual.Comparer);
         }
-
     }
-
 }

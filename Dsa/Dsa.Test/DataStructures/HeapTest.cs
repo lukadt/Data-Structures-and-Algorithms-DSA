@@ -1,31 +1,23 @@
 ﻿using System.Collections.Generic;
 using Dsa.DataStructures;
+using Dsa.Test.Utility;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Dsa.Test.DataStructures
 {
-
     /// <summary>
     /// Tests for Heap.
     /// </summary>
     [TestClass]
     public class HeapTest
     {
-
         /// <summary>
         /// Check to see that adding an item to the Heap results in the correct behaviour.
         /// </summary>
         [TestMethod]
         public void AddTest()
         {
-            Heap<int> actual = new Heap<int>()
-            {
-                10,
-                20,
-                66,
-                21,
-                73
-            };
+            Heap<int> actual = new Heap<int> {10, 20, 66, 21, 73};
 
             Assert.AreEqual(5, actual.Count);
         }
@@ -36,15 +28,7 @@ namespace Dsa.Test.DataStructures
         [TestMethod]
         public void MaxHeapTest()
         {
-            Heap<int> actual = new Heap<int>(HeapType.Max)
-            {
-                10,
-                23,
-                7,
-                9,
-                12,
-                18
-            };
+            Heap<int> actual = new Heap<int>(HeapType.Max) {10, 23, 7, 9, 12, 18};
             int[] expected = { 23, 12, 18, 9, 10, 7 };
 
             CollectionAssert.AreEqual(expected, actual);
@@ -56,16 +40,7 @@ namespace Dsa.Test.DataStructures
         [TestMethod]
         public void MinHeapTest()
         {
-            Heap<int> actual = new Heap<int>()
-            {
-                3, 
-                66, 
-                89,
-                1,
-                90,
-                5,
-                0
-            };
+            Heap<int> actual = new Heap<int> {3, 66, 89, 1, 90, 5, 0};
             int[] expected = { 0, 3, 1, 66, 90, 89, 5 };
 
             CollectionAssert.AreEqual(expected, actual);
@@ -90,21 +65,8 @@ namespace Dsa.Test.DataStructures
         [TestMethod]
         public void RemoveLastItemTest()
         {
-            Heap<int> actual = new Heap<int>()
-            {
-                56,
-                23,
-                34,
-                1,
-                3
-            };
-            Heap<int> expected = new Heap<int>()
-            {
-                56,
-                34,
-                1,
-                3
-            };
+            Heap<int> actual = new Heap<int> {56, 23, 34, 1, 3};
+            Heap<int> expected = new Heap<int> {56, 34, 1, 3};
 
             Assert.IsTrue(actual.Remove(23));
             Assert.AreEqual(4, actual.Count);
@@ -118,14 +80,7 @@ namespace Dsa.Test.DataStructures
         [TestMethod]
         public void RemoveItemNotPresentTest()
         {
-            Heap<int> actual = new Heap<int>()
-            {
-                2,
-                78,
-                1,
-                0,
-                56
-            };
+            Heap<int> actual = new Heap<int> {2, 78, 1, 0, 56};
 
             Assert.IsFalse(actual.Remove(99));
         }
@@ -136,21 +91,8 @@ namespace Dsa.Test.DataStructures
         [TestMethod]
         public void RemoveRootTest()
         {
-            Heap<int> actual = new Heap<int>()
-            {
-                33,
-                12,
-                41,
-                15,
-                60
-            };
-            Heap<int> expected = new Heap<int>()
-            {
-                15,
-                33,
-                41,
-                60
-            };
+            Heap<int> actual = new Heap<int> {33, 12, 41, 15, 60};
+            Heap<int> expected = new Heap<int> {15, 33, 41, 60};
 
             Assert.IsTrue(actual.Remove(12));
             Assert.AreEqual(4, actual.Count);
@@ -164,21 +106,8 @@ namespace Dsa.Test.DataStructures
         [TestMethod]
         public void RemoveMaxHeapTest()
         {
-            Heap<int> actual = new Heap<int>(HeapType.Max)
-            {
-                12,
-                2,
-                67,
-                90,
-                10
-            };
-            Heap<int> expected = new Heap<int>(HeapType.Max)
-            {
-                12,
-                2,
-                67,
-                10
-            };
+            Heap<int> actual = new Heap<int>(HeapType.Max) {12, 2, 67, 90, 10};
+            Heap<int> expected = new Heap<int>(HeapType.Max) {12, 2, 67, 10};
 
             Assert.IsTrue(actual.Remove(90));
             CollectionAssert.AreEqual(expected, actual);
@@ -191,27 +120,8 @@ namespace Dsa.Test.DataStructures
         [TestMethod]
         public void RemoveRightChildLessThanLeftTest()
         {
-            Heap<int> actual = new Heap<int>()
-            {
-                5,
-                3,
-                8,
-                10,
-                6,
-                11,
-                12,
-                13
-            };
-            Heap<int> expected = new Heap<int>()
-            {
-                3,
-                6,
-                8,
-                10,
-                13,
-                11,
-                12
-            };
+            Heap<int> actual = new Heap<int> {5, 3, 8, 10, 6, 11, 12, 13};
+            Heap<int> expected = new Heap<int> {3, 6, 8, 10, 13, 11, 12};
 
             Assert.IsTrue(actual.Remove(5));
             Assert.AreEqual(7, actual.Count);
@@ -225,27 +135,8 @@ namespace Dsa.Test.DataStructures
         [TestMethod]
         public void RemoveMaxRightChildGreaterTest()
         {
-            Heap<int> actual = new Heap<int>(HeapType.Max)
-            {
-                46,
-                23,
-                44,
-                66,
-                51,
-                32,
-                17,
-                8
-            };
-            Heap<int> expected = new Heap<int>(HeapType.Max)
-            {
-                66,
-                46,
-                44,
-                23,
-                8,
-                32,
-                17
-            };
+            Heap<int> actual = new Heap<int>(HeapType.Max) {46, 23, 44, 66, 51, 32, 17, 8};
+            Heap<int> expected = new Heap<int>(HeapType.Max) {66, 46, 44, 23, 8, 32, 17};
 
             Assert.IsTrue(actual.Remove(51));
             Assert.AreEqual(7, actual.Count);
@@ -258,15 +149,7 @@ namespace Dsa.Test.DataStructures
         [TestMethod]
         public void ToArrayTest()
         {
-            Heap<int> actual = new Heap<int>()
-            {
-                78,
-                9,
-                12,
-                56,
-                12,
-                1,
-            };
+            Heap<int> actual = new Heap<int> {78, 9, 12, 56, 12, 1};
             int[] expected = { 1, 12, 9, 78, 56, 12 };
 
             CollectionAssert.AreEqual(expected, actual.ToArray());
@@ -279,14 +162,7 @@ namespace Dsa.Test.DataStructures
         [TestMethod]
         public void ContainsTest()
         {
-            Heap<char> actual = new Heap<char>()
-            {
-                'g',
-                'r',
-                'a',
-                'n',
-                'v'
-            };
+            Heap<char> actual = new Heap<char> {'g', 'r', 'a', 'n', 'v'};
 
             Assert.IsTrue(actual.Contains('a'));
             Assert.IsFalse(actual.Contains('l'));
@@ -298,18 +174,11 @@ namespace Dsa.Test.DataStructures
         [TestMethod]
         public void ClearTest()
         {
-            Heap<int> actual = new Heap<int>()
-            {
-                12,
-                3,
-                21,
-                0
-            };
+            Heap<int> actual = new Heap<int> {12, 3, 21, 0};
 
             actual.Clear();
 
             Assert.AreEqual(0, actual.Count);
         }
-
     }
 }

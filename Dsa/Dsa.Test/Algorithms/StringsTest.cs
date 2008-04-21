@@ -2,23 +2,21 @@
 using Dsa.Algorithms;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Dsa.Test 
+namespace Dsa.Test.Algorithms
 {
-
     /// <summary>
     /// Tests for the Strings algorithms.
     /// </summary>
     [TestClass]
     public class StringsTest 
     {
-
         /// <summary>
         /// Check to see that the resulting string returned from Reverse is that expected.
         /// </summary>
         [TestMethod]
         public void ReverseTest() 
         {
-            string s = "Granville";
+            const string s = "Granville";
             string actual = s.Reverse();
 
             Assert.AreEqual("ellivnarG", actual);
@@ -28,9 +26,9 @@ namespace Dsa.Test
         /// Check to see that an empty string is returned when passing in an empty string.
         /// </summary>
         [TestMethod]
-        public void ReverseEmptyStringTest() 
+        public void ReverseEmptyStringTest()
         {
-            string s = "";
+            const string s = "";
 
             Assert.AreEqual("", s.Reverse());
         }
@@ -39,9 +37,9 @@ namespace Dsa.Test
         /// Check to see that the correct string is returned from a call to Reverse on a string of a single char.
         /// </summary>
         [TestMethod]
-        public void ReverseStringOfLength1Test() 
+        public void ReverseStringOfLength1Test()
         {
-            string s = "t";
+            const string s = "t";
 
             Assert.AreEqual("t", s.Reverse());
         }
@@ -51,9 +49,10 @@ namespace Dsa.Test
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void ReverseNullStringTest() 
+        public void ReverseNullStringTest()
         {
-            string s = null;
+            const string s = null;
+
             string actual = s.Reverse();
         }
 
@@ -61,9 +60,9 @@ namespace Dsa.Test
         /// Check to see that the correct index is returned when calling Any.
         /// </summary>
         [TestMethod]
-        public void AnyMatchingCharTest() 
+        public void AnyMatchingCharTest()
         {
-            string s = "test";
+            const string s = "test";
 
             Assert.AreEqual(2, s.Any("prtest"));
         }
@@ -73,9 +72,9 @@ namespace Dsa.Test
         /// have no match with any of that in the word.
         /// </summary>
         [TestMethod]
-        public void AnyNoMatchingCharTest() 
+        public void AnyNoMatchingCharTest()
         {
-            string s = "test";
+            const string s = "test";
 
             Assert.AreEqual(-1, s.Any("bbc"));
         }
@@ -85,9 +84,9 @@ namespace Dsa.Test
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void AnyWordNullTest() 
+        public void AnyWordNullTest()
         {
-            string s = null;
+            const string s = null;
 
             s.Any("test");
         }
@@ -97,9 +96,9 @@ namespace Dsa.Test
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void AnyMatchNullException() 
+        public void AnyMatchNullException()
         {
-            string s = "test";
+            const string s = "test";
 
             s.Any(null);
         }
@@ -110,8 +109,8 @@ namespace Dsa.Test
         [TestMethod]
         public void AnyWhiteSpaceTest() 
         {
-            string first = "   test";
-            string second = "Gra as asdf  asdf";
+            const string first = "   test";
+            const string second = "Gra as asdf  asdf";
 
             Assert.AreEqual(4, first.Any("   pters"));
             Assert.AreEqual(13, second.Any("T kf   q w   r fg"));
@@ -121,9 +120,9 @@ namespace Dsa.Test
         /// Check to see that a single word that is a palindrome returns true.
         /// </summary>
         [TestMethod]
-        public void IsPalindromeSingleWordTest() 
+        public void IsPalindromeSingleWordTest()
         {
-            string actual = "mum";
+            const string actual = "mum";
 
             Assert.IsTrue(actual.IsPalindrome());
         }
@@ -132,9 +131,9 @@ namespace Dsa.Test
         /// Check to see that the IsPalindrome method ignores case when testing for a palindrome.
         /// </summary>
         [TestMethod]
-        public void IsPalindromeCaseInsensitiveTest() 
+        public void IsPalindromeCaseInsensitiveTest()
         {
-            string actual = "Madam";
+            const string actual = "Madam";
 
             Assert.IsTrue(actual.IsPalindrome());
         }
@@ -143,9 +142,9 @@ namespace Dsa.Test
         /// Check to see that a string comprising of a single char is a palindrome.
         /// </summary>
         [TestMethod]
-        public void IsPalindromeSingleCharTest() 
+        public void IsPalindromeSingleCharTest()
         {
-            string actual = "m";
+            const string actual = "m";
 
             Assert.IsTrue(actual.IsPalindrome());
         }
@@ -155,9 +154,9 @@ namespace Dsa.Test
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void IsPalindromeNullStringTest() 
+        public void IsPalindromeNullStringTest()
         {
-            string actual = null;
+            const string actual = null;
 
             actual.IsPalindrome();
         }
@@ -166,9 +165,9 @@ namespace Dsa.Test
         /// Check to see that a string that has whitespace and punctuation is ignored.
         /// </summary>
         [TestMethod]
-        public void IsPalindromePuncAndWhitespaceIgnoredTest() 
+        public void IsPalindromePuncAndWhitespaceIgnoredTest()
         {
-            string actual = "Are we not drawn onward, we few, drawn onward to new era?";
+            const string actual = "Are we not drawn onward, we few, drawn onward to new era?";
 
             Assert.IsTrue(actual.IsPalindrome());
         }
@@ -177,9 +176,9 @@ namespace Dsa.Test
         /// Check to see that calling strip results in the expected string.
         /// </summary>
         [TestMethod]
-        public void StripTest() 
+        public void StripTest()
         {
-            string actual = "asdf!!?*    p $$£";
+            const string actual = "asdf!!?*    p $$£";
 
             Assert.AreEqual("asdfp", actual.Strip());
         }
@@ -189,9 +188,9 @@ namespace Dsa.Test
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void StripNullStringTest() 
+        public void StripNullStringTest()
         {
-            string actual = null;
+            const string actual = null;
 
             actual.Strip();
         }
@@ -200,9 +199,9 @@ namespace Dsa.Test
         /// Check to see that WordCount returns the correct value.
         /// </summary>
         [TestMethod]
-        public void WordCountTest() 
+        public void WordCountTest()
         {
-            string actual = "The boat is in";
+            const string actual = "The boat is in";
 
             Assert.AreEqual(4, actual.WordCount());
         }
@@ -211,9 +210,9 @@ namespace Dsa.Test
         /// Check to see that whitespace is ignored when counting words.
         /// </summary>
         [TestMethod]
-        public void WordCountWhitespaceTest() 
+        public void WordCountWhitespaceTest()
         {
-            string actual = "   I ate pie    ";
+            const string actual = "   I ate pie    ";
 
             Assert.AreEqual(3, actual.WordCount());
         }
@@ -222,9 +221,9 @@ namespace Dsa.Test
         /// Check to make sure that a string with nothing but whitespace returns the correct value.
         /// </summary>
         [TestMethod]
-        public void WordCountPureWhiteSpace() 
+        public void WordCountPureWhiteSpace()
         {
-            string actual = "      ";
+            const string actual = "      ";
 
             Assert.AreEqual(0, actual.WordCount());
         }
@@ -234,9 +233,9 @@ namespace Dsa.Test
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void WordCountNullArgTest() 
+        public void WordCountNullArgTest()
         {
-            string actual = null;
+            const string actual = null;
 
             actual.WordCount();
         }
@@ -258,7 +257,7 @@ namespace Dsa.Test
         public void ReverseWordsWhiteSpaceTest()
         {
             Assert.AreEqual("belly beer a home went then and pop ate I", 
-                "    I ate         pop and then  went home a   beer belly    ".ReverseWords());
+                            "    I ate         pop and then  went home a   beer belly    ".ReverseWords());
         }
 
         /// <summary>
@@ -268,7 +267,7 @@ namespace Dsa.Test
         [ExpectedException(typeof(ArgumentNullException))]
         public void ReverseWordsStringNullTest()
         {
-            string s = null;
+            const string s = null;
 
             s.ReverseWords();
         }
@@ -279,7 +278,7 @@ namespace Dsa.Test
         [TestMethod]
         public void RepeatedWordCountTest()
         {
-            string actual = "Granville went to the market but Granville has yet to see the light";
+            const string actual = "Granville went to the market but Granville has yet to see the light";
 
             Assert.AreEqual(3, actual.RepeatedWordCount());
         }
@@ -291,7 +290,7 @@ namespace Dsa.Test
         [ExpectedException(typeof(ArgumentNullException))]
         public void RepeatedWordCountStringNullTest()
         {
-            string actual = null;
+            const string actual = null;
 
             actual.RepeatedWordCount();
         }
@@ -304,11 +303,9 @@ namespace Dsa.Test
         [TestMethod]
         public void RepeatedWordCountWithPunctuationTest()
         {
-            string s = "Granville is hopeless. But is still persisting though! poor Granville!";
+            const string s = "Granville is hopeless. But is still persisting though! poor Granville!";
 
             Assert.AreEqual(2, s.RepeatedWordCount());
         }
-
     }
-
 }

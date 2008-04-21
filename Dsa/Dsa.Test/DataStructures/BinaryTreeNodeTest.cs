@@ -1,16 +1,14 @@
 ﻿using Dsa.DataStructures;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Dsa.Test
+namespace Dsa.Test.DataStructures
 {
-
     /// <summary>
     /// BinaryTreeNode(Of T) tests.
     /// </summary>
     [TestClass]
     public class BinaryTreeNodeTest
     {
-
         /// <summary>
         /// Check to see that a BinaryTreeNode is initialzed to the correct
         /// values.
@@ -31,12 +29,9 @@ namespace Dsa.Test
         [TestMethod]
         public void AssignNodeTest()
         {
-            BinaryTreeNode<int> node = new BinaryTreeNode<int>(5);
-
-            node.Right = new BinaryTreeNode<int>(10);
+            BinaryTreeNode<int> node = new BinaryTreeNode<int>(5) {Right = new BinaryTreeNode<int>(10)};
 
             Assert.AreEqual(10, node.Right.Value);
         }
-
     }
 }

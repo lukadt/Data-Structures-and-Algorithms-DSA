@@ -2,30 +2,28 @@
 using Dsa.Algorithms;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Dsa.Test
+namespace Dsa.Test.Algorithms
 {
-
     /// <summary>
     /// Numbers tests.
     /// </summary>
     [TestClass]
     public class NumbersTest
     {
-
         /// <summary>
         /// Check to see that calling Fibonacci algiorithm returns the correct value.
         /// </summary>
         [TestMethod]
         public void FibonacciTest()
         {
-            Assert.AreEqual(0, Numbers.Fibonacci(0));
-            Assert.AreEqual(1, Numbers.Fibonacci(1));
-            Assert.AreEqual(1, Numbers.Fibonacci(2));
-            Assert.AreEqual(2, Numbers.Fibonacci(3));
-            Assert.AreEqual(3, Numbers.Fibonacci(4));
-            Assert.AreEqual(5, Numbers.Fibonacci(5));
-            Assert.AreEqual(8, Numbers.Fibonacci(6));
-            Assert.AreEqual(13, Numbers.Fibonacci(7));
+            Assert.AreEqual(0, 0.Fibonacci());
+            Assert.AreEqual(1, 1.Fibonacci());
+            Assert.AreEqual(1, 2.Fibonacci());
+            Assert.AreEqual(2, 3.Fibonacci());
+            Assert.AreEqual(3, 4.Fibonacci());
+            Assert.AreEqual(5, 5.Fibonacci());
+            Assert.AreEqual(8, 6.Fibonacci());
+            Assert.AreEqual(13, 7.Fibonacci());
         }
 
         /// <summary>
@@ -35,7 +33,7 @@ namespace Dsa.Test
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void FibonacciNumberLessThanZeroTest()
         {
-            Numbers.Fibonacci(-1);
+            (-1).Fibonacci();
         }
 
         /// <summary>
@@ -44,13 +42,13 @@ namespace Dsa.Test
         [TestMethod]
         public void FactorialTest()
         {
-            Assert.AreEqual(1, Numbers.Factorial(0));
-            Assert.AreEqual(1, Numbers.Factorial(1));
-            Assert.AreEqual(2, Numbers.Factorial(2));
-            Assert.AreEqual(6, Numbers.Factorial(3));
-            Assert.AreEqual(24, Numbers.Factorial(4));
-            Assert.AreEqual(120, Numbers.Factorial(5));
-            Assert.AreEqual(720, Numbers.Factorial(6));
+            Assert.AreEqual(1, 0.Factorial());
+            Assert.AreEqual(1, 1.Factorial());
+            Assert.AreEqual(2, 2.Factorial());
+            Assert.AreEqual(6, 3.Factorial());
+            Assert.AreEqual(24, 4.Factorial());
+            Assert.AreEqual(120, 5.Factorial());
+            Assert.AreEqual(720, 6.Factorial());
         }
 
         /// <summary>
@@ -60,7 +58,7 @@ namespace Dsa.Test
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void FactorialNumberLessThanZeroTest()
         {
-            Numbers.Factorial(-1);
+            (-1).Factorial();
         }
 
         /// <summary>
@@ -106,7 +104,7 @@ namespace Dsa.Test
         [TestMethod]
         public void ToBaseTwoTest()
         {
-            int actual = 23;
+            const int actual = 23;
 
             Assert.AreEqual(10111, actual.ToBinary());
         }
@@ -118,7 +116,7 @@ namespace Dsa.Test
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void ToBaseTwoNegativeIntTest()
         {
-            int actual = -1;
+            const int actual = -1;
 
             actual.ToBinary();
         }
@@ -130,7 +128,7 @@ namespace Dsa.Test
         [TestMethod]
         public void ToOctalTest()
         {
-            int actual = 18;
+            const int actual = 18;
 
             Assert.AreEqual(22, actual.ToOctal());
         }
@@ -142,7 +140,7 @@ namespace Dsa.Test
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void ToOctalNegativeIntTest()
         {
-            int actual = -1;
+            const int actual = -1;
 
             actual.ToOctal();
         }
@@ -154,11 +152,11 @@ namespace Dsa.Test
         [TestMethod]
         public void ToHexTest()
         {
-            int actual1 = 63923;
-            int actual2 = 2362;
-            int actual3 = 14397;
-            int actual4 = 222;
-            int actual5 = 43975;
+            const int actual1 = 63923;
+            const int actual2 = 2362;
+            const int actual3 = 14397;
+            const int actual4 = 222;
+            const int actual5 = 43975;
 
             Assert.AreEqual("F9B3", actual1.ToHex());
             Assert.AreEqual("93A", actual2.ToHex());
@@ -174,11 +172,9 @@ namespace Dsa.Test
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void ToHexNegativeIntTest()
         {
-            int actual = -1;
+            const int actual = -1;
 
             actual.ToHex();
         }
-
     }
-
 }

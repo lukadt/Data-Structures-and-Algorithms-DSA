@@ -1,16 +1,14 @@
 ﻿using Dsa.DataStructures;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Dsa.Test
+namespace Dsa.Test.DataStructures
 {
-
     /// <summary>
     /// Tests for DoublyLinkedListNode.
     /// </summary>
     [TestClass]
     public class DoublyLinkedListNodeTest
     {
-
         /// <summary>
         /// Check to see that a node is created and its state initialized correctly.
         /// </summary>
@@ -23,7 +21,5 @@ namespace Dsa.Test
             Assert.IsNull(n.Previous);
             Assert.IsNull(n.Next);
         }
-
     }
-
 }

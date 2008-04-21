@@ -2,18 +2,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using Dsa.DataStructures;
+using Dsa.Test.Utility;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Dsa.Test
+namespace Dsa.Test.DataStructures
 {
-
     /// <summary>
     /// Tests for SinglyLinkedList.
     /// </summary>
     [TestClass]
     public class SinglyLinkedListCollectionCollectionTest
     {
-
         /// <summary>
         /// Check to see the comparer is not null.
         /// </summary>
@@ -44,7 +43,7 @@ namespace Dsa.Test
         [ExpectedException(typeof(ArgumentNullException))]
         public void OverloadedConstructorComparerNullTest()
         {
-            IComparer<Coordinate> comparer = null;
+            const IComparer<Coordinate> comparer = null;
             SinglyLinkedList<Coordinate> actual = new SinglyLinkedList<Coordinate>(comparer);
         }
 
@@ -65,11 +64,7 @@ namespace Dsa.Test
         [TestMethod]
         public void AddLastTest()
         {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
-
-            sll.AddLast(5);
-            sll.AddLast(10);
-            sll.AddLast(15);
+            SinglyLinkedList<int> sll = new SinglyLinkedList<int> {5, 10, 15};
 
             Assert.IsFalse(sll.IsEmpty());
             Assert.AreEqual(5, sll.Head.Value);
@@ -100,9 +95,7 @@ namespace Dsa.Test
         [TestMethod]
         public void HeadTest()
         {
-            SinglyLinkedList<string> sll = new SinglyLinkedList<string>();
-
-            sll.AddLast("Granville");
+            SinglyLinkedList<string> sll = new SinglyLinkedList<string> {"Granville"};
 
             Assert.AreEqual("Granville", sll.Head.Value);
         }
@@ -113,9 +106,7 @@ namespace Dsa.Test
         [TestMethod]
         public void TailTest()
         {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
-
-            sll.AddLast(10);
+            SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10};
 
             Assert.AreEqual(10, sll.Tail.Value);
         }
@@ -126,10 +117,7 @@ namespace Dsa.Test
         [TestMethod]
         public void CountTest()
         {
-            SinglyLinkedList<string> sll = new SinglyLinkedList<string>();
-
-            sll.AddLast("Granville");
-            sll.AddLast("Barnett");
+            SinglyLinkedList<string> sll = new SinglyLinkedList<string> {"Granville", "Barnett"};
 
             Assert.AreEqual(2, sll.Count);
         }
@@ -140,15 +128,8 @@ namespace Dsa.Test
         [TestMethod]
         public void ForeachTest()
         {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
-            SinglyLinkedList<int> expected = new SinglyLinkedList<int>();
-
-            sll.AddLast(10);
-            sll.AddLast(30);
-            sll.AddLast(40);
-            expected.AddLast(10);
-            expected.AddLast(30);
-            expected.AddLast(40);
+            SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 30, 40};
+            SinglyLinkedList<int> expected = new SinglyLinkedList<int> {10, 30, 40};
 
             CollectionAssert.AreEqual(expected, sll);
 
@@ -160,12 +141,7 @@ namespace Dsa.Test
         [TestMethod]
         public void ToArrayOfValidSinglyLinkedListCollectionTest()
         {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
-
-            sll.AddLast(10);
-            sll.AddLast(20);
-            sll.AddLast(30);
-
+            SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20, 30};
             int[] expected = { 10, 20, 30 };
 
             CollectionAssert.AreEqual(expected, sll.ToArray());
@@ -190,9 +166,8 @@ namespace Dsa.Test
         [TestMethod]
         public void RemoveLastValidSinglyLinkedListCollectionWithOnlyOneNodeTest()
         {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
+            SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10};
 
-            sll.AddLast(10);
             sll.RemoveLast();
 
             Assert.AreEqual(0, sll.Count);
@@ -207,11 +182,8 @@ namespace Dsa.Test
         [TestMethod]
         public void RemoveLastValidSinglyLinkedListCollectionWithMultipleNodesTest()
         {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
+            SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20, 30};
 
-            sll.AddLast(10);
-            sll.AddLast(20);
-            sll.AddLast(30);
             sll.RemoveLast();
 
             Assert.AreEqual(20, sll.Tail.Value);
@@ -225,11 +197,8 @@ namespace Dsa.Test
         [TestMethod]
         public void RemoveLastValidSinglyLinkedListCollectionWithMultipleNodesTest2()
         {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
+            SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20, 30};
 
-            sll.AddLast(10);
-            sll.AddLast(20);
-            sll.AddLast(30);
             sll.RemoveLast();
             sll.RemoveLast();
 
@@ -246,9 +215,8 @@ namespace Dsa.Test
         [TestMethod]
         public void RemoveOnlyOneNodeInListTest()
         {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
+            SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10};
 
-            sll.AddLast(10);
             sll.Remove(10);
 
             Assert.IsNull(sll.Head);
@@ -262,11 +230,8 @@ namespace Dsa.Test
         [TestMethod]
         public void RemoveLastValidSinglyLinkedListCollectionWithMultipleNodesAndReassingHeadAndTailTest()
         {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
+            SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20, 30};
 
-            sll.AddLast(10);
-            sll.AddLast(20);
-            sll.AddLast(30);
             sll.AddFirst(5);
             sll.RemoveLast();
             sll.RemoveLast();
@@ -289,9 +254,8 @@ namespace Dsa.Test
         [ExpectedException(typeof(InvalidOperationException))]
         public void RemoveLastInvalidSinglyLinkedListCollectionTest()
         {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
+            SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10};
 
-            sll.AddLast(10);
             sll.RemoveLast();
             sll.RemoveLast();
         }
@@ -302,9 +266,8 @@ namespace Dsa.Test
         [TestMethod]
         public void RemoveFirstValidSinglyLinkedListCollectionWithOnlyOneNodeTest()
         {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
+            SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10};
 
-            sll.AddLast(10);
             sll.RemoveFirst();
 
             Assert.AreEqual(0, sll.Count);
@@ -319,10 +282,8 @@ namespace Dsa.Test
         [TestMethod]
         public void RemoveFirstValidSinglyLinkedListCollectionWithMultipleNodesTest()
         {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
+            SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20};
 
-            sll.AddLast(10);
-            sll.AddLast(20);
             sll.AddFirst(30);
             sll.RemoveFirst();
             sll.RemoveFirst();
@@ -363,10 +324,8 @@ namespace Dsa.Test
         [TestMethod]
         public void RemoveFirstValidSinglyLinkedListCollectionWithMultipleNodesAndReassingHeadAndTailTest()
         {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
+            SinglyLinkedList<int> sll = new SinglyLinkedList<int> {20, 30};
 
-            sll.AddLast(20);
-            sll.AddLast(30);
             sll.AddFirst(10);
             sll.RemoveFirst();
             sll.RemoveFirst();
@@ -431,11 +390,8 @@ namespace Dsa.Test
         [TestMethod]
         public void ClearTest()
         {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
+            SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20, 30};
 
-            sll.AddLast(10);
-            sll.AddLast(20);
-            sll.AddLast(30);
             sll.Clear();
 
             Assert.AreEqual(0, sll.Count);
@@ -450,11 +406,7 @@ namespace Dsa.Test
         [TestMethod]
         public void ContainsTest()
         {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
-
-            sll.AddLast(10);
-            sll.AddLast(20);
-            sll.AddLast(30);
+            SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20, 30};
 
             Assert.IsTrue(sll.Contains(20));
             Assert.IsFalse(sll.Contains(40));
@@ -468,12 +420,9 @@ namespace Dsa.Test
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void CopyToInvalidIndexTest()
         {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
-
-            sll.AddLast(10);
-            sll.AddLast(20);
-            sll.AddLast(30);
+            SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20, 30};
             int[] myArray = new int[sll.Count];
+
             sll.CopyTo(myArray, -1);
         }
 
@@ -485,12 +434,9 @@ namespace Dsa.Test
         [ExpectedException(typeof(ArgumentException))]
         public void CopyToIndexGteThanArrayTest()
         {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
-
-            sll.AddLast(10);
-            sll.AddLast(20);
-            sll.AddLast(30);
+            SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20, 30};
             int[] myArray = new int[sll.Count];
+
             sll.CopyTo(myArray, 2);
         }
 
@@ -500,12 +446,9 @@ namespace Dsa.Test
         [TestMethod]
         public void ArrayCopyWithDefinedStartIndexTest()
         {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
-
-            sll.AddLast(10);
-            sll.AddLast(20);
-            sll.AddLast(30);
+            SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20, 30};
             int[] actual = new int[10];
+
             sll.CopyTo(actual, 6);
 
             Assert.AreEqual(10, actual[6]);
@@ -533,11 +476,8 @@ namespace Dsa.Test
         [TestMethod]
         public void RemoveHeadItemTest()
         {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
+            SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20, 30};
 
-            sll.AddLast(10);
-            sll.AddLast(20);
-            sll.AddLast(30);
             bool actual = sll.Remove(10);
 
             Assert.AreEqual(20, sll.Head.Value);
@@ -553,11 +493,8 @@ namespace Dsa.Test
         [TestMethod]
         public void RemoveMiddleItemTest()
         {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
+            SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20, 30};
 
-            sll.AddLast(10);
-            sll.AddLast(20);
-            sll.AddLast(30);
             bool actual = sll.Remove(20);
 
             Assert.AreEqual(30, sll.Head.Next.Value);
@@ -574,11 +511,8 @@ namespace Dsa.Test
         [TestMethod]
         public void RemoveTailItemTest()
         {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
+            SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20, 30};
 
-            sll.AddLast(10);
-            sll.AddLast(20);
-            sll.AddLast(30);
             bool actual = sll.Remove(30);
 
             Assert.AreEqual(10, sll.Head.Value);
@@ -596,11 +530,7 @@ namespace Dsa.Test
         [TestMethod]
         public void RemoveWithNoMatchTest()
         {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
-
-            sll.AddLast(20);
-            sll.AddLast(30);
-            sll.AddLast(50);
+            SinglyLinkedList<int> sll = new SinglyLinkedList<int> {20, 30, 50};
 
             Assert.AreEqual(3, sll.Count);
             Assert.IsFalse(sll.Remove(110));
@@ -612,9 +542,8 @@ namespace Dsa.Test
         [TestMethod]
         public void AddAfterOnlyOneNodeInSinglyLinkedListCollectionTest()
         {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
+            SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10};
 
-            sll.AddLast(10);
             sll.AddAfter(sll.Head, 20);
 
             Assert.AreEqual(20, sll.Tail.Value);
@@ -629,10 +558,8 @@ namespace Dsa.Test
         [TestMethod]
         public void AddAfterTailTest()
         {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
+            SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20};
 
-            sll.AddLast(10);
-            sll.AddLast(20);
             sll.AddAfter(sll.Tail, 30);
 
             Assert.AreEqual(30, sll.Tail.Value);
@@ -647,11 +574,8 @@ namespace Dsa.Test
         [TestMethod]
         public void AddAfterMiddleNodeTest()
         {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
+            SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20, 30};
 
-            sll.AddLast(10);
-            sll.AddLast(20);
-            sll.AddLast(30);
             sll.AddAfter(sll.Head.Next, 25);
 
             Assert.AreEqual(25, sll.Head.Next.Next.Value);
@@ -678,9 +602,8 @@ namespace Dsa.Test
         [ExpectedException(typeof(ArgumentNullException))]
         public void AddAfterNullNodeSinglyLinkedListCollectionTest()
         {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
+            SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10};
 
-            sll.AddLast(10);
             sll.AddAfter(sll.Head.Next, 20);
         }
 
@@ -690,11 +613,8 @@ namespace Dsa.Test
         [TestMethod]
         public void AddBeforeHeadTest()
         {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
+            SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20, 30};
 
-            sll.AddLast(10);
-            sll.AddLast(20);
-            sll.AddLast(30);
             sll.AddBefore(sll.Head, 5);
 
             Assert.AreEqual(5, sll.Head.Value);
@@ -708,12 +628,8 @@ namespace Dsa.Test
         [TestMethod]
         public void AddBeforeTailTest()
         {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
+            SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20, 30, 40};
 
-            sll.AddLast(10);
-            sll.AddLast(20);
-            sll.AddLast(30);
-            sll.AddLast(40);
             sll.AddBefore(sll.Head.Next.Next.Next, 35);
 
             Assert.AreEqual(35, sll.Head.Next.Next.Next.Value);
@@ -725,11 +641,8 @@ namespace Dsa.Test
         [TestMethod]
         public void AddBeforeMiddleNodeTest()
         {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
+            SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20, 30};
 
-            sll.AddLast(10);
-            sll.AddLast(20);
-            sll.AddLast(30);
             sll.AddBefore(sll.Head.Next, 15);
 
             Assert.AreEqual(15, sll.Head.Next.Value);
@@ -757,11 +670,8 @@ namespace Dsa.Test
         [ExpectedException(typeof(ArgumentNullException))]
         public void AddBeforeNullNodeSinglyLinkedListCollectionTest()
         {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
+            SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20, 30};
 
-            sll.AddLast(10);
-            sll.AddLast(20);
-            sll.AddLast(30);
             sll.AddBefore(sll.Tail.Next, 40);
         }
 
@@ -771,9 +681,7 @@ namespace Dsa.Test
         [TestMethod]
         public void GetEnumeratorGenericTest()
         {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
-
-            sll.AddLast(10);
+            SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10};
 
             Assert.IsNotNull(sll.GetEnumerator());
         }
@@ -787,7 +695,7 @@ namespace Dsa.Test
             SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
             IEnumerable enumerSll = sll;
 
-            sll.AddLast(10);
+            sll.Add(10);
 
             Assert.IsNotNull(enumerSll.GetEnumerator());
         }
@@ -798,11 +706,7 @@ namespace Dsa.Test
         [TestMethod]
         public void GetReverseEnumeratorTest()
         {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
-
-            sll.AddLast(10);
-            sll.AddLast(20);
-            sll.AddLast(30);
+            SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20, 30};
 
             Assert.IsNotNull(sll.GetReverseEnumerator());
         }
@@ -813,11 +717,8 @@ namespace Dsa.Test
         [TestMethod]
         public void ToReverseArrayTest()
         {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
+            SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20, 30};
 
-            sll.AddLast(10);
-            sll.AddLast(20);
-            sll.AddLast(30);
             int[] expected = { 30, 20, 10 };
 
             CollectionAssert.AreEqual(expected, sll.ToReverseArray());
@@ -835,7 +736,5 @@ namespace Dsa.Test
 
             sll.ToReverseArray();
         }
-
     }
-
 }

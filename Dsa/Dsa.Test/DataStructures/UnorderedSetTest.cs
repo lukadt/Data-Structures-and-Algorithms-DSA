@@ -10,27 +10,14 @@ namespace Dsa.Test.DataStructures
     [TestClass]
     public class UnorderedSetTest
     {
-
         /// <summary>
         /// Check to see that the item is added to the set.
         /// </summary>
         [TestMethod]
         public void AddTest()
         {
-            UnorderedSet<int> actual = new UnorderedSet<int>()
-            {
-                5,
-                12,
-                15,
-                5,
-                12
-            };
-            UnorderedSet<int> expected = new UnorderedSet<int>()
-            {
-                5, 
-                12, 
-                15
-            };
+            UnorderedSet<int> actual = new UnorderedSet<int> {5, 12, 15, 5, 12};
+            UnorderedSet<int> expected = new UnorderedSet<int> {5, 12, 15};
 
             CollectionAssert.AreEqual(expected, actual);
         }
@@ -41,12 +28,7 @@ namespace Dsa.Test.DataStructures
         [TestMethod]
         public void ClearTest()
         {
-            UnorderedSet<int> actual = new UnorderedSet<int>()
-            {
-                3,
-                4,
-                5
-            };
+            UnorderedSet<int> actual = new UnorderedSet<int> {3, 4, 5};
 
             actual.Clear();
 
@@ -59,12 +41,7 @@ namespace Dsa.Test.DataStructures
         [TestMethod]
         public void ContainsTest()
         {
-            UnorderedSet<char> actual = new UnorderedSet<char>()
-            {
-                'a',
-                'b',
-                'c'
-            };
+            UnorderedSet<char> actual = new UnorderedSet<char> {'a', 'b', 'c'};
 
             Assert.IsTrue(actual.Contains('b'));
             Assert.IsFalse(actual.Contains('d'));
@@ -76,24 +53,11 @@ namespace Dsa.Test.DataStructures
         [TestMethod]
         public void RemoveTest()
         {
-            UnorderedSet<int> actual = new UnorderedSet<int>()
-            {
-                4, 
-                1, 
-                89,
-                90
-            };
+            UnorderedSet<int> actual = new UnorderedSet<int> {4, 1, 89, 90};
+            UnorderedSet<int> expected = new UnorderedSet<int> {1, 89, 90};
 
             Assert.IsTrue(actual.Remove(4));
             Assert.IsFalse(actual.Remove(899));
-
-            UnorderedSet<int> expected = new UnorderedSet<int>()
-            {
-                1,
-                89,
-                90
-            };
-
             CollectionAssert.AreEqual(expected, actual);
         }
 
@@ -103,17 +67,10 @@ namespace Dsa.Test.DataStructures
         [TestMethod]
         public void ToArrayTest()
         {
-            UnorderedSet<char> set = new UnorderedSet<char>()
-            {
-                'a',
-                'r',
-                'd',
-                'f'
-            };
-            char[] actual = set.ToArray();
+            UnorderedSet<char> set = new UnorderedSet<char> {'a', 'r', 'd', 'f'};
             char[] expected = { 'a', 'r', 'd', 'f' };
 
-            CollectionAssert.AreEqual(expected, actual);
+            CollectionAssert.AreEqual(expected, set.ToArray());
         }
 
         /// <summary>
@@ -127,6 +84,5 @@ namespace Dsa.Test.DataStructures
 
             actual.ToArray();
         }
-
     }
 }

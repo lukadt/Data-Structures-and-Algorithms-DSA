@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using Dsa.Algorithms;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Dsa.Test
+namespace Dsa.Test.Algorithms
 {
-
     /// <summary>
     /// Sorting tests.
     /// </summary>
     [TestClass]
     public class SortingTest
     {
-
         /// <summary>
         /// Check to see that the bubblesort algorithm sorts the items
         /// in ascending order.
@@ -20,11 +18,9 @@ namespace Dsa.Test
         [TestMethod]
         public void BubbleSortAscTest()
         {
-            List<int> myInts = new List<int>() { 23, 1, 44, 62, 1, 6, 90, 34 };
-            IList<int> actual = new List<int>();
-            List<int> expected = new List<int>() { 1, 1, 6, 23, 34, 44, 62, 90 };
-
-            actual = myInts.BubbleSort(SortType.Ascending);
+            List<int> myInts = new List<int> { 23, 1, 44, 62, 1, 6, 90, 34 };
+            List<int> expected = new List<int> { 1, 1, 6, 23, 34, 44, 62, 90 };
+            IList<int> actual = myInts.BubbleSort(SortType.Ascending);
 
             for (int i = 0; i < expected.Count; i++)
             {
@@ -39,11 +35,9 @@ namespace Dsa.Test
         [TestMethod]
         public void BubbleSortDescTest()
         {
-            List<int> myInts = new List<int>() { 23, 1, 44, 62, 1, 6, 90, 34 };
-            IList<int> actual = new List<int>();
-            List<int> expected = new List<int>() { 90, 62, 44, 34, 23, 6, 1, 1 };
-
-            actual = myInts.BubbleSort(SortType.Descending);
+            List<int> myInts = new List<int> { 23, 1, 44, 62, 1, 6, 90, 34 };
+            List<int> expected = new List<int> { 90, 62, 44, 34, 23, 6, 1, 1 };
+            IList<int> actual = myInts.BubbleSort(SortType.Descending);
 
             for (int i = 0; i < expected.Count; i++)
             {
@@ -59,7 +53,7 @@ namespace Dsa.Test
         [ExpectedException(typeof(ArgumentNullException))]
         public void BubbleSortNullArrayTest()
         {
-            IList<int> actual = null;
+            const IList<int> actual = null;
 
             actual.BubbleSort(SortType.Ascending);
         }
@@ -70,10 +64,11 @@ namespace Dsa.Test
         [TestMethod]
         public void MedianLeftTest()
         {
-            List<int> actual = new List<int>() { 2, 5, 23, 17, 1 };
-            List<int> expected = new List<int>() { 2, 5, 1, 17, 23 };
+            List<int> actual = new List<int> { 2, 5, 23, 17, 1 };
+            List<int> expected = new List<int> { 2, 5, 1, 17, 23 };
 
             actual.MedianLeft();
+
             for (int i = 0; i < expected.Count; i++)
             {
                 Assert.AreEqual(expected[i], actual[i]);
@@ -86,10 +81,11 @@ namespace Dsa.Test
         [TestMethod]
         public void MedianLeftLeftIsGreaterThanMidTest()
         {
-            List<int> actual = new List<int>() { 23, 1, 4, 8, 10 };
-            List<int> expected = new List<int>() { 10, 1, 4, 8, 23 };
+            List<int> actual = new List<int> { 23, 1, 4, 8, 10 };
+            List<int> expected = new List<int> { 10, 1, 4, 8, 23 };
 
             actual.MedianLeft();
+
             for (int i = 0; i < expected.Count; i++)
             {
                 Assert.AreEqual(expected[i], actual[i]);
@@ -116,8 +112,8 @@ namespace Dsa.Test
         {
             int[] a1 = { 1, 5, 9 };
             int[] a2 = { 1, 3, 6 };
-
             int[] expected = { 1, 1, 3, 5, 6, 9 };
+
             IList<int> actual = Sorting.MergeOrdered(a1, a2);
 
             for (int i = 0; i < expected.Length; i++)
@@ -134,8 +130,8 @@ namespace Dsa.Test
         {
             int[] a1 = { 1, 4, 12 };
             int[] a2 = { 5, 9, 10, 14 };
-
             int[] expected = { 1, 4, 5, 9, 10, 12, 14 };
+
             IList<int> actual = Sorting.MergeOrdered(a1, a2);
 
             for (int i = 0; i < expected.Length; i++)
@@ -152,8 +148,8 @@ namespace Dsa.Test
         {
             int[] a1 = { 5, 9, 10, 14 };
             int[] a2 = { 1, 4, 12 };
-
             int[] expected = { 1, 4, 5, 9, 10, 12, 14 };
+
             IList<int> actual = Sorting.MergeOrdered(a1, a2);
 
             for (int i = 0; i < expected.Length; i++)
@@ -244,6 +240,7 @@ namespace Dsa.Test
             int[] array2 = { 6, 2 };
             int[] array3 = { 1 };
             int[] expected = { 5, 7, 8, 6, 2 };
+
             IList<int> actual = Sorting.Concatenate(array1, array2, array3);
 
             for (int i = 0; i < expected.Length; i++)
@@ -328,6 +325,7 @@ namespace Dsa.Test
         {
             int[] unsorted = { 78, 5, 23, 101, 1 };
             int[] expected = { 1, 5, 23, 78, 101 };
+
             int[] actual = unsorted.InsertionSort() as int[];
 
             for (int i = 0; i < expected.Length; i++)
@@ -357,6 +355,7 @@ namespace Dsa.Test
         {
             int[] unsorted = { 34, 78, 12, 9, 0, 3 };
             int[] expected = { 0, 3, 9, 12, 34, 78 };
+
             int[] actual = unsorted.ShellSort() as int[];
 
             for (int i = 0; i < expected.Length; i++)
@@ -378,5 +377,4 @@ namespace Dsa.Test
         }
 
     }
-
 }

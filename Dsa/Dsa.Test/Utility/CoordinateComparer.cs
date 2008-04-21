@@ -1,14 +1,12 @@
 ﻿using System.Collections.Generic;
 
-namespace Dsa.Test
+namespace Dsa.Test.Utility
 {
-
     /// <summary>
     /// A simple stuct that exists so we can simply model a comparer for.
     /// </summary>
     public struct Coordinate
     {
-        
         public int X { get; set; }
         public int Y { get; set; }
 
@@ -17,9 +15,11 @@ namespace Dsa.Test
             X = x;
             Y = y;
         }
-
     }
 
+    /// <summary>
+    /// CoordinateComparer.
+    /// </summary>
     public class CoordinateComparer : IComparer<Coordinate>
     {
         /// <summary>
@@ -34,10 +34,7 @@ namespace Dsa.Test
             {
                 return 0;
             }
-            else
-            {
-                return -1;
-            }
+            return -1;
         }
     }
 }

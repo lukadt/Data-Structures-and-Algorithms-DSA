@@ -4,14 +4,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Dsa.Test.Utility
 {
-
     /// <summary>
     /// Tests for the compare methods.
     /// </summary>
     [TestClass]
     public class CompareTest
     {
-
         /// <summary>
         /// Check to see that IsLessThan method returns the correct value.
         /// </summary>
@@ -47,7 +45,5 @@ namespace Dsa.Test.Utility
             Assert.IsTrue(Compare.AreEqual(3, 3, comparer));
             Assert.IsFalse(Compare.AreEqual(2, 3, comparer));
         }
-
     }
-
 }

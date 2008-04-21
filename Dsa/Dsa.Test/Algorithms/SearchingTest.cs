@@ -2,16 +2,14 @@
 using Dsa.Algorithms;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Dsa.Test
+namespace Dsa.Test.Algorithms
 {
-
     /// <summary>
     /// Tests for Searching.
     /// </summary>
     [TestClass]
     public class SearchingTest
     {
-        
         /// <summary>
         /// Check to see that SequentialSearch returns the correct index for an item that is in the array.
         /// </summary>
@@ -100,7 +98,5 @@ namespace Dsa.Test
 
             actual.ProbabilitySearch('r');
         }
-
     }
-
 }
