@@ -245,7 +245,7 @@ namespace Dsa.DataStructures
         /// <remarks>
         /// This method's best case is an O(1) operation when the last node to remove is both the head and tail, i.e. there is only one node
         /// in the linked list, otherwise the method is an O(n) operation where n nodes have to be traversed in order to locate the node that
-        /// preceeds the last node.
+        /// precedes the last node.
         /// </remarks>
         /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedList{T}"/> contains <strong>0 k</strong>.</exception>
         public void RemoveLast()
@@ -304,7 +304,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Get's the node at the head of the <see cref="SinglyLinkedList{T}"/>.
+        /// Gets the node at the head of the <see cref="SinglyLinkedList{T}"/>.
         /// </summary>
         public SinglyLinkedListNode<T> Head
         {
@@ -312,7 +312,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Get's the node at the tail of the <see cref="SinglyLinkedList{T}"/>.
+        /// Gets the node at the tail of the <see cref="SinglyLinkedList{T}"/>.
         /// </summary>
         public SinglyLinkedListNode<T> Tail
         {
@@ -383,7 +383,7 @@ namespace Dsa.DataStructures
         /// </summary>
         /// <remarks>
         /// This method has a best case O(1) operation where te node to be removed is the head node, otherwise the method is an O(n) operation
-        /// where n represents the number of nodes to traverse in order to update the node pointers appropriatley.
+        /// where n represents the number of nodes to traverse in order to update the node pointers appropriately.
         /// </remarks>
         /// <param name="item">Value to remove</param>
         /// <returns>True if the value was found and removed; false otherwise.</returns>

@@ -11,7 +11,7 @@ namespace Dsa.Test.Algorithms
     public class NumbersTest
     {
         /// <summary>
-        /// Check to see that calling Fibonacci algiorithm returns the correct value.
+        /// Check to see that calling Fibonacci algorithm returns the correct value.
         /// </summary>
         [TestMethod]
         public void FibonacciTest()
@@ -75,7 +75,7 @@ namespace Dsa.Test.Algorithms
         }
         
         /// <summary>
-        /// Check to see that the correct expception is thrown when the exponent is negative.
+        /// Check to see that the correct exception is thrown when the exponent is negative.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]

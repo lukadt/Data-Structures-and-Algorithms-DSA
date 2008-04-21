@@ -334,7 +334,7 @@ namespace Dsa.DataStructures
         /// Removes the first occurrence of a value from the <see cref="DoublyLinkedList{T}"/>.
         /// </summary>
         /// <remarks>
-        /// This is an O(1) operation (best case) when there are only two nodes in the <see cref="DoublyLinkedList{T}"/>; othwerise it is an O(n) operation.
+        /// This is an O(1) operation (best case) when there are only two nodes in the <see cref="DoublyLinkedList{T}"/>; otherwise it is an O(n) operation.
         /// </remarks>
         /// <param name="item">Value to remove from the <see cref="DoublyLinkedList{T}"/>.</param>
         /// <returns>True if the value was removed from the <see cref="DoublyLinkedList{T}"/>; false otherwise.</returns>

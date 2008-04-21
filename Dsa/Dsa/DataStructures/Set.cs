@@ -54,7 +54,7 @@ namespace Dsa.DataStructures
         /// This is an O(n) operation for an <see cref="UnorderedSet{T}"/>, for a <see cref="OrderedSet{T}"/> this is an O(log n) operation.
         /// </remarks>
         /// <param name="item">Item to search the <see cref="Set{T}"/> for.</param>
-        /// <returns>True if the item is contained within the <see cref="Set{T}"/>; othwerise false.</returns>
+        /// <returns>True if the item is contained within the <see cref="Set{T}"/>; otherwise false.</returns>
         public override bool Contains(T item)
         {
             return _collection.Contains(item);

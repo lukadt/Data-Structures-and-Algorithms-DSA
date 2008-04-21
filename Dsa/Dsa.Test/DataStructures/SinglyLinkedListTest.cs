@@ -11,7 +11,7 @@ namespace Dsa.Test.DataStructures
     /// Tests for SinglyLinkedList.
     /// </summary>
     [TestClass]
-    public class SinglyLinkedListCollectionCollectionTest
+    public class SinglyLinkedListTest
     {
         /// <summary>
         /// Check to see the comparer is not null.
@@ -112,7 +112,7 @@ namespace Dsa.Test.DataStructures
         }
 
         /// <summary>
-        /// Check to see that the Count property of the SinglyLinkedListCollection returns the correct nummber.
+        /// Check to see that the Count property of the SinglyLinkedList returns the correct number.
         /// </summary>
         [TestMethod]
         public void CountTest()

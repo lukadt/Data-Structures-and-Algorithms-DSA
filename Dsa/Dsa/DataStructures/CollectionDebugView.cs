@@ -15,7 +15,7 @@ namespace Dsa.DataStructures
     internal sealed class CollectionDebugView<T>
     {
 
-        private ICollection<T> _collection;
+        private readonly ICollection<T> _collection;
 
         public CollectionDebugView(ICollection<T> collection)
         {
@@ -27,8 +27,8 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Get's all the k in the collection as an array. By making the RootHidden the debugger doesn't display the k as
-        /// elements of the property Items, rather just k of the array.
+        /// Gets all the items in the collection as an array. By making the RootHidden the debugger doesn't display the items as
+        /// elements of the property Items, rather just items of the array.
         /// </summary>
         [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
         public T[] Items

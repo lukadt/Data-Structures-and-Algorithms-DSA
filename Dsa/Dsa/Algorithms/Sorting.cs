@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Dsa.Utility;
@@ -14,7 +13,7 @@ namespace Dsa.Algorithms
     {
 
         /// <summary>
-        /// Bubble sort's the k in an <see cref="IList{T}"/>.
+        /// Bubble sorts the items in an <see cref="IList{T}"/>.
         /// </summary>
         /// <remarks>
         /// This method is an O(n^2) operation.
@@ -41,13 +40,13 @@ namespace Dsa.Algorithms
                         case SortType.Ascending:
                             if (Compare.IsLessThan(list[i], list[j], comparer))
                             {
-                                Exchange(ref list, j, i);
+                                Exchange(list, j, i);
                             }
                             break;
                         case SortType.Descending:
                             if (Compare.IsGreaterThan(list[i], list[j], comparer))
                             {
-                                Exchange(ref list, j, i);
+                                Exchange(list, j, i);
                             }
                             break;
                     }
@@ -74,25 +73,25 @@ namespace Dsa.Algorithms
 
             Comparer<T> comparer = Comparer<T>.Default;
             int middle = list.Count / 2;
-            int left = 0;
+            const int left = 0;
             int right = list.Count - 1;
             // place the keys in the correct positions of list
             if (Compare.IsGreaterThan(list[left], list[middle], comparer))
             {
-                Exchange(ref list, left, middle);
+                Exchange(list, left, middle);
             }
 
             if (Compare.IsGreaterThan(list[left], list[right], comparer))
             {
-                Exchange(ref list, left, right);
+                Exchange(list, left, right);
             }
 
             if (Compare.IsGreaterThan(list[middle], list[right], comparer))
             {
-                Exchange(ref list, middle, right);
+                Exchange(list, middle, right);
             }
             // place the median key at index 0
-            Exchange(ref list, middle, left);
+            Exchange(list, middle, left);
             return list;
         }
 
@@ -102,7 +101,7 @@ namespace Dsa.Algorithms
         /// <param name="list"><see cref="IList{T}"/> that holds the k to be exchanged.</param>
         /// <param name="first">Index of first item.</param>
         /// <param name="second">Index of second item.</param>
-        private static void Exchange<T>(ref IList<T> list, int first, int second)
+        private static void Exchange<T>(IList<T> list, int first, int second)
         {
             T temp = list[first];
             list[first] = list[second];
@@ -156,7 +155,7 @@ namespace Dsa.Algorithms
         }
 
         /// <summary>
-        /// Merge sort's an <see cref="IList{T}"/>.
+        /// Merge sorts an <see cref="IList{T}"/>.
         /// </summary>
         /// <remarks>
         /// This method is an O(n log n) operation.
@@ -177,7 +176,7 @@ namespace Dsa.Algorithms
         }
 
         /// <summary>
-        /// Merge sort's an <see cref="IList{T}"/>.
+        /// Merge sorts an <see cref="IList{T}"/>.
         /// </summary>
         /// <param name="list"><see cref="IList{T}"/> to be sorted.</param>
         /// <returns>Sorted <see cref="IList{T}"/>.</returns>
@@ -254,7 +253,7 @@ namespace Dsa.Algorithms
         }
 
         /// <summary>
-        /// Quick sort's an <see cref="IList{T}"/>.
+        /// Quick sorts an <see cref="IList{T}"/>.
         /// </summary>
         /// <remarks>
         /// This method is an O(n log n) operation.
@@ -275,7 +274,7 @@ namespace Dsa.Algorithms
         }
 
         /// <summary>
-        /// Quick sort's an <see cref="IList{T}"/>.
+        /// Quick sorts an <see cref="IList{T}"/>.
         /// </summary>
         /// <typeparam name="T">Type of <see cref="IList{T}"/> to sort.</typeparam>
         /// <param name="list"><see cref="IList{T}"/> to sort.</param>
@@ -313,7 +312,7 @@ namespace Dsa.Algorithms
         }
 
         /// <summary>
-        /// Insertion sort's an <see cref="IList{T}"/>.
+        /// Insertion sorts an <see cref="IList{T}"/>.
         /// </summary>
         /// <remarks>
         /// This method is an O(n^2) operation.
@@ -346,7 +345,7 @@ namespace Dsa.Algorithms
         }
 
         /// <summary>
-        /// Shell sort's an <see cref="IList{T}"/>.
+        /// Shell sorts an <see cref="IList{T}"/>.
         /// </summary>
         /// <remarks>
         /// This method is an O(n^1.25) operation.

@@ -10,8 +10,7 @@ namespace Dsa.Test.DataStructures
     public class BinaryTreeNodeTest
     {
         /// <summary>
-        /// Check to see that a BinaryTreeNode is initialzed to the correct
-        /// values.
+        /// Check to see that a BinaryTreeNode is initialized to the correct values.
         /// </summary>
         [TestMethod]
         public void BinaryTreeNodeConstructorTest()

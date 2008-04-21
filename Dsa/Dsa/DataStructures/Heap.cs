@@ -123,12 +123,12 @@ namespace Dsa.DataStructures
                     {
                         if (Compare.IsLessThan(_heap[2 * index + 1], _heap[2 * index + 2], _comparer))
                         {
-                            Swap(ref _heap, index, 2 * index + 1);
+                            Swap(_heap, index, 2 * index + 1);
                             index = 2 * index + 1;
                         }
                         else
                         {
-                            Swap(ref _heap, index, 2 * index + 2);
+                            Swap(_heap, index, 2 * index + 2);
                             index = 2 * index + 2;
                         }
                     }
@@ -140,12 +140,12 @@ namespace Dsa.DataStructures
                     {
                         if (Compare.IsGreaterThan(_heap[2 * index + 1], _heap[2 * index + 2], _comparer))
                         {
-                            Swap(ref _heap, index, 2 * index + 1);
+                            Swap(_heap, index, 2 * index + 1);
                             index = 2 * index + 1;
                         }
                         else
                         {
-                            Swap(ref _heap, index, 2 * index + 2);
+                            Swap(_heap, index, 2 * index + 2);
                             index = 2 * index + 2;
                         }
                     }
@@ -205,7 +205,7 @@ namespace Dsa.DataStructures
             int i = Count - 1;
             while (i > 0 && Compare.IsLessThan(_heap[i], _heap[(i - 1) / 2], _comparer))
             {
-                Swap(ref _heap, i, (i - 1) / 2);
+                Swap(_heap, i, (i - 1) / 2);
                 i = (i - 1) / 2;
             }
         }
@@ -227,7 +227,7 @@ namespace Dsa.DataStructures
             int i = Count - 1;
             while (i > 0 && Compare.IsGreaterThan(_heap[i], _heap[(i - 1) / 2], _comparer))
             {
-                Swap(ref _heap, i, (i - 1) / 2);
+                Swap(_heap, i, (i - 1) / 2);
                 i = (i - 1) / 2;
             }
         }
@@ -238,7 +238,7 @@ namespace Dsa.DataStructures
         /// <param name="array">Array which holds the k to swap around.</param>
         /// <param name="first">Index of first item to swap.</param>
         /// <param name="second">Index of second item to swap.</param>
-        private static void Swap(ref T[] array, int first, int second)
+        private static void Swap(T[] array, int first, int second)
         {
             T temp = array[first];
             array[first] = array[second];

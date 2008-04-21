@@ -216,7 +216,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Traverses the tree in inorder, i.e. returning the values of the nodes when a node is passed underneath.
+        /// Traverses the tree in in order, i.e. returning the values of the nodes when a node is passed underneath.
         /// </summary>
         /// <param name="root">The root node of the BinarySearchTree.</param>
         /// <param name="arrayList">ArrayList to store the traversed node values.</param>
@@ -291,7 +291,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Traverses the <see cref="BinarySearchTree{T}"/> in inorder traversal.
+        /// Traverses the <see cref="BinarySearchTree{T}"/> in in order traversal.
         /// </summary>
         /// <remarks>
         /// This method is an O(n) operation where n is the number of nodes in the <see cref="BinarySearchTree{T}"/>.
@@ -320,7 +320,7 @@ namespace Dsa.DataStructures
         /// </summary>
         /// <param name="root">Root node of the bst.</param>
         /// <returns>Smallest value in the bst.</returns>
-        private T FindMin(BinaryTreeNode<T> root)
+        private static T FindMin(BinaryTreeNode<T> root)
         {
             if (root.Left == null)
             {
@@ -346,7 +346,7 @@ namespace Dsa.DataStructures
         /// </summary>
         /// <param name="root">Root node of the bst.</param>
         /// <returns>Largest value in the bst.</returns>
-        private T FindMax(BinaryTreeNode<T> root)
+        private static T FindMax(BinaryTreeNode<T> root)
         {
             if (root.Right == null)
             {

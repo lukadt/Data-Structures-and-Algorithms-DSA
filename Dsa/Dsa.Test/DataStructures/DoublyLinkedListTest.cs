@@ -10,7 +10,7 @@ namespace Dsa.Test.DataStructures
     /// Tests for DoublyLinkedList.
     /// </summary>
     [TestClass]
-    public class DoublyLinkedListCollectionTest
+    public class DoublyLinkedListTest
     {
         /// <summary>
         /// Check to see that comparer used is the default and not null.
@@ -85,7 +85,7 @@ namespace Dsa.Test.DataStructures
         }
 
         /// <summary>
-        /// Check to see that a call to AddAfter raises the corrext exception when there are no nodes to add after.
+        /// Check to see that a call to AddAfter raises the correct exception when there are no nodes to add after.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
@@ -171,7 +171,7 @@ namespace Dsa.Test.DataStructures
         }
 
         /// <summary>
-        /// Checkto see that calling AddBefore when the list is empty results in the correct exception being raised.
+        /// Check to see that calling AddBefore when the list is empty results in the correct exception being raised.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]

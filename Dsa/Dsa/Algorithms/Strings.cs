@@ -192,7 +192,7 @@ namespace Dsa.Algorithms
                         index++;
                     }
                     inWord = false; // as we are hitting whitespace we are not in a word
-                    wordCount++; // I assume that words are delimitd by whitespace, thus wordCount should be incremented
+                    wordCount++; // I assume that words are delimited by whitespace, thus wordCount should be incremented
                 }
                 else
                 {

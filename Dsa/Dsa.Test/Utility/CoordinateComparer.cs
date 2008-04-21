@@ -3,7 +3,7 @@
 namespace Dsa.Test.Utility
 {
     /// <summary>
-    /// A simple stuct that exists so we can simply model a comparer for.
+    /// A simple struct that exists so we can simply model a comparer for.
     /// </summary>
     public struct Coordinate
     {

@@ -175,8 +175,8 @@ namespace Dsa.Algorithms
         /// <summary>
         /// Converts a positive base 10 integer into it's hexadecimal counterpart (base 16).
         /// </summary>
-        /// <param name="value">Integer to convert to hexidecimal form.</param>
-        /// <returns>Hexidecimal (base 16) representation of value.</returns>
+        /// <param name="value">Integer to convert to hexadecimal form.</param>
+        /// <returns>Hexadecimal (base 16) representation of value.</returns>
         /// <exception cref="ArgumentOutOfRangeException"><strong>value</strong> is less than <strong>0</strong>.</exception>
         public static string ToHex(this int value)
         {

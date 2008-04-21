@@ -33,8 +33,8 @@ namespace Dsa.DataStructures
         /// <summary>
         /// Not Supported in any DSA collection.
         /// </summary>
-        /// <param name="array">Target array to copy k to.</param>
-        /// <param name="index">Index to starty copying k to.</param>
+        /// <param name="array">Target array to copy items to.</param>
+        /// <param name="index">Index to start copying items to.</param>
         public void CopyTo(Array array, int index)
         {
             throw new NotSupportedException(Resources.ICollectionCopyToNotSupported);
@@ -55,26 +55,11 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Gets an object that can be used to synchronize accesss to the collection.
+        /// Gets an object that can be used to synchronize access to the collection.
         /// </summary>
         /// <remarks>
         /// Use the object returned by this property for locks rather than this.
         /// </remarks>
-        /// <example>
-        /// <code>
-        /// lock (myCollection.SyncRoot)
-        /// {
-        /// // ...
-        /// }
-        /// </code>
-        /// Not:
-        /// <code>
-        /// lock (this)
-        /// {
-        /// // ...
-        /// }
-        /// </code>
-        /// </example>
         object ICollection.SyncRoot
         {
             get

@@ -11,10 +11,10 @@ namespace Dsa.Test.DataStructures
     /// Tests for BinarySearchTree.
     /// </summary>
     [TestClass]
-    public class BinarySearchTreeCollectionTest
+    public class BinarySearchTreeTest
     {
         /// <summary>
-        /// Check to see that the fields are intialized correctly.
+        /// Check to see that the fields are initialized correctly.
         /// </summary>
         [TestMethod]
         public void ConstructorTest()
@@ -518,7 +518,7 @@ namespace Dsa.Test.DataStructures
         }
 
         /// <summary>
-        /// Check to see that removing a node with a left and righ subtree leaves the bst in
+        /// Check to see that removing a node with a left and right subtree leaves the bst in
         /// the correct state.
         /// </summary>
         [TestMethod]

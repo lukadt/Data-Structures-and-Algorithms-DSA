@@ -1,6 +1,5 @@
 ﻿namespace Dsa.DataStructures
 {
-
     /// <summary>
     /// Node used in <see cref="BinarySearchTree{T}"/>.
     /// </summary>
@@ -13,7 +12,7 @@
         /// </summary>
         /// <param name="value">Value of the node.</param>
         public BinaryTreeNode(T value)
-            : base(value) {}
+            : base(value) { }
 
         /// <summary>
         /// Gets or sets the left child of the <see cref="BinaryTreeNode{T}"/>.

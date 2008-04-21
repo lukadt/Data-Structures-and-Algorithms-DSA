@@ -17,13 +17,7 @@ namespace Dsa.Test.Algorithms
         [TestMethod]
         public void PermutationTest()
         {
-            UnorderedSet<int> actual = new UnorderedSet<int>
-                                           {
-                10,
-                12,
-                45,
-                1
-            };
+            UnorderedSet<int> actual = new UnorderedSet<int> {10, 12, 45, 1};
 
             Assert.AreEqual(12, actual.Permutations(2));
         }
@@ -41,7 +35,7 @@ namespace Dsa.Test.Algorithms
         }
 
         /// <summary>
-        /// Check to see that the correct value is returned when tryin to attain permutations for an empty set.
+        /// Check to see that the correct value is returned when trying to attain permutations for an empty set.
         /// </summary>
         [TestMethod]
         public void PermutationsEmptySetTest()
