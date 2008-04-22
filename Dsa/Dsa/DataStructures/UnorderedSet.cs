@@ -2,14 +2,12 @@
 
 namespace Dsa.DataStructures
 {
-
     /// <summary>
     /// Based on a standard mathematical set.
     /// </summary>
     /// <typeparam name="T">Type of the <see cref="UnorderedSet{T}"/>.</typeparam>
     public class UnorderedSet<T> : Set<T>
     {
-
         /// <summary>
         /// Initializes a new instance of <see cref="UnorderedSet{T}"/>.
         /// </summary>
@@ -31,7 +29,5 @@ namespace Dsa.DataStructures
         {
             return Collection.GetEnumerator();
         }
-
     }
-
 }

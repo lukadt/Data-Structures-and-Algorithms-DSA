@@ -5,13 +5,11 @@ using Dsa.Properties;
 
 namespace Dsa.Algorithms
 {
-
     /// <summary>
     /// Number algorithms.
     /// </summary>
     public static class Numbers
     {
-
         /// <summary>
         /// Computes the fibonacci number of a positive <see cref="System.Int32"/>.
         /// </summary>
@@ -27,25 +25,24 @@ namespace Dsa.Algorithms
             {
                 throw new ArgumentOutOfRangeException(Resources.FibonacciLessThanZero);
             }
-            
-            if (number == 0)
+
+            switch (number)
             {
-                return 0;
-            }
-            else if (number == 1)
-            {
-                return 1;
-            }
-            else
-            {
-                int[] fibs = new int[number + 1];
-                fibs[0] = 0;
-                fibs[1] = 1;
-                for (int i = 2; i <= number; i++)
-                {
-                    fibs[i] = fibs[i - 1] + fibs[i - 2];
-                }
-                return fibs[number];
+                case 0:
+                    return 0;
+                case 1:
+                    return 1;
+                default:
+                    {
+                        int[] fibs = new int[number + 1];
+                        fibs[0] = 0;
+                        fibs[1] = 1;
+                        for (int i = 2; i <= number; i++)
+                        {
+                            fibs[i] = fibs[i - 1] + fibs[i - 2];
+                        }
+                        return fibs[number];
+                    }
             }
         }
 
@@ -101,16 +98,13 @@ namespace Dsa.Algorithms
             {
                 return 1; // n^0 = 1
             }
-            else
+            int power = baseNumber;
+            while (exponent > 1)
             {
-                int power = baseNumber;
-                while (exponent > 1)
-                {
-                    power *= baseNumber;
-                    exponent--;
-                }
-                return power;
+                power *= baseNumber;
+                exponent--;
             }
+            return power;
         }
 
         /// <summary>
@@ -121,11 +115,7 @@ namespace Dsa.Algorithms
         /// <returns>The greatest common denominator of the two <see cref="System.Int32"/>'s.</returns>
         public static int GreatestCommonDenominator(int first, int second)
         {
-            if (second == 0)
-            {
-                return first;
-            }
-            return GreatestCommonDenominator(second, first % second); 
+            return second == 0 ? first : GreatestCommonDenominator(second, first % second);
         }
 
         /// <summary>
@@ -233,7 +223,5 @@ namespace Dsa.Algorithms
             }
             return symbol;
         }
-
     }
-
 }

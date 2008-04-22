@@ -2,14 +2,12 @@
 
 namespace Dsa.DataStructures
 {
-
     /// <summary>
     /// Node used in <see cref="SinglyLinkedList{T}"/>.
     /// </summary>
     /// <typeparam name="T">Type of the <see cref="SinglyLinkedListNode{T}"/>.</typeparam>
     public sealed class SinglyLinkedListNode<T>
     {
-
         [NonSerialized]
         private T _value;
         [NonSerialized]
@@ -49,7 +47,5 @@ namespace Dsa.DataStructures
                 _next = value;
             }
         }
-
     }
-
 }

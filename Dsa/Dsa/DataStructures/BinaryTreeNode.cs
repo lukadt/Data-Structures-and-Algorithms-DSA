@@ -6,7 +6,6 @@
     /// <typeparam name="T">Type of the <see cref="BinaryTreeNode{T}"/>.</typeparam>
     public sealed class BinaryTreeNode<T> : DoublyLinkedListNode<T>
     {
-
         /// <summary>
         /// Initializes a new instance of the <see cref="BinaryTreeNode{T}"/> class with a specified value.
         /// </summary>
@@ -43,7 +42,5 @@
                 Next = value;
             }
         }
-
     }
-
 }

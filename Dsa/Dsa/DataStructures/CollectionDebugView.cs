@@ -4,7 +4,6 @@ using System.Diagnostics;
 
 namespace Dsa.DataStructures
 {
-
     /// <summary>
     /// CollectionDebugView assists the locals debug window in Visual Studio. All collections in DSA get this support for free.
     /// </summary>
@@ -40,7 +39,5 @@ namespace Dsa.DataStructures
                 return items;
             }
         }
-
     }
-
 }

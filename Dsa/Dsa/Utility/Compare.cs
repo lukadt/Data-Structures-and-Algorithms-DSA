@@ -2,13 +2,11 @@
 
 namespace Dsa.Utility
 {
-
     /// <summary>
     /// Methods for comparing generic types.
     /// </summary>
     public static class Compare
     {
-
         /// <summary>
         /// Determines whether the value of first is less than the value of second.
         /// </summary>
@@ -47,6 +45,5 @@ namespace Dsa.Utility
         {
             return comparer.Compare(first, second) == 0;
         }
-
     }
 }

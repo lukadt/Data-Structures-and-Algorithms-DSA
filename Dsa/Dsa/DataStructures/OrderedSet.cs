@@ -3,14 +3,12 @@ using System.Collections.Generic;
 
 namespace Dsa.DataStructures
 {
-
     /// <summary>
     /// An ordered set where the k are ordered using a default <see cref="Comparer{T}"/> or a provided <see cref="IComparer{T}"/>.  
     /// </summary>
     /// <typeparam name="T">Type of OrderedSet.</typeparam>
     public sealed class OrderedSet<T> : Set<T>, IComparerProvider<T>
     {
-
         [NonSerialized]
         private IComparer<T> _comparer = Comparer<T>.Default;
 
@@ -54,7 +52,5 @@ namespace Dsa.DataStructures
                 return _comparer;
             }
         }
-
     }
-
 }

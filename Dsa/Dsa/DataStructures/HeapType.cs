@@ -1,6 +1,5 @@
 ﻿namespace Dsa.DataStructures
 {
-
     /// <summary>
     /// Defines the type of the <see cref="Heap{T}"/>.
     /// </summary>
@@ -15,5 +14,4 @@
         /// </summary>
         Max
     }
-
 }

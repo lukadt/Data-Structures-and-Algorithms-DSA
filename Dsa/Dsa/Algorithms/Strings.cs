@@ -5,13 +5,11 @@ using Dsa.DataStructures;
 
 namespace Dsa.Algorithms
 {
-
     /// <summary>
     /// String algorithms.
     /// </summary>
     public static class Strings
     {
-
         /// <summary>
         /// Reverses the characters of a <see cref="string"/>.
         /// </summary>
@@ -283,7 +281,5 @@ namespace Dsa.Algorithms
             }
             return words.Length - uniques.Count;
         }
-
     }
-
 }

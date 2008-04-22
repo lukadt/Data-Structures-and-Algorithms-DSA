@@ -3,14 +3,12 @@ using Dsa.Properties;
 
 namespace Dsa.DataStructures
 {
-
     /// <summary>
     /// Base class for all sets.
     /// </summary>
     /// <typeparam name="T">Type of <see cref="Set{T}"/>.</typeparam>
     public class Set<T> : CollectionBase<T>
     {
-
         private readonly CollectionBase<T> _collection;
 
         /// <summary>
@@ -31,11 +29,9 @@ namespace Dsa.DataStructures
         /// <param name="item">Item to add to the <see cref="Set{T}"/>.</param>
         public override void Add(T item)
         {
-            if (!_collection.Contains(item))
-            {
-                _collection.Add(item);
-                Count++;
-            }
+            if (_collection.Contains(item)) return; // item already in set
+            _collection.Add(item);
+            Count++;
         }
 
         /// <summary>
@@ -116,6 +112,5 @@ namespace Dsa.DataStructures
             }
             return array;
         }  
-
     }
 }

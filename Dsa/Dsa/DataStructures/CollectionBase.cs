@@ -7,7 +7,6 @@ using Dsa.Properties;
 
 namespace Dsa.DataStructures
 {
-
     /// <summary>
     /// <para>
     /// Base class for all DSA collections.
@@ -22,7 +21,6 @@ namespace Dsa.DataStructures
     [DebuggerTypeProxy(typeof(CollectionDebugView<>))]
     public abstract class CollectionBase<T> : ICollection, ICollection<T>
     {
-
         [NonSerialized]
         private object _syncRoot;
         [NonSerialized]
@@ -176,6 +174,5 @@ namespace Dsa.DataStructures
         /// </summary>
         /// <returns>An array of the k in the collection.</returns>
         public abstract T[] ToArray();
-
     }
 }

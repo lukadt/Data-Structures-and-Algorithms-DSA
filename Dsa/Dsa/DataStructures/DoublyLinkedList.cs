@@ -4,7 +4,6 @@ using Dsa.Properties;
 
 namespace Dsa.DataStructures
 {
-
     /// <summary>
     /// Doubly linked list.
     /// </summary>
@@ -12,7 +11,6 @@ namespace Dsa.DataStructures
     [Serializable]
     public sealed class DoublyLinkedList<T> : CollectionBase<T>, IComparerProvider<T>
     {
-
         [NonSerialized]
         private DoublyLinkedListNode<T> _head;
         [NonSerialized]
@@ -354,7 +352,7 @@ namespace Dsa.DataStructures
                 Count--;
                 return true;
             }
-            else if (_head.Next == _tail) // there are only two nodes in the dll
+            if (_head.Next == _tail) // there are only two nodes in the dll
             {
                 if (_comparer.Compare(_head.Value, item) == 0) 
                 {
@@ -369,33 +367,30 @@ namespace Dsa.DataStructures
                 Count--;
                 return true;
             }
-            else // there are more than 2 nodes in the dll
+            DoublyLinkedListNode<T> n = _head;
+            while (n != null)
             {
-                DoublyLinkedListNode<T> n = _head;
-                while (n != null)
+                if (_comparer.Compare(n.Value, item) == 0) // we have found a node with the value specified to remove
                 {
-                    if (_comparer.Compare(n.Value, item) == 0) // we have found a node with the value specified to remove
+                    if (n == _head) // the node to remove is the head node
                     {
-                        if (n == _head) // the node to remove is the head node
-                        {
-                            _head = _head.Next;
-                            _head.Previous = null;
-                        }
-                        else if (n == _tail) // the node to remove is the tail node
-                        {
-                            _tail = _tail.Previous;
-                            _tail.Next = null;
-                        }
-                        else // the node to remove is somewhere in the middle of the dll
-                        {
-                            n.Previous.Next = n.Next;
-                            n.Next.Previous = n.Previous;
-                        }
-                        Count--;
-                        return true;
+                        _head = _head.Next;
+                        _head.Previous = null;
                     }
-                    n = n.Next; 
+                    else if (n == _tail) // the node to remove is the tail node
+                    {
+                        _tail = _tail.Previous;
+                        _tail.Next = null;
+                    }
+                    else // the node to remove is somewhere in the middle of the dll
+                    {
+                        n.Previous.Next = n.Next;
+                        n.Next.Previous = n.Previous;
+                    }
+                    Count--;
+                    return true;
                 }
+                n = n.Next; 
             }
             return false;
         }
@@ -427,7 +422,5 @@ namespace Dsa.DataStructures
                 return _comparer;
             }
         }
-
     }
-
 }

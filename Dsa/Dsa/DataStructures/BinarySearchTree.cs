@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using Dsa.Properties;
 using Dsa.Utility;
 
 namespace Dsa.DataStructures
 {
-
     /// <summary>
     /// A binary search tree (BST).
     /// </summary>
@@ -14,7 +12,6 @@ namespace Dsa.DataStructures
     [Serializable]
     public sealed class BinarySearchTree<T> : CollectionBase<T>, IComparerProvider<T>
     {
-
         [NonSerialized]
         private BinaryTreeNode<T> _root;
         [NonSerialized]
@@ -101,19 +98,9 @@ namespace Dsa.DataStructures
                 return null; 
             }
 
-            if (Compare.IsLessThan(value, root.Value, _comparer))
-            {
-                return FindNode(value, root.Left);
-            }
-            else if (Compare.IsGreaterThan(value, root.Value, _comparer))
-            {
-                return FindNode(value, root.Right);
-            }
-            else
-            {
-                // we have found the value
-                return root; 
-            }
+            return Compare.IsLessThan(value, root.Value, _comparer)
+                       ? FindNode(value, root.Left)
+                       : (Compare.IsGreaterThan(value, root.Value, _comparer) ? FindNode(value, root.Right) : root);
         }
 
         /// <summary>
@@ -129,11 +116,7 @@ namespace Dsa.DataStructures
                 throw new InvalidOperationException(Resources.BinarySearchTreeEmpty);
             }
 
-            if (Compare.AreEqual(value, _root.Value, _comparer))
-            {
-                return null; // root node has no parent
-            }
-            return FindParent(value, _root);
+            return Compare.AreEqual(value, _root.Value, _comparer) ? null : FindParent(value, _root);
         }
 
         /// <summary>
@@ -154,31 +137,13 @@ namespace Dsa.DataStructures
                 {
                     return null;
                 }
-                else if (Compare.AreEqual(value, root.Left.Value, _comparer))
-                {
-                    // root is the parent of the node with the value we are searching for
-                    return root;
-                }
-                else
-                {
-                    return FindParent(value, root.Left);
-                }
+                return Compare.AreEqual(value, root.Left.Value, _comparer) ? root : FindParent(value, root.Left);
             }
-            else
+            if (root.Right == null)
             {
-                if (root.Right == null)
-                {
-                    return null; 
-                }
-                else if (Compare.AreEqual(value, root.Right.Value, _comparer))
-                {
-                    return root;
-                }
-                else
-                {
-                    return FindParent(value, root.Right);
-                }
+                return null; 
             }
+            return Compare.AreEqual(value, root.Right.Value, _comparer) ? root : FindParent(value, root.Right);
         }
 
         /// <summary>
@@ -253,14 +218,7 @@ namespace Dsa.DataStructures
                 {
                     unvisited.Enqueue(root.Right); 
                 }
-                if (unvisited.Count > 0)
-                {
-                    root = unvisited.Dequeue();
-                }
-                else
-                {
-                    root = null; // we have ran out of nodes to visit
-                }
+                root = unvisited.Count > 0 ? unvisited.Dequeue() : null;
             }
             return visited;
         }
@@ -448,14 +406,7 @@ namespace Dsa.DataStructures
             {
                 return true; 
             }
-            else if (Compare.IsLessThan(item, root.Value, _comparer))
-            {
-                return Contains(root.Left, item); 
-            }
-            else
-            {
-                return Contains(root.Right, item);
-            }
+            return Compare.IsLessThan(item, root.Value, _comparer) ? Contains(root.Left, item) : Contains(root.Right, item);
         }
 
         /// <summary>
@@ -577,7 +528,5 @@ namespace Dsa.DataStructures
                 return _comparer;
             }
         }
-
     }
-
 }

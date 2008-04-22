@@ -4,7 +4,6 @@ using Dsa.Utility;
 
 namespace Dsa.DataStructures
 {
-
     /// <summary>
     /// Heap data structure.
     /// </summary>
@@ -14,7 +13,6 @@ namespace Dsa.DataStructures
     /// <typeparam name="T">Type of heap.</typeparam>
     public sealed class Heap<T> : CollectionBase<T>, IComparerProvider<T>
     {
-
         [NonSerialized]
         private T[] _heap;
         [NonSerialized]
@@ -113,45 +111,42 @@ namespace Dsa.DataStructures
             {
                 return false;
             }
+            _heap[index] = _heap[--Count];
+            if (_heapType == HeapType.Min)
+            {
+                while (2 * index + 1 < Count && (Compare.IsGreaterThan(_heap[index], _heap[2 * index + 1], _comparer) ||
+                                                 Compare.IsGreaterThan(_heap[index], _heap[2 * index + 2], _comparer)))
+                {
+                    if (Compare.IsLessThan(_heap[2 * index + 1], _heap[2 * index + 2], _comparer))
+                    {
+                        Swap(_heap, index, 2 * index + 1);
+                        index = 2 * index + 1;
+                    }
+                    else
+                    {
+                        Swap(_heap, index, 2 * index + 2);
+                        index = 2 * index + 2;
+                    }
+                }
+            }
             else
             {
-                _heap[index] = _heap[--Count];
-                if (_heapType == HeapType.Min)
+                while (2 * index + 1 < Count && (Compare.IsLessThan(_heap[index], _heap[2 * index + 1], _comparer) ||
+                                                 Compare.IsLessThan(_heap[index], _heap[2 * index + 2], _comparer)))
                 {
-                    while (2 * index + 1 < Count && (Compare.IsGreaterThan(_heap[index], _heap[2 * index + 1], _comparer) ||
-                        Compare.IsGreaterThan(_heap[index], _heap[2 * index + 2], _comparer)))
+                    if (Compare.IsGreaterThan(_heap[2 * index + 1], _heap[2 * index + 2], _comparer))
                     {
-                        if (Compare.IsLessThan(_heap[2 * index + 1], _heap[2 * index + 2], _comparer))
-                        {
-                            Swap(_heap, index, 2 * index + 1);
-                            index = 2 * index + 1;
-                        }
-                        else
-                        {
-                            Swap(_heap, index, 2 * index + 2);
-                            index = 2 * index + 2;
-                        }
+                        Swap(_heap, index, 2 * index + 1);
+                        index = 2 * index + 1;
+                    }
+                    else
+                    {
+                        Swap(_heap, index, 2 * index + 2);
+                        index = 2 * index + 2;
                     }
                 }
-                else
-                {
-                    while (2 * index + 1 < Count && (Compare.IsLessThan(_heap[index], _heap[2 * index + 1], _comparer) ||
-                        Compare.IsLessThan(_heap[index], _heap[2 * index + 2], _comparer)))
-                    {
-                        if (Compare.IsGreaterThan(_heap[2 * index + 1], _heap[2 * index + 2], _comparer))
-                        {
-                            Swap(_heap, index, 2 * index + 1);
-                            index = 2 * index + 1;
-                        }
-                        else
-                        {
-                            Swap(_heap, index, 2 * index + 2);
-                            index = 2 * index + 2;
-                        }
-                    }
-                }
-                return true;
             }
+            return true;
         }
 
         /// <summary>

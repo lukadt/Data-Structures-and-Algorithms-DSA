@@ -1,6 +1,5 @@
 ﻿namespace Dsa.DataStructures
 {
-
     /// <summary>
     /// <see cref="DoublyLinkedListNode{T}"/> is an implementation of a node used in a doubly linked list data structure.
     /// </summary>
@@ -31,5 +30,4 @@
         /// </summary>
         public DoublyLinkedListNode<T> Previous { get; set; }
     }
-
 }

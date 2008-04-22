@@ -4,13 +4,11 @@ using Dsa.Utility;
 
 namespace Dsa.Algorithms
 {
-
     /// <summary>
     /// Searching algorithms.
     /// </summary>
     public static class Searching
     {
-
         /// <summary>
         /// Sequential search for an item within an <see cref="IList{T}"/>.
         /// </summary>
@@ -38,10 +36,7 @@ namespace Dsa.Algorithms
             {
                 return i;
             }
-            else
-            {
-                return -1; // not found
-            }
+            return -1; // not found
         }
 
         /// <summary>
@@ -73,23 +68,18 @@ namespace Dsa.Algorithms
             {
                 i++;
             }
-            if (i < list.Count && Compare.AreEqual(list[i], item, comparer))
-            {
-                // we can increase the k priority as the item is not the first element in the array
-                if (i > 0)
-                {
-                    T temp = list[i - 1];
-                    list[i - 1] = list[i];
-                    list[i] = temp;
-                }
-                return true;
-            }
-            else
+            if (i >= list.Count || !Compare.AreEqual(list[i], item, comparer))
             {
                 return false;
             }
+            // we can increase the k priority as the item is not the first element in the array
+            if (i > 0)
+            {
+                T temp = list[i - 1];
+                list[i - 1] = list[i];
+                list[i] = temp;
+            }
+            return true;
         }
-
     }
-
 }

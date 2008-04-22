@@ -5,13 +5,11 @@ using Dsa.Utility;
 
 namespace Dsa.Algorithms
 {
-
     /// <summary>
     /// Sorting algorithms.
     /// </summary>
     public static class Sorting
     {
-
         /// <summary>
         /// Bubble sorts the items in an <see cref="IList{T}"/>.
         /// </summary>
@@ -381,7 +379,5 @@ namespace Dsa.Algorithms
             }
             return list;
         }
-
     }
-
 }

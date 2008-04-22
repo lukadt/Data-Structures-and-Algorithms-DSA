@@ -5,7 +5,6 @@ using Dsa.Utility;
 
 namespace Dsa.DataStructures
 {
-
     /// <summary>
     /// Singly linked list.
     /// </summary>
@@ -13,7 +12,6 @@ namespace Dsa.DataStructures
     [Serializable]
     public sealed class SinglyLinkedList<T> : CollectionBase<T>, IComparerProvider<T>
     {
-
         [NonSerialized]
         private SinglyLinkedListNode<T> _head;
         [NonSerialized]
@@ -474,7 +472,5 @@ namespace Dsa.DataStructures
                 return _comparer;
             }
         }
-
     }
-
 }
