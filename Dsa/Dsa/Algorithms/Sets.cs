@@ -1,6 +1,7 @@
 ﻿using System;
 using Dsa.DataStructures;
 using Dsa.Properties;
+using Dsa.Utility;
 
 namespace Dsa.Algorithms
 {
@@ -22,20 +23,13 @@ namespace Dsa.Algorithms
         /// <returns>The number of set permutations of <em>k</em> items.</returns>
         public static int Permutations<T>(this Set<T> set, int k)
         {
-            if (set == null)
-            {
-                throw new ArgumentNullException("set");
-            }
-            else if (k < 1)
+            Guard.ArgumentNull(set, "set");
+            if (k < 1)
             {
                 throw new ArgumentOutOfRangeException(Resources.PermutationsKGreaterThanZero);
             }
 
-            if ((set.Count - k) < 0)
-            {
-                return 0;
-            }
-            return set.Count.Factorial() / (set.Count - k).Factorial();
+            return (set.Count - k) < 0 ? 0 : set.Count.Factorial() / (set.Count - k).Factorial();
         }
     }
 }

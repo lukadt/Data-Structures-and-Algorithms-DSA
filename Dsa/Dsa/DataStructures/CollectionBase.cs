@@ -96,7 +96,7 @@ namespace Dsa.DataStructures
         public abstract void Add(T item);
 
         /// <summary>
-        /// Clears all k from the <see cref="ICollection{T}"/>.
+        /// Clears all items from the <see cref="ICollection{T}"/>.
         /// </summary>
         public abstract void Clear();
 
@@ -108,10 +108,10 @@ namespace Dsa.DataStructures
         public abstract bool Contains(T item);
 
         /// <summary>
-        /// Copies all the <see cref="ICollection{T}"/> k to a compatible one-dimensional <see cref="Array"/>, 
+        /// Copies all the <see cref="ICollection{T}"/> items to a compatible one-dimensional <see cref="Array"/>, 
         /// starting at the specified index of the target <see cref="Array"/>.
         /// </summary>
-        /// <param name="array">A one-dimensional <see cref="Array"/> to copy the <see cref="ICollection{T}"/> k to.</param>
+        /// <param name="array">A one-dimensional <see cref="Array"/> to copy the <see cref="ICollection{T}"/> items to.</param>
         /// <param name="arrayIndex">Index of target <see cref="Array"/> where copying begins.</param>
         public void CopyTo(T[] array, int arrayIndex)
         {
@@ -119,7 +119,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Gets the number of k contained in the <see cref="ICollection{T}"/>.
+        /// Gets the number of items contained in the <see cref="ICollection{T}"/>.
         /// </summary>
         public int Count
         {
@@ -172,7 +172,7 @@ namespace Dsa.DataStructures
         /// <summary>
         /// Converts the collection to a single dimension array.
         /// </summary>
-        /// <returns>An array of the k in the collection.</returns>
+        /// <returns>An array of the items in the collection.</returns>
         public abstract T[] ToArray();
     }
 }

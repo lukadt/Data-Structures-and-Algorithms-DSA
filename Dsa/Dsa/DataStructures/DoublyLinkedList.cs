@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Dsa.Properties;
+using Dsa.Utility;
 
 namespace Dsa.DataStructures
 {
@@ -33,10 +34,7 @@ namespace Dsa.DataStructures
         /// <exception cref="ArgumentNullException"><strong>comparer</strong> is <strong>null</strong>.</exception>
         public DoublyLinkedList(IComparer<T> comparer) 
         {
-            if (comparer == null)
-            {
-                throw new ArgumentNullException("comparer");
-            }
+            Guard.ArgumentNull(comparer, "comparer");
 
             _comparer = comparer;
         }
@@ -151,7 +149,7 @@ namespace Dsa.DataStructures
         /// <remarks>
         /// This method is an O(1) operation.
         /// </remarks>
-        /// <exception cref="InvalidOperationException"><see cref="DoublyLinkedList{T}"/> contains <strong>0 k</strong>.</exception>
+        /// <exception cref="InvalidOperationException"><see cref="DoublyLinkedList{T}"/> contains <strong>0</strong> items.</exception>
         public void RemoveLast()
         {
             if (IsEmpty())
@@ -184,7 +182,7 @@ namespace Dsa.DataStructures
         /// <remarks>
         /// This method is an O(1) operation.
         /// </remarks>
-        /// <exception cref="InvalidOperationException"><see cref="DoublyLinkedList{T}"/> contains <strong>0 k</strong>.</exception>
+        /// <exception cref="InvalidOperationException"><see cref="DoublyLinkedList{T}"/> contains <strong>0</strong> items.</exception>
         public void RemoveFirst()
         {
             if (IsEmpty())
@@ -217,7 +215,7 @@ namespace Dsa.DataStructures
         /// This method is an O(n) operation where n is the number of nodes in the <see cref="DoublyLinkedList{T}"/>.
         /// </remarks>
         /// <returns>A one-dimensional <see cref="Array"/> containing the values of the nodes contained in the <see cref="DoublyLinkedList{T}"/>.</returns>
-        /// <exception cref="InvalidOperationException"><see cref="DoublyLinkedList{T}"/> contains <strong>0 k</strong>.</exception>
+        /// <exception cref="InvalidOperationException"><see cref="DoublyLinkedList{T}"/> contains <strong>0</strong> items.</exception>
         public override T[] ToArray()
         {
             if (IsEmpty())
@@ -246,10 +244,7 @@ namespace Dsa.DataStructures
             {
                 throw new InvalidOperationException(Resources.DoublyLinkedListEmpty);
             }
-            else if (node == null)
-            {
-                throw new ArgumentNullException("node");
-            }
+            Guard.ArgumentNull(node, "node");
         }
 
         /// <summary>
@@ -336,12 +331,12 @@ namespace Dsa.DataStructures
         /// </remarks>
         /// <param name="item">Value to remove from the <see cref="DoublyLinkedList{T}"/>.</param>
         /// <returns>True if the value was removed from the <see cref="DoublyLinkedList{T}"/>; false otherwise.</returns>
-        /// <exception cref="InvalidOperationException"><see cref="DoublyLinkedList{T}"/> contains <strong>0 k</strong>.</exception>
+        /// <exception cref="InvalidOperationException"><see cref="DoublyLinkedList{T}"/> contains <strong>0</strong> items.</exception>
         public override bool Remove(T item)
         {
             if (IsEmpty())
             {
-                throw new InvalidOperationException(Resources.DoublyLinkedListEmpty); // no k to remove
+                throw new InvalidOperationException(Resources.DoublyLinkedListEmpty); // no items to remove
             }
 
             if (_head.Next == null && _comparer.Compare(_head.Value, item) == 0)
@@ -396,7 +391,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Traverses the k in the <see cref="DoublyLinkedList{T}"/>.
+        /// Traverses the items in the <see cref="DoublyLinkedList{T}"/>.
         /// </summary>
         /// <remarks>
         /// This method is an O(n) operation, where n is the number of nodes in the <see cref="DoublyLinkedList{T}"/>.

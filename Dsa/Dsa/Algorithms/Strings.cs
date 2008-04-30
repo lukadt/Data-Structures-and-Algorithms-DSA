@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Text;
 using Dsa.DataStructures;
+using Dsa.Utility;
 
 namespace Dsa.Algorithms
 {
@@ -21,10 +22,7 @@ namespace Dsa.Algorithms
         /// <exception cref="ArgumentNullException"><strong>value</strong> is <strong>null</strong>.</exception>
         public static string Reverse(this string value)
         {
-            if (value == null)
-            {
-                throw new ArgumentNullException("value");
-            }
+            Guard.ArgumentNull(value, "value");
 
             if (value.Length < 2)
             {
@@ -62,14 +60,8 @@ namespace Dsa.Algorithms
         /// <exception cref="ArgumentNullException"><strong>word</strong> is <strong>null</strong> or <strong>match</strong> is <strong>null</strong>.</exception>
         public static int Any(this string word, string match)
         {
-            if (word == null)
-            {
-                throw new ArgumentNullException("word");
-            }
-            else if (match == null)
-            {
-                throw new ArgumentNullException("match");
-            }
+            Guard.ArgumentNull(word, "word");
+            Guard.ArgumentNull(match, "match");
             
             for (int i = 0; i < word.Length; i++)
             {
@@ -108,10 +100,7 @@ namespace Dsa.Algorithms
         /// <exception cref="ArgumentNullException"><strong>word</strong> is <strong>null</strong>.</exception>
         public static bool IsPalindrome(this string word)
         {
-            if (word == null)
-            {
-                throw new ArgumentNullException("word");
-            }
+            Guard.ArgumentNull(word, "word");
             
             word = word.Strip().ToUpper(CultureInfo.InvariantCulture); 
             int left = 0;
@@ -137,10 +126,8 @@ namespace Dsa.Algorithms
         /// <exception cref="ArgumentNullException"><strong>value</strong> is <strong>null</strong>.</exception>
         public static string Strip(this string value)
         {
-            if (value == null)
-            {
-                throw new ArgumentNullException("value");
-            }
+            Guard.ArgumentNull(value, "value");
+
             StringBuilder sb = new StringBuilder(); 
             for (int i = 0; i < value.Length; i++)
             {
@@ -163,10 +150,7 @@ namespace Dsa.Algorithms
         /// <exception cref="ArgumentNullException"><strong>value</strong> is <strong>null</strong>.</exception>
         public static int WordCount(this string value)
         {
-            if (value == null)
-            {
-                throw new ArgumentNullException("value");
-            }
+            Guard.ArgumentNull(value, "value");
             
             bool inWord = true; 
             int wordCount = 0; 
@@ -216,10 +200,7 @@ namespace Dsa.Algorithms
         /// <exception cref="ArgumentNullException"><strong>value</strong> is <strong>null</strong>.</exception>
         public static string ReverseWords(this string value)
         {
-            if (value == null)
-            {
-                throw new ArgumentNullException("value");
-            }
+            Guard.ArgumentNull(value, "value");
 
             int last = value.Length - 1;
             int start = last; // will be used to mark the beginning of a word in the string
@@ -268,10 +249,7 @@ namespace Dsa.Algorithms
         /// <exception cref="ArgumentNullException"><strong>value</strong> is <strong>null</strong>.</exception>
         public static int RepeatedWordCount(this string value)
         {
-            if (value == null)
-            {
-                throw new ArgumentNullException("value");
-            }
+            Guard.ArgumentNull(value, "value");
 
             string[] words = value.Split(' ');
             UnorderedSet<string> uniques = new UnorderedSet<string>();

@@ -35,7 +35,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Clears all the k from the <see cref="Set{T}"/>.
+        /// Clears all the items from the <see cref="Set{T}"/>.
         /// </summary>
         public override void Clear()
         {
@@ -90,12 +90,12 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Returns the k in the <see cref="Set{T}"/> as a one-dimensional <see cref="Array"/>.
+        /// Returns the items in the <see cref="Set{T}"/> as a one-dimensional <see cref="Array"/>.
         /// </summary>
         /// <remarks>
-        /// This is an O(n) operation where n is the number of k in the <see cref="Set{T}"/>.
+        /// This is an O(n) operation where n is the number of items in the <see cref="Set{T}"/>.
         /// </remarks>
-        /// <returns>A one dimensional <see cref="Array"/> populated with the k from the <see cref="Set{T}"/>.</returns>
+        /// <returns>A one dimensional <see cref="Array"/> populated with the items from the <see cref="Set{T}"/>.</returns>
         public override T[] ToArray()
         {
             if (Count < 1)

@@ -91,6 +91,7 @@
     <Compile Include="DataStructures\SinglyLinkedListNode.cs" />
     <Compile Include="Algorithms\Strings.cs" />
     <Compile Include="Utility\Compare.cs" />
+    <Compile Include="Utility\Guard.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

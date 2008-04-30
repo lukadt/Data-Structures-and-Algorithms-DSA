@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
+using Dsa.Utility;
 
 namespace Dsa.DataStructures
 {
@@ -18,10 +18,8 @@ namespace Dsa.DataStructures
 
         public CollectionDebugView(ICollection<T> collection)
         {
-            if (collection == null)
-            {
-                throw new ArgumentNullException("collection");
-            }
+            Guard.ArgumentNull(collection, "collection");
+            
             _collection = collection;
         }
 

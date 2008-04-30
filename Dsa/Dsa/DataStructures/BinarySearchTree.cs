@@ -15,7 +15,7 @@ namespace Dsa.DataStructures
         [NonSerialized]
         private BinaryTreeNode<T> _root;
         [NonSerialized]
-        private IComparer<T> _comparer;
+        private readonly IComparer<T> _comparer;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BinarySearchTree{T}"/> class.
@@ -32,10 +32,7 @@ namespace Dsa.DataStructures
         /// <exception cref="ArgumentNullException"><strong>comparer</strong> is <strong>null</strong>.</exception>
         public BinarySearchTree(IComparer<T> comparer)
         {
-            if (comparer == null)
-            {
-                throw new ArgumentNullException("comparer");
-            }
+            Guard.ArgumentNull(comparer, "comparer");
 
             _comparer = comparer;
         }
@@ -151,7 +148,7 @@ namespace Dsa.DataStructures
         /// </summary>
         /// <param name="root">The root node of the BinarySearchTree.</param>
         /// <param name="arrayList">A ArrayList to store the traversed node values.</param>
-        /// <returns>ArrayList populated with the k from the traversal.</returns>
+        /// <returns>ArrayList populated with the items from the traversal.</returns>
         private static List<T> PreorderTraveral(BinaryTreeNode<T> root, List<T> arrayList)
         {
             if (root != null)
@@ -168,7 +165,7 @@ namespace Dsa.DataStructures
         /// </summary>
         /// <param name="root">The root node of the BinarySearchTree.</param>
         /// <param name="arrayList">ArrayList to store the traversed node values.</param>
-        /// <returns>ArrayList populated with the k from the traversal.</returns>
+        /// <returns>ArrayList populated with the items from the traversal.</returns>
         private static List<T> PostorderTraversal(BinaryTreeNode<T> root, List<T> arrayList)
         {
             if (root != null)
@@ -185,7 +182,7 @@ namespace Dsa.DataStructures
         /// </summary>
         /// <param name="root">The root node of the BinarySearchTree.</param>
         /// <param name="arrayList">ArrayList to store the traversed node values.</param>
-        /// <returns>ArrayList populated with the k from the traversal.</returns>
+        /// <returns>ArrayList populated with the items from the traversal.</returns>
         private static List<T> InorderTraversal(BinaryTreeNode<T> root, List<T> arrayList)
         {
             if (root != null)
@@ -201,7 +198,7 @@ namespace Dsa.DataStructures
         /// Traverse the tree in breadth first order, i.e. each node is visited on the same depth to depth n where n is the depth of the tree.
         /// </summary>
         /// <param name="root">The root node of the BinarySearchTree.</param>
-        /// <returns>ArrayList populated with the k from the traversal.</returns>
+        /// <returns>ArrayList populated with the items from the traversal.</returns>
         private static List<T> BreadthFirstTraversal(BinaryTreeNode<T> root)
         {
             Queue<BinaryTreeNode<T>> unvisited = new Queue<BinaryTreeNode<T>>(); 
@@ -314,7 +311,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Returns the k in the <see cref="BinarySearchTree{T}"/> as an <see cref="Array"/> using <see cref="BinarySearchTree{T}.GetBreadthFirstEnumerator"/> 
+        /// Returns the items in the <see cref="BinarySearchTree{T}"/> as an <see cref="Array"/> using <see cref="BinarySearchTree{T}.GetBreadthFirstEnumerator"/> 
         /// traversal.
         /// </summary>
         /// <remarks>
@@ -325,13 +322,13 @@ namespace Dsa.DataStructures
         /// You cannot call the <see cref="BinarySearchTree{T}.ToArray"/> method on a <see cref="BinarySearchTree{T}"/> that is empty.
         /// </para>
         /// </remarks>
-        /// <returns>A one-dimensional <see cref="Array"/> containing the k of the <see cref="BinarySearchTree{T}"/>.</returns>
+        /// <returns>A one-dimensional <see cref="Array"/> containing the items of the <see cref="BinarySearchTree{T}"/>.</returns>
         /// <exception cref="InvalidOperationException"><see cref="BinarySearchTree{T}"/> is <strong>empty</strong>.</exception>
         public override T[] ToArray()
         {
             if (Count < 1)
             {
-                throw new InvalidOperationException(Resources.BinarySearchTreeEmpty); // to array is not permitted on a bst with no k.
+                throw new InvalidOperationException(Resources.BinarySearchTreeEmpty); // to array is not permitted on a bst with no items.
             }
 
             int i = 0;
@@ -366,7 +363,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Clears all k from the <see cref="BinarySearchTree{T}"/>.
+        /// Clears all items from the <see cref="BinarySearchTree{T}"/>.
         /// </summary>
         /// <remarks>
         /// This method is an O(1) operation.
@@ -410,9 +407,9 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Copies all the <see cref="BinarySearchTree{T}"/> k to a compatible one-dimensional <see cref="Array"/>.
+        /// Copies all the <see cref="BinarySearchTree{T}"/> items to a compatible one-dimensional <see cref="Array"/>.
         /// </summary>
-        /// <param name="array">A one-dimensional <see cref="Array"/> to copy the <see cref="BinarySearchTree{T}"/> k to.</param>
+        /// <param name="array">A one-dimensional <see cref="Array"/> to copy the <see cref="BinarySearchTree{T}"/> items to.</param>
         public void CopyTo(T[] array)
         {
             Array.Copy(ToArray(), array, Count);
@@ -512,10 +509,7 @@ namespace Dsa.DataStructures
         /// </summary>
         public BinaryTreeNode<T> Root
         {
-            get
-            {
-                return _root;
-            }
+            get { return _root; }
         }
 
         /// <summary>
@@ -523,10 +517,7 @@ namespace Dsa.DataStructures
         /// </summary>
         IComparer<T> IComparerProvider<T>.Comparer
         {
-            get
-            {
-                return _comparer;
-            }
+            get { return _comparer; }
         }
     }
 }

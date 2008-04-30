@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Dsa.DataStructures
 {
     /// <summary>
-    /// An ordered set where the k are ordered using a default <see cref="Comparer{T}"/> or a provided <see cref="IComparer{T}"/>.  
+    /// An ordered set where the items are ordered using a default <see cref="Comparer{T}"/> or a provided <see cref="IComparer{T}"/>.  
     /// </summary>
     /// <typeparam name="T">Type of OrderedSet.</typeparam>
     public sealed class OrderedSet<T> : Set<T>, IComparerProvider<T>
@@ -31,11 +31,11 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Returns an <see cref="IEnumerator{T}"/> to provide a simple traversal through the k in the <see cref="OrderedSet{T}"/>.
+        /// Returns an <see cref="IEnumerator{T}"/> to provide a simple traversal through the items in the <see cref="OrderedSet{T}"/>.
         /// </summary>
         /// <returns>An <see cref="IEnumerator{T}"/> to traverse the <see cref="OrderedSet{T}"/>.</returns>
         /// <remarks>
-        /// This method is an O(n) operation where n is the number of k in the <see cref="OrderedSet{T}"/>.
+        /// This method is an O(n) operation where n is the number of items in the <see cref="OrderedSet{T}"/>.
         /// </remarks>
         public override IEnumerator<T> GetEnumerator()
         {

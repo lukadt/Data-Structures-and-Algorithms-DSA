@@ -21,10 +21,7 @@ namespace Dsa.Algorithms
         /// <exception cref="ArgumentNullException"><strong>list</strong> is <strong>null</strong>.</exception>
         public static int SequentialSearch<T>(this IList<T> list, T item)
         {
-            if (list == null)
-            {
-                throw new ArgumentNullException("list");
-            }
+            Guard.ArgumentNull(list, "list");
 
             int i = 0;
             Comparer<T> comparer = Comparer<T>.Default;
@@ -57,10 +54,7 @@ namespace Dsa.Algorithms
         /// <exception cref="ArgumentNullException"><strong>list</strong> is <strong>null</strong>.</exception>
         public static bool ProbabilitySearch<T>(this IList<T> list, T item)
         {
-            if (list == null)
-            {
-                throw new ArgumentNullException("list");
-            }
+            Guard.ArgumentNull(list, "list");
 
             int i = 0;
             Comparer<T> comparer = Comparer<T>.Default;
@@ -72,7 +66,7 @@ namespace Dsa.Algorithms
             {
                 return false;
             }
-            // we can increase the k priority as the item is not the first element in the array
+            // we can increase the items' priority as the item is not the first element in the array
             if (i > 0)
             {
                 T temp = list[i - 1];
