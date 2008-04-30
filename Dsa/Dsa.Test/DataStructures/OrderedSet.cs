@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using Dsa.DataStructures;
 using Dsa.Test.Utility;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dsa.Test.DataStructures
 {
     /// <summary>
     /// Tests for OrderedSet.
     /// </summary>
-    [TestClass]
+    [TestFixture]
     public class SetTest
     {
         /// <summary>
         /// Check to see that items are added correctly and duplicate values are ignored.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void AddTest()
         {
             OrderedSet<int> actual = new OrderedSet<int> {43, 17, 34, 78, 17, 56, 78};
@@ -26,7 +26,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that calling Clear returns the Set to its initial state.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ClearTest()
         {
             OrderedSet<int> actual = new OrderedSet<int> {15, 16, 89};
@@ -39,7 +39,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that that Contains returns the correct value.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ContainsTest()
         {
             OrderedSet<int> actual = new OrderedSet<int> {12, 19, 1, 23};
@@ -51,7 +51,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that an item is removed correctly from the Set.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void RemoveTest()
         {
             OrderedSet<int> actual = new OrderedSet<int> {10, 8, 9, 23, 9};
@@ -63,7 +63,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that an item with the correct value and indexes is returned.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ToArrayTest()
         {
             OrderedSet<int> set = new OrderedSet<int> {10, 8, 23, 1, 23, 56};
@@ -77,7 +77,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that the correct exception is thrown when calling ToArray on a Set with no items.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(InvalidOperationException))]
         public void ToArraySetEmptyTest()
         {
@@ -89,7 +89,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that a non-null enumerator is returned.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void GetEnumeratorTest()
         {
             OrderedSet<int> set = new OrderedSet<int> {10, 23, 1, 89, 34};
@@ -104,7 +104,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that the comparer is not null.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ComparerTest()
         {
             IComparer<Coordinate> comaparer = new CoordinateComparer();

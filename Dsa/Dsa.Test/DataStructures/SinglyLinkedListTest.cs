@@ -3,20 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using Dsa.DataStructures;
 using Dsa.Test.Utility;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dsa.Test.DataStructures
 {
     /// <summary>
     /// Tests for SinglyLinkedList.
     /// </summary>
-    [TestClass]
+    [TestFixture]
     public class SinglyLinkedListTest
     {
         /// <summary>
         /// Check to see the comparer is not null.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ConstructorTest()
         {
             IComparerProvider<int> actual = new SinglyLinkedList<int>();
@@ -27,7 +27,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that the provided comparer is not null.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void OverloadedConstructorTest()
         {
             IComparer<Coordinate> comparer = new CoordinateComparer();
@@ -39,7 +39,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that the correct exception is raised when the comparer is null.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void OverloadedConstructorComparerNullTest()
         {
@@ -50,7 +50,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that the SinglyLinkedListCollectionCollection reports as empty when it is.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void IsEmptyTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
@@ -61,7 +61,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that nodes are added correctly to the tail of the SinglyLinkedListCollection.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void AddLastTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int> {5, 10, 15};
@@ -75,7 +75,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that nodes are added correctly to the head of the SinglyLinkedListCollection.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void AddFirstTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
@@ -92,7 +92,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that the value of the Head node of the SinglyLinkedListCollection is as expected.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void HeadTest()
         {
             SinglyLinkedList<string> sll = new SinglyLinkedList<string> {"Granville"};
@@ -103,7 +103,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that the value of the Tail node of the SinglyLinkedListCollection is as expected.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void TailTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10};
@@ -114,7 +114,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that the Count property of the SinglyLinkedList returns the correct number.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void CountTest()
         {
             SinglyLinkedList<string> sll = new SinglyLinkedList<string> {"Granville", "Barnett"};
@@ -125,7 +125,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that SinglyLinkedListCollection returns the correct items from the collection.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ForeachTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 30, 40};
@@ -138,7 +138,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that the expected array is returned from a SinglyLinkedListCollection that contains nodes.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ToArrayOfValidSinglyLinkedListCollectionTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20, 30};
@@ -151,7 +151,7 @@ namespace Dsa.Test.DataStructures
         /// Check to see that the expected exception is raised when ToArray is called on a SinglyLinkedListCollection
         /// that has no nodes.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(InvalidOperationException))]
         public void ToArrayOfInvalidSinglyLinkedListCollectionTest()
         {
@@ -163,7 +163,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to make sure that removing the only node from the SinglyLinkedListCollection results in the expected behaviour.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void RemoveLastValidSinglyLinkedListCollectionWithOnlyOneNodeTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10};
@@ -179,7 +179,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to make sure that removing the last node from the SinglyLinkedListCollection results in the expected behaviour.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void RemoveLastValidSinglyLinkedListCollectionWithMultipleNodesTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20, 30};
@@ -194,7 +194,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to make sure that removing the last node from SinglyLinkedListCollection results in the expected behaviour.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void RemoveLastValidSinglyLinkedListCollectionWithMultipleNodesTest2()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20, 30};
@@ -212,7 +212,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check remove when there is only one node in the SinglyLinkedList.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void RemoveOnlyOneNodeInListTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10};
@@ -227,7 +227,7 @@ namespace Dsa.Test.DataStructures
         /// Check to make sure that removing all the nodes from a SinglyLinkedListCollection using the RemoveLast method works, then
         /// reassigning the head and tail returns the expected results.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void RemoveLastValidSinglyLinkedListCollectionWithMultipleNodesAndReassingHeadAndTailTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20, 30};
@@ -250,7 +250,7 @@ namespace Dsa.Test.DataStructures
         /// Check to see that the appropriate exception is raised when calling RemoveLast on a SinglyLinkedListCollection
         /// object containing no nodes.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(InvalidOperationException))]
         public void RemoveLastInvalidSinglyLinkedListCollectionTest()
         {
@@ -263,7 +263,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that calling RemoveFirst on SinglyLinkedListCollection with only 1 node results in the expected behaviour.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void RemoveFirstValidSinglyLinkedListCollectionWithOnlyOneNodeTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10};
@@ -279,7 +279,7 @@ namespace Dsa.Test.DataStructures
         /// Check to see that when calling the RemoveFirst method on a SinglyLinkedListCollection with more than one node
         /// results in the expected object state.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void RemoveFirstValidSinglyLinkedListCollectionWithMultipleNodesTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20};
@@ -299,7 +299,7 @@ namespace Dsa.Test.DataStructures
         /// Check to see that when calling the RemoveFirst method on a SinglyLinkedListCollection with more than one node
         /// results in the expected object state.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void RemoveFirstValidSinglyLinkedListCollectionWithMultipleNodesTest2()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
@@ -321,7 +321,7 @@ namespace Dsa.Test.DataStructures
         /// Check to make sure that removing all the nodes in a SinglyLinkedListCollection using the RemoveFirst method, then
         /// reassigning the head and tail returns the expected results.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void RemoveFirstValidSinglyLinkedListCollectionWithMultipleNodesAndReassingHeadAndTailTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int> {20, 30};
@@ -343,7 +343,7 @@ namespace Dsa.Test.DataStructures
         /// Check to see that the appropriate exception is raised when calling RemoveFirst on a SinglyLinkedListCollection
         /// object containing no nodes.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(InvalidOperationException))]
         public void RemoveFirstInvalidSinglyLinkedListCollectionTest()
         {
@@ -356,7 +356,7 @@ namespace Dsa.Test.DataStructures
         /// Check to see that the appropriate exception is raised when calling RemoveFirst on a SinglyLinkedListCollection
         /// object containing no nodes.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(InvalidOperationException))]
         public void RemoveFirstInvalidSinglyLinkedListCollectionTest2()
         {
@@ -370,7 +370,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that the Add method is leaving the SinglyLinkedListCollection object in the correct state.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ICollectionAddTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
@@ -387,7 +387,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that calling the Clear method resets the SinglyLinkedListCollection object's internal state.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ClearTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20, 30};
@@ -403,7 +403,7 @@ namespace Dsa.Test.DataStructures
         /// Check to see that the contains method returns the correct bool depending on whether the item is in the 
         /// SinglyLinkedListCollection or not.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ContainsTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20, 30};
@@ -416,7 +416,7 @@ namespace Dsa.Test.DataStructures
         /// Check to see that the correct exception is raised when using a negative index for the arrayIndex parameter
         /// for CopyTo.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void CopyToInvalidIndexTest()
         {
@@ -430,7 +430,7 @@ namespace Dsa.Test.DataStructures
         /// Check to see that passing in an index that is equal to or greater than the array size throws
         /// the correct exception.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentException))]
         public void CopyToIndexGteThanArrayTest()
         {
@@ -443,7 +443,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that CopyTo copies all items of SinglyLinkedListCollection to an array beginning at a specified index.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ArrayCopyWithDefinedStartIndexTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20, 30};
@@ -460,7 +460,7 @@ namespace Dsa.Test.DataStructures
         /// Check to see that the correct exception is raised when attempting to remove an item from an empty
         /// SinglyLinkedListCollection.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(InvalidOperationException))]
         public void RemoveItemFromEmptySinglyLinkedListCollection()
         {
@@ -473,7 +473,7 @@ namespace Dsa.Test.DataStructures
         /// Check to see that Remove leaves the SinglyLinkedListCollection in the correct state where the value of Remove
         /// is equal to that of the head node.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void RemoveHeadItemTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20, 30};
@@ -490,7 +490,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that Remove leaves the SinglyLinkedListCollection in the correct state, when remove is any node but head or tail.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void RemoveMiddleItemTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20, 30};
@@ -508,7 +508,7 @@ namespace Dsa.Test.DataStructures
         /// Check to see that Remove leaves the SinglyLinkedListCollection in the correct state where the value of Remove
         /// is equal to that of the tail node.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void RemoveTailItemTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20, 30};
@@ -527,7 +527,7 @@ namespace Dsa.Test.DataStructures
         /// Check to see that when calling the Remove method passing in a value that is not contained in the SinglyLinkedListCollection
         /// returns false.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void RemoveWithNoMatchTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int> {20, 30, 50};
@@ -539,7 +539,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that the head and tail nodes are correct after adding a node after the only node in the SinglyLinkedListCollection.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void AddAfterOnlyOneNodeInSinglyLinkedListCollectionTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10};
@@ -555,7 +555,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that the tail node is updated after adding a node after the tail in the SinglyLinkedListCollection.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void AddAfterTailTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20};
@@ -571,7 +571,7 @@ namespace Dsa.Test.DataStructures
         /// Check to see that adding a node somewhere in the middle of the SinglyLinkedListCollection leaves the SinglyLinkedListCollection
         /// in the correct state.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void AddAfterMiddleNodeTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20, 30};
@@ -586,7 +586,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that the correct exception is raised when AddAfter is invoked on a SinglyLinkedListCollection with no nodes.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(InvalidOperationException))]
         public void AddAfterEmptySinglyLinkedListCollectionTest()
         {
@@ -598,7 +598,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that AddAfter raises the correct exception when trying to add a new node after a null node in the SinglyLinkedListCollection.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void AddAfterNullNodeSinglyLinkedListCollectionTest()
         {
@@ -610,7 +610,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that AddBefore when passing in the head node of the SinglyLinkedListCollection results in the expected state.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void AddBeforeHeadTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20, 30};
@@ -625,7 +625,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to make sure that adding before tail results in the expected object state.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void AddBeforeTailTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20, 30, 40};
@@ -638,7 +638,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that AddBefore a middle node results in the expected state of the SinglyLinkedListCollection.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void AddBeforeMiddleNodeTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20, 30};
@@ -653,7 +653,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that the correct exception is raised when calling AddBefore on a SinglyLinkedListCollection with no nodes.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(InvalidOperationException))]
         public void AddBeforeEmptySinglyLinkedListCollectionTEst()
         {
@@ -666,7 +666,7 @@ namespace Dsa.Test.DataStructures
         /// Check to see that the correct exception is raised when calling AddBefore on a SinglyLinkedListCollection when 
         /// passing in a null node.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void AddBeforeNullNodeSinglyLinkedListCollectionTest()
         {
@@ -678,7 +678,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to make sure that the IEnumerator returned by the GetEnumerator is not null.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void GetEnumeratorGenericTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10};
@@ -689,7 +689,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to make sure that IEnumerable.GetEnumerator returns an IEnumerator that is not null.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void GetEnumeratorTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
@@ -703,7 +703,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to make sure that GetReverseEnumerator returns a non-null IEnumerator(Of T) object.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void GetReverseEnumeratorTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20, 30};
@@ -714,7 +714,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that the correct array is returned from a call to ToReverseArray.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ToReverseArrayTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20, 30};
@@ -728,7 +728,7 @@ namespace Dsa.Test.DataStructures
         /// Check to see that calling ToReverseArray on a SinglyLinkedListCollection with no items raises the correct
         /// exception.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(InvalidOperationException))]
         public void ToReverseArrayNoItemsTest()
         {

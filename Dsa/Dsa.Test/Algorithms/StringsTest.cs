@@ -1,19 +1,19 @@
 ﻿using System;
 using Dsa.Algorithms;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dsa.Test.Algorithms
 {
     /// <summary>
     /// Tests for the Strings algorithms.
     /// </summary>
-    [TestClass]
+    [TestFixture]
     public class StringsTest 
     {
         /// <summary>
         /// Check to see that the resulting string returned from Reverse is that expected.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ReverseTest() 
         {
             const string s = "Granville";
@@ -25,7 +25,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that an empty string is returned when passing in an empty string.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ReverseEmptyStringTest()
         {
             const string s = "";
@@ -36,7 +36,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that the correct string is returned from a call to Reverse on a string of a single char.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ReverseStringOfLength1Test()
         {
             const string s = "t";
@@ -47,7 +47,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that calling Reverse on a null string results in the corrext exception being raised.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ReverseNullStringTest()
         {
@@ -59,7 +59,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that the correct index is returned when calling Any.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void AnyMatchingCharTest()
         {
             const string s = "test";
@@ -71,7 +71,7 @@ namespace Dsa.Test.Algorithms
         /// Check to see that the correct value is returned by any when the match string chars 
         /// have no match with any of that in the word.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void AnyNoMatchingCharTest()
         {
             const string s = "test";
@@ -82,7 +82,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that the correct exception is raised when the word is null.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void AnyWordNullTest()
         {
@@ -94,7 +94,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that the correct exception is raised when the match is null.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void AnyMatchNullException()
         {
@@ -106,7 +106,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Test to see that whitespace is ignored in both the word and match strings.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void AnyWhiteSpaceTest() 
         {
             const string first = "   test";
@@ -119,7 +119,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that a single word that is a palindrome returns true.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void IsPalindromeSingleWordTest()
         {
             const string actual = "mum";
@@ -130,7 +130,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that the IsPalindrome method ignores case when testing for a palindrome.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void IsPalindromeCaseInsensitiveTest()
         {
             const string actual = "Madam";
@@ -141,7 +141,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that a string comprising of a single char is a palindrome.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void IsPalindromeSingleCharTest()
         {
             const string actual = "m";
@@ -152,7 +152,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that calling IsPalindrome with a null string results in the expected exception being thrown.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void IsPalindromeNullStringTest()
         {
@@ -164,7 +164,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that a string that has whitespace and punctuation is ignored.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void IsPalindromePuncAndWhitespaceIgnoredTest()
         {
             const string actual = "Are we not drawn onward, we few, drawn onward to new era?";
@@ -175,7 +175,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that calling strip results in the expected string.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void StripTest()
         {
             const string actual = "asdf!!?*    p $$£";
@@ -186,7 +186,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that calling strip with a null string results in the expected exception being thrown.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void StripNullStringTest()
         {
@@ -198,7 +198,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that WordCount returns the correct value.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void WordCountTest()
         {
             const string actual = "The boat is in";
@@ -209,7 +209,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that whitespace is ignored when counting words.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void WordCountWhitespaceTest()
         {
             const string actual = "   I ate pie    ";
@@ -220,7 +220,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to make sure that a string with nothing but whitespace returns the correct value.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void WordCountPureWhiteSpace()
         {
             const string actual = "      ";
@@ -231,7 +231,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that a null string raises the correct exception.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void WordCountNullArgTest()
         {
@@ -243,7 +243,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that the words of the string are reversed correctly.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ReverseWordsTest()
         {
             Assert.AreEqual("day dad my", "my dad day".ReverseWords());
@@ -253,7 +253,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that any amount of whitespace doesn't affect the reverse words algorithm.  The whitespace is ignored.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ReverseWordsWhiteSpaceTest()
         {
             Assert.AreEqual("belly beer a home went then and pop ate I", 
@@ -263,7 +263,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that the correct exception is thrown when calling reverse words on a null string.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ReverseWordsStringNullTest()
         {
@@ -275,7 +275,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that the correct value is returned.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void RepeatedWordCountTest()
         {
             const string actual = "Granville went to the market but Granville has yet to see the light";
@@ -286,7 +286,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that the correct exception is thrown when the string is null.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void RepeatedWordCountStringNullTest()
         {
@@ -300,7 +300,7 @@ namespace Dsa.Test.Algorithms
         /// accurate count of repeated words can be done, e.g. Granville Granville! are both the same word but the latter
         /// has trailing punctuation that should be removed.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void RepeatedWordCountWithPunctuationTest()
         {
             const string s = "Granville is hopeless. But is still persisting though! poor Granville!";

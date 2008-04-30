@@ -1,19 +1,19 @@
 ﻿using System;
 using Dsa.Algorithms;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dsa.Test.Algorithms
 {
     /// <summary>
     /// Tests for Searching.
     /// </summary>
-    [TestClass]
+    [TestFixture]
     public class SearchingTest
     {
         /// <summary>
         /// Check to see that SequentialSearch returns the correct index for an item that is in the array.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void SequentialSearchItemPresentTest()
         {
             int[] actual = {1, 6, 7, 1, 90, 12, 99};
@@ -24,7 +24,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that SequentialSearch returns -1 when the item is not found within the array.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void SequentialSearchItemNotPresentTest()
         {
             int[] actual = {1, 4, 5, 6, 9};
@@ -35,7 +35,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that when the list is null the correct exception is thrown.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SequentialSearchListNullTest()
         {
@@ -48,7 +48,7 @@ namespace Dsa.Test.Algorithms
         /// Check to see that the correct value is returned when performing a probability search when the item is
         /// in the array and that the array state is correct.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ProbabilitySearchTest()
         {
             int[] actual = { 12, 9, 8, 5, 1, 4 };
@@ -63,7 +63,7 @@ namespace Dsa.Test.Algorithms
         /// the array's state is left alone.
         /// </summary>
         /// <returns></returns>
-        [TestMethod]
+        [Test]
         public void ProbabilitySearchItemNotFoundTest()
         {
             int[] actual = { 12, 9, 8, 5, 1, 4 };
@@ -77,7 +77,7 @@ namespace Dsa.Test.Algorithms
         /// Check to see that when the item is found at the first element of the array then 
         /// a swap does not occur.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ProbabilitySearchItemAtFrontOfArrayTest()
         {
             int[] actual = { 12, 9, 8, 5, 1, 4 };
@@ -90,7 +90,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that the correct exception is thrown when the list is null.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ProbabilitySearchListNullTest()
         {

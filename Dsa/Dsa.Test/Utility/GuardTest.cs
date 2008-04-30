@@ -1,19 +1,19 @@
 ﻿using System;
 using Dsa.Utility;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dsa.Test.Utility
 {
     /// <summary>
     /// Test for the Guard family of methods.
     /// </summary>
-    [TestClass]
+    [TestFixture]
     public class GuardTest
     {
         /// <summary>
         /// Check to see that the correct exception is thrown when the argument being verified is null.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ArgumentNullParamNameIsNotTest()
         {
@@ -25,7 +25,7 @@ namespace Dsa.Test.Utility
         /// <summary>
         /// Check to see that the correct exception is thrown when the paramName is null.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ArgumentNullParamNameNullTest()
         {
@@ -45,7 +45,7 @@ namespace Dsa.Test.Utility
         /// <summary>
         /// Check to see that no exceptions are thrown when the argument is not null.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ArgumentIsNotNullTest()
         {
             const string s = "Granville";
@@ -56,7 +56,7 @@ namespace Dsa.Test.Utility
         /// <summary>
         /// Check to see that the correct exception is thrown.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(InvalidOperationException))]
         public void InvalidOperationConditionTrueTest()
         {
@@ -66,7 +66,7 @@ namespace Dsa.Test.Utility
         /// <summary>
         /// Check to see that the correct exception is thrown when the message is null.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void InvalidOperationMessageNullTest()
         {
@@ -76,7 +76,7 @@ namespace Dsa.Test.Utility
         /// <summary>
         /// Check to make sure no exception is raised when the condition is false.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void InvalidOperationConditionFalseTest()
         {
             Guard.InvalidOperation(2 > 4, "test");

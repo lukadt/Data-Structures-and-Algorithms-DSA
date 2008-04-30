@@ -1,20 +1,20 @@
 ﻿using System;
 using Dsa.Algorithms;
 using Dsa.DataStructures;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dsa.Test.Algorithms
 {
     /// <summary>
     /// Tests for Set algorithms
     /// </summary>
-    [TestClass]
+    [TestFixture]
     public class SetsTest
     {
         /// <summary>
         /// Check to see that the correct value is returned representing the number of permutations.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void PermutationTest()
         {
             UnorderedSet<int> actual = new UnorderedSet<int> {10, 12, 45, 1};
@@ -25,7 +25,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that the correct exception is raised when the set is null.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void PermutationSetNullTest()
         {
@@ -37,7 +37,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that the correct value is returned when trying to attain permutations for an empty set.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void PermutationsEmptySetTest()
         {
             UnorderedSet<int> actual = new UnorderedSet<int>();
@@ -48,7 +48,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that the correct exception is raised when the number of item permutations is 0.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void PerumtationsEmptySetZeroItems()
         {

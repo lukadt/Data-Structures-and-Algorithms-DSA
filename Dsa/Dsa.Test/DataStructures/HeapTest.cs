@@ -1,20 +1,20 @@
 ﻿using System.Collections.Generic;
 using Dsa.DataStructures;
 using Dsa.Test.Utility;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dsa.Test.DataStructures
 {
     /// <summary>
     /// Tests for Heap.
     /// </summary>
-    [TestClass]
+    [TestFixture]
     public class HeapTest
     {
         /// <summary>
         /// Check to see that adding an item to the Heap results in the correct behaviour.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void AddTest()
         {
             Heap<int> actual = new Heap<int> {10, 20, 66, 21, 73};
@@ -25,7 +25,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that when using Max heap that the items are in the correct order.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void MaxHeapTest()
         {
             Heap<int> actual = new Heap<int>(HeapType.Max) {10, 23, 7, 9, 12, 18};
@@ -37,7 +37,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that when using Min heap that the items are in the correct order.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void MinHeapTest()
         {
             Heap<int> actual = new Heap<int> {3, 66, 89, 1, 90, 5, 0};
@@ -49,7 +49,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that you can use the Heap with a custom comparer.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void CustomComparerTest()
         {
             IComparer<Coordinate> comparer = new CoordinateComparer();
@@ -62,7 +62,7 @@ namespace Dsa.Test.DataStructures
         /// Check to see that removing the last item in the heap results in the state
         /// of the heap being affected correctly.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void RemoveLastItemTest()
         {
             Heap<int> actual = new Heap<int> {56, 23, 34, 1, 3};
@@ -77,7 +77,7 @@ namespace Dsa.Test.DataStructures
         /// Check to see that the correct value is returned when the value
         /// being removed is not contained within the heap.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void RemoveItemNotPresentTest()
         {
             Heap<int> actual = new Heap<int> {2, 78, 1, 0, 56};
@@ -88,7 +88,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that the heap is left in the correct state when the root is removed.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void RemoveRootTest()
         {
             Heap<int> actual = new Heap<int> {33, 12, 41, 15, 60};
@@ -103,7 +103,7 @@ namespace Dsa.Test.DataStructures
         /// Check to see that the heap is left in the correct state when removing from a 
         /// max heap.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void RemoveMaxHeapTest()
         {
             Heap<int> actual = new Heap<int>(HeapType.Max) {12, 2, 67, 90, 10};
@@ -117,7 +117,7 @@ namespace Dsa.Test.DataStructures
         /// Check to see that at some stage the right child is less than the left when
         /// when moving the hole down the tree.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void RemoveRightChildLessThanLeftTest()
         {
             Heap<int> actual = new Heap<int> {5, 3, 8, 10, 6, 11, 12, 13};
@@ -132,7 +132,7 @@ namespace Dsa.Test.DataStructures
         /// Check to see that at some stage the right child is greater than the left when
         /// when moving the hole down the tree.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void RemoveMaxRightChildGreaterTest()
         {
             Heap<int> actual = new Heap<int>(HeapType.Max) {46, 23, 44, 66, 51, 32, 17, 8};
@@ -146,7 +146,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that the correct array is returned.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ToArrayTest()
         {
             Heap<int> actual = new Heap<int> {78, 9, 12, 56, 12, 1};
@@ -159,7 +159,7 @@ namespace Dsa.Test.DataStructures
         /// Check to see that the correct value is returned when seeing if an item
         /// exists in the heap.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ContainsTest()
         {
             Heap<char> actual = new Heap<char> {'g', 'r', 'a', 'n', 'v'};
@@ -171,7 +171,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that the Heap is restored to its default state.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ClearTest()
         {
             Heap<int> actual = new Heap<int> {12, 3, 21, 0};

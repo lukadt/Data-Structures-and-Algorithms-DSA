@@ -1,19 +1,19 @@
 ﻿using System.Collections.Generic;
 using Dsa.Utility;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dsa.Test.Utility
 {
     /// <summary>
     /// Tests for the compare methods.
     /// </summary>
-    [TestClass]
+    [TestFixture]
     public class CompareTest
     {
         /// <summary>
         /// Check to see that IsLessThan method returns the correct value.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void IsLessThanTest()
         {
             IComparer<int> comparer = Comparer<int>.Default;
@@ -25,7 +25,7 @@ namespace Dsa.Test.Utility
         /// <summary>
         /// Check to see that IsGreaterThan methods returns the correct value.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void IsGreaterThanTest()
         {
             IComparer<int> comparer = Comparer<int>.Default;
@@ -37,7 +37,7 @@ namespace Dsa.Test.Utility
         /// <summary>
         /// Check to see that AreEqual method returns the correct value.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void AreEqualTest()
         {
             IComparer<int> comparer = Comparer<int>.Default;

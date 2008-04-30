@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using Dsa.DataStructures;
 using Dsa.Test.Utility;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dsa.Test.DataStructures
 {
     /// <summary>
     /// Tests for DoublyLinkedList.
     /// </summary>
-    [TestClass]
+    [TestFixture]
     public class DoublyLinkedListTest
     {
         /// <summary>
         /// Check to see that comparer used is the default and not null.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ConstructorTest()
         {
             IComparerProvider<int> actual = new DoublyLinkedList<int>();
@@ -26,7 +26,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that a comparer can be specified.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void OverloadedConstructorTest()
         {
             IComparer<Coordinate> comparer = new CoordinateComparer();
@@ -38,7 +38,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that the correct exception is raised when using a null comparer.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void OverloadedConstructorComparerNullTest()
         {
@@ -49,7 +49,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see if CollectionAssert.AreEqual passes for twocollection containing the same values.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ItemsAreEqualTest()
         {
             DoublyLinkedList<int> actual = new DoublyLinkedList<int> {10, 20};
@@ -61,7 +61,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that AddLast adds a node onto the tail of the list.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void AddLastTest()
         {
             DoublyLinkedList<int> dll = new DoublyLinkedList<int> {10, 20, 30};
@@ -76,7 +76,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that AddFirst adds a node to the head of the linked list.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void AddFirstTest()
         {
             DoublyLinkedList<int> dll = new DoublyLinkedList<int> {20, 10};
@@ -87,7 +87,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that a call to AddAfter raises the correct exception when there are no nodes to add after.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(InvalidOperationException))]
         public void AddAfterNoNodesTest()
         {
@@ -99,7 +99,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that the correct exception is raised when adding after a null node.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void AddAfterNullNodeTest()
         {
@@ -111,7 +111,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that calling AddAfter passing in the tail node updates the internal tail node pointer.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void AddAfterTailTest()
         {
             DoublyLinkedList<int> dll = new DoublyLinkedList<int> {10};
@@ -125,7 +125,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that calling AddAfter passing in a node that isn't the tail results in the expected state.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void AddAfterTest()
         {
             DoublyLinkedList<int> dll = new DoublyLinkedList<int> {10, 20, 30};
@@ -142,7 +142,7 @@ namespace Dsa.Test.DataStructures
         /// Check to see that calling AddBefore results in the node being placed in the correct position in the DoublyLinkedList when
         /// adding before the head node.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void AddBeforeHeadTest()
         {
             DoublyLinkedList<int> dll = new DoublyLinkedList<int> {10};
@@ -157,7 +157,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that when calling AddBefore the node is placed in the correct position within the linked list.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void AddBeforeTest()
         {
             DoublyLinkedList<int> dll = new DoublyLinkedList<int> {10, 30};
@@ -173,7 +173,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that calling AddBefore when the list is empty results in the correct exception being raised.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(InvalidOperationException))]
         public void AddBeforeEmptyListTest()
         {
@@ -185,7 +185,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that a call to AddBefore when passing in a null node raises the correct exception.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void AddBeforeNullNode()
         {
@@ -197,7 +197,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that the IsEmpty method returns the correct value.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void IsEmptyTest()
         {
             DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
@@ -208,7 +208,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that a call to RemoveLast on a non empty list results in the expected behaviour.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void RemoveLastTest()
         {
             DoublyLinkedList<int> dll = new DoublyLinkedList<int> {10};
@@ -222,7 +222,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that a call to RemoveLast when there are two nodes in the linked list reassigns the tail node.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void RemoveLastTwoNodesTest()
         {
             DoublyLinkedList<int> dll = new DoublyLinkedList<int> {10, 20};
@@ -238,7 +238,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that calling RemoveLast when there are more than two nodes results in the expected behaviour.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void RemoveLastTestMultipleNodesTest()
         {
             DoublyLinkedList<int> dll = new DoublyLinkedList<int> {10, 20, 30};
@@ -252,7 +252,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that calling RemoveLast on an empty list throws the correct exception.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(InvalidOperationException))]
         public void RemoveLastEmptyListTest()
         {
@@ -265,7 +265,7 @@ namespace Dsa.Test.DataStructures
         /// Check to see that a call to RemoveFirst when there is only a single node in the linked list
         /// results in the expected behaviour.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void RemoveFirstSingleNodeTest()
         {
             DoublyLinkedList<int> dll = new DoublyLinkedList<int> {10};
@@ -280,7 +280,7 @@ namespace Dsa.Test.DataStructures
         /// Check to see that a call to RemoveFirst when there are two node in the linked list
         /// results in the expected behaviour.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void RemoveFirstTwoNodesTest()
         {
             DoublyLinkedList<int> dll = new DoublyLinkedList<int> {10, 20};
@@ -295,7 +295,7 @@ namespace Dsa.Test.DataStructures
         /// Check to see that calling RemoveFirst when there are more than two nodes in the linked list
         /// results in the expected behaviour.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void RemoveFirstMoreThanTwoNodesTest()
         {
             DoublyLinkedList<int> dll = new DoublyLinkedList<int> {10, 20, 30};
@@ -310,7 +310,7 @@ namespace Dsa.Test.DataStructures
         /// Check to see that calling RemoveFirst on a linked list with no nodes throws the correct
         /// exception.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(InvalidOperationException))]
         public void RemoveFirstEmptyListTest()
         {
@@ -322,7 +322,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that calling ICollection(Of T).Add results in the expected behaviour.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void AddTest()
         {
             DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
@@ -341,7 +341,7 @@ namespace Dsa.Test.DataStructures
         /// Check to see that calling Clear results in the DoublyLinkedListCollection(Of T) being reset to its
         /// default state.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ClearTest()
         {
             DoublyLinkedList<int> dll = new DoublyLinkedList<int> {10, 20, 30};
@@ -356,7 +356,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that the Count property returns the expected value.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void CountTest()
         {
             DoublyLinkedList<int> dll = new DoublyLinkedList<int> {10, 5};
@@ -373,7 +373,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that Contains returns the correct value.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ContainsTest()
         {
             DoublyLinkedList<int> dll = new DoublyLinkedList<int> {10, 20, 30};
@@ -385,7 +385,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that calling ToArray on the linked list results in the expected array.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ToArrayTest()
         {
             DoublyLinkedList<string> dll = new DoublyLinkedList<string> {"London", "Paris", "Berlin"};
@@ -399,7 +399,7 @@ namespace Dsa.Test.DataStructures
         /// Check to see that calling ToArray on a DoublyLinkedListCollection(Of T) that contains no nodes throws the 
         /// correct exception.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(InvalidOperationException))]
         public void ToArrayEmptyListTest()
         {
@@ -412,7 +412,7 @@ namespace Dsa.Test.DataStructures
         /// Check to see that calling Remove on a DoublyLinkedListCollection(Of T) that contains no nodes results in the
         /// correct raised exception.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(InvalidOperationException))]
         public void RemoveEmptyListTest()
         {
@@ -425,7 +425,7 @@ namespace Dsa.Test.DataStructures
         /// Check to see that removing a single node from the DoublyLinkedListCollection(Of T) results in the list being
         /// declared as empty.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void RemoveSingleNodeTest()
         {
             DoublyLinkedList<int> dll = new DoublyLinkedList<int> {10};
@@ -442,7 +442,7 @@ namespace Dsa.Test.DataStructures
         /// Check to see that the DoublyLinkedListCollection(Of T) is left in the correct state after removing head value from 
         /// a list with two nodes.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void RemoveHeadTwoNodes()
         {
             DoublyLinkedList<string> dll = new DoublyLinkedList<string> {"London", "Paris"};
@@ -458,7 +458,7 @@ namespace Dsa.Test.DataStructures
         /// Check to see that the DoublyLinkedListCollection(Of T) is left in the correct state after removing tail value from 
         /// a list with two nodes.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void RemoveTailTwoNodes()
         {
             DoublyLinkedList<string> dll = new DoublyLinkedList<string> {"London", "Paris"};
@@ -474,7 +474,7 @@ namespace Dsa.Test.DataStructures
         /// Check to see that the DoublyLinkedListCollection(Of T) is left in the correct state when removing
         /// middle node value from a list of 3 or more nodes.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void RemoveMiddleMultipleNodesTest()
         {
             DoublyLinkedList<int> dll = new DoublyLinkedList<int> {10, 20, 30};
@@ -490,7 +490,7 @@ namespace Dsa.Test.DataStructures
         /// Check to see that the DoublyLinkedListCollection(Of T) is left in the correct state when removing
         /// head node value from a list of 3 or more nodes.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void RemoveHeadMultipleNodesTest()
         {
             DoublyLinkedList<int> dll = new DoublyLinkedList<int> {10, 20, 30};
@@ -506,7 +506,7 @@ namespace Dsa.Test.DataStructures
         /// Check to see that the DoublyLinkedListCollection(Of T) is left in the correct state when removing
         /// middle node value from a list of 3 or more nodes.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void RemoveTailMultipleNodesTest()
         {
             DoublyLinkedList<int> dll = new DoublyLinkedList<int> {10, 20, 30};
@@ -522,7 +522,7 @@ namespace Dsa.Test.DataStructures
         /// Check to see that the correct value is returned when the value to be removed is not in the
         /// DoublyLinkedListCollection(Of T).
         /// </summary>
-        [TestMethod]
+        [Test]
         public void RemoveNoMatchTest()
         {
             DoublyLinkedList<int> dll = new DoublyLinkedList<int> {10};
@@ -533,7 +533,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that an non null IEnumerator object is returned.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void GetEnumeratorTest()
         {
             DoublyLinkedList<int> dll = new DoublyLinkedList<int> {10, 20, 30};

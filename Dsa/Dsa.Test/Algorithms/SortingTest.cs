@@ -1,21 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using Dsa.Algorithms;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dsa.Test.Algorithms
 {
     /// <summary>
     /// Sorting tests.
     /// </summary>
-    [TestClass]
+    [TestFixture]
     public class SortingTest
     {
         /// <summary>
         /// Check to see that the bubblesort algorithm sorts the items
         /// in ascending order.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void BubbleSortAscTest()
         {
             List<int> myInts = new List<int> { 23, 1, 44, 62, 1, 6, 90, 34 };
@@ -32,7 +32,7 @@ namespace Dsa.Test.Algorithms
         /// Check to see that the bubblesort algorithm sorts the items
         /// in descending order.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void BubbleSortDescTest()
         {
             List<int> myInts = new List<int> { 23, 1, 44, 62, 1, 6, 90, 34 };
@@ -49,7 +49,7 @@ namespace Dsa.Test.Algorithms
         /// Check to see that passing in a null array to BubbleSort results in the expected
         /// exception being thrown.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void BubbleSortNullArrayTest()
         {
@@ -61,7 +61,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that the median value of the array is in the correct location of the array.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void MedianLeftTest()
         {
             List<int> actual = new List<int> { 2, 5, 23, 17, 1 };
@@ -78,7 +78,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that the median value of the array is in the correct location of the array.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void MedianLeftLeftIsGreaterThanMidTest()
         {
             List<int> actual = new List<int> { 23, 1, 4, 8, 10 };
@@ -95,7 +95,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that median left raise the correct exception when the array is null.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void MedianLeftArrayNullTest()
         {
@@ -107,7 +107,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that an array with the correct ordering of its items is returned.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void MergeOrderedTest()
         {
             int[] a1 = { 1, 5, 9 };
@@ -125,7 +125,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that the correct array is returned when the first array is smaller than the second.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void MergeOrderedFirstArraySmallerTest()
         {
             int[] a1 = { 1, 4, 12 };
@@ -143,7 +143,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that the correct array is returned when the second array is smaller than the first.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void MergeOrderedSecondArraySmallerTest()
         {
             int[] a1 = { 5, 9, 10, 14 };
@@ -161,7 +161,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see the correct expection is raised when the first array is null.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void MergeOrderedArrayOneNullTest()
         {
@@ -174,7 +174,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see the the correct exception is raised when the second array is null.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void MergeOrderedArrayTwoNullTest()
         {
@@ -187,7 +187,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that MergeSort orders the array correctly.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void MergeSortTest()
         {
             int[] unsorted = { 12, 9, 4, 67, 3, 25 };
@@ -204,7 +204,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that the char data type is ordered correctly when using merge ordered.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void MergeOrderedCharsTest()
         {
             char[] unsorted = { 'g', 'r', 'f', 'b', 'z', 'k' };
@@ -221,7 +221,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that the correct exception is thrown when the array passed is null.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void MergeSortArrayNullTest()
         {
@@ -233,7 +233,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that the correct list is returned when concatenating 3 arrays.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ConcatenateTest()
         {
             int[] array1 = { 5, 7, 8 };
@@ -252,7 +252,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that the correct exception is thrown when the first list is null.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ConcatenateFirstListNullTest()
         {
@@ -265,7 +265,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that the correct exception is thrown when the second list is null.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ConcatenateSecondListNullTest()
         {
@@ -278,7 +278,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that the correct exception is thrown when the third list is null.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ConcatenateThirdListNullTest()
         {
@@ -291,7 +291,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Test to see that the correct list is returned when quick sorting a list.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void QuickSortTest()
         {
             int[] unsorted = { 10, 9, 7, 16 };
@@ -308,7 +308,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that the correct exception is raised when the list is null.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void QuickSortListNullTest()
         {
@@ -320,7 +320,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that a list is sorted correctly when using insertion sort.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void InsertionSortTest()
         {
             int[] unsorted = { 78, 5, 23, 101, 1 };
@@ -338,7 +338,7 @@ namespace Dsa.Test.Algorithms
         /// Check to see that the correct exception is thrown when the list to 
         /// insertion sort is null.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void InsertionSortListNullTest()
         {
@@ -350,7 +350,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that the correct array is returned.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ShellSortTest()
         {
             int[] unsorted = { 34, 78, 12, 9, 0, 3 };
@@ -367,7 +367,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that the correct exception is thrown when the list is null.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ShellSortListNullTest()
         {

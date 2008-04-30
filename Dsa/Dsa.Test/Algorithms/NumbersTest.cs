@@ -1,19 +1,19 @@
 ﻿using System;
 using Dsa.Algorithms;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dsa.Test.Algorithms
 {
     /// <summary>
     /// Numbers tests.
     /// </summary>
-    [TestClass]
+    [TestFixture]
     public class NumbersTest
     {
         /// <summary>
         /// Check to see that calling Fibonacci algorithm returns the correct value.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FibonacciTest()
         {
             Assert.AreEqual(0, 0.Fibonacci());
@@ -29,7 +29,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that the correct exception is thrown when fibonacci is called with a number less than 0.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void FibonacciNumberLessThanZeroTest()
         {
@@ -39,7 +39,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that calling Factorial algorithm returns the correct value.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FactorialTest()
         {
             Assert.AreEqual(1, 0.Factorial());
@@ -54,7 +54,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that the correct exception is thrown when calling Factorial using a negative integer.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void FactorialNumberLessThanZeroTest()
         {
@@ -64,7 +64,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that the power method returns the correct value.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void PowerNotZeroTest()
         {
             Assert.AreEqual(1, Numbers.Power(0, 0));
@@ -77,7 +77,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that the correct exception is thrown when the exponent is negative.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void PowerExponentLessThanZeroTest()
         {
@@ -87,7 +87,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that calling the Gcd method results in the expected value being returned.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void GcdTest()
         {
             Assert.AreEqual(1, Numbers.GreatestCommonDenominator(9, 4));
@@ -101,7 +101,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that the integer returned is correct.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ToBaseTwoTest()
         {
             const int actual = 23;
@@ -112,7 +112,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that the correct exception is raised when the int to convert to binary is negative.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void ToBaseTwoNegativeIntTest()
         {
@@ -125,7 +125,7 @@ namespace Dsa.Test.Algorithms
         /// Check to see that the correct value is returned when converting a base 10 integer to
         /// it's base 8 counterpart.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ToOctalTest()
         {
             const int actual = 18;
@@ -136,7 +136,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that the correct exception is thrown when the int to covert to octal is negative.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void ToOctalNegativeIntTest()
         {
@@ -149,7 +149,7 @@ namespace Dsa.Test.Algorithms
         /// Check to see that the correct string is returned when converting a base 10 integer its base 16
         /// equivalent.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ToHexTest()
         {
             const int actual1 = 63923;
@@ -168,7 +168,7 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see the correct exception is raised when the value provided is negative.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void ToHexNegativeIntTest()
         {

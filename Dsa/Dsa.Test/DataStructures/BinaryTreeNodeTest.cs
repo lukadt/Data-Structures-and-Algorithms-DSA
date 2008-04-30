@@ -1,18 +1,18 @@
 ﻿using Dsa.DataStructures;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dsa.Test.DataStructures
 {
     /// <summary>
     /// BinaryTreeNode(Of T) tests.
     /// </summary>
-    [TestClass]
+    [TestFixture]
     public class BinaryTreeNodeTest
     {
         /// <summary>
         /// Check to see that a BinaryTreeNode is initialized to the correct values.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void BinaryTreeNodeConstructorTest()
         {
             BinaryTreeNode<int> node = new BinaryTreeNode<int>(10);
@@ -25,7 +25,7 @@ namespace Dsa.Test.DataStructures
         /// <summary>
         /// Check to see that child nodes are appended properly.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void AssignNodeTest()
         {
             BinaryTreeNode<int> node = new BinaryTreeNode<int>(5) {Right = new BinaryTreeNode<int>(10)};
