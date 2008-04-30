@@ -4,10 +4,11 @@ namespace Dsa.Utility
 {
     /// <summary>
     /// A series of guard methods to check algorithm inputs.
-    /// <remarks>
-    /// The methods are designed to verify preconditions and should be used always.
-    /// </remarks>
     /// </summary>
+    /// <remarks>
+    /// The methods are designed to verify preconditions and should always be used to verify the inputs to
+    /// all algorithms (within context).
+    /// </remarks>
     public static class Guard
     {
         /// <summary>
@@ -25,6 +26,19 @@ namespace Dsa.Utility
             if (value == null)
             {
                 throw new ArgumentNullException(paramName);
+            }
+        }
+
+        ///<summary>
+        ///</summary>
+        ///<param name="condition"></param>
+        ///<param name="message"></param>
+        public static void InvalidOperation(bool condition, string message)
+        {
+            ArgumentNull(message, "message");
+            if (condition)
+            {
+                throw new InvalidOperationException(message);
             }
         }
     }
