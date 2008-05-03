@@ -156,17 +156,10 @@ namespace Dsa.DataStructures
         /// <remarks>
         /// This method is an O(n) operation where n is the number of items in the <see cref="Heap{T}"/>.
         /// </remarks>
-        /// <returns>Array populated with the items from the Heap.</returns>
+        /// <returns>A one-dimensional <see cref="Array"/> containing the values of the nodes contained in the <see cref="Heap{T}"/>.</returns>
         public override T[] ToArray()
         {
-            T[] heap = new T[Count];
-            int i = 0;
-            foreach (T item in this)
-            {
-                heap[i] = item;
-                i++;
-            }
-            return heap;
+            return ToArray(Count, this);
         }
 
         /// <summary>

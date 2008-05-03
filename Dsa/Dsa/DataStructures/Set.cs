@@ -94,14 +94,7 @@ namespace Dsa.DataStructures
         /// <returns>A one dimensional <see cref="Array"/> populated with the items from the <see cref="Set{T}"/>.</returns>
         public override T[] ToArray()
         {
-            T[] array = new T[Count];
-            int i = 0;
-            foreach (T item in this)
-            {
-                array[i] = item;
-                i++;
-            }
-            return array;
+            return ToArray(Count, this);
         }  
     }
 }

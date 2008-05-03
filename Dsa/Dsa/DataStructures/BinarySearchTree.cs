@@ -315,21 +315,11 @@ namespace Dsa.DataStructures
         /// <para>
         /// This method is an O(n) operation where n is the number of nodes in the <see cref="BinarySearchTree{T}"/>.
         /// </para>
-        /// <para>
-        /// You cannot call the <see cref="BinarySearchTree{T}.ToArray"/> method on a <see cref="BinarySearchTree{T}"/> that is empty.
-        /// </para>
         /// </remarks>
         /// <returns>A one-dimensional <see cref="Array"/> containing the items of the <see cref="BinarySearchTree{T}"/>.</returns>
         public override T[] ToArray()
         {
-            int i = 0;
-            T[] array = new T[Count];
-            foreach (T item in GetBreadthFirstEnumerator())
-            {
-                array[i] = item;
-                i++;
-            }
-            return array;
+            return ToArray(Count, GetBreadthFirstEnumerator());
         }
 
         /// <summary>

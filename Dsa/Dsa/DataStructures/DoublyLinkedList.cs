@@ -212,18 +212,9 @@ namespace Dsa.DataStructures
         /// This method is an O(n) operation where n is the number of nodes in the <see cref="DoublyLinkedList{T}"/>.
         /// </remarks>
         /// <returns>A one-dimensional <see cref="Array"/> containing the values of the nodes contained in the <see cref="DoublyLinkedList{T}"/>.</returns>
-        /// <exception cref="InvalidOperationException"><see cref="DoublyLinkedList{T}"/> contains <strong>0</strong> items.</exception>
         public override T[] ToArray()
         {
-            // todo: this should be refactored into its own method somewhere as its pretty much the same in every class
-            int index = 0;
-            T[] resultArray = new T[Count]; 
-            foreach (T value in this)
-            {
-                resultArray[index] = value;
-                index++;
-            }
-            return resultArray;
+            return ToArray(Count, this);
         }
 
         /// <summary>

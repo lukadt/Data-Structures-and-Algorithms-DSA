@@ -175,17 +175,9 @@ namespace Dsa.DataStructures
         /// This method is an O(n) operation where n is the number of nodes in the linked list.
         /// </remarks>
         /// <returns>A one-dimensional <see cref="Array"/> containing the items from the <see cref="SinglyLinkedList{T}"/>.</returns>
-        /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedList{T}"/> contains <strong>0</strong> items.</exception>
         public override T[] ToArray()
         {
-            int curr = 0; 
-            T[] arrayResult = new T[Count];
-            foreach (T value in this)
-            {
-                arrayResult[curr] = value; 
-                curr++;
-            }
-            return arrayResult;
+            return ToArray(Count, this);
         }
 
         /// <summary>

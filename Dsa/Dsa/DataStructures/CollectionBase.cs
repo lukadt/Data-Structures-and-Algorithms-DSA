@@ -158,6 +158,23 @@ namespace Dsa.DataStructures
         #endregion
 
         /// <summary>
+        /// Creates an array representation for a datastructure.
+        /// </summary>
+        /// <param name="size">Size of the destintation array.</param>
+        /// <param name="enumerator">Enumerator to use to denote traversal order.</param>
+        /// <returns>Array of the data structure.</returns>
+        internal T[] ToArray(int size, IEnumerable<T> enumerator)
+        {
+            T[] local = new T[size];
+            int i = 0;
+            foreach (T item in enumerator)
+            {
+                local[i++] = item;
+            }
+            return local;
+        }
+
+        /// <summary>
         /// Converts the collection to a single dimension array.
         /// </summary>
         /// <returns>An array of the items in the collection.</returns>
