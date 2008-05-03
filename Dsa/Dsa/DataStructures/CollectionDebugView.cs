@@ -13,7 +13,6 @@ namespace Dsa.DataStructures
     /// <typeparam name="T">Type of the CollectionDebugView.</typeparam>
     internal sealed class CollectionDebugView<T>
     {
-
         private readonly ICollection<T> _collection;
 
         public CollectionDebugView(ICollection<T> collection)

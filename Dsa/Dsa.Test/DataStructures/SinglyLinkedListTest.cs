@@ -152,12 +152,11 @@ namespace Dsa.Test.DataStructures
         /// that has no nodes.
         /// </summary>
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
-        public void ToArrayOfInvalidSinglyLinkedListCollectionTest()
+        public void ToArraySinglyLinkedListEmptyTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
 
-            sll.ToArray();
+            Assert.AreEqual(0, sll.ToArray().Length);
         }
 
         /// <summary>
@@ -461,12 +460,11 @@ namespace Dsa.Test.DataStructures
         /// SinglyLinkedListCollection.
         /// </summary>
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
         public void RemoveItemFromEmptySinglyLinkedListCollection()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
-
-            sll.Remove(10);
+            
+            Assert.IsFalse(sll.Remove(10));
         }
 
         /// <summary>
@@ -584,10 +582,10 @@ namespace Dsa.Test.DataStructures
         }
 
         /// <summary>
-        /// Check to see that the correct exception is raised when AddAfter is invoked on a SinglyLinkedListCollection with no nodes.
+        /// Check to see that the correct exception is raised when trying to add after a null node (in this case the list is empty so head is null).
         /// </summary>
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void AddAfterEmptySinglyLinkedListCollectionTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
@@ -654,8 +652,8 @@ namespace Dsa.Test.DataStructures
         /// Check to see that the correct exception is raised when calling AddBefore on a SinglyLinkedListCollection with no nodes.
         /// </summary>
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
-        public void AddBeforeEmptySinglyLinkedListCollectionTEst()
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void AddBeforeEmptySinglyLinkedListCollectionTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
 
@@ -729,12 +727,11 @@ namespace Dsa.Test.DataStructures
         /// exception.
         /// </summary>
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
         public void ToReverseArrayNoItemsTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
 
-            sll.ToReverseArray();
+            Assert.IsNull(sll.ToReverseArray());
         }
     }
 }

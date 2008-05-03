@@ -253,16 +253,16 @@ namespace Dsa.Test.DataStructures
         }
 
         /// <summary>
-        /// Check to see that the correct exception is raised when calling the ToArray method 
-        /// on a bst object with no items in it.
+        /// Check to see that the correct (empty) array is returned.
         /// </summary>
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
         public void ToArrayNoItemsInBstTest()
         {
             BinarySearchTree<int> bst = new BinarySearchTree<int>();
 
-            bst.ToArray();
+            int[] actual = bst.ToArray();
+
+            Assert.AreEqual(0, actual.Length);
         }
 
         /// <summary>
@@ -544,6 +544,18 @@ namespace Dsa.Test.DataStructures
             Assert.IsTrue(bst.Remove(33));
             Assert.IsNull(bst.Root);
             Assert.AreEqual(0, bst.Count);
+        }
+
+        /// <summary>
+        /// Check to see that the correct behaviour is demonstrated when reomving an item from a tree
+        /// with not items in.
+        /// </summary>
+        [Test]
+        public void RemoveTreeHasNoItemsTest()
+        {
+            BinarySearchTree<int> actual = new BinarySearchTree<int>();
+
+            actual.Remove(10);
         }
     }
 }

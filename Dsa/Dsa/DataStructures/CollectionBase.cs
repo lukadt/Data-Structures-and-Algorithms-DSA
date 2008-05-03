@@ -46,10 +46,7 @@ namespace Dsa.DataStructures
         /// </remarks>
         public bool IsSynchronized
         {
-            get
-            {
-                return false;
-            }
+            get { return false; }
         }
 
         /// <summary>
@@ -123,14 +120,8 @@ namespace Dsa.DataStructures
         /// </summary>
         public int Count
         {
-            get
-            {
-                return _count;
-            }
-            protected set
-            {
-                _count = value;
-            }
+            get { return _count; }
+            protected set { _count = value; }
         }
 
         /// <summary>
@@ -141,10 +132,7 @@ namespace Dsa.DataStructures
         /// </remarks>
         bool ICollection<T>.IsReadOnly
         {
-            get
-            {
-                return false;
-            }
+            get { return false; }
         }
 
         /// <summary>

@@ -94,14 +94,9 @@ namespace Dsa.DataStructures
         /// </remarks>
         /// <param name="node">Node in <see cref="SinglyLinkedList{T}"/> to add node after.</param>
         /// <param name="item">Item to add to <see cref="SinglyLinkedList{T}"/>.</param>
-        /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedList{T}"/> contains <strong>0</strong> items.</exception>
         /// <exception cref="ArgumentNullException"><strong>node</strong> is <strong>null</strong>.</exception>
         public void AddAfter(SinglyLinkedListNode<T> node, T item)
         {
-            if (IsEmpty())
-            {
-                throw new InvalidOperationException(Resources.SinglyLinkedListEmpty); // nothing to add after
-            }
             Guard.ArgumentNull(node, "node");
 
             SinglyLinkedListNode<T> n = new SinglyLinkedListNode<T>(item);
@@ -133,14 +128,9 @@ namespace Dsa.DataStructures
         /// </remarks>
         /// <param name="node">Node in the <see cref="SinglyLinkedList{T}"/> to add node before.</param>
         /// <param name="item">Item to add to the <see cref="SinglyLinkedList{T}"/>.</param>
-        /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedList{T}"/> contains <strong>0</strong> items.</exception>
         /// <exception cref="ArgumentNullException"><strong>node</strong> is <strong>null</strong>.</exception>
         public void AddBefore(SinglyLinkedListNode<T> node, T item)
         {
-            if (IsEmpty())
-            {
-                throw new InvalidOperationException(Resources.SinglyLinkedListEmpty); 
-            }
             Guard.ArgumentNull(node, "node");
 
             SinglyLinkedListNode<T> n = new SinglyLinkedListNode<T>(item);
@@ -188,11 +178,6 @@ namespace Dsa.DataStructures
         /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedList{T}"/> contains <strong>0</strong> items.</exception>
         public override T[] ToArray()
         {
-            if (IsEmpty())
-            {
-                throw new InvalidOperationException(Resources.SinglyLinkedListEmpty); // nothing to copy to array
-            }
-
             int curr = 0; 
             T[] arrayResult = new T[Count];
             foreach (T value in this)
@@ -210,12 +195,12 @@ namespace Dsa.DataStructures
         /// This method is an O(n) operation where n is the number of nodes in the linked list.
         /// </remarks>
         /// <returns>A one-dimensional <see cref="Array"/> containing the items from the <see cref="SinglyLinkedList{T}"/> in reverse order.</returns>
-        /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedList{T}"/> contains <strong>0</strong> items.</exception>
         public T[] ToReverseArray()
         {
-            if (IsEmpty())
+            // note: what should we return if the list is empty? null or an empty array?
+            if (_head == null)
             {
-                throw new InvalidOperationException(Resources.SinglyLinkedListEmpty); // nothing to add to array
+                return null;
             }
 
             int curr = 0;
@@ -237,12 +222,9 @@ namespace Dsa.DataStructures
         /// precedes the last node.
         /// </remarks>
         /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedList{T}"/> contains <strong>0</strong> items.</exception>
-        public void RemoveLast()
+        public void RemoveLast() // todo: should be bool
         {
-            if (IsEmpty())
-            {
-                throw new InvalidOperationException(Resources.SinglyLinkedListEmpty);
-            }
+            Guard.InvalidOperation(IsEmpty(), Resources.SinglyLinkedListEmpty);
 
             if (_head.Next == null)
             {
@@ -275,10 +257,7 @@ namespace Dsa.DataStructures
         /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedList{T}"/> contains <strong>0</strong> items.</exception>
         public void RemoveFirst()
         {
-            if (IsEmpty())
-            {
-                throw new InvalidOperationException(Resources.SinglyLinkedListEmpty);
-            }
+            Guard.InvalidOperation(IsEmpty(), Resources.SinglyLinkedListEmpty);
 
             if (_head.Next == null) 
             {
@@ -376,12 +355,11 @@ namespace Dsa.DataStructures
         /// </remarks>
         /// <param name="item">Value to remove</param>
         /// <returns>True if the value was found and removed; false otherwise.</returns>
-        /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedList{T}"/> contains <strong>0</strong> items.</exception>
         public override bool Remove(T item)
         {
             if (IsEmpty())
             {
-                throw new InvalidOperationException(Resources.SinglyLinkedListEmpty); // nothing to remove
+                return false;
             }
 
             SinglyLinkedListNode<T> n = _head;
@@ -403,7 +381,7 @@ namespace Dsa.DataStructures
                 {
                     break; // we couldn't find the value to remove in the linked list
                 }
-                else if (Compare.AreEqual(n.Next.Value, item, _comparer)) // we have found the node to remove
+                if (Compare.AreEqual(n.Next.Value, item, _comparer)) // we have found the node to remove
                 {
                     if (n.Next == _tail)
                     {
@@ -418,10 +396,7 @@ namespace Dsa.DataStructures
                     Count--;
                     return true;
                 }
-                else
-                {
-                    n = n.Next;
-                }
+                n = n.Next;
             }
             return false;
         }
@@ -458,10 +433,7 @@ namespace Dsa.DataStructures
         /// </summary>
         IComparer<T> IComparerProvider<T>.Comparer
         {
-            get
-            {
-                return _comparer;
-            }
+            get { return _comparer; }
         }
     }
 }

@@ -108,10 +108,7 @@ namespace Dsa.DataStructures
         /// <exception cref="InvalidOperationException"><see cref="BinarySearchTree{T}"/> is <strong>empty</strong>.</exception>
         public BinaryTreeNode<T> FindParent(T value)
         {
-            if (_root == null)
-            {
-                throw new InvalidOperationException(Resources.BinarySearchTreeEmpty);
-            }
+            Guard.InvalidOperation(_root == null, Resources.BinarySearchTreeEmpty);
 
             return Compare.AreEqual(value, _root.Value, _comparer) ? null : FindParent(value, _root);
         }
@@ -323,14 +320,8 @@ namespace Dsa.DataStructures
         /// </para>
         /// </remarks>
         /// <returns>A one-dimensional <see cref="Array"/> containing the items of the <see cref="BinarySearchTree{T}"/>.</returns>
-        /// <exception cref="InvalidOperationException"><see cref="BinarySearchTree{T}"/> is <strong>empty</strong>.</exception>
         public override T[] ToArray()
         {
-            if (Count < 1)
-            {
-                throw new InvalidOperationException(Resources.BinarySearchTreeEmpty); // to array is not permitted on a bst with no items.
-            }
-
             int i = 0;
             T[] array = new T[Count];
             foreach (T item in GetBreadthFirstEnumerator())

@@ -106,6 +106,7 @@ namespace Dsa.DataStructures
         /// <returns>True if the item was found and removed; otherwise false.</returns>
         public override bool Remove(T item)
         {
+            // todo: see if you can break this down some
             int index = Array.IndexOf(_heap, item);
             if (index < 0)
             {
@@ -245,10 +246,7 @@ namespace Dsa.DataStructures
         /// </summary>
         IComparer<T> IComparerProvider<T>.Comparer
         {
-            get
-            {
-                return _comparer;
-            }
+            get { return _comparer; }
         }
     }
 }

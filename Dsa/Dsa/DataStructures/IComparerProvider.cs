@@ -11,9 +11,6 @@ namespace Dsa.DataStructures
         /// <summary>
         /// Gets the <see cref="IComparer{T}"/> being used.
         /// </summary>
-        IComparer<T> Comparer
-        {
-            get;
-        }
+        IComparer<T> Comparer { get; }
     }
 }

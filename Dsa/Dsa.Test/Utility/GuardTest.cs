@@ -37,7 +37,7 @@ namespace Dsa.Test.Utility
             }
             catch (ArgumentNullException e)
             {
-                Assert.AreEqual("paramName", e.ParamName);
+                Assert.AreEqual("parameterName", e.ParamName);
                 throw;
             }
         }
@@ -80,6 +80,45 @@ namespace Dsa.Test.Utility
         public void InvalidOperationConditionFalseTest()
         {
             Guard.InvalidOperation(2 > 4, "test");
+        }
+
+        /// <summary>
+        /// Check to see that the correct exception is raised when the condition is true.
+        /// </summary>
+        [Test]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void ArgumentOutOfRangeConditionTrueTest()
+        {
+            Guard.OutOfRange(1 < 2, "param", "Oh dear");
+        }
+
+        /// <summary>
+        /// Check to make sure no expception is raised.
+        /// </summary>
+        [Test]
+        public void ArgumentOutOfRangeConditionFalseTest()
+        {
+            Guard.OutOfRange(10 < 3, "param", "Oh dear");
+        }
+
+        /// <summary>
+        /// Check to see that the correct exception is thrown when the paramName is null.
+        /// </summary>
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ArgumentOutOfRangeParamNameNullTest()
+        {
+            Guard.OutOfRange(3 > 4, null, "Test");
+        }
+
+        /// <summary>
+        /// Check to see that the correct exception is thrown when the message is null. 
+        /// </summary>
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ArgumentOutOfRangeMessageNullTest()
+        {
+            Guard.OutOfRange(3 > 4, "myParam", null);
         }
     }
 }

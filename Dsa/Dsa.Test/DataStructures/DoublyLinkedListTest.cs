@@ -79,7 +79,9 @@ namespace Dsa.Test.DataStructures
         [Test]
         public void AddFirstTest()
         {
-            DoublyLinkedList<int> dll = new DoublyLinkedList<int> {20, 10};
+            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
+            dll.AddFirst(10);
+            dll.AddFirst(20);
 
             Assert.AreEqual(20, dll.Head.Value);
         }
@@ -253,7 +255,6 @@ namespace Dsa.Test.DataStructures
         /// Check to see that calling RemoveLast on an empty list throws the correct exception.
         /// </summary>
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
         public void RemoveLastEmptyListTest()
         {
             DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
@@ -311,7 +312,6 @@ namespace Dsa.Test.DataStructures
         /// exception.
         /// </summary>
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
         public void RemoveFirstEmptyListTest()
         {
             DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
@@ -400,12 +400,11 @@ namespace Dsa.Test.DataStructures
         /// correct exception.
         /// </summary>
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
         public void ToArrayEmptyListTest()
         {
-            DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
+            DoublyLinkedList<int> actual = new DoublyLinkedList<int>();
 
-            dll.ToArray();
+            Assert.AreEqual(0, actual.ToArray().Length);
         }
 
         /// <summary>
@@ -413,12 +412,11 @@ namespace Dsa.Test.DataStructures
         /// correct raised exception.
         /// </summary>
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
         public void RemoveEmptyListTest()
         {
             DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
 
-            dll.Remove(10);
+            Assert.IsFalse(dll.Remove(10));
         }
 
         /// <summary>

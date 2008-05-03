@@ -1,5 +1,4 @@
 ﻿using System;
-using Dsa.Properties;
 
 namespace Dsa.DataStructures
 {
@@ -9,8 +8,8 @@ namespace Dsa.DataStructures
     /// <typeparam name="T">Type of <see cref="Set{T}"/>.</typeparam>
     public class Set<T> : CollectionBase<T>
     {
+        // todo: the set infrastructure needs to be revised
         private readonly CollectionBase<T> _collection;
-
         /// <summary>
         /// Initializes a new instance of <see cref="Set{T}"/>.
         /// </summary>
@@ -83,10 +82,7 @@ namespace Dsa.DataStructures
         /// </remarks>
         protected CollectionBase<T> Collection
         {
-            get
-            {
-                return _collection;
-            }
+            get { return _collection; }
         }
 
         /// <summary>
@@ -98,11 +94,6 @@ namespace Dsa.DataStructures
         /// <returns>A one dimensional <see cref="Array"/> populated with the items from the <see cref="Set{T}"/>.</returns>
         public override T[] ToArray()
         {
-            if (Count < 1)
-            {
-                throw new InvalidOperationException(Resources.SetEmpty);
-            }
-
             T[] array = new T[Count];
             int i = 0;
             foreach (T item in this)

@@ -75,18 +75,6 @@ namespace Dsa.Test.DataStructures
         }
 
         /// <summary>
-        /// Check to see that the correct exception is thrown when calling ToArray on a Set with no items.
-        /// </summary>
-        [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
-        public void ToArraySetEmptyTest()
-        {
-            OrderedSet<int> actual = new OrderedSet<int>();
-
-            actual.ToArray();
-        }
-
-        /// <summary>
         /// Check to see that a non-null enumerator is returned.
         /// </summary>
         [Test]

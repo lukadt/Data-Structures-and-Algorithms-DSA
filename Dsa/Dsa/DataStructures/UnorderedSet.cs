@@ -12,9 +12,7 @@ namespace Dsa.DataStructures
         /// Initializes a new instance of <see cref="UnorderedSet{T}"/>.
         /// </summary>
         public UnorderedSet()
-            : base(new SinglyLinkedList<T>())
-        {
-        }
+            : base(new SinglyLinkedList<T>()) { }
 
         /// <summary>
         /// Returns an <see cref="IEnumerator{T}"/> to provide a simple traversal through the items in the <see cref="UnorderedSet{T}"/>.

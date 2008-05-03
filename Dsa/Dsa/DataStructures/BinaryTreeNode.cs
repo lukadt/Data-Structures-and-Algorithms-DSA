@@ -10,22 +10,15 @@
         /// Initializes a new instance of the <see cref="BinaryTreeNode{T}"/> class with a specified value.
         /// </summary>
         /// <param name="value">Value of the node.</param>
-        public BinaryTreeNode(T value)
-            : base(value) { }
+        public BinaryTreeNode(T value) : base(value) { }
 
         /// <summary>
         /// Gets or sets the left child of the <see cref="BinaryTreeNode{T}"/>.
         /// </summary>
         public BinaryTreeNode<T> Left
         {
-            get
-            {
-                return Previous as BinaryTreeNode<T>;
-            }
-            set
-            {
-                Previous = value;
-            }
+            get { return Previous as BinaryTreeNode<T>; }
+            set { Previous = value; }
         }
 
         /// <summary>
@@ -33,14 +26,8 @@
         /// </summary>
         public BinaryTreeNode<T> Right
         {
-            get
-            {
-                return Next as BinaryTreeNode<T>;
-            }
-            set
-            {
-                Next = value;
-            }
+            get { return Next as BinaryTreeNode<T>; }
+            set { Next = value; }
         }
     }
 }

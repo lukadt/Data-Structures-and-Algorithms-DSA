@@ -72,17 +72,5 @@ namespace Dsa.Test.DataStructures
 
             CollectionAssert.AreEqual(expected, set.ToArray());
         }
-
-        /// <summary>
-        /// Check to see that the correct exception is thrown when calling ToArray on a set with 0 items.
-        /// </summary>
-        [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
-        public void ToArrayNoItemsInUnorderedSetTest()
-        {
-            UnorderedSet<int> actual = new UnorderedSet<int>();
-
-            actual.ToArray();
-        }
     }
 }

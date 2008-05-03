@@ -150,13 +150,9 @@ namespace Dsa.DataStructures
         /// This method is an O(1) operation.
         /// </remarks>
         /// <exception cref="InvalidOperationException"><see cref="DoublyLinkedList{T}"/> contains <strong>0</strong> items.</exception>
+        // todo: the remove methods should be returning a bool
         public void RemoveLast()
         {
-            if (IsEmpty())
-            {
-                throw new InvalidOperationException(Resources.DoublyLinkedListEmpty); 
-            }
-
             // check to see if there is only 1 item in the linked list
             if (_tail == _head) 
             {
@@ -185,9 +181,10 @@ namespace Dsa.DataStructures
         /// <exception cref="InvalidOperationException"><see cref="DoublyLinkedList{T}"/> contains <strong>0</strong> items.</exception>
         public void RemoveFirst()
         {
-            if (IsEmpty())
+            // check first that the list has some items 
+            if (_head == null)
             {
-                throw new InvalidOperationException(Resources.DoublyLinkedListEmpty); // nothing to remove
+                return;
             }
 
             if (_head.Next == null) // only one node in the dll
@@ -218,11 +215,7 @@ namespace Dsa.DataStructures
         /// <exception cref="InvalidOperationException"><see cref="DoublyLinkedList{T}"/> contains <strong>0</strong> items.</exception>
         public override T[] ToArray()
         {
-            if (IsEmpty())
-            {
-                throw new InvalidOperationException(Resources.DoublyLinkedListEmpty); // nothing to make an array out of
-            }
-
+            // todo: this should be refactored into its own method somewhere as its pretty much the same in every class
             int index = 0;
             T[] resultArray = new T[Count]; 
             foreach (T value in this)
@@ -240,10 +233,7 @@ namespace Dsa.DataStructures
         /// <param name="node">Node to verify whether or not is null.</param>
         private void ValidateAddArgs(DoublyLinkedListNode<T> node)
         {
-            if (IsEmpty())
-            {
-                throw new InvalidOperationException(Resources.DoublyLinkedListEmpty);
-            }
+            Guard.InvalidOperation(IsEmpty(), Resources.DoublyLinkedListEmpty);
             Guard.ArgumentNull(node, "node");
         }
 
@@ -264,10 +254,7 @@ namespace Dsa.DataStructures
         /// </summary>
         public DoublyLinkedListNode<T> Head
         {
-            get
-            {
-                return _head;
-            }
+            get { return _head; }
         }
 
         /// <summary>
@@ -275,10 +262,7 @@ namespace Dsa.DataStructures
         /// </summary>
         public DoublyLinkedListNode<T> Tail
         {
-            get
-            {
-                return _tail;
-            }
+            get { return _tail; }
         }
 
         /// <summary>
@@ -334,9 +318,10 @@ namespace Dsa.DataStructures
         /// <exception cref="InvalidOperationException"><see cref="DoublyLinkedList{T}"/> contains <strong>0</strong> items.</exception>
         public override bool Remove(T item)
         {
-            if (IsEmpty())
+            // check first to see if there are any items to remove in the list
+            if (_head == null)
             {
-                throw new InvalidOperationException(Resources.DoublyLinkedListEmpty); // no items to remove
+                return false;
             }
 
             if (_head.Next == null && _comparer.Compare(_head.Value, item) == 0)
@@ -412,10 +397,7 @@ namespace Dsa.DataStructures
         /// </summary>
         IComparer<T> IComparerProvider<T>.Comparer
         {
-            get
-            {
-                return _comparer;
-            }
+            get { return _comparer; }
         }
     }
 }

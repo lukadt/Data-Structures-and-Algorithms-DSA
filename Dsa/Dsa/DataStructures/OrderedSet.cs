@@ -9,16 +9,16 @@ namespace Dsa.DataStructures
     /// <typeparam name="T">Type of OrderedSet.</typeparam>
     public sealed class OrderedSet<T> : Set<T>, IComparerProvider<T>
     {
+        // note: should this just derive from Bst? 
+        // note: I need to test that the uniqueness of items works with complex types
         [NonSerialized]
         private IComparer<T> _comparer = Comparer<T>.Default;
 
         /// <summary>
         /// Initializes a new <see cref="OrderedSet{T}"/> data structure.
         /// </summary>
-        public OrderedSet() 
-            : base(new BinarySearchTree<T>())
-        {
-        }
+        public OrderedSet()
+            : base(new BinarySearchTree<T>()) { }
 
         /// <summary>
         /// Initializes a new <see cref="OrderedSet{T}"/> using a specified <see cref="IComparer{T}"/>.
@@ -47,10 +47,7 @@ namespace Dsa.DataStructures
         /// </summary>
         IComparer<T> IComparerProvider<T>.Comparer
         {
-            get
-            {
-                return _comparer;
-            }
+            get { return _comparer; }
         }
     }
 }

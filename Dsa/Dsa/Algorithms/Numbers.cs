@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Text;
 using Dsa.Properties;
+using Dsa.Utility;
 
 namespace Dsa.Algorithms
 {
@@ -21,10 +22,7 @@ namespace Dsa.Algorithms
         /// <exception cref="ArgumentOutOfRangeException"><strong>number</strong> is less than <strong>0</strong>.</exception>
         public static int Fibonacci(this int number)
         {
-            if (number < 0)
-            {
-                throw new ArgumentOutOfRangeException(Resources.FibonacciLessThanZero);
-            }
+            Guard.OutOfRange(number < 0, "number", Resources.FibonacciLessThanZero);
 
             switch (number)
             {
@@ -57,10 +55,7 @@ namespace Dsa.Algorithms
         /// <exception cref="ArgumentOutOfRangeException"><strong>number</strong> is less than <strong>0</strong>.</exception>
         public static int Factorial(this int number)
         {
-            if (number < 0)
-            {
-                throw new ArgumentOutOfRangeException(Resources.FactorialLessThanZero);
-            }
+            Guard.OutOfRange(number < 0, "number", Resources.FactorialLessThanZero);
 
             if (number < 2)
             {
@@ -86,10 +81,7 @@ namespace Dsa.Algorithms
         /// <exception cref="ArgumentOutOfRangeException"><strong>exponent</strong> is less than <strong>0</strong>.</exception>
         public static int Power(int baseNumber, int exponent)
         {
-            if (exponent < 0)
-            {
-                throw new ArgumentOutOfRangeException(Resources.PowerExponentLessThanZero);
-            }
+            Guard.OutOfRange(exponent < 0, "exponent", Resources.PowerExponentLessThanZero);
 
             if (exponent == 0)
             {
@@ -123,10 +115,7 @@ namespace Dsa.Algorithms
         /// <exception cref="ArgumentOutOfRangeException"><strong>value</strong> is less than<strong>0</strong>.</exception>
         public static int ToBinary(this int value)
         {
-            if (value < 0)
-            {
-                throw new ArgumentOutOfRangeException(Resources.ToBaseNIntNegative);
-            }
+            Guard.OutOfRange(value < 0, "value", Resources.ToBaseNIntNegative);
 
             StringBuilder sb = new StringBuilder();
             while (value > 0)
@@ -145,10 +134,7 @@ namespace Dsa.Algorithms
         /// <exception cref="ArgumentOutOfRangeException"><strong>value</strong> is less than <strong>0</strong>.</exception>
         public static int ToOctal(this int value)
         {
-            if (value < 0)
-            {
-                throw new ArgumentOutOfRangeException(Resources.ToBaseNIntNegative);
-            }
+            Guard.OutOfRange(value < 0, "value", Resources.ToBaseNIntNegative);
 
             StringBuilder sb = new StringBuilder();
             while (value > 0)
@@ -167,10 +153,7 @@ namespace Dsa.Algorithms
         /// <exception cref="ArgumentOutOfRangeException"><strong>value</strong> is less than <strong>0</strong>.</exception>
         public static string ToHex(this int value)
         {
-            if (value < 0)
-            {
-                throw new ArgumentOutOfRangeException(Resources.ToBaseNIntNegative);
-            }
+            Guard.OutOfRange(value < 0, "value", Resources.ToBaseNIntNegative);
 
             StringBuilder sb = new StringBuilder();
             while (value > 0)
