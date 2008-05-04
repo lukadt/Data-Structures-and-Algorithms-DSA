@@ -1,5 +1,4 @@
-﻿using System;
-using Dsa.DataStructures;
+﻿using Dsa.DataStructures;
 using NUnit.Framework;
 
 namespace Dsa.Test.DataStructures

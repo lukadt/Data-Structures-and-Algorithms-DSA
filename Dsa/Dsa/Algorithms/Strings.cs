@@ -24,10 +24,6 @@ namespace Dsa.Algorithms
         {
             Guard.ArgumentNull(value, "value");
 
-            if (value.Length < 2)
-            {
-                return value; // string only has 1 char
-            }
             char[] buffer = new char[value.Length]; 
             // place each char from value in its new location within the buffer
             for (int i = value.Length - 1, j = 0; i >= 0; i--, j++)
@@ -38,13 +34,11 @@ namespace Dsa.Algorithms
         }
 
         /// <summary>
-        /// Returns the index of the first character in the match <see cref="string"/> that matches any 
-        /// character in the word <see cref="string"/>.
+        /// Returns the index of the first character in the match <see cref="string"/> that matches any character in the word <see cref="string"/>.
         /// </summary>
         /// <remarks>
         /// <para>
         /// This method is an O(n^2) operation.
-        /// <see cref="char"/> is the same as that in the word <see cref="string"/>.
         /// </para>
         /// <para>
         /// Case sensitive, whitespace is ignored.
@@ -81,7 +75,7 @@ namespace Dsa.Algorithms
                     }
                 }
             }
-            return -1; // no match
+            return -1;
         }
 
         /// <summary>
@@ -95,7 +89,7 @@ namespace Dsa.Algorithms
         /// Case, whitespace, punctuation and symbols are ignored.
         /// </para>
         /// </remarks>
-        /// <param name="word"><see cref="string"/> that you want to test is a palindrome or not.</param>
+        /// <param name="word"><see cref="string"/> that you want to verify is a palindrome.</param>
         /// <returns>True if the string is a palindrome; otherwise false.</returns>
         /// <exception cref="ArgumentNullException"><strong>word</strong> is <strong>null</strong>.</exception>
         public static bool IsPalindrome(this string word)

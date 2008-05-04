@@ -8,12 +8,10 @@ using Dsa.Properties;
 namespace Dsa.DataStructures
 {
     /// <summary>
-    /// <para>
     /// Base class for all DSA collections.
-    /// </para>
     /// </summary>
     /// <remarks>
-    /// Makes implementing <see cref="ICollection"/> and <see cref="ICollection{T}"/> easier. Just derive from this type and override the relevant methods etc.
+    /// Makes implementing <see cref="ICollection"/> and <see cref="ICollection{T}"/> easier. Just derive from this type and override the relevant methods.
     /// </remarks>
     /// <typeparam name="T">Type of <see cref="CollectionBase"/>.</typeparam>
     [Serializable]
@@ -23,8 +21,6 @@ namespace Dsa.DataStructures
     {
         [NonSerialized]
         private object _syncRoot;
-        [NonSerialized]
-        private int _count;
 
         #region ICollection Members
 
@@ -118,11 +114,7 @@ namespace Dsa.DataStructures
         /// <summary>
         /// Gets the number of items contained in the <see cref="ICollection{T}"/>.
         /// </summary>
-        public int Count
-        {
-            get { return _count; }
-            protected set { _count = value; }
-        }
+        public int Count { get; protected set; }
 
         /// <summary>
         /// Gets whether or not the <see cref="ICollection{T}"/> is read only.
@@ -163,7 +155,7 @@ namespace Dsa.DataStructures
         /// <param name="size">Size of the destintation array.</param>
         /// <param name="enumerator">Enumerator to use to denote traversal order.</param>
         /// <returns>Array of the data structure.</returns>
-        internal T[] ToArray(int size, IEnumerable<T> enumerator)
+        internal static T[] ToArray(int size, IEnumerable<T> enumerator)
         {
             T[] local = new T[size];
             int i = 0;

@@ -5,10 +5,10 @@ using Dsa.Utility;
 namespace Dsa.DataStructures
 {
     /// <summary>
-    /// CollectionDebugView assists the locals debug window in Visual Studio. All collections in DSA get this support for free.
+    /// CollectionDebugView assists the locals debug window in Visual Studio.
     /// </summary>
     /// <remarks>
-    /// This emulates BCL collections that provide a simple view of collections and a more intimate view (this is called the raw view).
+    /// This emulates BCL collections that provide a simple view of collections and a more intimate view (raw view).
     /// </remarks>
     /// <typeparam name="T">Type of the CollectionDebugView.</typeparam>
     internal sealed class CollectionDebugView<T>

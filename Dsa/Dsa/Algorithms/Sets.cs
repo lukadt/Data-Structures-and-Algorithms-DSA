@@ -1,5 +1,4 @@
-﻿using System;
-using Dsa.DataStructures;
+﻿using Dsa.DataStructures;
 using Dsa.Properties;
 using Dsa.Utility;
 
@@ -11,8 +10,7 @@ namespace Dsa.Algorithms
     public static class Sets
     {
         /// <summary>
-        /// Determines the number of permutations a set of <em>n</em> items can have with different permutations of
-        /// <em>setCount</em> items.
+        /// Determines the number of permutations a set of <em>n</em> items can have with different permutations of <em>setCount</em> items.
         /// </summary>
         /// <remarks>
         /// <em>Permutations(n, k) = n!/(n-k)!</em>. 
@@ -24,10 +22,7 @@ namespace Dsa.Algorithms
         public static int Permutations<T>(this Set<T> set, int setCount)
         {
             Guard.ArgumentNull(set, "set");
-            if (setCount < 1)
-            {
-                throw new ArgumentOutOfRangeException(Resources.PermutationsKGreaterThanZero);
-            }
+            Guard.OutOfRange(setCount < 1, "setCount", Resources.PermutationsKGreaterThanZero);
 
             return (set.Count - setCount) < 0 ? 0 : set.Count.Factorial() / (set.Count - setCount).Factorial();
         }

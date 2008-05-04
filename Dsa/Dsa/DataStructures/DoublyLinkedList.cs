@@ -149,10 +149,13 @@ namespace Dsa.DataStructures
         /// <remarks>
         /// This method is an O(1) operation.
         /// </remarks>
-        /// <exception cref="InvalidOperationException"><see cref="DoublyLinkedList{T}"/> contains <strong>0</strong> items.</exception>
-        // todo: the remove methods should be returning a bool
-        public void RemoveLast()
+        /// <returns>True if the tail node was removed; otherwise false.</returns>
+        public bool RemoveLast()
         {
+            if (IsEmpty())
+            {
+                return false;
+            }
             // check to see if there is only 1 item in the linked list
             if (_tail == _head) 
             {
@@ -170,6 +173,7 @@ namespace Dsa.DataStructures
                 _tail.Next = null;
             }
             Count--;
+            return true;
         }
 
         /// <summary>
@@ -178,13 +182,13 @@ namespace Dsa.DataStructures
         /// <remarks>
         /// This method is an O(1) operation.
         /// </remarks>
-        /// <exception cref="InvalidOperationException"><see cref="DoublyLinkedList{T}"/> contains <strong>0</strong> items.</exception>
-        public void RemoveFirst()
+        /// <returns>True if the head node was removed; otherwise false.</returns>
+        public bool RemoveFirst()
         {
             // check first that the list has some items 
-            if (_head == null)
+            if (IsEmpty())
             {
-                return;
+                return false;
             }
 
             if (_head.Next == null) // only one node in the dll
@@ -203,6 +207,7 @@ namespace Dsa.DataStructures
                 _head.Previous = null;
             }
             Count--;
+            return true;
         }
 
         /// <summary>
@@ -306,11 +311,9 @@ namespace Dsa.DataStructures
         /// </remarks>
         /// <param name="item">Value to remove from the <see cref="DoublyLinkedList{T}"/>.</param>
         /// <returns>True if the value was removed from the <see cref="DoublyLinkedList{T}"/>; false otherwise.</returns>
-        /// <exception cref="InvalidOperationException"><see cref="DoublyLinkedList{T}"/> contains <strong>0</strong> items.</exception>
         public override bool Remove(T item)
         {
-            // check first to see if there are any items to remove in the list
-            if (_head == null)
+            if (IsEmpty())
             {
                 return false;
             }

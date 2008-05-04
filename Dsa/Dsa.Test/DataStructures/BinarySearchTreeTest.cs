@@ -192,6 +192,18 @@ namespace Dsa.Test.DataStructures
         }
 
         /// <summary>
+        /// Check to see the correct exception is thrown when calling FindMin on an empty tree.
+        /// </summary>
+        [Test]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void FindMinTreeEmptyTest()
+        {
+            BinarySearchTree<int> bst = new BinarySearchTree<int>();
+
+            bst.FindMin();
+        }
+
+        /// <summary>
         /// Check to see that FindMax returns the largest value in the bst.
         /// </summary>
         [Test]
@@ -200,6 +212,19 @@ namespace Dsa.Test.DataStructures
             BinarySearchTree<int> bst = new BinarySearchTree<int> {12, 8, 42, 6, 11};
 
             Assert.AreEqual(42, bst.FindMax());
+        }
+
+
+        /// <summary>
+        /// Check to see that the correct exception is thrown when calling FindMax on an empty tree.
+        /// </summary>
+        [Test]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void FindMaxTreeEmptyTest()
+        {
+            BinarySearchTree<int> bst = new BinarySearchTree<int>();
+
+            bst.FindMax();
         }
 
         /// <summary>
@@ -409,16 +434,14 @@ namespace Dsa.Test.DataStructures
         }
 
         /// <summary>
-        /// Check to see that the correct exception is raised if calling FindParent on a bst object
-        /// that contains 0 items.
+        /// Check to see that null is returned when trying to find the parent of a tree with 0 items.
         /// </summary>
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
         public void FindParentNoItemsInBstTest()
         {
             BinarySearchTree<int> bst = new BinarySearchTree<int>();
 
-            bst.FindParent(45);
+            Assert.IsNull(bst.FindParent(45));
         }
 
         /// <summary>

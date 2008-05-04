@@ -218,6 +218,7 @@ namespace Dsa.Test.DataStructures
             dll.RemoveLast();
 
             Assert.IsTrue(dll.IsEmpty());
+            Assert.IsFalse(dll.RemoveLast());
             Assert.IsNull(dll.Tail);
         }
 
@@ -229,8 +230,7 @@ namespace Dsa.Test.DataStructures
         {
             DoublyLinkedList<int> dll = new DoublyLinkedList<int> {10, 20};
 
-            dll.RemoveLast();
-
+            Assert.IsTrue(dll.RemoveLast());
             Assert.AreEqual(10, dll.Head.Value);
             Assert.AreEqual(10, dll.Tail.Value);
             Assert.IsNull(dll.Tail.Next);
@@ -301,22 +301,20 @@ namespace Dsa.Test.DataStructures
         {
             DoublyLinkedList<int> dll = new DoublyLinkedList<int> {10, 20, 30};
 
-            dll.RemoveFirst();
-
+            Assert.IsTrue(dll.RemoveFirst());
             Assert.AreEqual(20, dll.Head.Value);
             Assert.IsNull(dll.Head.Previous);
         }
 
         /// <summary>
-        /// Check to see that calling RemoveFirst on a linked list with no nodes throws the correct
-        /// exception.
+        /// Check to see that calling RemoveFirst on a linked list with no nodes returns false.
         /// </summary>
         [Test]
         public void RemoveFirstEmptyListTest()
         {
             DoublyLinkedList<int> dll = new DoublyLinkedList<int>();
 
-            dll.RemoveFirst();
+            Assert.IsFalse(dll.RemoveFirst());
         }
 
         /// <summary>

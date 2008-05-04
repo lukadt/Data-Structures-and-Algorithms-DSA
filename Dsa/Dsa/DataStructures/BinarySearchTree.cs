@@ -38,7 +38,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Called by the Add method. Finds the location where to put the node in the BinarySearchTree.
+        /// Called by the Add method. Finds the location where to put the node in the <see cref="BinarySearchTree{T}"/>.
         /// </summary>
         /// <param name="node">Node to start searching from.</param>
         /// <param name="value">Value to insert into the Bst.</param>
@@ -57,7 +57,6 @@ namespace Dsa.DataStructures
             }
             else
             {
-                // the value is greater than or equal to the current nodes value so go right.
                 if (node.Right == null)
                 { 
                     node.Right = new BinaryTreeNode<T>(value); 
@@ -76,7 +75,7 @@ namespace Dsa.DataStructures
         /// This method is an O(log n) operation.
         /// </remarks>
         /// <param name="value">Value to find.</param>
-        /// <returns>A <see cref="BinaryTreeNode{T}"/> if a node was found with the value provided; otherwise null.</returns>
+        /// <returns>A <see cref="BinaryTreeNode{T}"/> if the node was found with the value provided; otherwise null.</returns>
         public BinaryTreeNode<T> FindNode(T value)
         {
             return FindNode(value, _root);
@@ -87,7 +86,7 @@ namespace Dsa.DataStructures
         /// </summary>
         /// <param name="value">Value to find.</param>
         /// <param name="root">Node to start search from.</param>
-        /// <returns>A <see cref="BinaryTreeNode{T}"/> if a node was found with the value provided; otherwise null.</returns>
+        /// <returns>A <see cref="BinaryTreeNode{T}"/> if the node was found with the value provided; otherwise null.</returns>
         private BinaryTreeNode<T> FindNode(T value, BinaryTreeNode<T> root)
         {
             if (root == null)
@@ -105,11 +104,12 @@ namespace Dsa.DataStructures
         /// </summary>
         /// <param name="value">Value of node to find parent of.</param>
         /// <returns><see cref="BinaryTreeNode{T}"/> if the parent was found, otherwise null.</returns>
-        /// <exception cref="InvalidOperationException"><see cref="BinarySearchTree{T}"/> is <strong>empty</strong>.</exception>
         public BinaryTreeNode<T> FindParent(T value)
         {
-            Guard.InvalidOperation(_root == null, Resources.BinarySearchTreeEmpty);
-
+            if (_root == null)
+            {
+                return null;
+            }
             return Compare.AreEqual(value, _root.Value, _comparer) ? null : FindParent(value, _root);
         }
 
@@ -262,8 +262,11 @@ namespace Dsa.DataStructures
         /// This method is an O(log n) operation.
         /// </remarks>
         /// <returns>Smallest value in the <see cref="BinarySearchTree{T}"/>.</returns>
+        /// <exception cref="InvalidOperationException">The <see cref="BinarySearchTree{T}"/> contains <strong>0</strong> items.</exception>
         public T FindMin()
         {
+            Guard.InvalidOperation(_root == null, Resources.BinarySearchTreeEmpty);
+
             return FindMin(_root);
         }
 
@@ -274,11 +277,7 @@ namespace Dsa.DataStructures
         /// <returns>Smallest value in the bst.</returns>
         private static T FindMin(BinaryTreeNode<T> root)
         {
-            if (root.Left == null)
-            {
-                return root.Value;
-            }
-            return FindMin(root.Left);
+            return root.Left == null ? root.Value : FindMin(root.Left);
         }
 
         /// <summary>
@@ -288,8 +287,11 @@ namespace Dsa.DataStructures
         /// This method is an O(log n) operation.
         /// </remarks>
         /// <returns>Largest value in the <see cref="BinarySearchTree{T}"/>.</returns>
+        /// <exception cref="InvalidOperationException">The <see cref="BinarySearchTree{T}"/> contains <strong>0</strong> items.</exception>
         public T FindMax()
         {
+            Guard.InvalidOperation(_root == null, Resources.BinarySearchTreeEmpty);
+
             return FindMax(_root);
         }
 
@@ -300,11 +302,7 @@ namespace Dsa.DataStructures
         /// <returns>Largest value in the bst.</returns>
         private static T FindMax(BinaryTreeNode<T> root)
         {
-            if (root.Right == null)
-            {
-                return root.Value;
-            }
-            return FindMax(root.Right); 
+            return root.Right == null ? root.Value : FindMax(root.Right);
         }
 
         /// <summary>
@@ -323,8 +321,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Inserts a new node with the specified value at the appropriate location
-        /// in the <see cref="BinarySearchTree{T}"/>.
+        /// Inserts a new node with the specified value at the appropriate location in the <see cref="BinarySearchTree{T}"/>.
         /// </summary>
         /// <remarks>
         /// This method is an O(log n) operation.
@@ -362,18 +359,18 @@ namespace Dsa.DataStructures
         /// This method is an O(log n) operation.
         /// </remarks>
         /// <param name="item">Item to search the <see cref="BinarySearchTree{T}"/> for.</param>
-        /// <returns>True if the item is contained within the <see cref="BinarySearchTree{T}"/>; false otherwise.</returns>
+        /// <returns>True if the item is contained within the <see cref="BinarySearchTree{T}"/>; otherwise false.</returns>
         public override bool Contains(T item)
         {
             return Contains(_root, item);
         }
 
         /// <summary>
-        /// Determines whether an item is contained within the bst.
+        /// Determines whether an item is contained within the <see cref="BinarySearchTree{T}"/>.
         /// </summary>
-        /// <param name="root">The root node of the bst.</param>
-        /// <param name="item">The item to be located in the bst.</param>
-        /// <returns>True if the item is contained within the bst, false otherwise.</returns>
+        /// <param name="root">The root node of the <see cref="BinarySearchTree{T}"/>.</param>
+        /// <param name="item">The item to be located in the <see cref="BinarySearchTree{T}"/>.</param>
+        /// <returns>True if the item is contained within the <see cref="BinarySearchTree{T}"/>; otherwise false.</returns>
         private bool Contains(BinaryTreeNode<T> root, T item)
         {
             if (root == null)
@@ -403,7 +400,7 @@ namespace Dsa.DataStructures
         /// This method is an O(log n) operation.
         /// </remarks>
         /// <param name="item">Item to remove from the the <see cref="BinarySearchTree{T}"/>.</param>
-        /// <returns>True if the item was removed; false otherwise.</returns>
+        /// <returns>True if the item was removed; otherwise false.</returns>
         public override bool Remove(T item)
         {
             BinaryTreeNode<T> nodeToRemove = FindNode(item);
@@ -476,9 +473,7 @@ namespace Dsa.DataStructures
         ///<remarks>
         /// This method is an O(n) operation.
         ///</remarks>
-        ///<returns>
-        /// An <see cref="IEnumerator{T}" /> that can be used to iterate through the <see cref="BinarySearchTree{T}"/>.
-        ///</returns>
+        ///<returns>An <see cref="IEnumerator{T}" /> that can be used to iterate through the <see cref="BinarySearchTree{T}"/>.</returns>
         public override IEnumerator<T> GetEnumerator()
         {
             List<T> arrayListCollection = new List<T>();

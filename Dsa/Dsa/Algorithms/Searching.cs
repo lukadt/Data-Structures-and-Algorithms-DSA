@@ -17,7 +17,7 @@ namespace Dsa.Algorithms
         /// </remarks>
         /// <param name="list"><see cref="IList{T}"/> to search item for.</param>
         /// <param name="item">Item to search for.</param>
-        /// <returns>The index of the item if found is returned; otherwise -1.</returns>
+        /// <returns>The index of the item if found; otherwise -1.</returns>
         /// <exception cref="ArgumentNullException"><strong>list</strong> is <strong>null</strong>.</exception>
         public static int SequentialSearch<T>(this IList<T> list, T item)
         {
@@ -33,7 +33,7 @@ namespace Dsa.Algorithms
             {
                 return i;
             }
-            return -1; // not found
+            return -1;
         }
 
         /// <summary>
@@ -44,13 +44,12 @@ namespace Dsa.Algorithms
         /// This method is an O(n) operation.
         /// </para>
         /// <para>
-        /// If the item is found in the <see cref="IList{T}"/> then it's priority is increased by swapping it with it's predecessor 
-        /// in the <see cref="IList{T}"/>.
+        /// If the item is found in the <see cref="IList{T}"/> then it's priority is increased by swapping it with it's predecessor in the <see cref="IList{T}"/>.
         /// </para>
         /// </remarks>
         /// <param name="list"><see cref="IList{T}"/> to search.</param>
         /// <param name="item">The item to search the <see cref="IList{T}"/> for.</param>
-        /// <returns>True if the item was found; false otherwise.</returns>
+        /// <returns>True if the item was found; otherwise false.</returns>
         /// <exception cref="ArgumentNullException"><strong>list</strong> is <strong>null</strong>.</exception>
         public static bool ProbabilitySearch<T>(this IList<T> list, T item)
         {

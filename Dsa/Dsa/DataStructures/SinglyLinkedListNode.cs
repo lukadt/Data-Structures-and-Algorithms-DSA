@@ -1,5 +1,6 @@
 ﻿namespace Dsa.DataStructures
 {
+    // todo: code review
     /// <summary>
     /// Node used in <see cref="SinglyLinkedList{T}"/>.
     /// </summary>

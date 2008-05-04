@@ -73,7 +73,7 @@ namespace Dsa.Algorithms
         /// Computes the power of an <see cref="System.Int32"/> to a given exponent.
         /// </summary>
         /// <remarks>
-        /// This method is an O(1) method when the exponent is 1, otherwise O(n) for larger exponents.
+        /// This method is an O(1) method when the exponent is 1; otherwise O(n) for larger exponents.
         /// </remarks>
         /// <param name="baseNumber">Base number.</param>
         /// <param name="exponent">Exponent.</param>

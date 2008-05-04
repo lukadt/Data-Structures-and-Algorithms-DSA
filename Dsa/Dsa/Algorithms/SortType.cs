@@ -1,7 +1,7 @@
 ﻿namespace Dsa.Algorithms
 {
     /// <summary>
-    /// SortTypes to be used with sorting algorithms that other numerous sorting options like <see cref="Sorting.BubbleSort{T}"/>.
+    /// Sorting order.
     /// </summary>
     public enum SortType
     {
