@@ -1,14 +1,10 @@
 ﻿using System;
-// todo: code review
+
 namespace Dsa.Utility
 {
     /// <summary>
-    /// A series of guard methods to check algorithm inputs.
+    /// A series of guard methods to check inputs to algorithms.
     /// </summary>
-    /// <remarks>
-    /// The methods are designed to verify preconditions and should always be used to verify the inputs to
-    /// all algorithms (within context).
-    /// </remarks>
     public static class Guard
     {
         /// <summary>

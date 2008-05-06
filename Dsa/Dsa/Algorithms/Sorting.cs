@@ -93,7 +93,7 @@ namespace Dsa.Algorithms
         /// <param name="list"><see cref="IList{T}"/> that holds the items to be exchanged.</param>
         /// <param name="first">Index of first item.</param>
         /// <param name="second">Index of second item.</param>
-        private static void Exchange<T>(IList<T> list, int first, int second)
+        internal static void Exchange<T>(IList<T> list, int first, int second)
         {
             T temp = list[first];
             list[first] = list[second];

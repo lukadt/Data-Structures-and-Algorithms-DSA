@@ -1,4 +1,7 @@
-﻿using Dsa.DataStructures;
+﻿using System;
+using System.Collections.Generic;
+using Dsa.DataStructures;
+using Dsa.Test.Utility;
 using NUnit.Framework;
 
 namespace Dsa.Test.DataStructures
@@ -61,6 +64,23 @@ namespace Dsa.Test.DataStructures
         }
 
         /// <summary>
+        /// Check to see when using an value type with the same properties twice that only one of them is added
+        /// to the set.
+        /// </summary>
+        [Test]
+        public void DuplicateObjectTest()
+        {
+            UnorderedSet<Person> actual = new UnorderedSet<Person>();
+            Person p1 = new Person { FirstName = "Granville", LastName = "Barnett" };
+            Person p2 = new Person { FirstName = "Granville", LastName = "Barnett" };
+
+            actual.Add(p1);
+            actual.Add(p2);
+
+            Assert.AreEqual(1, actual.Count);
+        }
+
+        /// <summary>
         /// Check to see that the array items are returned in the correct order.
         /// </summary>
         [Test]
@@ -70,6 +90,31 @@ namespace Dsa.Test.DataStructures
             char[] expected = { 'a', 'r', 'd', 'f' };
 
             CollectionAssert.AreEqual(expected, set.ToArray());
+        }
+
+        /// <summary>
+        /// Check to see that the correct number of items are contained within the set after copying an IEnumerable collection to the
+        /// set.
+        /// </summary>
+        [Test]
+        public void CopyIEnumerableToSetTest()
+        {
+            List<string> originalCollection = new List<string> { "Granville", "John", "Granville", "Betty" };
+            UnorderedSet<string> actual = new UnorderedSet<string>(originalCollection);
+
+            Assert.AreEqual(3, actual.Count);
+        }
+
+        /// <summary>
+        /// Check to see that the correct exception is thrown when the collection whose items are to be copied to the
+        /// set is null.
+        /// </summary>
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void CopyIEnumerableToSetCollectionNullTest()
+        {
+            const List<string> orginal = null;
+            UnorderedSet<string> actual = new UnorderedSet<string>(orginal);
         }
     }
 }

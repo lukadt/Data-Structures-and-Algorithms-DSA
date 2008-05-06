@@ -1,8 +1,7 @@
 ﻿namespace Dsa.DataStructures
 {
-    // todo: code review
     /// <summary>
-    /// <see cref="DoublyLinkedListNode{T}"/> is an implementation of a node used in a doubly linked list data structure.
+    /// <see cref="DoublyLinkedListNode{T}"/> is an implementation of a node used in the <see cref="DoublyLinkedList{T}"/>.
     /// </summary>
     /// <typeparam name="T">Type of <see cref="DoublyLinkedListNode{T}"/>.</typeparam>
     public class DoublyLinkedListNode<T>

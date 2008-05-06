@@ -99,5 +99,35 @@ namespace Dsa.Test.DataStructures
 
             Assert.IsNotNull(actual.Comparer);
         }
+
+        /// <summary>
+        /// Check to see when using an value type with the same properties twice that only one of them is added
+        /// to the set.
+        /// </summary>
+        [Test]
+        public void DuplicateObjectTest()
+        {
+            OrderedSet<Person> actual = new OrderedSet<Person>();
+            Person p1 = new Person { FirstName = "Granville", LastName = "Barnett" };
+            Person p2 = new Person { FirstName = "Granville", LastName = "Barnett" };
+
+            actual.Add(p1);
+            actual.Add(p2);
+
+            Assert.AreEqual(1, actual.Count);
+        }
+
+        /// <summary>
+        /// Check to see that the correct number of items are contained within the set after copying an IEnumerable collection to the
+        /// set.
+        /// </summary>
+        [Test]
+        public void CopyIEnumerableToSetTest()
+        {
+            List<string> originalCollection = new List<string> { "Granville", "John", "Granville", "Betty" };
+            OrderedSet<string> actual = new OrderedSet<string>(originalCollection);
+
+            Assert.AreEqual(3, actual.Count);
+        }
     }
 }

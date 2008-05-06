@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Dsa.Algorithms;
 using Dsa.Utility;
-// todo: code review
+
 namespace Dsa.DataStructures
 {
     /// <summary>
@@ -77,6 +78,9 @@ namespace Dsa.DataStructures
         /// <summary>
         /// Clears the <see cref="Heap{T}"/> of its items.
         /// </summary>
+        /// <remarks>
+        /// Calling this method returns the internal <see cref="Array"/> to it's original capacity of 4.
+        /// </remarks>
         public override void Clear()
         {
             Count = 0;
@@ -120,12 +124,12 @@ namespace Dsa.DataStructures
                 {
                     if (Compare.IsLessThan(_heap[2 * index + 1], _heap[2 * index + 2], _comparer))
                     {
-                        Swap(_heap, index, 2 * index + 1);
+                        Sorting.Exchange(_heap, index, 2 * index + 1);
                         index = 2 * index + 1;
                     }
                     else
                     {
-                        Swap(_heap, index, 2 * index + 2);
+                        Sorting.Exchange(_heap, index, 2 * index + 2);
                         index = 2 * index + 2;
                     }
                 }
@@ -137,12 +141,12 @@ namespace Dsa.DataStructures
                 {
                     if (Compare.IsGreaterThan(_heap[2 * index + 1], _heap[2 * index + 2], _comparer))
                     {
-                        Swap(_heap, index, 2 * index + 1);
+                        Sorting.Exchange(_heap, index, 2 * index + 1);
                         index = 2 * index + 1;
                     }
                     else
                     {
-                        Swap(_heap, index, 2 * index + 2);
+                        Sorting.Exchange(_heap, index, 2 * index + 2);
                         index = 2 * index + 2;
                     }
                 }
@@ -194,7 +198,7 @@ namespace Dsa.DataStructures
             int i = Count - 1;
             while (i > 0 && Compare.IsLessThan(_heap[i], _heap[(i - 1) / 2], _comparer))
             {
-                Swap(_heap, i, (i - 1) / 2);
+                Sorting.Exchange(_heap, i, (i - 1) / 2);
                 i = (i - 1) / 2;
             }
         }
@@ -216,22 +220,9 @@ namespace Dsa.DataStructures
             int i = Count - 1;
             while (i > 0 && Compare.IsGreaterThan(_heap[i], _heap[(i - 1) / 2], _comparer))
             {
-                Swap(_heap, i, (i - 1) / 2);
+                Sorting.Exchange(_heap, i, (i - 1) / 2);
                 i = (i - 1) / 2;
             }
-        }
-
-        /// <summary>
-        /// Swaps the values around of items in an <see cref="Array"/>.
-        /// </summary>
-        /// <param name="array">Array which holds the items to swap around.</param>
-        /// <param name="first">Index of first item to swap.</param>
-        /// <param name="second">Index of second item to swap.</param>
-        private static void Swap(T[] array, int first, int second)
-        {
-            T temp = array[first];
-            array[first] = array[second];
-            array[second] = temp;
         }
 
         /// <summary>

@@ -1,5 +1,7 @@
 ﻿using System;
-// todo: code review
+using System.Collections.Generic;
+using Dsa.Utility;
+
 namespace Dsa.DataStructures
 {
     /// <summary>
@@ -8,10 +10,9 @@ namespace Dsa.DataStructures
     /// <typeparam name="T">Type of <see cref="Set{T}"/>.</typeparam>
     public class Set<T> : CollectionBase<T>
     {
-        // todo: the set infrastructure needs to be revised
         private readonly CollectionBase<T> _collection;
         /// <summary>
-        /// Initializes a new instance of <see cref="Set{T}"/>.
+        /// Creates and initializes a new instance of <see cref="Set{T}"/>.
         /// </summary>
         /// <param name="collection"></param>
         public Set(CollectionBase<T> collection)
@@ -28,7 +29,10 @@ namespace Dsa.DataStructures
         /// <param name="item">Item to add to the <see cref="Set{T}"/>.</param>
         public override void Add(T item)
         {
-            if (_collection.Contains(item)) return; // item already in set
+            if (_collection.Contains(item))
+            {
+                return; // item already in set
+            }
             _collection.Add(item);
             Count++;
         }
@@ -40,6 +44,21 @@ namespace Dsa.DataStructures
         {
             _collection.Clear();
             Count = 0;
+        }
+
+        /// <summary>
+        /// Copies the items in an <see cref="IEnumerable{T}"/> to the <see cref="Set{T}"/>.
+        /// </summary>
+        /// <param name="collection">Items to copy.</param>
+        /// <exception cref="ArgumentNullException"><strong>collection</strong> is <strong>null</strong>.</exception>
+        protected void CopyCollection(IEnumerable<T> collection)
+        {
+            Guard.ArgumentNull(collection, "collection");
+
+            foreach (T item in collection)
+            {
+                Add(item);
+            }
         }
 
         /// <summary>

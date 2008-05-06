@@ -57,7 +57,7 @@
     <Compile Include="DataStructures\BinarySearchTreeTest.cs" />
     <Compile Include="DataStructures\BinaryTreeNodeTest.cs" />
     <Compile Include="DataStructures\HeapTest.cs" />
-    <Compile Include="DataStructures\OrderedSet.cs" />
+    <Compile Include="DataStructures\OrderedSetTest.cs" />
     <Compile Include="DataStructures\DoublyLinkedListTest.cs" />
     <Compile Include="DataStructures\SinglyLinkedListTest.cs" />
     <Compile Include="DataStructures\UnorderedSetTest.cs" />
@@ -67,6 +67,7 @@
     <Compile Include="DataStructures\SinglyLinkedListNodeTest.cs" />
     <Compile Include="Utility\CoordinateComparer.cs" />
     <Compile Include="Utility\GuardTest.cs" />
+    <Compile Include="Utility\Person.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

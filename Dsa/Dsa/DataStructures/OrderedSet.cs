@@ -1,33 +1,54 @@
 ﻿using System;
 using System.Collections.Generic;
-// todo: code review
+
 namespace Dsa.DataStructures
 {
     /// <summary>
     /// An ordered set where the items are ordered using a default <see cref="Comparer{T}"/> or a provided <see cref="IComparer{T}"/>.  
     /// </summary>
+    /// <remarks>
+    /// In order to check for equality for non-primitve types you must make sure the type implements <see cref="IComparable{T}"/> otherwise
+    /// the <see cref="OrderedSet{T}"/> cannot guarantee the set contains only unique objects.
+    /// </remarks>
     /// <typeparam name="T">Type of OrderedSet.</typeparam>
     public sealed class OrderedSet<T> : Set<T>, IComparerProvider<T>
     {
-        // note: should this just derive from Bst? 
-        // note: I need to test that the uniqueness of items works with complex types
         [NonSerialized]
         private IComparer<T> _comparer = Comparer<T>.Default;
 
         /// <summary>
-        /// Initializes a new <see cref="OrderedSet{T}"/> data structure.
+        /// Creates and initializes a new instance of <see cref="OrderedSet{T}"/>.
         /// </summary>
         public OrderedSet()
             : base(new BinarySearchTree<T>()) { }
 
         /// <summary>
-        /// Initializes a new <see cref="OrderedSet{T}"/> using a specified <see cref="IComparer{T}"/>.
+        /// Creates and initializes a new instance of <see cref="OrderedSet{T}"/> using a specified <see cref="IComparer{T}"/>.
         /// </summary>
-        /// <param name="comparer"></param>
+        /// <param name="comparer">Comparer to use.</param>
         public OrderedSet(IComparer<T> comparer) :
             base(new BinarySearchTree<T>(comparer))
         {
             _comparer = comparer;
+        }
+
+        /// <summary>
+        /// Creates and initializes a new instance of <see cref="OrderedSet{T}"/> populating the <see cref="OrderedSet{T}"/> with
+        /// the items withing the provided <see cref="IEnumerable{T}"/>.
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Call this constructor if assigning a collection to the <see cref="OrderedSet{T}"/>.
+        /// </para>
+        /// <para>
+        /// This method is an O(n) operation where n is the number of items in the <see cref="IEnumerable{T}"/>.
+        /// </para>
+        /// </remarks>
+        /// <param name="collection"></param>
+        public OrderedSet(IEnumerable<T> collection)
+            : this()
+        {
+            CopyCollection(collection);
         }
 
         /// <summary>
