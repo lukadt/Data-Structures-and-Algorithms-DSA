@@ -165,7 +165,7 @@ namespace Dsa.DataStructures
         /// <returns>True if the <see cref="SinglyLinkedList{T}"/> is empty; false otherwise.</returns>
         public bool IsEmpty()
         {
-            return _head == null;
+            return _head == null; // note: remove for consistancy
         }
 
         /// <summary>
@@ -189,20 +189,7 @@ namespace Dsa.DataStructures
         /// <returns>A one-dimensional <see cref="Array"/> containing the items from the <see cref="SinglyLinkedList{T}"/> in reverse order.</returns>
         public T[] ToReverseArray()
         {
-            // note: what should we return if the list is empty? null or an empty array?
-            if (_head == null)
-            {
-                return null;
-            }
-
-            int curr = 0;
-            T[] arrayResult = new T[Count];
-            foreach (T item in GetReverseEnumerator())
-            {
-                arrayResult[curr] = item;
-                curr++;
-            }
-            return arrayResult;
+            return ToArray(Count, GetReverseEnumerator());
         }
 
         /// <summary>
@@ -402,22 +389,26 @@ namespace Dsa.DataStructures
         /// <returns>An <see cref="IEnumerable{T}" /> that can be used to iterate through the <see cref="SinglyLinkedList{T}"/>.</returns>
         public IEnumerable<T> GetReverseEnumerator()
         {
+
             SinglyLinkedListNode<T> n = _head;
             SinglyLinkedListNode<T> curr = _tail;
-            while (n != curr)
+            if (n != null)
             {
-                if (n.Next == curr)
+                while (n != curr)
                 {
-                    yield return curr.Value;
-                    curr = n;
-                    n = _head;
+                    if (n.Next == curr)
+                    {
+                        yield return curr.Value;
+                        curr = n;
+                        n = _head;
+                    }
+                    else
+                    {
+                        n = n.Next;
+                    }
                 }
-                else
-                {
-                    n = n.Next;
-                }
+                yield return n.Value;
             }
-            yield return n.Value;
         }
 
         /// <summary>

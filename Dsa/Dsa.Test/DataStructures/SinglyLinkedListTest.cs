@@ -731,7 +731,7 @@ namespace Dsa.Test.DataStructures
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
 
-            Assert.IsNull(sll.ToReverseArray());
+            Assert.AreEqual(0, sll.ToReverseArray().Length);
         }
     }
 }
