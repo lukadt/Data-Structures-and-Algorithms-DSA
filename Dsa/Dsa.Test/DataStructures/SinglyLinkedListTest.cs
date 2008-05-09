@@ -167,8 +167,8 @@ namespace Dsa.Test.DataStructures
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10};
 
-            sll.RemoveLast();
-
+            Assert.IsTrue(sll.RemoveLast());
+            Assert.IsFalse(sll.RemoveLast());
             Assert.AreEqual(0, sll.Count);
             Assert.IsTrue(sll.IsEmpty());
             Assert.IsNull(sll.Head);
@@ -246,20 +246,6 @@ namespace Dsa.Test.DataStructures
         }
 
         /// <summary>
-        /// Check to see that the appropriate exception is raised when calling RemoveLast on a SinglyLinkedListCollection
-        /// object containing no nodes.
-        /// </summary>
-        [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
-        public void RemoveLastInvalidSinglyLinkedListCollectionTest()
-        {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10};
-
-            sll.RemoveLast();
-            sll.RemoveLast();
-        }
-
-        /// <summary>
         /// Check to see that calling RemoveFirst on SinglyLinkedListCollection with only 1 node results in the expected behaviour.
         /// </summary>
         [Test]
@@ -284,9 +270,9 @@ namespace Dsa.Test.DataStructures
             SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20};
 
             sll.AddFirst(30);
-            sll.RemoveFirst();
-            sll.RemoveFirst();
-
+            
+            Assert.IsTrue(sll.RemoveFirst());
+            Assert.IsTrue(sll.RemoveFirst());
             Assert.AreEqual(1, sll.Count);
             Assert.AreEqual(20, sll.Head.Value);
             Assert.AreEqual(20, sll.Tail.Value);
@@ -339,31 +325,14 @@ namespace Dsa.Test.DataStructures
         }
 
         /// <summary>
-        /// Check to see that the appropriate exception is raised when calling RemoveFirst on a SinglyLinkedListCollection
-        /// object containing no nodes.
+        /// Check to see that the correct value is returned when there is nothing to remove.
         /// </summary>
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
-        public void RemoveFirstInvalidSinglyLinkedListCollectionTest()
+        public void RemoveFirstTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
 
-            sll.RemoveFirst();
-        }
-
-        /// <summary>
-        /// Check to see that the appropriate exception is raised when calling RemoveFirst on a SinglyLinkedListCollection
-        /// object containing no nodes.
-        /// </summary>
-        [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
-        public void RemoveFirstInvalidSinglyLinkedListCollectionTest2()
-        {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
-
-            sll.AddFirst(10);
-            sll.RemoveFirst();
-            sll.RemoveFirst();
+            Assert.IsFalse(sll.RemoveFirst());
         }
 
         /// <summary>

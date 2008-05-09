@@ -44,7 +44,7 @@ namespace Dsa.DataStructures
         /// This method is an O(n) operation where n is the number of items in the <see cref="IEnumerable{T}"/>.
         /// </para>
         /// </remarks>
-        /// <param name="collection"></param>
+        /// <param name="collection">Collection of items to populate the set.</param>
         public OrderedSet(IEnumerable<T> collection)
             : this()
         {

@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Dsa.Properties;
 using Dsa.Utility;
-// todo: code review
+
 namespace Dsa.DataStructures
 {
     /// <summary>
@@ -165,7 +164,7 @@ namespace Dsa.DataStructures
         /// <returns>True if the <see cref="SinglyLinkedList{T}"/> is empty; false otherwise.</returns>
         public bool IsEmpty()
         {
-            return _head == null; // note: remove for consistancy
+            return _head == null; 
         }
 
         /// <summary>
@@ -200,12 +199,15 @@ namespace Dsa.DataStructures
         /// in the linked list, otherwise the method is an O(n) operation where n nodes have to be traversed in order to locate the node that
         /// precedes the last node.
         /// </remarks>
-        /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedList{T}"/> contains <strong>0</strong> items.</exception>
-        public void RemoveLast() // todo: should be bool
+        /// <returns>True the last node was removed; otherwise false.</returns>
+        public bool RemoveLast()
         {
-            Guard.InvalidOperation(IsEmpty(), Resources.SinglyLinkedListEmpty);
+            if (IsEmpty())
+            {
+                return false;
+            }
 
-            if (_head.Next == null)
+            if (Count == 1)
             {
                 _head = null;
                 _tail = null;
@@ -225,6 +227,7 @@ namespace Dsa.DataStructures
                 }
             }
             Count--;
+            return true;
         }
 
         /// <summary>
@@ -234,11 +237,14 @@ namespace Dsa.DataStructures
         /// This method is an O(1) operation, the <see cref="Head"/> is always known.
         /// </remarks>
         /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedList{T}"/> contains <strong>0</strong> items.</exception>
-        public void RemoveFirst()
+        public bool RemoveFirst()
         {
-            Guard.InvalidOperation(IsEmpty(), Resources.SinglyLinkedListEmpty);
+            if (IsEmpty())
+            {
+                return false;
+            }
 
-            if (_head.Next == null) 
+            if (Count == 1) 
             {
                 _head = null;
                 _tail = null;
@@ -248,6 +254,7 @@ namespace Dsa.DataStructures
                 _head = _head.Next; 
             }
             Count--;
+            return true;
         }
 
         /// <summary>
