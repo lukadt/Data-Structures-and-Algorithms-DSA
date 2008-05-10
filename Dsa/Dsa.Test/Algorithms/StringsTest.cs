@@ -53,7 +53,7 @@ namespace Dsa.Test.Algorithms
         {
             const string s = null;
 
-            string actual = s.Reverse();
+            s.Reverse();
         }
 
         /// <summary>

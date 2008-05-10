@@ -126,20 +126,19 @@ namespace Dsa.Test.DataStructures
         /// Check to see that SinglyLinkedListCollection returns the correct items from the collection.
         /// </summary>
         [Test]
-        public void ForeachTest()
+        public void EnumeratorTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 30, 40};
             SinglyLinkedList<int> expected = new SinglyLinkedList<int> {10, 30, 40};
 
             CollectionAssert.AreEqual(expected, sll);
-
         }
 
         /// <summary>
         /// Check to see that the expected array is returned from a SinglyLinkedListCollection that contains nodes.
         /// </summary>
         [Test]
-        public void ToArrayOfValidSinglyLinkedListCollectionTest()
+        public void ToArrayTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20, 30};
             int[] expected = { 10, 20, 30 };
@@ -152,7 +151,7 @@ namespace Dsa.Test.DataStructures
         /// that has no nodes.
         /// </summary>
         [Test]
-        public void ToArraySinglyLinkedListEmptyTest()
+        public void ToArrayEmptyListTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
 
@@ -163,12 +162,11 @@ namespace Dsa.Test.DataStructures
         /// Check to make sure that removing the only node from the SinglyLinkedListCollection results in the expected behaviour.
         /// </summary>
         [Test]
-        public void RemoveLastValidSinglyLinkedListCollectionWithOnlyOneNodeTest()
+        public void RemoveLastSingleItemInListTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10};
 
             Assert.IsTrue(sll.RemoveLast());
-            Assert.IsFalse(sll.RemoveLast());
             Assert.AreEqual(0, sll.Count);
             Assert.IsTrue(sll.IsEmpty());
             Assert.IsNull(sll.Head);
@@ -179,7 +177,7 @@ namespace Dsa.Test.DataStructures
         /// Check to make sure that removing the last node from the SinglyLinkedListCollection results in the expected behaviour.
         /// </summary>
         [Test]
-        public void RemoveLastValidSinglyLinkedListCollectionWithMultipleNodesTest()
+        public void RemoveLastTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20, 30};
 
@@ -191,65 +189,21 @@ namespace Dsa.Test.DataStructures
         }
 
         /// <summary>
-        /// Check to make sure that removing the last node from SinglyLinkedListCollection results in the expected behaviour.
+        /// Check to see that the correct value is returned when removing from an empty list.
         /// </summary>
         [Test]
-        public void RemoveLastValidSinglyLinkedListCollectionWithMultipleNodesTest2()
+        public void RemoveLastEmptyListTest()
         {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20, 30};
+            SinglyLinkedList<int> actual = new SinglyLinkedList<int>();
 
-            sll.RemoveLast();
-            sll.RemoveLast();
-
-            Assert.AreEqual(10, sll.Tail.Value);
-            Assert.AreEqual(10, sll.Head.Value);
-            Assert.AreEqual(1, sll.Count);
-            Assert.IsNull(sll.Tail.Next);
-            Assert.IsNull(sll.Head.Next);
-        }
-
-        /// <summary>
-        /// Check remove when there is only one node in the SinglyLinkedList.
-        /// </summary>
-        [Test]
-        public void RemoveOnlyOneNodeInListTest()
-        {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10};
-
-            sll.Remove(10);
-
-            Assert.IsNull(sll.Head);
-            Assert.IsNull(sll.Tail);
-        }
-
-        /// <summary>
-        /// Check to make sure that removing all the nodes from a SinglyLinkedListCollection using the RemoveLast method works, then
-        /// reassigning the head and tail returns the expected results.
-        /// </summary>
-        [Test]
-        public void RemoveLastValidSinglyLinkedListCollectionWithMultipleNodesAndReassingHeadAndTailTest()
-        {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20, 30};
-
-            sll.AddFirst(5);
-            sll.RemoveLast();
-            sll.RemoveLast();
-            sll.RemoveLast();
-            sll.RemoveLast();
-            sll.AddLast(1);
-
-            Assert.AreEqual(1, sll.Count);
-            Assert.AreEqual(1, sll.Head.Value);
-            Assert.AreEqual(1, sll.Tail.Value);
-            Assert.IsNull(sll.Head.Next);
-            Assert.IsNull(sll.Tail.Next);
+            Assert.IsFalse(actual.RemoveLast());
         }
 
         /// <summary>
         /// Check to see that calling RemoveFirst on SinglyLinkedListCollection with only 1 node results in the expected behaviour.
         /// </summary>
         [Test]
-        public void RemoveFirstValidSinglyLinkedListCollectionWithOnlyOneNodeTest()
+        public void RemoveFirstOneItemInListTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10};
 
@@ -261,23 +215,17 @@ namespace Dsa.Test.DataStructures
         }
 
         /// <summary>
-        /// Check to see that when calling the RemoveFirst method on a SinglyLinkedListCollection with more than one node
-        /// results in the expected object state.
+        /// Check to see that when removing the only node in the list that the head and tail pointers are update correctly.
         /// </summary>
         [Test]
-        public void RemoveFirstValidSinglyLinkedListCollectionWithMultipleNodesTest()
+        public void RemoveOnlyNodeInListTest()
         {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20};
+            SinglyLinkedList<int> actual = new SinglyLinkedList<int> { 12 };
 
-            sll.AddFirst(30);
-            
-            Assert.IsTrue(sll.RemoveFirst());
-            Assert.IsTrue(sll.RemoveFirst());
-            Assert.AreEqual(1, sll.Count);
-            Assert.AreEqual(20, sll.Head.Value);
-            Assert.AreEqual(20, sll.Tail.Value);
-            Assert.IsNull(sll.Head.Next);
-            Assert.IsNull(sll.Tail.Next);
+            actual.Remove(12);
+
+            Assert.IsNull(actual.Head);
+            Assert.IsNull(actual.Tail);
         }
 
         /// <summary>
@@ -285,7 +233,7 @@ namespace Dsa.Test.DataStructures
         /// results in the expected object state.
         /// </summary>
         [Test]
-        public void RemoveFirstValidSinglyLinkedListCollectionWithMultipleNodesTest2()
+        public void RemoveFirstTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
 
@@ -303,53 +251,14 @@ namespace Dsa.Test.DataStructures
         }
 
         /// <summary>
-        /// Check to make sure that removing all the nodes in a SinglyLinkedListCollection using the RemoveFirst method, then
-        /// reassigning the head and tail returns the expected results.
-        /// </summary>
-        [Test]
-        public void RemoveFirstValidSinglyLinkedListCollectionWithMultipleNodesAndReassingHeadAndTailTest()
-        {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int> {20, 30};
-
-            sll.AddFirst(10);
-            sll.RemoveFirst();
-            sll.RemoveFirst();
-            sll.RemoveFirst();
-            sll.AddFirst(10);
-
-            Assert.AreEqual(1, sll.Count);
-            Assert.AreEqual(10, sll.Head.Value);
-            Assert.AreEqual(10, sll.Tail.Value);
-            Assert.IsNull(sll.Head.Next);
-            Assert.IsNull(sll.Tail.Next);
-        }
-
-        /// <summary>
         /// Check to see that the correct value is returned when there is nothing to remove.
         /// </summary>
         [Test]
-        public void RemoveFirstTest()
+        public void RemoveFirstEmptyListTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
 
             Assert.IsFalse(sll.RemoveFirst());
-        }
-
-        /// <summary>
-        /// Check to see that the Add method is leaving the SinglyLinkedListCollection object in the correct state.
-        /// </summary>
-        [Test]
-        public void ICollectionAddTest()
-        {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
-            ICollection<int> collectionSll = sll;
-
-            collectionSll.Add(10);
-            collectionSll.Add(20);
-
-            Assert.AreEqual(10, sll.Head.Value);
-            Assert.AreEqual(20, sll.Tail.Value);
-            Assert.AreEqual(2, sll.Count);
         }
 
         /// <summary>
@@ -507,7 +416,7 @@ namespace Dsa.Test.DataStructures
         /// Check to see that the head and tail nodes are correct after adding a node after the only node in the SinglyLinkedListCollection.
         /// </summary>
         [Test]
-        public void AddAfterOnlyOneNodeInSinglyLinkedListCollectionTest()
+        public void AddAfterOnlyOneNodeInListTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10};
 
@@ -555,23 +464,11 @@ namespace Dsa.Test.DataStructures
         /// </summary>
         [Test]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void AddAfterEmptySinglyLinkedListCollectionTest()
+        public void AddAfterEmptyNullNodeTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
 
             sll.AddAfter(sll.Head, 10);
-        }
-
-        /// <summary>
-        /// Check to see that AddAfter raises the correct exception when trying to add a new node after a null node in the SinglyLinkedListCollection.
-        /// </summary>
-        [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void AddAfterNullNodeSinglyLinkedListCollectionTest()
-        {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10};
-
-            sll.AddAfter(sll.Head.Next, 20);
         }
 
         /// <summary>
@@ -622,35 +519,11 @@ namespace Dsa.Test.DataStructures
         /// </summary>
         [Test]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void AddBeforeEmptySinglyLinkedListCollectionTest()
+        public void AddBeforeEmptyListTest()
         {
             SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
 
             sll.AddBefore(sll.Head, 10);
-        }
-
-        /// <summary>
-        /// Check to see that the correct exception is raised when calling AddBefore on a SinglyLinkedListCollection when 
-        /// passing in a null node.
-        /// </summary>
-        [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void AddBeforeNullNodeSinglyLinkedListCollectionTest()
-        {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10, 20, 30};
-
-            sll.AddBefore(sll.Tail.Next, 40);
-        }
-
-        /// <summary>
-        /// Check to make sure that the IEnumerator returned by the GetEnumerator is not null.
-        /// </summary>
-        [Test]
-        public void GetEnumeratorGenericTest()
-        {
-            SinglyLinkedList<int> sll = new SinglyLinkedList<int> {10};
-
-            Assert.IsNotNull(sll.GetEnumerator());
         }
 
         /// <summary>

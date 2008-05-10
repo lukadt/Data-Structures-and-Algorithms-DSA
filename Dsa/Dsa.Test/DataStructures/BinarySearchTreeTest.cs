@@ -59,8 +59,7 @@ namespace Dsa.Test.DataStructures
         }
 
         /// <summary>
-        /// Check to see that the state of the BinarySearchTree is updated correctly when inserting
-        /// more than one node into the tree.
+        /// Check to see that the state of the BinarySearchTree is updated correctly when inserting more than one node into the tree.
         /// </summary>
         [Test]
         public void InsertTest()
@@ -335,8 +334,7 @@ namespace Dsa.Test.DataStructures
         }
 
         /// <summary>
-        /// Check to see if a non-null reference is returned for a node that is in the 
-        /// bst with the specified value that is located in the left subtree.
+        /// Check to see if a non-null reference is returned for a node that is in the bst with the specified value that is located in the left subtree.
         /// </summary>
         [Test]
         public void FindNodeValidLeftChildTest()
@@ -348,8 +346,7 @@ namespace Dsa.Test.DataStructures
         }
 
         /// <summary>
-        /// Check to see if a non-null reference is returned for a node that is in the 
-        /// bst with the specified value that is located in the right subtree.
+        /// Check to see if a non-null reference is returned for a node that is in the bst with the specified value that is located in the right subtree.
         /// </summary>
         [Test]
         public void FindNodeValidRightChildTest()
@@ -372,8 +369,7 @@ namespace Dsa.Test.DataStructures
         }
 
         /// <summary>
-        /// Check to see that the correct node is returned when finding the parent of a node with
-        /// the specified value located in the left subtree.
+        /// Check to see that the correct node is returned when finding the parent of a node with the specified value located in the left subtree.
         /// </summary>
         [Test]
         public void FindParentLeftSubTreeTest()
@@ -398,8 +394,7 @@ namespace Dsa.Test.DataStructures
         }
 
         /// <summary>
-        /// Check to see that null is returned when looking for a value that should be located in the
-        /// right subtree.
+        /// Check to see that null is returned when looking for a value that should be located in the right subtree.
         /// </summary>
         [Test]
         public void FindParentRightSubTreeNodeNotPresentTest()
@@ -410,8 +405,7 @@ namespace Dsa.Test.DataStructures
         }
 
         /// <summary>
-        /// Check to see that null is returned when looking for a value that should be located in the
-        /// left subtree.
+        /// Check to see that null is returned when looking for a value that should be located in the left subtree.
         /// </summary>
         [Test]
         public void FindParentLeftSubTreeNodeNotPresentTest()
@@ -422,8 +416,7 @@ namespace Dsa.Test.DataStructures
         }
 
         /// <summary>
-        /// Check to see that calling FindParent using the value of the root node returns null as the
-        /// root node has no parent node.
+        /// Check to see that calling FindParent using the value of the root node returns null as the root node has no parent node.
         /// </summary>
         [Test]
         public void FindParentRootNodeTest()
@@ -456,8 +449,7 @@ namespace Dsa.Test.DataStructures
         }
 
         /// <summary>
-        /// Check to see that removing a leaf node with a value less than its parent leaves
-        /// the bst in the correct state.
+        /// Check to see that removing a leaf node with a value less than its parent leaves the bst in the correct state.
         /// </summary>
         [Test]
         public void RemoveLeafValueLessThanParentTest()
@@ -470,8 +462,7 @@ namespace Dsa.Test.DataStructures
         }
 
         /// <summary>
-        /// Check to see taht removing a leaf node with a value greater than or equal to its parent
-        /// leaves the bst in the correct state.
+        /// Check to see taht removing a leaf node with a value greater than or equal to its parent leaves the bst in the correct state.
         /// </summary>
         [Test]
         public void RemoveLeafValueGreaterThanOrEqualToParentTest()
@@ -484,9 +475,8 @@ namespace Dsa.Test.DataStructures
         }
 
         /// <summary>
-        /// Check to see that removing a node that has only a right subtree leaves the bst
-        /// in the correct state when the value of the nodeToRemove is greater than or equal 
-        /// to the parent.
+        /// Check to see that removing a node that has only a right subtree leaves the bst in the correct state when the value of the 
+        /// nodeToRemove is greater than or equal to the parent.
         /// </summary>
         [Test]
         public void RemoveNodeWithRightSubtreeOnlyChildGreaterThanOrEqualToParentTest()
@@ -499,8 +489,8 @@ namespace Dsa.Test.DataStructures
         }
 
         /// <summary>
-        /// Check to see that removing a node that has only a right subtree leaves the bst
-        /// in the correct state when the value of the nodeToRemove is less than the parent.
+        /// Check to see that removing a node that has only a right subtree leaves the bst in the correct state when the value of the 
+        /// nodeToRemove is less than the parent.
         /// </summary>
         [Test]
         public void RemoveNodeWithRightSubtreeOnlyChildLessThanParentTest()
@@ -513,8 +503,8 @@ namespace Dsa.Test.DataStructures
         }
 
         /// <summary>
-        /// Check to see that removing a node that has only a left subtree leaves the bst
-        /// in the correct state when the value of the nodeToRemove is less than the parent. 
+        /// Check to see that removing a node that has only a left subtree leaves the bst in the correct state when the value of the 
+        /// nodeToRemove is less than the parent. 
         /// </summary>
         [Test]
         public void RemoveNodeWithLeftSubtreeOnlyChildLessThanParentTest()
@@ -527,8 +517,8 @@ namespace Dsa.Test.DataStructures
         }
 
         /// <summary>
-        /// Check to see that removing a node that has only a left subtree leaves the bst
-        /// in the correct state when the value of the nodeToRemove is greater than or equal to the parent. 
+        /// Check to see that removing a node that has only a left subtree leaves the bst in the correct state when the value of the nodeToRemove 
+        /// is greater than or equal to the parent. 
         /// </summary>
         [Test]
         public void RemoveNodeWithLeftSubtreeOnlyChildGreaterThanOrEqualToParentTest()
@@ -541,8 +531,7 @@ namespace Dsa.Test.DataStructures
         }
 
         /// <summary>
-        /// Check to see that removing a node with a left and right subtree leaves the bst in
-        /// the correct state.
+        /// Check to see that removing a node with a left and right subtree leaves the bst in the correct state.
         /// </summary>
         [Test]
         public void RemoveNodeWithBothSubtreesTest()
@@ -556,8 +545,7 @@ namespace Dsa.Test.DataStructures
         }
 
         /// <summary>
-        /// Check to see that removing the root node when root is the only node in the
-        /// bst leaves the bst in the correct state.
+        /// Check to see that removing the root node when root is the only node in the bst leaves the bst in the correct state.
         /// </summary>
         [Test]
         public void RemoveRootNoSubtreesTest()
@@ -570,8 +558,7 @@ namespace Dsa.Test.DataStructures
         }
 
         /// <summary>
-        /// Check to see that the correct behaviour is demonstrated when reomving an item from a tree
-        /// with not items in.
+        /// Check to see that the correct behaviour is demonstrated when reomving an item from a tree with not items in.
         /// </summary>
         [Test]
         public void RemoveTreeHasNoItemsTest()
