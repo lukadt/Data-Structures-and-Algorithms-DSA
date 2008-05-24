@@ -1,4 +1,10 @@
-﻿using System;
+﻿// <copyright file="Sorting.cs" company="Data Structures and Algorithms">
+//   Copyright (C) Data Structures and Algorithms Team.
+// </copyright>
+// <summary>
+//   Common sorting algorithms. Implemented at static, and extension methods.
+// </summary>
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Dsa.Utility;
@@ -16,6 +22,7 @@ namespace Dsa.Algorithms
         /// <remarks>
         /// This method is an O(n^2) operation.
         /// </remarks>
+        /// <typeparam name="T">Type of collection to sort.</typeparam>
         /// <param name="list"><see cref="IList{T}"/> to sort.</param>
         /// <param name="sortType">Order in which the items of the <see cref="IList{T}"/> are to be sorted.</param>
         /// <returns>The sorted <see cref="IList{T}"/>.</returns>
@@ -25,6 +32,7 @@ namespace Dsa.Algorithms
             Guard.ArgumentNull(list, "list");
 
             Comparer<T> comparer = Comparer<T>.Default;
+
             // compare each item of the list with every other item in the list
             for (int i = 0; i < list.Count; i++)
             {
@@ -37,16 +45,19 @@ namespace Dsa.Algorithms
                             {
                                 Exchange(list, j, i);
                             }
+
                             break;
                         case SortType.Descending:
                             if (Compare.IsGreaterThan(list[i], list[j], comparer))
                             {
                                 Exchange(list, j, i);
                             }
+
                             break;
                     }
                 }
             }
+
             return list;
         }
 
@@ -56,6 +67,7 @@ namespace Dsa.Algorithms
         /// <remarks>
         /// This method is an O(1) operation.
         /// </remarks>
+        /// <typeparam name="T">Type of the list.</typeparam>
         /// <param name="list"><see cref="IList{T}"/> to find the median value of.</param>
         /// <returns><see cref="IList{T}"/> with the median key at index 0.</returns>
         /// <exception cref="ArgumentNullException"><strong>list</strong> is <strong>null</strong>.</exception>
@@ -65,39 +77,28 @@ namespace Dsa.Algorithms
 
             Comparer<T> comparer = Comparer<T>.Default;
             int middle = list.Count / 2;
-            const int left = 0;
+            const int Left = 0;
             int right = list.Count - 1;
+
             // place the keys in the correct positions of list
-            if (Compare.IsGreaterThan(list[left], list[middle], comparer))
+            if (Compare.IsGreaterThan(list[Left], list[middle], comparer))
             {
-                Exchange(list, left, middle);
+                Exchange(list, Left, middle);
             }
 
-            if (Compare.IsGreaterThan(list[left], list[right], comparer))
+            if (Compare.IsGreaterThan(list[Left], list[right], comparer))
             {
-                Exchange(list, left, right);
+                Exchange(list, Left, right);
             }
 
             if (Compare.IsGreaterThan(list[middle], list[right], comparer))
             {
                 Exchange(list, middle, right);
             }
-            // place the median key at index 0
-            Exchange(list, middle, left);
-            return list;
-        }
 
-        /// <summary>
-        /// Exchanges two items in an <see cref="IList{T}"/>.
-        /// </summary>
-        /// <param name="list"><see cref="IList{T}"/> that holds the items to be exchanged.</param>
-        /// <param name="first">Index of first item.</param>
-        /// <param name="second">Index of second item.</param>
-        internal static void Exchange<T>(IList<T> list, int first, int second)
-        {
-            T temp = list[first];
-            list[first] = list[second];
-            list[second] = temp;
+            // place the median key at index 0
+            Exchange(list, middle, Left);
+            return list;
         }
 
         /// <summary>
@@ -117,6 +118,7 @@ namespace Dsa.Algorithms
             Guard.ArgumentNull(second, "second");
 
             T[] merged = new T[first.Count + second.Count];
+
             // merge the items in both arrays
             for (int i = 0, j = 0, m = 0; m < merged.Length; m++)
             {
@@ -126,14 +128,17 @@ namespace Dsa.Algorithms
                     Array.Copy(second.ToArray(), j, merged, m, merged.Length - m);
                     break;
                 }
+
                 if (j == second.Count)
                 {
                     Array.Copy(first.ToArray(), i, merged, m, merged.Length - m);
                     break;
                 }
+
                 // add the smallest item of the two arrays at indexes i and j respectively to merged
                 merged[m] = Compare.IsLessThan(first[i], second[j], Comparer<T>.Default) ? first[i++] : second[j++];
             }
+
             return merged;
         }
 
@@ -143,6 +148,7 @@ namespace Dsa.Algorithms
         /// <remarks>
         /// This method is an O(n log n) operation.
         /// </remarks>
+        /// <typeparam name="T">Type of the list.</typeparam>
         /// <param name="list"><see cref="IList{T}"/> to be sorted.</param>
         /// <returns>Sorted <see cref="IList{T}"/>.</returns>
         /// <exception cref="ArgumentNullException"><strong>list</strong> is <strong>null</strong>.</exception>
@@ -151,37 +157,6 @@ namespace Dsa.Algorithms
             Guard.ArgumentNull(list, "list");
 
             return MergeSortInternal(list);
-        }
-
-        /// <summary>
-        /// Merge sorts an <see cref="IList{T}"/>.
-        /// </summary>
-        /// <param name="list"><see cref="IList{T}"/> to be sorted.</param>
-        /// <returns>Sorted <see cref="IList{T}"/>.</returns>
-        private static IList<T> MergeSortInternal<T>(IList<T> list)
-        {
-            if (list.Count <= 1)
-            {
-                return list; // base case the array is of size one thus it is already sorted
-            }
-            int middle = list.Count / 2; // find middle or thereabouts of the array
-            // create two arrays to store the left and right items of array split
-            T[] left = new T[middle];
-            T[] right = new T[list.Count - middle];
-            // populate left and right arrays with the appropriate items from list
-            for (int i = 0; i < left.Length; i++)
-            {
-                left[i] = list[i];
-            }
-            for (int i = 0; i < right.Length; i++, middle++)
-            {
-                right[i] = list[middle];
-            }
-            // merge the sorted array branches into their respective sides
-            left = MergeSortInternal(left) as T[];
-            right = MergeSortInternal(right) as T[];
-            // merge and return the ordered left and right arrays
-            return MergeOrdered(left, right);
         }
 
         /// <summary>
@@ -207,14 +182,17 @@ namespace Dsa.Algorithms
             {
                 concatenated.Add(item);
             }
+
             foreach (T item in second)
             {
                 concatenated.Add(item);
             }
+
             foreach (T item in third)
             {
                 concatenated.Add(item);
             }
+
             return concatenated;
         }
 
@@ -234,41 +212,6 @@ namespace Dsa.Algorithms
 
             Comparer<T> comparer = Comparer<T>.Default;
             return QuickSortInternal(list, ref comparer);
-        }
-
-        /// <summary>
-        /// Quick sorts an <see cref="IList{T}"/>.
-        /// </summary>
-        /// <typeparam name="T">Type of <see cref="IList{T}"/> to sort.</typeparam>
-        /// <param name="list"><see cref="IList{T}"/> to sort.</param>
-        /// <param name="comparer">Comparer to use.</param>
-        /// <returns>Sorted <see cref="IList{T}"/>.</returns>
-        private static IList<T> QuickSortInternal<T>(IList<T> list, ref Comparer<T> comparer)
-        {
-            if (list.Count <= 1)
-            {
-                return list;
-            }
-            List<T> less = new List<T>();
-            List<T> greater = new List<T>();
-            List<T> equal = new List<T>();
-            list = MedianLeft(list);
-            foreach (T item in list)
-            {
-                if (Compare.IsLessThan(item, list[0], comparer))
-                {
-                    less.Add(item);
-                }
-                else if (Compare.IsGreaterThan(item, list[0], comparer))
-                {
-                    greater.Add(item);
-                }
-                else
-                {
-                    equal.Add(item);
-                }
-            }
-            return Concatenate(QuickSortInternal(less, ref comparer), equal, QuickSortInternal(greater, ref comparer));
         }
 
         /// <summary>
@@ -295,9 +238,11 @@ namespace Dsa.Algorithms
                 {
                     list[i + 1] = list[i--];
                 }
+
                 list[i + 1] = hold;
                 unsorted++;
             }
+
             return list;
         }
 
@@ -329,12 +274,104 @@ namespace Dsa.Algorithms
                         list[i + increment] = list[i];
                         i -= increment;
                     }
+
                     list[i + increment] = hold;
                     current++;
                 }
+
                 increment /= 2;
             }
+
             return list;
+        }
+
+        /// <summary>
+        /// Exchanges two items in an <see cref="IList{T}"/>.
+        /// </summary>
+        /// <typeparam name="T">Type of the list.</typeparam>
+        /// <param name="list"><see cref="IList{T}"/> that holds the items to be exchanged.</param>
+        /// <param name="first">Index of first item.</param>
+        /// <param name="second">Index of second item.</param>
+        internal static void Exchange<T>(IList<T> list, int first, int second)
+        {
+            T temp = list[first];
+            list[first] = list[second];
+            list[second] = temp;
+        }
+
+        /// <summary>
+        /// Merge sorts an <see cref="IList{T}"/>.
+        /// </summary>
+        /// <param name="list"><see cref="IList{T}"/> to be sorted.</param>
+        /// <typeparam name="T">Type of the list.</typeparam>
+        /// <returns>Sorted <see cref="IList{T}"/>.</returns>
+        private static IList<T> MergeSortInternal<T>(IList<T> list)
+        {
+            if (list.Count <= 1)
+            {
+                return list; // base case the array is of size one thus it is already sorted
+            }
+
+            int middle = list.Count / 2; // find middle or thereabouts of the array
+
+            // create two arrays to store the left and right items of array split
+            T[] left = new T[middle];
+            T[] right = new T[list.Count - middle];
+
+            // populate left and right arrays with the appropriate items from list
+            for (int i = 0; i < left.Length; i++)
+            {
+                left[i] = list[i];
+            }
+
+            for (int i = 0; i < right.Length; i++, middle++)
+            {
+                right[i] = list[middle];
+            }
+
+            // merge the sorted array branches into their respective sides
+            left = MergeSortInternal(left) as T[];
+            right = MergeSortInternal(right) as T[];
+
+            // merge and return the ordered left and right arrays
+            return MergeOrdered(left, right);
+        }
+
+        /// <summary>
+        /// Quick sorts an <see cref="IList{T}"/>.
+        /// </summary>
+        /// <typeparam name="T">Type of <see cref="IList{T}"/> to sort.</typeparam>
+        /// <param name="list"><see cref="IList{T}"/> to sort.</param>
+        /// <param name="comparer">Comparer to use.</param>
+        /// <returns>Sorted <see cref="IList{T}"/>.</returns>
+        private static IList<T> QuickSortInternal<T>(IList<T> list, ref Comparer<T> comparer)
+        {
+            if (list.Count <= 1)
+            {
+                return list;
+            }
+
+            List<T> less = new List<T>();
+            List<T> greater = new List<T>();
+            List<T> equal = new List<T>();
+            list = MedianLeft(list);
+            foreach (T item in list)
+            {
+                if (Compare.IsLessThan(item, list[0], comparer))
+                {
+                    less.Add(item);
+                }
+                else if (Compare.IsGreaterThan(item, list[0], comparer))
+                {
+                    greater.Add(item);
+                }
+                else
+                {
+                    equal.Add(item);
+                }
+            }
+
+            return Concatenate(QuickSortInternal(less, ref comparer), equal, QuickSortInternal(greater, ref comparer));
         }
     }
 }

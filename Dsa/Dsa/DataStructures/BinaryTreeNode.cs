@@ -1,4 +1,10 @@
-﻿namespace Dsa.DataStructures
+﻿// <copyright file="BinaryTreeNode.cs" company="Data Structures and Algorithms">
+//   Copyright (C) Data Structures and Algorithms Team.
+// </copyright>
+// <summary>
+//   A node with left and right references.
+// </summary>
+namespace Dsa.DataStructures
 {
     /// <summary>
     /// Node used in <see cref="BinarySearchTree{T}"/>.
@@ -10,7 +16,9 @@
         /// Initializes a new instance of the <see cref="BinaryTreeNode{T}"/> class with a specified value.
         /// </summary>
         /// <param name="value">Value of the node.</param>
-        public BinaryTreeNode(T value) : base(value) { }
+        public BinaryTreeNode(T value) : base(value) 
+        { 
+        }
 
         /// <summary>
         /// Gets or sets the left child of the <see cref="BinaryTreeNode{T}"/>.

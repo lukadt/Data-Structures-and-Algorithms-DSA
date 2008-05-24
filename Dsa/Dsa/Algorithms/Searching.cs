@@ -1,4 +1,10 @@
-﻿using System;
+﻿// <copyright file="Searching.cs" company="Data Structures and Algorithms">
+//   Copyright (C) Data Structures and Algorithms Team.
+// </copyright>
+// <summary>
+//   Common searching algorithms implemented as static, and extension methods. 
+// </summary>
+using System;
 using System.Collections.Generic;
 using Dsa.Utility;
 
@@ -15,6 +21,7 @@ namespace Dsa.Algorithms
         /// <remarks>
         /// This method is an O(n) operation.
         /// </remarks>
+        /// <typeparam name="T">Type of collection to search.</typeparam>
         /// <param name="list"><see cref="IList{T}"/> to search item for.</param>
         /// <param name="item">Item to search for.</param>
         /// <returns>The index of the item if found; otherwise -1.</returns>
@@ -29,10 +36,12 @@ namespace Dsa.Algorithms
             {
                 i++;
             }
+
             if (i < list.Count && Compare.AreEqual(list[i], item, comparer))
             {
                 return i;
             }
+
             return -1;
         }
 
@@ -47,6 +56,7 @@ namespace Dsa.Algorithms
         /// If the item is found in the <see cref="IList{T}"/> then it's priority is increased by swapping it with it's predecessor in the <see cref="IList{T}"/>.
         /// </para>
         /// </remarks>
+        /// <typeparam name="T">Type of the collection to search.</typeparam>
         /// <param name="list"><see cref="IList{T}"/> to search.</param>
         /// <param name="item">The item to search the <see cref="IList{T}"/> for.</param>
         /// <returns>True if the item was found; otherwise false.</returns>
@@ -61,10 +71,12 @@ namespace Dsa.Algorithms
             {
                 i++;
             }
+
             if (i >= list.Count || !Compare.AreEqual(list[i], item, comparer))
             {
                 return false;
             }
+
             // we can increase the items' priority as the item is not the first element in the array
             if (i > 0)
             {
@@ -72,6 +84,7 @@ namespace Dsa.Algorithms
                 list[i - 1] = list[i];
                 list[i] = temp;
             }
+
             return true;
         }
     }

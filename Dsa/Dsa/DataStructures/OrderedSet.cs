@@ -1,4 +1,11 @@
-﻿using System;
+﻿// <copyright file="OrderedSet.cs" company="Data Structures and Algorithms">
+//   Copyright (C) Data Structures and Algorithms Team.
+// </copyright>
+// <summary>
+//   Set whose items are ordered. 
+//   Uses a binary search tree.
+// </summary>
+using System;
 using System.Collections.Generic;
 
 namespace Dsa.DataStructures
@@ -20,7 +27,9 @@ namespace Dsa.DataStructures
         /// Creates and initializes a new instance of <see cref="OrderedSet{T}"/>.
         /// </summary>
         public OrderedSet()
-            : base(new BinarySearchTree<T>()) { }
+            : base(new BinarySearchTree<T>()) 
+        { 
+        }
 
         /// <summary>
         /// Creates and initializes a new instance of <see cref="OrderedSet{T}"/> using a specified <see cref="IComparer{T}"/>.
@@ -52,6 +61,14 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
+        /// Gets the comparer used for the <see cref="OrderedSet{T}"/>.
+        /// </summary>
+        IComparer<T> IComparerProvider<T>.Comparer
+        {
+            get { return _comparer; }
+        }
+
+        /// <summary>
         /// Returns an <see cref="IEnumerator{T}"/> to provide a simple traversal through the items in the <see cref="OrderedSet{T}"/>.
         /// </summary>
         /// <returns>An <see cref="IEnumerator{T}"/> to traverse the <see cref="OrderedSet{T}"/>.</returns>
@@ -61,14 +78,6 @@ namespace Dsa.DataStructures
         public override IEnumerator<T> GetEnumerator()
         {
             return (Collection as BinarySearchTree<T>).GetInorderEnumerator().GetEnumerator();
-        }      
-
-        /// <summary>
-        /// Gets the comparer used for the <see cref="OrderedSet{T}"/>.
-        /// </summary>
-        IComparer<T> IComparerProvider<T>.Comparer
-        {
-            get { return _comparer; }
         }
     }
 }

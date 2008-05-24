@@ -1,4 +1,10 @@
-﻿using Dsa.DataStructures;
+﻿// <copyright file="Sets.cs" company="Data Structures and Algorithms">
+//   Copyright (C) Data Structures and Algorithms Team.
+// </copyright>
+// <summary>
+//   Algorithms for common set problems implemented as extension methods.
+// </summary>
+using Dsa.DataStructures;
 using Dsa.Properties;
 using Dsa.Utility;
 

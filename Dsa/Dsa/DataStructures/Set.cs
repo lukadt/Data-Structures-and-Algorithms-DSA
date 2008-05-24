@@ -1,4 +1,10 @@
-﻿using System;
+﻿// <copyright file="Set.cs" company="Data Structures and Algorithms">
+//   Copyright (C) Data Structures and Algorithms Team.
+// </copyright>
+// <summary>
+//   Base class of all set data structures.
+// </summary>
+using System;
 using System.Collections.Generic;
 using Dsa.Utility;
 
@@ -11,13 +17,26 @@ namespace Dsa.DataStructures
     public class Set<T> : CollectionBase<T>
     {
         private readonly CollectionBase<T> _collection;
+
         /// <summary>
         /// Creates and initializes a new instance of <see cref="Set{T}"/>.
         /// </summary>
-        /// <param name="collection"></param>
-        public Set(CollectionBase<T> collection)
+        /// <param name="collection">Collection to use for the set.</param>
+        protected Set(CollectionBase<T> collection)
         {
             _collection = collection;
+        }
+
+        /// <summary>
+        /// Gets the collection being used for the set implementation.
+        /// </summary>
+        /// <remarks>
+        /// For an <see cref="UnorderedSet{T}"/> this is a <see cref="SinglyLinkedList{T}"/>, an <see cref="OrderedSet{T}"/> uses 
+        /// a <see cref="BinarySearchTree{T}"/>.
+        /// </remarks>
+        protected CollectionBase<T> Collection
+        {
+            get { return _collection; }
         }
 
         /// <summary>
@@ -33,6 +52,7 @@ namespace Dsa.DataStructures
             {
                 return; // item already in set
             }
+
             _collection.Add(item);
             Count++;
         }
@@ -44,21 +64,6 @@ namespace Dsa.DataStructures
         {
             _collection.Clear();
             Count = 0;
-        }
-
-        /// <summary>
-        /// Copies the items in an <see cref="IEnumerable{T}"/> to the <see cref="Set{T}"/>.
-        /// </summary>
-        /// <param name="collection">Items to copy.</param>
-        /// <exception cref="ArgumentNullException"><strong>collection</strong> is <strong>null</strong>.</exception>
-        protected void CopyCollection(IEnumerable<T> collection)
-        {
-            Guard.ArgumentNull(collection, "collection");
-
-            foreach (T item in collection)
-            {
-                Add(item);
-            }
         }
 
         /// <summary>
@@ -89,19 +94,8 @@ namespace Dsa.DataStructures
             {
                 Count--;
             }
-            return Count < count ? true : false;
-        }
 
-        /// <summary>
-        /// Gets the collection being used for the set implementation.
-        /// </summary>
-        /// <remarks>
-        /// For an <see cref="UnorderedSet{T}"/> this is a <see cref="SinglyLinkedList{T}"/>, an <see cref="OrderedSet{T}"/> uses 
-        /// a <see cref="BinarySearchTree{T}"/>.
-        /// </remarks>
-        protected CollectionBase<T> Collection
-        {
-            get { return _collection; }
+            return Count < count ? true : false;
         }
 
         /// <summary>
@@ -114,6 +108,21 @@ namespace Dsa.DataStructures
         public override T[] ToArray()
         {
             return ToArray(Count, this);
-        }  
+        }
+
+        /// <summary>
+        /// Copies the items in an <see cref="IEnumerable{T}"/> to the <see cref="Set{T}"/>.
+        /// </summary>
+        /// <param name="collection">Items to copy.</param>
+        /// <exception cref="ArgumentNullException"><strong>collection</strong> is <strong>null</strong>.</exception>
+        protected void CopyCollection(IEnumerable<T> collection)
+        {
+            Guard.ArgumentNull(collection, "collection");
+
+            foreach (T item in collection)
+            {
+                Add(item);
+            }
+        }
     }
 }

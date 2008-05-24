@@ -1,4 +1,10 @@
-﻿namespace Dsa.DataStructures
+﻿// <copyright file="DoublyLinkedListNode.cs" company="Data Structures and Algorithms">
+//   Copyright (C) Data Structures and Algorithms Team.
+// </copyright>
+// <summary>
+//   Node with next and previous references.
+// </summary>
+namespace Dsa.DataStructures
 {
     /// <summary>
     /// <see cref="DoublyLinkedListNode{T}"/> is an implementation of a node used in the <see cref="DoublyLinkedList{T}"/>.

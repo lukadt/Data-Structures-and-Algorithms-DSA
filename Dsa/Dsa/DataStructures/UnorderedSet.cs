@@ -1,4 +1,11 @@
-﻿using System;
+﻿// <copyright file="UnorderedSet.cs" company="Data Structures and Algorithms">
+//   Copyright (C) Data Structures and Algorithms Team.
+// </copyright>
+// <summary>
+//   A set in the traditional sense where ordering is not required. 
+//   Uses a singly linked list.
+// </summary>
+using System;
 using System.Collections.Generic;
 
 namespace Dsa.DataStructures
@@ -17,7 +24,9 @@ namespace Dsa.DataStructures
         /// Creates and initializes a new instance of <see cref="UnorderedSet{T}"/>.
         /// </summary>
         public UnorderedSet()
-            : base(new SinglyLinkedList<T>()) { }
+            : base(new SinglyLinkedList<T>()) 
+        { 
+        }
 
         /// <summary>
         /// Creates and initializes a new instance of <see cref="UnorderedSet{T}"/> populating the <see cref="UnorderedSet{T}"/> with

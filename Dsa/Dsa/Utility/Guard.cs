@@ -1,4 +1,10 @@
-﻿using System;
+﻿// <copyright file="Guard.cs" company="Data Structures and Algorithms">
+//   Copyright (C) Data Structures and Algorithms Team.
+// </copyright>
+// <summary>
+//   Series of static methods to enforce pre-conditions of algorithms.
+// </summary>
+using System;
 
 namespace Dsa.Utility
 {
@@ -19,6 +25,7 @@ namespace Dsa.Utility
             {
                 throw new ArgumentNullException("parameterName");
             }
+
             if (value == null)
             {
                 throw new ArgumentNullException(parameterName);
@@ -41,7 +48,6 @@ namespace Dsa.Utility
                 throw new InvalidOperationException(message);
             }
         }
-
 
         /// <summary>
         /// Guards against a condition that is outside the valid range the algorithm expects.

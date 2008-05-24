@@ -1,4 +1,11 @@
-﻿using System;
+﻿// <copyright file="Numbers.cs" company="Data Structures and Algorithms">
+//   Copyright (C) Data Structures and Algorithms Team.
+// </copyright>
+// <summary>
+//   Implementations of algorithms to solve common numeric and mathematical problems.
+//   Extensions methods.
+// </summary>
+using System;
 using System.Globalization;
 using System.Text;
 using Dsa.Properties;
@@ -39,6 +46,7 @@ namespace Dsa.Algorithms
                         {
                             fibs[i] = fibs[i - 1] + fibs[i - 2];
                         }
+
                         return fibs[number];
                     }
             }
@@ -61,11 +69,13 @@ namespace Dsa.Algorithms
             {
                 return 1;
             }
+
             int factorial = 1;
             for (int i = 2; i <= number; i++)
             {
                 factorial *= i;
             }
+
             return factorial;
         }
 
@@ -76,7 +86,7 @@ namespace Dsa.Algorithms
         /// This method is an O(1) method when the exponent is 1; otherwise O(n) for larger exponents.
         /// </remarks>
         /// <param name="baseNumber">Base number.</param>
-        /// <param name="exponent">Exponent.</param>
+        /// <param name="exponent">Exponent to use.</param>
         /// <returns>The value of the base raised to the exponent.</returns>
         /// <exception cref="ArgumentOutOfRangeException"><strong>exponent</strong> is less than <strong>0</strong>.</exception>
         public static int Power(int baseNumber, int exponent)
@@ -87,12 +97,14 @@ namespace Dsa.Algorithms
             {
                 return 1; // n^0 = 1
             }
+
             int power = baseNumber;
             while (exponent > 1)
             {
                 power *= baseNumber;
                 exponent--;
             }
+
             return power;
         }
 
@@ -123,6 +135,7 @@ namespace Dsa.Algorithms
                 sb.Append(value % 2);
                 value /= 2;
             }
+
             return Int32.Parse(sb.ToString().Reverse(), CultureInfo.InvariantCulture);
         }
 
@@ -142,6 +155,7 @@ namespace Dsa.Algorithms
                 sb.Append(value % 8);
                 value /= 8;
             }
+
             return Int32.Parse(sb.ToString().Reverse(), CultureInfo.InvariantCulture);
         }
 
@@ -167,8 +181,10 @@ namespace Dsa.Algorithms
                 {
                     sb.Append(GetHexSymbol(result));
                 }
+
                 value /= 16;
             }
+
             return sb.ToString().Reverse();
         }
 
@@ -201,6 +217,7 @@ namespace Dsa.Algorithms
                     symbol = 'F';
                     break;
             }
+
             return symbol;
         }
     }

@@ -1,4 +1,10 @@
-﻿using System;
+﻿// <copyright file="Heap.cs" company="Data Structures and Algorithms">
+//   Copyright (C) Data Structures and Algorithms Team.
+// </copyright>
+// <summary>
+//   Array based implementation of a Heap.
+// </summary>
+using System;
 using System.Collections.Generic;
 using Dsa.Algorithms;
 using Dsa.Utility;
@@ -48,6 +54,14 @@ namespace Dsa.DataStructures
             : this(heapType)
         {
             _comparer = comparer;
+        }
+
+        /// <summary>
+        /// Gets the comparer being used.
+        /// </summary>
+        IComparer<T> IComparerProvider<T>.Comparer
+        {
+            get { return _comparer; }
         }
 
         /// <summary>
@@ -115,7 +129,8 @@ namespace Dsa.DataStructures
             {
                 return false;
             }
-            _heap[index] = _heap[--Count];
+
+            _heap[index] = _heap[--Count]; // todo: refactor this!!!
             if (_heapType == HeapType.Min)
             {
                 while (2 * index + 1 < Count && (Compare.IsGreaterThan(_heap[index], _heap[2 * index + 1], _comparer) ||
@@ -150,6 +165,7 @@ namespace Dsa.DataStructures
                     }
                 }
             }
+
             return true;
         }
 
@@ -188,8 +204,8 @@ namespace Dsa.DataStructures
         /// This method is an O(log n) operation.
         /// </para>
         /// <para>
-        /// The key of the parent is less than or equal to that of its child, this property holds throughout the Heap :. the key at the root of the Heap 
-        /// is the smallest key in the Heap.
+        /// The key of the parent is less than or equal to that of its child, this property holds throughout the Heap :. the key at the root of 
+        /// the Heap is the smallest key in the Heap.
         /// </para>
         /// </remarks>
         private void MinHeapify()
@@ -210,8 +226,8 @@ namespace Dsa.DataStructures
         /// This method is an O(log n) operation.
         /// </para>
         /// <para>
-        /// The key of the parent is greater than or equal to that of its child, this property holds throughout the Heap :. the key at the root of the Heap is 
-        /// the greatest key in the Heap.
+        /// The key of the parent is greater than or equal to that of its child, this property holds throughout the Heap :. the key at the 
+        /// root of the Heap is the greatest key in the Heap.
         /// </para>
         /// </remarks>
         private void MaxHeapify()
@@ -222,14 +238,6 @@ namespace Dsa.DataStructures
                 Sorting.Exchange(_heap, i, (i - 1) / 2);
                 i = (i - 1) / 2;
             }
-        }
-
-        /// <summary>
-        /// Gets the comparer being used.
-        /// </summary>
-        IComparer<T> IComparerProvider<T>.Comparer
-        {
-            get { return _comparer; }
         }
     }
 }

@@ -1,15 +1,19 @@
-﻿using System.Collections.Generic;
+﻿// <copyright file="CollectionDebugView.cs" company="Data Structures and Algorithms">
+//   Copyright (C) Data Structures and Algorithms Team.
+// </copyright>
+// <summary>
+//   Used to show a simpler view of collections rather than dumping a Raw view on the user
+//   by default when debugging.
+// </summary>
+using System.Collections.Generic;
 using System.Diagnostics;
 using Dsa.Utility;
 
 namespace Dsa.DataStructures
 {
     /// <summary>
-    /// CollectionDebugView assists the locals debug window in Visual Studio.
+    /// Provides a simpler alternative to Raw view in the debugger.
     /// </summary>
-    /// <remarks>
-    /// This emulates BCL collections that provide a simple view of collections and a more intimate view (raw view).
-    /// </remarks>
     /// <typeparam name="T">Type of the CollectionDebugView.</typeparam>
     internal sealed class CollectionDebugView<T>
     {

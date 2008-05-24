@@ -1,4 +1,10 @@
-﻿namespace Dsa.DataStructures
+﻿// <copyright file="SinglyLinkedListNode.cs" company="Data Structures and Algorithms">
+//   Copyright (C) Data Structures and Algorithms Team.
+// </copyright>
+// <summary>
+//   Node with only a next reference.
+// </summary>
+namespace Dsa.DataStructures
 {
     /// <summary>
     /// Node used in <see cref="SinglyLinkedList{T}"/>.

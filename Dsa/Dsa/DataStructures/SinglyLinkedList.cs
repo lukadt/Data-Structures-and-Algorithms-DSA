@@ -1,4 +1,11 @@
-﻿using System;
+﻿// <copyright file="SinglyLinkedList.cs" company="Data Structures and Algorithms">
+//   Copyright (C) Data Structures and Algorithms Team.
+// </copyright>
+// <summary>
+//   Node based implementation of a linked list where every node has only a reference to the next
+//   node.
+// </summary>
+using System;
 using System.Collections.Generic;
 using Dsa.Utility;
 
@@ -39,6 +46,30 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
+        /// Gets the node at the head of the <see cref="SinglyLinkedList{T}"/>.
+        /// </summary>
+        public SinglyLinkedListNode<T> Head
+        {
+            get { return _head; }
+        }
+
+        /// <summary>
+        /// Gets the node at the tail of the <see cref="SinglyLinkedList{T}"/>.
+        /// </summary>
+        public SinglyLinkedListNode<T> Tail
+        {
+            get { return _tail; }
+        }
+
+        /// <summary>
+        /// Gets the <seealso cref=" IComparer{T}"/> being used.
+        /// </summary>
+        IComparer<T> IComparerProvider<T>.Comparer
+        {
+            get { return _comparer; }
+        }
+
+        /// <summary>
         /// Adds a node to the tail of the <see cref="SinglyLinkedList{T}"/>.
         /// </summary>
         /// <param name="item">Item to add to the <see cref="SinglyLinkedList{T}"/>.</param>
@@ -58,6 +89,7 @@ namespace Dsa.DataStructures
                 _tail.Next = n;
                 _tail = n;
             }
+
             Count++;
         }
 
@@ -81,6 +113,7 @@ namespace Dsa.DataStructures
                 n.Next = _head;
                 _head = n;
             }
+
             Count++;
         }
 
@@ -99,6 +132,7 @@ namespace Dsa.DataStructures
             Guard.ArgumentNull(node, "node");
 
             SinglyLinkedListNode<T> n = new SinglyLinkedListNode<T>(item);
+
             // check to see if node is the only node in the linked list
             if (node == _head && node == _tail)
             {
@@ -115,6 +149,7 @@ namespace Dsa.DataStructures
                 n.Next = node.Next;
                 node.Next = n;
             }
+
             Count++;
         }
 
@@ -149,9 +184,11 @@ namespace Dsa.DataStructures
                         curr.Next = n;
                         break;
                     }
+
                     curr = curr.Next;
                 }
             }
+
             Count++;
         }
 
@@ -223,9 +260,11 @@ namespace Dsa.DataStructures
                         _tail.Next = null;
                         break;
                     }
+
                     n = n.Next;
                 }
             }
+
             Count--;
             return true;
         }
@@ -236,6 +275,7 @@ namespace Dsa.DataStructures
         /// <remarks>
         /// This method is an O(1) operation, the <see cref="Head"/> is always known.
         /// </remarks>
+        /// <returns>True if the first node was removed; otherwise false.</returns>
         /// <exception cref="InvalidOperationException"><see cref="SinglyLinkedList{T}"/> contains <strong>0</strong> items.</exception>
         public bool RemoveFirst()
         {
@@ -253,24 +293,9 @@ namespace Dsa.DataStructures
             {
                 _head = _head.Next; 
             }
+
             Count--;
             return true;
-        }
-
-        /// <summary>
-        /// Gets the node at the head of the <see cref="SinglyLinkedList{T}"/>.
-        /// </summary>
-        public SinglyLinkedListNode<T> Head
-        {
-            get { return _head; }
-        }
-
-        /// <summary>
-        /// Gets the node at the tail of the <see cref="SinglyLinkedList{T}"/>.
-        /// </summary>
-        public SinglyLinkedListNode<T> Tail
-        {
-            get { return _tail; }
         }
 
         /// <summary>
@@ -329,6 +354,7 @@ namespace Dsa.DataStructures
                     return true;
                 }
             }
+
             return false;
         }
 
@@ -339,7 +365,7 @@ namespace Dsa.DataStructures
         /// This method has a best case O(1) operation where te node to be removed is the head node, otherwise the method is an O(n) operation
         /// where n represents the number of nodes to traverse in order to update the node pointers appropriately.
         /// </remarks>
-        /// <param name="item">Value to remove</param>
+        /// <param name="item">Value to remove.</param>
         /// <returns>True if the value was found and removed; false otherwise.</returns>
         public override bool Remove(T item)
         {
@@ -349,6 +375,7 @@ namespace Dsa.DataStructures
             }
 
             SinglyLinkedListNode<T> n = _head;
+
             // check to see if the node to be removed is the head node
             if (Compare.AreEqual(n.Value, item, _comparer))
             {
@@ -356,6 +383,7 @@ namespace Dsa.DataStructures
                 {
                     _tail = null; 
                 }
+
                 _head = _head.Next;
                 Count--;
                 return true;
@@ -367,8 +395,10 @@ namespace Dsa.DataStructures
                 {
                     break; // we couldn't find the value to remove in the linked list
                 }
-                if (Compare.AreEqual(n.Next.Value, item, _comparer)) // we have found the node to remove
+
+                if (Compare.AreEqual(n.Next.Value, item, _comparer)) 
                 {
+                    // we have found the node to remove
                     if (n.Next == _tail)
                     {
                         // the node to be removed was the tail so we need to make n the new tail
@@ -377,13 +407,16 @@ namespace Dsa.DataStructures
                         Count--;
                         return true;
                     }
+
                     // the node to remove is somewhere in the middle of the linked list
                     n.Next = n.Next.Next;
                     Count--;
                     return true;
                 }
+
                 n = n.Next;
             }
+
             return false;
         }
 
@@ -396,7 +429,6 @@ namespace Dsa.DataStructures
         /// <returns>An <see cref="IEnumerable{T}" /> that can be used to iterate through the <see cref="SinglyLinkedList{T}"/>.</returns>
         public IEnumerable<T> GetReverseEnumerator()
         {
-
             SinglyLinkedListNode<T> n = _head;
             SinglyLinkedListNode<T> curr = _tail;
             if (n != null)
@@ -414,16 +446,9 @@ namespace Dsa.DataStructures
                         n = n.Next;
                     }
                 }
+
                 yield return n.Value;
             }
-        }
-
-        /// <summary>
-        /// Gets the <seealso cref=" IComparer{T}"/> being used.
-        /// </summary>
-        IComparer<T> IComparerProvider<T>.Comparer
-        {
-            get { return _comparer; }
         }
     }
 }

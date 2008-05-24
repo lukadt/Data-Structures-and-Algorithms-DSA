@@ -1,4 +1,12 @@
-﻿using System;
+﻿// <copyright file="CollectionBase.cs" company="Data Structures and Algorithms">
+//   Copyright (C) Data Structures and Algorithms Team.
+// </copyright>
+// <summary>
+//   Base class that all DSA collecitons derive from.
+//   This is to make the implementing of several common interfaces easier for collection
+//   designers.
+// </summary>
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -10,9 +18,6 @@ namespace Dsa.DataStructures
     /// <summary>
     /// Base class for all DSA collections.
     /// </summary>
-    /// <remarks>
-    /// Makes implementing <see cref="ICollection"/> and <see cref="ICollection{T}"/> easier. Just derive from this type and override the relevant methods.
-    /// </remarks>
     /// <typeparam name="T">Type of <see cref="CollectionBase"/>.</typeparam>
     [Serializable]
     [DebuggerDisplay("Count={Count}")]
@@ -22,25 +27,23 @@ namespace Dsa.DataStructures
         [NonSerialized]
         private object _syncRoot;
 
-        #region ICollection Members
-
         /// <summary>
-        /// Not Supported in any DSA collection.
+        /// Gets a value indicating whether the collection is thread safe.
         /// </summary>
-        /// <param name="array">Target array to copy items to.</param>
-        /// <param name="index">Index to start copying items to.</param>
-        public void CopyTo(Array array, int index)
+        public bool IsSynchronized
         {
-            throw new NotSupportedException(Resources.ICollectionCopyToNotSupported);
+            get { return false; }
         }
 
         /// <summary>
-        /// Gets whether or not the collection is thread safe.
+        /// Gets the number of items contained in the <see cref="ICollection{T}"/>.
         /// </summary>
-        /// <remarks>
-        /// All collections in DSA are not thread safe. The programmer must compose the relevant code to ensure thread safety.
-        /// </remarks>
-        public bool IsSynchronized
+        public int Count { get; protected set; }
+
+        /// <summary>
+        /// Gets a value indicating whether the collection is read only.
+        /// </summary>
+        bool ICollection<T>.IsReadOnly
         {
             get { return false; }
         }
@@ -59,28 +62,10 @@ namespace Dsa.DataStructures
                 {
                     Interlocked.CompareExchange(ref _syncRoot, new object(), null);
                 }
+
                 return _syncRoot;
             }
         }
-
-        #endregion
-
-        #region IEnumerable Members
-
-        ///<summary>
-        /// An <see cref="IEnumerator"/> that iterates through the <see cref="ICollection"/>.
-        ///</summary>
-        ///<returns>
-        /// An <see cref="IEnumerator" /> that can be used to iterate through the <see cref="ICollection"/>.
-        ///</returns>
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
-
-        #endregion
-
-        #region ICollection<T> Members
 
         /// <summary>
         /// Adds an item to the <see cref="ICollection{T}"/>.
@@ -112,31 +97,11 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Gets the number of items contained in the <see cref="ICollection{T}"/>.
-        /// </summary>
-        public int Count { get; protected set; }
-
-        /// <summary>
-        /// Gets whether or not the <see cref="ICollection{T}"/> is read only.
-        /// </summary>
-        /// <remarks>
-        /// All DSA collections are read/write.
-        /// </remarks>
-        bool ICollection<T>.IsReadOnly
-        {
-            get { return false; }
-        }
-
-        /// <summary>
         /// Removes an item from the <see cref="ICollection{T}"/>.
         /// </summary>
         /// <param name="item">Item to remove from collection.</param>
         /// <returns>True if the item was removed; otherwise false.</returns>
         public abstract bool Remove(T item);
-
-        #endregion
-
-        #region IEnumerable<T> Members
 
         /// <summary>
         /// An <see cref="IEnumerator{T}"/> that iterates through the <see cref="ICollection{T}"/>.
@@ -147,7 +112,32 @@ namespace Dsa.DataStructures
             throw new NotImplementedException();
         }
 
-        #endregion
+        /// <summary>
+        /// Converts the collection to a single dimension array.
+        /// </summary>
+        /// <returns>An array of the items in the collection.</returns>
+        public abstract T[] ToArray();
+
+        /// <summary>
+        /// Not Supported in any DSA collection.
+        /// </summary>
+        /// <param name="array">Target array to copy items to.</param>
+        /// <param name="index">Index to start copying items to.</param>
+        public void CopyTo(Array array, int index)
+        {
+            throw new NotSupportedException(Resources.ICollectionCopyToNotSupported);
+        }
+
+        /// <summary>
+        /// An <see cref="IEnumerator"/> that iterates through the <see cref="ICollection"/>.
+        /// </summary>
+        /// <returns>
+        /// An <see cref="IEnumerator" /> that can be used to iterate through the <see cref="ICollection"/>.
+        /// </returns>
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
 
         /// <summary>
         /// Creates an array representation for a datastructure.
@@ -163,13 +153,8 @@ namespace Dsa.DataStructures
             {
                 local[i++] = item;
             }
+
             return local;
         }
-
-        /// <summary>
-        /// Converts the collection to a single dimension array.
-        /// </summary>
-        /// <returns>An array of the items in the collection.</returns>
-        public abstract T[] ToArray();
     }
 }

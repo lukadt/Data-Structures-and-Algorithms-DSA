@@ -1,4 +1,10 @@
-﻿using System;
+﻿// <copyright file="Strings.cs" company="Data Structures and Algorithms">
+//   Copyright (C) Data Structures and Algorithms Team.
+// </copyright>
+// <summary>
+//   Algorithms to solve common string problems, implemented as extension methods.
+// </summary>
+using System;
 using System.Globalization;
 using System.Text;
 using Dsa.DataStructures;
@@ -25,11 +31,13 @@ namespace Dsa.Algorithms
             Guard.ArgumentNull(value, "value");
 
             char[] buffer = new char[value.Length]; 
+
             // place each char from value in its new location within the buffer
             for (int i = value.Length - 1, j = 0; i >= 0; i--, j++)
             {
                 buffer[j] = value[i]; 
             }
+
             return new string(buffer);
         }
 
@@ -63,18 +71,21 @@ namespace Dsa.Algorithms
                 {
                     i++;
                 }
+
                 for (int j = 0; j < match.Length; j++)
                 {
                     while (char.IsWhiteSpace(match[j]))
                     {
                         j++;
                     }
+
                     if (match[j] == word[i])
                     {
                         return j;
                     }
                 }
             }
+
             return -1;
         }
 
@@ -89,7 +100,7 @@ namespace Dsa.Algorithms
         /// Case, whitespace, punctuation and symbols are ignored.
         /// </para>
         /// </remarks>
-        /// <param name="word"><see cref="string"/> that you want to verify is a palindrome.</param>
+        /// <param name="word"><see cref="String"/> that you want to verify is a palindrome.</param>
         /// <returns>True if the string is a palindrome; otherwise false.</returns>
         /// <exception cref="ArgumentNullException"><strong>word</strong> is <strong>null</strong>.</exception>
         public static bool IsPalindrome(this string word)
@@ -99,12 +110,14 @@ namespace Dsa.Algorithms
             word = word.Strip().ToUpper(CultureInfo.InvariantCulture); 
             int left = 0;
             int right = word.Length - 1;
+
             // march in from the left and right bounds of the string
             while (word[left] == word[right] && left < right) 
             {
                 left++;
                 right--;
             }
+
             // if the two chars we are pointing to are equal we have a palindrome
             return word[left] == word[right];
         }
@@ -115,7 +128,7 @@ namespace Dsa.Algorithms
         /// <remarks>
         /// This methods is an O(n) operation where n is the number of chars in the string to strip.
         /// </remarks>
-        /// <param name="value"><see cref="string"/> to strip.</param>
+        /// <param name="value"><see cref="String"/> to strip.</param>
         /// <returns>The stripped version of the <see cref="string"/>.</returns>
         /// <exception cref="ArgumentNullException"><strong>value</strong> is <strong>null</strong>.</exception>
         public static string Strip(this string value)
@@ -130,6 +143,7 @@ namespace Dsa.Algorithms
                     sb.Append(value[i]);
                 }
             }
+
             return sb.ToString();
         }
 
@@ -153,11 +167,13 @@ namespace Dsa.Algorithms
             {
                 index++;
             }
+
             // check to see if value was only whitespace, if it was then there are 0 words
             if (index == value.Length - 1 && char.IsWhiteSpace(value[index]))
             {
                 return 0;
             }
+
             for (; index < value.Length; index++)
             {
                 if (char.IsWhiteSpace(value[index]))
@@ -167,6 +183,7 @@ namespace Dsa.Algorithms
                     {
                         index++;
                     }
+
                     inWord = false; // as we are hitting whitespace we are not in a word
                     wordCount++; // I assume that words are delimited by whitespace, thus wordCount should be incremented
                 }
@@ -175,11 +192,13 @@ namespace Dsa.Algorithms
                     inWord = true; 
                 }
             }
+
             // the last word may of not been followed by whitespace, in that case increment wordCount
             if (inWord)
             {
                 wordCount++; 
             }
+
             return wordCount;
         }
 
@@ -189,8 +208,8 @@ namespace Dsa.Algorithms
         /// <remarks>
         /// This is an O(n) operation where n is the number of chars in the string to reverse the words of.
         /// </remarks>
-        /// <param name="value"><see cref="string"/> to reverse the words of.</param>
-        /// <returns><see cref="string"/> with original words in reverse order.</returns>
+        /// <param name="value"><see cref="String"/> to reverse the words of.</param>
+        /// <returns><see cref="String"/> with original words in reverse order.</returns>
         /// <exception cref="ArgumentNullException"><strong>value</strong> is <strong>null</strong>.</exception>
         public static string ReverseWords(this string value)
         {
@@ -205,30 +224,37 @@ namespace Dsa.Algorithms
                 {
                     start--;
                 }
+
                 last = start; 
+
                 // march the start index down to the index before a word starts
                 while (start >= 0 && !char.IsWhiteSpace(value[start]))
                 {
                     start--;
                 }
+
                 for (int i = start + 1; i < last + 1; i++)
                 {
                     sb.Append(value[i]);
                 }
+
                 // add whitespace to delimit the words in sb if this is not the last word. Whitespace at the beginning of a string is cut.
                 if (start > 0)
                 {
                     sb.Append(' ');
                 }
+
                 // point last to the index of the last char in the next word
                 last = start - 1;
                 start = last;
             }
+
             // check to see if we have added some whitespace at the right of sb if so just cut the sb length by 1
             if (char.IsWhiteSpace(sb[sb.Length - 1]))
             {
                 sb.Length = sb.Length - 1;
             }
+
             return sb.ToString();
         }
 
@@ -238,7 +264,7 @@ namespace Dsa.Algorithms
         /// <remarks>
         /// This method is an O(n) operation where n is the number of words in the string delimited by whitespace.
         /// </remarks>
-        /// <param name="value"><see cref="string"/> to count repeated words of.</param>
+        /// <param name="value"><see cref="String"/> to count repeated words of.</param>
         /// <returns>Number of words repeated in the given string.</returns>
         /// <exception cref="ArgumentNullException"><strong>value</strong> is <strong>null</strong>.</exception>
         public static int RepeatedWordCount(this string value)
@@ -251,6 +277,7 @@ namespace Dsa.Algorithms
             {
                 uniques.Add(s.Strip());
             }
+
             return words.Length - uniques.Count;
         }
     }

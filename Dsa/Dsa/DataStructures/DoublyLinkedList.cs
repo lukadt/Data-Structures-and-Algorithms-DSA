@@ -1,4 +1,11 @@
-﻿using System;
+﻿// <copyright file="DoublyLinkedList.cs" company="Data Structures and Algorithms">
+//   Copyright (C) Data Structures and Algorithms Team.
+// </copyright>
+// <summary>
+//   Node based implementation of a linked list where every node has both a previous AND next
+//   reference.
+// </summary>
+using System;
 using System.Collections.Generic;
 using Dsa.Properties;
 using Dsa.Utility;
@@ -40,6 +47,30 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
+        /// Gets the node at the head of the <see cref="DoublyLinkedList{T}"/>.
+        /// </summary>
+        public DoublyLinkedListNode<T> Head
+        {
+            get { return _head; }
+        }
+
+        /// <summary>
+        /// Gets the node at the end of the <see cref="DoublyLinkedList{T}"/>.
+        /// </summary>
+        public DoublyLinkedListNode<T> Tail
+        {
+            get { return _tail; }
+        }
+
+        /// <summary>
+        /// Gets the <see cref="IComparer{T}"/> being used.
+        /// </summary>
+        IComparer<T> IComparerProvider<T>.Comparer
+        {
+            get { return _comparer; }
+        }
+
+        /// <summary>
         /// Adds a node to the tail of the <see cref="DoublyLinkedList{T}"/>.
         /// </summary>
         /// <remarks>
@@ -60,6 +91,7 @@ namespace Dsa.DataStructures
                 n.Previous = _tail; 
                 _tail = n; 
             }
+
             Count++;
         }
 
@@ -84,6 +116,7 @@ namespace Dsa.DataStructures
                 n.Next = _head; 
                 _head = n; 
             }
+
             Count++;
         }
 
@@ -112,6 +145,7 @@ namespace Dsa.DataStructures
                 node.Next = n;
                 n.Previous = node;
             }
+
             Count++;
         }
 
@@ -140,6 +174,7 @@ namespace Dsa.DataStructures
                 n.Previous = node.Previous;
                 node.Previous = n;
             }
+
             Count++;
         }
 
@@ -156,14 +191,16 @@ namespace Dsa.DataStructures
             {
                 return false;
             }
+
             // check to see if there is only 1 item in the linked list
             if (_tail == _head) 
             {
                 _head = null;
                 _tail = null;
             }
-            else if (_head.Next == _tail) // only two nodes in the dll
+            else if (_head.Next == _tail)
             {
+                // only two nodes in the dll
                 _tail = _head;
                 _head.Next = null;
             }
@@ -172,6 +209,7 @@ namespace Dsa.DataStructures
                 _tail = _tail.Previous;
                 _tail.Next = null;
             }
+
             Count--;
             return true;
         }
@@ -191,13 +229,15 @@ namespace Dsa.DataStructures
                 return false;
             }
 
-            if (_head.Next == null) // only one node in the dll
+            if (_head.Next == null)
             {
+                // only one node in the dll
                 _head = null;
                 _tail = null;
             }
-            else if (_head.Next == _tail) // only two nodes in the dll
+            else if (_head.Next == _tail) 
             {
+                // only two nodes in the dll
                 _head = _tail;
                 _head.Previous = null;
             }
@@ -206,6 +246,7 @@ namespace Dsa.DataStructures
                 _head = _head.Next; // the new head is the old head nodes next node
                 _head.Previous = null;
             }
+
             Count--;
             return true;
         }
@@ -223,17 +264,6 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Method that validates the state of the DoublyLinkedListCollection(Of T) as well as if the node passed in is null.
-        /// This method is used by AddAfter, and AddBefore.
-        /// </summary>
-        /// <param name="node">Node to verify whether or not is null.</param>
-        private void ValidateAddArgs(DoublyLinkedListNode<T> node)
-        {
-            Guard.InvalidOperation(IsEmpty(), Resources.DoublyLinkedListEmpty);
-            Guard.ArgumentNull(node, "node");
-        }
-
-        /// <summary>
         /// Indicates whether the <see cref="DoublyLinkedList{T}"/> is empty or not.
         /// </summary>
         /// <remarks>
@@ -243,22 +273,6 @@ namespace Dsa.DataStructures
         public bool IsEmpty()
         {
             return _head == null;
-        }
-
-        /// <summary>
-        /// Gets the node at the head of the <see cref="DoublyLinkedList{T}"/>.
-        /// </summary>
-        public DoublyLinkedListNode<T> Head
-        {
-            get { return _head; }
-        }
-
-        /// <summary>
-        /// Gets the node at the end of the <see cref="DoublyLinkedList{T}"/>.
-        /// </summary>
-        public DoublyLinkedListNode<T> Tail
-        {
-            get { return _tail; }
         }
 
         /// <summary>
@@ -300,6 +314,7 @@ namespace Dsa.DataStructures
                     return true;
                 }
             }
+
             return false;
         }
 
@@ -326,8 +341,10 @@ namespace Dsa.DataStructures
                 Count--;
                 return true;
             }
-            if (_head.Next == _tail) // there are only two nodes in the dll
+
+            if (_head.Next == _tail) 
             {
+                // there are only two nodes in the dll
                 if (_comparer.Compare(_head.Value, item) == 0) 
                 {
                     _head = _head.Next; 
@@ -338,34 +355,43 @@ namespace Dsa.DataStructures
                     _tail = _head; 
                     _head.Next = null;
                 }
+
                 Count--;
                 return true;
             }
+
             DoublyLinkedListNode<T> n = _head;
             while (n != null)
             {
-                if (_comparer.Compare(n.Value, item) == 0) // we have found a node with the value specified to remove
+                if (_comparer.Compare(n.Value, item) == 0) 
                 {
-                    if (n == _head) // the node to remove is the head node
+                    // we have found a node with the value specified to remove
+                    if (n == _head) 
                     {
+                        // the node to remove is the head node
                         _head = _head.Next;
                         _head.Previous = null;
                     }
-                    else if (n == _tail) // the node to remove is the tail node
+                    else if (n == _tail) 
                     {
+                        // the node to remove is the tail node
                         _tail = _tail.Previous;
                         _tail.Next = null;
                     }
-                    else // the node to remove is somewhere in the middle of the dll
+                    else 
                     {
+                        // the node to remove is somewhere in the middle of the dll
                         n.Previous.Next = n.Next;
                         n.Next.Previous = n.Previous;
                     }
+
                     Count--;
                     return true;
                 }
+
                 n = n.Next; 
             }
+
             return false;
         }
 
@@ -387,11 +413,14 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Gets the <see cref="IComparer{T}"/> being used.
+        /// Method that validates the state of the DoublyLinkedListCollection(Of T) as well as if the node passed in is null.
+        /// This method is used by AddAfter, and AddBefore.
         /// </summary>
-        IComparer<T> IComparerProvider<T>.Comparer
+        /// <param name="node">Node to verify whether or not is null.</param>
+        private void ValidateAddArgs(DoublyLinkedListNode<T> node)
         {
-            get { return _comparer; }
+            Guard.InvalidOperation(IsEmpty(), Resources.DoublyLinkedListEmpty);
+            Guard.ArgumentNull(node, "node");
         }
     }
 }

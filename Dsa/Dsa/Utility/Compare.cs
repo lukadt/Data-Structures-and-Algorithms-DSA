@@ -1,4 +1,10 @@
-﻿using System.Collections.Generic;
+﻿// <copyright file="Compare.cs" company="Data Structures and Algorithms">
+//   Copyright (C) Data Structures and Algorithms Team.
+// </copyright>
+// <summary>
+//   Static generic comparer methods. 
+// </summary>
+using System.Collections.Generic;
 
 namespace Dsa.Utility
 {
