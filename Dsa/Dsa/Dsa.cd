@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Dsa.DataStructures.CollectionDebugView&lt;T&gt;" Collapsed="true">
-    <Position X="17" Y="0.5" Width="1.5" />
+    <Position X="20" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAACEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>DataStructures\CollectionDebugView.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Dsa.DataStructures.BinarySearchTree&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="3.25" Y="1.75" Width="1.5" />
+    <Position X="3.25" Y="1.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAIQIAAAAAAQADAAAAAABBAGAEAAAAAIQEEBQBBRIAA=</HashCode>
       <FileName>DataStructures\BinarySearchTree.cs</FileName>
@@ -23,7 +23,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Dsa.DataStructures.DoublyLinkedList&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="14.5" Y="1.75" Width="1.5" />
+    <Position X="17.25" Y="1.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AALIABAAAAAQAJAAAAAAJBAEAAAQAEAAAAACAABRAAA=</HashCode>
       <FileName>DataStructures\DoublyLinkedList.cs</FileName>
@@ -33,12 +33,12 @@
   <Class Name="Dsa.DataStructures.DoublyLinkedListNode&lt;T&gt;" Collapsed="true">
     <Position X="2.75" Y="3.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>BhAAAAAAAAAAAgAAAAAAAAAAAAAAAAAgAAAgAAAAAAA=</HashCode>
+      <HashCode>AgAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
       <FileName>DataStructures\DoublyLinkedListNode.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Dsa.DataStructures.SinglyLinkedList&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="5.5" Y="1.75" Width="1.5" />
+    <Position X="5.75" Y="1.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AALIABAAAAAQAJAAAAAAJBAEAAAQAAAAABACBABRAAA=</HashCode>
       <FileName>DataStructures\SinglyLinkedList.cs</FileName>
@@ -46,75 +46,75 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="Dsa.DataStructures.SinglyLinkedListNode&lt;T&gt;" Collapsed="true">
-    <Position X="18.75" Y="1.5" Width="1.5" />
+    <Position X="21.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAgAAAAAAA=</HashCode>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
       <FileName>DataStructures\SinglyLinkedListNode.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Dsa.Algorithms.Numbers" Collapsed="true">
-    <Position X="20.5" Y="0.5" Width="1.5" />
+    <Position X="23.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAQAAQAAAAAAAAAAAAAAAAAABABAAAAAAAAA=</HashCode>
+      <HashCode>IAAAAAAAAQBAQAAAAFAAAAAAAAAAAAABABAAAAAAAAA=</HashCode>
       <FileName>Algorithms\Numbers.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Dsa.Algorithms.Strings" Collapsed="true">
-    <Position X="17" Y="2.5" Width="1.5" />
+    <Position X="20" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IAQAAAAAABAAAAAAAAAAAAAAAAAACAAAAAACBAAAAAA=</HashCode>
+      <HashCode>IAQAAAAAABAAAAAAAIAAAAAAAAAACAAAAAACBAAAAAA=</HashCode>
       <FileName>Algorithms\Strings.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Dsa.Algorithms.Searching" Collapsed="true">
-    <Position X="17" Y="1.5" Width="1.5" />
+    <Position X="20" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAEAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Algorithms\Searching.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Dsa.Algorithms.Sorting" Collapsed="true">
-    <Position X="20.5" Y="1.5" Width="1.5" />
+    <Position X="23.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>CEAAAAAAAAAAIAgAAgAAAAAAAAAAAAEAAAAQAAAQAAg=</HashCode>
+      <HashCode>GEAAAAAAEAAAIAgAAgAAAAAAAAAAAAEAAAAQAAAQAAg=</HashCode>
       <FileName>Algorithms\Sorting.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Dsa.Utility.Compare" Collapsed="true">
-    <Position X="18.75" Y="0.5" Width="1.5" />
+    <Position X="21.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ABAAAAAAAAAAAAAAAAAAAABAAAQAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Utility\Compare.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Dsa.DataStructures.CollectionBase&lt;T&gt;" Collapsed="true">
-    <Position X="8.75" Y="0.5" Width="1.5" />
+    <Position X="10.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAEAAAAACEABAAAAAABAQAAAAIAAAEAACAAABQIAA=</HashCode>
+      <HashCode>AAIAEAAAAACEABAAAAAABAQAAAAIAAAEAAAAAABQIAA=</HashCode>
       <FileName>DataStructures\CollectionBase.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Dsa.DataStructures.Set&lt;T&gt;" Collapsed="true">
-    <Position X="11" Y="1.75" Width="1.5" />
+    <Position X="14" Y="1.75" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAAAAQEAAAAAABAAAAAAAAAAAAAAAAABQAAA=</HashCode>
+      <HashCode>AAIAAAAAAAAAQEAAAAAABAAAAAAAAAAAAAAAAABQAAQ=</HashCode>
       <FileName>DataStructures\Set.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Dsa.DataStructures.UnorderedSet&lt;T&gt;" Collapsed="true">
-    <Position X="12.25" Y="3.25" Width="1.5" />
+    <Position X="15" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>DataStructures\UnorderedSet.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Dsa.DataStructures.OrderedSet&lt;T&gt;" Collapsed="true">
-    <Position X="10" Y="3.25" Width="1.5" />
+    <Position X="12.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAABAAAAAAABAEAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>DataStructures\OrderedSet.cs</FileName>
@@ -122,21 +122,29 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="Dsa.DataStructures.Heap&lt;T&gt;" Collapsed="true">
-    <Position X="7.75" Y="1.75" Width="1.5" />
+    <Position X="10.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAIAAAAABAAAAAgBAAAAAAAAAAAABAAAABQAAA=</HashCode>
+      <HashCode>AAIAAAAAAAAAAhAACAACBBAEAAAAAAAAABAAAABQAAA=</HashCode>
       <FileName>DataStructures\Heap.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Dsa.DataStructures.PriorityQueue&lt;T&gt;" Collapsed="true">
+    <Position X="8.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAJAAAAAAAAEAAAAAAAABAAAAAAABAAAABAAAABQAAA=</HashCode>
+      <FileName>DataStructures\PriorityQueue.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Interface Name="Dsa.DataStructures.IComparerProvider&lt;T&gt;" Collapsed="true">
-    <Position X="17" Y="3.75" Width="1.5" />
+    <Position X="20" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
       <FileName>DataStructures\IComparerProvider.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Enum Name="Dsa.Algorithms.SortType" Collapsed="true">
-    <Position X="17" Y="4.75" Width="1.5" />
+    <Position X="20" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Algorithms\SortType.cs</FileName>

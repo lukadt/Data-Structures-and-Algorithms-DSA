@@ -5,6 +5,7 @@
 //   Heap based implementation of a PriorityQueue.
 // </summary>
 using System;
+using System.Collections.Generic;
 using Dsa.Properties;
 using Dsa.Utility;
 
@@ -19,7 +20,7 @@ namespace Dsa.DataStructures
     /// <typeparam name="T">Type of the <see cref="PriorityQueue{T}"/>.</typeparam>
     public class PriorityQueue<T> : CollectionBase<T>
     {
-        private readonly Strategy _strategy;
+        [NonSerialized]
         private readonly Heap<T> _heap;
 
         /// <summary>
@@ -27,8 +28,17 @@ namespace Dsa.DataStructures
         /// </summary>
         public PriorityQueue()
         {
-            _strategy = Strategy.Min;
-            _heap = new Heap<T>(_strategy);
+            _heap = new Heap<T>(Strategy.Min);
+        }
+
+        /// <summary>
+        /// Creates and initializes a new instance of <see cref="PriorityQueue{T}"/> using a defined priority
+        /// strategy.
+        /// </summary>
+        /// <param name="strategy">Strategy to use to define priority.</param>
+        public PriorityQueue(Strategy strategy) 
+        {
+            _heap = new Heap<T>(strategy);
         }
 
         /// <summary>
@@ -136,6 +146,18 @@ namespace Dsa.DataStructures
             _heap.Remove(head);
             Count--;
             return head;
+        }
+
+        /// <summary>
+        /// Returns an enumerator that iterates through the items in the <see cref="PriorityQueue{T}"/>.
+        /// </summary>
+        /// <remarks>
+        /// This is an O(n) operation where n is the number of items in the <see cref="PriorityQueue{T}"/>.
+        /// </remarks>
+        /// <returns>An <see cref="IEnumerator{T}"/> for the <see cref="PriorityQueue{T}"/>.</returns>
+        public override IEnumerator<T> GetEnumerator()
+        {
+            return _heap.GetEnumerator();
         }
     }
 }

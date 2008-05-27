@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Dsa.DataStructures;
 using NUnit.Framework;
 
@@ -118,6 +119,30 @@ namespace Dsa.Test.DataStructures
             actual.Clear();
 
             Assert.AreEqual(0, actual.Count);
+        }
+
+        /// <summary>
+        /// Check to see that the queue is correct when using a strategy that makes the higher valued
+        /// values take priority.
+        /// </summary>
+        [Test]
+        public void MaxValuesHavePriorityTest()
+        {
+            PriorityQueue<int> actual = new PriorityQueue<int>(Strategy.Max) { 6, 1, 8, 9, 2, 3, 7 };
+
+            Assert.AreEqual(9, actual.Peek());
+        }
+
+        /// <summary>
+        /// Check to see that the correct values are returned on enumeration.
+        /// </summary>
+        [Test]
+        public void GetEnumeratorTest()
+        {
+            PriorityQueue<int> actual = new PriorityQueue<int>(Strategy.Max) { 6, 1, 8, 9, 2, 3, 7 };
+            List<int> expected = new List<int> { 9, 8, 7, 1, 2, 3, 6 };
+
+            CollectionAssert.AreEqual(expected, actual);
         }
     }
 }
