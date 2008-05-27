@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Dsa.DataStructures;
 using Dsa.Test.Utility;
 using NUnit.Framework;
@@ -28,7 +29,7 @@ namespace Dsa.Test.DataStructures
         [Test]
         public void MaxHeapTest()
         {
-            Heap<int> actual = new Heap<int>(HeapType.Max) {10, 23, 7, 9, 12, 18};
+            Heap<int> actual = new Heap<int>(Strategy.Max) {10, 23, 7, 9, 12, 18};
             int[] expected = { 23, 12, 18, 9, 10, 7 };
 
             CollectionAssert.AreEqual(expected, actual);
@@ -53,7 +54,7 @@ namespace Dsa.Test.DataStructures
         public void CustomComparerTest()
         {
             IComparer<Coordinate> comparer = new CoordinateComparer();
-            IComparerProvider<Coordinate> actual = new Heap<Coordinate>(HeapType.Min, comparer);
+            IComparerProvider<Coordinate> actual = new Heap<Coordinate>(Strategy.Min, comparer);
 
             Assert.IsNotNull(actual.Comparer);
         }
@@ -106,8 +107,8 @@ namespace Dsa.Test.DataStructures
         [Test]
         public void RemoveMaxHeapTest()
         {
-            Heap<int> actual = new Heap<int>(HeapType.Max) {12, 2, 67, 90, 10};
-            Heap<int> expected = new Heap<int>(HeapType.Max) {12, 2, 67, 10};
+            Heap<int> actual = new Heap<int>(Strategy.Max) {12, 2, 67, 90, 10};
+            Heap<int> expected = new Heap<int>(Strategy.Max) {12, 2, 67, 10};
 
             Assert.IsTrue(actual.Remove(90));
             CollectionAssert.AreEqual(expected, actual);
@@ -135,8 +136,8 @@ namespace Dsa.Test.DataStructures
         [Test]
         public void RemoveMaxRightChildGreaterTest()
         {
-            Heap<int> actual = new Heap<int>(HeapType.Max) {46, 23, 44, 66, 51, 32, 17, 8};
-            Heap<int> expected = new Heap<int>(HeapType.Max) {66, 46, 44, 23, 8, 32, 17};
+            Heap<int> actual = new Heap<int>(Strategy.Max) {46, 23, 44, 66, 51, 32, 17, 8};
+            Heap<int> expected = new Heap<int>(Strategy.Max) {66, 46, 44, 23, 8, 32, 17};
 
             Assert.IsTrue(actual.Remove(51));
             Assert.AreEqual(7, actual.Count);
@@ -179,6 +180,41 @@ namespace Dsa.Test.DataStructures
             actual.Clear();
 
             Assert.AreEqual(0, actual.Count);
+        }
+
+        /// <summary>
+        /// Check to see that the correct value is returned when accessing the items by index.
+        /// </summary>
+        [Test]
+        public void IndexerTest()
+        {
+            Heap<int> actual = new Heap<int> { 12, 3, 21, 0 };
+
+            Assert.AreEqual(3, actual[1]);
+        }
+
+        /// <summary>
+        /// Check to see that the correct exception is thrown when accessing an index that is out of bounds.
+        /// </summary>
+        [Test]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void IndexOutOfRangeGreaterThanIndexTest()
+        {
+            Heap<int> heap = new Heap<int> { 0 };
+
+            int actual = heap[1];
+        }
+
+        /// <summary>
+        /// Check to see that the correct exception is thrown when accessing an index that is out of bounds.
+        /// </summary>
+        [Test]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void IndexOutOfRangeLessThanIndexTest()
+        {
+            Heap<int> heap = new Heap<int> { 1, 2, 3 };
+
+            int actual = heap[-1];
         }
     }
 }

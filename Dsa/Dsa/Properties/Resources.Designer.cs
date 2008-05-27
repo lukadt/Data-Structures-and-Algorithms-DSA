@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Dsa.Properties
-{
-
-
+namespace Dsa.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -106,6 +106,15 @@ namespace Dsa.Properties
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The index provided must be within the bounds of the heap..
+        /// </summary>
+        internal static string IndexNotWithinBoundsOfHeap {
+            get {
+                return ResourceManager.GetString("IndexNotWithinBoundsOfHeap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The number of item permutations must be greater than 0..
         /// </summary>
         internal static string PermutationsKGreaterThanZero {
@@ -120,6 +129,15 @@ namespace Dsa.Properties
         internal static string PowerExponentLessThanZero {
             get {
                 return ResourceManager.GetString("PowerExponentLessThanZero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are no items in the queue..
+        /// </summary>
+        internal static string QueueEmpty {
+            get {
+                return ResourceManager.GetString("QueueEmpty", resourceCulture);
             }
         }
         

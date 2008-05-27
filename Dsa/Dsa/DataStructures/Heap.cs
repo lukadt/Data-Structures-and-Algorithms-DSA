@@ -7,6 +7,7 @@
 using System;
 using System.Collections.Generic;
 using Dsa.Algorithms;
+using Dsa.Properties;
 using Dsa.Utility;
 
 namespace Dsa.DataStructures
@@ -25,7 +26,7 @@ namespace Dsa.DataStructures
         [NonSerialized]
         private IComparer<T> _comparer = Comparer<T>.Default;
         [NonSerialized]
-        private HeapType _heapType = HeapType.Min;
+        private Strategy _strategy = Strategy.Min;
 
         /// <summary>
         /// Initializes a new instance of <see cref="Heap{T}"/>.
@@ -36,22 +37,22 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Initializes a new instance of <see cref="Heap{T}"/> using a specified <see cref="HeapType"/>.
+        /// Initializes a new instance of <see cref="Heap{T}"/> using a specified <see cref="Strategy"/>.
         /// </summary>
-        /// <param name="heapType">Type of Heap.</param>
-        public Heap(HeapType heapType)
+        /// <param name="strategy">Type of Heap.</param>
+        public Heap(Strategy strategy)
             : this()
         {
-            _heapType = heapType;
+            _strategy = strategy;
         }
 
         /// <summary>
-        /// Initializes a new instance of <see cref="Heap{T}"/> using a specified <see cref="HeapType"/> and <see cref="IComparer{T}"/>.
+        /// Initializes a new instance of <see cref="Heap{T}"/> using a specified <see cref="Strategy"/> and <see cref="IComparer{T}"/>.
         /// </summary>
-        /// <param name="heapType">Type of Heap.</param>
+        /// <param name="strategy">Type of Heap.</param>
         /// <param name="comparer">Comparer to use.</param>
-        public Heap(HeapType heapType, IComparer<T> comparer)
-            : this(heapType)
+        public Heap(Strategy strategy, IComparer<T> comparer)
+            : this(strategy)
         {
             _comparer = comparer;
         }
@@ -65,10 +66,24 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
+        /// Gets the item at the specified index.
+        /// </summary>
+        /// <param name="index">Index of item.</param>
+        /// <returns>Item at the specified index.</returns>
+        public T this[int index]
+        {
+            get
+            {
+                Guard.OutOfRange(index < 0 || index > Count - 1, "index", Resources.IndexNotWithinBoundsOfHeap);
+                return _heap[index];
+            }
+        }
+
+        /// <summary>
         /// Adds an item to the <see cref="Heap{T}"/>.
         /// </summary>
         /// <remarks>
-        /// This method is an O(1) operation.
+        /// This method is an O(log n) operation.
         /// </remarks>
         /// <param name="item">Item to add to the heap.</param>
         public override void Add(T item)
@@ -79,7 +94,7 @@ namespace Dsa.DataStructures
             }
 
             _heap[Count++] = item;
-            if (_heapType == HeapType.Min)
+            if (_strategy == Strategy.Min)
             {
                 MinHeapify();
             }
@@ -108,7 +123,7 @@ namespace Dsa.DataStructures
         /// This is an O(n) operation where n is the number of items in the <see cref="Heap{T}"/>.
         /// </remarks>
         /// <param name="item">Item to see if the Heap contains.</param>
-        /// <returns>True is the item is in the Heap; otherwise false.</returns>
+        /// <returns>True is the item if in the Heap; otherwise false.</returns>
         public override bool Contains(T item)
         {
             return Array.IndexOf(_heap, item) < 0 ? false : true;
@@ -131,7 +146,7 @@ namespace Dsa.DataStructures
             }
 
             _heap[index] = _heap[--Count]; // todo: refactor this!!!
-            if (_heapType == HeapType.Min)
+            if (_strategy == Strategy.Min)
             {
                 while (2 * index + 1 < Count && (Compare.IsGreaterThan(_heap[index], _heap[2 * index + 1], _comparer) ||
                                                  Compare.IsGreaterThan(_heap[index], _heap[2 * index + 2], _comparer)))
@@ -175,7 +190,8 @@ namespace Dsa.DataStructures
         /// <remarks>
         /// This method is an O(n) operation where n is the number of items in the <see cref="Heap{T}"/>.
         /// </remarks>
-        /// <returns>A one-dimensional <see cref="Array"/> containing the values of the nodes contained in the <see cref="Heap{T}"/>.</returns>
+        /// <returns>A one-dimensional <see cref="Array"/> containing the values of the nodes contained in the 
+        /// <see cref="Heap{T}"/>.</returns>
         public override T[] ToArray()
         {
             return ToArray(Count, this);

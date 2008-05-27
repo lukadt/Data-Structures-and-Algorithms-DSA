@@ -59,6 +59,7 @@
     <Compile Include="DataStructures\HeapTest.cs" />
     <Compile Include="DataStructures\OrderedSetTest.cs" />
     <Compile Include="DataStructures\DoublyLinkedListTest.cs" />
+    <Compile Include="DataStructures\PriorityQueueTest.cs" />
     <Compile Include="DataStructures\SinglyLinkedListTest.cs" />
     <Compile Include="DataStructures\UnorderedSetTest.cs" />
     <Compile Include="Utility\CompareTest.cs" />

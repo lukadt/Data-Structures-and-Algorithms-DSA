@@ -1,0 +1,123 @@
+﻿using System;
+using Dsa.DataStructures;
+using NUnit.Framework;
+
+namespace Dsa.Test.DataStructures
+{
+    /// <summary>
+    /// Tests for PriorityQueue.
+    /// </summary>
+    [TestFixture]
+    public class PriorityQueueTest
+    {
+        /// <summary>
+        /// Check to see that the queue is in the correct state.
+        /// </summary>
+        [Test]
+        public void AddTest()
+        {
+            PriorityQueue<int> actual = new PriorityQueue<int> { 12, 6, 3, 1, 0, 8 };
+
+            Assert.AreEqual(6, actual.Count);
+        }
+
+        /// <summary>
+        /// Check to see that the correct value is returned.
+        /// </summary>
+        [Test]
+        public void PeekTest()
+        {
+            PriorityQueue<int> actual = new PriorityQueue<int> { 12, 6, 3, 1, 0, 8 };
+
+            Assert.AreEqual(0, actual.Peek());
+        }
+
+        /// <summary>
+        /// Check to see that the correct exception is raised when peeking from an empty queue.
+        /// </summary>
+        [Test]
+        [ExpectedException(typeof(InvalidOperationException), ExpectedMessage="There are no items in the queue.")]
+        public void PeekNoItemsInTheQueueTest()
+        {
+            PriorityQueue<int> actual = new PriorityQueue<int>();
+
+            actual.Peek();
+        }
+
+        /// <summary>
+        /// Removes the item at the front of the queue.
+        /// </summary>
+        [Test]
+        public void DequeueTest()
+        {
+            PriorityQueue<int> actual = new PriorityQueue<int> { 12, 6, 3, 1, 0, 8 };
+
+            Assert.AreEqual(0, actual.Dequeue());
+            Assert.AreEqual(1, actual.Peek());
+            Assert.AreEqual(5, actual.Count);
+        }
+
+        /// <summary>
+        /// Check to see that the correct exception is thrown when calling dequeue on an empty queue.
+        /// </summary>
+        [Test]
+        [ExpectedException(typeof(InvalidOperationException), ExpectedMessage="There are no items in the queue.")]
+        public void DequeueEmptyQueueTest()
+        {
+            PriorityQueue<int> actual = new PriorityQueue<int>();
+
+            actual.Dequeue();
+        }
+
+        /// <summary>
+        /// Check to see that the correct value is returned when checking for an item that is within the queue.
+        /// </summary>
+        [Test]
+        public void ContainsTest()
+        {
+            PriorityQueue<int> actual = new PriorityQueue<int> { 45, 12, 1, 0 };
+
+            Assert.IsTrue(actual.Contains(12));
+        }
+
+        /// <summary>
+        /// Check to see that the correct array is returned.
+        /// </summary>
+        [Test]
+        public void ToArrayTest()
+        {
+            PriorityQueue<int> queue = new PriorityQueue<int> { 12, 6, 3, 1, 0, 8 };
+            int[] expected = { 0, 1, 6, 12, 3, 8 };
+
+            int[] actual = queue.ToArray();
+
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        /// Check to see that the correct exception is raised as this is not supported on the queue, you must go through
+        /// dequeueing etc.
+        /// </summary>
+        [Test]
+        [ExpectedException(typeof(NotSupportedException))]
+        public void RemoveTest()
+        {
+            PriorityQueue<int> actual = new PriorityQueue<int>();
+
+            actual.Remove(120);
+        }
+
+        /// <summary>
+        /// Check to see that the queue is in the correct state after clearing it.
+        /// </summary>
+        [Test]
+        public void ClearTest()
+        {
+            PriorityQueue<int> actual = new PriorityQueue<int>();
+
+            actual.Clear();
+
+            Assert.AreEqual(0, actual.Count);
+        }
+    }
+}
