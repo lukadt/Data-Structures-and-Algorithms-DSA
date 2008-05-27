@@ -189,6 +189,33 @@ namespace Dsa.Algorithms
         }
 
         /// <summary>
+        /// Determines whether or not an integer is a prime number.
+        /// </summary>
+        /// <param name="number">Number to check is a prime.</param>
+        /// <returns>True if the number is a prime; otherwise false.</returns>
+        public static bool IsPrime(this int number)
+        {
+            if (number < 2)
+            {
+                return false;
+            }
+
+            int innerLoopBound = (int)Math.Floor(Math.Sqrt(number));
+            for (int i = 1; i < number; i++)
+            {
+                for (int j = 1; j <= innerLoopBound; j++)
+                {
+                    if (i * j == number)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        /// <summary>
         /// Gets char symbol for hex numbers 10 .. 15 (A .. F).
         /// </summary>
         /// <param name="result">Integer to get hex symbol for.</param>

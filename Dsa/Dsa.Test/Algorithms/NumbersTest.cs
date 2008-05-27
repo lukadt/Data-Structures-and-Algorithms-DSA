@@ -176,5 +176,24 @@ namespace Dsa.Test.Algorithms
 
             actual.ToHex();
         }
+
+        /// <summary>
+        /// Check to see that the correct value is returned when checking a few numbers if they are primes.
+        /// </summary>
+        [Test]
+        public void IsPrimeTest()
+        {
+            Assert.IsFalse(1.IsPrime());
+            Assert.IsTrue(2.IsPrime());
+            Assert.IsTrue(3.IsPrime());
+            Assert.IsFalse(4.IsPrime());
+            Assert.IsTrue(5.IsPrime());
+            Assert.IsFalse(6.IsPrime());
+            Assert.IsTrue(7.IsPrime());
+            Assert.IsFalse(8.IsPrime());
+            Assert.IsFalse(9.IsPrime());
+            Assert.IsFalse(10.IsPrime());
+            Assert.IsTrue(11.IsPrime());
+        }
     }
 }
