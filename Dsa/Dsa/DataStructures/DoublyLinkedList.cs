@@ -131,7 +131,10 @@ namespace Dsa.DataStructures
         public void AddAfter(DoublyLinkedListNode<T> node, T value)
         {
             ValidateAddArgs(node);
+
             DoublyLinkedListNode<T> n = new DoublyLinkedListNode<T>(value);
+
+            // check if adding after _tail node
             if (node == _tail)
             {
                 n.Previous = _tail;
@@ -160,7 +163,10 @@ namespace Dsa.DataStructures
         public void AddBefore(DoublyLinkedListNode<T> node, T value)
         {
             ValidateAddArgs(node);
+
             DoublyLinkedListNode<T> n = new DoublyLinkedListNode<T>(value);
+
+            // check if adding before _head node
             if (node == _head) 
             {
                 n.Next = _head;

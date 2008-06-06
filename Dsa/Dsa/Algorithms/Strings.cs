@@ -72,6 +72,7 @@ namespace Dsa.Algorithms
                     i++;
                 }
 
+                // locate, if possible index of first matching character in both strings
                 for (int j = 0; j < match.Length; j++)
                 {
                     while (char.IsWhiteSpace(match[j]))

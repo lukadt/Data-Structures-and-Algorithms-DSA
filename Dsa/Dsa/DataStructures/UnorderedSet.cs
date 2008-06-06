@@ -18,7 +18,7 @@ namespace Dsa.DataStructures
     /// the <see cref="UnorderedSet{T}"/> cannot guarantee the set contains only unique objects.
     /// </remarks>
     /// <typeparam name="T">Type of the <see cref="UnorderedSet{T}"/>.</typeparam>
-    public class UnorderedSet<T> : Set<T>
+    public sealed class UnorderedSet<T> : Set<T>
     {
         /// <summary>
         /// Creates and initializes a new instance of <see cref="UnorderedSet{T}"/>.

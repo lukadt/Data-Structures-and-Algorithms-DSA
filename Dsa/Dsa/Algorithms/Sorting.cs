@@ -178,6 +178,8 @@ namespace Dsa.Algorithms
             Guard.ArgumentNull(third, "third");
 
             List<T> concatenated = new List<T>();
+
+            // iterate through each of the three lists adding their items to concatenated
             foreach (T item in first)
             {
                 concatenated.Add(item);
@@ -351,10 +353,15 @@ namespace Dsa.Algorithms
                 return list;
             }
 
+            // lists to store relevant items
             List<T> less = new List<T>();
             List<T> greater = new List<T>();
             List<T> equal = new List<T>();
+
+            // put the median value at index 0 of list
             list = MedianLeft(list);
+
+            // place values in correct list {less, greater, equal}
             foreach (T item in list)
             {
                 if (Compare.IsLessThan(item, list[0], comparer))
@@ -371,6 +378,7 @@ namespace Dsa.Algorithms
                 }
             }
 
+            // return list with items in the following order: less -> equal -> greater
             return Concatenate(QuickSortInternal(less, ref comparer), equal, QuickSortInternal(greater, ref comparer));
         }
     }

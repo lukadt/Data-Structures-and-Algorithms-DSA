@@ -42,6 +42,8 @@ namespace Dsa.Algorithms
                         int[] fibs = new int[number + 1];
                         fibs[0] = 0;
                         fibs[1] = 1;
+
+                        // populate fibs with fib sequence
                         for (int i = 2; i <= number; i++)
                         {
                             fibs[i] = fibs[i - 1] + fibs[i - 2];
@@ -195,12 +197,15 @@ namespace Dsa.Algorithms
         /// <returns>True if the number is a prime; otherwise false.</returns>
         public static bool IsPrime(this int number)
         {
+            // smallest prime is 2
             if (number < 2)
             {
                 return false;
             }
 
+            // most effecient worst case, if number-1 * sqrt(number) != number then we have a prime
             int innerLoopBound = (int)Math.Floor(Math.Sqrt(number));
+
             for (int i = 1; i < number; i++)
             {
                 for (int j = 1; j <= innerLoopBound; j++)
@@ -223,6 +228,8 @@ namespace Dsa.Algorithms
         private static char GetHexSymbol(int result)
         {
             char symbol = ' ';
+
+            // match relevent symbol with result
             switch (result)
             {
                 case 10:
