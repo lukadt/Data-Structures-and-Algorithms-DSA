@@ -19,27 +19,41 @@ namespace Dsa.DataStructures
     /// Min heap by default.
     /// </remarks>
     /// <typeparam name="T">Type of heap.</typeparam>
-    public sealed class Heap<T> : CollectionBase<T>, IComparerProvider<T>
+    public sealed class Heap<T> : CollectionBase<T>
+        where T : IComparable<T>
     {
         [NonSerialized]
         private T[] _heap;
         [NonSerialized]
-        private IComparer<T> _comparer = Comparer<T>.Default;
+        private readonly IComparer<T> _comparer;
         [NonSerialized]
-        private Strategy _strategy = Strategy.Min;
+        private readonly Strategy _strategy;
 
         /// <summary>
-        /// Initializes a new instance of <see cref="Heap{T}"/>.
+        /// Creates and initializes a new instance of <see cref="Heap{T}"/>.
         /// </summary>
         public Heap()
         {
             _heap = new T[4];
+            _comparer = Comparer<T>.Default;
+            _strategy = Strategy.Min;
         }
 
         /// <summary>
-        /// Initializes a new instance of <see cref="Heap{T}"/> using a specified <see cref="Strategy"/>.
+        /// Creates and initializes a new instance of <see cref="Heap{T}"/>, populating it with the items from the 
+        /// <see cref="IEnumerable{T}"/>.
         /// </summary>
-        /// <param name="strategy">Type of Heap.</param>
+        /// <param name="collection">Items to populate <see cref="Heap{T}"/> with.</param>
+        public Heap(IEnumerable<T> collection)
+            : this()
+        {
+            CopyCollection(collection);
+        }
+
+        /// <summary>
+        /// Creates and initializes a new instance of <see cref="Heap{T}"/> using a specified <see cref="Strategy"/>.
+        /// </summary>
+        /// <param name="strategy">Strategy of Heap.</param>
         public Heap(Strategy strategy)
             : this()
         {
@@ -47,22 +61,15 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Initializes a new instance of <see cref="Heap{T}"/> using a specified <see cref="Strategy"/> and <see cref="IComparer{T}"/>.
+        /// Creates and initializes a new instance of <see cref="Heap{T}"/>, populating it with the items from the 
+        /// <see cref="IEnumerable{T}"/>, and using a specified <see cref="Strategy"/>.
         /// </summary>
-        /// <param name="strategy">Type of Heap.</param>
-        /// <param name="comparer">Comparer to use.</param>
-        public Heap(Strategy strategy, IComparer<T> comparer)
+        /// <param name="collection">Items to populate <see cref="Heap{T}"/> with.</param>
+        /// <param name="strategy">Strategy of heap.</param>
+        public Heap(IEnumerable<T> collection, Strategy strategy)
             : this(strategy)
         {
-            _comparer = comparer;
-        }
-
-        /// <summary>
-        /// Gets the comparer being used.
-        /// </summary>
-        IComparer<T> IComparerProvider<T>.Comparer
-        {
-            get { return _comparer; }
+            CopyCollection(collection);
         }
 
         /// <summary>

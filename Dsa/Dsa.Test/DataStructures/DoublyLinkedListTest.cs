@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Dsa.DataStructures;
-using Dsa.Test.Utility;
 using NUnit.Framework;
 
 namespace Dsa.Test.DataStructures
@@ -12,40 +11,6 @@ namespace Dsa.Test.DataStructures
     [TestFixture]
     public class DoublyLinkedListTest
     {
-        /// <summary>
-        /// Check to see that comparer used is the default and not null.
-        /// </summary>
-        [Test]
-        public void ConstructorTest()
-        {
-            IComparerProvider<int> actual = new DoublyLinkedList<int>();
-
-            Assert.IsNotNull(actual.Comparer);
-        }
-
-        /// <summary>
-        /// Check to see that a comparer can be specified.
-        /// </summary>
-        [Test]
-        public void OverloadedConstructorTest()
-        {
-            IComparer<Coordinate> comparer = new CoordinateComparer();
-            IComparerProvider<Coordinate> actual = new DoublyLinkedList<Coordinate>(comparer);
-
-            Assert.IsNotNull(actual.Comparer);
-        }
-
-        /// <summary>
-        /// Check to see that the correct exception is raised when using a null comparer.
-        /// </summary>
-        [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void OverloadedConstructorComparerNullTest()
-        {
-            const IComparer<Coordinate> comparer = null;
-            DoublyLinkedList<Coordinate> actual = new DoublyLinkedList<Coordinate>(comparer);
-        }
-
         /// <summary>
         /// Check to see if CollectionAssert.AreEqual passes for twocollection containing the same values.
         /// </summary>
@@ -537,6 +502,18 @@ namespace Dsa.Test.DataStructures
             foreach (int i in dll) Console.WriteLine(i);
 
             Assert.IsNotNull(dll.GetEnumerator());
+        }
+
+        /// <summary>
+        /// Check to make sure that the linked list is left in the correct state after copying the items from an IEnumerable to it.
+        /// </summary>
+        [Test]
+        public void CopyConstructorTest()
+        {
+            List<string> collection = new List<string> { "Granville", "Barnett", "Luca", "Del", "Tongo" };
+            DoublyLinkedList<string> actual = new DoublyLinkedList<string>(collection);
+
+            Assert.AreEqual(5, actual.Count);
         }
     }
 }

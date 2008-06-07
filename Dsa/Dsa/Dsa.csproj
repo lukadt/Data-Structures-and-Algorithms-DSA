@@ -78,7 +78,6 @@
     <Compile Include="DataStructures\OrderedSet.cs" />
     <Compile Include="DataStructures\DoublyLinkedList.cs" />
     <Compile Include="DataStructures\DoublyLinkedListNode.cs" />
-    <Compile Include="DataStructures\IComparerProvider.cs" />
     <Compile Include="DataStructures\Set.cs" />
     <Compile Include="DataStructures\SinglyLinkedList.cs" />
     <Compile Include="DataStructures\UnorderedSet.cs" />

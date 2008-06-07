@@ -89,18 +89,6 @@ namespace Dsa.Test.DataStructures
         }
 
         /// <summary>
-        /// Check to see that the comparer is not null.
-        /// </summary>
-        [Test]
-        public void ComparerTest()
-        {
-            IComparer<Coordinate> comaparer = new CoordinateComparer();
-            IComparerProvider<Coordinate> actual = new OrderedSet<Coordinate>(comaparer);
-
-            Assert.IsNotNull(actual.Comparer);
-        }
-
-        /// <summary>
         /// Check to see when using an value type with the same properties twice that only one of them is added
         /// to the set.
         /// </summary>

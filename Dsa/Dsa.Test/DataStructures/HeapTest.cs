@@ -48,18 +48,6 @@ namespace Dsa.Test.DataStructures
         }
 
         /// <summary>
-        /// Check to see that you can use the Heap with a custom comparer.
-        /// </summary>
-        [Test]
-        public void CustomComparerTest()
-        {
-            IComparer<Coordinate> comparer = new CoordinateComparer();
-            IComparerProvider<Coordinate> actual = new Heap<Coordinate>(Strategy.Min, comparer);
-
-            Assert.IsNotNull(actual.Comparer);
-        }
-
-        /// <summary>
         /// Check to see that removing the last item in the heap results in the state
         /// of the heap being affected correctly.
         /// </summary>
@@ -215,6 +203,30 @@ namespace Dsa.Test.DataStructures
             Heap<int> heap = new Heap<int> { 1, 2, 3 };
 
             int actual = heap[-1];
+        }
+
+        /// <summary>
+        /// Check to make sure the heap is in the correct state after copying the items from an existing collection to the heap.
+        /// </summary>
+        [Test]
+        public void CopyConstructorTest()
+        {
+            List<string> collection = new List<string> { "Granville", "Barnett", "Luca", "Del", "Tongo" };
+            Heap<string> actual = new Heap<string>(collection);
+
+            Assert.AreEqual(5, actual.Count);
+        }
+
+        /// <summary>
+        /// Check to make sure that you can create an instance of heap with the items from an IEnuerable and using a specific strategy.
+        /// </summary>
+        [Test]
+        public void CopyConstructorWithStrategyTest()
+        {
+            List<string> collection = new List<string> { "Granville", "Barnett", "Luca", "Del", "Tongo" };
+            Heap<string> actual = new Heap<string>(collection, Strategy.Max);
+
+            Assert.AreEqual(5, actual.Count);
         }
     }
 }

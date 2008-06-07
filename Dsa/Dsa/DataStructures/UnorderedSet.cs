@@ -19,6 +19,7 @@ namespace Dsa.DataStructures
     /// </remarks>
     /// <typeparam name="T">Type of the <see cref="UnorderedSet{T}"/>.</typeparam>
     public sealed class UnorderedSet<T> : Set<T>
+        where T : IComparable<T>
     {
         /// <summary>
         /// Creates and initializes a new instance of <see cref="UnorderedSet{T}"/>.

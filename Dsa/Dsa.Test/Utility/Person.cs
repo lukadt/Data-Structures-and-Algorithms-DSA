@@ -2,10 +2,10 @@
 
 namespace Dsa.Test.Utility
 {
-    public class Person : IComparable<Person>
+    internal sealed class Person : IComparable<Person>
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        internal string FirstName { get; set; }
+        internal string LastName { get; set; }
 
         public int CompareTo(Person other)
         {

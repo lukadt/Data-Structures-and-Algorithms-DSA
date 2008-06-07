@@ -13,7 +13,7 @@ namespace Dsa.DataStructures
     public sealed class BinaryTreeNode<T> : DoublyLinkedListNode<T>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="BinaryTreeNode{T}"/> class with a specified value.
+        /// Creates and initializes a new instance of the <see cref="BinaryTreeNode{T}"/> class with a specified value.
         /// </summary>
         /// <param name="value">Value of the node.</param>
         public BinaryTreeNode(T value) : base(value) 

@@ -13,7 +13,7 @@ namespace Dsa.DataStructures
     public sealed class SinglyLinkedListNode<T>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SinglyLinkedListNode{T}"/> class with a specified value.
+        /// Creates and initializes a new instance of the <see cref="SinglyLinkedListNode{T}"/> class with a specified value.
         /// </summary>
         /// <param name="value">Value of node.</param>
         public SinglyLinkedListNode(T value)

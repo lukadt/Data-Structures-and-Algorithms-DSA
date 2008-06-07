@@ -5,8 +5,6 @@
 //   Base class of all set data structures.
 // </summary>
 using System;
-using System.Collections.Generic;
-using Dsa.Utility;
 
 namespace Dsa.DataStructures
 {
@@ -108,21 +106,6 @@ namespace Dsa.DataStructures
         public override T[] ToArray()
         {
             return ToArray(Count, this);
-        }
-
-        /// <summary>
-        /// Copies the items in an <see cref="IEnumerable{T}"/> to the <see cref="Set{T}"/>.
-        /// </summary>
-        /// <param name="collection">Items to copy.</param>
-        /// <exception cref="ArgumentNullException"><strong>collection</strong> is <strong>null</strong>.</exception>
-        protected void CopyCollection(IEnumerable<T> collection)
-        {
-            Guard.ArgumentNull(collection, "collection");
-
-            foreach (T item in collection)
-            {
-                Add(item);
-            }
         }
     }
 }

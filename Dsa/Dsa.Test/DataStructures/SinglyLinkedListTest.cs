@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Dsa.DataStructures;
-using Dsa.Test.Utility;
 using NUnit.Framework;
 
 namespace Dsa.Test.DataStructures
@@ -13,40 +12,6 @@ namespace Dsa.Test.DataStructures
     [TestFixture]
     public class SinglyLinkedListTest
     {
-        /// <summary>
-        /// Check to see the comparer is not null.
-        /// </summary>
-        [Test]
-        public void ConstructorTest()
-        {
-            IComparerProvider<int> actual = new SinglyLinkedList<int>();
-
-            Assert.IsNotNull(actual.Comparer);
-        }
-
-        /// <summary>
-        /// Check to see that the provided comparer is not null.
-        /// </summary>
-        [Test]
-        public void OverloadedConstructorTest()
-        {
-            IComparer<Coordinate> comparer = new CoordinateComparer();
-            IComparerProvider<Coordinate> actual = new SinglyLinkedList<Coordinate>(comparer);
-
-            Assert.IsNotNull(actual.Comparer);
-        }
-
-        /// <summary>
-        /// Check to see that the correct exception is raised when the comparer is null.
-        /// </summary>
-        [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void OverloadedConstructorComparerNullTest()
-        {
-            const IComparer<Coordinate> comparer = null;
-            SinglyLinkedList<Coordinate> actual = new SinglyLinkedList<Coordinate>(comparer);
-        }
-
         /// <summary>
         /// Check to see that the SinglyLinkedListCollectionCollection reports as empty when it is.
         /// </summary>
@@ -574,6 +539,18 @@ namespace Dsa.Test.DataStructures
             SinglyLinkedList<int> sll = new SinglyLinkedList<int>();
 
             Assert.AreEqual(0, sll.ToReverseArray().Length);
+        }
+
+        /// <summary>
+        /// Check to see that the linked list is in the correct state when passing in an IEnumerable.
+        /// </summary>
+        [Test]
+        public void CopyConstructorTest()
+        {
+            List<string> collection = new List<string> { "Granville", "Barnett", "Luca", "Del", "Tongo" };
+            SinglyLinkedList<string> actual = new SinglyLinkedList<string>(collection);
+
+            Assert.AreEqual(5, actual.Count);
         }
     }
 }

@@ -144,5 +144,30 @@ namespace Dsa.Test.DataStructures
 
             CollectionAssert.AreEqual(expected, actual);
         }
+
+        /// <summary>
+        /// Check to see that copying an existing collection to a priority queue results in the correct state.
+        /// </summary>
+        [Test]
+        public void CopyConstructorTest()
+        {
+            List<string> collection = new List<string> { "Granville", "Barnett", "Luca", "Del", "Tongo" };
+            PriorityQueue<string> actual = new PriorityQueue<string>(collection);
+
+            Assert.AreEqual(5, actual.Count);
+        }
+
+        /// <summary>
+        /// Check to see that the collection is left in the correct state when using a custom strategy and the items from an existing
+        /// collection to populate the queue.
+        /// </summary>
+        [Test]
+        public void CopyConstructorCustomStrategyTest()
+        {
+            List<string> collection = new List<string> { "Granville", "Barnett", "Luca", "Del", "Tongo" };
+            PriorityQueue<string> actual = new PriorityQueue<string>(collection, Strategy.Max);
+
+            Assert.AreEqual(5, actual.Count);
+        }
     }
 }

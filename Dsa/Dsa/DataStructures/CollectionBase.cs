@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 using Dsa.Properties;
+using Dsa.Utility;
 
 namespace Dsa.DataStructures
 {
@@ -137,6 +138,21 @@ namespace Dsa.DataStructures
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
+        }
+
+        /// <summary>
+        /// Copies the items in an <see cref="IEnumerable{T}"/> to the <see cref="Set{T}"/>.
+        /// </summary>
+        /// <param name="collection">Items to copy.</param>
+        /// <exception cref="ArgumentNullException"><strong>collection</strong> is <strong>null</strong>.</exception>
+        protected void CopyCollection(IEnumerable<T> collection)
+        {
+            Guard.ArgumentNull(collection, "collection");
+
+            foreach (T item in collection)
+            {
+                Add(item);
+            }
         }
 
         /// <summary>

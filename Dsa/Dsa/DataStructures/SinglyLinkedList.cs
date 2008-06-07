@@ -2,8 +2,7 @@
 //   Copyright (C) Data Structures and Algorithms Team.
 // </copyright>
 // <summary>
-//   Node based implementation of a linked list where every node has only a reference to the next
-//   node.
+//   Node based implementation of a linked list where every node has only a reference to the next node.
 // </summary>
 using System;
 using System.Collections.Generic;
@@ -16,17 +15,18 @@ namespace Dsa.DataStructures
     /// </summary>
     /// <typeparam name="T">Type of the <see cref="SinglyLinkedList{T}"/>.</typeparam>
     [Serializable]
-    public sealed class SinglyLinkedList<T> : CollectionBase<T>, IComparerProvider<T>
+    public sealed class SinglyLinkedList<T> : CollectionBase<T>
+        where T : IComparable<T>
     {
         [NonSerialized]
         private SinglyLinkedListNode<T> _head;
         [NonSerialized]
         private SinglyLinkedListNode<T> _tail;
         [NonSerialized]
-        private IComparer<T> _comparer;
+        private readonly IComparer<T> _comparer;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SinglyLinkedList{T}"/> class.
+        /// Creates and initializes a new instance of the <see cref="SinglyLinkedList{T}"/> class.
         /// </summary>
         public SinglyLinkedList() 
         {
@@ -34,15 +34,14 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SinglyLinkedList{T}"/> class using a specified <see cref="IComparer{T}"/>.
+        /// Creates and initializes a new instance of <see cref="SinglyLinkedList{T}"/>, populating it with the items from the provided
+        /// <see cref="IEnumerable{T}"/>.
         /// </summary>
-        /// <param name="comparer">Comparer to use.</param>
-        /// <exception cref="ArgumentNullException"><strong>comparer</strong> is <strong>null</strong>.</exception>
-        public SinglyLinkedList(IComparer<T> comparer) 
+        /// <param name="collection">Items to populate <see cref="SinglyLinkedList{T}"/> with.</param>
+        public SinglyLinkedList(IEnumerable<T> collection)
+            : this()
         {
-            Guard.ArgumentNull(comparer, "comparer");
-
-            _comparer = comparer;
+            CopyCollection(collection);
         }
 
         /// <summary>
@@ -59,14 +58,6 @@ namespace Dsa.DataStructures
         public SinglyLinkedListNode<T> Tail
         {
             get { return _tail; }
-        }
-
-        /// <summary>
-        /// Gets the <seealso cref=" IComparer{T}"/> being used.
-        /// </summary>
-        IComparer<T> IComparerProvider<T>.Comparer
-        {
-            get { return _comparer; }
         }
 
         /// <summary>

@@ -18,27 +18,15 @@ namespace Dsa.DataStructures
     /// the <see cref="OrderedSet{T}"/> cannot guarantee the set contains only unique objects.
     /// </remarks>
     /// <typeparam name="T">Type of OrderedSet.</typeparam>
-    public sealed class OrderedSet<T> : Set<T>, IComparerProvider<T>
+    public sealed class OrderedSet<T> : Set<T>
+        where T : IComparable<T>
     {
-        [NonSerialized]
-        private IComparer<T> _comparer = Comparer<T>.Default;
-
         /// <summary>
         /// Creates and initializes a new instance of <see cref="OrderedSet{T}"/>.
         /// </summary>
         public OrderedSet()
             : base(new BinarySearchTree<T>()) 
-        { 
-        }
-
-        /// <summary>
-        /// Creates and initializes a new instance of <see cref="OrderedSet{T}"/> using a specified <see cref="IComparer{T}"/>.
-        /// </summary>
-        /// <param name="comparer">Comparer to use.</param>
-        public OrderedSet(IComparer<T> comparer) :
-            base(new BinarySearchTree<T>(comparer))
         {
-            _comparer = comparer;
         }
 
         /// <summary>
@@ -58,14 +46,6 @@ namespace Dsa.DataStructures
             : this()
         {
             CopyCollection(collection);
-        }
-
-        /// <summary>
-        /// Gets the comparer used for the <see cref="OrderedSet{T}"/>.
-        /// </summary>
-        IComparer<T> IComparerProvider<T>.Comparer
-        {
-            get { return _comparer; }
         }
 
         /// <summary>

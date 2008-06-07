@@ -17,17 +17,18 @@ namespace Dsa.DataStructures
     /// </summary>
     /// <typeparam name="T">Type of <see cref="DoublyLinkedList{T}"/>.</typeparam>
     [Serializable]
-    public sealed class DoublyLinkedList<T> : CollectionBase<T>, IComparerProvider<T>
+    public sealed class DoublyLinkedList<T> : CollectionBase<T>
+        where T : IComparable<T>
     {
         [NonSerialized]
         private DoublyLinkedListNode<T> _head;
         [NonSerialized]
         private DoublyLinkedListNode<T> _tail;
         [NonSerialized]
-        private IComparer<T> _comparer;
+        private readonly IComparer<T> _comparer;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DoublyLinkedList{T}"/> class.
+        /// Creates and initializes a new instance of the <see cref="DoublyLinkedList{T}"/> class.
         /// </summary>
         public DoublyLinkedList() 
         {
@@ -35,15 +36,14 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DoublyLinkedList{T}"/> class with a specified <see cref="IComparer{T}"/>.
+        /// Creates and initializes a new instance of <see cref="DoublyLinkedList{T}"/>, populating it with the items of the 
+        /// <see cref="IEnumerable{T}"/>.
         /// </summary>
-        /// <param name="comparer">Comparer to use for the <see cref="DoublyLinkedList{T}"/>.</param>
-        /// <exception cref="ArgumentNullException"><strong>comparer</strong> is <strong>null</strong>.</exception>
-        public DoublyLinkedList(IComparer<T> comparer) 
+        /// <param name="collection">Items to populate <see cref="DoublyLinkedList{T}"/> with.</param>
+        public DoublyLinkedList(IEnumerable<T> collection)
+            : this()
         {
-            Guard.ArgumentNull(comparer, "comparer");
-
-            _comparer = comparer;
+            CopyCollection(collection);
         }
 
         /// <summary>
@@ -60,14 +60,6 @@ namespace Dsa.DataStructures
         public DoublyLinkedListNode<T> Tail
         {
             get { return _tail; }
-        }
-
-        /// <summary>
-        /// Gets the <see cref="IComparer{T}"/> being used.
-        /// </summary>
-        IComparer<T> IComparerProvider<T>.Comparer
-        {
-            get { return _comparer; }
         }
 
         /// <summary>
@@ -315,7 +307,7 @@ namespace Dsa.DataStructures
         {
             foreach (T value in this)
             {
-                if (_comparer.Compare(value, item) == 0)
+                if (Compare.AreEqual(value, item, _comparer))
                 {
                     return true;
                 }
@@ -339,7 +331,7 @@ namespace Dsa.DataStructures
                 return false;
             }
 
-            if (_head.Next == null && _comparer.Compare(_head.Value, item) == 0)
+            if (_head.Next == null && Compare.AreEqual(_head.Value, item, _comparer))
             {
                 // we are removing the only node in the dll
                 _head = null;
@@ -351,12 +343,12 @@ namespace Dsa.DataStructures
             if (_head.Next == _tail) 
             {
                 // there are only two nodes in the dll
-                if (_comparer.Compare(_head.Value, item) == 0) 
+                if (Compare.AreEqual(_head.Value, item, _comparer)) 
                 {
                     _head = _head.Next; 
                     _head.Previous = null;
                 }
-                else if (_comparer.Compare(_tail.Value, item) == 0) 
+                else if (Compare.AreEqual(_tail.Value, item, _comparer)) 
                 {
                     _tail = _head; 
                     _head.Next = null;
@@ -369,7 +361,7 @@ namespace Dsa.DataStructures
             DoublyLinkedListNode<T> n = _head;
             while (n != null)
             {
-                if (_comparer.Compare(n.Value, item) == 0) 
+                if (Compare.AreEqual(n.Value, item, _comparer)) 
                 {
                     // we have found a node with the value specified to remove
                     if (n == _head) 

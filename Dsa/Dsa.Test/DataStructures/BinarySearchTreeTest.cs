@@ -25,29 +25,6 @@ namespace Dsa.Test.DataStructures
         }
 
         /// <summary>
-        /// Check to see that a bst can have a user provided comparer to use.
-        /// </summary>
-        [Test]
-        public void OverloadedConstructorTest()
-        {
-            IComparer<Coordinate> comparer = new CoordinateComparer();
-            IComparerProvider<Coordinate> actual = new BinarySearchTree<Coordinate>(comparer);
-
-            Assert.IsNotNull(actual.Comparer);
-        }
-
-        /// <summary>
-        /// Check to see that the correct exception is raised when the comparer is null.
-        /// </summary>
-        [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void OverloadedConstructorComparerNullTest()
-        {
-            const IComparer<Coordinate> comparer = null;
-            BinarySearchTree<Coordinate> actual = new BinarySearchTree<Coordinate>(comparer);
-        }
-
-        /// <summary>
         /// Check to see that the insert asserts the correct state changes.
         /// </summary>
         [Test]
@@ -566,6 +543,18 @@ namespace Dsa.Test.DataStructures
             BinarySearchTree<int> actual = new BinarySearchTree<int>();
 
             actual.Remove(10);
+        }
+
+        /// <summary>
+        /// Check to make sure the bst is left in the correct state when copying the items from an IEnumerable to it.
+        /// </summary>
+        [Test]
+        public void CopyContructorTest()
+        {
+            List<string> collection = new List<string> { "Granville", "Barnett", "Luca", "Del", "Tongo" };
+            BinarySearchTree<string> actual = new BinarySearchTree<string>(collection);
+
+            Assert.AreEqual(5, actual.Count);
         }
     }
 }

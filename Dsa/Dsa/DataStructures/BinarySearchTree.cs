@@ -16,7 +16,8 @@ namespace Dsa.DataStructures
     /// </summary>
     /// <typeparam name="T">Type of <see cref="BinarySearchTree{T}"/>.</typeparam>
     [Serializable]
-    public sealed class BinarySearchTree<T> : CollectionBase<T>, IComparerProvider<T>
+    public sealed class BinarySearchTree<T> : CollectionBase<T>
+        where T : IComparable<T>
     {
         [NonSerialized]
         private readonly IComparer<T> _comparer;
@@ -24,7 +25,7 @@ namespace Dsa.DataStructures
         private BinaryTreeNode<T> _root;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BinarySearchTree{T}"/> class.
+        /// Creates and initializes a new instance of the <see cref="BinarySearchTree{T}"/> class.
         /// </summary>
         public BinarySearchTree() 
         {
@@ -32,15 +33,14 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BinarySearchTree{T}"/> class using a provided <see cref="IComparer{T}"/>.
+        /// Creates and initializes a new instance of <see cref="BinarySearchTree{T}"/>, populating it with the items from the
+        /// <see cref="IEnumerable{T}"/>.
         /// </summary>
-        /// <param name="comparer">Comparer to use with <see cref="BinarySearchTree{T}"/>.</param>
-        /// <exception cref="ArgumentNullException"><strong>comparer</strong> is <strong>null</strong>.</exception>
-        public BinarySearchTree(IComparer<T> comparer)
+        /// <param name="collection">Items to populate <see cref="BinarySearchTree{T}"/>.</param>
+        public BinarySearchTree(IEnumerable<T> collection)
+            : this()
         {
-            Guard.ArgumentNull(comparer, "comparer");
-
-            _comparer = comparer;
+            CopyCollection(collection);
         }
 
         /// <summary>
@@ -49,14 +49,6 @@ namespace Dsa.DataStructures
         public BinaryTreeNode<T> Root
         {
             get { return _root; }
-        }
-
-        /// <summary>
-        /// Gets the <see cref="IComparer{T}"/> being used.
-        /// </summary>
-        IComparer<T> IComparerProvider<T>.Comparer
-        {
-            get { return _comparer; }
         }
 
         /// <summary>
