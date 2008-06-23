@@ -1,5 +1,6 @@
 \documentclass[10pt,oneside,a4paper]{report}
 \usepackage{url}
+\usepackage{ifsym}
 \begin{document}
 
 \title{Data Structures and Algorithms\\Pseudocode}
@@ -22,7 +23,80 @@ The designs provided here serve as a reference for those who want to port well d
 \part{Algorithms}
 
 \chapter{Sorting}
-Test.
+All the sorting algorithms in this chapter use data structures of a specific type to demonstrate sorting, e.g. a $32$ bit integer is often used as its associated operations (e.g. $<$, $>$, etc) are clear in their behaviour.
+
+The algorithms discussed can easily be translated into generic sorting algorithms within your respective language of choice.
+
+\section{Bubble Sort}
+One of the most simple forms of sorting is that of comparing each item with every other item in some list, however as the description may imply this form of sorting is not particularly effecient $O(n^{2})$.
+
+In it's most simple form bubble sort can be implemented as two loops.
+
+\begin{tabbing}
+1)  \textbf{alg}\= \textbf{orithm} BubbleSort($list$) \\
+2)  \> \textbf{Pre:}~~$list$ is a list of integers, and $list != \emptyset$ \\
+3)  \> \textbf{Post:}~$list$ has been sorted into values of ascending order \\
+4)  \> \textbf{for}\=~$i \leftarrow 0$ to $list.Count - 1$ \\
+5)  \> \> \textbf{for}\=~$j \leftarrow 0$ to $list.Count - 1$ \\
+6)  \> \> \> \textbf{if}~\= $list[i] < list[j]$ \\
+7)  \> \> \> \> $Swap(list[i], list[j])$ \\
+8)  \> \> \> \textbf{end if} \\
+9)  \> \> \textbf{end for} \\
+10) \> \textbf{end for} \\
+11) \> \textbf{return} $list$ \\
+12) \textbf{end} BubbleSort
+\end{tabbing}
+
+\section{Merge Sort}
+Merge sort is an algorithm that has a fairly effecient space time complexity - $O(n~log~n)$ and is fairly trivial to implement.
+
+The algorithm is based on splitting a list, into two similar sized lists ($left$, and $right$) and sorting each list and then merging the sorted lists back together.
+
+\textit{Note: the function MergeOrdered simply takes two ordered lists and makes them one.}
+
+\begin{tabbing}
+1)  \textbf{alg}\= \textbf{orithm} Mergesort($list$) \\
+2)  \> \textbf{Pre:}~~$list$ is a list of integers, and $list~!=~\emptyset$ \\
+3)  \> \textbf{Post:}~$list$ has been sorted into values of ascending order \\
+4)  \> \textbf{if}~\= $list$.Count $= 1$ // already sorted \\
+5)  \> \> \textbf{return}~$list$ \\
+6)  \> \textbf{end if} \\
+7)  \> $m \leftarrow list$.Count $/~2$ \\
+8)  \> $left \leftarrow$ list($m$) \\
+9)  \> $right \leftarrow$ list($list$.Count $-~m$) \\
+10) \> \textbf{for}\=~$i \leftarrow 0$ to $left$.Count$-1$ \\
+11) \> \> $left$[$i$] $\leftarrow$ list[$i$] \\
+12) \> \textbf{end for} \\
+13) \> \textbf{for}\=~$i \leftarrow 0$ to $right$.Count$-1$ \\
+14) \> \> $right$[$i$] $\leftarrow$ list[$i$] \\
+15) \> \textbf{end for} \\
+16) \> $left \leftarrow$ Mergesort($left$) \\
+17) \> $right \leftarrow$ Mergesort($right$) \\
+18) \> \textbf{return} MergeOrdered($left$, $right$) \\
+19) \textbf{end} Mergesort \\
+\end{tabbing}
+
+\section{Insertion Sort}
+Insertion sort is a somewhat interesting algorithm with an expensive runtime of $O(n^{2})$. It can be best thought of as a sorting scheme similar to that of sorting a hand of playing cards, i.e. you take one card and then look a the rest with the intent of building up an ordered set of cards in your hand.
+
+\begin{tabbing}
+1)  \textbf{alg}\= \textbf{orithm} Insertionsort($list$) \\
+2)  \> \textbf{Pre:}~~$list$ is a list of integers, and $list~!=~\emptyset$ \\
+3)  \> \textbf{Post:}~$list$ has been sorted into values of ascending order \\
+4)  \> $unsorted \leftarrow 1$ \\
+5)  \> \textbf{whi}\= \textbf{le} $unsorted < list$.Count \\
+6)  \> \> $hold \leftarrow list$[$unsorted$] \\
+7)  \> \> $i \leftarrow unsorted - 1$ \\
+8)  \> \> \textbf{whi}\= \textbf{le} $i \geq 0$ \textbf{AND} $hold < list$[$i$] \\
+9)  \> \> \> $list$[$i + 1$] $\leftarrow$ $list$[$i$] \\
+10) \> \> \> $i \leftarrow i - 1$ \\
+11) \> \> \textbf{end while} \\
+12) \> \> $list$[$i+1$] $\leftarrow hold$ \\
+13) \> \> $unsorted \leftarrow unsorted + 1$ \\
+14) \> \textbf{end while} \\
+15) \> \textbf{return} $list$ \\
+16) \textbf{end} Insertionsort \\
+\end{tabbing}
 
 \chapter{Numeric}
 \section{Primality Test} \label{cha:Primality}
@@ -32,14 +106,15 @@ In an attempt to slow down the inner loop the $\sqrt{n}$ is used as the upper bo
 
 \begin{tabbing}
 1) \textbf{alg}\= \textbf{orithm} IsPrime($n$)\\
-2) \> \textbf{for} \= $i \leftarrow 2$ \textbf{to} $n$ \textbf{do}\\
-3) \> \> \textbf{for} \= $j \leftarrow 1$ \textbf{to} $sqrt(n)$ \textbf{do}\\
-4) \> \> \> \textbf{if} ~\= $i * j = n$\\
-5) \> \> \> \> \textbf{return} false\\
-6) \> \> \> \textbf{end if}\\
-7) \> \> \textbf{end for}\\	
-8) \> \textbf{end for}\\
-9) \textbf{end} IsPrime
+2) \> \textbf{Post:} $n$ is determined to be a prime or not \\
+3) \> \textbf{for} \= $i \leftarrow 2$ \textbf{to} $n$ \textbf{do}\\
+4) \> \> \textbf{for} \= $j \leftarrow 1$ \textbf{to} $sqrt(n)$ \textbf{do}\\
+5) \> \> \> \textbf{if}~\= $i * j = n$\\
+6) \> \> \> \> \textbf{return} false\\
+7) \> \> \> \textbf{end if}\\
+8) \> \> \textbf{end for}\\	
+9) \> \textbf{end for}\\
+10) \textbf{end} IsPrime
 \end{tabbing}
 
 \section{Base conversions}
@@ -47,11 +122,13 @@ DSA contains a number of algorithms that convert a base $10$ number to its equiv
 
 \begin{tabbing}
 1) \textbf{alg}\= \textbf{orithm} ToBinary($n$)\\
-2) \> \textbf{whi}\= \textbf{le} $n > 0$\\
-3) \> \> $list.Add(n~\%~2)$\\
-4) \> \> $n \leftarrow n / 2$\\
-5) \> \textbf{end while}\\
-6) \textbf{end} ToBinary\\
+2) \> \textbf{Pre:}~~$n \geq 0$ \\
+3) \> \textbf{Post:}~$n$ has been converted into its base $2$ representation \\
+4) \> \textbf{whi}\= \textbf{le} $n > 0$\\
+5) \> \> $list.Add(n~\%~2)$\\
+6) \> \> $n \leftarrow n / 2$\\
+7) \> \textbf{end while}\\
+8) \textbf{end} ToBinary\\
 \end{tabbing}
 
 \appendix
@@ -83,7 +160,37 @@ In this example we will convert the algorithm in \S\ref{cha:Primality} to the C\
 
 For the most part the conversion is a straight forward process, however you may have to inject various calls to other utility algorithms to ascertain the correct result.
 
+A consideration to take note of is that many algorithms have fairly strict preconditions, of which there may be several - in these scenarios you will need to inject the correct code to handle such situations to preserve the correctness of the algorithm. Most of the preconditions can be suitably handled by throwing the correct exception.
+
 \chapter{Symbol Definitions}
 Throughout the pseudocode listings you will find several symbols used,  describes the meaning of each of those symbols.
+
+\begin{tabular}[t]{|c|l|}
+\hline
+\textbf{Symbol} & \textbf{Description} \\
+\hline
+$\leftarrow$ & Assignment. In most imperative languages this equates to $=$ \\
+\hline
+$=$ & Equality. Most imperative languages use $==$ to denote a check for equality. \\
+\hline
+$\leq$ & Less than or equal to. Commonly this is denoted as $<=$ in imperative languages. \\
+\hline
+$<$ & Less than.* \\
+\hline
+$\geq$ & Greater than or equal to. Commonly this is denoted as $>=$ in imperative languages. \\
+\hline
+$>$ & Greater than.* \\
+\hline
+$!=$ & Inequality. * \\
+\hline
+$\emptyset$ & Null. \\
+\hline
+AND & Logical and. Commonly \&\& in imperative languages. \\
+\hline
+OR & Logical or. Commonly || in imperative languages. \\ % should be using \StrokeTwo but I get an error
+\hline
+\end{tabular}
+
+* This symbol has a direct translation with the vast majority of imperative counterparts.
 
 \end{document}
