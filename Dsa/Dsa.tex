@@ -20,6 +20,25 @@ The designs provided here serve as a reference for those who want to port well d
 
 \part{Data Structures}
 
+\chapter{Linked Lists}
+\section{Singly Linked List}
+\section{Doubly Linked List}
+
+\chapter{Binary Search Tree}
+
+\chapter{Heap}
+
+\chapter{Sets}
+\section{Unordered}
+\section{Ordered}
+
+\chapter{Queues}
+\section{Standard Queue}
+\section{Priority Queue}
+
+\chapter{Balanced Trees}
+\section{AVL Tree}
+
 \part{Algorithms}
 
 \chapter{Sorting}
@@ -34,7 +53,7 @@ In it's most simple form bubble sort can be implemented as two loops.
 
 \begin{tabbing}
 1)  \textbf{alg}\= \textbf{orithm} BubbleSort($list$) \\
-2)  \> \textbf{Pre:}~~$list$ is a list of integers, and $list != \emptyset$ \\
+2)  \> \textbf{Pre:}~~$list~!= \emptyset$ \\
 3)  \> \textbf{Post:}~$list$ has been sorted into values of ascending order \\
 4)  \> \textbf{for}\=~$i \leftarrow 0$ to $list.Count - 1$ \\
 5)  \> \> \textbf{for}\=~$j \leftarrow 0$ to $list.Count - 1$ \\
@@ -56,7 +75,7 @@ The algorithm is based on splitting a list, into two similar sized lists ($left$
 
 \begin{tabbing}
 1)  \textbf{alg}\= \textbf{orithm} Mergesort($list$) \\
-2)  \> \textbf{Pre:}~~$list$ is a list of integers, and $list~!=~\emptyset$ \\
+2)  \> \textbf{Pre:}~~$list~!=~\emptyset$ \\
 3)  \> \textbf{Post:}~$list$ has been sorted into values of ascending order \\
 4)  \> \textbf{if}~\= $list$.Count $= 1$ // already sorted \\
 5)  \> \> \textbf{return}~$list$ \\
@@ -81,13 +100,13 @@ Insertion sort is a somewhat interesting algorithm with an expensive runtime of 
 
 \begin{tabbing}
 1)  \textbf{alg}\= \textbf{orithm} Insertionsort($list$) \\
-2)  \> \textbf{Pre:}~~$list$ is a list of integers, and $list~!=~\emptyset$ \\
+2)  \> \textbf{Pre:}~~ $list~!=~\emptyset$ \\
 3)  \> \textbf{Post:}~$list$ has been sorted into values of ascending order \\
 4)  \> $unsorted \leftarrow 1$ \\
 5)  \> \textbf{whi}\= \textbf{le} $unsorted < list$.Count \\
 6)  \> \> $hold \leftarrow list$[$unsorted$] \\
 7)  \> \> $i \leftarrow unsorted - 1$ \\
-8)  \> \> \textbf{whi}\= \textbf{le} $i \geq 0$ \textbf{AND} $hold < list$[$i$] \\
+8)  \> \> \textbf{whi}\= \textbf{le} $i \geq 0$ \textbf{and} $hold < list$[$i$] \\
 9)  \> \> \> $list$[$i + 1$] $\leftarrow$ $list$[$i$] \\
 10) \> \> \> $i \leftarrow i - 1$ \\
 11) \> \> \textbf{end while} \\
@@ -98,7 +117,33 @@ Insertion sort is a somewhat interesting algorithm with an expensive runtime of 
 16) \textbf{end} Insertionsort \\
 \end{tabbing}
 
+\section{Shell Sort}
+\begin{tabbing}
+1)  \textbf{alg}\= \textbf{orithm} ShellSort($list$) \\
+2)  \> \textbf{Pre:}~~$list~!=~\emptyset$ \\
+3)  \> \textbf{Post:}~$list$ has been sorted into values of ascending order \\
+4)  \> $increment \leftarrow list$.Count $/~2$ \\
+5)  \> \textbf{whi}\= \textbf{le} $increment~!= 0$ \\
+6)  \> \> $current \leftarrow increment$ \\
+7)  \> \> \textbf{whi}\= \textbf{le} $current < list$.Count \\
+8)  \> \> \> $hold \leftarrow list$[$current$] \\
+9)  \> \> \> $i \leftarrow current - increment$ \\
+10) \> \> \> \textbf{whi}\= \textbf{le} $i \geq 0$ \textbf{and} $hold < list$[$i$] \\
+11) \> \> \> \> $list$[$i + increment$] $\leftarrow list$[$i$] \\
+12) \> \> \> \> $i -= increment$ \\
+13) \> \> \> \textbf{end while} \\
+14) \> \> \> $list$[$i + increment$] $\leftarrow hold$ \\
+15) \> \> \> $current \leftarrow current + 1$ \\
+16) \> \> \textbf{end while} \\
+17) \> \> $increment~/= 2$ \\
+18) \> \textbf{end while} \\
+19) \> \textbf{return} $list$ \\
+20) \textbf{end} ShellSort \\
+\end{tabbing}
+
 \chapter{Numeric}
+Unless stated otherwise the alias $n$ denotes a standard $32$ bit integer.
+
 \section{Primality Test} \label{cha:Primality}
 A simple algorithm that determines whether or not a given integer is a prime number, e.g. $2$, $5$, $7$, and $13$ are \textbf{all} prime numbers, however $6$ is not as it can be the result of the product of two numbers that are $< 6$.
 
@@ -130,6 +175,12 @@ DSA contains a number of algorithms that convert a base $10$ number to its equiv
 7) \> \textbf{end while}\\
 8) \textbf{end} ToBinary\\
 \end{tabbing}
+
+\chapter{Searching}
+
+\chapter{Sets}
+
+\chapter{Strings}
 
 \appendix
 \chapter{Translation Walkthrough}
@@ -185,9 +236,9 @@ $!=$ & Inequality. * \\
 \hline
 $\emptyset$ & Null. \\
 \hline
-AND & Logical and. Commonly \&\& in imperative languages. \\
+\textbf{and} & Logical and. Commonly \&\& in imperative languages. \\
 \hline
-OR & Logical or. Commonly || in imperative languages. \\ % should be using \StrokeTwo but I get an error
+\textbf{or} & Logical or. Commonly || in imperative languages. \\ % should be using \StrokeTwo but I get an error
 \hline
 \end{tabular}
 
