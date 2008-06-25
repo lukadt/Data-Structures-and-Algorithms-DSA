@@ -19,18 +19,18 @@ namespace Dsa.DataStructures
         where T : IComparable<T>
     {
         [NonSerialized]
-        private SinglyLinkedListNode<T> _head;
+        private SinglyLinkedListNode<T> head;
         [NonSerialized]
-        private SinglyLinkedListNode<T> _tail;
+        private SinglyLinkedListNode<T> tail;
         [NonSerialized]
-        private readonly IComparer<T> _comparer;
+        private readonly IComparer<T> comparer;
 
         /// <summary>
         /// Creates and initializes a new instance of the <see cref="SinglyLinkedList{T}"/> class.
         /// </summary>
         public SinglyLinkedList() 
         {
-            _comparer = Comparer<T>.Default;
+            comparer = Comparer<T>.Default;
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace Dsa.DataStructures
         /// </summary>
         public SinglyLinkedListNode<T> Head
         {
-            get { return _head; }
+            get { return head; }
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace Dsa.DataStructures
         /// </summary>
         public SinglyLinkedListNode<T> Tail
         {
-            get { return _tail; }
+            get { return tail; }
         }
 
         /// <summary>
@@ -72,13 +72,13 @@ namespace Dsa.DataStructures
             SinglyLinkedListNode<T> n = new SinglyLinkedListNode<T>(item);
             if (IsEmpty())
             {
-                _head = n;
-                _tail = n;
+                head = n;
+                tail = n;
             }
             else
             {
-                _tail.Next = n;
-                _tail = n;
+                tail.Next = n;
+                tail = n;
             }
 
             Count++;
@@ -96,13 +96,13 @@ namespace Dsa.DataStructures
             SinglyLinkedListNode<T> n = new SinglyLinkedListNode<T>(item);
             if (IsEmpty())
             {
-                _head = n;
-                _tail = n;
+                head = n;
+                tail = n;
             }
             else
             {
-                n.Next = _head;
-                _head = n;
+                n.Next = head;
+                head = n;
             }
 
             Count++;
@@ -125,15 +125,15 @@ namespace Dsa.DataStructures
             SinglyLinkedListNode<T> n = new SinglyLinkedListNode<T>(item);
 
             // check to see if node is the only node in the linked list
-            if (node == _head && node == _tail)
+            if (node == head && node == tail)
             {
-                _head.Next = n;
-                _tail = n;
+                head.Next = n;
+                tail = n;
             }
-            else if (node == _tail)
+            else if (node == tail)
             {
-                _tail.Next = n;
-                _tail = n;
+                tail.Next = n;
+                tail = n;
             }
             else
             {
@@ -159,14 +159,14 @@ namespace Dsa.DataStructures
             Guard.ArgumentNull(node, "node");
 
             SinglyLinkedListNode<T> n = new SinglyLinkedListNode<T>(item);
-            if (node == _head)
+            if (node == head)
             {
-                n.Next = _head;
-                _head = n;
+                n.Next = head;
+                head = n;
             }
             else
             {
-                SinglyLinkedListNode<T> curr = _head;
+                SinglyLinkedListNode<T> curr = head;
                 while (curr != null)
                 {
                     if (curr.Next == node) 
@@ -192,7 +192,7 @@ namespace Dsa.DataStructures
         /// <returns>True if the <see cref="SinglyLinkedList{T}"/> is empty; false otherwise.</returns>
         public bool IsEmpty()
         {
-            return _head == null; 
+            return head == null; 
         }
 
         /// <summary>
@@ -237,18 +237,18 @@ namespace Dsa.DataStructures
 
             if (Count == 1)
             {
-                _head = null;
-                _tail = null;
+                head = null;
+                tail = null;
             }
             else
             {
-                SinglyLinkedListNode<T> n = _head;
+                SinglyLinkedListNode<T> n = head;
                 while (n != null)
                 {
-                    if (n.Next == _tail) 
+                    if (n.Next == tail) 
                     {
-                        _tail = n;
-                        _tail.Next = null;
+                        tail = n;
+                        tail.Next = null;
                         break;
                     }
 
@@ -277,12 +277,12 @@ namespace Dsa.DataStructures
 
             if (Count == 1) 
             {
-                _head = null;
-                _tail = null;
+                head = null;
+                tail = null;
             }
             else
             {
-                _head = _head.Next; 
+                head = head.Next; 
             }
 
             Count--;
@@ -323,8 +323,8 @@ namespace Dsa.DataStructures
         /// </summary>
         public override void Clear()
         {
-            _head = null;
-            _tail = null;
+            head = null;
+            tail = null;
             Count = 0;
         }
 
@@ -340,7 +340,7 @@ namespace Dsa.DataStructures
         {
             foreach (T value in this)
             {
-                if (Compare.AreEqual(value, item, _comparer))
+                if (Compare.AreEqual(value, item, comparer))
                 {
                     return true;
                 }
@@ -365,35 +365,35 @@ namespace Dsa.DataStructures
                 return false;
             }
 
-            SinglyLinkedListNode<T> n = _head;
+            SinglyLinkedListNode<T> n = head;
 
             // check to see if the node to be removed is the head node
-            if (Compare.AreEqual(n.Value, item, _comparer))
+            if (Compare.AreEqual(n.Value, item, comparer))
             {
-                if (n == _tail)
+                if (n == tail)
                 {
-                    _tail = null; 
+                    tail = null; 
                 }
 
-                _head = _head.Next;
+                head = head.Next;
                 Count--;
                 return true;
             }
 
             while (n != null)
             {
-                if (!(Compare.AreEqual(n.Value, item, _comparer)) && n.Next == null)
+                if (!(Compare.AreEqual(n.Value, item, comparer)) && n.Next == null)
                 {
                     break; // we couldn't find the value to remove in the linked list
                 }
 
-                if (Compare.AreEqual(n.Next.Value, item, _comparer)) 
+                if (Compare.AreEqual(n.Next.Value, item, comparer)) 
                 {
                     // we have found the node to remove
-                    if (n.Next == _tail)
+                    if (n.Next == tail)
                     {
                         // the node to be removed was the tail so we need to make n the new tail
-                        _tail = n;
+                        tail = n;
                         n.Next = null;
                         Count--;
                         return true;
@@ -420,8 +420,8 @@ namespace Dsa.DataStructures
         /// <returns>An <see cref="IEnumerable{T}" /> that can be used to iterate through the <see cref="SinglyLinkedList{T}"/>.</returns>
         public IEnumerable<T> GetReverseEnumerator()
         {
-            SinglyLinkedListNode<T> n = _head;
-            SinglyLinkedListNode<T> curr = _tail;
+            SinglyLinkedListNode<T> n = head;
+            SinglyLinkedListNode<T> curr = tail;
             if (n != null)
             {
                 while (n != curr)
@@ -430,7 +430,7 @@ namespace Dsa.DataStructures
                     {
                         yield return curr.Value;
                         curr = n;
-                        n = _head;
+                        n = head;
                     }
                     else
                     {

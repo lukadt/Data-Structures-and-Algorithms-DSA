@@ -23,20 +23,20 @@ namespace Dsa.DataStructures
         where T : IComparable<T>
     {
         [NonSerialized]
-        private T[] _heap;
+        private T[] heap;
         [NonSerialized]
-        private readonly IComparer<T> _comparer;
+        private readonly IComparer<T> comparer;
         [NonSerialized]
-        private readonly Strategy _strategy;
+        private readonly Strategy strategy;
 
         /// <summary>
         /// Creates and initializes a new instance of <see cref="Heap{T}"/>.
         /// </summary>
         public Heap()
         {
-            _heap = new T[4];
-            _comparer = Comparer<T>.Default;
-            _strategy = Strategy.Min;
+            heap = new T[4];
+            comparer = Comparer<T>.Default;
+            strategy = Strategy.Min;
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace Dsa.DataStructures
         public Heap(Strategy strategy)
             : this()
         {
-            _strategy = strategy;
+            this.strategy = strategy;
         }
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace Dsa.DataStructures
             get
             {
                 Guard.OutOfRange(index < 0 || index > Count - 1, "index", Resources.IndexNotWithinBoundsOfHeap);
-                return _heap[index];
+                return heap[index];
             }
         }
 
@@ -95,13 +95,13 @@ namespace Dsa.DataStructures
         /// <param name="item">Item to add to the heap.</param>
         public override void Add(T item)
         {
-            if (Count == _heap.Length)
+            if (Count == heap.Length)
             {
-                Array.Resize(ref _heap, 2 * _heap.Length);
+                Array.Resize(ref heap, 2 * heap.Length);
             }
 
-            _heap[Count++] = item;
-            if (_strategy == Strategy.Min)
+            heap[Count++] = item;
+            if (strategy == Strategy.Min)
             {
                 MinHeapify();
             }
@@ -120,7 +120,7 @@ namespace Dsa.DataStructures
         public override void Clear()
         {
             Count = 0;
-            _heap = new T[4];
+            heap = new T[4];
         }
 
         /// <summary>
@@ -133,7 +133,7 @@ namespace Dsa.DataStructures
         /// <returns>True is the item if in the Heap; otherwise false.</returns>
         public override bool Contains(T item)
         {
-            return Array.IndexOf(_heap, item) < 0 ? false : true;
+            return Array.IndexOf(heap, item) < 0 ? false : true;
         }
 
         /// <summary>
@@ -146,43 +146,43 @@ namespace Dsa.DataStructures
         /// <returns>True if the item was found and removed; otherwise false.</returns>
         public override bool Remove(T item)
         {
-            int index = Array.IndexOf(_heap, item);
+            int index = Array.IndexOf(heap, item);
             if (index < 0)
             {
                 return false;
             }
 
-            _heap[index] = _heap[--Count]; // todo: refactor this!!!
-            if (_strategy == Strategy.Min)
+            heap[index] = heap[--Count]; // todo: refactor this!!!
+            if (strategy == Strategy.Min)
             {
-                while (2 * index + 1 < Count && (Compare.IsGreaterThan(_heap[index], _heap[2 * index + 1], _comparer) ||
-                                                 Compare.IsGreaterThan(_heap[index], _heap[2 * index + 2], _comparer)))
+                while (2 * index + 1 < Count && (Compare.IsGreaterThan(heap[index], heap[2 * index + 1], comparer) ||
+                                                 Compare.IsGreaterThan(heap[index], heap[2 * index + 2], comparer)))
                 {
-                    if (Compare.IsLessThan(_heap[2 * index + 1], _heap[2 * index + 2], _comparer))
+                    if (Compare.IsLessThan(heap[2 * index + 1], heap[2 * index + 2], comparer))
                     {
-                        Sorting.Exchange(_heap, index, 2 * index + 1);
+                        Sorting.Exchange(heap, index, 2 * index + 1);
                         index = 2 * index + 1;
                     }
                     else
                     {
-                        Sorting.Exchange(_heap, index, 2 * index + 2);
+                        Sorting.Exchange(heap, index, 2 * index + 2);
                         index = 2 * index + 2;
                     }
                 }
             }
             else
             {
-                while (2 * index + 1 < Count && (Compare.IsLessThan(_heap[index], _heap[2 * index + 1], _comparer) ||
-                                                 Compare.IsLessThan(_heap[index], _heap[2 * index + 2], _comparer)))
+                while (2 * index + 1 < Count && (Compare.IsLessThan(heap[index], heap[2 * index + 1], comparer) ||
+                                                 Compare.IsLessThan(heap[index], heap[2 * index + 2], comparer)))
                 {
-                    if (Compare.IsGreaterThan(_heap[2 * index + 1], _heap[2 * index + 2], _comparer))
+                    if (Compare.IsGreaterThan(heap[2 * index + 1], heap[2 * index + 2], comparer))
                     {
-                        Sorting.Exchange(_heap, index, 2 * index + 1);
+                        Sorting.Exchange(heap, index, 2 * index + 1);
                         index = 2 * index + 1;
                     }
                     else
                     {
-                        Sorting.Exchange(_heap, index, 2 * index + 2);
+                        Sorting.Exchange(heap, index, 2 * index + 2);
                         index = 2 * index + 2;
                     }
                 }
@@ -215,7 +215,7 @@ namespace Dsa.DataStructures
         {
             for (int i = 0; i < Count; i++)
             {
-                yield return _heap[i];
+                yield return heap[i];
             }
         }
 
@@ -234,9 +234,9 @@ namespace Dsa.DataStructures
         private void MinHeapify()
         {
             int i = Count - 1;
-            while (i > 0 && Compare.IsLessThan(_heap[i], _heap[(i - 1) / 2], _comparer))
+            while (i > 0 && Compare.IsLessThan(heap[i], heap[(i - 1) / 2], comparer))
             {
-                Sorting.Exchange(_heap, i, (i - 1) / 2);
+                Sorting.Exchange(heap, i, (i - 1) / 2);
                 i = (i - 1) / 2;
             }
         }
@@ -256,9 +256,9 @@ namespace Dsa.DataStructures
         private void MaxHeapify()
         {
             int i = Count - 1;
-            while (i > 0 && Compare.IsGreaterThan(_heap[i], _heap[(i - 1) / 2], _comparer))
+            while (i > 0 && Compare.IsGreaterThan(heap[i], heap[(i - 1) / 2], comparer))
             {
-                Sorting.Exchange(_heap, i, (i - 1) / 2);
+                Sorting.Exchange(heap, i, (i - 1) / 2);
                 i = (i - 1) / 2;
             }
         }

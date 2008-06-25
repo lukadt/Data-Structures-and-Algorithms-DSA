@@ -14,7 +14,7 @@ namespace Dsa.DataStructures
     /// <typeparam name="T">Type of <see cref="Set{T}"/>.</typeparam>
     public class Set<T> : CollectionBase<T>
     {
-        private readonly CollectionBase<T> _collection;
+        private readonly CollectionBase<T> collection;
 
         /// <summary>
         /// Creates and initializes a new instance of <see cref="Set{T}"/>.
@@ -22,7 +22,7 @@ namespace Dsa.DataStructures
         /// <param name="collection">Collection to use for the set.</param>
         protected Set(CollectionBase<T> collection)
         {
-            _collection = collection;
+            this.collection = collection;
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace Dsa.DataStructures
         /// </remarks>
         protected CollectionBase<T> Collection
         {
-            get { return _collection; }
+            get { return collection; }
         }
 
         /// <summary>
@@ -46,12 +46,12 @@ namespace Dsa.DataStructures
         /// <param name="item">Item to add to the <see cref="Set{T}"/>.</param>
         public override void Add(T item)
         {
-            if (_collection.Contains(item))
+            if (collection.Contains(item))
             {
                 return; // item already in set
             }
 
-            _collection.Add(item);
+            collection.Add(item);
             Count++;
         }
 
@@ -60,7 +60,7 @@ namespace Dsa.DataStructures
         /// </summary>
         public override void Clear()
         {
-            _collection.Clear();
+            collection.Clear();
             Count = 0;
         }
 
@@ -74,7 +74,7 @@ namespace Dsa.DataStructures
         /// <returns>True if the item is contained within the <see cref="Set{T}"/>; otherwise false.</returns>
         public override bool Contains(T item)
         {
-            return _collection.Contains(item);
+            return collection.Contains(item);
         }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace Dsa.DataStructures
         public override bool Remove(T item)
         {
             int count = Count;
-            if (_collection.Remove(item))
+            if (collection.Remove(item))
             {
                 Count--;
             }

@@ -22,14 +22,14 @@ namespace Dsa.DataStructures
         where T : IComparable<T>
     {
         [NonSerialized]
-        private readonly Heap<T> _heap;
+        private readonly Heap<T> heap;
 
         /// <summary>
         /// Creates and initializes a new instance of <see cref="PriorityQueue{T}"/>.
         /// </summary>
         public PriorityQueue()
         {
-            _heap = new Heap<T>(Strategy.Min);
+            heap = new Heap<T>(Strategy.Min);
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace Dsa.DataStructures
         /// <param name="strategy">Strategy to use to define priority.</param>
         public PriorityQueue(Strategy strategy) 
         {
-            _heap = new Heap<T>(strategy);
+            heap = new Heap<T>(strategy);
         }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace Dsa.DataStructures
         /// </remarks>
         public override void Clear()
         {
-            _heap.Clear();
+            heap.Clear();
             Count = 0;
         }
 
@@ -99,7 +99,7 @@ namespace Dsa.DataStructures
         /// <returns>True if the item is in the queue; otherwise false.</returns>
         public override bool Contains(T item)
         {
-            return _heap.Contains(item);
+            return heap.Contains(item);
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace Dsa.DataStructures
         /// <see cref="PriorityQueue{T}"/>.</returns>
         public override T[] ToArray()
         {
-            return _heap.ToArray();
+            return heap.ToArray();
         }
 
         /// <summary>
@@ -138,7 +138,7 @@ namespace Dsa.DataStructures
         {
             Guard.InvalidOperation(Count < 1, Resources.QueueEmpty);
 
-            return _heap[0];
+            return heap[0];
         }
 
         /// <summary>
@@ -150,7 +150,7 @@ namespace Dsa.DataStructures
         /// <param name="item">Item to add to the queue.</param>
         public void Enqueue(T item)
         {
-            _heap.Add(item);
+            heap.Add(item);
             Count++;
         }
 
@@ -166,8 +166,8 @@ namespace Dsa.DataStructures
         {
             Guard.InvalidOperation(Count < 1, Resources.QueueEmpty);
 
-            T head = _heap[0];
-            _heap.Remove(head);
+            T head = heap[0];
+            heap.Remove(head);
             Count--;
             return head;
         }
@@ -181,7 +181,7 @@ namespace Dsa.DataStructures
         /// <returns>An <see cref="IEnumerator{T}"/> for the <see cref="PriorityQueue{T}"/>.</returns>
         public override IEnumerator<T> GetEnumerator()
         {
-            return _heap.GetEnumerator();
+            return heap.GetEnumerator();
         }
     }
 }

@@ -26,7 +26,7 @@ namespace Dsa.DataStructures
     public abstract class CollectionBase<T> : ICollection, ICollection<T>
     {
         [NonSerialized]
-        private object _syncRoot;
+        private object syncRoot;
 
         /// <summary>
         /// Gets a value indicating whether the collection is thread safe.
@@ -59,12 +59,12 @@ namespace Dsa.DataStructures
         {
             get
             {
-                if (_syncRoot == null)
+                if (syncRoot == null)
                 {
-                    Interlocked.CompareExchange(ref _syncRoot, new object(), null);
+                    Interlocked.CompareExchange(ref syncRoot, new object(), null);
                 }
 
-                return _syncRoot;
+                return syncRoot;
             }
         }
 
