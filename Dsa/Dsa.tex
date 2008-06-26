@@ -197,6 +197,26 @@ A simple algorithm that search for a specific item inside a list. It operates lo
 
 \end{tabbing}
 
+\section{Probability Search}
+Probability Search is a statistical sequential search algorithm. In addition to search for an \textbf{item}, it takes into account its \textbf{frequency} by swapping it with it's predecessor in the list. The algorithm complexity still remain an $O(n)$ but in a non-uniform items search the more frequent items are in the first positions, reducing list scanning time.
+\begin{tabbing}
+1) \textbf{alg}\= \textbf{orithm} ProbabilitySearch($list$, $item$)\\
+2) \> \textbf{Pre:}~~ $list~!=~\emptyset$ \\
+3) \> \textbf{Post:}~ a boolean indicating where the item is found or not;\\
+   \>~~~~~~~~~ in the former case swap founded item with its predecessor \\
+4) \> \= $index \leftarrow 0$ \\
+5) \> \textbf{whi}\= \textbf{le} $index < list$.Count  \textbf{and} $list$[$index$]~!= $item$ \\
+6) \> \> \= $index \leftarrow index+1$ \\
+7) \> \textbf{end while} \\
+8) \> \textbf{if }\= $ index \geq list$.Count  \textbf{or} $list$[$index$] ~!= $item$ \\
+9) \> \> \textbf{return} false \\
+10)\> \textbf{end if} \\
+11)\> \textbf{if }\= $ index > 0$ \\
+12)\> \> $Swap(list[index], list[index-1])$ \\
+13)\> \textbf{end if } \\
+14)\> \textbf{return} true \\ 
+
+\end {tabbing}
 
 \chapter{Sets}
 
