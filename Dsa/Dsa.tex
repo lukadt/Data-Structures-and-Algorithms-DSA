@@ -178,6 +178,26 @@ DSA contains a number of algorithms that convert a base $10$ number to its equiv
 
 \chapter{Searching}
 
+\section{Sequential Search}
+A simple algorithm that search for a specific item inside a list. It operates looping on each element $O(n)$ until a match occurs or the end is reached.
+
+
+\begin{tabbing}
+1) \textbf{alg}\= \textbf{orithm} SequentialSearch($list$, $item$)\\
+2) \> \textbf{Pre:}~~ $list~!=~\emptyset$ \\
+3) \> \textbf{Post:}~ return $index$ of item if found, otherwise $-1$ \\
+4) \> \= $index \leftarrow 0$ \\
+5) \> \textbf{whi}\= \textbf{le} $index < list$.Count  \textbf{and} $list$[$index$]~!= $item$ \\
+6) \> \> \= $index \leftarrow index+1$ \\
+7) \> \textbf{end while} \\
+8) \> \textbf{if }\= $ index < list$.Count  \textbf{and} $list$[$index$] = $item$ \\
+9) \> \> \textbf{return} $index$ \\
+10)\> \textbf{end if} \\
+11)\> \textbf{return} $-1$ \\ 
+
+\end{tabbing}
+
+
 \chapter{Sets}
 
 \chapter{Strings}
