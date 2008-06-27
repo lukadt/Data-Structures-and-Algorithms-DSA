@@ -1,0 +1,41 @@
+% Copyright (C) Data Structures and Algorithms Team.
+\documentclass[10pt,oneside,a4paper]{report}
+\usepackage{url}
+\usepackage{ifsym}
+\begin{document}
+
+\title{Data Structures and Algorithms\\Pseudocode}
+\author{Granville Barnett\\Luca Del Tongo}
+\maketitle
+
+\newpage
+\tableofcontents
+\newpage
+
+\section*{Preface}
+This book consists of annotated pseudocode that was used when designing the algorithms which are contained in DSA\footnote{\url{http://codeplex.com/dsa}}. In DSA all implementations are in C\# \footnote{\url{http://msdn.microsoft.com/en-us/vcsharp/default.aspx}}.
+
+The designs provided here serve as a reference for those who want to port well designed and tested implementations of common (and uncommon) data structures and algorithms to their imperative language of choice.
+
+\pagestyle{headings}
+
+\part{Data Structures}
+\include{Linked_Lists}
+\include{Bst}
+\include{Heap}
+\include{Sets}
+\include{Queues}
+\include{Balanced_Trees}
+
+\part{Algorithms}
+\include{Sorting}
+\include{Numeric}
+\include{Searching}
+\include{Set_Algorithms}
+\include{Strings}
+
+\appendix
+\include{Translation_walkthrough}
+\include{Symbol_definitions}
+
+\end{document}

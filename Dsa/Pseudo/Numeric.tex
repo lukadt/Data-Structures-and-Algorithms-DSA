@@ -1,0 +1,35 @@
+% Copyright (C) Data Structures and Algorithms Team.
+\chapter{Numeric}
+Unless stated otherwise the alias $n$ denotes a standard $32$ bit integer.
+
+\section{Primality Test} \label{cha:Primality}
+A simple algorithm that determines whether or not a given integer is a prime number, e.g. $2$, $5$, $7$, and $13$ are \textbf{all} prime numbers, however $6$ is not as it can be the result of the product of two numbers that are $< 6$.
+
+In an attempt to slow down the inner loop the $\sqrt{n}$ is used as the upper bound.
+
+\begin{tabbing}
+1) \textbf{alg}\= \textbf{orithm} IsPrime($n$)\\
+2) \> \textbf{Post:} $n$ is determined to be a prime or not \\
+3) \> \textbf{for} \= $i \leftarrow 2$ \textbf{to} $n$ \textbf{do}\\
+4) \> \> \textbf{for} \= $j \leftarrow 1$ \textbf{to} $sqrt(n)$ \textbf{do}\\
+5) \> \> \> \textbf{if}~\= $i * j = n$\\
+6) \> \> \> \> \textbf{return} false\\
+7) \> \> \> \textbf{end if}\\
+8) \> \> \textbf{end for}\\	
+9) \> \textbf{end for}\\
+10) \textbf{end} IsPrime
+\end{tabbing}
+
+\section{Base conversions}
+DSA contains a number of algorithms that convert a base $10$ number to its equivalent binary, octal or hexadecimal form. For example $78_{10}$ has a binary representation of $1001110_{2}$.
+
+\begin{tabbing}
+1) \textbf{alg}\= \textbf{orithm} ToBinary($n$)\\
+2) \> \textbf{Pre:}~~$n \geq 0$ \\
+3) \> \textbf{Post:}~$n$ has been converted into its base $2$ representation \\
+4) \> \textbf{whi}\= \textbf{le} $n > 0$\\
+5) \> \> $list.Add(n~\%~2)$\\
+6) \> \> $n \leftarrow n / 2$\\
+7) \> \textbf{end while}\\
+8) \textbf{end} ToBinary\\
+\end{tabbing}

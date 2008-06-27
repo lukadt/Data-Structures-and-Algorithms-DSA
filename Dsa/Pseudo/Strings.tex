@@ -1,0 +1,41 @@
+% Copyright (C) Data Structures and Algorithms Team.
+\chapter{Strings}
+Strings have their own chapter in this text purely because string operations and transformations are incredibly frequent within programs. The algorithms presented are based on problems the authors have come across previously, or were formulated to satisfy curiosity.
+
+\section{Reversing the order of words in a sentence}
+
+\begin{tabbing}
+1) \textbf{alg}\= \textbf{orithm} ReverseWords($value$) \\
+2) \> \textbf{Pre:}~~ $value~!= \emptyset$, $sb$ is a string buffer \\
+3) \> \textbf{Post:}~ the words in $value$ have been reversed \\
+4) \> $last \leftarrow value$.Length $-~1$ \\
+5) \> $start \leftarrow last$ \\
+6) \> \textbf{whi}\= \textbf{le} $last \geq 0$ \\
+7) \> \> // skip whitespace \\
+8) \> \> \textbf{whi}\= \textbf{le} $start \geq 0$ \textbf{and} $value$[$start$] = whitespace \\
+9) \> \> \> $start \leftarrow start - 1$ \\
+10)\> \> \textbf{end while} \\
+11)\> \> $last \leftarrow start$ \\
+12)\> \> // march down to the index before the beginning of the word \\
+13)\> \> \textbf{while} $start \geq 0$ \textbf{and} $start~!=$ whitespace \\
+14)\> \> \> $start \leftarrow start - 1$ \\
+15)\> \> \textbf{end while} \\
+16)\> \> // append chars from $start + 1$ to $length + 1$ to string buffer sb \\
+17)\> \> \textbf{for} $i \leftarrow start + 1$ \textbf{to} $last$ \\
+18)\> \> \> $sb$.Append($value$[$i$]) \\
+19)\> \> \textbf{end for} \\
+20)\> \> // if this isn't the last word in the string add some whitespace after the word in the buffer \\
+21)\> \> \textbf{if} $start > 0$ \\ 
+22)\> \> \> $sb$.Append(` ') \\
+23)\> \> \textbf{end if} \\
+24)\> \> $last \leftarrow start - 1$ \\
+25)\> \> $start \leftarrow last$ \\
+26)\> \textbf{end while} \\
+27)\> // check if we have added one too many whitespace to $sb$ \\
+28)\> \textbf{if} $sb$[$sb$.Length $- 1$] = whitespace \\
+29)\> \> // cut the whitespace \\
+30)\> \> $sb$.Length $\leftarrow sb$.Length $- 1$ \\
+31)\> \textbf{end if} \\
+32)\> \textbf{return} $sb$ \\
+33) \textbf{end} ReverseWords \\
+\end{tabbing}

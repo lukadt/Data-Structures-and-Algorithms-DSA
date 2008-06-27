@@ -1,0 +1,15 @@
+% Copyright (C) Data Structures and Algorithms Team.
+\chapter{Linked Lists}
+Linked lists can be thought of from a high level perspective as being a series of nodes, each node has at least a pointer to the next node, and in the last nodes case a null pointer representing that there are no more nodes to follow.
+Common characteristics of both singly, and doubly linked lists are as follows:
+
+\begin{enumerate}
+\item Insertion is $O(1)$
+\item Deletion is $O(n)$
+\item Searching is $O(n)$
+\end{enumerate}
+
+Out of the three operations the one that stands out is that of insertion, in DSA we chose to always maintain pointers (or more aptly references) to the node(s) at the head and tail of the linked list and so performing a traditional insertion to either the front or back of the linked list is an $O(1)$ operation. An exception to this rule is when performing an insertion before a node that is neither the head nor tail in a singly linked list, that is the node we are inserting before is somewhere in the middle of the linked list. It is apparent that in order to add before the designated node we need to traverse the linked list to acquire a pointer to the node before the node we want to insert before which yields an $O(n)$ runtime.
+
+\section{Singly Linked List}
+\section{Doubly Linked List}
