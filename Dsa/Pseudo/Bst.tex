@@ -174,3 +174,34 @@ Just like the algorithm explained in \S\ref{finding_parent_node} this algorithm 
 14) \> \textbf{end if} \\
 15) \textbf{end} FindNode \\
 \end{tabbing}
+
+\section{Finding the smallest and largest values in the binary search tree}
+A simple task, to find the smallest value in a BST you simply traverse the nodes in the left sub tree of the BST always going left upon each encounter with a node, the opposite is the case when finding the largest value in the BST. Both algorithms are incredibly simple, they are listed simply for completeness.
+
+The base case in both $FindMin$, and $FindMax$ algorithms is when the Left ($FindMin$), or Right ($FindMax$) node references are $\emptyset$.
+
+\begin{tabbing}
+1)  \textbf{alg}\= \textbf{orithm} FindMin($root$) \\
+2)  \> \textbf{Pre:}~~$root$ is the root node of the BST \\
+3)  \> ~~~~~~~~$root$ $!= \emptyset$ \\
+4)  \> \textbf{Post:}~the smallest value in the BST is located \\
+5)  \> \textbf{if}~\= $root$.Left $= \emptyset$ \\
+6)  \> \> \textbf{return} $root$.Value \\
+7)  \> \textbf{end if} \\
+8)  \> FindMin($root$.Left) \\
+9)  \textbf{end} FindMin \\
+\end{tabbing}
+
+\begin{tabbing}
+1)  \textbf{alg}\= \textbf{orithm} FindMax($root$) \\
+2)  \> \textbf{Pre:}~~$root$ is the root node of the BST \\
+3)  \> ~~~~~~~~$root$ $!= \emptyset$ \\
+4)  \> \textbf{Post:}~the largest value in the BST is located \\
+5)  \> \textbf{if}~\= $root$.Right $= \emptyset$ \\
+6)  \> \> \textbf{return} $root$.Value \\
+7)  \> \textbf{end if} \\
+8)  \> FindMax($root$.Right) \\
+9)  \textbf{end} FindMax \\
+\end{tabbing}
+
+\section{Tree Traversals}
