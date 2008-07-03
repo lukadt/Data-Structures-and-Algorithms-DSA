@@ -1,2 +1,42 @@
 % Copyright (C) Data Structures and Algorithms Team.
 \chapter{Binary Search Tree}
+Binary search tree's (BSTs) are very simple to understand, consider the following where by we have a root node $n$, the left sub tree of $n$ contains values $< n$, the right sub tree however contains nodes whose values are $\geq n$.
+
+BSTs are of interest because they have operations which are favourably fast, insertion, look up, and deletion can all be done in $O(log~n)$. One of the things that I would like to point out and address early is that $O(log~n)$ times for the aforementioned operations can only be attained if the BST is relatively balanced (for a tree data structure with self balancing properties see \S\ref{AVL}). 
+
+\section{Insertion}
+As mentioned previously insertion is an $O(log~n)$ operation provided that the tree is moderately balanced.
+
+\begin{tabbing}
+1)  \textbf{alg}\= \textbf{orithm} Insert($value$) \\
+2)  \> \textbf{Pre:}~~$value$ has passed custom type checks for type $T$ \\
+3)  \> \textbf{Post:}~$value$ has been placed in the correct location in the tree \\
+4)  \> \textbf{if}~\= $root~= \emptyset$ \\
+5)  \> \> $root \leftarrow$ node($value$) \\
+6)  \> \textbf{else} \\
+7)  \> \> InsertNode($root$, $value$) \\
+8)  \> \textbf{end if} \\
+9)  \textbf{end} Insert \\
+\end{tabbing}
+
+\begin{tabbing}
+1)  \textbf{alg}\= \textbf{orithm} InsertNode($root$, $value$) \\
+2)  \> \textbf{Pre:}~~$root$ is the node to start from \\
+3)  \> \textbf{Post:}~$value$ has been placed in the correct location in the tree \\
+4)  \> \textbf{if}~\= $value < root$.Value \\
+5)  \> \> \textbf{if}~\= $root$.Left $= \emptyset$ \\
+6)  \> \> \> $root$.Left $\leftarrow$ node($value$) \\
+7)  \> \> \textbf{else} \\
+8)  \> \> \> InsertNode($root$.Left, $value$) \\
+9)  \> \> \textbf{end if} \\
+10) \> \textbf{else} \\
+11) \> \> \textbf{if} $root$.Right $= \emptyset$ \\
+12) \> \> \> $root$.Right $\leftarrow$ node($value$) \\
+13) \> \> \textbf{else} \\
+14) \> \> \> InsertNode($root$.Right, $value$) \\
+15) \> \> \textbf{end if} \\
+16) \> \textbf{end if} \\
+17) \textbf{end} InsertNode \\ 
+\end{tabbing}
+
+The insertion algorithm is split for a good reason, the first algorithm (non-recursive) checks a very core base case - whether or not the tree is empty, if the tree is empty then we simply create our root node and we have no need to invoke the recursive $InsertNode$ algorithm. When the core base case is not met we must invoke the recursive $InsertNode$ algorithm which simply guides us to the first appropriate place in the tree to put $value$.
