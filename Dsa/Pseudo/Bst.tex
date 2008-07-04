@@ -1,5 +1,3 @@
-
-
 % Copyright (C) Data Structures and Algorithms Team.
 \chapter{Binary Search Tree}
 Binary search tree's (BSTs) are very simple to understand, consider the following where by we have a root node $n$, the left sub tree of $n$ contains values $< n$, the right sub tree however contains nodes whose values are $\geq n$.
@@ -205,3 +203,80 @@ The base case in both $FindMin$, and $FindMax$ algorithms is when the Left ($Fin
 \end{tabbing}
 
 \section{Tree Traversals}
+For the most part when you have a tree you will want to traverse the items in that tree using various strategies in order to attain the node visitation order you require. In this section I will touch on the traversals that DSA provides on all data structures that derive from $BinarySearchTree$.
+
+The algorithms explained in this section will be a lot clearer if you draw out the tree listed in \S\ref{preorder_traversal}, you may also want to draw recursive tree calls which will yield the pragmatic sequence of values.
+
+\subsection{Preorder} \label{preorder_traversal}
+When using the preorder algorithm you look at the value of each node that you pass on the left hand side, e.g. given the tree $(23~14(7(~~9)~17)~31)$ using a preorder traversal would yield the following sequence $23, 14, 7, 9, 17, 31$.
+
+\begin{tabbing}
+1)  \textbf{alg}\= \textbf{orithm} Preorder($root$) \\
+2)  \> \textbf{Pre:}~~$root$ is the root node of the BST \\
+3)  \> \textbf{Post:}~the nodes in the BST have been visited in preorder \\
+4)  \> \textbf{if}~\= $root~!= \emptyset$ \\
+5)  \> \> \textbf{yield} $root$.Value \\
+6)  \> \> Preorder($root$.Left) \\
+7)  \> \> Preorder($root$.Right) \\
+8)  \> \textbf{end if} \\
+9)  \textbf{end} Preorder \\
+\end{tabbing}
+
+\subsection{Postorder} \label{postorder_traversal}
+This algorithm is very similar to that described in \S\ref{preorder_traversal}, however the value of the node is yielded after the two recursive calls. When you traverse the nodes in a postorder fashion the value of the node is yielded upon passing the node on the right hand side, e.g. given the same tree as listed in \S\ref{preorder_traversal} the following sequence is yielded $9, 7, 17, 14, 31, 23$.
+
+\begin{tabbing}
+1)  \textbf{alg}\= \textbf{orithm} Postorder($root$) \\
+2)  \> \textbf{Pre:}~~$root$ is the root node of the BST \\
+3)  \> \textbf{Post:}~the nodes in the BST have been visited in postorder \\
+4)  \> \textbf{if}~\= $root~!= \emptyset$ \\
+5)  \> \> Postorder($root$.Left) \\
+6)  \> \> Postorder($root$.Right) \\
+7)  \> \> \textbf{yield} $root$.Value \\
+8)  \> \textbf{end if} \\
+9)  \textbf{end} Postorder \\
+\end{tabbing}
+
+\subsection{Inorder}
+Another variation of the algorithms defined in \S\ref{preorder_traversal} and \S\ref{postorder_traversal} is that of inorder traversal where the value of the current node is yielded in between the recursive calls. Inorder traversal yields the value of each node when passing underneath that node, e.g. given the tree listed in \S\ref{preorder_traversal} the following sequence is yielded $7, 9, 14, 17, 23, 31$ - the sequence is that of the values in the BST in ascending order.
+
+\begin{tabbing}
+1)  \textbf{alg}\= \textbf{orithm} Inorder($root$) \\
+2)  \> \textbf{Pre:}~~$root$ is the root node of the BST \\
+3)  \> \textbf{Post:}~the nodes in the BST have been visited in inorder \\
+4)  \> \textbf{if}~\= $root~!= \emptyset$ \\
+5)  \> \> Inorder($root$.Left) \\
+6)  \> \> \textbf{yield} $root$.Value \\
+7)  \> \> Inorder($root$.Right) \\
+8)  \> \textbf{end if} \\
+9)  \textbf{end} Inorder \\
+\end{tabbing}
+
+\subsection{Breadth First}
+Traversing a tree in breadth first order is to yield the values of all nodes of a particular depth in the tree, e.g. given the depth $d$ we would visit the values of all nodes in a left to right fashion at $d$, then we would proceed to $d+1$ and so on until we had ran out of nodes to visit. Consider the tree listed in \S\ref{preorder_traversal} if we were to traverse the nodes in breadth first order then the following sequence would be yielded $23, 14, 31, 7, 17, 9$. 
+
+Traditionally the way breadth first is implemented is using a list (vector, resizeable array, etc) to store the values of the nodes visited in breadth first order and then a queue to store those nodes that have yet to be visited.
+
+\begin{tabbing}
+1)  \textbf{alg}\= \textbf{orithm} BreadthFirst($root$) \\
+2)  \> \textbf{Pre:}~~$root$ is the root node of the BST \\
+3)  \> \textbf{Post:}~the nodes in the BST have been visited in breadth first order \\
+4)  \> $l \leftarrow$ list \\
+5)  \> $q \leftarrow$ queue \\
+6)  \> \textbf{whi}\= \textbf{le} $root~!= \emptyset$ \\
+7)  \> \> $l$.Add($root$.Value) \\
+8)  \> \> \textbf{if}~\= $root$.Left $!= \emptyset$ \\
+9)  \> \> \> $q$.Enqueue($root$.Left) \\
+10) \> \> \textbf{end if} \\
+11) \> \> \textbf{if} $root$.Right $!= \emptyset$ \\
+12) \> \> \> $q$.Enqueue($root$.Right) \\
+13) \> \> \textbf{end if} \\
+14) \> \> \textbf{if} $!q$.IsEmpty() \\
+15) \> \> \> $root \leftarrow q$.Dequeue() \\
+16) \> \> \textbf{else} \\
+17) \> \> \> $root \leftarrow \emptyset$ \\
+18) \> \> \textbf{end if} \\
+19) \> \textbf{end while} \\
+20) \> \textbf{return} $l$ \\
+21) \textbf{end} BreadthFirst \\
+\end{tabbing}
