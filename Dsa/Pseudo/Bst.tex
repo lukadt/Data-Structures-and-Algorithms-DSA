@@ -44,7 +44,13 @@ The insertion algorithm is split for a good reason, the first algorithm (non-rec
 \section{Searching}
 Searching a BST is really quite simple, the pseudo code is self explanatory but I will explain briefly the premise of the algorithm nonetheless.
 
-We have talked previously about insertion, we go either left or right with the right sub tree containing values that are $\geq n$ where $n$ is the value of the node we are inserting, when searching the rules are made a little more atomic - given $n$ we inspect the value of the current node $c$ if $n < c$ then we go left, if $n >c$ we go right, if it is neither ($n = c$) we have found the value. The base case to this algorithm (which is recursive) is that the $root$ node is $\emptyset$, in such an event we can report back to the caller that $n$ is not in the BST as we have ran out of nodes in the tree to search.
+We have talked previously about insertion, we go either left or right with the right sub tree containing values that are $\geq n$ where $n$ is the value of the node we are inserting, when searching the rules are made a little more atomic and at any one time we have four cases to consider: 
+\begin{inparaenum}
+\item the $root = \emptyset$ in which case $value$ is not in the BST; or
+\item $root$.Value $= value$ in which case $value$ is in the BST; or
+\item $value < root$.Value, we must inspect the left sub tree of $root$ for $value$; or
+\item $value > root$.Value, we must inspect the right sub tree of $root$ for $value$.
+\end{inparaenum}
 
 \begin{tabbing}
 1)  \textbf{alg}\= \textbf{orithm} Contains($root$, $value$) \\
@@ -64,7 +70,7 @@ We have talked previously about insertion, we go either left or right with the r
 \end{tabbing}
 
 \section{Deletion}
-Removing a node from a BST is simple, there are $4$ cases that we must consider though: 
+Removing a node from a BST is simple, there are four cases that we must consider though: 
 \begin{inparaenum}
 \item the value to remove is a leaf node; or
 \item the value to remove has a right sub tree, but no left sub tree; or
