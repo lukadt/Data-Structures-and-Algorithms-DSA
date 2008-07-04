@@ -366,49 +366,46 @@ namespace Dsa.DataStructures
             }
 
             SinglyLinkedListNode<T> n = head;
-
-            // check to see if the node to be removed is the head node
             if (Compare.AreEqual(n.Value, item, comparer))
             {
-                if (n == tail)
+                // we have one of two cases, either the linked list contains only one node (case 1); or we are removing the head node (case 2)
+                // case 1
+                if (n == head && n == tail)
                 {
-                    tail = null; 
+                    head = null;
+                    tail = null;
+                }
+                else
+                {
+                    // case 2
+                    head = head.Next;
                 }
 
-                head = head.Next;
                 Count--;
                 return true;
             }
 
-            while (n != null)
+            // case 3: the node to remove is anything but the head node
+            while (n.Next != null && !Compare.AreEqual(n.Next.Value, item, comparer))
             {
-                if (!(Compare.AreEqual(n.Value, item, comparer)) && n.Next == null)
-                {
-                    break; // we couldn't find the value to remove in the linked list
-                }
-
-                if (Compare.AreEqual(n.Next.Value, item, comparer)) 
-                {
-                    // we have found the node to remove
-                    if (n.Next == tail)
-                    {
-                        // the node to be removed was the tail so we need to make n the new tail
-                        tail = n;
-                        n.Next = null;
-                        Count--;
-                        return true;
-                    }
-
-                    // the node to remove is somewhere in the middle of the linked list
-                    n.Next = n.Next.Next;
-                    Count--;
-                    return true;
-                }
-
                 n = n.Next;
             }
 
-            return false;
+            if (n.Next != null && Compare.AreEqual(n.Next.Value, item, comparer))
+            {
+                // case 3.1: the node to remove is the tail
+                if (n.Next == tail)
+                {
+                    tail = n;
+                }
+
+                // case 3.2: the node to remove is somewhere in the linked list, just not the tail node
+                n.Next = n.Next.Next;
+                Count--;
+                return true;
+            }
+
+            return false; // case 4: item to remove was not in the linked list
         }
 
         /// <summary>

@@ -64,6 +64,55 @@ Searching a linked list is straight forward, we simply traverse the list checkin
 14) \textbf{end} Contains \\
 \end{tabbing}
 
+\subsection{Deletion}
+Deleting a node from a linked list is straight forward but there are a few cases in which we need to accommodate for:
+\begin{enumerate}
+\item the list is empty; or
+\item the node to remove is the only node in the linked list; or 
+\item we are removing the head node; or
+\item we are removing the tail node; or
+\item the node to remove is somewhere in between the head and tail; or
+\item the item to remove doesn't exist in the linked list
+\end{enumerate}
+
+\begin{tabbing}
+1)  \textbf{alg}\= \textbf{orithm} Remove($head$, $value$) \\
+2)  \> \textbf{Pre:}~~$head$ is the head node in the list \\
+3)  \> ~~~~~~~~$value$ is the value to remove from the list \\
+4)  \> \textbf{Post:}~$value$ is removed from the list, true; otherwise false \\
+5)  \> \textbf{if}~\= $head = \emptyset$ \\
+6)  \> \> // case 1 \\
+7)  \> \> \textbf{return false} \\
+8)  \> \textbf{end if} \\
+9)  \> $n \leftarrow head$ \\
+10) \> \textbf{if} $n$.Value $= value$ \\
+11) \> \> \textbf{if}~\= $n = head$ \textbf{and} $n = tail$ \\
+12) \> \> \> // case 2 \\
+13) \> \> \> $head \leftarrow \emptyset$ \\
+14) \> \> \> $tail \leftarrow \emptyset$ \\
+15) \> \> \textbf{else} \\
+16) \> \> \> // case 3 \\
+17) \> \> \> $head \leftarrow head$.Next \\
+18) \> \> \textbf{end if} \\
+19) \> \> \textbf{return true} \\
+20) \> \textbf{end if} \\
+21) \> \textbf{while} $n$.Next $!= \emptyset$ \textbf{and} $n$.Next.Value $!= value$ \\
+22) \> \> $n \leftarrow n$.Next \\
+23) \> \textbf{end while} \\
+24) \> \textbf{if} $n$.Next $!= \emptyset$ \textbf{and} $n$.Next.Value $= value$ \\
+25) \> \> \textbf{if} $n$.Next $= tail$ \\
+26) \> \> \> // case 4 \\
+27) \> \> \> $tail \leftarrow n$ \\
+28) \> \> \textbf{end if} \\
+29) \> \> // this is only case 5 if the conditional on line 25) was $ff$ \\
+30) \> \> $n$.Next $\leftarrow n$.Next.Next \\
+31) \> \> \textbf{return true} \\
+32) \> \textbf{end if} \\
+33) \> // case 6 \\
+34) \> \textbf{return false} \\
+35) \textbf{end} Remove \\
+\end{tabbing}
+
 \subsection{Traversing the list} \label{singly_linked_traversal}
 Traversing a singly list is the same as that of traversing a doubly linked list, you start at the head of the list and continue until you come across a node that is $\emptyset$. The two cases are as follows:
 \begin{inparaenum}
