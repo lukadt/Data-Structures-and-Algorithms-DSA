@@ -19,6 +19,7 @@ As mentioned previously insertion is an $O(log~n)$ operation provided that the t
 9)  \textbf{end} Insert \\
 \end{tabbing}
 
+\newpage
 \begin{tabbing}
 1)  \textbf{alg}\= \textbf{orithm} InsertNode($root$, $value$) \\
 2)  \> \textbf{Pre:}~~$root$ is the node to start from \\
@@ -52,6 +53,7 @@ We have talked previously about insertion, we go either left or right with the r
 \item $value > root$.Value, we must inspect the right sub tree of $root$ for $value$.
 \end{inparaenum}
 
+\newpage
 \begin{tabbing}
 1)  \textbf{alg}\= \textbf{orithm} Contains($root$, $value$) \\
 2)  \> \textbf{Pre:}~~$root$ is the root node of the tree, $value$ is what we would like to locate \\
@@ -79,6 +81,7 @@ Removing a node from a BST is simple, there are four cases that we must consider
 \end{inparaenum}
 The $Remove$ algorithm described later relies on two further helper algorithms named $FindParent$, and $FindNode$ which are described in \S\ref{finding_parent_node} and \S\ref{find_node_reference}.
 
+\newpage
 \begin{tabbing}
 1)  \textbf{alg}\= \textbf{orithm} Remove($value$) \\
 2)  \> \textbf{Pre:}~~$value$ is the value of the node to remove, $root$ is the root node of the BST \\
@@ -161,6 +164,7 @@ The purpose of this algorithm is simple - to return a reference (or a pointer) t
 \section{Attaining a reference to a node} \label{find_node_reference}
 Just like the algorithm explained in \S\ref{finding_parent_node} this algorithm we have found to be very useful, it simply finds the node with the specified value and returns a reference to that node.
 
+\newpage
 \begin{tabbing}
 1)  \textbf{alg}\= \textbf{orithm} FindNode($value$, $root$) \\
 2)  \> \textbf{Pre:}~~$value$ is the value of the node we want to find the parent of \\
