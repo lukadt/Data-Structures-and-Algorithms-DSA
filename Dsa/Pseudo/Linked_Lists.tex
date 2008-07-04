@@ -1,7 +1,7 @@
 % Copyright (C) Data Structures and Algorithms Team.
 \chapter{Linked Lists}
 Linked lists can be thought of from a high level perspective as being a series of nodes, each node has at least a pointer to the next node, and in the last nodes case a null pointer representing that there are no more nodes to follow.
-Common characteristics of both singly, and doubly linked lists are as follows:
+The general characteristics of linked lists are as follows:
 
 \begin{enumerate}
 \item Insertion is $O(1)$
@@ -11,5 +11,78 @@ Common characteristics of both singly, and doubly linked lists are as follows:
 
 Out of the three operations the one that stands out is that of insertion, in DSA we chose to always maintain pointers (or more aptly references) to the node(s) at the head and tail of the linked list and so performing a traditional insertion to either the front or back of the linked list is an $O(1)$ operation. An exception to this rule is when performing an insertion before a node that is neither the head nor tail in a singly linked list, that is the node we are inserting before is somewhere in the middle of the linked list. It is apparent that in order to add before the designated node we need to traverse the linked list to acquire a pointer to the node before the node we want to insert before which yields an $O(n)$ runtime.
 
+These data structure's are trivial, but they have a few key points which at times make them very attractive: 
+\begin{inparaenum}
+\item the list is dynamically resized, thus it incurs no copy penalty like an array or vector would eventually incur; and
+\item insertion is $O(1)$.
+\end{inparaenum}
+
 \section{Singly Linked List}
+Singly linked list's are one of the most primitive data structures you will find in this book, each node that makes up a singly linked list consists of a value, and a reference to the next node (if any) in the list. 
+
+\subsection{Insertion}
+In general when people talk about insertion with respect to linked lists of any form they implicitly refer to the adding of a node to the tail of the list, thus when you use an API like that of DSA and you see a general purpose method that adds a node to the list assume that you are adding that node to the tail of the list not the head.
+
+Adding a node to a singly linked list has only two cases: 
+\begin{inparaenum}
+\item $head = \emptyset$ in which case the node we are adding is now both the $head$ and $tail$ of the list; or
+\item we simply need to append our node onto the end of the list updating the $tail$ reference appropriately.
+\end{inparaenum}
+
+\begin{tabbing}
+1)  \textbf{alg}\= \textbf{orithm} Add($value$) \\
+2)  \> \textbf{Pre:}~~$value$ has passed custom type checks for type $T$ \\
+3)  \> \textbf{Post:}~$value$ has been placed at the tail of the list \\
+4)  \> $n \leftarrow$ node($value$) \\
+5)  \> \textbf{if}~\= $head = \emptyset$ \\
+6)  \> \> $head \leftarrow n$ \\
+7)  \> \> $tail \leftarrow n$ \\
+8)  \> \textbf{else} \\
+9)  \> \> $tail$.Next $\leftarrow n$ \\
+10) \> \> $tail \leftarrow n$ \\
+11) \> \textbf{end if} \\
+12) \textbf{end} Add \\
+\end{tabbing}
+
+\subsection{Searching}
+Searching a linked list is straight forward, we simply traverse the list checking the value we are looking for with the value of each node in the linked list. The algorithm listed in this section is very similar to that used for traversal in \S\ref{singly_linked_traversal}.
+
+\begin{tabbing}
+1)  \textbf{alg}\= \textbf{orithm} Contains($head$, $value$) \\
+2)  \> \textbf{Pre:}~~$head$ is the head node in the list \\
+3)  \> ~~~~~~~~$value$ is the value to search for \\
+4)  \> \textbf{Post:}~the item is either in the linked list, true; otherwise false \\
+5)  \> $n \leftarrow head$ \\
+6)  \> \textbf{whi}\= \textbf{le} $n~!= \emptyset$ \textbf{and} $n$.Value $!= value$ \\
+7)  \> \> $n \leftarrow n$.Next \\
+8)  \> \textbf{end while} \\
+9)  \> \textbf{if} $n = \emptyset$ \\
+10) \> \> \textbf{return false} \\
+11) \> \textbf{else} \\
+12) \> \> \textbf{return true} \\
+13) \> \textbf{end if} \\
+14) \textbf{end} Contains \\
+\end{tabbing}
+
+\subsection{Traversing the list} \label{singly_linked_traversal}
+Traversing a singly list is the same as that of traversing a doubly linked list, you start at the head of the list and continue until you come across a node that is $\emptyset$. The two cases are as follows:
+\begin{inparaenum}
+\item $node = \emptyset$, we have exhausted all nodes in the linked list; or
+\item we must update the $node$ reference to be $node$.Next.
+\end{inparaenum}
+
+The algorithm described is a very simple one that makes use of a simple $while$ loop to check the first case.
+
+\begin{tabbing}
+1)  \textbf{alg}\= \textbf{orithm} Traverse($head$) \\
+2)  \> \textbf{Pre:}~~$head$ is the head node in the list \\
+3)  \> \textbf{Post:}~the items in the list have been traversed \\
+4)  \> $n \leftarrow head$ \\
+5)  \> \textbf{whi}\=\textbf{le} $n~!= 0$ \\
+6)  \> \> \textbf{yield} $n$.Value \\
+7)  \> \> $n \leftarrow n$.Next \\
+8)  \> \textbf{end while} \\
+9)  \textbf{end} Traverse \\
+\end{tabbing}
+
 \section{Doubly Linked List}
