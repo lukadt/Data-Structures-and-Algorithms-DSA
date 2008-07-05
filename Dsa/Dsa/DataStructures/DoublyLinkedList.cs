@@ -326,71 +326,55 @@ namespace Dsa.DataStructures
         /// <returns>True if the value was removed from the <see cref="DoublyLinkedList{T}"/>; false otherwise.</returns>
         public override bool Remove(T item)
         {
+            // case 1: empty list
             if (IsEmpty())
             {
                 return false;
             }
 
-            if (head.Next == null && Compare.AreEqual(head.Value, item, comparer))
+            if (Compare.AreEqual(item, head.Value, comparer))
             {
-                // we are removing the only node in the dll
-                head = null;
-                tail = null;
-                Count--;
-                return true;
-            }
-
-            if (head.Next == tail) 
-            {
-                // there are only two nodes in the dll
-                if (Compare.AreEqual(head.Value, item, comparer)) 
+                if (head == tail)
                 {
-                    head = head.Next; 
+                    // case 2: only one node in the list
+                    head = null;
+                    tail = null;
+                }
+                else
+                {
+                    // case 3: head is to be removed in a list that contains > 1 node
+                    head = head.Next;
                     head.Previous = null;
                 }
-                else if (Compare.AreEqual(tail.Value, item, comparer)) 
-                {
-                    tail = head; 
-                    head.Next = null;
-                }
 
                 Count--;
                 return true;
             }
 
-            DoublyLinkedListNode<T> n = head;
-            while (n != null)
+            DoublyLinkedListNode<T> n = head.Next;
+            while (n != null && !Compare.AreEqual(item, n.Value, comparer))
             {
-                if (Compare.AreEqual(n.Value, item, comparer)) 
-                {
-                    // we have found a node with the value specified to remove
-                    if (n == head) 
-                    {
-                        // the node to remove is the head node
-                        head = head.Next;
-                        head.Previous = null;
-                    }
-                    else if (n == tail) 
-                    {
-                        // the node to remove is the tail node
-                        tail = tail.Previous;
-                        tail.Next = null;
-                    }
-                    else 
-                    {
-                        // the node to remove is somewhere in the middle of the dll
-                        n.Previous.Next = n.Next;
-                        n.Next.Previous = n.Previous;
-                    }
-
-                    Count--;
-                    return true;
-                }
-
-                n = n.Next; 
+                n = n.Next;
             }
 
-            return false;
+            if (n == tail)
+            {
+                // case 4: tail is to be removed
+                tail = tail.Previous;
+                tail.Next = null;
+                Count--;
+                return true;
+            }
+            else if (n != null)
+            {
+                // case 5: node to be removed is somewhere inbetween the head and tail
+                n.Previous.Next = n.Next;
+                n.Next.Previous = n.Previous;
+                Count--;
+                return true;
+            }
+
+            return false; // case 6: value not in list
         }
 
         /// <summary>
