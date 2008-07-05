@@ -134,6 +134,28 @@ The algorithm described is a very simple one that makes use of a simple $while$ 
 9)  \textbf{end} Traverse \\
 \end{tabbing}
 
+\subsection{Traversing the list in reverse order}
+Traversing a singly linked list in a forward manned is simple (i.e. left to right) as demonstrated in \S\ref{singly_linked_traversal}, however, what if for some reason we wanted to traverse the nodes in the linked list in reverse order? The algorithm to perform such a traversal is very simple, and just like demonstrated in \S\ref{single_deletion} we will need to acquire a reference to the previous node of a node, even though the fundamental characteristics of the nodes that make up a singly linked list prohibit this by design.
+
+\begin{tabbing}
+1)  \textbf{alg}\= \textbf{orithm} ReverseTraversal($tail$) \\
+2)  \> \textbf{Pre:}~~$tail$ is the tail node in the list \\
+3)  \> \textbf{Post:}~the items in the list have been traversed in reverse order \\
+4)  \> \textbf{if}~\= $tail~!= \emptyset$ \\
+5)  \> \> $curr \leftarrow tail$ \\
+6)  \> \> \textbf{whi}\= \textbf{le} $curr~!= head$ \\
+7)  \> \> \> $prev \leftarrow head$ \\
+8)  \> \> \> \textbf{whi}\= \textbf{le} $prev$.Next $!= curr$ \\
+9)  \> \> \> \> $prev \leftarrow prev$.Next \\
+10) \> \> \> \textbf{end while} \\
+11) \> \> \> \textbf{yield} $curr$.Value \\
+12) \> \> \> $curr \leftarrow prev$ \\
+13) \> \> \textbf{end while} \\
+14) \> \> \textbf{yield} $curr$.Value \\
+15) \> \textbf{end if} \\
+16) \textbf{end} ReverseTraversal \\
+\end{tabbing}
+
 \section{Doubly Linked List}
 Doubly linked lists are very similar to singly linked lists, the only difference is that each node has a reference to both the next and previous nodes in the list.
 
@@ -163,9 +185,10 @@ The only major difference between the algorithm in \S\ref{single_insertion} is t
 13) \textbf{end} Add \\
 \end{tabbing}
 
-\section{Deletion}
+\subsection{Deletion}
 As you may of guessed the cases that we use for deletion in a doubly linked list are exactly the same as those defined in \S\ref{single_deletion}, however, like insertion we have the added task of binding an additional reference ($Previous$) to the correct value.
 
+\newpage
 \begin{tabbing}
 1)  \textbf{alg}\= \textbf{orithm} Remove($head$, $value$) \\
 2)  \> \textbf{Pre:}~~$head$ is the head node in the list \\

@@ -417,25 +417,23 @@ namespace Dsa.DataStructures
         /// <returns>An <see cref="IEnumerable{T}" /> that can be used to iterate through the <see cref="SinglyLinkedList{T}"/>.</returns>
         public IEnumerable<T> GetReverseEnumerator()
         {
-            SinglyLinkedListNode<T> n = head;
-            SinglyLinkedListNode<T> curr = tail;
-            if (n != null)
+            if (tail != null)
             {
-                while (n != curr)
+                SinglyLinkedListNode<T> curr = tail;
+                SinglyLinkedListNode<T> prev;
+                while (curr != head)
                 {
-                    if (n.Next == curr)
+                    prev = head;
+                    while (prev.Next != curr)
                     {
-                        yield return curr.Value;
-                        curr = n;
-                        n = head;
+                        prev = prev.Next;
                     }
-                    else
-                    {
-                        n = n.Next;
-                    }
+
+                    yield return curr.Value;
+                    curr = prev;
                 }
 
-                yield return n.Value;
+                yield return curr.Value;
             }
         }
     }
