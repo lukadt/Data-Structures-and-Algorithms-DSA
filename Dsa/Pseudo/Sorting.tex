@@ -55,9 +55,10 @@ The algorithm is based on splitting a list, into two similar sized lists ($left$
 \end{tabbing}
 
 \newpage
-\section{Quick Sort}
-Quick Sort is one of the most popular sorting algorithms based on divide et impera strategy, resulting in an $O(n~log~n)$ complexity. The algorithm starts by picking an item, called pivot, and moving all smaller items before it, while all greater elements after it. This is the main Quick Sort operation, called Partition, recursively repeated on lesser and greater sublists until their size  is one or zero.
-Choosing an appropriate pivot, as for example the median element, is fundamental for not drastically reduce performance to $O(n^{2})$.
+\section{Quick Sort} 
+Quick sort is one of the most popular sorting algorithms based on divide et impera strategy, resulting in an $O(n~log~n)$ complexity. The algorithm starts by picking an item, called pivot, and moving all smaller items before it, while all greater elements after it. This is the main quick sort operation, called partition, recursively repeated on lesser and greater sub lists until their size  is one or zero - in which case the list is implicitly sorted.
+
+Choosing an appropriate pivot, as for example the median element is fundamental for avoiding the drastically reduced performance of $O(n^{2})$.
 
 \begin{tabbing}
 1)  \textbf{alg}\= \textbf{orithm} QuickSort($list$) \\
@@ -82,10 +83,9 @@ Choosing an appropriate pivot, as for example the median element, is fundamental
 20) \textbf{end} Quicksort \\
 \end{tabbing}
 
-
 \newpage
-\section{Insertion Sort}
-Insertion sort is a somewhat interesting algorithm with an expensive runtime of $O(n^{2})$. It can be best thought of as a sorting scheme similar to that of sorting a hand of playing cards, i.e. you take one card and then look a the rest with the intent of building up an ordered set of cards in your hand.
+\section{Insertion Sort} \label{shell_sort}
+Insertion sort is a somewhat interesting algorithm with an expensive runtime of $O(n^{2})$. It can be best thought of as a sorting scheme similar to that of sorting a hand of playing cards, i.e. you take one card and then look at the rest with the intent of building up an ordered set of cards in your hand.
 
 \begin{tabbing}
 1)  \textbf{alg}\= \textbf{orithm} Insertionsort($list$) \\
@@ -108,6 +108,10 @@ Insertion sort is a somewhat interesting algorithm with an expensive runtime of 
 
 \newpage
 \section{Shell Sort}
+Put simply shell sort can be thought of as a more efficient variation of insertion sort as described in \S\ref{shell_sort}, it achieves this mainly by comparing items of varying distances apart resulting in a run time complexity of $O(n~log^{2}~n)$.
+
+Shell sort is fairly straight forward but may seem somewhat confusing at first as it differs from other sorting algorithms in the way it selects items to compare. 
+
 \begin{tabbing}
 1)  \textbf{alg}\= \textbf{orithm} ShellSort($list$) \\
 2)  \> \textbf{Pre:}~~$list~!=~\emptyset$ \\
