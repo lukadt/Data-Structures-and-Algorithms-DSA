@@ -1,2 +1,18 @@
 % Copyright (C) Data Structures and Algorithms Team.
 \chapter{Heap}
+A heap can be thought of as a simple tree data structure, however a heap usually employs one of two strategies:
+
+\begin{enumerate}
+\item min heap
+\item max heap
+\end{enumerate}
+
+Each strategy determines the properties of the tree and it's values, e.g. if you were to choose the strategy min heap then each parent node would have a value that is $\leq$ than it's children, thus the node at the root of the tree will have the smallest value in the tree, the opposite is true if you were to use max heap. Generally as a rule you should always assume that a heap employs the min heap strategy unless otherwise stated.
+
+Unlike other tree data structures like the one in \S\ref{bst} a heap is generally implemented as an array rather than a series of nodes who each have references to other nodes, both however contain nodes that have at most two children.
+
+\begin{enumerate}
+\item parent index
+\item left child
+\item right child
+\end{enumerate}
