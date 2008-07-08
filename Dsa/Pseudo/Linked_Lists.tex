@@ -92,6 +92,7 @@ Deleting a node from a linked list is straight forward but there are a few cases
 \item the item to remove doesn't exist in the linked list
 \end{enumerate}
 
+\newpage
 \begin{tabbing}
 1)  \textbf{alg}\= \textbf{orithm} Remove($head$, $value$) \\
 2)  \> \textbf{Pre:}~~$head$ is the head node in the list \\
@@ -139,6 +140,7 @@ Traversing a singly list is the same as that of traversing a doubly linked list,
 
 The algorithm described is a very simple one that makes use of a simple $while$ loop to check the first case.
 
+\newpage
 \begin{tabbing}
 1)  \textbf{alg}\= \textbf{orithm} Traverse($head$) \\
 2)  \> \textbf{Pre:}~~$head$ is the head node in the list \\
@@ -153,6 +155,8 @@ The algorithm described is a very simple one that makes use of a simple $while$ 
 
 \subsection{Traversing the list in reverse order}
 Traversing a singly linked list in a forward manned is simple (i.e. left to right) as demonstrated in \S\ref{singly_linked_traversal}, however, what if for some reason we wanted to traverse the nodes in the linked list in reverse order? The algorithm to perform such a traversal is very simple, and just like demonstrated in \S\ref{single_deletion} we will need to acquire a reference to the previous node of a node, even though the fundamental characteristics of the nodes that make up a singly linked list prohibit this by design.
+
+The following algorithm being applied to a linked list with the integers $5$, $10$, $1$, and $40$ is depicted in Figure \ref{fig:singly_linked_list_reverse_traversal}.
 
 \begin{tabbing}
 1)  \textbf{alg}\= \textbf{orithm} ReverseTraversal($tail$) \\
@@ -172,6 +176,13 @@ Traversing a singly linked list in a forward manned is simple (i.e. left to righ
 15) \> \textbf{end if} \\
 16) \textbf{end} ReverseTraversal \\
 \end{tabbing}
+
+\begin{figure}
+\caption{Reverse traveral of a singly linked list} \label{fig:singly_linked_list_reverse_traversal}
+\begin{center}
+\includegraphics{singly_linked_list_reverse_traversal}
+\end{center}
+\end{figure}
 
 \section{Doubly Linked List}
 Doubly linked lists are very similar to singly linked lists, the only difference is that each node has a reference to both the next and previous nodes in the list.
