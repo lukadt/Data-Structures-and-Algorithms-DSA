@@ -130,7 +130,16 @@ Just like when adding an item to the heap, when deleting an item from the heap w
 25) \> \textbf{end while} \\
 26) \> \textbf{return true} \\
 27) \textbf{end} Remove \\
-\end{tabbing} 
+\end{tabbing}
+
+Figure \ref{fig:heap_deletion} shows the \textit{Remove} algorithm visually, removing $1$ from a heap containing the values $1$, $3$, $9$, $12$, and $13$. In Figure \ref{fig:heap_deletion} you can assume that we have specified that the backing array of the heap should have an initial capacity of eight.
+
+\begin{figure}
+\begin{center}
+\includegraphics{heap_deletion}
+\end{center}
+\caption{Deleting an item from a heap} \label{fig:heap_deletion}
+\end{figure}
 
 \section{Searching} \label{heap_searching}
 Searching a heap is merely a case of traversing the items in the heap array sequentially, thus this operation has a run time complexity of $O(n)$. The search can be thought of as one that uses a breadth first traversal as defined in \S\ref{breadth_first} to visit the nodes within the heap to check for the presence of a specified item.
