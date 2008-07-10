@@ -46,12 +46,12 @@ The insertion algorithm is split for a good reason, the first algorithm (non-rec
 Searching a BST is really quite simple, the pseudo code is self explanatory but I will explain briefly the premise of the algorithm nonetheless.
 
 We have talked previously about insertion, we go either left or right with the right sub tree containing values that are $\geq n$ where $n$ is the value of the node we are inserting, when searching the rules are made a little more atomic and at any one time we have four cases to consider: 
-\begin{inparaenum}
+\begin{enumerate}
 \item the $root = \emptyset$ in which case $value$ is not in the BST; or
 \item $root$.Value $= value$ in which case $value$ is in the BST; or
 \item $value < root$.Value, we must inspect the left sub tree of $root$ for $value$; or
 \item $value > root$.Value, we must inspect the right sub tree of $root$ for $value$.
-\end{inparaenum}
+\end{enumerate}
 
 \newpage
 \begin{tabbing}
@@ -73,12 +73,12 @@ We have talked previously about insertion, we go either left or right with the r
 
 \section{Deletion}
 Removing a node from a BST is simple, there are four cases that we must consider though: 
-\begin{inparaenum}
+\begin{enumerate}
 \item the value to remove is a leaf node; or
 \item the value to remove has a right sub tree, but no left sub tree; or
 \item the value to remove has a left sub tree, but no right sub tree; or
 \item the value to remove has both a left and right sub tree in which case we promote the largest value in the left sub tree.
-\end{inparaenum}
+\end{enumerate}
 The $Remove$ algorithm described later relies on two further helper algorithms named $FindParent$, and $FindNode$ which are described in \S\ref{finding_parent_node} and \S\ref{find_node_reference}.
 
 \newpage
@@ -262,7 +262,7 @@ Another variation of the algorithms defined in \S\ref{preorder_traversal} and \S
 9)  \textbf{end} Inorder \\
 \end{tabbing}
 
-\subsection{Breadth First}
+\subsection{Breadth First} \label{breadth_first}
 Traversing a tree in breadth first order is to yield the values of all nodes of a particular depth in the tree, e.g. given the depth $d$ we would visit the values of all nodes in a left to right fashion at $d$, then we would proceed to $d+1$ and so on until we had ran out of nodes to visit. Consider the tree listed in \S\ref{preorder_traversal} if we were to traverse the nodes in breadth first order then the following sequence would be yielded $23, 14, 31, 7, 17, 9$. 
 
 Traditionally the way breadth first is implemented is using a list (vector, resizeable array, etc) to store the values of the nodes visited in breadth first order and then a queue to store those nodes that have yet to be visited.
