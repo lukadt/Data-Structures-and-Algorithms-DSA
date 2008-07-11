@@ -41,7 +41,7 @@ namespace Dsa.DataStructures
         /// Adds an item to the <see cref="Set{T}"/>.
         /// </summary>
         /// <remarks>
-        /// This is an O(1) operation if an <see cref="UnorderedSet{T}"/>, for an <see cref="OrderedSet{T}"/> this is an O(log n) operation.
+        /// This is an O(log n) operation.
         /// </remarks>
         /// <param name="item">Item to add to the <see cref="Set{T}"/>.</param>
         public override void Add(T item)

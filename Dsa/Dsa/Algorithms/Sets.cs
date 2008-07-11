@@ -7,11 +7,12 @@
 using Dsa.DataStructures;
 using Dsa.Properties;
 using Dsa.Utility;
+using System;
 
 namespace Dsa.Algorithms
 {
     /// <summary>
-    /// <see cref="Set{T}"/> algorithms.
+    /// <see cref="OrderedSet{T}"/> algorithms.
     /// </summary>
     public static class Sets
     {
@@ -21,11 +22,12 @@ namespace Dsa.Algorithms
         /// <remarks>
         /// <em>Permutations(n, k) = n!/(n-k)!</em>. 
         /// </remarks>
-        /// <typeparam name="T">Type of <see cref="Set{T}"/>.</typeparam>
+        /// <typeparam name="T">Type of <see cref="OrderedSet{T}"/>.</typeparam>
         /// <param name="set">Set to count permutations of.</param>
         /// <param name="setCount">Permutations of setCount items.</param>
         /// <returns>The number of set permutations of <em>setCount</em> items.</returns>
-        public static int Permutations<T>(this Set<T> set, int setCount)
+        public static int Permutations<T>(this OrderedSet<T> set, int setCount)
+            where T : IComparable<T>
         {
             Guard.ArgumentNull(set, "set");
             Guard.OutOfRange(setCount < 1, "setCount", Resources.PermutationsKGreaterThanZero);

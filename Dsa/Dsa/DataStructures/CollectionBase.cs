@@ -141,7 +141,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Copies the items in an <see cref="IEnumerable{T}"/> to the <see cref="Set{T}"/>.
+        /// Copies the items in an <see cref="IEnumerable{T}"/> to the <see cref="CollectionBase{T}"/>.
         /// </summary>
         /// <param name="collection">Items to copy.</param>
         /// <exception cref="ArgumentNullException"><strong>collection</strong> is <strong>null</strong>.</exception>

@@ -51,7 +51,9 @@
   <ItemGroup>
     <Compile Include="Algorithms\NumbersTest.cs" />
     <Compile Include="Algorithms\SearchingTest.cs" />
-    <Compile Include="Algorithms\SetsTest.cs" />
+    <Compile Include="Algorithms\SetsTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Algorithms\SortingTest.cs" />
     <Compile Include="Algorithms\StringsTest.cs" />
     <Compile Include="DataStructures\BinarySearchTreeTest.cs" />
@@ -61,7 +63,6 @@
     <Compile Include="DataStructures\DoublyLinkedListTest.cs" />
     <Compile Include="DataStructures\PriorityQueueTest.cs" />
     <Compile Include="DataStructures\SinglyLinkedListTest.cs" />
-    <Compile Include="DataStructures\UnorderedSetTest.cs" />
     <Compile Include="Utility\CompareTest.cs" />
     <Compile Include="DataStructures\DoublyLinkedListNodeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

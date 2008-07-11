@@ -9,6 +9,7 @@ using System.Globalization;
 using System.Text;
 using Dsa.DataStructures;
 using Dsa.Utility;
+using System.Collections.Generic;
 
 namespace Dsa.Algorithms
 {
@@ -273,7 +274,7 @@ namespace Dsa.Algorithms
             Guard.ArgumentNull(value, "value");
 
             string[] words = value.Split(' ');
-            UnorderedSet<string> uniques = new UnorderedSet<string>();
+            HashSet<string> uniques = new HashSet<string>();
             foreach (string s in words)
             {
                 uniques.Add(s.Strip());

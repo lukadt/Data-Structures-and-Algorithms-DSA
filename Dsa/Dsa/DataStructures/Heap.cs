@@ -152,7 +152,7 @@ namespace Dsa.DataStructures
                 return false;
             }
 
-            heap[index] = heap[--Count]; // todo: refactor this!!!
+            heap[index] = heap[--Count];
             if (strategy == Strategy.Min)
             {
                 while (2 * index + 1 < Count && (Compare.IsGreaterThan(heap[index], heap[2 * index + 1], comparer) ||

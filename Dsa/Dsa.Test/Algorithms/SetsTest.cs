@@ -17,7 +17,7 @@ namespace Dsa.Test.Algorithms
         [Test]
         public void PermutationTest()
         {
-            UnorderedSet<int> actual = new UnorderedSet<int> {10, 12, 45, 1};
+            OrderedSet<int> actual = new OrderedSet<int> { 10, 12, 45, 1 };
 
             Assert.AreEqual(12, actual.Permutations(2));
         }
@@ -29,7 +29,7 @@ namespace Dsa.Test.Algorithms
         [ExpectedException(typeof(ArgumentNullException))]
         public void PermutationSetNullTest()
         {
-            const UnorderedSet<int> actual = null;
+            const OrderedSet<int> actual = null;
 
             actual.Permutations(2);
         }
@@ -40,7 +40,7 @@ namespace Dsa.Test.Algorithms
         [Test]
         public void PermutationsEmptySetTest()
         {
-            UnorderedSet<int> actual = new UnorderedSet<int>();
+            OrderedSet<int> actual = new OrderedSet<int>();
 
             Assert.AreEqual(0, actual.Permutations(2));
         }
@@ -52,7 +52,7 @@ namespace Dsa.Test.Algorithms
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void PerumtationsEmptySetZeroItems()
         {
-            UnorderedSet<int> actual = new UnorderedSet<int>();
+            OrderedSet<int> actual = new OrderedSet<int>();
 
             actual.Permutations(0);
         }

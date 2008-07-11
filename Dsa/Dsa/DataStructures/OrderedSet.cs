@@ -11,22 +11,24 @@ using System.Collections.Generic;
 namespace Dsa.DataStructures
 {
     /// <summary>
-    /// An ordered set where the items are ordered using a default <see cref="Comparer{T}"/> or a provided <see cref="IComparer{T}"/>.  
+    /// An set where the items are ordered. 
     /// </summary>
     /// <remarks>
     /// In order to check for equality for non-primitve types you must make sure the type implements <see cref="IComparable{T}"/> otherwise
     /// the <see cref="OrderedSet{T}"/> cannot guarantee the set contains only unique objects.
     /// </remarks>
     /// <typeparam name="T">Type of OrderedSet.</typeparam>
-    public sealed class OrderedSet<T> : Set<T>
+    public sealed class OrderedSet<T> : CollectionBase<T>
         where T : IComparable<T>
     {
+        private readonly BinarySearchTree<T> set;
+
         /// <summary>
         /// Creates and initializes a new instance of <see cref="OrderedSet{T}"/>.
         /// </summary>
         public OrderedSet()
-            : base(new BinarySearchTree<T>()) 
         {
+            set = new BinarySearchTree<T>();
         }
 
         /// <summary>
@@ -49,6 +51,77 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
+        /// Adds an item to the <see cref="OrderedSet{T}"/>.
+        /// </summary>
+        /// <remarks>
+        /// This is an O(log n) operation.
+        /// </remarks>
+        /// <param name="item">Item to add to the <see cref="OrderedSet{T}"/>.</param>
+        public override void Add(T item)
+        {
+            if (set.Contains(item))
+            {
+                return; // item already in set
+            }
+
+            set.Add(item);
+            Count++;
+        }
+
+        /// <summary>
+        /// Clears all the items from the <see cref="OrderedSet{T}"/>.
+        /// </summary>
+        public override void Clear()
+        {
+            set.Clear();
+            Count = 0;
+        }
+
+        /// <summary>
+        /// Determines whether or not an item is contained within the <see cref="OrderedSet{T}"/>.
+        /// </summary>
+        /// <remarks>
+        /// This is an O(log n) operation.
+        /// </remarks>
+        /// <param name="item">Item to search the <see cref="OrderedSet{T}"/> for.</param>
+        /// <returns>True if the item is contained within the <see cref="OrderedSet{T}"/>; otherwise false.</returns>
+        public override bool Contains(T item)
+        {
+            return set.Contains(item);
+        }
+
+        /// <summary>
+        /// Removes an item from the <see cref="OrderedSet{T}"/>.
+        /// </summary>
+        /// <remarks>
+        /// This is an O(log n) operation.
+        /// </remarks>
+        /// <param name="item">Item to remove from the <see cref="OrderedSet{T}"/>.</param>
+        /// <returns>True if the item was removed; false otherwise.</returns>
+        public override bool Remove(T item)
+        {
+            int count = Count;
+            if (set.Remove(item))
+            {
+                Count--;
+            }
+
+            return Count < count ? true : false;
+        }
+
+        /// <summary>
+        /// Returns the items in the <see cref="OrderedSet{T}"/> as a one-dimensional <see cref="Array"/>.
+        /// </summary>
+        /// <remarks>
+        /// This is an O(n) operation where n is the number of items in the <see cref="OrderedSet{T}"/>.
+        /// </remarks>
+        /// <returns>A one dimensional <see cref="Array"/> populated with the items from the <see cref="OrderedSet{T}"/>.</returns>
+        public override T[] ToArray()
+        {
+            return ToArray(Count, this);
+        }
+
+        /// <summary>
         /// Returns an <see cref="IEnumerator{T}"/> to provide a simple traversal through the items in the <see cref="OrderedSet{T}"/>.
         /// </summary>
         /// <returns>An <see cref="IEnumerator{T}"/> to traverse the <see cref="OrderedSet{T}"/>.</returns>
@@ -57,7 +130,7 @@ namespace Dsa.DataStructures
         /// </remarks>
         public override IEnumerator<T> GetEnumerator()
         {
-            return (Collection as BinarySearchTree<T>).GetInorderEnumerator().GetEnumerator();
+            return set.GetInorderEnumerator().GetEnumerator();
         }
     }
 }
