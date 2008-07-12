@@ -10,7 +10,7 @@ namespace Dsa.Test.DataStructures
     /// Tests for SinglyLinkedList.
     /// </summary>
     [TestFixture]
-    public class SinglyLinkedListTest
+    public sealed class SinglyLinkedListTest
     {
         /// <summary>
         /// Check to see that the SinglyLinkedListCollectionCollection reports as empty when it is.

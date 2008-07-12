@@ -9,7 +9,7 @@ namespace Dsa.Test.DataStructures
     /// Tests for PriorityQueue.
     /// </summary>
     [TestFixture]
-    public class PriorityQueueTest
+    public sealed class PriorityQueueTest
     {
         /// <summary>
         /// Check to see that the queue is in the correct state.

@@ -7,7 +7,7 @@ namespace Dsa.Test.DataStructures
     /// Tests for SinglyLinkedListNode.
     /// </summary>
     [TestFixture]
-    public class SinglyLinkedListNodeTest
+    public sealed class SinglyLinkedListNodeTest
     {
         /// <summary>
         /// Check to see that the expected Int32 value of a node is returned.

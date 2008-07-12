@@ -10,7 +10,7 @@ namespace Dsa.Test.DataStructures
     /// Tests for Heap.
     /// </summary>
     [TestFixture]
-    public class HeapTest
+    public sealed class HeapTest
     {
         /// <summary>
         /// Check to see that adding an item to the Heap results in the correct behaviour.

@@ -7,7 +7,7 @@ namespace Dsa.Test.DataStructures
     /// BinaryTreeNode(Of T) tests.
     /// </summary>
     [TestFixture]
-    public class BinaryTreeNodeTest
+    public sealed class BinaryTreeNodeTest
     {
         /// <summary>
         /// Check to see that a BinaryTreeNode is initialized to the correct values.

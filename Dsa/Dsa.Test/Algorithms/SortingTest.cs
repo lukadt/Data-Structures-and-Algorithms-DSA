@@ -9,7 +9,7 @@ namespace Dsa.Test.Algorithms
     /// Sorting tests.
     /// </summary>
     [TestFixture]
-    public class SortingTest
+    public sealed class SortingTest
     {
         /// <summary>
         /// Check to see that the bubblesort algorithm sorts the items in ascending order.

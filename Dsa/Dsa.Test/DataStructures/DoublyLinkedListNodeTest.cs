@@ -7,7 +7,7 @@ namespace Dsa.Test.DataStructures
     /// Tests for DoublyLinkedListNode.
     /// </summary>
     [TestFixture]
-    public class DoublyLinkedListNodeTest
+    public sealed class DoublyLinkedListNodeTest
     {
         /// <summary>
         /// Check to see that a node is created and its state initialized correctly.

@@ -9,7 +9,7 @@ namespace Dsa.Test.Algorithms
     /// Tests for Set algorithms
     /// </summary>
     [TestFixture]
-    public class SetsTest
+    public sealed class SetsTest
     {
         /// <summary>
         /// Check to see that the correct value is returned representing the number of permutations.

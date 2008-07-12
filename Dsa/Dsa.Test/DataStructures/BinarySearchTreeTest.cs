@@ -11,7 +11,7 @@ namespace Dsa.Test.DataStructures
     /// Tests for BinarySearchTree.
     /// </summary>
     [TestFixture]
-    public class BinarySearchTreeTest
+    public sealed class BinarySearchTreeTest
     {
         /// <summary>
         /// Check to see that the fields are initialized correctly.

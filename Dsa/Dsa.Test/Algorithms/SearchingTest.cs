@@ -8,7 +8,7 @@ namespace Dsa.Test.Algorithms
     /// Tests for Searching.
     /// </summary>
     [TestFixture]
-    public class SearchingTest
+    public sealed class SearchingTest
     {
         /// <summary>
         /// Check to see that SequentialSearch returns the correct index for an item that is in the array.

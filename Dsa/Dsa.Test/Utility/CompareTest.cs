@@ -8,7 +8,7 @@ namespace Dsa.Test.Utility
     /// Tests for the compare methods.
     /// </summary>
     [TestFixture]
-    public class CompareTest
+    public sealed class CompareTest
     {
         /// <summary>
         /// Check to see that IsLessThan method returns the correct value.

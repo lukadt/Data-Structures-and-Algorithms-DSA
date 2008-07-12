@@ -18,7 +18,7 @@ namespace Dsa.DataStructures
     /// Higher priority given to "lower" value objects by default.
     /// </remarks>
     /// <typeparam name="T">Type of the <see cref="PriorityQueue{T}"/>.</typeparam>
-    public class PriorityQueue<T> : CollectionBase<T>
+    public sealed class PriorityQueue<T> : CollectionBase<T>
         where T : IComparable<T>
     {
         [NonSerialized]

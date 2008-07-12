@@ -9,7 +9,7 @@ namespace Dsa.Test.DataStructures
     /// Tests for OrderedSet.
     /// </summary>
     [TestFixture]
-    public class SetTest
+    public sealed class SetTest
     {
         /// <summary>
         /// Check to see that items are added correctly and duplicate values are ignored.

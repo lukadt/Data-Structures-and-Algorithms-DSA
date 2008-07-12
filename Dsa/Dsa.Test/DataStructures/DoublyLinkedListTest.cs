@@ -9,7 +9,7 @@ namespace Dsa.Test.DataStructures
     /// Tests for DoublyLinkedList.
     /// </summary>
     [TestFixture]
-    public class DoublyLinkedListTest
+    public sealed class DoublyLinkedListTest
     {
         /// <summary>
         /// Check to see if CollectionAssert.AreEqual passes for twocollection containing the same values.

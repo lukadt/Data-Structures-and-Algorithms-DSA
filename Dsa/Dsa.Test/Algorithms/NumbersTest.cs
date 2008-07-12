@@ -8,7 +8,7 @@ namespace Dsa.Test.Algorithms
     /// Numbers tests.
     /// </summary>
     [TestFixture]
-    public class NumbersTest
+    public sealed class NumbersTest
     {
         /// <summary>
         /// Check to see that calling Fibonacci algorithm returns the correct value.

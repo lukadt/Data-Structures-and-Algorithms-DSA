@@ -8,7 +8,7 @@ namespace Dsa.Test.Utility
     /// Test for the Guard family of methods.
     /// </summary>
     [TestFixture]
-    public class GuardTest
+    public sealed class GuardTest
     {
         /// <summary>
         /// Check to see that the correct exception is thrown when the argument being verified is null.

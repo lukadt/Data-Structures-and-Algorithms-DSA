@@ -8,7 +8,7 @@ namespace Dsa.Test.Algorithms
     /// Tests for the Strings algorithms.
     /// </summary>
     [TestFixture]
-    public class StringsTest 
+    public sealed class StringsTest 
     {
         /// <summary>
         /// Check to see that the resulting string returned from Reverse is that expected.
