@@ -3,6 +3,14 @@
 Binary search tree's (BSTs) are very simple to understand, consider the following where by we have a root node $n$, the left sub tree of $n$ contains values $< n$, the right sub tree however contains nodes whose values are $\geq n$.
 
 BSTs are of interest because they have operations which are favourably fast, insertion, look up, and deletion can all be done in $O(log~n)$. One of the things that I would like to point out and address early is that $O(log~n)$ times for the aforementioned operations can only be attained if the BST is relatively balanced (for a tree data structure with self balancing properties see \S\ref{Avl}). 
+\begin{figure}[htp]
+\begin{center}
+\includegraphics{bst_intro}
+\end{center}
+\caption{Simple unbalanced binary search tree} \label{fig:bst_intro}
+\end{figure}
+
+
 
 \section{Insertion}
 As mentioned previously insertion is an $O(log~n)$ operation provided that the tree is moderately balanced.
@@ -79,6 +87,13 @@ Removing a node from a BST is simple, there are four cases that we must consider
 \item the value to remove has a left sub tree, but no right sub tree; or
 \item the value to remove has both a left and right sub tree in which case we promote the largest value in the left sub tree.
 \end{enumerate}
+\begin{figure}[htp]
+\begin{center}
+\includegraphics{bst_deletion}
+\end{center}
+\caption{binary search tree deletion cases} \label{fig:bst_deletion}
+\end{figure}
+
 The $Remove$ algorithm described later relies on two further helper algorithms named $FindParent$, and $FindNode$ which are described in \S\ref{finding_parent_node} and \S\ref{find_node_reference}.
 
 \newpage
@@ -213,12 +228,19 @@ The base case in both $FindMin$, and $FindMax$ algorithms is when the Left ($Fin
 \end{tabbing}
 
 \section{Tree Traversals}
-For the most part when you have a tree you will want to traverse the items in that tree using various strategies in order to attain the node visitation order you require. In this section I will touch on the traversals that DSA provides on all data structures that derive from $BinarySearchTree$.
+For the most part when you have a tree you will want to traverse the items in that tree using various strategies in order to attain the node visitation order you require. In this section we will touch on the traversals that DSA provides on all data structures that derive from $BinarySearchTree$.
 
-The algorithms explained in this section will be a lot clearer if you draw out the tree listed in \S\ref{preorder_traversal}, you may also want to draw recursive tree calls which will yield the pragmatic sequence of values.
+The algorithms explained in this section will be a lot clearer if you draw out  the recursive tree calls which will yield the pragmatic sequence of values.
 
 \subsection{Preorder} \label{preorder_traversal}
-When using the preorder algorithm you look at the value of each node that you pass on the left hand side, e.g. given the tree $(23~14(7(~~9)~17)~31)$ using a preorder traversal would yield the following sequence $23, 14, 7, 9, 17, 31$.
+When using the preorder algorithm, you visit the root first, traverse the left subtree and traverse the right subtree. An example of preorder traversal is shown in figure \ref{fig:bst_preorder}.
+\begin{figure}[htp]
+\begin{center}
+\includegraphics{bst_preorder}
+\end{center}
+\caption{Preorder visit binary search tree example} \label{fig:bst_preorder}
+\end{figure}
+
 
 \begin{tabbing}
 1)  \textbf{alg}\= \textbf{orithm} Preorder($root$) \\
@@ -233,7 +255,14 @@ When using the preorder algorithm you look at the value of each node that you pa
 \end{tabbing}
 
 \subsection{Postorder} \label{postorder_traversal}
-This algorithm is very similar to that described in \S\ref{preorder_traversal}, however the value of the node is yielded after the two recursive calls. When you traverse the nodes in a postorder fashion the value of the node is yielded upon passing the node on the right hand side, e.g. given the same tree as listed in \S\ref{preorder_traversal} the following sequence is yielded $9, 7, 17, 14, 31, 23$.
+This algorithm is very similar to that described in \S\ref{preorder_traversal}, however the value of the node is yielded after traversing the left subtree and  the right subtree. An example of postorder traversal is shown in figure \ref{fig:bst_postorder}.
+
+\begin{figure}[htp]
+\begin{center}
+\includegraphics{bst_postorder}
+\end{center}
+\caption{Postorder visit binary search tree example} \label{fig:bst_postorder}
+\end{figure}
 
 \begin{tabbing}
 1)  \textbf{alg}\= \textbf{orithm} Postorder($root$) \\
@@ -248,7 +277,15 @@ This algorithm is very similar to that described in \S\ref{preorder_traversal}, 
 \end{tabbing}
 
 \subsection{Inorder}
-Another variation of the algorithms defined in \S\ref{preorder_traversal} and \S\ref{postorder_traversal} is that of inorder traversal where the value of the current node is yielded in between the recursive calls. Inorder traversal yields the value of each node when passing underneath that node, e.g. given the tree listed in \S\ref{preorder_traversal} the following sequence is yielded $7, 9, 14, 17, 23, 31$ - the sequence is that of the values in the BST in ascending order.
+Another variation of the algorithms defined in \S\ref{preorder_traversal} and \S\ref{postorder_traversal} is that of inorder traversal where the value of the current node is yielded in between traversing the left subtree and  the right subtree. An example of inorder traversal is shown in figure \ref{fig:bst_inorder}.
+
+\begin{figure}[htp]
+\begin{center}
+\includegraphics{bst_inorder}
+\end{center}
+\caption{Inorder visit binary search tree example} \label{fig:bst_inorder}
+\end{figure}
+
 
 \begin{tabbing}
 1)  \textbf{alg}\= \textbf{orithm} Inorder($root$) \\
@@ -263,9 +300,17 @@ Another variation of the algorithms defined in \S\ref{preorder_traversal} and \S
 \end{tabbing}
 
 \subsection{Breadth First} \label{breadth_first}
-Traversing a tree in breadth first order is to yield the values of all nodes of a particular depth in the tree, e.g. given the depth $d$ we would visit the values of all nodes in a left to right fashion at $d$, then we would proceed to $d+1$ and so on until we had ran out of nodes to visit. Consider the tree listed in \S\ref{preorder_traversal} if we were to traverse the nodes in breadth first order then the following sequence would be yielded $23, 14, 31, 7, 17, 9$. 
+Traversing a tree in breadth first order is to yield the values of all nodes of a particular depth in the tree, e.g. given the depth $d$ we would visit the values of all nodes in a left to right fashion at $d$, then we would proceed to $d+1$ and so on until we had ran out of nodes to visit. An example of breadth first traversal is shown in figure \ref{fig:bst_breadth}.
 
 Traditionally the way breadth first is implemented is using a list (vector, resizeable array, etc) to store the values of the nodes visited in breadth first order and then a queue to store those nodes that have yet to be visited.
+
+\begin{figure}[htp]
+\begin{center}
+\includegraphics{bst_breadth}
+\end{center}
+\caption{Breadth First visit binary search tree example} \label{fig:bst_breadth}
+\end{figure}
+
 
 \begin{tabbing}
 1)  \textbf{alg}\= \textbf{orithm} BreadthFirst($root$) \\
