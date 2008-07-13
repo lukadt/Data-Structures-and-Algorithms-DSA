@@ -10,8 +10,7 @@ BSTs are of interest because they have operations which are favourably fast, ins
 \caption{Simple unbalanced binary search tree} \label{fig:bst_intro}
 \end{figure}
 
-
-
+\newpage
 \section{Insertion}
 As mentioned previously insertion is an $O(log~n)$ operation provided that the tree is moderately balanced.
 
@@ -27,7 +26,7 @@ As mentioned previously insertion is an $O(log~n)$ operation provided that the t
 9)  \textbf{end} Insert \\
 \end{tabbing}
 
-\newpage
+
 \begin{tabbing}
 1)  \textbf{alg}\= \textbf{orithm} InsertNode($root$, $value$) \\
 2)  \> \textbf{Pre:}~~$root$ is the node to start from \\
@@ -50,6 +49,7 @@ As mentioned previously insertion is an $O(log~n)$ operation provided that the t
 
 The insertion algorithm is split for a good reason, the first algorithm (non-recursive) checks a very core base case - whether or not the tree is empty, if the tree is empty then we simply create our root node and we have no need to invoke the recursive $InsertNode$ algorithm. When the core base case is not met we must invoke the recursive $InsertNode$ algorithm which simply guides us to the first appropriate place in the tree to put $value$.
 
+\newpage
 \section{Searching}
 Searching a BST is really quite simple, the pseudo code is self explanatory but I will explain briefly the premise of the algorithm nonetheless.
 
@@ -61,7 +61,8 @@ We have talked previously about insertion, we go either left or right with the r
 \item $value > root$.Value, we must inspect the right sub tree of $root$ for $value$.
 \end{enumerate}
 
-\newpage
+
+
 \begin{tabbing}
 1)  \textbf{alg}\= \textbf{orithm} Contains($root$, $value$) \\
 2)  \> \textbf{Pre:}~~$root$ is the root node of the tree, $value$ is what we would like to locate \\
@@ -79,6 +80,7 @@ We have talked previously about insertion, we go either left or right with the r
 14) \textbf{end} Contains \\
 \end{tabbing}
 
+\newpage
 \section{Deletion}
 Removing a node from a BST is simple, there are four cases that we must consider though: 
 \begin{enumerate}
@@ -230,8 +232,6 @@ The base case in both $FindMin$, and $FindMax$ algorithms is when the Left ($Fin
 \section{Tree Traversals}
 For the most part when you have a tree you will want to traverse the items in that tree using various strategies in order to attain the node visitation order you require. In this section we will touch on the traversals that DSA provides on all data structures that derive from $BinarySearchTree$.
 
-The algorithms explained in this section will be a lot clearer if you draw out  the recursive tree calls which will yield the pragmatic sequence of values.
-
 \subsection{Preorder} \label{preorder_traversal}
 When using the preorder algorithm, you visit the root first, traverse the left subtree and traverse the right subtree. An example of preorder traversal is shown in figure \ref{fig:bst_preorder}.
 \begin{figure}[htp]
@@ -276,6 +276,7 @@ This algorithm is very similar to that described in \S\ref{preorder_traversal}, 
 9)  \textbf{end} Postorder \\
 \end{tabbing}
 
+\newpage
 \subsection{Inorder}
 Another variation of the algorithms defined in \S\ref{preorder_traversal} and \S\ref{postorder_traversal} is that of inorder traversal where the value of the current node is yielded in between traversing the left subtree and  the right subtree. An example of inorder traversal is shown in figure \ref{fig:bst_inorder}.
 
