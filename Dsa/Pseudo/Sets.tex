@@ -1,91 +1,33 @@
 % Copyright (C) Data Structures and Algorithms Team.
 \chapter{Sets}
-A set contains a number of values, the values are in no particular order and the same value can be in the set more than once, however a value is recognised only once irrespective of whether or not it is duplicated later in the set.
+A set contains a number of values, the values are in no particular order and the values within the set are distinct from one another.
 
-Generally set implementations tend to check that a value is not in the set first, before adding it to the set and so the issue of repeated values is not an issue.
+Generally set implementations tend to check that a value is not in the set first, before adding it to the set and so the issue of repeated values within the set is not an issue.
 
 This section does not cover set theory in depth, rather it demonstrates briefly the ways in which the values of sets can be defined, and common operations that may be performed upon them.
 
+The following $A = \{4, 7, 9, 12, 0\}$ defines a set $A$ whose values are listed within the curly braces. 
+
+Given the set $A$ defined previously we can say that $4$ is a member of $A$ denoted by $4 \in A$, and that $99$ is not a member of $A$ denoted by $99 \notin A$.
+
+Often defining a set by manually stating its members is tiresome, and more importantly the set may contain a large amount of values. A more concise way of defining a set and its members is by providing a series of properties that the values of the set must satisfy. In the following $A = \{x|x > 0, x~\%~2 = 0\}$ the set $A$ contains only positive integers that are even, $x$ is an alias to the current value we are inspecting and to the right hand side of $\mid$ are the properties that $x$ must satisfy to be in the set $A$ that is it must be $> 0$, and the remainder of the arithmetic expression $x / 2$ must be $0$.
+You will be able to note from previous definition of the set $A$ that the set can contain an infinite number of values, and that the values of the set $A$ will be all even integers that are a member of the natural numbers set $\mathbb{N}$, where $\mathbb{N} = \{1, 2, 3, ...\}$.
+
+Finally in this brief introduction to sets we will cover set intersection and union, both of which are very common operations (amongst many others) performed on sets. The union set can be defined as follows $A \cup B = \{x \mid x \in A~or~x \in B\}$, and intersection $A \cap B = \{x \mid x \in A~and~x \in B\}$. Figure \ref{fig:set_intersection_and_union} demonstrates set intersection and union graphically.
+
 \begin{figure}
 \begin{center}
-$A = \{4, 7, 9, 12, 0\}$
+\includegraphics{set_intersection_and_union}
 \end{center}
-\caption{Defining a set formally} \label{fig:set_definition}
-\end{figure}
+\caption{a) $A \cap B$; b) $A \cup B$} \label{fig:set_intersection_and_union}
+\end{figure} 
 
-Figure \ref{fig:set_definition} defines a set $A$ whose values are listed within the curly braces, Figure \ref{fig:set_definition_duplicates} shows a set which is the same as that in Figure \ref{fig:set_definition}. 
+Given the following set definitions $A = \{1, 2, 3\}$, and $B = \{6, 2, 9\}$ the union of the two sets is $A \cup B= \{1, 2, 3, 6, 9\}$, and the intersection of the two sets is $A \cap B= \{2\}$.
 
-\begin{figure}
-\begin{center}
-$A = \{4, 7, 9, 4, 12, 0, 12\}$
-\end{center} 
-\caption{Duplicate values within a set are ignored} \label{fig:set_definition_duplicates}
-\end{figure}
-
-Given the set $A$ defined in Figure \ref{fig:set_definition} we can say that $4$ is a member of $A$, and that $99$ is not a member of $A$ as shown in Figures \ref{fig:set_member_of}, and \ref{fig:set_not_member_of} respectively.
-
-\begin{figure}
-\begin{center}
-$4 \in A$
-\end{center}
-\caption{$4$ is a member of $A$} \label{fig:set_member_of}
-\end{figure}
-
-\begin{figure}
-\begin{center}
-$99 \notin A$
-\end{center}
-\caption{$99$ is not a member of $A$} \label{fig:set_not_member_of}
-\end{figure}
-
-Often defining a set by manually stating its members is tiresome, and more importantly the set may contain a large amount of values. A more concise way of defining a set and its members is by providing a series of properties that the values of the set must satisfy. In Figure \ref{fig:set_member_properties} the set $A$ contains only positive integers that are even, $x$ is an alias to the current value we are inspecting and to the right hand side of $\mid$ are the properties that $x$ must satisfy to be in the set $A$ that is it must be $> 0$, and the remainder of the arithmetic expression $x / 2$ must be $0$.
-You will be able to note from Figure \ref{fig:set_member_properties} that the set can contain an infinite number of values, and that the values of the set $A$ will be all even integers that are a member of the natural numbers set $\mathbb{N}$, where $\mathbb{N} = \{1, 2, 3, ...\}$.
-
-\begin{figure}
-\begin{center}
-$A = \{x|x > 0, x~\%~2 = 0\}$
-\end{center}
-\caption{Defining the properties of the values in set $A$} \label{fig:set_member_properties}
-\end{figure}
-
-Finally in this brief introduction to sets we will cover set intersection and union, both of which are very common operations (amongst many others) performed on sets. The union set is defined in Figure \ref{fig:set_union}, and intersection in Figure \ref{set_intersection} both operations are self explanatory, examples of set union and intersection are shown in Figures \ref{fig:set_union_example}, and \ref{fig:set_intersection_example} respectively.
-
-\begin{figure}
-\begin{center}
-$A \cup B = \{x \mid x \in A~or~x \in B\}$
-\end{center}
-\caption{Set union} \label{fig:set_union}
-\end{figure}
-
-\begin{figure}
-\begin{center}
-$A \cap B = \{x \mid x \in A~and~x \in B\}$
-\end{center}
-\caption{Set intersection} \label{set_intersection}
-\end{figure}
-
-\begin{figure}
-\begin{center}
-$A = \{1, 2, 3\}$ \\
-$B = \{6, 2, 9\}$ \\
-$A \cup B= \{1, 2, 3, 6, 9\}$
-\end{center}
-\caption{Example of set union} \label{fig:set_union_example}
-\end{figure}
-
-\begin{figure}
-\begin{center}
-$A = \{1, 2, 3\}$ \\
-$B = \{6, 2, 9\}$ \\
-$A \cap B= \{2\}$
-\end{center}
-\caption{Example of set intersection} \label{fig:set_intersection_example}
-\end{figure}
-
-Both set union and intersection are sometimes provided within the framework associated with mainstream languages, this is the case in .NET 3.5 where such algorithms exist as extension methods defined in the type \textit{System.Linq.Enumerable}, as a result DSA does not provide implementations of these algorithms.
+Both set union and intersection are sometimes provided within the framework associated with mainstream languages, this is the case in .NET 3.5\footnote{\url{http://www.microsoft.com/NET/}} where such algorithms exist as extension methods defined in the type \textit{System.Linq.Enumerable}\footnote{\url{http://msdn.microsoft.com/en-us/library/system.linq.enumerable_members.aspx}}, as a result DSA does not provide implementations of these algorithms.
 
 \section{Unordered}
-Sets in the general sense do not enforce the explicit ordering of their members, for example in Figure \ref{fig:set_intersection_example} the members of set $B$ conform to no ordering scheme because it is not required. 
+Sets in the general sense do not enforce the explicit ordering of their members, for example the members of $B = \{6, 2, 9\}$ conform to no ordering scheme because it is not required. 
 
 Most libraries provide implementations of unordered sets and so DSA does not, we simply mention it here to disambiguate between an unordered set and ordered set. 
 
@@ -104,7 +46,7 @@ A hash map generally provides the following:
 The above depends on how good the hashing algorithm of the hash table is, however most hash tables employ incredibly efficient general purpose hashing algorithms and so the run time complexities for the hash table in your library of choice should be very similar in terms of efficiency.
 
 \section{Ordered}
-An ordered set is similar to an unordered set in the sense that its members are unique, however an ordered set enforces some predefined comparison on each of its members to result in a set whose members are ordered appropriately.
+An ordered set is similar to an unordered set in the sense that its members are distinct, however an ordered set enforces some predefined comparison on each of its members to result in a set whose members are ordered appropriately.
 
 In DSA 0.5 and earlier we used a binary search tree (defined in \S\ref{bst}) as the internal backing data structure for our ordered set, from versions 0.6 onwards we replaced the binary search tree with an AVL tree primarily because AVL is balanced.
 
