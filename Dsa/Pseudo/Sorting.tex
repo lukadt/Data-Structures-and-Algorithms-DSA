@@ -11,7 +11,7 @@ One of the most simple forms of sorting is that of comparing each item with ever
 \begin{center}
 \includegraphics{sorting_bubble}
 \end{center}
-\caption{Bubble Sorting Iterations} \label{fig:sorting_bubble}
+\caption{Bubble Sort Iterations} \label{fig:sorting_bubble}
 \end{figure}
 
 \begin{tabbing}
@@ -31,11 +31,14 @@ One of the most simple forms of sorting is that of comparing each item with ever
 
 \newpage
 \section{Merge Sort}
-Merge sort is an algorithm that has a fairly effecient space time complexity - $O(n~log~n)$ and is fairly trivial to implement.
+Merge sort is an algorithm that has a fairly effecient space time complexity - $O(n~log~n)$ and is fairly trivial to implement. The algorithm is based on splitting a list, into two similar sized lists ($left$, and $right$) and sorting each list and then merging the sorted lists back together. \textit{Note: the function MergeOrdered simply takes two ordered lists and makes them one.}
 
-The algorithm is based on splitting a list, into two similar sized lists ($left$, and $right$) and sorting each list and then merging the sorted lists back together.
-
-\textit{Note: the function MergeOrdered simply takes two ordered lists and makes them one.}
+\begin{figure}[h]
+\begin{center}
+\includegraphics{sorting_merge}
+\end{center}
+\caption{Merge Sort Divide et Impera Approach} \label{fig:sorting_merge}
+\end{figure}
 
 \begin{tabbing}
 1)  \textbf{alg}\= \textbf{orithm} Mergesort($list$) \\
