@@ -3,11 +3,16 @@
 All the sorting algorithms in this chapter use data structures of a specific type to demonstrate sorting, e.g. a $32$ bit integer is often used as its associated operations (e.g. $<$, $>$, etc) are clear in their behaviour.
 
 The algorithms discussed can easily be translated into generic sorting algorithms within your respective language of choice.
-
+\newpage
 \section{Bubble Sort}
-One of the most simple forms of sorting is that of comparing each item with every other item in some list, however as the description may imply this form of sorting is not particularly effecient $O(n^{2})$.
+One of the most simple forms of sorting is that of comparing each item with every other item in some list, however as the description may imply this form of sorting is not particularly effecient $O(n^{2})$. In it's most simple form bubble sort can be implemented as two loops.
 
-In it's most simple form bubble sort can be implemented as two loops.
+\begin{figure}[h]
+\begin{center}
+\includegraphics{sorting_bubble}
+\end{center}
+\caption{Bubble Sorting Iterations} \label{fig:sorting_bubble}
+\end{figure}
 
 \begin{tabbing}
 1)  \textbf{alg}\= \textbf{orithm} BubbleSort($list$) \\
