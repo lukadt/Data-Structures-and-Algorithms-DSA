@@ -20,6 +20,13 @@ We have written this book with few assumptions of the reader, however we have, n
 \subsection{Big oh notation}
 For run time complexity analysis we use big oh notation extensively so it is vital that you are familiar with the general concepts to determine which is the best algorithm for you in certain scenarios. We have chosen to use big oh notation for a few reasons, however the most important is that it provides an abstract measurement in which we can judge the performance of algorithms without using mathematical proofs.
 
+Figure \ref{algorithmic_runtime_expansion} shows some of the run times to depict how important choosing an efficient algorithm is, for the sanity of our graph we have omitted cubic $O(n^{3})$, and exponential $O(2^{n})$ run times. Cubic, and exponential algorithms should only ever be used for very small problems (if ever!), avoid them if feasibly possible. 
+
+\begin{figure}
+\includegraphics[scale=0.5]{intro_runtimes}
+\caption{Algorithmic run time expansion} \label{algorithmic_runtime_expansion}
+\end{figure}
+
 \subsection{Imperative programming language}
 All examples are given in a pseudo imperative coding format and so the reader must know the basics of some imperative mainstream programming language to port the examples effectively, we have written this book in mind of the following target languages:
 
