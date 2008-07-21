@@ -3,6 +3,9 @@
 Strings have their own chapter in this text purely because string operations and transformations are incredibly frequent within programs. The algorithms presented are based on problems the authors have come across previously, or were formulated to satisfy curiosity.
 
 \section{Reversing the order of words in a sentence}
+Defining algorithms for primitive string operations is simple, e.g. extracting a substring of a string, however some algorithms that require more inventiveness can be a little more tricky.
+
+The algorithm presented here does not simply reverse the characters in a string, rather it reverses the order of words within a string. This algorithm works on the principal that words are all delimited by whitespace, and using a few markers to define where words start and end we can easily reverse them.
 
 \begin{tabbing}
 1) \textbf{alg}\= \textbf{orithm} ReverseWords($value$) \\

@@ -23,6 +23,9 @@ In an attempt to slow down the inner loop the $\sqrt{n}$ is used as the upper bo
 \section{Base conversions}
 DSA contains a number of algorithms that convert a base $10$ number to its equivalent binary, octal or hexadecimal form. For example $78_{10}$ has a binary representation of $1001110_{2}$.
 
+Table \ref{tab:tobinary_trace} shows the algorithm trace when the number to convert to binary is $742_{10}$.
+
+\newpage
 \begin{tabbing}
 1) \textbf{alg}\= \textbf{orithm} ToBinary($n$)\\
 2) \> \textbf{Pre:}~~$n \geq 0$ \\
@@ -31,5 +34,52 @@ DSA contains a number of algorithms that convert a base $10$ number to its equiv
 5) \> \> $list.Add(n~\%~2)$\\
 6) \> \> $n \leftarrow n / 2$\\
 7) \> \textbf{end while}\\
-8) \textbf{end} ToBinary\\
+8) \> \textbf{return} Reverse($list$) \\
+9) \textbf{end} ToBinary\\
 \end{tabbing}
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+$n$ & $list$ \\
+\hline
+$742$ & \{ $0$ \} \\
+\hline
+$371$ & \{ $0, 1$ \} \\
+\hline
+$185$ & \{ $0, 1, 1$ \} \\
+\hline
+$92$ & \{ $0, 1, 1, 0$ \} \\
+\hline
+$46$ & \{ $0, 1, 1, 0, 1$ \} \\
+\hline
+$23$ & \{ $0, 1, 1, 0, 1, 1$ \} \\
+\hline
+$11$ & \{ $0, 1, 1, 0, 1, 1, 1$ \} \\
+\hline
+$5$ & \{ $0, 1, 1, 0, 1, 1, 1, 1$ \} \\
+\hline
+$2$ & \{ $0, 1, 1, 0, 1, 1, 1, 1, 0$ \} \\
+\hline
+$1$ & \{ $0, 1, 1, 0, 1, 1, 1, 1, 0, 1$ \} \\
+\hline
+\end{tabular}
+\end{center}
+\caption{Algorithm trace of ToBinary} \label{tab:tobinary_trace}
+\end{table}
+
+\section{Attaining the greatest common denominator of two numbers}
+A fairly routine problem in mathematics is that of finding the greatest common denominator of two integers, what we are essentially after is the greatest number which is a multiple of both, e.g. the greatest common denominator of $9$, and $15$ is $3$. One of the most elegant solutions to this problem is based on Euclid's algorithm that has a run time complexity of $O(n^{2})$.
+
+\begin{tabbing}
+1) \textbf{alg}\= \textbf{orithm} GreatestCommonDenominator($m$, $n$)\\
+2) \> \textbf{Pre:}~~$m$ and $n$ are integers \\
+3) \> \textbf{Post:}~the greatest common denominator of the two integers is calculated \\
+4) \> \textbf{if}~\= $n = 0$ \\
+5) \> \> \textbf{return} $m$ \\
+6) \> \textbf{end if}\\
+7) \> \textbf{return} GreatestCommonDenominator($n$, $m~\%~n$) \\
+8) \textbf{end} GreatestCommonDenominator\\
+\end{tabbing}
+

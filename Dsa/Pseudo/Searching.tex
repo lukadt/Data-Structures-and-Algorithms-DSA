@@ -21,8 +21,11 @@ A simple algorithm that search for a specific item inside a list. It operates lo
 \end{tabbing}
 
 \section{Probability Search}
-Probability Search is a statistical sequential search algorithm. In addition to search for an \textbf{item}, it takes into account its \textbf{frequency} by swapping it with it's predecessor in the list. The algorithm complexity still remain an $O(n)$ but in a non-uniform items search the more frequent items are in the first positions, reducing list scanning time.
+Probability search is a statistical sequential searching algorithm. In addition to searching for an item, it takes into account its frequency by swapping it with it's predecessor in the list. The algorithm complexity still remains at $O(n)$ but in a non-uniform items search the more frequent items are in the first positions, reducing list scanning time.
 
+Figure \ref{fig:search_seq} shows the resulting state of a list after searching for two items, notice how the searched items have had their search probability increased after each search operation respectively.
+
+\newpage
 \begin{tabbing}
 1) \textbf{alg}\= \textbf{orithm} ProbabilitySearch($list$, $item$)\\
 2) \> \textbf{Pre:}~~ $list~!=~\emptyset$ \\
@@ -41,3 +44,10 @@ Probability Search is a statistical sequential search algorithm. In addition to 
 14)\> \textbf{return} true \\ 
 15) \textbf{end} ProbabilitySearch \\
 \end {tabbing}
+
+\begin{figure}
+\begin{center}
+\includegraphics{search_sequential}
+\end{center}
+\caption{a) Search($12$), b) Search($101$)} \label{fig:search_seq}
+\end{figure}
