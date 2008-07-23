@@ -1,6 +1,7 @@
 % Copyright (C) Data Structures and Algorithms Team.
 \chapter{Linked Lists}
-Linked lists can be thought of from a high level perspective as being a series of nodes, each node has at least a pointer to the next node, and in the last nodes case a null pointer representing that there are no more nodes to follow.
+Linked lists can be thought of from a high level perspective as being a series of nodes, each node has at least a single pointer to the next node, and in the last nodes case a null pointer representing that there are no more nodes in the linked list.
+
 The general characteristics of linked lists are as follows:
 
 \begin{enumerate}
@@ -91,6 +92,8 @@ Deleting a node from a linked list is straight forward but there are a few cases
 \item the item to remove doesn't exist in the linked list
 \end{enumerate}
 
+The algorithm whose cases we have described will remove a node from anywhere within a list irrespective of whether the node is the $head$ etc. If at all possible you know that items will only ever be removed from the $head$ or $tail$ of the list then you can create much more concise algorithms, in the case of always removing  from the front of the linked list deletion becomes an $O(1)$ operation.
+
 \newpage
 \begin{tabbing}
 1)  \textbf{alg}\= \textbf{orithm} Remove($head$, $value$) \\
@@ -131,13 +134,14 @@ Deleting a node from a linked list is straight forward but there are a few cases
 \end{tabbing}
 
 \subsection{Traversing the list} \label{singly_linked_traversal}
-Traversing a singly list is the same as that of traversing a doubly linked list, you start at the head of the list and continue until you come across a node that is $\emptyset$. The two cases are as follows:
+Traversing a singly list is the same as that of traversing a doubly linked list (defined in \S\ref{doubly_linked_list}), you start at the head of the list and continue until you come across a node that is $\emptyset$. The two cases are as follows:
+
 \begin{enumerate}
 \item $node = \emptyset$, we have exhausted all nodes in the linked list; or
 \item we must update the $node$ reference to be $node$.Next.
 \end{enumerate}
 
-The algorithm described is a very simple one that makes use of a simple $while$ loop to check the first case.
+The algorithm described is a very simple one that makes use of a simple $while$ loop to check the first case. 
 
 \newpage
 \begin{tabbing}
@@ -176,6 +180,8 @@ The following algorithm being applied to a linked list with the integers $5$, $1
 16) \textbf{end} ReverseTraversal \\
 \end{tabbing}
 
+This algorithm is only of real interest when we are using singly linked lists, as you will soon find out doubly linked lists (defined in \S\ref{doubly_linked_list}) have certain properties that remove the challenge of reverse list traversal.
+
 \begin{figure}
 \begin{center}
 \includegraphics{singly_linked_list_reverse_traversal}
@@ -183,7 +189,7 @@ The following algorithm being applied to a linked list with the integers $5$, $1
 \caption{Reverse traveral of a singly linked list} \label{fig:singly_linked_list_reverse_traversal}
 \end{figure}
 
-\section{Doubly Linked List}
+\section{Doubly Linked List} \label{doubly_linked_list}
 Doubly linked lists are very similar to singly linked lists, the only difference is that each node has a reference to both the next and previous nodes in the list.
 
 \begin{figure}
