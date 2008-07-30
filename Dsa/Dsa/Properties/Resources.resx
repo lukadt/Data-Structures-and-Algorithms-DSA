@@ -153,6 +153,14 @@
     <value>There are no items in the queue.</value>
     <comment>When performing an operation on a queue that requires at least ont item in there.</comment>
   </data>
+  <data name="RadixItemNullInList" xml:space="preserve">
+    <value>The items within a list to radix sort must not be null.</value>
+    <comment>When an item in the list is null.</comment>
+  </data>
+  <data name="RadixKeySizeTooSmall" xml:space="preserve">
+    <value>The size of the key to use for radix sort must be greater than 0.</value>
+    <comment>When key size for radix is too small.</comment>
+  </data>
   <data name="SetEmpty" xml:space="preserve">
     <value>Set(Of T) is empty.</value>
     <comment>When exceptions arise as a result of the Set being empty.</comment>

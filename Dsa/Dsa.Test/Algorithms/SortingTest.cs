@@ -382,7 +382,7 @@ namespace Dsa.Test.Algorithms
             string[] actual = { "abc", "cfg", "cde", "rgf", "abd" };
             string[] expected = { "abc", "abd", "cde", "cfg", "rgf" };
 
-            actual.Radix(3);
+            actual.RadixSort(3);
 
             CollectionAssert.AreEqual(actual, expected);
         }
@@ -396,7 +396,7 @@ namespace Dsa.Test.Algorithms
         {
             string[] actual = null;
 
-            actual.Radix(3);
+            actual.RadixSort(3);
         }
 
         /// <summary>
@@ -408,7 +408,19 @@ namespace Dsa.Test.Algorithms
         {
             string[] actual = { "abc", "cfg", "cde", "rgf", "abd" };
 
-            actual.Radix(0);
+            actual.RadixSort(0);
+        }
+
+        /// <summary>
+        /// Cheap test to check that an item is not null within the list.
+        /// </summary>
+        [Test]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void RadixStringItemNullTest()
+        {
+            string[] actual = new string[10];
+
+            actual.RadixSort(2);
         }
     }
 }

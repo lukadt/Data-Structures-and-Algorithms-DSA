@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Dsa.Utility;
+using Dsa.Properties;
 
 namespace Dsa.Algorithms
 {
@@ -390,10 +391,12 @@ namespace Dsa.Algorithms
         /// <returns>Sorted list.</returns>
         /// <exception cref="ArgumentNullException"><strong>list</strong> is <strong>null</strong>.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><strong>keySize</strong> is less than <strong>1</strong>.</exception>
-        public static IList<string> Radix(this IList<string> list, int keySize)
+        /// <exception cref="InvalidOperationException"><strong>list</strong> contains a <strong>null</strong> item.</exception>
+        public static IList<string> RadixSort(this IList<string> list, int keySize)
         {
             Guard.ArgumentNull(list, "list");
-            Guard.OutOfRange(keySize < 1, "keySize", "The size of the key to use for radix sort must be greater than 0.");
+            Guard.OutOfRange(keySize < 1, "keySize", Resources.RadixKeySizeTooSmall);
+            Guard.InvalidOperation(list[0] == null, Resources.RadixItemNullInList);
 
             int listCount = list.Count;
             string[] partiallySorted = new string[listCount]; // used for partial sort
