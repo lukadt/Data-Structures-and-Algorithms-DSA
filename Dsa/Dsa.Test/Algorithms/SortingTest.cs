@@ -373,5 +373,42 @@ namespace Dsa.Test.Algorithms
             actual.ShellSort();
         }
 
+        /// <summary>
+        /// Check to see that the list is sorted.
+        /// </summary>
+        [Test]
+        public void RadixStringFixedKeyTest()
+        {
+            string[] actual = { "abc", "cfg", "cde", "rgf", "abd" };
+            string[] expected = { "abc", "abd", "cde", "cfg", "rgf" };
+
+            actual.Radix(3);
+
+            CollectionAssert.AreEqual(actual, expected);
+        }
+
+        /// <summary>
+        /// Check to see that the correct exception is thrown when passing in a null list to sort.
+        /// </summary>
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void RadixStringListNullTest()
+        {
+            string[] actual = null;
+
+            actual.Radix(3);
+        }
+
+        /// <summary>
+        /// Check to make sure that the correct exception is thrown when the key size is less than 1.
+        /// </summary>
+        [Test]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void RadixStringKeySizeLessThanOneTest()
+        {
+            string[] actual = { "abc", "cfg", "cde", "rgf", "abd" };
+
+            actual.Radix(0);
+        }
     }
 }
