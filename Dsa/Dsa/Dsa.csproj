@@ -71,7 +71,9 @@
     </Compile>
     <Compile Include="Algorithms\Sorting.cs" />
     <Compile Include="Algorithms\SortType.cs" />
-    <Compile Include="DataStructures\BinaryTreeNode.cs" />
+    <Compile Include="DataStructures\BinaryTreeNode.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DataStructures\CollectionBase.cs" />
     <Compile Include="DataStructures\CollectionDebugView.cs" />
     <Compile Include="DataStructures\BinarySearchTree.cs" />

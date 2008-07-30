@@ -17,13 +17,13 @@ namespace Dsa.DataStructures
     /// <typeparam name="T">Type of the CollectionDebugView.</typeparam>
     internal sealed class CollectionDebugView<T>
     {
-        private readonly ICollection<T> collection;
+        private readonly ICollection<T> m_collection;
 
         public CollectionDebugView(ICollection<T> collection)
         {
             Guard.ArgumentNull(collection, "collection");
             
-            this.collection = collection;
+            m_collection = collection;
         }
 
         /// <summary>
@@ -35,8 +35,8 @@ namespace Dsa.DataStructures
         {
             get
             {
-                T[] items = new T[collection.Count];
-                collection.CopyTo(items, 0);
+                T[] items = new T[m_collection.Count];
+                m_collection.CopyTo(items, 0);
                 return items;
             }
         }

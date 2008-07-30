@@ -21,18 +21,18 @@ namespace Dsa.DataStructures
         where T : IComparable<T>
     {
         [NonSerialized]
-        private DoublyLinkedListNode<T> head;
+        private DoublyLinkedListNode<T> m_head;
         [NonSerialized]
-        private DoublyLinkedListNode<T> tail;
+        private DoublyLinkedListNode<T> m_tail;
         [NonSerialized]
-        private readonly IComparer<T> comparer;
+        private readonly IComparer<T> m_comparer;
 
         /// <summary>
         /// Creates and initializes a new instance of the <see cref="DoublyLinkedList{T}"/> class.
         /// </summary>
         public DoublyLinkedList() 
         {
-            comparer = Comparer<T>.Default;
+            m_comparer = Comparer<T>.Default;
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Dsa.DataStructures
         /// </summary>
         public DoublyLinkedListNode<T> Head
         {
-            get { return head; }
+            get { return m_head; }
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace Dsa.DataStructures
         /// </summary>
         public DoublyLinkedListNode<T> Tail
         {
-            get { return tail; }
+            get { return m_tail; }
         }
 
         /// <summary>
@@ -74,14 +74,14 @@ namespace Dsa.DataStructures
             DoublyLinkedListNode<T> n = new DoublyLinkedListNode<T>(value);
             if (IsEmpty())
             {
-                head = n;
-                tail = n;
+                m_head = n;
+                m_tail = n;
             }
             else
             {
-                tail.Next = n; 
-                n.Previous = tail; 
-                tail = n; 
+                m_tail.Next = n; 
+                n.Previous = m_tail; 
+                m_tail = n; 
             }
 
             Count++;
@@ -99,14 +99,14 @@ namespace Dsa.DataStructures
             DoublyLinkedListNode<T> n = new DoublyLinkedListNode<T>(value);
             if (IsEmpty())
             {
-                head = n;
-                tail = n;
+                m_head = n;
+                m_tail = n;
             }
             else
             {
-                head.Previous = n; 
-                n.Next = head; 
-                head = n; 
+                m_head.Previous = n; 
+                n.Next = m_head; 
+                m_head = n; 
             }
 
             Count++;
@@ -127,11 +127,11 @@ namespace Dsa.DataStructures
             DoublyLinkedListNode<T> n = new DoublyLinkedListNode<T>(value);
 
             // check if adding after _tail node
-            if (node == tail)
+            if (node == m_tail)
             {
-                n.Previous = tail;
-                tail.Next = n;
-                tail = n;
+                n.Previous = m_tail;
+                m_tail.Next = n;
+                m_tail = n;
             }
             else
             {
@@ -159,11 +159,11 @@ namespace Dsa.DataStructures
             DoublyLinkedListNode<T> n = new DoublyLinkedListNode<T>(value);
 
             // check if adding before _head node
-            if (node == head) 
+            if (node == m_head) 
             {
-                n.Next = head;
-                head.Previous = n;
-                head = n;
+                n.Next = m_head;
+                m_head.Previous = n;
+                m_head = n;
             }
             else
             {
@@ -191,21 +191,21 @@ namespace Dsa.DataStructures
             }
 
             // check to see if there is only 1 item in the linked list
-            if (tail == head) 
+            if (m_tail == m_head) 
             {
-                head = null;
-                tail = null;
+                m_head = null;
+                m_tail = null;
             }
-            else if (head.Next == tail)
+            else if (m_head.Next == m_tail)
             {
                 // only two nodes in the dll
-                tail = head;
-                head.Next = null;
+                m_tail = m_head;
+                m_head.Next = null;
             }
             else
             {
-                tail = tail.Previous;
-                tail.Next = null;
+                m_tail = m_tail.Previous;
+                m_tail.Next = null;
             }
 
             Count--;
@@ -227,22 +227,22 @@ namespace Dsa.DataStructures
                 return false;
             }
 
-            if (head.Next == null)
+            if (m_head.Next == null)
             {
                 // only one node in the dll
-                head = null;
-                tail = null;
+                m_head = null;
+                m_tail = null;
             }
-            else if (head.Next == tail) 
+            else if (m_head.Next == m_tail) 
             {
                 // only two nodes in the dll
-                head = tail;
-                head.Previous = null;
+                m_head = m_tail;
+                m_head.Previous = null;
             }
             else
             {
-                head = head.Next; // the new head is the old head nodes next node
-                head.Previous = null;
+                m_head = m_head.Next; // the new head is the old head nodes next node
+                m_head.Previous = null;
             }
 
             Count--;
@@ -270,7 +270,7 @@ namespace Dsa.DataStructures
         /// <returns>Returns true if the <see cref="DoublyLinkedList{T}"/> is empty, or false otherwise.</returns>
         public bool IsEmpty()
         {
-            return head == null;
+            return m_head == null;
         }
 
         /// <summary>
@@ -290,8 +290,8 @@ namespace Dsa.DataStructures
         /// </summary>
         public override void Clear()
         {
-            head = null;
-            tail = null;
+            m_head = null;
+            m_tail = null;
            Count = 0;
         }
 
@@ -307,7 +307,7 @@ namespace Dsa.DataStructures
         {
             foreach (T value in this)
             {
-                if (Compare.AreEqual(value, item, comparer))
+                if (Compare.AreEqual(value, item, m_comparer))
                 {
                     return true;
                 }
@@ -332,36 +332,36 @@ namespace Dsa.DataStructures
                 return false;
             }
 
-            if (Compare.AreEqual(item, head.Value, comparer))
+            if (Compare.AreEqual(item, m_head.Value, m_comparer))
             {
-                if (head == tail)
+                if (m_head == m_tail)
                 {
                     // case 2: only one node in the list
-                    head = null;
-                    tail = null;
+                    m_head = null;
+                    m_tail = null;
                 }
                 else
                 {
                     // case 3: head is to be removed in a list that contains > 1 node
-                    head = head.Next;
-                    head.Previous = null;
+                    m_head = m_head.Next;
+                    m_head.Previous = null;
                 }
 
                 Count--;
                 return true;
             }
 
-            DoublyLinkedListNode<T> n = head.Next;
-            while (n != null && !Compare.AreEqual(item, n.Value, comparer))
+            DoublyLinkedListNode<T> n = m_head.Next;
+            while (n != null && !Compare.AreEqual(item, n.Value, m_comparer))
             {
                 n = n.Next;
             }
 
-            if (n == tail)
+            if (n == m_tail)
             {
                 // case 4: tail is to be removed
-                tail = tail.Previous;
-                tail.Next = null;
+                m_tail = m_tail.Previous;
+                m_tail.Next = null;
                 Count--;
                 return true;
             }
@@ -386,7 +386,7 @@ namespace Dsa.DataStructures
         /// <returns>An <see cref="IEnumerator{T}" /> that can be used to iterate through the <see cref="DoublyLinkedList{T}"/>.</returns>
         public override IEnumerator<T> GetEnumerator()
         {
-            DoublyLinkedListNode<T> n = head;
+            DoublyLinkedListNode<T> n = m_head;
             while (n != null)
             {
                 yield return n.Value;

@@ -2,40 +2,38 @@
 //   Copyright (C) Data Structures and Algorithms Team.
 // </copyright>
 // <summary>
-//   A node with left and right references.
+//   Generic implementation of a BST node.
 // </summary>
 namespace Dsa.DataStructures
 {
     /// <summary>
-    /// Node used in <see cref="BinarySearchTree{T}"/>.
+    /// Node used by <see cref="BinarySearchTree{T}"/>.
     /// </summary>
-    /// <typeparam name="T">Type of the <see cref="BinaryTreeNode{T}"/>.</typeparam>
-    public sealed class BinaryTreeNode<T> : DoublyLinkedListNode<T>
+    /// <typeparam name="T">Type of the node.</typeparam>
+    public class BinaryTreeNode<T>
     {
         /// <summary>
-        /// Creates and initializes a new instance of the <see cref="BinaryTreeNode{T}"/> class with a specified value.
+        /// Gets or sets the left node reference.
         /// </summary>
-        /// <param name="value">Value of the node.</param>
-        public BinaryTreeNode(T value) : base(value) 
-        { 
-        }
+        public BinaryTreeNode<T> Left { get; set; }
 
         /// <summary>
-        /// Gets or sets the left child of the <see cref="BinaryTreeNode{T}"/>.
+        /// Gets or sets the right node reference.
         /// </summary>
-        public BinaryTreeNode<T> Left
-        {
-            get { return Previous as BinaryTreeNode<T>; }
-            set { Previous = value; }
-        }
+        public BinaryTreeNode<T> Right { get; set; }
 
         /// <summary>
-        /// Gets or sets the right child of the <see cref="BinaryTreeNode{T}"/>.
+        /// Gets or sets the value of the node.
         /// </summary>
-        public BinaryTreeNode<T> Right
+        public T Value { get; set; }
+
+        /// <summary>
+        /// Creates and initializes a new instance of <see cref="BinaryTreeNode{T}"/>.
+        /// </summary>
+        /// <param name="value">Value of node.</param>
+        public BinaryTreeNode(T value)
         {
-            get { return Next as BinaryTreeNode<T>; }
-            set { Next = value; }
+            Value = value;
         }
     }
 }

@@ -5,11 +5,10 @@
 //   Algorithms to solve common string problems, implemented as extension methods.
 // </summary>
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
-using Dsa.DataStructures;
 using Dsa.Utility;
-using System.Collections.Generic;
 
 namespace Dsa.Algorithms
 {

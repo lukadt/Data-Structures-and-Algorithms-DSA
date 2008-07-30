@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Dsa.DataStructures;
-using Dsa.Test.Utility;
 using NUnit.Framework;
 
 namespace Dsa.Test.DataStructures

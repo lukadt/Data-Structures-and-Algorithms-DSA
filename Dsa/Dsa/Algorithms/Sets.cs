@@ -1,4 +1,5 @@
-﻿// <copyright file="Sets.cs" company="Data Structures and Algorithms">
+﻿using System;
+// <copyright file="Sets.cs" company="Data Structures and Algorithms">
 //   Copyright (C) Data Structures and Algorithms Team.
 // </copyright>
 // <summary>
@@ -7,7 +8,6 @@
 using Dsa.DataStructures;
 using Dsa.Properties;
 using Dsa.Utility;
-using System;
 
 namespace Dsa.Algorithms
 {

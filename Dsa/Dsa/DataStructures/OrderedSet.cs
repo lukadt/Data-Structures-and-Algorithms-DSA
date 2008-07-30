@@ -21,14 +21,14 @@ namespace Dsa.DataStructures
     public sealed class OrderedSet<T> : CollectionBase<T>
         where T : IComparable<T>
     {
-        private readonly BinarySearchTree<T> set;
+        private readonly BinarySearchTree<T> m_set;
 
         /// <summary>
         /// Creates and initializes a new instance of <see cref="OrderedSet{T}"/>.
         /// </summary>
         public OrderedSet()
         {
-            set = new BinarySearchTree<T>();
+            m_set = new BinarySearchTree<T>();
         }
 
         /// <summary>
@@ -59,12 +59,12 @@ namespace Dsa.DataStructures
         /// <param name="item">Item to add to the <see cref="OrderedSet{T}"/>.</param>
         public override void Add(T item)
         {
-            if (set.Contains(item))
+            if (m_set.Contains(item))
             {
                 return; // item already in set
             }
 
-            set.Add(item);
+            m_set.Add(item);
             Count++;
         }
 
@@ -73,7 +73,7 @@ namespace Dsa.DataStructures
         /// </summary>
         public override void Clear()
         {
-            set.Clear();
+            m_set.Clear();
             Count = 0;
         }
 
@@ -87,7 +87,7 @@ namespace Dsa.DataStructures
         /// <returns>True if the item is contained within the <see cref="OrderedSet{T}"/>; otherwise false.</returns>
         public override bool Contains(T item)
         {
-            return set.Contains(item);
+            return m_set.Contains(item);
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace Dsa.DataStructures
         public override bool Remove(T item)
         {
             int count = Count;
-            if (set.Remove(item))
+            if (m_set.Remove(item))
             {
                 Count--;
             }
@@ -130,7 +130,7 @@ namespace Dsa.DataStructures
         /// </remarks>
         public override IEnumerator<T> GetEnumerator()
         {
-            return set.GetInorderEnumerator().GetEnumerator();
+            return m_set.GetInorderEnumerator().GetEnumerator();
         }
     }
 }

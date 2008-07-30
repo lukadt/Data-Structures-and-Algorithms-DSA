@@ -20,16 +20,16 @@ namespace Dsa.DataStructures
         where T : IComparable<T>
     {
         [NonSerialized]
-        private readonly IComparer<T> comparer;
+        private readonly IComparer<T> m_comparer;
         [NonSerialized]
-        private BinaryTreeNode<T> root;
+        private BinaryTreeNode<T> m_root;
 
         /// <summary>
         /// Creates and initializes a new instance of the <see cref="BinarySearchTree{T}"/> class.
         /// </summary>
         public BinarySearchTree() 
         {
-            comparer = Comparer<T>.Default;
+            m_comparer = Comparer<T>.Default;
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace Dsa.DataStructures
         /// </summary>
         public BinaryTreeNode<T> Root
         {
-            get { return root; }
+            get { return m_root; }
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Dsa.DataStructures
         /// <returns>A <see cref="BinaryTreeNode{T}"/> if the node was found with the value provided; otherwise null.</returns>
         public BinaryTreeNode<T> FindNode(T value)
         {
-            return FindNode(value, root);
+            return FindNode(value, m_root);
         }
 
         /// <summary>
@@ -71,12 +71,12 @@ namespace Dsa.DataStructures
         /// <returns><see cref="BinaryTreeNode{T}"/> if the parent was found, otherwise null.</returns>
         public BinaryTreeNode<T> FindParent(T value)
         {
-            if (root == null)
+            if (m_root == null)
             {
                 return null;
             }
 
-            return Compare.AreEqual(value, root.Value, comparer) ? null : FindParent(value, root);
+            return Compare.AreEqual(value, m_root.Value, m_comparer) ? null : FindParent(value, m_root);
         }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace Dsa.DataStructures
         /// <returns>An <see cref="IEnumerator{T}" /> that can be used to iterate through the <see cref="BinarySearchTree{T}"/>.</returns>
         public IEnumerable<T> GetBreadthFirstEnumerator()
         {
-            return BreadthFirstTraversal(root);
+            return BreadthFirstTraversal(m_root);
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace Dsa.DataStructures
         public IEnumerable<T> GetInorderEnumerator()
         {
             List<T> arrayListCollection = new List<T>();
-            return InorderTraversal(root, arrayListCollection);
+            return InorderTraversal(m_root, arrayListCollection);
         }
 
         /// <summary>
@@ -114,9 +114,9 @@ namespace Dsa.DataStructures
         /// <exception cref="InvalidOperationException">The <see cref="BinarySearchTree{T}"/> contains <strong>0</strong> items.</exception>
         public T FindMin()
         {
-            Guard.InvalidOperation(root == null, Resources.BinarySearchTreeEmpty);
+            Guard.InvalidOperation(m_root == null, Resources.BinarySearchTreeEmpty);
 
-            return FindMin(root);
+            return FindMin(m_root);
         }
 
         /// <summary>
@@ -129,7 +129,7 @@ namespace Dsa.DataStructures
         public IEnumerable<T> GetPostorderEnumerator()
         {
             List<T> arrayListCollection = new List<T>();
-            return PostorderTraversal(root, arrayListCollection);
+            return PostorderTraversal(m_root, arrayListCollection);
         }
 
         /// <summary>
@@ -142,9 +142,9 @@ namespace Dsa.DataStructures
         /// <exception cref="InvalidOperationException">The <see cref="BinarySearchTree{T}"/> contains <strong>0</strong> items.</exception>
         public T FindMax()
         {
-            Guard.InvalidOperation(root == null, Resources.BinarySearchTreeEmpty);
+            Guard.InvalidOperation(m_root == null, Resources.BinarySearchTreeEmpty);
 
-            return FindMax(root);
+            return FindMax(m_root);
         }
 
         /// <summary>
@@ -180,13 +180,13 @@ namespace Dsa.DataStructures
         /// <param name="item">Value to insert.</param>
         public override void Add(T item)
         {
-            if (root == null)
+            if (m_root == null)
             {
-                root = new BinaryTreeNode<T>(item);
+                m_root = new BinaryTreeNode<T>(item);
             }
             else
             {
-                InsertNode(root, item);
+                InsertNode(m_root, item);
             }
 
             Count++;
@@ -200,7 +200,7 @@ namespace Dsa.DataStructures
         /// </remarks>
         public override void Clear()
         {
-            root = null;
+            m_root = null;
             Count = 0;
         }
 
@@ -214,7 +214,7 @@ namespace Dsa.DataStructures
         /// <returns>True if the item is contained within the <see cref="BinarySearchTree{T}"/>; otherwise false.</returns>
         public override bool Contains(T item)
         {
-            return Contains(root, item);
+            return Contains(m_root, item);
         }
 
         /// <summary>
@@ -236,12 +236,12 @@ namespace Dsa.DataStructures
             BinaryTreeNode<T> parent = FindParent(item);
             if (Count == 1)
             {
-                root = null;
+                m_root = null;
             }
             else if (nodeToRemove.Left == null && nodeToRemove.Right == null)
             {
                 // nodeToRemove is a leaf
-                if (Compare.IsLessThan(nodeToRemove.Value, parent.Value, comparer))
+                if (Compare.IsLessThan(nodeToRemove.Value, parent.Value, m_comparer))
                 {
                     parent.Left = null;
                 }
@@ -253,7 +253,7 @@ namespace Dsa.DataStructures
             else if (nodeToRemove.Left == null && nodeToRemove.Right != null)
             {
                 // nodeToRemove has only a right subtree
-                if (Compare.IsLessThan(nodeToRemove.Value, parent.Value, comparer))
+                if (Compare.IsLessThan(nodeToRemove.Value, parent.Value, m_comparer))
                 {
                     parent.Left = nodeToRemove.Right;
                 }
@@ -265,7 +265,7 @@ namespace Dsa.DataStructures
             else if (nodeToRemove.Left != null && nodeToRemove.Right == null)
             {
                 // nodeToRemove has only a left subtree
-                if (Compare.IsLessThan(nodeToRemove.Value, parent.Value, comparer))
+                if (Compare.IsLessThan(nodeToRemove.Value, parent.Value, m_comparer))
                 {
                     parent.Left = nodeToRemove.Left;
                 }
@@ -306,7 +306,7 @@ namespace Dsa.DataStructures
         public override IEnumerator<T> GetEnumerator()
         {
             List<T> arrayListCollection = new List<T>();
-            return PreorderTraveral(root, arrayListCollection).GetEnumerator();
+            return PreorderTraveral(m_root, arrayListCollection).GetEnumerator();
         }
 
         /// <summary>
@@ -425,9 +425,9 @@ namespace Dsa.DataStructures
                 return null; 
             }
 
-            return Compare.IsLessThan(value, root.Value, comparer)
+            return Compare.IsLessThan(value, root.Value, m_comparer)
                        ? FindNode(value, root.Left)
-                       : (Compare.IsGreaterThan(value, root.Value, comparer) ? FindNode(value, root.Right) : root);
+                       : (Compare.IsGreaterThan(value, root.Value, m_comparer) ? FindNode(value, root.Right) : root);
         }
 
         /// <summary>
@@ -437,7 +437,7 @@ namespace Dsa.DataStructures
         /// <param name="value">Value to insert into the Bst.</param>
         private void InsertNode(BinaryTreeNode<T> node, T value)
         {
-            if (Compare.IsLessThan(value, node.Value, comparer))
+            if (Compare.IsLessThan(value, node.Value, m_comparer))
             {
                 if (node.Left == null)
                 {
@@ -472,7 +472,7 @@ namespace Dsa.DataStructures
         /// <returns><see cref="BinaryTreeNode{T}"/> if the parent was found, otherwise null.</returns>
         private BinaryTreeNode<T> FindParent(T value, BinaryTreeNode<T> root)
         {
-            if (Compare.IsLessThan(value, root.Value, comparer))
+            if (Compare.IsLessThan(value, root.Value, m_comparer))
             {
                 // check to see if the left child of root is null, if it is then the value is not in the bst
                 if (root.Left == null)
@@ -480,7 +480,7 @@ namespace Dsa.DataStructures
                     return null;
                 }
 
-                return Compare.AreEqual(value, root.Left.Value, comparer) ? root : FindParent(value, root.Left);
+                return Compare.AreEqual(value, root.Left.Value, m_comparer) ? root : FindParent(value, root.Left);
             }
 
             if (root.Right == null)
@@ -488,7 +488,7 @@ namespace Dsa.DataStructures
                 return null; 
             }
 
-            return Compare.AreEqual(value, root.Right.Value, comparer) ? root : FindParent(value, root.Right);
+            return Compare.AreEqual(value, root.Right.Value, m_comparer) ? root : FindParent(value, root.Right);
         }
 
         /// <summary>
@@ -504,12 +504,12 @@ namespace Dsa.DataStructures
                 return false; // if the root is null then we have exhausted all the nodes in the tree, thus the item isn't in the bst
             }
 
-            if (Compare.AreEqual(root.Value, item, comparer))
+            if (Compare.AreEqual(root.Value, item, m_comparer))
             {
                 return true; 
             }
 
-            return Compare.IsLessThan(item, root.Value, comparer) ? Contains(root.Left, item) : Contains(root.Right, item);
+            return Compare.IsLessThan(item, root.Value, m_comparer) ? Contains(root.Left, item) : Contains(root.Right, item);
         }
     }
 }
