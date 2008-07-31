@@ -5,6 +5,7 @@
 //   Generic implementation of an AVL tree.
 // </summary>
 using System;
+
 namespace Dsa.DataStructures
 {
     /// <summary>
