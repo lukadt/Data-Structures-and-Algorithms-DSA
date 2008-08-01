@@ -59,6 +59,7 @@
     <Compile Include="DataStructures\AvlTest.cs" />
     <Compile Include="DataStructures\BinarySearchTreeTest.cs" />
     <Compile Include="DataStructures\BinaryTreeNodeTest.cs" />
+    <Compile Include="DataStructures\AvlTreeNodeTest.cs" />
     <Compile Include="DataStructures\HeapTest.cs" />
     <Compile Include="DataStructures\OrderedSetTest.cs" />
     <Compile Include="DataStructures\DoublyLinkedListTest.cs" />

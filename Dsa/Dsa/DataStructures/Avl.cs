@@ -22,15 +22,7 @@ namespace Dsa.DataStructures
     {
         [NonSerialized]
         private AvlTreeNode<T> m_root;
-
-        /// <summary>
-        /// Creates and initializes a new instance of the <see cref="Avl{T}"/> class.
-        /// </summary>
-        public Avl()
-            : base()
-        {
-        }
-
+      
         /// <summary>
         /// Gets the root node of the <see cref="Avl{T}"/>.
         /// </summary>

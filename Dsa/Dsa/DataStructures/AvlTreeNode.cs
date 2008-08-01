@@ -10,7 +10,7 @@ namespace Dsa.DataStructures
     /// Node used by <see cref="Avl{T}"/>.
     /// </summary>
     /// <typeparam name="T">Type of the node.</typeparam>
-    public class AvlTreeNode<T>
+    public class AvlTreeNode<T> 
     {
         /// <summary>
         /// Creates and initializes a new instance of <see cref="AvlTreeNode{T}"/>.
