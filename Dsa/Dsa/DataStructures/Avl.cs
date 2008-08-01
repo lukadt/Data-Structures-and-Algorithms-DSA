@@ -16,12 +16,10 @@ namespace Dsa.DataStructures
     /// <remarks>
     /// AVL tree is a tree that is self balancing.
     /// </remarks>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">Type of AVL tree.</typeparam>
     public class Avl<T> : BinarySearchTree<T>
         where T : IComparable<T>
     {
-        [NonSerialized]
-        private readonly IComparer<T> m_comparer;
         [NonSerialized]
         private AvlTreeNode<T> m_root;
 
@@ -29,19 +27,8 @@ namespace Dsa.DataStructures
         /// Creates and initializes a new instance of the <see cref="Avl{T}"/> class.
         /// </summary>
         public Avl()
+            : base()
         {
-            m_comparer = Comparer<T>.Default;
-        }
-
-        /// <summary>
-        /// Creates and initializes a new instance of <see cref="Avl{T}"/>, populating it with the items from the
-        /// <see cref="IEnumerable{T}"/>.
-        /// </summary>
-        /// <param name="collection">Items to populate <see cref="Avl{T}"/>.</param>
-        public Avl(IEnumerable<T> collection)
-            : this()
-        {
-            CopyCollection(collection);
         }
 
         /// <summary>
@@ -60,9 +47,13 @@ namespace Dsa.DataStructures
         public int Height(AvlTreeNode<T> node)
         {
             if (node == null)
+            {
                 return -1;
+            }
             else
+            {
                 return node.Height;
+            }
         }
 
 
@@ -138,6 +129,7 @@ namespace Dsa.DataStructures
                     }
                 }
             }
+
             node.Height= Math.Max(Height(node.Left), Height(node.Right)) + 1;
             return node;
         }
@@ -149,7 +141,7 @@ namespace Dsa.DataStructures
         /// <returns>the balanced tree node </returns>
         private AvlTreeNode<T> DoubleRightRotation(AvlTreeNode<T> node)
         {
-            //Double rotation is composed of two rotation one right and one left
+            // Double rotation is composed of two rotation one right and one left
             node.Right = SingleLeftRotation(node.Right);
             return SingleRightRotation(node);
         }

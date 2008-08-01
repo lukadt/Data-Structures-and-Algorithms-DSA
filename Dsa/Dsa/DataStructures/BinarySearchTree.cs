@@ -19,8 +19,11 @@ namespace Dsa.DataStructures
     public class BinarySearchTree<T> : CollectionBase<T>
         where T : IComparable<T>
     {
+        /// <summary>
+        /// Used as internal comparer.
+        /// </summary>
         [NonSerialized]
-        private readonly IComparer<T> m_comparer;
+        protected readonly IComparer<T> m_comparer;
         [NonSerialized]
         private BinaryTreeNode<T> m_root;
 

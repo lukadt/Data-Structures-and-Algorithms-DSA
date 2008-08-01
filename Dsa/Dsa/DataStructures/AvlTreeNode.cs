@@ -12,6 +12,15 @@ namespace Dsa.DataStructures
     /// <typeparam name="T">Type of the node.</typeparam>
     public class AvlTreeNode<T>
     {
+        /// <summary>
+        /// Creates and initializes a new instance of <see cref="AvlTreeNode{T}"/>.
+        /// </summary>
+        /// <param name="value">Value of node.</param>
+        public AvlTreeNode(T value)
+        {
+            Value = value;
+            Height = 0;
+        }
 
         /// <summary>
         /// Get or sets the height of the node
@@ -32,15 +41,5 @@ namespace Dsa.DataStructures
         /// Gets or sets the value of the node.
         /// </summary>
         public T Value { get; set; }
-
-        /// <summary>
-        /// Creates and initializes a new instance of <see cref="AvlTreeNode{T}"/>.
-        /// </summary>
-        /// <param name="value">Value of node</param>
-        public AvlTreeNode(T value)
-        {
-            Value = value;
-            Height = 0;
-        }
     }
 }
