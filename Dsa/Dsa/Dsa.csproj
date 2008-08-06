@@ -70,7 +70,6 @@
     </Compile>
     <Compile Include="Algorithms\Sorting.cs" />
     <Compile Include="Algorithms\SortType.cs" />
-    <Compile Include="DataStructures\Avl.cs" />
     <Compile Include="DataStructures\AvlTree.cs" />
     <Compile Include="DataStructures\AvlTreeNode.cs" />
     <Compile Include="DataStructures\BinaryTreeNode.cs">
