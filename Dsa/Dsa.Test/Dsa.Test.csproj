@@ -57,6 +57,7 @@
     <Compile Include="Algorithms\SortingTest.cs" />
     <Compile Include="Algorithms\StringsTest.cs" />
     <Compile Include="DataStructures\AvlTest.cs" />
+    <Compile Include="DataStructures\AvlTreeTest.cs" />
     <Compile Include="DataStructures\BinarySearchTreeTest.cs" />
     <Compile Include="DataStructures\BinaryTreeNodeTest.cs" />
     <Compile Include="DataStructures\AvlTreeNodeTest.cs" />

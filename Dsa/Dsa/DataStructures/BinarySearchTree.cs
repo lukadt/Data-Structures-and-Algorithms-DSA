@@ -24,13 +24,17 @@ namespace Dsa.DataStructures
         /// </summary>
         [NonSerialized]
         protected readonly IComparer<T> m_comparer;
+
+        /// <summary>
+        /// Root node.
+        /// </summary>
         [NonSerialized]
-        private BinaryTreeNode<T> m_root;
+        protected BinaryTreeNode<T> m_root;
 
         /// <summary>
         /// Creates and initializes a new instance of the <see cref="BinarySearchTree{T}"/> class.
         /// </summary>
-        public BinarySearchTree() 
+        public BinarySearchTree()
         {
             m_comparer = Comparer<T>.Default;
         }
@@ -329,7 +333,7 @@ namespace Dsa.DataStructures
         /// <returns>ArrayList populated with the items from the traversal.</returns>
         private static List<T> BreadthFirstTraversal(BinaryTreeNode<T> root)
         {
-            Queue<BinaryTreeNode<T>> unvisited = new Queue<BinaryTreeNode<T>>(); 
+            Queue<BinaryTreeNode<T>> unvisited = new Queue<BinaryTreeNode<T>>();
             List<T> visited = new List<T>();
 
             while (root != null)
@@ -342,7 +346,7 @@ namespace Dsa.DataStructures
 
                 if (root.Right != null)
                 {
-                    unvisited.Enqueue(root.Right); 
+                    unvisited.Enqueue(root.Right);
                 }
 
                 root = unvisited.Count > 0 ? unvisited.Dequeue() : null;
@@ -389,9 +393,9 @@ namespace Dsa.DataStructures
         {
             if (root != null)
             {
-                PostorderTraversal(root.Left, arrayList);  
-                PostorderTraversal(root.Right, arrayList);  
-                arrayList.Add(root.Value); 
+                PostorderTraversal(root.Left, arrayList);
+                PostorderTraversal(root.Right, arrayList);
+                arrayList.Add(root.Value);
             }
 
             return arrayList;
@@ -407,9 +411,9 @@ namespace Dsa.DataStructures
         {
             if (root != null)
             {
-                arrayList.Add(root.Value); 
-                PreorderTraveral(root.Left, arrayList); 
-                PreorderTraveral(root.Right, arrayList); 
+                arrayList.Add(root.Value);
+                PreorderTraveral(root.Left, arrayList);
+                PreorderTraveral(root.Right, arrayList);
             }
 
             return arrayList;
@@ -425,7 +429,7 @@ namespace Dsa.DataStructures
         {
             if (root == null)
             {
-                return null; 
+                return null;
             }
 
             return Compare.IsLessThan(value, root.Value, m_comparer)
@@ -488,7 +492,7 @@ namespace Dsa.DataStructures
 
             if (root.Right == null)
             {
-                return null; 
+                return null;
             }
 
             return Compare.AreEqual(value, root.Right.Value, m_comparer) ? root : FindParent(value, root.Right);
@@ -509,7 +513,7 @@ namespace Dsa.DataStructures
 
             if (Compare.AreEqual(root.Value, item, m_comparer))
             {
-                return true; 
+                return true;
             }
 
             return Compare.IsLessThan(item, root.Value, m_comparer) ? Contains(root.Left, item) : Contains(root.Right, item);
