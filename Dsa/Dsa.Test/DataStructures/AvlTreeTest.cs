@@ -1,7 +1,7 @@
-﻿using NUnit.Framework;
+﻿using System.Collections.Generic;
 using Dsa.DataStructures;
+using NUnit.Framework;
 using NUnit.Framework.SyntaxHelpers;
-using System.Collections.Generic;
 
 namespace Dsa.Test.DataStructures
 {
@@ -68,9 +68,9 @@ namespace Dsa.Test.DataStructures
         [Test]
         public void CountTest()
         {
-            AvlTree<int> acutal = new AvlTree<int> { 12, 3, 4 };
+            AvlTree<int> actual = new AvlTree<int> { 12, 3, 4 };
 
-            Assert.AreEqual(3, acutal.Count);
+            Assert.AreEqual(3, actual.Count);
         }
 
         /// <summary>
@@ -86,6 +86,28 @@ namespace Dsa.Test.DataStructures
             foreach (int value in avlTree.GetInorderEnumerator())
             {
                 actual.Add(value);
+            }
+
+            for (int i = 0; i < expected.Count; i++)
+            {
+                Assert.AreEqual(expected[i], actual[i]);
+            }
+        }
+
+        /// <summary>
+        /// Check to see that the AVLTree is in the correct state after invoking copy constructor.
+        /// </summary>
+        [Test]
+        public void CopyConstructorTest()
+        {
+            List<int> values = new List<int> { 23, 45, 1, 19, 56 };
+            AvlTree<int> avlTree = new AvlTree<int>(values);
+            List<int> expected = new List<int> { 23, 1, 19, 45, 56 };
+            List<int> actual = new List<int>();
+
+            foreach(int i in avlTree)
+            {
+                actual.Add(i);
             }
 
             for (int i = 0; i < expected.Count; i++)

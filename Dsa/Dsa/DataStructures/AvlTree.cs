@@ -22,10 +22,24 @@ namespace Dsa.DataStructures
         where T : IComparable<T>
     {
         /// <summary>
+        /// Creates and initializes a new instance of <see cref="AvlTree{T}"/>.
+        /// </summary>
+        public AvlTree()
+            : base() { }
+
+        /// <summary>
+        /// Creates and initializes a new instance of <see cref="AvlTree{T}"/> , populating it with the items from the
+        /// <see cref="IEnumerable{T}"/>.
+        /// </summary>
+        /// <param name="collection">Items to populate <see cref="AvlTree{T}"/>.</param>
+        public AvlTree(IEnumerable<T> collection)
+            : base(collection) { }
+
+        /// <summary>
         /// Retrieves the height of the specified node
         /// </summary>
-        /// <param name="node">node to obtain depth </param>
-        /// <returns>-1 if node is null otherwise its proper height </returns>
+        /// <param name="node">Node to obtain depth </param>
+        /// <returns>-1 if node is null otherwise its proper height.</returns>
         public int Height(AvlTreeNode<T> node)
         {
             if (node == null)
