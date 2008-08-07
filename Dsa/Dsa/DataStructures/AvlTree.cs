@@ -7,7 +7,6 @@
 using System;
 using System.Collections.Generic;
 using Dsa.Utility;
-using System.Diagnostics;
 
 namespace Dsa.DataStructures
 {
@@ -85,10 +84,6 @@ namespace Dsa.DataStructures
             AvlTreeNode<T> right = node.Right as AvlTreeNode<T>;
             AvlTreeNode<T> avlNode = node as AvlTreeNode<T>;
 
-            Debug.Assert(left != null, "Left is null in InsertNode");
-            Debug.Assert(right != null, "Right is null in InsertNode.");
-            Debug.Assert(avlNode != null, "avlNode is null in InsertNode.");
-
             if (Compare.IsLessThan(value, avlNode.Value, m_comparer))
             {
                 if (avlNode.Left == null)
@@ -126,11 +121,11 @@ namespace Dsa.DataStructures
                     {
                         if (Compare.IsGreaterThan(value, avlNode.Right.Value, m_comparer))
                         {
-                            avlNode = SingleRightRotation(avlNode as AvlTreeNode<T>);
+                            avlNode = SingleRightRotation(avlNode);
                         }
                         else
                         {
-                            avlNode = DoubleRightRotation(avlNode as AvlTreeNode<T>);
+                            avlNode = DoubleRightRotation(avlNode);
                         }
                     }
                 }
@@ -160,8 +155,6 @@ namespace Dsa.DataStructures
         private AvlTreeNode<T> SingleRightRotation(AvlTreeNode<T> node)
         {
             AvlTreeNode<T> node1 = node.Right as AvlTreeNode<T>;
-            Debug.Assert(node1 != null, "node1 is null");
-
             node.Right = node1.Left;
             node1.Left = node;
             node.Height = Math.Max(Height(node.Left as AvlTreeNode<T>), Height(node.Right as AvlTreeNode<T>)) + 1;
