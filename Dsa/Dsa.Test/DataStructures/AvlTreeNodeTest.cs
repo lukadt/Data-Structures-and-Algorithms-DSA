@@ -4,33 +4,20 @@ using NUnit.Framework;
 namespace Dsa.Test.DataStructures
 {
     /// <summary>
-    /// AvlTreeNode(Of T) tests.
+    /// Tests for AvlTreeNode.
     /// </summary>
     [TestFixture]
     public sealed class AvlTreeNodeTest
     {
         /// <summary>
-        /// Check to see that an AvlTreeNode is initialized to the correct values.
+        /// Check to make sure height property is defaulted correctly.
         /// </summary>
         [Test]
-        public void AvlTreeNodeConstructorTest()
+        public void HeightTest()
         {
-            AvlTreeNode<int> node = new AvlTreeNode<int>(10);
-            
-            Assert.AreEqual(10, node.Value);
-            Assert.IsNull(node.Left);
-            Assert.IsNull(node.Right);
-        }
+            AvlTreeNode<int> actual = new AvlTreeNode<int>(20);
 
-        /// <summary>
-        /// Check to see that child nodes are appended properly.
-        /// </summary>
-        [Test]
-        public void AssignNodeTest()
-        {
-            AvlTreeNode<int> node = new AvlTreeNode<int>(5) {Left = new AvlTreeNode<int>(3)};
-
-            Assert.AreEqual(3, node.Left.Value);
+            Assert.AreEqual(0, actual.Height);
         }
     }
 }

@@ -17,14 +17,11 @@ namespace Dsa.DataStructures
         /// </summary>
         /// <param name="value">Value of node.</param>
         public AvlTreeNode(T value)
-            : base(value)
-        {
-            Height = 0;
-        }
+            : base(value) { }
 
         /// <summary>
         /// Get or sets the height of the node
         /// </summary>
-        public int Height { get; set; }
+        public int Height { get; internal set; }
     }
 }

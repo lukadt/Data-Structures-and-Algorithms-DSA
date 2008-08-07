@@ -35,9 +35,9 @@ namespace Dsa.DataStructures
             : base(collection) { }
 
         /// <summary>
-        /// Retrieves the height of the specified node
+        /// Retrieves the height of the specified node.
         /// </summary>
-        /// <param name="node">Node to obtain depth </param>
+        /// <param name="node">Node to obtain depth.</param>
         /// <returns>-1 if node is null otherwise its proper height.</returns>
         public int Height(AvlTreeNode<T> node)
         {
@@ -74,7 +74,8 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Called by the Add method. Finds the location where to put the node in the <see cref="AvlTree{T}"/> and if necessary rebalance.
+        /// Called by the Add method. Finds the location where to put the node in the <see cref="AvlTree{T}"/> and if 
+        /// necessary rebalance.
         /// </summary>
         /// <param name="node">Node to start searching from.</param>
         /// <param name="value">Value to insert into the Avl.</param>
@@ -95,8 +96,6 @@ namespace Dsa.DataStructures
                     InsertNode(avlNode.Left, value);
                     if ((Height(left) - Height(right)) == 2)
                     {
-
-
                         if (Compare.IsLessThan(value, avlNode.Left.Value, m_comparer))
                         {
                             avlNode = SingleLeftRotation(avlNode);
@@ -136,10 +135,10 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// A Double rotation composed of a left rotation and a right rotation
+        /// A Double rotation composed of a left rotation and a right rotation.
         /// </summary>
-        /// <param name="node">the pivoting node involved in rotations</param>
-        /// <returns>the balanced tree node </returns>
+        /// <param name="node">The pivoting node involved in rotations.</param>
+        /// <returns>The balanced tree node.</returns>
         private AvlTreeNode<T> DoubleRightRotation(AvlTreeNode<T> node)
         {
             // Double rotation is composed of two rotation one right and one left
@@ -148,10 +147,10 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// A single right rotation composed of a right rotation
+        /// A single right rotation composed of a right rotation.
         /// </summary>
-        /// <param name="node">the pivoting node involved in rotations</param>
-        /// <returns>the balanced tree node </returns>
+        /// <param name="node">The pivoting node involved in rotations.</param>
+        /// <returns>The balanced tree node.</returns>
         private AvlTreeNode<T> SingleRightRotation(AvlTreeNode<T> node)
         {
             AvlTreeNode<T> node1 = node.Right as AvlTreeNode<T>;
@@ -163,10 +162,10 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// A Double rotation composed of a right rotation and a left rotation
+        /// A Double rotation composed of a right rotation and a left rotation.
         /// </summary>
-        /// <param name="node">the pivoting node involved in rotations</param>
-        /// <returns>the balanced tree node </returns>
+        /// <param name="node">The pivoting node involved in rotations.</param>
+        /// <returns>The balanced tree node.</returns>
         private AvlTreeNode<T> DoubleLeftRotation(AvlTreeNode<T> node)
         {
             //Double rotation is composed of two rotation one right and one left
@@ -175,10 +174,10 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// A Single rotation composed of a left rotation and a right rotation
+        /// A Single rotation composed of a left rotation and a right rotation.
         /// </summary>
-        /// <param name="node">the pivoting node involved in rotations</param>
-        /// <returns>the balanced tree node </returns>
+        /// <param name="node">The pivoting node involved in rotations.</param>
+        /// <returns>The balanced tree node.</returns>
         private AvlTreeNode<T> SingleLeftRotation(AvlTreeNode<T> node)
         {
             AvlTreeNode<T> node1 = node.Left as AvlTreeNode<T>;
