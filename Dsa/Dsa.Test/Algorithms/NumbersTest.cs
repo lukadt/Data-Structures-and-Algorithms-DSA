@@ -195,5 +195,51 @@ namespace Dsa.Test.Algorithms
             Assert.IsFalse(10.IsPrime());
             Assert.IsTrue(11.IsPrime());
         }
+
+        /// <summary>
+        /// Check to see that the correct value is returned when the number of digits is less
+        /// than 1.
+        /// </summary>
+        [Test]
+        public void MaxValueDigitsLessThanZeroTest()
+        {
+            Assert.AreEqual(0, Numbers.MaxValue(Base.Binary, 0));
+        }
+
+        /// <summary>
+        /// Check to see that the correct max value is returned.
+        /// </summary>
+        [Test]
+        public void MaxValueHexadecimalTest()
+        {
+            Assert.AreEqual(255, Numbers.MaxValue(Base.Hexadecimal, 2));
+        }
+
+        /// <summary>
+        /// Check to see correct max value for binary is returned.
+        /// </summary>
+        [Test]
+        public void MaxValueBinaryTest()
+        {
+            Assert.AreEqual(1023, Numbers.MaxValue(Base.Binary, 10));
+        }
+
+        /// <summary>
+        /// Check to see that the correct max value for octal is returned.
+        /// </summary>
+        [Test]
+        public void MaxValueOctalTest()
+        {
+            Assert.AreEqual(32767, Numbers.MaxValue(Base.Octal, 5));
+        }
+
+        /// <summary>
+        /// Check to see that the correct max value for decimal is returned.
+        /// </summary>
+        [Test]
+        public void MaxValueDecimalTest()
+        {
+            Assert.AreEqual(9999, Numbers.MaxValue(Base.Decimal, 4));
+        }
     }
 }

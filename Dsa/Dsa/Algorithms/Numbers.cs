@@ -254,5 +254,41 @@ namespace Dsa.Algorithms
 
             return symbol;
         }
+
+        /// <summary>
+        /// Computes the maximum value that a given number base can hold for N digits.
+        /// </summary>
+        /// <param name="numberBase">Number base to use.</param>
+        /// <param name="digits">Number of digits.</param>
+        /// <returns>Maximum value for the given number base with the number of digits specified.</returns>
+        public static int MaxValue(Base numberBase, int digits)
+        {
+            if (digits < 1)
+            {
+                return 0;
+            }
+
+            int baseNumber;
+
+            // resolve the base number
+            switch (numberBase)
+            {
+                case Base.Binary:
+                    baseNumber = 2;
+                    break;
+                case Base.Octal:
+                    baseNumber = 8;
+                    break;
+                case Base.Decimal:
+                    baseNumber = 10;
+                    break;
+                default:
+                    baseNumber = 16;
+                    break;
+            }
+
+            // to get the max value for a base: B^n - 1 where B is the base, n is the number of digits
+            return Power(baseNumber, digits) - 1;
+        }
     }
 }

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{928B4724-1973-454B-BDA3-19D782D3F88D}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -63,6 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithms\Base.cs" />
     <Compile Include="Algorithms\Numbers.cs" />
     <Compile Include="Algorithms\Searching.cs" />
     <Compile Include="Algorithms\Sets.cs">
