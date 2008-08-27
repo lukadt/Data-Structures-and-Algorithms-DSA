@@ -78,18 +78,18 @@ namespace Dsa.Algorithms
 
             Comparer<T> comparer = Comparer<T>.Default;
             int middle = list.Count / 2;
-            const int Left = 0;
+            const int left = 0;
             int right = list.Count - 1;
 
             // place the keys in the correct positions of list
-            if (Compare.IsGreaterThan(list[Left], list[middle], comparer))
+            if (Compare.IsGreaterThan(list[left], list[middle], comparer))
             {
-                Exchange(list, Left, middle);
+                Exchange(list, left, middle);
             }
 
-            if (Compare.IsGreaterThan(list[Left], list[right], comparer))
+            if (Compare.IsGreaterThan(list[left], list[right], comparer))
             {
-                Exchange(list, Left, right);
+                Exchange(list, left, right);
             }
 
             if (Compare.IsGreaterThan(list[middle], list[right], comparer))
@@ -98,7 +98,7 @@ namespace Dsa.Algorithms
             }
 
             // place the median key at index 0
-            Exchange(list, middle, Left);
+            Exchange(list, middle, left);
             return list;
         }
 
@@ -400,27 +400,29 @@ namespace Dsa.Algorithms
 
             int listCount = list.Count;
             string[] partiallySorted = new string[listCount]; // used for partial sort
-            const int Radix = 256; // 256 is number of ASCII chars
+            const int radix = 256; // 256 is number of ASCII chars
 
             for (int d = keySize - 1; d >= 0; d--)
             {
-                int[] count = new int[Radix]; // used for ascii char count
+                int[] count = new int[radix]; // used for ascii char count
 
                 // go ahead a track counts of ascii values for the char at key d
                 for (int i = 0; i < listCount; i++)
                 {
                     int charAsciiValue = list[i][d];
-                    count[charAsciiValue + 1]++; // increment count for that ascii char, e.g. c = 99 => count[100] = count[100] + 1
+
+                    // increment count for that ascii char, e.g. c = 99 => count[100] = count[100] + 1
+                    count[charAsciiValue + 1]++; 
                 }
 
                 // count[101] = count[100] which is c, => count 101 = 3 on first key pass
-                for (int k = 1; k < Radix; k++)
+                for (int k = 1; k < radix; k++)
                 {
                     count[k] += count[k - 1];
                 }
 
-                // populate temp with the values of 'a' using the counted values for the relevant chars in count as the index to temp
-                // e.g. if char with ASCII code 99 has a count of 2 then temp[2] = a[i]
+                // populate temp with the values of 'a' using the counted values for the relevant chars in 
+                // count as the index to temp e.g. if char with ASCII code 99 has a count of 2 then temp[2] = a[i]
                 for (int i = 0; i < listCount; i++)
                 {
                     int charAsciiValue = list[i][d];

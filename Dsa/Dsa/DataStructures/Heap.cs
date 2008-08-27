@@ -30,6 +30,26 @@ namespace Dsa.DataStructures
         private readonly Strategy m_strategy;
 
         /// <summary>
+        /// Used for the first predicate of the <see cref="Heap{T}.Contains"/> method.
+        /// </summary>
+        /// <param name="item">Item to check relationship with parent.</param>
+        /// <param name="index">Current index in the array.</param>
+        /// <param name="comparer">Comparer to use.</param>
+        /// <returns>True if the predicate is satisfied; otherwise false.</returns>
+        public delegate bool PredicateOne(T item, int index, Comparer<T> comparer);
+
+        /// <summary>
+        /// Used for the second predicate of the <see cref="Heap{T}.Contains"/> method. Determines whether the item
+        /// is less than or greater than some other item. The behaviour depends on the type of the <see cref="Heap{T}"/>
+        /// being used.
+        /// </summary>
+        /// <param name="x">First item.</param>
+        /// <param name="y">Second item.</param>
+        /// <param name="comparer">Comparer to use.</param>
+        /// <returns>True if the predicate is satisfied; otherwise false.</returns>
+        public delegate bool PredicateTwo(T x, T y, Comparer<T> comparer);
+
+        /// <summary>
         /// Creates and initializes a new instance of <see cref="Heap{T}"/>.
         /// </summary>
         public Heap()
@@ -127,13 +147,94 @@ namespace Dsa.DataStructures
         /// Determines whether or not the <see cref="Heap{T}"/> contains a specific item.
         /// </summary>
         /// <remarks>
+        /// <para>
         /// This is an O(n) operation where n is the number of items in the <see cref="Heap{T}"/>.
+        /// </para>
+        /// <para>
+        /// Algorithm is optimised to categorically rule out a value being in the heap if the value we are looking
+        /// for is > than the parent of each node at the current level, but less than each node at the current level.
+        /// The opposite strategy is used when searching a max-heap. Worse case is still linear, but now in some scenarios
+        /// we can give a definitive answer without traversing all the values in the heap.
+        /// </para>
         /// </remarks>
         /// <param name="item">Item to see if the Heap contains.</param>
         /// <returns>True is the item if in the Heap; otherwise false.</returns>
         public override bool Contains(T item)
         {
-            return Array.IndexOf(m_heap, item) < 0 ? false : true;
+            int start = 0;
+            int maxNodesAtCurrentLevel = 1;
+            int count = 0;
+            Comparer<T> comparer = Comparer<T>.Default;
+            PredicateOne p1;
+            PredicateTwo p2;
+
+            // figure out which methods to use for this type of heap
+            // TODO: would this be clearer using Func's?
+            if (m_strategy == Strategy.Min)
+            {
+                p1 = GreaterThanParent;
+                p2 = Compare.IsLessThan;
+            }
+            else
+            {
+                p1 = LessThanParent;
+                p2 = Compare.IsGreaterThan;
+            }
+            
+
+            while (start < Count)
+            {
+                start = maxNodesAtCurrentLevel - 1; // start index of current level of nodes in the heap
+                int end = maxNodesAtCurrentLevel + start; // end index of the current level of nodes in the heap
+
+                while(start < Count && start < end)
+                {
+                    if (Compare.AreEqual(item, m_heap[start], comparer))
+                    {
+                        return true;
+                    }
+                    else if (p1(item, start, comparer) && p2(item, m_heap[start], comparer))
+                    {
+                        count++;
+                    }
+
+                    start++;
+                }
+
+                // item < all nodes at this level in the heap AND item > the parent of each respective node at this level
+                // so we can safely say that this item is not in the heap without looking at the rest of the items in the
+                // heap. The opposite cases are used for a max-heap.
+                if (count == maxNodesAtCurrentLevel)
+                {
+                    return false;
+                }
+
+                maxNodesAtCurrentLevel *= 2; // goto the next level in the heap
+            }
+
+            return false;
+        }
+
+        // TODO: temp method for now
+        private bool GreaterThanParent(T item, int start, Comparer<T> comparer)
+        {
+            if (start < 1)
+            {
+                return true;
+            }
+
+            return Compare.IsGreaterThan(item, m_heap[(start - 1)/2], comparer);
+        }
+
+        // TODO: temp method for now
+        private bool LessThanParent(T item, int start, Comparer<T> comparer)
+        {
+            if (start < 1)
+            {
+                return true;
+            }
+
+            return Compare.IsLessThan(item, m_heap[(start - 1)/2], comparer);
         }
 
         /// <summary>

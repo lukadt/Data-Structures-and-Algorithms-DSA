@@ -145,16 +145,29 @@ namespace Dsa.Test.DataStructures
 
         /// <summary>
         /// Check to see that the correct value is returned when seeing if an item
-        /// exists in the heap.
+        /// exists in the min-heap.
         /// </summary>
         [Test]
-        public void ContainsTest()
+        public void ContainsMinHeapTest()
         {
             Heap<char> actual = new Heap<char> {'g', 'r', 'a', 'n', 'v'};
 
             Assert.IsTrue(actual.Contains('a'));
             Assert.IsFalse(actual.Contains('l'));
         }
+
+        /// <summary>
+        /// Check to see that the correct value is returned when seeing if anitem exists in a max-heap.
+        /// </summary>
+        [Test]
+        public void ContainsMaxHeapTest()
+        {
+            Heap<int> actual = new Heap<int>(Strategy.Max) {23, 45, 1, 9, 12};
+
+            Assert.IsTrue(actual.Contains(12));
+            Assert.IsFalse(actual.Contains(99));
+        }
+
 
         /// <summary>
         /// Check to see that the Heap is restored to its default state.
