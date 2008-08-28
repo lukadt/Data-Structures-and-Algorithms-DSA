@@ -1,6 +1,7 @@
 ﻿using System;
 using Dsa.Algorithms;
 using NUnit.Framework;
+using NUnit.Framework.Extensions;
 
 namespace Dsa.Test.Algorithms
 {
@@ -13,17 +14,11 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that calling Fibonacci algorithm returns the correct value.
         /// </summary>
-        [Test]
-        public void FibonacciTest()
+        [RowTest]
+        [Row(0, 0), Row(1, 1), Row(1, 2), Row(2,3), Row(3, 4), Row(5, 5), Row(8, 6), Row(13, 7)]
+        public void FibonacciTest(int expected, int actual)
         {
-            Assert.AreEqual(0, 0.Fibonacci());
-            Assert.AreEqual(1, 1.Fibonacci());
-            Assert.AreEqual(1, 2.Fibonacci());
-            Assert.AreEqual(2, 3.Fibonacci());
-            Assert.AreEqual(3, 4.Fibonacci());
-            Assert.AreEqual(5, 5.Fibonacci());
-            Assert.AreEqual(8, 6.Fibonacci());
-            Assert.AreEqual(13, 7.Fibonacci());
+            Assert.AreEqual(expected, actual.Fibonacci());
         }
 
         /// <summary>
@@ -39,16 +34,11 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that calling Factorial algorithm returns the correct value.
         /// </summary>
-        [Test]
-        public void FactorialTest()
+        [RowTest]
+        [Row(1, 0), Row(1, 1), Row(2, 2), Row(6, 3), Row(24, 4), Row(120, 5), Row(720, 6)]
+        public void FactorialTest(int expected, int actual)
         {
-            Assert.AreEqual(1, 0.Factorial());
-            Assert.AreEqual(1, 1.Factorial());
-            Assert.AreEqual(2, 2.Factorial());
-            Assert.AreEqual(6, 3.Factorial());
-            Assert.AreEqual(24, 4.Factorial());
-            Assert.AreEqual(120, 5.Factorial());
-            Assert.AreEqual(720, 6.Factorial());
+            Assert.AreEqual(expected, actual.Factorial());
         }
 
         /// <summary>
@@ -64,14 +54,11 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that the power method returns the correct value.
         /// </summary>
-        [Test]
-        public void PowerNotZeroTest()
+        [RowTest]
+        [Row(1, 0, 0), Row(4, 2, 2), Row(243, 3, 5), Row(1024, 2, 10), Row(4, -2, 2)]
+        public void PowerNotZeroTest(int expected, int baseNumber, int power)
         {
-            Assert.AreEqual(1, Numbers.Power(0, 0));
-            Assert.AreEqual(4, Numbers.Power(2, 2));
-            Assert.AreEqual(243, Numbers.Power(3, 5));
-            Assert.AreEqual(1024, Numbers.Power(2, 10));
-            Assert.AreEqual(4, Numbers.Power(-2, 2));
+            Assert.AreEqual(expected, Numbers.Power(baseNumber, power));
         }
         
         /// <summary>
@@ -87,15 +74,11 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that calling the Gcd method results in the expected value being returned.
         /// </summary>
-        [Test]
-        public void GcdTest()
+        [RowTest]
+        [Row(1, 9, 4), Row(3, 3, 9), Row(5, 10, 5), Row(1, 5, 12), Row(5, -10, 5), Row(5, 5, -10)]
+        public void GcdTest(int expected, int first, int second)
         {
-            Assert.AreEqual(1, Numbers.GreatestCommonDenominator(9, 4));
-            Assert.AreEqual(3, Numbers.GreatestCommonDenominator(3, 9));
-            Assert.AreEqual(5, Numbers.GreatestCommonDenominator(10, 5));
-            Assert.AreEqual(1, Numbers.GreatestCommonDenominator(5, 12));
-            Assert.AreEqual(5, Numbers.GreatestCommonDenominator(-10, 5));
-            Assert.AreEqual(5, Numbers.GreatestCommonDenominator(5, -10));
+            Assert.AreEqual(expected, Numbers.GreatestCommonDenominator(first, second));
         }
 
         /// <summary>
@@ -149,20 +132,11 @@ namespace Dsa.Test.Algorithms
         /// Check to see that the correct string is returned when converting a base 10 integer its base 16
         /// equivalent.
         /// </summary>
-        [Test]
-        public void ToHexTest()
+        [RowTest]
+        [Row("F9B3", 63923), Row("93A", 2362), Row("383D", 14397), Row("DE", 222), Row("ABC7", 43975)]
+        public void ToHexTest(string expected, int actual)
         {
-            const int actual1 = 63923;
-            const int actual2 = 2362;
-            const int actual3 = 14397;
-            const int actual4 = 222;
-            const int actual5 = 43975;
-
-            Assert.AreEqual("F9B3", actual1.ToHex());
-            Assert.AreEqual("93A", actual2.ToHex());
-            Assert.AreEqual("383D", actual3.ToHex());
-            Assert.AreEqual("DE", actual4.ToHex());
-            Assert.AreEqual("ABC7", actual5.ToHex());
+            Assert.AreEqual(expected, actual.ToHex());
         }
 
         /// <summary>
@@ -180,20 +154,12 @@ namespace Dsa.Test.Algorithms
         /// <summary>
         /// Check to see that the correct value is returned when checking a few numbers if they are primes.
         /// </summary>
-        [Test]
-        public void IsPrimeTest()
+        [RowTest]
+        [Row(false, 1), Row(true, 2), Row(true, 3), Row(false, 4), Row(true, 5), Row(false, 6), Row(true, 7), Row(false, 8)]
+        [Row(false, 9), Row(false, 10), Row(true, 11), Row(false, 12), Row(true, 13), Row(false, 14), Row(false, 15)]
+        public void IsPrimeTest(bool expected, int actual)
         {
-            Assert.IsFalse(1.IsPrime());
-            Assert.IsTrue(2.IsPrime());
-            Assert.IsTrue(3.IsPrime());
-            Assert.IsFalse(4.IsPrime());
-            Assert.IsTrue(5.IsPrime());
-            Assert.IsFalse(6.IsPrime());
-            Assert.IsTrue(7.IsPrime());
-            Assert.IsFalse(8.IsPrime());
-            Assert.IsFalse(9.IsPrime());
-            Assert.IsFalse(10.IsPrime());
-            Assert.IsTrue(11.IsPrime());
+            Assert.AreEqual(expected, actual.IsPrime());
         }
 
         /// <summary>
