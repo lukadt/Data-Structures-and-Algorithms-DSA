@@ -13,7 +13,7 @@ namespace Dsa.DataStructures
     public class DoublyLinkedListNode<T>
     {
         /// <summary>
-        /// Creates and initializes a new instance of the <see cref="DoublyLinkedListNode{T}"/> class with a specified value.
+        /// Initializes a new instance of the <see cref="DoublyLinkedListNode{T}"/> class with a specified value.
         /// </summary>
         /// <param name="value">Value of the node.</param>
         public DoublyLinkedListNode(T value)

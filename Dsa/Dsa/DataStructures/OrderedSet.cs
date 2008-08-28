@@ -24,7 +24,7 @@ namespace Dsa.DataStructures
         private readonly BinarySearchTree<T> m_set;
 
         /// <summary>
-        /// Creates and initializes a new instance of <see cref="OrderedSet{T}"/>.
+        /// Initializes a new instance of the <see cref="OrderedSet{T}"/> class.
         /// </summary>
         public OrderedSet()
         {
@@ -32,8 +32,8 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Creates and initializes a new instance of <see cref="OrderedSet{T}"/> populating the <see cref="OrderedSet{T}"/> with
-        /// the items withing the provided <see cref="IEnumerable{T}"/>.
+        /// Initializes a new instance of the <see cref="OrderedSet{T}"/> class populating the <see cref="OrderedSet{T}"/> 
+        /// with the items withing the provided <see cref="IEnumerable{T}"/>.
         /// </summary>
         /// <remarks>
         /// <para>

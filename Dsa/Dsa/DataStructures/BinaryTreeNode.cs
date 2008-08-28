@@ -13,6 +13,15 @@ namespace Dsa.DataStructures
     public class BinaryTreeNode<T>
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="BinaryTreeNode{T}"/> class.
+        /// </summary>
+        /// <param name="value">Value of node.</param>
+        public BinaryTreeNode(T value)
+        {
+            Value = value;
+        }
+
+        /// <summary>
         /// Gets or sets the left node reference.
         /// </summary>
         public BinaryTreeNode<T> Left { get; set; }
@@ -26,14 +35,5 @@ namespace Dsa.DataStructures
         /// Gets or sets the value of the node.
         /// </summary>
         public T Value { get; set; }
-
-        /// <summary>
-        /// Creates and initializes a new instance of <see cref="BinaryTreeNode{T}"/>.
-        /// </summary>
-        /// <param name="value">Value of node.</param>
-        public BinaryTreeNode(T value)
-        {
-            Value = value;
-        }
     }
 }

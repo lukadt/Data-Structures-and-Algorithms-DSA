@@ -25,7 +25,7 @@ namespace Dsa.DataStructures
         private readonly Heap<T> m_heap;
 
         /// <summary>
-        /// Creates and initializes a new instance of <see cref="PriorityQueue{T}"/>.
+        /// Initializes a new instance of the <see cref="PriorityQueue{T}"/> class.
         /// </summary>
         public PriorityQueue()
         {
@@ -33,7 +33,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Creates and initializes a new instance of <see cref="PriorityQueue{T}"/>, populating it with the items of the 
+        /// Initializes a new instance of the <see cref="PriorityQueue{T}"/> class, populating it with the items of the 
         /// <see cref="IEnumerable{T}"/>.
         /// </summary>
         /// <param name="collection">Items to populate <see cref="PriorityQueue{T}"/> with.</param>
@@ -44,7 +44,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Creates and initializes a new instance of <see cref="PriorityQueue{T}"/> using a defined priority
+        /// Initializes a new instance of the <see cref="PriorityQueue{T}"/> class using a defined priority
         /// strategy.
         /// </summary>
         /// <param name="strategy">Strategy to use to define priority.</param>
@@ -54,7 +54,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Creates and initializes a new instance of <see cref="PriorityQueue{T}"/>, populating it with the items of the 
+        /// Initializes a new instance of the <see cref="PriorityQueue{T}"/> class, populating it with the items of the 
         /// <see cref="IEnumerable{T}"/>, and using a defined <see cref="Strategy"/>.
         /// </summary>
         /// <param name="collection">Items to populate <see cref="PriorityQueue{T}"/> with.</param>

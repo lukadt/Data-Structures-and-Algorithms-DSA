@@ -78,18 +78,18 @@ namespace Dsa.Algorithms
 
             Comparer<T> comparer = Comparer<T>.Default;
             int middle = list.Count / 2;
-            const int left = 0;
+            const int Left = 0;
             int right = list.Count - 1;
 
             // place the keys in the correct positions of list
-            if (Compare.IsGreaterThan(list[left], list[middle], comparer))
+            if (Compare.IsGreaterThan(list[Left], list[middle], comparer))
             {
-                Exchange(list, left, middle);
+                Exchange(list, Left, middle);
             }
 
-            if (Compare.IsGreaterThan(list[left], list[right], comparer))
+            if (Compare.IsGreaterThan(list[Left], list[right], comparer))
             {
-                Exchange(list, left, right);
+                Exchange(list, Left, right);
             }
 
             if (Compare.IsGreaterThan(list[middle], list[right], comparer))
@@ -98,7 +98,7 @@ namespace Dsa.Algorithms
             }
 
             // place the median key at index 0
-            Exchange(list, middle, left);
+            Exchange(list, middle, Left);
             return list;
         }
 
@@ -289,6 +289,62 @@ namespace Dsa.Algorithms
         }
 
         /// <summary>
+        /// Radix sorts an array of <see cref="String"/>. The strings MUST be of the same key size.
+        /// </summary>
+        /// <param name="list">List to sort.</param>
+        /// <param name="keySize">Key size of all strings, e.g. "abc", "bde" both have same key size of 3 chars.</param>
+        /// <returns>Sorted list.</returns>
+        /// <exception cref="ArgumentNullException"><strong>list</strong> is <strong>null</strong>.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><strong>keySize</strong> is less than <strong>1</strong>.</exception>
+        /// <exception cref="InvalidOperationException"><strong>list</strong> contains a <strong>null</strong> item.</exception>
+        public static IList<string> RadixSort(this IList<string> list, int keySize)
+        {
+            Guard.ArgumentNull(list, "list");
+            Guard.OutOfRange(keySize < 1, "keySize", Resources.RadixKeySizeTooSmall);
+            Guard.InvalidOperation(list[0] == null, Resources.RadixItemNullInList);
+
+            int listCount = list.Count;
+            string[] partiallySorted = new string[listCount]; // used for partial sort
+            const int Radix = 256; // 256 is number of ASCII chars
+
+            for (int d = keySize - 1; d >= 0; d--)
+            {
+                int[] count = new int[Radix]; // used for ascii char count
+
+                // go ahead a track counts of ascii values for the char at key d
+                for (int i = 0; i < listCount; i++)
+                {
+                    int charAsciiValue = list[i][d];
+
+                    // increment count for that ascii char, e.g. c = 99 => count[100] = count[100] + 1
+                    count[charAsciiValue + 1]++; 
+                }
+
+                // count[101] = count[100] which is c, => count 101 = 3 on first key pass
+                for (int k = 1; k < Radix; k++)
+                {
+                    count[k] += count[k - 1];
+                }
+
+                // populate temp with the values of 'a' using the counted values for the relevant chars in 
+                // count as the index to temp e.g. if char with ASCII code 99 has a count of 2 then temp[2] = a[i]
+                for (int i = 0; i < listCount; i++)
+                {
+                    int charAsciiValue = list[i][d];
+                    partiallySorted[count[charAsciiValue]++] = list[i];
+                }
+
+                // copy temp values to a
+                for (int i = 0; i < listCount; i++)
+                {
+                    list[i] = partiallySorted[i];
+                }
+            }
+
+            return list;
+        }
+
+        /// <summary>
         /// Exchanges two items in an <see cref="IList{T}"/>.
         /// </summary>
         /// <typeparam name="T">Type of the list.</typeparam>
@@ -381,62 +437,6 @@ namespace Dsa.Algorithms
 
             // return list with items in the following order: less -> equal -> greater
             return Concatenate(QuickSortInternal(less, ref comparer), equal, QuickSortInternal(greater, ref comparer));
-        }
-
-        /// <summary>
-        /// Radix sorts an array of <see cref="String"/>. The strings MUST be of the same key size.
-        /// </summary>
-        /// <param name="list">List to sort.</param>
-        /// <param name="keySize">Key size of all strings, e.g. "abc", "bde" both have same key size of 3 chars.</param>
-        /// <returns>Sorted list.</returns>
-        /// <exception cref="ArgumentNullException"><strong>list</strong> is <strong>null</strong>.</exception>
-        /// <exception cref="ArgumentOutOfRangeException"><strong>keySize</strong> is less than <strong>1</strong>.</exception>
-        /// <exception cref="InvalidOperationException"><strong>list</strong> contains a <strong>null</strong> item.</exception>
-        public static IList<string> RadixSort(this IList<string> list, int keySize)
-        {
-            Guard.ArgumentNull(list, "list");
-            Guard.OutOfRange(keySize < 1, "keySize", Resources.RadixKeySizeTooSmall);
-            Guard.InvalidOperation(list[0] == null, Resources.RadixItemNullInList);
-
-            int listCount = list.Count;
-            string[] partiallySorted = new string[listCount]; // used for partial sort
-            const int radix = 256; // 256 is number of ASCII chars
-
-            for (int d = keySize - 1; d >= 0; d--)
-            {
-                int[] count = new int[radix]; // used for ascii char count
-
-                // go ahead a track counts of ascii values for the char at key d
-                for (int i = 0; i < listCount; i++)
-                {
-                    int charAsciiValue = list[i][d];
-
-                    // increment count for that ascii char, e.g. c = 99 => count[100] = count[100] + 1
-                    count[charAsciiValue + 1]++; 
-                }
-
-                // count[101] = count[100] which is c, => count 101 = 3 on first key pass
-                for (int k = 1; k < radix; k++)
-                {
-                    count[k] += count[k - 1];
-                }
-
-                // populate temp with the values of 'a' using the counted values for the relevant chars in 
-                // count as the index to temp e.g. if char with ASCII code 99 has a count of 2 then temp[2] = a[i]
-                for (int i = 0; i < listCount; i++)
-                {
-                    int charAsciiValue = list[i][d];
-                    partiallySorted[count[charAsciiValue]++] = list[i];
-                }
-
-                // copy temp values to a
-                for (int i = 0; i < listCount; i++)
-                {
-                    list[i] = partiallySorted[i];
-                }
-            }
-
-            return list;
         }
     }
 }

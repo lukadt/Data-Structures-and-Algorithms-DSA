@@ -23,34 +23,14 @@ namespace Dsa.DataStructures
         where T : IComparable<T>
     {
         [NonSerialized]
-        private T[] m_heap;
-        [NonSerialized]
-        private readonly IComparer<T> m_comparer;
+        private readonly Comparer<T> m_comparer;
         [NonSerialized]
         private readonly Strategy m_strategy;
+        [NonSerialized]
+        private T[] m_heap;
 
         /// <summary>
-        /// Used for the first predicate of the <see cref="Heap{T}.Contains"/> method.
-        /// </summary>
-        /// <param name="item">Item to check relationship with parent.</param>
-        /// <param name="index">Current index in the array.</param>
-        /// <param name="comparer">Comparer to use.</param>
-        /// <returns>True if the predicate is satisfied; otherwise false.</returns>
-        public delegate bool PredicateOne(T item, int index, Comparer<T> comparer);
-
-        /// <summary>
-        /// Used for the second predicate of the <see cref="Heap{T}.Contains"/> method. Determines whether the item
-        /// is less than or greater than some other item. The behaviour depends on the type of the <see cref="Heap{T}"/>
-        /// being used.
-        /// </summary>
-        /// <param name="x">First item.</param>
-        /// <param name="y">Second item.</param>
-        /// <param name="comparer">Comparer to use.</param>
-        /// <returns>True if the predicate is satisfied; otherwise false.</returns>
-        public delegate bool PredicateTwo(T x, T y, Comparer<T> comparer);
-
-        /// <summary>
-        /// Creates and initializes a new instance of <see cref="Heap{T}"/>.
+        /// Initializes a new instance of the <see cref="Heap{T}"/> class.
         /// </summary>
         public Heap()
         {
@@ -60,7 +40,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Creates and initializes a new instance of <see cref="Heap{T}"/>, populating it with the items from the 
+        /// Initializes a new instance of the <see cref="Heap{T}"/> class, populating it with the items from the 
         /// <see cref="IEnumerable{T}"/>.
         /// </summary>
         /// <param name="collection">Items to populate <see cref="Heap{T}"/> with.</param>
@@ -71,7 +51,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Creates and initializes a new instance of <see cref="Heap{T}"/> using a specified <see cref="Strategy"/>.
+        /// Initializes a new instance of the <see cref="Heap{T}"/> class using a specified <see cref="Strategy"/>.
         /// </summary>
         /// <param name="strategy">Strategy of Heap.</param>
         public Heap(Strategy strategy)
@@ -81,7 +61,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Creates and initializes a new instance of <see cref="Heap{T}"/>, populating it with the items from the 
+        /// Initializes a new instance of the <see cref="Heap{T}"/> class, populating it with the items from the 
         /// <see cref="IEnumerable{T}"/>, and using a specified <see cref="Strategy"/>.
         /// </summary>
         /// <param name="collection">Items to populate <see cref="Heap{T}"/> with.</param>
@@ -91,6 +71,25 @@ namespace Dsa.DataStructures
         {
             CopyCollection(collection);
         }
+
+        /// <summary>
+        /// Used for the first predicate of the <see cref="Heap{T}.Contains"/> method.
+        /// </summary>
+        /// <param name="index">Index of an item.</param>
+        /// <param name="comparer">Comparer to use.</param>
+        /// <returns>True if the predicate is satisfied; otherwise false.</returns>
+        private delegate bool ParentHandler(int index, Comparer<T> comparer);
+
+        /// <summary>
+        /// Used for the second predicate of the <see cref="Heap{T}.Contains"/> method. Determines whether the item
+        /// is less than or greater than some other item. The behaviour depends on the type of the <see cref="Heap{T}"/>
+        /// being used.
+        /// </summary>
+        /// <param name="x">First item.</param>
+        /// <param name="y">Second item.</param>
+        /// <param name="comparer">Comparer to use.</param>
+        /// <returns>True if the predicate is satisfied; otherwise false.</returns>
+        private delegate bool ComparerHandler(T x, T y, Comparer<T> comparer);
 
         /// <summary>
         /// Gets the item at the specified index.
@@ -165,11 +164,10 @@ namespace Dsa.DataStructures
             int maxNodesAtCurrentLevel = 1;
             int count = 0;
             Comparer<T> comparer = Comparer<T>.Default;
-            PredicateOne p1;
-            PredicateTwo p2;
+            ParentHandler p1;
+            ComparerHandler p2;
 
             // figure out which methods to use for this type of heap
-            // TODO: would this be clearer using Func's?
             if (m_strategy == Strategy.Min)
             {
                 p1 = GreaterThanParent;
@@ -181,19 +179,18 @@ namespace Dsa.DataStructures
                 p2 = Compare.IsGreaterThan;
             }
             
-
             while (start < Count)
             {
                 start = maxNodesAtCurrentLevel - 1; // start index of current level of nodes in the heap
                 int end = maxNodesAtCurrentLevel + start; // end index of the current level of nodes in the heap
 
-                while(start < Count && start < end)
+                while (start < Count && start < end)
                 {
                     if (Compare.AreEqual(item, m_heap[start], comparer))
                     {
                         return true;
                     }
-                    else if (p1(item, start, comparer) && p2(item, m_heap[start], comparer))
+                    else if (p1(start, comparer) && p2(item, m_heap[start], comparer))
                     {
                         count++;
                     }
@@ -215,28 +212,6 @@ namespace Dsa.DataStructures
             return false;
         }
 
-        // TODO: temp method for now
-        private bool GreaterThanParent(T item, int start, Comparer<T> comparer)
-        {
-            if (start < 1)
-            {
-                return true;
-            }
-
-            return Compare.IsGreaterThan(item, m_heap[(start - 1)/2], comparer);
-        }
-
-        // TODO: temp method for now
-        private bool LessThanParent(T item, int start, Comparer<T> comparer)
-        {
-            if (start < 1)
-            {
-                return true;
-            }
-
-            return Compare.IsLessThan(item, m_heap[(start - 1)/2], comparer);
-        }
-
         /// <summary>
         /// Removes an item from the <see cref="Heap{T}"/>.
         /// </summary>
@@ -247,6 +222,20 @@ namespace Dsa.DataStructures
         /// <returns>True if the item was found and removed; otherwise false.</returns>
         public override bool Remove(T item)
         {
+            ComparerHandler p1;
+            ComparerHandler p2;
+
+            if (m_strategy == Strategy.Min)
+            {
+                p1 = Compare.IsGreaterThan;
+                p2 = Compare.IsLessThan;
+            }
+            else
+            {
+                p1 = Compare.IsLessThan;
+                p2 = Compare.IsGreaterThan;
+            }
+
             int index = Array.IndexOf(m_heap, item);
             if (index < 0)
             {
@@ -254,38 +243,19 @@ namespace Dsa.DataStructures
             }
 
             m_heap[index] = m_heap[--Count];
-            if (m_strategy == Strategy.Min)
+
+            while ((2 * index) + 1 < Count && (p1(m_heap[index], m_heap[(2 * index) + 1], m_comparer) ||
+                                             p1(m_heap[index], m_heap[(2 * index) + 2], m_comparer)))
             {
-                while (2 * index + 1 < Count && (Compare.IsGreaterThan(m_heap[index], m_heap[2 * index + 1], m_comparer) ||
-                                                 Compare.IsGreaterThan(m_heap[index], m_heap[2 * index + 2], m_comparer)))
+                if (p2(m_heap[(2 * index) + 1], m_heap[(2 * index) + 2], m_comparer))
                 {
-                    if (Compare.IsLessThan(m_heap[2 * index + 1], m_heap[2 * index + 2], m_comparer))
-                    {
-                        Sorting.Exchange(m_heap, index, 2 * index + 1);
-                        index = 2 * index + 1;
-                    }
-                    else
-                    {
-                        Sorting.Exchange(m_heap, index, 2 * index + 2);
-                        index = 2 * index + 2;
-                    }
+                    Sorting.Exchange(m_heap, index, (2 * index) + 1);
+                    index = (2 * index) + 1;
                 }
-            }
-            else
-            {
-                while (2 * index + 1 < Count && (Compare.IsLessThan(m_heap[index], m_heap[2 * index + 1], m_comparer) ||
-                                                 Compare.IsLessThan(m_heap[index], m_heap[2 * index + 2], m_comparer)))
+                else
                 {
-                    if (Compare.IsGreaterThan(m_heap[2 * index + 1], m_heap[2 * index + 2], m_comparer))
-                    {
-                        Sorting.Exchange(m_heap, index, 2 * index + 1);
-                        index = 2 * index + 1;
-                    }
-                    else
-                    {
-                        Sorting.Exchange(m_heap, index, 2 * index + 2);
-                        index = 2 * index + 2;
-                    }
+                    Sorting.Exchange(m_heap, index, (2 * index) + 2);
+                    index = (2 * index) + 2;
                 }
             }
 
@@ -318,6 +288,38 @@ namespace Dsa.DataStructures
             {
                 yield return m_heap[i];
             }
+        }
+
+        /// <summary>
+        /// Determines whether or not an item at the given index is greater than its parent.
+        /// </summary>
+        /// <param name="index">Index of item.</param>
+        /// <param name="comparer">Comparer to use.</param>
+        /// <returns>True if the item at the provided index is greater than its parent; otherwise false.</returns>
+        private bool GreaterThanParent(int index, Comparer<T> comparer)
+        {
+            if (index < 1)
+            {
+                return true;
+            }
+
+            return Compare.IsGreaterThan(m_heap[index], m_heap[(index - 1) / 2], comparer);
+        }
+
+        /// <summary>
+        /// Determines whether or not an item at the given index is less than its parent.
+        /// </summary>
+        /// <param name="index">Index of item.</param>
+        /// <param name="comparer">Comparer to use.</param>
+        /// <returns>True if the item at the provided index is less than its parent; otherwise false.</returns>
+        private bool LessThanParent(int index, Comparer<T> comparer)
+        {
+            if (index < 1)
+            {
+                return true;
+            }
+
+            return Compare.IsLessThan(m_heap[index], m_heap[(index - 1) / 2], comparer);
         }
 
         /// <summary>

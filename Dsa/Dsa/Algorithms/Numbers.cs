@@ -221,6 +221,20 @@ namespace Dsa.Algorithms
         }
 
         /// <summary>
+        /// Computes the maximum value that a given number base can hold for N digits.
+        /// </summary>
+        /// <param name="numberBase">Number base to use.</param>
+        /// <param name="digits">Number of digits.</param>
+        /// <returns>Maximum value for the given number base with the number of digits specified.</returns>
+        public static int MaxValue(Base numberBase, int digits)
+        {
+            int baseNumber = (int)numberBase;
+
+            // to get the max value for a base: B^n - 1 where B is the base, n is the number of digits
+            return Power(baseNumber, digits) - 1;
+        }
+
+        /// <summary>
         /// Gets char symbol for hex numbers 10 .. 15 (A .. F).
         /// </summary>
         /// <param name="result">Integer to get hex symbol for.</param>
@@ -253,20 +267,6 @@ namespace Dsa.Algorithms
             }
 
             return symbol;
-        }
-
-        /// <summary>
-        /// Computes the maximum value that a given number base can hold for N digits.
-        /// </summary>
-        /// <param name="numberBase">Number base to use.</param>
-        /// <param name="digits">Number of digits.</param>
-        /// <returns>Maximum value for the given number base with the number of digits specified.</returns>
-        public static int MaxValue(Base numberBase, int digits)
-        {
-            int baseNumber = (int)numberBase;
-
-            // to get the max value for a base: B^n - 1 where B is the base, n is the number of digits
-            return Power(baseNumber, digits) - 1;
         }
     }
 }

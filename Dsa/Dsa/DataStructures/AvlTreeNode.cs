@@ -13,14 +13,14 @@ namespace Dsa.DataStructures
     public class AvlTreeNode<T> : BinaryTreeNode<T>
     {
         /// <summary>
-        /// Creates and initializes a new instance of <see cref="AvlTreeNode{T}"/>.
+        /// Initializes a new instance of the <see cref="AvlTreeNode{T}"/> class.
         /// </summary>
         /// <param name="value">Value of node.</param>
         public AvlTreeNode(T value)
             : base(value) { }
 
         /// <summary>
-        /// Get or sets the height of the node
+        /// Gets the height of the node.
         /// </summary>
         public int Height { get; internal set; }
     }

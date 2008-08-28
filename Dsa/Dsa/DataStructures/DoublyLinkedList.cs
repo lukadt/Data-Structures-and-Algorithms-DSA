@@ -21,14 +21,14 @@ namespace Dsa.DataStructures
         where T : IComparable<T>
     {
         [NonSerialized]
+        private readonly IComparer<T> m_comparer;
+        [NonSerialized]
         private DoublyLinkedListNode<T> m_head;
         [NonSerialized]
         private DoublyLinkedListNode<T> m_tail;
-        [NonSerialized]
-        private readonly IComparer<T> m_comparer;
 
         /// <summary>
-        /// Creates and initializes a new instance of the <see cref="DoublyLinkedList{T}"/> class.
+        /// Initializes a new instance of the <see cref="DoublyLinkedList{T}"/> class.
         /// </summary>
         public DoublyLinkedList() 
         {
@@ -36,7 +36,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Creates and initializes a new instance of <see cref="DoublyLinkedList{T}"/>, populating it with the items of the 
+        /// Initializes a new instance of the <see cref="DoublyLinkedList{T}"/> class, populating it with the items of the 
         /// <see cref="IEnumerable{T}"/>.
         /// </summary>
         /// <param name="collection">Items to populate <see cref="DoublyLinkedList{T}"/> with.</param>

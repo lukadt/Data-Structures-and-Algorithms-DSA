@@ -22,17 +22,17 @@ namespace Dsa.DataStructures
         /// <summary>
         /// Used as internal comparer.
         /// </summary>
-        [NonSerialized]
-        protected readonly IComparer<T> m_comparer;
+        [NonSerialized] 
+        private IComparer<T> m_comparer;
 
         /// <summary>
         /// Root node.
         /// </summary>
         [NonSerialized]
-        protected BinaryTreeNode<T> m_root;
+        private BinaryTreeNode<T> m_root;
 
         /// <summary>
-        /// Creates and initializes a new instance of the <see cref="BinarySearchTree{T}"/> class.
+        /// Initializes a new instance of the <see cref="BinarySearchTree{T}"/> class.
         /// </summary>
         public BinarySearchTree()
         {
@@ -40,7 +40,7 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Creates and initializes a new instance of <see cref="BinarySearchTree{T}"/>, populating it with the items from the
+        /// Initializes a new instance of the <see cref="BinarySearchTree{T}"/> class, populating it with the items from the
         /// <see cref="IEnumerable{T}"/>.
         /// </summary>
         /// <param name="collection">Items to populate <see cref="BinarySearchTree{T}"/>.</param>
@@ -56,6 +56,15 @@ namespace Dsa.DataStructures
         public BinaryTreeNode<T> Root
         {
             get { return m_root; }
+            protected set { m_root = value; }
+        }
+
+        /// <summary>
+        /// Gets <see cref="IComparer{T}"/> to use for comparisons.
+        /// </summary>
+        protected IComparer<T> Comparer
+        {
+            get { return m_comparer; }
         }
 
         /// <summary>

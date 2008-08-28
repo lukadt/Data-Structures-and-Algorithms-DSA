@@ -1,4 +1,4 @@
-﻿// <copyright file="Avl.cs" company="Data Structures and Algorithms">
+﻿// <copyright file="AvlTree.cs" company="Data Structures and Algorithms">
 //   Copyright (C) Data Structures and Algorithms Team.
 // </copyright>
 // <summary>
@@ -11,7 +11,7 @@ using Dsa.Utility;
 namespace Dsa.DataStructures
 {
     /// <summary>
-    /// AVL Tree.
+    /// AVL balanced tree.
     /// </summary>
     /// <remarks>
     /// AVL tree is a tree that is self balancing.
@@ -21,13 +21,12 @@ namespace Dsa.DataStructures
         where T : IComparable<T>
     {
         /// <summary>
-        /// Creates and initializes a new instance of <see cref="AvlTree{T}"/>.
+        /// Initializes a new instance of the <see cref="AvlTree{T}"/> class.
         /// </summary>
-        public AvlTree()
-            : base() { }
+        public AvlTree() { }
 
         /// <summary>
-        /// Creates and initializes a new instance of <see cref="AvlTree{T}"/> , populating it with the items from the
+        /// Initializes a new instance of the <see cref="AvlTree{T}"/> class, populating it with the items from the
         /// <see cref="IEnumerable{T}"/>.
         /// </summary>
         /// <param name="collection">Items to populate <see cref="AvlTree{T}"/>.</param>
@@ -38,19 +37,16 @@ namespace Dsa.DataStructures
         /// Retrieves the height of the specified node.
         /// </summary>
         /// <param name="node">Node to obtain depth.</param>
-        /// <returns>-1 if node is null otherwise its proper height.</returns>
+        /// <returns>If the node is null -1; otherwise its proper height.</returns>
         public int Height(AvlTreeNode<T> node)
         {
             if (node == null)
             {
                 return -1;
             }
-            else
-            {
-                return node.Height;
-            }
+            
+            return node.Height;
         }
-
 
         /// <summary>
         /// Inserts a new node with the specified value at the appropriate location in the <see cref="AvlTree{T}"/>.
@@ -61,13 +57,13 @@ namespace Dsa.DataStructures
         /// <param name="item">Value to insert.</param>
         public override void Add(T item)
         {
-            if (m_root == null)
+            if (Root == null)
             {
-                m_root = new AvlTreeNode<T>(item);
+                Root = new AvlTreeNode<T>(item);
             }
             else
             {
-                m_root = InsertNode(m_root, item);
+                Root = InsertNode(Root, item);
             }
 
             Count++;
@@ -79,13 +75,14 @@ namespace Dsa.DataStructures
         /// </summary>
         /// <param name="node">Node to start searching from.</param>
         /// <param name="value">Value to insert into the Avl.</param>
+        /// <returns>Location where node was inserted into the tree.</returns>
         private AvlTreeNode<T> InsertNode(BinaryTreeNode<T> node, T value)
         {
             AvlTreeNode<T> left = node.Left as AvlTreeNode<T>;
             AvlTreeNode<T> right = node.Right as AvlTreeNode<T>;
             AvlTreeNode<T> avlNode = node as AvlTreeNode<T>;
 
-            if (Compare.IsLessThan(value, avlNode.Value, m_comparer))
+            if (Compare.IsLessThan(value, avlNode.Value, Comparer))
             {
                 if (avlNode.Left == null)
                 {
@@ -96,7 +93,7 @@ namespace Dsa.DataStructures
                     InsertNode(avlNode.Left, value);
                     if ((Height(left) - Height(right)) == 2)
                     {
-                        if (Compare.IsLessThan(value, avlNode.Left.Value, m_comparer))
+                        if (Compare.IsLessThan(value, avlNode.Left.Value, Comparer))
                         {
                             avlNode = SingleLeftRotation(avlNode);
                         }
@@ -118,7 +115,7 @@ namespace Dsa.DataStructures
                     InsertNode(avlNode.Right, value);
                     if ((Height(right) - Height(left)) == 2)
                     {
-                        if (Compare.IsGreaterThan(value, avlNode.Right.Value, m_comparer))
+                        if (Compare.IsGreaterThan(value, avlNode.Right.Value, Comparer))
                         {
                             avlNode = SingleRightRotation(avlNode);
                         }
@@ -131,6 +128,7 @@ namespace Dsa.DataStructures
             }
 
             avlNode.Height = Math.Max(Height(avlNode.Left as AvlTreeNode<T>), Height(avlNode.Right as AvlTreeNode<T>)) + 1;
+
             return avlNode;
         }
 
@@ -168,7 +166,7 @@ namespace Dsa.DataStructures
         /// <returns>The balanced tree node.</returns>
         private AvlTreeNode<T> DoubleLeftRotation(AvlTreeNode<T> node)
         {
-            //Double rotation is composed of two rotation one right and one left
+            // Double rotation is composed of two rotation one right and one left
             node.Left = SingleRightRotation(node.Left as AvlTreeNode<T>);
             return SingleLeftRotation(node);
         }

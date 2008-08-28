@@ -141,21 +141,6 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Copies the items in an <see cref="IEnumerable{T}"/> to the <see cref="CollectionBase{T}"/>.
-        /// </summary>
-        /// <param name="collection">Items to copy.</param>
-        /// <exception cref="ArgumentNullException"><strong>collection</strong> is <strong>null</strong>.</exception>
-        protected void CopyCollection(IEnumerable<T> collection)
-        {
-            Guard.ArgumentNull(collection, "collection");
-
-            foreach (T item in collection)
-            {
-                Add(item);
-            }
-        }
-
-        /// <summary>
         /// Creates an array representation for a datastructure.
         /// </summary>
         /// <param name="size">Size of the destintation array.</param>
@@ -171,6 +156,21 @@ namespace Dsa.DataStructures
             }
 
             return local;
+        }
+
+        /// <summary>
+        /// Copies the items in an <see cref="IEnumerable{T}"/> to the <see cref="CollectionBase{T}"/>.
+        /// </summary>
+        /// <param name="collection">Items to copy.</param>
+        /// <exception cref="ArgumentNullException"><strong>collection</strong> is <strong>null</strong>.</exception>
+        protected void CopyCollection(IEnumerable<T> collection)
+        {
+            Guard.ArgumentNull(collection, "collection");
+
+            foreach (T item in collection)
+            {
+                Add(item);
+            }
         }
     }
 }

@@ -19,14 +19,14 @@ namespace Dsa.DataStructures
         where T : IComparable<T>
     {
         [NonSerialized]
+        private readonly IComparer<T> m_comparer;
+        [NonSerialized]
         private SinglyLinkedListNode<T> m_head;
         [NonSerialized]
         private SinglyLinkedListNode<T> m_tail;
-        [NonSerialized]
-        private readonly IComparer<T> m_comparer;
 
         /// <summary>
-        /// Creates and initializes a new instance of the <see cref="SinglyLinkedList{T}"/> class.
+        /// Initializes a new instance of the <see cref="SinglyLinkedList{T}"/> class.
         /// </summary>
         public SinglyLinkedList() 
         {
@@ -34,8 +34,8 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Creates and initializes a new instance of <see cref="SinglyLinkedList{T}"/>, populating it with the items from the provided
-        /// <see cref="IEnumerable{T}"/>.
+        /// Initializes a new instance of the <see cref="SinglyLinkedList{T}"/> class, populating it with the items from the 
+        /// provided <see cref="IEnumerable{T}"/>.
         /// </summary>
         /// <param name="collection">Items to populate <see cref="SinglyLinkedList{T}"/> with.</param>
         public SinglyLinkedList(IEnumerable<T> collection)

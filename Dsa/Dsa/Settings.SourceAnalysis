@@ -1,6 +1,6 @@
-<SourceAnalysisSettings Version="4.2">
+<StyleCopSettings Version="4.3">
   <Analyzers>
-    <Analyzer AnalyzerId="Microsoft.SourceAnalysis.CSharp.ReadabilityRules">
+    <Analyzer AnalyzerId="Microsoft.StyleCop.CSharp.ReadabilityRules">
       <Rules>
         <Rule Name="PrefixLocalCallsWithThis">
           <RuleSettings>
@@ -10,7 +10,7 @@
       </Rules>
       <AnalyzerSettings />
     </Analyzer>
-    <Analyzer AnalyzerId="Microsoft.SourceAnalysis.CSharp.DocumentationRules">
+    <Analyzer AnalyzerId="Microsoft.StyleCop.CSharp.DocumentationRules">
       <Rules>
         <Rule Name="PropertyDocumentationMustHaveValueText">
           <RuleSettings>
@@ -40,21 +40,22 @@
       </Rules>
       <AnalyzerSettings />
     </Analyzer>
-    <Analyzer AnalyzerId="Microsoft.SourceAnalysis.CSharp.NamingRules">
+    <Analyzer AnalyzerId="Microsoft.StyleCop.CSharp.NamingRules">
       <Rules>
         <Rule Name="FieldNamesMustNotBeginWithUnderscore">
           <RuleSettings>
             <BooleanProperty Name="Enabled">False</BooleanProperty>
           </RuleSettings>
         </Rule>
+        <Rule Name="VariableNamesMustNotBePrefixed">
+          <RuleSettings>
+            <BooleanProperty Name="Enabled">False</BooleanProperty>
+          </RuleSettings>
+        </Rule>
       </Rules>
-      <AnalyzerSettings>
-        <CollectionProperty Name="Hungarian">
-          <Value>in</Value>
-        </CollectionProperty>
-      </AnalyzerSettings>
+      <AnalyzerSettings />
     </Analyzer>
-    <Analyzer AnalyzerId="Microsoft.SourceAnalysis.CSharp.OrderingRules">
+    <Analyzer AnalyzerId="Microsoft.StyleCop.CSharp.OrderingRules">
       <Rules>
         <Rule Name="UsingDirectivesMustBePlacedWithinNamespace">
           <RuleSettings>
@@ -64,7 +65,7 @@
       </Rules>
       <AnalyzerSettings />
     </Analyzer>
-    <Analyzer AnalyzerId="Microsoft.SourceAnalysis.CSharp.LayoutRules">
+    <Analyzer AnalyzerId="Microsoft.StyleCop.CSharp.LayoutRules">
       <Rules>
         <Rule Name="ElementMustNotBeOnSingleLine">
           <RuleSettings>
@@ -75,4 +76,4 @@
       <AnalyzerSettings />
     </Analyzer>
   </Analyzers>
-</SourceAnalysisSettings>
+</StyleCopSettings>
