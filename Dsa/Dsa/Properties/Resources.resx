@@ -121,6 +121,10 @@
     <value>BinarySearchTreeCollection(Of T) is empty.</value>
     <comment>When exceptions arise as a result of an empty bst.</comment>
   </data>
+  <data name="DequeEmpty" xml:space="preserve">
+    <value>Cannot dequeue an item from an empty Deque.</value>
+    <comment>Used when removing an item from an empty Deque.</comment>
+  </data>
   <data name="DoublyLinkedListEmpty" xml:space="preserve">
     <value>DoublyLinkedListCollection(Of T) is empty.</value>
     <comment>When exceptions arise as a result of an empty doubly linked list.</comment>

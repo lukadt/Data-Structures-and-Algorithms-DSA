@@ -107,7 +107,7 @@ namespace Dsa.DataStructures
         /// </summary>
         /// <param name="item">Item to remove from the collection.</param>
         /// <returns>True if the item was removed; otherwise false.</returns>
-        /// <exception cref="NotSupportedException">Remove is not supported on the queue.</exception>
+        /// <exception cref="NotSupportedException">Remove is not supported for <see cref="PriorityQueue{T}"/>.</exception>
         public override bool Remove(T item)
         {
             throw new NotSupportedException();
