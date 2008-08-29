@@ -1,4 +1,5 @@
-﻿using Dsa.DataStructures;
+﻿using System.Collections.Generic;
+using Dsa.DataStructures;
 using NUnit.Framework;
 using System;
 using NUnit.Framework.Extensions;
@@ -180,6 +181,69 @@ namespace Dsa.Test.DataStructures
             Deque<int> actual = new Deque<int> { 12, 123, 89 };
 
             Assert.AreEqual(89, actual.PeekBack());
+        }
+
+        /// <summary>
+        /// Check to make sure that calling Remove throws the correct exception. In queues Remove is not supported
+        /// as it goes agains the grain of only having access to the front or back item in the queue, for Deque anyway.
+        /// </summary>
+        [Test]
+        [ExpectedException(typeof(NotSupportedException), ExpectedMessage = "Remove is not supported on queues.")]
+        public void RemoveTest()
+        {
+            Deque<int> actual = new Deque<int>();
+
+            actual.Remove(10);
+        }
+
+        /// <summary>
+        /// Check to make sure contains returns the correct value. No need for extensive testing as we are calling
+        /// the doubly linked lists contains method.
+        /// </summary>
+        [Test]
+        public void ContainsTest()
+        {
+            Deque<int> actual = new Deque<int> { 12, 4325, 89 };
+
+            Assert.AreEqual(true, actual.Contains(4325));
+        }
+
+        /// <summary>
+        /// Check to make sure that the correct array is returned when converting the data structure to an array.
+        /// </summary>
+        [Test]
+        public void ToArrayTest()
+        {
+            Deque<int> actual = new Deque<int> { 123, 324, 12, 90, 23 };
+            int[] expected = { 123, 324, 12, 90, 23 };
+
+            CollectionAssert.AreEqual(expected, actual.ToArray());
+        }
+
+        /// <summary>
+        /// Check to make sure the data structure is cleared after calling clear.
+        /// </summary>
+        [Test]
+        public void ClearTest()
+        {
+            Deque<int> actual = new Deque<int> { 12, 45, 321 };
+
+            actual.Clear();
+
+            Assert.AreEqual(0, actual.Count);
+        }
+
+        /// <summary>
+        /// Check to see that the Deque is in the correct state after copying the items from another collection.
+        /// </summary>
+        [Test]
+        public void CopyConstructorTest()
+        {
+            List<int> original = new List<int> { 12, 123, 1, 90 };
+            Deque<int> actual = new Deque<int>(original);
+            Deque<int> expected = new Deque<int> { 12, 123, 1, 90 };
+
+            CollectionAssert.AreEqual(expected, actual);
         }
     }
 }

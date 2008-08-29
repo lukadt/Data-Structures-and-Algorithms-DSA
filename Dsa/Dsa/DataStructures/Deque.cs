@@ -37,6 +37,20 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="Deque{T}"/> class, populating it with the items from
+        /// an <see cref="IEnumerable{T}"/>.
+        /// </summary>
+        /// <param name="collection">Collection of items to add to the <see cref="Deque{T}"/>.</param>
+        /// <exception cref="ArgumentNullException">
+        /// <strong>collection</strong> is <strong>null</strong>.
+        /// </exception>
+        public Deque(IEnumerable<T> collection)
+            : this()
+        {
+            CopyCollection(collection); // TODO: maybe we should strip out all copy cons and but them in CB?
+        }
+
+        /// <summary>
         /// Adds an item to the <see cref="Deque{T}"/>. This calls <see cref="EnqueueBack"/> internally.
         /// </summary>
         /// <param name="item">Item to add to the <see cref="Deque{T}"/>.</param>
@@ -46,21 +60,22 @@ namespace Dsa.DataStructures
         }
 
         /// <summary>
-        /// Clears all items from the <see cref="ICollection{T}"/>.
+        /// Clears all items from the <see cref="Deque{T}"/>.
         /// </summary>
         public override void Clear()
         {
-            throw new System.NotImplementedException();
+            m_deque.Clear();
+            Count = 0;
         }
 
         /// <summary>
         /// Determines whether an item is contained within the <see cref="ICollection{T}"/>.
         /// </summary>
-        /// <param name="item">Item to search the <see cref="ICollection{T}"/> for.</param>
-        /// <returns>True if the item is in the <see cref="ICollection{T}"/>; otherwise false.</returns>
+        /// <param name="item">Item to search the <see cref="Deque{T}"/> for.</param>
+        /// <returns>True if the item is in the <see cref="Deque{T}"/>; otherwise false.</returns>
         public override bool Contains(T item)
         {
-            throw new System.NotImplementedException();
+            return m_deque.Contains(item);
         }
 
         /// <summary>
@@ -68,18 +83,21 @@ namespace Dsa.DataStructures
         /// </summary>
         /// <param name="item">Item to remove from collection.</param>
         /// <returns>True if the item was removed; otherwise false.</returns>
+        /// <exception cref="NotSupportedException">
+        /// Remove is <strong>not</strong> supported for <see cref="Deque{T}"/>.
+        /// </exception>
         public override bool Remove(T item)
         {
-            throw new System.NotImplementedException();
+            throw new NotSupportedException(Resources.RemoveNotSupportedQueues);
         }
 
         /// <summary>
         /// Converts the collection to a single dimension array.
         /// </summary>
-        /// <returns>An array of the items in the collection.</returns>
+        /// <returns>An array of the items in the <see cref="Deque{T}"/>.</returns>
         public override T[] ToArray()
         {
-            throw new System.NotImplementedException();
+            return m_deque.ToArray();
         }
 
         /// <summary>
@@ -166,6 +184,18 @@ namespace Dsa.DataStructures
             Guard.InvalidOperation(Count == 0, Resources.DequePeekEmpty);
 
             return m_deque.Tail.Value;
+        }
+
+        /// <summary>
+        /// Traverses the items in the <see cref="Deque{T}"/>.
+        /// </summary>
+        /// <remarks>
+        /// This method is an O(n) operation.
+        /// </remarks>
+        /// <returns><see cref="IEnumerable{T}"/> used to traverse the items in the <see cref="Deque{T}"/>.</returns>
+        public override IEnumerator<T> GetEnumerator()
+        {
+            return m_deque.GetEnumerator();
         }
     }
 }

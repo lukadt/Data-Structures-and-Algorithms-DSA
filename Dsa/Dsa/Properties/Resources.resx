@@ -169,6 +169,10 @@
     <value>The size of the key to use for radix sort must be greater than 0.</value>
     <comment>When key size for radix is too small.</comment>
   </data>
+  <data name="RemoveNotSupportedQueues" xml:space="preserve">
+    <value>Remove is not supported on queues.</value>
+    <comment>When a call to remove on a queue.</comment>
+  </data>
   <data name="SetEmpty" xml:space="preserve">
     <value>Set(Of T) is empty.</value>
     <comment>When exceptions arise as a result of the Set being empty.</comment>

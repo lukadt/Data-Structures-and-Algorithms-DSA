@@ -178,6 +178,15 @@ namespace Dsa.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remove is not supported on queues..
+        /// </summary>
+        internal static string RemoveNotSupportedQueues {
+            get {
+                return ResourceManager.GetString("RemoveNotSupportedQueues", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Set(Of T) is empty..
         /// </summary>
         internal static string SetEmpty {
