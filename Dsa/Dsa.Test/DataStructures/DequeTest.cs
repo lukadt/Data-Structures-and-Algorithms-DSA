@@ -130,5 +130,56 @@ namespace Dsa.Test.DataStructures
 
             Assert.AreEqual(2, actual.Count);
         }
+
+        /// <summary>
+        /// Check to make sure that the correct exception is thrown when trying to peek at the item at the front
+        /// of an empty Deque.
+        /// </summary>
+        [Test]
+        [ExpectedException(typeof(InvalidOperationException),
+            ExpectedMessage = "Cannot peek an item from an empty Deque.")]
+        public void PeekFrontDequeEmptyTest()
+        {
+            Deque<int> actual = new Deque<int>();
+
+            actual.PeekFront();
+        }
+
+        /// <summary>
+        /// Check to see that the correct value is returned when peeking at the item at the front of the Deque.
+        /// </summary>
+        [Test]
+        public void PeekFrontNonEmptyDequeTest()
+        {
+            Deque<int> actual = new Deque<int> { 10, 23, 19 };
+
+            Assert.AreEqual(10, actual.PeekFront());
+        }
+
+        /// <summary>
+        /// Check to make sure that the correct exception is thrown when peeking at the item at the back of an
+        /// empty Deque.
+        /// </summary>
+        [Test]
+        [ExpectedException(typeof(InvalidOperationException), 
+            ExpectedMessage = "Cannot peek an item from an empty Deque.")]
+        public void PeekBackDequeEmptyTest()
+        {
+            Deque<int> actual = new Deque<int>();
+
+            actual.PeekBack();
+        }
+
+        /// <summary>
+        /// Check to make sure that the correct value is returned when peeking at the item at the back of the 
+        /// deque.
+        /// </summary>
+        [Test]
+        public void PeekBackNonEmptyDequeTest()
+        {
+            Deque<int> actual = new Deque<int> { 12, 123, 89 };
+
+            Assert.AreEqual(89, actual.PeekBack());
+        }
     }
 }

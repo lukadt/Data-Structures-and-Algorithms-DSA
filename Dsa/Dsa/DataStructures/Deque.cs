@@ -112,7 +112,7 @@ namespace Dsa.DataStructures
         /// </exception>
         public T DequeueFront()
         {
-            Guard.InvalidOperation(Count == 0, Resources.DequeEmpty);
+            Guard.InvalidOperation(Count == 0, Resources.DequeDequeueEmpty);
 
             T item = m_deque.Head.Value;
             m_deque.RemoveFirst();
@@ -131,13 +131,41 @@ namespace Dsa.DataStructures
         /// </exception>
         public T DequeueBack()
         {
-            Guard.InvalidOperation(Count == 0, Resources.DequeEmpty);
+            Guard.InvalidOperation(Count == 0, Resources.DequeDequeueEmpty);
 
             T item = m_deque.Tail.Value;
             m_deque.RemoveLast();
             Count--;
 
             return item;
+        }
+
+        /// <summary>
+        /// Returns the item at the front of the <see cref="Deque{T}"/> without removing it.
+        /// </summary>
+        /// <returns>The item at the front of the <see cref="Deque{T}"/>.</returns>
+        /// <exception cref="InvalidOperationException">
+        /// The <see cref="Deque{T}"/> contains <strong>0</strong> items.
+        /// </exception>
+        public T PeekFront()
+        {
+            Guard.InvalidOperation(Count == 0, Resources.DequePeekEmpty);
+
+            return m_deque.Head.Value;
+        }
+
+        /// <summary>
+        /// Returns the item at the back of the <see cref="Deque{T}"/> without removing it.
+        /// </summary>
+        /// <returns>The item at the back of the <see cref="Deque{T}"/>.</returns>
+        /// <exception cref="InvalidOperationException">
+        /// The <see cref="Deque{T}"/> contains <strong>0</strong> items.
+        /// </exception>
+        public T PeekBack()
+        {
+            Guard.InvalidOperation(Count == 0, Resources.DequePeekEmpty);
+
+            return m_deque.Tail.Value;
         }
     }
 }

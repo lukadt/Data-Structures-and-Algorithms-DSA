@@ -72,9 +72,18 @@ namespace Dsa.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Cannot dequeue an item from an empty Deque..
         /// </summary>
-        internal static string DequeEmpty {
+        internal static string DequeDequeueEmpty {
             get {
-                return ResourceManager.GetString("DequeEmpty", resourceCulture);
+                return ResourceManager.GetString("DequeDequeueEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot peek an item from an empty Deque..
+        /// </summary>
+        internal static string DequePeekEmpty {
+            get {
+                return ResourceManager.GetString("DequePeekEmpty", resourceCulture);
             }
         }
         
