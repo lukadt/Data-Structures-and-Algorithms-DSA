@@ -60,10 +60,14 @@
     </Compile>
     <Compile Include="Algorithms\SortingTest.cs" />
     <Compile Include="Algorithms\StringsTest.cs" />
-    <Compile Include="DataStructures\AvlTreeTest.cs" />
+    <Compile Include="DataStructures\AvlTreeNodeTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataStructures\AvlTreeTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DataStructures\BinarySearchTreeTest.cs" />
     <Compile Include="DataStructures\BinaryTreeNodeTest.cs" />
-    <Compile Include="DataStructures\AvlTreeNodeTest.cs" />
     <Compile Include="DataStructures\DequeTest.cs" />
     <Compile Include="DataStructures\HeapTest.cs" />
     <Compile Include="DataStructures\OrderedSetTest.cs" />
