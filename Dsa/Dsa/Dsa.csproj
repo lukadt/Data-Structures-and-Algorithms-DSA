@@ -83,10 +83,10 @@
     <Compile Include="DataStructures\CollectionBase.cs" />
     <Compile Include="DataStructures\CollectionDebugView.cs" />
     <Compile Include="DataStructures\BinarySearchTree.cs" />
-    <Compile Include="DataStructures\CommonTree.cs" />
+    <Compile Include="DataStructures\CommonBinaryTree.cs" />
+    <Compile Include="DataStructures\ICommonBinaryTreeNode.cs" />
     <Compile Include="DataStructures\Deque.cs" />
     <Compile Include="DataStructures\Heap.cs" />
-    <Compile Include="DataStructures\ICommonTreeNode.cs" />
     <Compile Include="DataStructures\PriorityQueue.cs" />
     <Compile Include="DataStructures\Strategy.cs" />
     <Compile Include="DataStructures\OrderedSet.cs" />

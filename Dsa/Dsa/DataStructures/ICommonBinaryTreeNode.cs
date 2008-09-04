@@ -1,4 +1,4 @@
-﻿// <copyright file="ICommonTreeNode.cs" company="Data Structures and Algorithms">
+﻿// <copyright file="ICommonBinaryTreeNode.cs" company="Data Structures and Algorithms">
 //   Copyright (C) Data Structures and Algorithms Team.
 // </copyright>
 // <summary>
@@ -11,7 +11,7 @@ namespace Dsa.DataStructures
     /// </summary>
     /// <typeparam name="TNode">Type of the node.</typeparam>
     /// <typeparam name="TValue">Type of the value.</typeparam>
-    public interface ICommonTreeNode<TNode, TValue>
+    public interface ICommonBinaryTreeNode<TNode, TValue>
     {
         /// <summary>
         /// Gets or sets the left node reference.
@@ -24,7 +24,7 @@ namespace Dsa.DataStructures
         TNode Right { get; set; }
 
         /// <summary>
-        /// Gets or sets the value of the <see cref="ICommonTreeNode{TNode,TValue}"/>.
+        /// Gets or sets the value of the <see cref="ICommonBinaryTreeNode{TNode,TValue}"/>.
         /// </summary>
         TValue Value { get; set; }
     }

@@ -18,7 +18,7 @@ namespace Dsa.DataStructures
     /// AVL tree is a tree that is self balancing.
     /// </remarks>
     /// <typeparam name="T">Concrete type of AVL Tree</typeparam>
-    public class AvlTree<T> : CommonTree<AvlTreeNode<T>,T>
+    public class AvlTree<T> : CommonBinaryTree<AvlTreeNode<T>,T>
         where T : IComparable<T>
     {
         /// <summary>

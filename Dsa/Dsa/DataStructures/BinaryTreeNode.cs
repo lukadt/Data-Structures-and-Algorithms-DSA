@@ -10,7 +10,7 @@ namespace Dsa.DataStructures
     /// Node used by <see cref="BinarySearchTree{T}"/>.
     /// </summary>
     /// <typeparam name="T">Type of the node.</typeparam>
-    public class BinaryTreeNode<T> : ICommonTreeNode<BinaryTreeNode<T>, T>
+    public class BinaryTreeNode<T> : ICommonBinaryTreeNode<BinaryTreeNode<T>, T>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BinaryTreeNode{T}"/> class.

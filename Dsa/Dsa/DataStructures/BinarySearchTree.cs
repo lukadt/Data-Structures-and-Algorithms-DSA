@@ -15,7 +15,7 @@ namespace Dsa.DataStructures
     /// </summary>
     /// <typeparam name="T">Type of <see cref="BinarySearchTree{T}"/>.</typeparam>
     [Serializable]
-    public class BinarySearchTree<T> : CommonTree<BinaryTreeNode<T>, T>
+    public class BinarySearchTree<T> : CommonBinaryTree<BinaryTreeNode<T>, T>
         where T : IComparable<T>
     {
         /// <summary>
