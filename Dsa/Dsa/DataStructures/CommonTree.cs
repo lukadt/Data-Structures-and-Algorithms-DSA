@@ -25,7 +25,7 @@ namespace Dsa.DataStructures
     /// </remarks>
     /// <typeparam name="TNode">Type of the tree node.</typeparam>
     /// <typeparam name="TValue">Type of the <see cref="CommonTree{TNode,TValue}"/>.</typeparam>
-    public class CommonTree<TNode, TValue> : CollectionBase<TValue>
+    public abstract class CommonTree<TNode, TValue> : CollectionBase<TValue>
         where TNode : class, ICommonTreeNode<TNode, TValue> 
         where TValue : IComparable<TValue>
     {
@@ -58,16 +58,7 @@ namespace Dsa.DataStructures
         {
             get { return m_comparer; }
         }
-
-        /// <summary>
-        /// Adds an item to the <see cref="CommonTree{TNode,TValue}"/>.
-        /// </summary>
-        /// <param name="item">Item to add to <see cref="CommonTree{TNode,TValue}"/>.</param>
-        public override void Add(TValue item)
-        {
-            throw new System.NotImplementedException();
-        }
-
+        
         /// <summary>
         /// Clears all items from the <see cref="CommonTree{TNode,TValue}"/>.
         /// </summary>
@@ -215,16 +206,7 @@ namespace Dsa.DataStructures
             return Contains(m_root, item);
         }
 
-        /// <summary>
-        /// Removes an item from the <see cref="CommonTree{TNode,TValue}"/>.
-        /// </summary>
-        /// <param name="item">Item to remove from the <see cref="CommonTree{TNode,TValue}"/>.</param>
-        /// <returns>True if the item was removed; otherwise false.</returns>
-        public override bool Remove(TValue item)
-        {
-            throw new System.NotImplementedException();
-        }
-
+        
         /// <summary>
         /// Returns the items in the <see cref="CommonTree{TNode,TValue}"/> as an <see cref="Array"/> 
         /// using <see cref="CommonTree{TNode,TValue}.GetBreadthFirstEnumerator"/> traversal.

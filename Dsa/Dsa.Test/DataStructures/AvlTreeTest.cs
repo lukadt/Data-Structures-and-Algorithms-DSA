@@ -12,10 +12,24 @@ namespace Dsa.Test.DataStructures
     public class AvlTreeTest
     {
         /// <summary>
+        /// Check to see wheter the correct balance factor is retrieved
+        /// </summary>
+        [Test]
+        public void BalanceFactorTest()
+        {
+            AvlTree<int> actual = new AvlTree<int> {10,20};            
+            AvlTreeNode<int> root = actual.FindNode(10);
+            AvlTreeNode<int> leaf = actual.FindNode(20);
+            
+            Assert.AreEqual(actual.GetBalanceFactor(root), -1);
+            Assert.AreEqual(actual.GetBalanceFactor(leaf), 0);
+        }
+        
+        /// <summary>
         /// Check to see that the tree structure is correct after inserting nodes which will cause a right rebalancing.
         /// </summary>
         [Test]
-        public void SingleRightRotationTest()
+        public void SingleLeftRotationTest()
         {
             AvlTree<int> actual = new AvlTree<int> { 10, 20, 30 };
 
@@ -28,7 +42,7 @@ namespace Dsa.Test.DataStructures
         /// Check to see that the tree structure is correct after inserting nodes which will cause a left rebalancing.
         /// </summary>
         [Test]
-        public void SingleLeftRotationTest()
+        public void SingleRightRotationTest()
         {
             AvlTree<int> actual = new AvlTree<int> { 10, 7, 4 };
 
@@ -41,7 +55,7 @@ namespace Dsa.Test.DataStructures
         /// Check to make sure tree is in the correct state after a double right rotation.
         /// </summary>
         [Test]
-        public void DoubleRightRotationTest()
+        public void DoubleRightLeftRotationTest()
         {
             AvlTree<int> actual = new AvlTree<int> { 10, 20, 15 };
 
@@ -54,7 +68,7 @@ namespace Dsa.Test.DataStructures
         /// Check to make sure tree is in the correct state after a double right rotation.
         /// </summary>
         [Test]
-        public void DoubleLeftRotationTest()
+        public void DoubleLeftRightRotationTest()
         {
             AvlTree<int> actual = new AvlTree<int> { 10, 5, 7 };
 
