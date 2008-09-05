@@ -88,7 +88,9 @@ namespace Dsa.DataStructures
             }
             else
             {
-                Root = InsertNode(Root, item);
+                var root = Root;
+                InsertNode(ref root, item);
+                Root = root;
             }
 
             Count++;
@@ -99,11 +101,11 @@ namespace Dsa.DataStructures
         /// necessary rebalance.
         /// </summary>
         /// <param name="avlNode">Node to start searching from.</param>
-        /// <param name="value">Value to insert into the Avl.</param>
-        /// <returns>Location where node was inserted into the tree.</returns>
-        private AvlTreeNode<T> InsertNode(AvlTreeNode<T> avlNode, T value)
+        /// <param name="value">Value to insert into the Avl.</param>        
+        private void InsertNode(ref AvlTreeNode<T> avlNode, T value)
         {
-
+            var left  = avlNode.Left;
+            var right = avlNode.Right;
             if (Compare.IsLessThan(value, avlNode.Value, Comparer))
             {
                 if (avlNode.Left == null)
@@ -112,8 +114,8 @@ namespace Dsa.DataStructures
                 }
                 else
                 {
-                    InsertNode(avlNode.Left, value);
-                    avlNode = Balance(avlNode);
+                    InsertNode(ref left , value);
+                    avlNode.Left = left;
                 }
             }
             else
@@ -124,21 +126,20 @@ namespace Dsa.DataStructures
                 }
                 else
                 {
-                    InsertNode(avlNode.Right, value);
-                    avlNode = Balance(avlNode);
+                    InsertNode(ref right, value);                    
+                    avlNode.Right = right;
                 }
             }
 
-            avlNode.Height = Math.Max(Height(avlNode.Left), Height(avlNode.Right)) + 1;
-            return avlNode;
+            
+            Balance(ref avlNode);
         }
 
         /// <summary>
         /// Function that balance the tree after having updated its height
         /// </summary>
-        /// <param name="node">the root of the tree to balance </param>
-        /// <returns>the root node of the balanced subtree</returns>
-        private AvlTreeNode<T> Balance(AvlTreeNode<T> node)
+        /// <param name="node">the root of the tree to balance </param>        
+        private void Balance(ref AvlTreeNode<T> node)
         {
 
             if (node.Left == null && node.Right == null)
@@ -153,38 +154,44 @@ namespace Dsa.DataStructures
             {
                 if (GetBalanceFactor(node.Left) > 0)
                 {
-                    node = SingleRightRotation(node);
+                    SingleRightRotation(ref node);
                 }
                 else
                 {
-                    node = DoubleLeftRightRotation(node);
+                    DoubleLeftRightRotation(ref node);
                 }
             }
             else if (GetBalanceFactor(node) < -1)
             {
                 if (GetBalanceFactor(node.Right) < 0)
                 {
-                    node = SingleLeftRotation(node);
+                    SingleLeftRotation(ref node);
                 }
                 else
                 {
-                    node = DoubleRightLeftRotation(node);
+                    DoubleRightLeftRotation(ref node);
                 }
-            }
-            return node;
+            }            
         }
 
         /// <summary>
         /// A Double rotation composed of a left rotation and a right rotation.
         /// </summary>
-        /// <param name="node">The pivoting node involved in rotations.</param>
-        /// <returns>The balanced tree node.</returns>
-        private AvlTreeNode<T> DoubleLeftRightRotation(AvlTreeNode<T> node)
+        /// <param name="node">The pivoting node involved in rotations.</param>        
+        private void DoubleLeftRightRotation(ref AvlTreeNode<T> node)
         {
-            // Double rotation is composed of two rotation one right and one left
-            node.Left = SingleLeftRotation(node.Left);
-            node = SingleRightRotation(node);
-            return node;
+            AvlTreeNode<T> node1 = node.Left.Right;
+            node.Left.Right = node1.Left;
+            node1.Left = node.Left;
+            node.Left.Height = Math.Max(Height(node.Left.Left), Height(node.Left.Right)) + 1;
+            node.Height = Math.Max(Height(node1.Right), Height(node)) + 1;
+            
+            AvlTreeNode<T> node2 = node.Left;
+            node.Left = node1.Right;
+            node1.Right = node;
+            node.Height = Math.Max(Height(node.Left), Height(node.Right)) + 1;
+            node1.Height = Math.Max(Height(node1.Left), Height(node)) + 1;
+            node = node1;
         }
 
         /// <summary>
@@ -192,14 +199,14 @@ namespace Dsa.DataStructures
         /// </summary>
         /// <param name="node">The pivoting node involved in rotations.</param>
         /// <returns>The balanced tree node.</returns>
-        private AvlTreeNode<T> SingleLeftRotation(AvlTreeNode<T> node)
+        private void SingleLeftRotation(ref AvlTreeNode<T> node)
         {
             AvlTreeNode<T> node1 = node.Right;
             node.Right = node1.Left;
             node1.Left = node;
             node.Height = Math.Max(Height(node.Left), Height(node.Right)) + 1;
             node1.Height = Math.Max(Height(node1.Right), Height(node)) + 1;
-            return node1;
+            node = node1;
         }
 
         /// <summary>
@@ -207,27 +214,34 @@ namespace Dsa.DataStructures
         /// </summary>
         /// <param name="node">The pivoting node involved in rotations.</param>
         /// <returns>The balanced tree node.</returns>
-        private AvlTreeNode<T> DoubleRightLeftRotation(AvlTreeNode<T> node)
-        {
-            // Double rotation is composed of two rotation one right and one left
-            node.Right = SingleRightRotation(node.Right);
-            node = SingleLeftRotation(node);
-            return node;
+        private void DoubleRightLeftRotation(ref AvlTreeNode<T> node)
+        {            
+            AvlTreeNode<T> node1 = node.Right.Left;
+            node.Right.Left = node1.Right;
+            node1.Right = node.Right;
+            node.Right.Height = Math.Max(Height(node.Right.Left), Height(node.Right.Right)) + 1;
+            node1.Height = Math.Max(Height(node1.Left), Height(node.Right)) + 1;
+            
+            AvlTreeNode<T> node2 = node.Right;
+            node.Right = node1.Left;
+            node1.Left = node;
+            node.Height = Math.Max(Height(node.Left), Height(node.Right)) + 1;
+            node1.Height = Math.Max(Height(node1.Right), Height(node)) + 1;
+            node = node1;
         }
 
         /// <summary>
         /// A Single rotation composed of a left rotation and a right rotation.
         /// </summary>
-        /// <param name="node">The pivoting node involved in rotations.</param>
-        /// <returns>The balanced tree node.</returns>
-        private AvlTreeNode<T> SingleRightRotation(AvlTreeNode<T> node)
+        /// <param name="node">The pivoting node involved in rotations.</param>        
+        private void SingleRightRotation(ref AvlTreeNode<T> node)
         {
             AvlTreeNode<T> node1 = node.Left;
             node.Left = node1.Right;
             node1.Right = node;
             node.Height = Math.Max(Height(node.Left), Height(node.Right)) + 1;
             node1.Height = Math.Max(Height(node1.Left), Height(node)) + 1;
-            return node1;
+            node = node1;
         }
 
         /// <summary>
@@ -240,7 +254,7 @@ namespace Dsa.DataStructures
         /// <returns>True if the item was removed; otherwise false.</returns>
         public override bool Remove(T item)
         {
-            throw new NotImplementedException();
+            throw new Exception("not implemented");
         }
     }
 }

@@ -76,6 +76,42 @@ namespace Dsa.Test.DataStructures
             Assert.AreEqual(5, actual.Root.Left.Value);
             Assert.AreEqual(10, actual.Root.Right.Value);
         }
+
+
+        /// <summary>
+        /// Massive insertion with multiple rotations and rebalancing
+        /// </summary>
+        [Test]
+        public void MassiveInsertionTest()
+        {
+            AvlTree<int> actual = new AvlTree<int>() { 10, 7, 2, 5, 11, 3, 19 };
+            Assert.AreEqual(7, actual.Root.Value);
+            Assert.AreEqual(3, actual.Root.Left.Value);
+            Assert.AreEqual(2, actual.Root.Left.Left.Value);
+            Assert.AreEqual(11, actual.Root.Right.Value);
+            Assert.AreEqual(10, actual.Root.Right.Left.Value);
+            Assert.AreEqual(19, actual.Root.Right.Right.Value);
+            Assert.AreEqual(5, actual.Root.Left.Right.Value);
+        }
+
+
+        /// <summary>
+        /// Massive insertion with multiple rotations and rebalancing
+        /// </summary>
+        [Test]
+        public void TenNodesInsertionTest()
+        {
+            AvlTree<int> actual = new AvlTree<int>() { 1,2,10,7,3,6,9,4,8,15 };
+            Assert.AreEqual(7, actual.Root.Value);
+            Assert.AreEqual(3, actual.Root.Left.Value);
+            Assert.AreEqual(2, actual.Root.Left.Left.Value);
+            Assert.AreEqual(1, actual.Root.Left.Left.Left.Value);
+            Assert.AreEqual(9, actual.Root.Right.Value);
+            Assert.AreEqual(8, actual.Root.Right.Left.Value);
+            Assert.AreEqual(10, actual.Root.Right.Right.Value);
+            Assert.AreEqual(15, actual.Root.Right.Right.Right.Value);
+        }
+
         /// <summary>
         /// Check that count is correct after inserting some values.
         /// </summary>
