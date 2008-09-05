@@ -76,13 +76,25 @@ namespace Dsa.DataStructures
         /// <returns>True if the item was removed; otherwise false.</returns>
         public override bool Remove(T item)
         {
-            BinaryTreeNode<T> nodeToRemove = FindNode(item);
+            BinaryTreeNode<T> nodeToRemove = Root;
+            BinaryTreeNode<T> parent = null;
+
+            while((nodeToRemove!= null) && (!Compare.AreEqual(item,nodeToRemove.Value,Comparer)))
+	        {
+                parent = nodeToRemove;
+                if (Compare.IsLessThan(item, nodeToRemove.Value, Comparer))
+                {
+                    nodeToRemove = nodeToRemove.Left;
+                }
+                else
+                {
+                    nodeToRemove = nodeToRemove.Right;
+                }
+	        }                                
             if (nodeToRemove == null)
             {
                 return false;
-            }
-
-            BinaryTreeNode<T> parent = FindParent(item);
+            }            
             if (Count == 1)
             {
                 Root = null;

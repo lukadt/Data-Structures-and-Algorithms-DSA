@@ -129,17 +129,15 @@ namespace Dsa.DataStructures
                     InsertNode(ref right, value);                    
                     avlNode.Right = right;
                 }
-            }
-
-            
-            Balance(ref avlNode);
+            }            
+            FixHeightAndBalance(ref avlNode);
         }
 
         /// <summary>
         /// Function that balance the tree after having updated its height
         /// </summary>
         /// <param name="node">the root of the tree to balance </param>        
-        private void Balance(ref AvlTreeNode<T> node)
+        private void FixHeightAndBalance(ref AvlTreeNode<T> node)
         {
 
             if (node.Left == null && node.Right == null)
@@ -197,8 +195,7 @@ namespace Dsa.DataStructures
         /// <summary>
         /// A single right rotation composed of a right rotation.
         /// </summary>
-        /// <param name="node">The pivoting node involved in rotations.</param>
-        /// <returns>The balanced tree node.</returns>
+        /// <param name="node">The pivoting node involved in rotations.</param>       
         private void SingleLeftRotation(ref AvlTreeNode<T> node)
         {
             AvlTreeNode<T> node1 = node.Right;
@@ -212,8 +209,7 @@ namespace Dsa.DataStructures
         /// <summary>
         /// A Double rotation composed of a right rotation and a left rotation.
         /// </summary>
-        /// <param name="node">The pivoting node involved in rotations.</param>
-        /// <returns>The balanced tree node.</returns>
+        /// <param name="node">The pivoting node involved in rotations.</param>        
         private void DoubleRightLeftRotation(ref AvlTreeNode<T> node)
         {            
             AvlTreeNode<T> node1 = node.Right.Left;
@@ -254,7 +250,7 @@ namespace Dsa.DataStructures
         /// <returns>True if the item was removed; otherwise false.</returns>
         public override bool Remove(T item)
         {
-            throw new Exception("not implemented");
+            throw new Exception("method not implemented");
         }
     }
 }
