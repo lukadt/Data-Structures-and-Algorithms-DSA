@@ -60,7 +60,7 @@ namespace Dsa.DataStructures
             }
             else
             {
-                InsertNode(Root, item);
+                InsertNode(item);
             }
 
             Count++;
@@ -159,33 +159,48 @@ namespace Dsa.DataStructures
 
         /// <summary>
         /// Called by the Add method. Finds the location where to put the node in the <see cref="BinarySearchTree{T}"/>.
-        /// </summary>
-        /// <param name="node">Node to start searching from.</param>
+        /// </summary>        
         /// <param name="value">Value to insert into the Bst.</param>
-        private void InsertNode(BinaryTreeNode<T> node, T value)
+        private void InsertNode(T value)
         {
-            if (Compare.IsLessThan(value, node.Value, Comparer))
-            {
-                if (node.Left == null)
+            BinaryTreeNode<T> current = Root;
+            while (true)
+            {                
+                if (Compare.IsLessThan(value, current.Value, Comparer))
                 {
-                    node.Left = new BinaryTreeNode<T>(value);
+                    //We go left and if arrived at a leaf insert the node and return
+                    if (current.Left!=null)
+                    {	
+                        current = current.Left;
+                    }
+	
+                    else
+                    {	
+                        current.Left = new BinaryTreeNode<T>(value);
+                        return;
+                    }
+                }                
+                else if (Compare.IsGreaterThan(value, current.Value, Comparer))
+                {
+                    //We go right and if arrived at a leaf insert the node and return
+                    if (current.Right!=null)
+                    {	
+                        current = current.Right;
+                    }
+	
+                    else
+                    {	
+                        current.Right = new BinaryTreeNode<T>(value);
+                        return;
+                    }
                 }
+                // The value to insert is already present, we simply return
                 else
                 {
-                    InsertNode(node.Left, value);
+                    return;
                 }
-            }
-            else
-            {
-                if (node.Right == null)
-                {
-                    node.Right = new BinaryTreeNode<T>(value);
-                }
-                else
-                {
-                    InsertNode(node.Right, value);
-                }
-            }
+            }            
         }
+
     }
 }
