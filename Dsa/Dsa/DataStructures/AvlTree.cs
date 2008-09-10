@@ -43,12 +43,12 @@ namespace Dsa.DataStructures
         /// Retrieves the height of the specified node.
         /// </summary>
         /// <param name="node">Node to obtain depth.</param>
-        /// <returns>If the node is null -1; otherwise its proper height.</returns>
+        /// <returns>If the node is null 0; otherwise its proper height.</returns>
         public int Height(AvlTreeNode<T> node)
         {
             if (node == null)
             {
-                return -1;
+                return 0;
             }
             else
             {
@@ -59,11 +59,12 @@ namespace Dsa.DataStructures
         /// <summary>
         /// Get the balance factor for the node
         /// Balance factor is defined as the height difference 
-        /// between left and right subtree if subtrees exist otherwise as 0
+        /// between left and right subtree if subtrees exist otherwise 
+        /// for a null node as 0
         /// </summary>
         public int GetBalanceFactor(AvlTreeNode<T> node)
         {
-            if (node.Left == null && node.Right == null)
+            if (node == null)
             {
                 return 0;
             }
@@ -92,7 +93,6 @@ namespace Dsa.DataStructures
                 InsertNode(ref root, item);
                 Root = root;
             }
-
             Count++;
         }
 
@@ -129,39 +129,47 @@ namespace Dsa.DataStructures
                     InsertNode(ref right, value);                    
                     avlNode.Right = right;
                 }
+            }
+            if ((GetBalanceFactor(avlNode) == 2) || (GetBalanceFactor(avlNode) == - 2))
+            {
+                Balance(ref avlNode);
+            }
+            else
+            {
+                AdjustHeight(avlNode);
             }            
-            FixHeightAndBalance(ref avlNode);
+        }
+       
+        /// <summary>
+        /// Set the proper height of a node
+        /// </summary>
+        /// <param name="avlNode">the node needing a height fix </param>
+        private void AdjustHeight(AvlTreeNode<T> avlNode)
+        {
+            avlNode.Height = Math.Max(Height(avlNode.Left), Height(avlNode.Right)) + 1;
         }
 
         /// <summary>
         /// Function that balance the tree after having updated its height
         /// </summary>
         /// <param name="node">the root of the tree to balance </param>        
-        private void FixHeightAndBalance(ref AvlTreeNode<T> node)
-        {
-
-            if (node.Left == null && node.Right == null)
+        private void Balance(ref AvlTreeNode<T> node)
+        {                       
+            // Left Heavy Tree
+            if (GetBalanceFactor(node) == 2)
             {
-                node.Height = -1;
-            }
-            else
-            {
-                node.Height = Math.Max(Height(node.Left), Height(node.Right)) + 1;
-            }
-            if (GetBalanceFactor(node) > 1)
-            {
-                if (GetBalanceFactor(node.Left) > 0)
+                if (GetBalanceFactor(node.Left) > -1)
                 {
-                    SingleRightRotation(ref node);
+                    SingleRightRotation(ref node);                    
                 }
                 else
                 {
                     DoubleLeftRightRotation(ref node);
                 }
-            }
-            else if (GetBalanceFactor(node) < -1)
+            }// Right Heavy Tree
+            else if (GetBalanceFactor(node) <= -2)
             {
-                if (GetBalanceFactor(node.Right) < 0)
+                if (GetBalanceFactor(node.Right) < 1)
                 {
                     SingleLeftRotation(ref node);
                 }
@@ -171,7 +179,115 @@ namespace Dsa.DataStructures
                 }
             }            
         }
+        
+        /// <summary>
+        /// Removes a node with the specified value from the <see cref="AvlTree{T}"/>.
+        /// </summary>
+        /// <remarks>
+        /// This method is an O(log n) operation plus if necessary a rebalancing.
+        /// </remarks>
+        /// <param name="item">Item to remove from the the <see cref="AvlTree{T}"/>.</param>
+        /// <returns>True if the item was removed; otherwise false.</returns>
+        public override bool Remove(T item)
+        {
+            try
+            {
+                Root = RemoveNode(Root, item);
+                Count--;
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }                             
+        }
+        
+        /// <summary>
+        /// Called by remove public method. This removal helper method find the item to 
+        /// remove and if present remove it rebalancing in case the avl tree
+        /// </summary>
+        /// <param name="avlNode">root subtree node to start deleting </param>
+        /// <param name="item">value to delete</param>
+        /// <returns>the root of the tree with value removed</returns>
+        private AvlTreeNode<T> RemoveNode(AvlTreeNode<T> avlNode, T item)
+        {
+            if (avlNode ==  null)
+            {
+                throw new Exception("item not found");
+            }
+            else if (Compare.IsLessThan(item, avlNode.Value, Comparer))
+            {
+                avlNode.Left = RemoveNode(avlNode.Left, item);                
+            }
+            else if (Compare.IsGreaterThan(item, avlNode.Value, Comparer))
+            {
+                avlNode.Right =  RemoveNode(avlNode.Right, item);                
+            }
+            else if (Compare.AreEqual(item, avlNode.Value, Comparer))
+            {                                
+                    if (avlNode.Right == null && avlNode.Left == null)
+                    {
+                        return null;
+                    }
+                    else if (avlNode.Right != null && avlNode.Left == null)
+                    {
+                        return avlNode.Right;
+                    }
+                    else if (avlNode.Left != null && avlNode.Right == null )
+                    {
+                        return avlNode.Left;
+                    }
+                    else
+                    {
+                        T newValue = FindMaxValue(avlNode.Left);                        
+                        avlNode.Value = newValue;
+                        avlNode.Left = RemoveNode(avlNode.Left, newValue);
+                    }                                                                            
+            }
+            
+            if ((GetBalanceFactor(avlNode) == 2) || (GetBalanceFactor(avlNode) == -2))
+            {
+                Balance(ref avlNode);
+            }
+            else
+            {
+                AdjustHeight(avlNode);
+            }
+                 
+            return avlNode;
+        }        
+        
+        /// <summary>
+        /// Get the minimum value of a tree
+        /// </summary>
+        /// <param name="avlTreeNode">the root of the tree</param>
+        /// <returns>the minimum value of the tree</returns>
+        private T FindMinValue(AvlTreeNode<T> avlTreeNode)
+        {            
+            while (avlTreeNode.Left!=null)
+            {
+                avlTreeNode = avlTreeNode.Left;
+            }
+         
+            T min = avlTreeNode.Value;
+            return min;
+        }
 
+        /// <summary>
+        /// Get the maximum value of a tree
+        /// </summary>
+        /// <param name="avlTreeNode">the root of the tree</param>
+        /// <returns>the maximum value of the tree</returns>
+        private T FindMaxValue(AvlTreeNode<T> avlTreeNode)
+        {
+            while (avlTreeNode.Right!= null)
+            {
+                avlTreeNode = avlTreeNode.Right;
+            }
+
+            T max = avlTreeNode.Value;
+            return max;
+        }
         /// <summary>
         /// A Double rotation composed of a left rotation and a right rotation.
         /// </summary>
@@ -181,14 +297,13 @@ namespace Dsa.DataStructures
             AvlTreeNode<T> node1 = node.Left.Right;
             node.Left.Right = node1.Left;
             node1.Left = node.Left;
-            node.Left.Height = Math.Max(Height(node.Left.Left), Height(node.Left.Right)) + 1;
-            node.Height = Math.Max(Height(node1.Right), Height(node)) + 1;
-            
-            AvlTreeNode<T> node2 = node.Left;
+            AdjustHeight(node.Left);
+            AdjustHeight(node);
+
             node.Left = node1.Right;
             node1.Right = node;
-            node.Height = Math.Max(Height(node.Left), Height(node.Right)) + 1;
-            node1.Height = Math.Max(Height(node1.Left), Height(node)) + 1;
+            AdjustHeight(node);
+            AdjustHeight(node1);
             node = node1;
         }
 
@@ -201,8 +316,8 @@ namespace Dsa.DataStructures
             AvlTreeNode<T> node1 = node.Right;
             node.Right = node1.Left;
             node1.Left = node;
-            node.Height = Math.Max(Height(node.Left), Height(node.Right)) + 1;
-            node1.Height = Math.Max(Height(node1.Right), Height(node)) + 1;
+            AdjustHeight(node);
+            AdjustHeight(node1);
             node = node1;
         }
 
@@ -211,18 +326,17 @@ namespace Dsa.DataStructures
         /// </summary>
         /// <param name="node">The pivoting node involved in rotations.</param>        
         private void DoubleRightLeftRotation(ref AvlTreeNode<T> node)
-        {            
+        {
             AvlTreeNode<T> node1 = node.Right.Left;
             node.Right.Left = node1.Right;
             node1.Right = node.Right;
-            node.Right.Height = Math.Max(Height(node.Right.Left), Height(node.Right.Right)) + 1;
-            node1.Height = Math.Max(Height(node1.Left), Height(node.Right)) + 1;
-            
-            AvlTreeNode<T> node2 = node.Right;
+            AdjustHeight(node.Right);
+            AdjustHeight(node1);
+
             node.Right = node1.Left;
             node1.Left = node;
-            node.Height = Math.Max(Height(node.Left), Height(node.Right)) + 1;
-            node1.Height = Math.Max(Height(node1.Right), Height(node)) + 1;
+            AdjustHeight(node);
+            AdjustHeight(node1);
             node = node1;
         }
 
@@ -235,22 +349,10 @@ namespace Dsa.DataStructures
             AvlTreeNode<T> node1 = node.Left;
             node.Left = node1.Right;
             node1.Right = node;
-            node.Height = Math.Max(Height(node.Left), Height(node.Right)) + 1;
-            node1.Height = Math.Max(Height(node1.Left), Height(node)) + 1;
+            AdjustHeight(node);
+            AdjustHeight(node1);
             node = node1;
         }
 
-        /// <summary>
-        /// Removes a node with the specified value from the <see cref="AvlTree{T}"/>.
-        /// </summary>
-        /// <remarks>
-        /// This method is an O(log n) operation plus if necessary a rebalancing.
-        /// </remarks>
-        /// <param name="item">Item to remove from the the <see cref="AvlTree{T}"/>.</param>
-        /// <returns>True if the item was removed; otherwise false.</returns>
-        public override bool Remove(T item)
-        {
-            throw new Exception("method not implemented");
-        }
     }
 }

@@ -19,6 +19,7 @@ namespace Dsa.DataStructures
         public AvlTreeNode(T value)
         {
             Value = value;
+            Height = 1;
         }
 
         /// <summary>

@@ -16,8 +16,7 @@ namespace Dsa.Test.DataStructures
         public void HeightTest()
         {
             AvlTreeNode<int> actual = new AvlTreeNode<int>(20);
-
-            Assert.AreEqual(0, actual.Height);
+            Assert.AreEqual(1, actual.Height);
         }
     }
 }
