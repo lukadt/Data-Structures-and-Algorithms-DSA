@@ -79,8 +79,8 @@ namespace Dsa.DataStructures
             BinaryTreeNode<T> nodeToRemove = Root;
             BinaryTreeNode<T> parent = null;
 
-            while((nodeToRemove!= null) && (!Compare.AreEqual(item,nodeToRemove.Value,Comparer)))
-	        {
+            while ((nodeToRemove != null) && (!Compare.AreEqual(item, nodeToRemove.Value, Comparer)))
+            {
                 parent = nodeToRemove;
                 if (Compare.IsLessThan(item, nodeToRemove.Value, Comparer))
                 {
@@ -90,7 +90,7 @@ namespace Dsa.DataStructures
                 {
                     nodeToRemove = nodeToRemove.Right;
                 }
-	        }                                
+            }
             if (nodeToRemove == null)
             {
                 return false;
