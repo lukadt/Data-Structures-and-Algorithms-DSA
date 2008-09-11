@@ -20,9 +20,11 @@ namespace Dsa.Test.DataStructures
             AvlTree<int> actual = new AvlTree<int> { 10, 20 };
             AvlTreeNode<int> root = actual.FindNode(10);
             AvlTreeNode<int> leaf = actual.FindNode(20);
+            AvlTreeNode<int> emptyNode = default(AvlTreeNode<int>);
 
             Assert.AreEqual(actual.GetBalanceFactor(root), -1);
             Assert.AreEqual(actual.GetBalanceFactor(leaf), 0);
+            Assert.AreEqual(actual.GetBalanceFactor(emptyNode), 0);
         }
         
         /// <summary>
@@ -75,6 +77,23 @@ namespace Dsa.Test.DataStructures
             Assert.AreEqual(7, actual.Root.Value);
             Assert.AreEqual(5, actual.Root.Left.Value);
             Assert.AreEqual(10, actual.Root.Right.Value);
+        }
+        
+        /// <summary>
+        /// Check to see that a double rotation is applied for rebalancing a tree after
+        /// a node insertion
+        /// </summary>
+        [Test]
+        public void InsertionRotateRightLeftTest()
+        { 
+            AvlTree<int> avlTree = new AvlTree<int>(){6,5,15,7,16};
+            avlTree.Add(14);
+            Assert.AreEqual(7, avlTree.Root.Value);
+            Assert.AreEqual(6, avlTree.Root.Left.Value);
+            Assert.AreEqual(15, avlTree.Root.Right.Value);
+            Assert.AreEqual(5, avlTree.Root.Left.Left.Value);
+            Assert.AreEqual(14, avlTree.Root.Right.Left.Value);
+            Assert.AreEqual(16, avlTree.Root.Right.Right.Value);
         }
 
         /// <summary>
@@ -136,6 +155,21 @@ namespace Dsa.Test.DataStructures
         }
 
         /// <summary>
+        /// Simple Deletion of a node having only left subtree with no need of rebalancing
+        /// </summary>
+        [Test]
+        public void RemoveNodeSingleLeftSubTreeTest()
+        {
+            AvlTree<int> avlTree = new AvlTree<int>() { 7, 6, 15, 5, 14, 16 };
+            avlTree.Remove(6);
+            Assert.AreEqual(7, avlTree.Root.Value);
+            Assert.AreEqual(5, avlTree.Root.Left.Value);
+            Assert.AreEqual(15, avlTree.Root.Right.Value);
+            Assert.AreEqual(14, avlTree.Root.Right.Left.Value);
+            Assert.AreEqual(16, avlTree.Root.Right.Right.Value);
+        }
+
+        /// <summary>
         /// Deletion test involving multiple rebalancing rotations
         /// after some nodes has been removed from Avl tree
         /// </summary>
@@ -180,8 +214,48 @@ namespace Dsa.Test.DataStructures
         [Test]
         public void RemoveTreeHasNoItemsTest()
         {
-            AvlTree<int> actual = new AvlTree<int>();
-            actual.Remove(6);
+            AvlTree<int> actual = new AvlTree<int>();            
+            Assert.IsFalse(actual.Remove(6));
+        }
+        
+        /// <summary>
+        /// Check to simulate a composed use of an avl tree, so first we insert items and after 
+        /// we delete some of them
+        /// </summary>
+        [Test]
+        public void InsertionAndDeletionTest()
+        {
+            AvlTree<uint> avlTree = new AvlTree<uint>();
+            avlTree.Add(28);
+            avlTree.Add(22);
+            avlTree.Add(3);
+            avlTree.Add(7);
+            avlTree.Add(14);
+            avlTree.Add(9);
+            avlTree.Add(19);
+            avlTree.Add(55);
+            avlTree.Add(23);
+            avlTree.Add(4);
+            avlTree.Add(1);
+            avlTree.Add(6);
+            avlTree.Add(15);
+            Assert.AreEqual(avlTree.Root.Value, 14);
+            Assert.AreEqual(avlTree.Root.Left.Value, 4);
+            Assert.AreEqual(avlTree.Root.Right.Value, 22);
+            avlTree.Remove(4);
+            avlTree.Remove(3);
+            avlTree.Remove(1);
+            avlTree.Remove(9);
+            avlTree.Remove(23);
+            avlTree.Remove(14);
+            Assert.AreEqual(7, avlTree.Count);
+            Assert.AreEqual(22, avlTree.Root.Value);
+            Assert.AreEqual(7, avlTree.Root.Left.Value);
+            Assert.AreEqual(28, avlTree.Root.Right.Value);
+            Assert.AreEqual(55, avlTree.Root.Right.Right.Value);
+            Assert.AreEqual(6, avlTree.Root.Left.Left.Value);
+            Assert.AreEqual(19, avlTree.Root.Left.Right.Value);
+            Assert.AreEqual(15, avlTree.Root.Left.Right.Left.Value);
         }
 
         /// <summary>

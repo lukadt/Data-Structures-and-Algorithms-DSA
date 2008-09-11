@@ -158,22 +158,22 @@ namespace Dsa.DataStructures
             // Left Heavy Tree
             if (GetBalanceFactor(node) == 2)
             {
-                if (GetBalanceFactor(node.Left) > -1)
+                if (GetBalanceFactor(node.Left) > -1) // Left Heavy Left Subtree or zero balance factor
                 {
                     SingleRightRotation(ref node);                    
                 }
-                else
+                else // Right Heavy Left Subtree
                 {
                     DoubleLeftRightRotation(ref node);
                 }
             }// Right Heavy Tree
-            else if (GetBalanceFactor(node) <= -2)
+            else if (GetBalanceFactor(node) == -2)
             {
-                if (GetBalanceFactor(node.Right) < 1)
+                if (GetBalanceFactor(node.Right) < 1) // Right Heavy Right Subtree or zero balance factor
                 {
                     SingleLeftRotation(ref node);
                 }
-                else
+                else // Left Heavy Right SubTree
                 {
                     DoubleRightLeftRotation(ref node);
                 }
@@ -224,27 +224,31 @@ namespace Dsa.DataStructures
                 avlNode.Right =  RemoveNode(avlNode.Right, item);                
             }
             else if (Compare.AreEqual(item, avlNode.Value, Comparer))
-            {                                
+            {                                                  
                     if (avlNode.Right == null && avlNode.Left == null)
                     {
+                        // node to remove is a leaf, we simply delete node
                         return null;
                     }
                     else if (avlNode.Right != null && avlNode.Left == null)
                     {
+                        // node to remove has only a right subtree, we link it with its parent
                         return avlNode.Right;
                     }
                     else if (avlNode.Left != null && avlNode.Right == null )
                     {
+                        // node to remove has only a left subtree, we link it with its parent
                         return avlNode.Left;
                     }
-                    else
+                    else // node to remove has both childs
                     {
                         T newValue = FindMaxValue(avlNode.Left);                        
                         avlNode.Value = newValue;
                         avlNode.Left = RemoveNode(avlNode.Left, newValue);
                     }                                                                            
             }
-            
+            // Checking for unbalance, if detected, balance (include also height update)
+            // otherwise only Adjust height
             if ((GetBalanceFactor(avlNode) == 2) || (GetBalanceFactor(avlNode) == -2))
             {
                 Balance(ref avlNode);
@@ -256,23 +260,7 @@ namespace Dsa.DataStructures
                  
             return avlNode;
         }        
-        
-        /// <summary>
-        /// Get the minimum value of a tree
-        /// </summary>
-        /// <param name="avlTreeNode">the root of the tree</param>
-        /// <returns>the minimum value of the tree</returns>
-        private T FindMinValue(AvlTreeNode<T> avlTreeNode)
-        {            
-            while (avlTreeNode.Left!=null)
-            {
-                avlTreeNode = avlTreeNode.Left;
-            }
-         
-            T min = avlTreeNode.Value;
-            return min;
-        }
-
+                
         /// <summary>
         /// Get the maximum value of a tree
         /// </summary>
