@@ -259,6 +259,8 @@ namespace Dsa.DataStructures
                 }
             }
 
+            m_heap[Count] = default(T); // fix to release obj handles
+
             return true;
         }
 
